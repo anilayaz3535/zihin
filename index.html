@@ -819,20 +819,57 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     try { r = await fetch(`${GEM}/${path}`, { method: body ? 'POST' : 'GET', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': getKey() }, body: body ? JSON.stringify(body) : undefined, signal }); }
     catch (e) { if (e.name === 'AbortError') throw e; throw new GemError('net', 'İnternet bağlantısı yok ya da Google’a ulaşılamadı.'); }
     let j = null; try { j = await r.json(); } catch { /* boş */ }
-    if (!r.ok) {
+    if (!r.ok) throw classifyError(r.status, j);
+    return j;
+  }
+  function classifyError(status, j) {
+    const r = { status };
+    {
       const err = (j && (Array.isArray(j) ? j[0] : j) && (Array.isArray(j) ? j[0] : j).error) || {};
       const msg = err.message || `HTTP ${r.status}`;
       const det = JSON.stringify(err.details || []);
       if (r.status === 429) {
         const m = det.match(/"retryDelay"\s*:\s*"([\d.]+)s"/);
-        throw new GemError('rate', msg, { wait: Math.min(90, Math.ceil(m ? parseFloat(m[1]) : 30)), daily: /PerDay|per day/i.test(det + msg), zero: /limit: ?0\b/.test(msg) });
+        return new GemError('rate', msg, { wait: Math.min(90, Math.ceil(m ? parseFloat(m[1]) : 30)), daily: /PerDay|per day/i.test(det + msg), zero: /limit: ?0\b/.test(msg) });
       }
-      if (/api[ _-]?key/i.test(msg) || r.status === 401 || r.status === 403) throw new GemError('key', msg);
-      if (r.status === 404) throw new GemError('model', msg);
-      if (r.status >= 500 || /high demand|overloaded|unavailable/i.test(msg)) throw new GemError('busy', msg, { status: r.status });
-      throw new GemError('http', msg, { status: r.status });
+      if (/api[ _-]?key/i.test(msg) || r.status === 401 || r.status === 403) return new GemError('key', msg);
+      if (r.status === 404) return new GemError('model', msg);
+      if (r.status >= 500 || /high demand|overloaded|unavailable/i.test(msg)) return new GemError('busy', msg, { status: r.status });
+      return new GemError('http', msg, { status: r.status });
     }
-    return j;
+  }
+  // Akışlı istek: cevap yazıldıkça ekrana gelir, bağlantı canlı kalır
+  async function gemStream(model, body, signal, onDelta) {
+    let r;
+    try { r = await fetch(`${GEM}/models/${model}:streamGenerateContent?alt=sse`, { method: 'POST', headers: { 'Content-Type': 'application/json', 'x-goog-api-key': getKey() }, body: JSON.stringify(body), signal }); }
+    catch (e) { if (e.name === 'AbortError') throw e; throw new GemError('net', 'İnternet bağlantısı yok ya da Google’a ulaşılamadı.'); }
+    if (!r.ok) { let j = null; try { j = await r.json(); } catch { /* boş */ } throw classifyError(r.status, j); }
+    const parts = []; let finishReason = null, promptFeedback = null;
+    try {
+      const reader = r.body.getReader(); const dec = new TextDecoder(); let buf = '';
+      for (;;) {
+        const { value, done } = await reader.read(); if (done) break;
+        buf += dec.decode(value, { stream: true });
+        let i;
+        while ((i = buf.indexOf('\n')) >= 0) {
+          const line = buf.slice(0, i).replace(/\r$/, ''); buf = buf.slice(i + 1);
+          if (!line.startsWith('data:')) continue;
+          let j; try { j = JSON.parse(line.slice(5)); } catch { continue; }
+          if (j.error) throw classifyError(j.error.code || 500, j);
+          if (j.promptFeedback) promptFeedback = j.promptFeedback;
+          const c = j.candidates && j.candidates[0];
+          if (!c) continue;
+          if (c.finishReason) finishReason = c.finishReason;
+          for (const p of (c.content && c.content.parts) || []) { parts.push(p); if (p.text && !p.thought && onDelta) onDelta(p.text); }
+        }
+      }
+    } catch (e) { if (e.name === 'AbortError' || e instanceof GemError) throw e; throw new GemError('net', 'Bağlantı koptu.'); }
+    return { candidates: [{ content: { role: 'model', parts }, finishReason }], promptFeedback };
+  }
+  function thinkFor(model) {
+    if (ver(model) >= 300) return { thinkingLevel: 'low' };
+    if (/^gemini-2\.5-flash(-preview[\w-]*)?$/.test(model)) return { thinkingBudget: 1024 };
+    return null;
   }
   let modelList = null;
   async function listModels() {
@@ -871,13 +908,24 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     for (let s = secs; s > 0; s--) { if (signal && signal.aborted) throw new DOMException('aborted', 'AbortError'); onWait && onWait(s); await sleep(1000); }
     onWait && onWait(0);
   }
-  async function callModel(model, body, signal, onWait, tier) {
-    let tries = 0, busy = 0, net = 0, m = model;
+  async function callModel(model, body, signal, onWait, tier, stream) {
+    let tries = 0, busy = 0, net = 0, m = model, noThink = false;
     const tried = new Set();
     for (;;) {
-      try { return { j: await gemFetch(`models/${m}:generateContent`, body, signal), model: m, tier }; }
+      const b = { ...body };
+      const tc = !noThink && thinkFor(m);
+      if (tc) b.generationConfig = { ...(body.generationConfig || {}), thinkingConfig: tc };
+      try {
+        if (stream) { stream.reset(m); return { j: await gemStream(m, b, signal, stream.delta), model: m, tier }; }
+        return { j: await gemFetch(`models/${m}:generateContent`, b, signal), model: m, tier };
+      }
       catch (e) {
         if (e.name === 'AbortError' || (signal && signal.aborted)) throw e;
+        if (e.code === 'http' && e.status === 400 && tc && /think/i.test(e.message)) { noThink = true; continue; }
+        // Dakika limiti uzun bekletecekse beklemek yerine hızlı modele geç
+        if (e.code === 'rate' && !e.daily && !e.zero && tier === 'default' && e.wait > 15) {
+          tier = 'quick'; m = await pickModel('quick'); onWait && onWait(0, `Dakika limiti doldu, beklememek için ${m} modeline geçildi`); continue;
+        }
         // Günlük kota bitti ya da bu modelde ücretsiz kota yok: bir alt modele geç (Pro → Flash → Flash-Lite)
         const next = tier === 'complex' ? 'default' : tier === 'default' ? 'quick' : null;
         if (e.code === 'rate' && next && (e.zero || e.daily || (tier === 'complex' && tries >= 1))) {
@@ -918,7 +966,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     if (!text) throw new Error('Sonuç bulunamadı');
     return { ozet: text.slice(0, 9000), kaynaklar };
   }
-  async function runGemini(prompt, { tools, images, signal, tier, onText, onWait }) {
+  async function runGemini(prompt, { tools, images, signal, tier, onText, onWait, onModel }) {
     let model = await pickModel(tier);
     const byName = Object.fromEntries(tools.map(t => [t.name, t]));
     const decl = tools.map(t => { const d = { name: t.name, description: t.description }; const sc = t.inputSchema; if (sc && sc.properties && Object.keys(sc.properties).length) d.parameters = sc; return d; });
@@ -927,7 +975,9 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     const contents = [{ role: 'user', parts: userParts }];
     let all = '';
     for (let round = 0; round < 40; round++) {
-      const r = await callModel(model, { contents, tools: [{ functionDeclarations: decl }], generationConfig: { maxOutputTokens: 65536 } }, signal, onWait, tier);
+      let roundText = '';
+      const stream = { reset: m => { roundText = ''; onModel && onModel(m); }, delta: d => { roundText += d; onText({ text: all ? all + '\n\n' + roundText : roundText, live: true }); } };
+      const r = await callModel(model, { contents, tools: [{ functionDeclarations: decl }], generationConfig: { maxOutputTokens: 65536 } }, signal, onWait, tier, stream);
       if (r.model !== model) { model = r.model; tier = r.tier; }
       const res = r.j;
       const cand = res.candidates && res.candidates[0];
@@ -968,14 +1018,17 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     renderAll(); scrollLogEnd(); renderChips();
     const ac = new AbortController(); st.run = { ac, run };
     updateGo(); $('#liveDot').hidden = false; keepAwake(true);
-    let waitStep = null;
+    let waitStep = null, tick = null;
     try {
       const imgNote = images.length ? `\n[Kullanıcı bu mesaja ${images.length} görsel ekledi; görseller ekte.]` : '';
       const inNote = inputsNow.length ? `\n[Kullanıcının eklediği dosyalar girdi/ klasöründe: ${inputsNow.length} dosya]` : '';
       const prompt = `${AGENT}\n\nBugünün tarihi: ${new Date().toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} (${new Date().toISOString().slice(0, 10)}).\n${memNote()}\n${taskState(t, run)}${inNote}\n[Kullanıcının yeni isteği]\n${cmdText}${imgNote}`;
+      run.started = Date.now();
+      tick = setInterval(() => { if (st.run && st.run.run === run) renderRun(run); }, 1000);
       const res = await runGemini(prompt, {
         tools: makeTools(t, run), images, signal: ac.signal, tier: st.tier,
-        onText: ({ text }) => { run.reply = text; renderRun(run); },
+        onModel: m => { run.model = m; },
+        onText: ({ text }) => { run.reply = text; run.lastText = Date.now(); renderRun(run); },
         onWait: (secs, note) => {
           if (note) { run.steps.push({ kind: 'list', label: esc(note), ok: true }); renderRun(run); return; }
           if (secs > 0) { if (!waitStep) { waitStep = { kind: 'list', label: '', live: true }; run.steps.push(waitStep); } waitStep.label = `Google meşgul ya da dakika limiti doldu, ${secs} sn sonra tekrar deneniyor…`; renderRun(run); }
@@ -998,7 +1051,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
           : (e && e.message) ? `Hata: ${String(e.message).slice(0, 300)}` : 'Bir hata oldu.';
       }
     } finally {
-      st.run = null; $('#liveDot').hidden = true; keepAwake(false);
+      st.run = null; $('#liveDot').hidden = true; keepAwake(false); if (tick) clearInterval(tick);
       for (const s of run.steps) if (s.live) { s.live = false; s.ok = false; s.label += ' (yarım kaldı)'; }
       t.updatedAt = Date.now(); save();
       renderRun(run); updateGo(); renderComp(); renderTaskName();
@@ -1064,7 +1117,11 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     let h = `<div class="cmd${r.undo ? ' auto' : ''}"><div class="bubble">${esc(r.cmd)}</div>${r.att ? `<div class="att">${esc(r.att)}</div>` : ''}</div>`;
     if (r.steps.length) h += `<ul class="steps">${r.steps.map(stepHTML).join('')}</ul>`;
     if (r.reply) h += `<div class="reply md">${md(r.reply)}</div>`;
-    if (r.status === 'running' && !r.steps.some(s => s.live)) h += `<div class="thinking"><span class="spin"></span>${r.steps.length ? 'Çalışıyor…' : 'Düşünüyor ve plan yapıyor…'}</div>`;
+    if (r.status === 'running' && !r.steps.some(s => s.live) && !(r.lastText && Date.now() - r.lastText < 1500)) {
+      const secs = r.started ? Math.round((Date.now() - r.started) / 1000) : 0;
+      h += `<div class="thinking"><span class="spin"></span>${r.steps.length || r.reply ? 'Çalışıyor' : 'Düşünüyor'}… ${secs} sn${r.model ? ` · ${esc(r.model)}` : ''}</div>`;
+    }
+    if (r.status !== 'running' && r.model) h += `<div class="run-note">Model: ${esc(r.model)}</div>`;
     if (r.deliverables && r.deliverables.length) {
       const t = cur(); const ws = t ? workspace(t) : {};
       h += '<div class="deliver">' + r.deliverables.filter(p => ws[p] != null).map(p => `<div class="dcard"><div class="ft">${esc(ftLabel(p))}</div><div class="nm"><b>${esc(p.split('/').pop())}</b><span>${fmtSize(bytes(ws[p]))}${p.includes('/') ? ' · ' + esc(dirOf(p)) : ''}</span></div><button type="button" data-open="${esc(p)}">Aç</button></div>`).join('') + '</div>';
