@@ -784,6 +784,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
       }
       if (/api[ _-]?key/i.test(msg) || r.status === 401 || r.status === 403) throw new GemError('key', msg);
       if (r.status === 404) throw new GemError('model', msg);
+      if (r.status >= 500 || /high demand|overloaded|unavailable/i.test(msg)) throw new GemError('busy', msg, { status: r.status });
       throw new GemError('http', msg, { status: r.status });
     }
     return j;
@@ -809,7 +810,8 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     onWait && onWait(0);
   }
   async function callModel(model, body, signal, onWait, tier) {
-    let tries = 0, m = model;
+    let tries = 0, busy = 0, m = model;
+    const tried = new Set();
     for (;;) {
       try { return { j: await gemFetch(`models/${m}:generateContent`, body, signal), model: m, tier }; }
       catch (e) {
@@ -821,6 +823,16 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
           onWait && onWait(0, `Kota doldu, ${m} modeline geçildi`); continue;
         }
         if (e.code === 'rate' && !e.daily && tries < 3) { tries++; await waitCountdown(e.wait, signal, onWait); continue; }
+        // Google sunucusu yoğun (503): kısa bekleyip tekrar dene, olmazsa başka modele geç
+        if (e.code === 'busy') {
+          if (busy < 2) { busy++; await waitCountdown(3 * busy, signal, onWait); continue; }
+          tried.add(m);
+          const order = tier === 'quick' ? ['quick', 'default'] : tier === 'complex' ? ['default', 'quick'] : ['quick', 'default'];
+          let alt = null;
+          for (const tr of order) { const c = await pickModel(tr); if (!tried.has(c)) { alt = c; tier = tr; break; } }
+          if (alt) { m = alt; busy = 0; onWait && onWait(0, `Model yoğun, ${m} modeline geçildi`); continue; }
+          throw new GemError('busy', 'Google’ın sunucuları şu an çok yoğun. Birkaç dakika sonra tekrar dene.');
+        }
         if (e.code === 'model' && tries < 1) { tries++; modelList = null; m = await pickModel('default'); continue; }
         throw e;
       }
@@ -896,8 +908,8 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
         onText: ({ text }) => { run.reply = text; renderRun(run); },
         onWait: (secs, note) => {
           if (note) { run.steps.push({ kind: 'list', label: esc(note), ok: true }); renderRun(run); return; }
-          if (secs > 0) { if (!waitStep) { waitStep = { kind: 'list', label: '', live: true }; run.steps.push(waitStep); } waitStep.label = `Ücretsiz dakika limiti doldu, ${secs} sn bekleniyor…`; renderRun(run); }
-          else if (waitStep) { waitStep.live = false; waitStep.ok = true; waitStep.label = 'Limit beklemesi bitti, devam ediliyor'; waitStep = null; renderRun(run); }
+          if (secs > 0) { if (!waitStep) { waitStep = { kind: 'list', label: '', live: true }; run.steps.push(waitStep); } waitStep.label = `Google meşgul ya da dakika limiti doldu, ${secs} sn sonra tekrar deneniyor…`; renderRun(run); }
+          else if (waitStep) { waitStep.live = false; waitStep.ok = true; waitStep.label = 'Tekrar denendi'; waitStep = null; renderRun(run); }
         },
       });
       run.reply = res.text || run.reply;
@@ -911,7 +923,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
         const c = e && e.code;
         run.error = c === 'key' ? `API anahtarı kabul edilmedi. Menüden (☰) anahtarı silip yeniden yapıştır. Google’ın mesajı: ${String(e.message || '').slice(0, 220)}`
           : c === 'rate' ? (e.daily ? 'Gemini’nin ücretsiz günlük kotası doldu. Yarın tekrar dene ya da menüden başka mod seç.' : 'Ücretsiz kota doldu. Bir dakika bekleyip tekrar dene.')
-          : c === 'net' ? e.message
+          : c === 'net' || c === 'busy' ? (c === 'busy' ? 'Google’ın sunucuları şu an çok yoğun. Birkaç dakika sonra tekrar dene.' : e.message)
           : (e && e.message) ? `Hata: ${String(e.message).slice(0, 300)}` : 'Bir hata oldu.';
       }
     } finally {
