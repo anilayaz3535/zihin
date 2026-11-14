@@ -132,6 +132,12 @@ body:not(.wide) .pane:not(.active) { display: none; }
 .keybox p { font-size: 12px; color: var(--dim); margin: 8px 2px 0; }
 .keybox a { color: var(--hot); }
 
+.memlist { max-height: 22vh; overflow-y: auto; display: grid; gap: 4px; }
+.memitem { display: flex; align-items: flex-start; gap: 6px; font-size: 13px; background: var(--void); border: 1px solid var(--line); border-radius: 10px; padding: 6px 4px 6px 10px; }
+.memitem span { flex: 1; min-width: 0; overflow-wrap: anywhere; }
+.memitem button { border: 0; background: transparent; color: var(--dim); width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; flex: none; }
+.memitem button svg.i { width: 14px; height: 14px; }
+
 /* Komut kutusu */
 .composer { padding: 8px 12px calc(10px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--void); }
 .chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
@@ -295,6 +301,10 @@ body.wide .comp { padding-top: 6px; }
       <button type="button" data-tier="complex">Güçlü</button>
     </div>
     <p>Hızlı: Flash-Lite · Dengeli: Flash · Güçlü: Pro (ücretsiz kotası azsa otomatik Flash'a geçer).</p>
+  </div>
+  <div class="keybox">
+    <label>Hafıza (Zihin’in öğrendikleri)</label>
+    <div id="memList" class="memlist"></div>
   </div>
   <div class="keybox">
     <label for="keyIn">Gemini API anahtarı</label>
@@ -566,8 +576,21 @@ ${code}
 
   // ---------- Ajan talimatı ----------
   const AGENT = `[Rol]
-Sen Zihin'sin: Manus benzeri, otonom çalışan genel amaçlı bir yapay zeka ajanı. Kullanıcı telefonundan ne isterse (yazı, rapor, plan, kod, web sitesi, uygulama, oyun, sunum, tablo, veri analizi, tasarım…) baştan sona sen yaparsın. Kararları kendin ver, varsayımlarını kısaca belirt; kullanıcıya iş bırakma, ondan kod yapıştırmasını isteme.
+Sen Zihin'sin: Manus benzeri, otonom çalışan genel amaçlı bir yapay zeka ajanı. Kullanıcı telefonundan ne isterse (yazı, rapor, plan, kod, web sitesi, uygulama, oyun, sunum, tablo, veri analizi, tasarım…) baştan sona sen yaparsın. Büyük işlerde küçük kararları kendin ver ve varsayımlarını kısaca belirt; kullanıcıdan kod yapıştırmasını isteme.
 Basit bir soru ya da sohbetse dosya oluşturmadan doğrudan, net cevap ver.
+
+[Soru sor — tahmin etme]
+- Doğru cevap için kritik bir bilgi eksikse (kişisel durum, tarih, yaş, şehir, bütçe, tercih vb.) önce 1-3 kısa soru sor ve cevabı bekle. Eksik bilgiyi uydurup yanlış cevap verme.
+- Kullanıcı "sana bir soru soracağım" gibi bir şey derse kısaca "Tabii, sor" de ve bekle.
+- İstek açık ve yeterliyse soru sorma, doğrudan yap.
+
+[Doğruluk]
+- Tarih, gün, hafta, yaş, süre, para, yüzde gibi her hesabı run_js ile yap ve sonucu AYNEN kullan. Bugünün tarihi aşağıda yazıyor; "ay sonu" gibi tarih uydurma.
+- Emin olmadığın bilgiyi kesinmiş gibi söyleme; güncel bilgi gerekiyorsa web_search kullan.
+- Sağlık, hukuk, para gibi konularda genel bilgi ver ve kesin karar için uzmana (doktor, avukat vb.) danışmasını kısaca hatırlat.
+
+[Hafıza — öğren]
+- Kullanıcı seni düzeltirse ("yanlış, doğrusu şu") ya da kendisi hakkında kalıcı bir bilgi/tercih söylerse remember aracıyla kısa bir not kaydet. Aşağıdaki hafıza notlarını her zaman dikkate al.
 
 [Araçlar]
 - write_files: bir ya da birden çok dosyayı TEK seferde yazar. HTML/JS/CSS yazdığında sonuç otomatik sayfa testini de içerir (hatalar, FPS, ekrandaki yazı). Hata varsa düzelt.
@@ -742,6 +765,17 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
         },
       },
       {
+        name: 'remember',
+        description: 'Kullanıcı hakkında kalıcı bir bilgiyi, tercihini ya da yaptığı bir düzeltmeyi hafızaya kısa bir not olarak kaydeder. Sonraki tüm görevlerde hatırlanır.',
+        inputSchema: { type: 'object', properties: { not: { type: 'string', description: 'Kısa ve net not (tek cümle)' } }, required: ['not'] },
+        execute: async ({ not } = {}) => {
+          const n = String(not || '').replace(/\s+/g, ' ').trim().slice(0, 300); if (!n) throw new Error('not boş');
+          const mem = getMem(); if (!mem.some(m => m.t === n)) { mem.push({ t: n, at: Date.now() }); setMem(mem.slice(-60)); }
+          step('flag', `Hafızaya eklendi: ${esc(n.slice(0, 70))}`, { ok: true });
+          return { ok: true };
+        },
+      },
+      {
         name: 'finish',
         description: 'Görev bittiğinde çağır. deliverables: kullanıcıya teslim edilecek ana dosya yolları (en fazla 5; dosya yoksa boş dizi).',
         inputSchema: { type: 'object', properties: { deliverables: { type: 'array', items: { type: 'string' } } } },
@@ -755,6 +789,17 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
         },
       },
     ];
+  }
+
+  // ---------- Hafıza ----------
+  const MEM_KEY = 'zihin.memory';
+  let memFallback = [];
+  const getMem = () => { try { const v = JSON.parse(localStorage.getItem(MEM_KEY) || '[]'); return Array.isArray(v) ? v : []; } catch { return memFallback.slice(); } };
+  const setMem = m => { memFallback = m; try { localStorage.setItem(MEM_KEY, JSON.stringify(m)); } catch { /* bellekte */ } renderMem(); };
+  function memNote() { const m = getMem(); return m.length ? `\n[Hafıza: kullanıcı hakkında öğrendiklerin]\n${m.map(x => '- ' + x.t).join('\n')}\n` : ''; }
+  function renderMem() {
+    const box = document.getElementById('memList'); if (!box) return; const m = getMem();
+    box.innerHTML = m.length ? m.map((x, i) => `<div class="memitem"><span>${esc(x.t)}</span><button type="button" data-delmem="${i}" aria-label="Sil">${ICON.x}</button></div>`).join('') : '<div class="none">Henüz bir şey öğrenmedi. Onu düzelttiğinde ya da kendinden bahsettiğinde buraya not alır.</div>';
   }
 
   // ---------- Gemini istemcisi ----------
@@ -927,7 +972,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     try {
       const imgNote = images.length ? `\n[Kullanıcı bu mesaja ${images.length} görsel ekledi; görseller ekte.]` : '';
       const inNote = inputsNow.length ? `\n[Kullanıcının eklediği dosyalar girdi/ klasöründe: ${inputsNow.length} dosya]` : '';
-      const prompt = `${AGENT}\n\nBugünün tarihi: ${new Date().toLocaleDateString('tr-TR', { day: 'numeric', month: 'long', year: 'numeric' })}.\n\n${taskState(t, run)}${inNote}\n[Kullanıcının yeni isteği]\n${cmdText}${imgNote}`;
+      const prompt = `${AGENT}\n\nBugünün tarihi: ${new Date().toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} (${new Date().toISOString().slice(0, 10)}).\n${memNote()}\n${taskState(t, run)}${inNote}\n[Kullanıcının yeni isteği]\n${cmdText}${imgNote}`;
       const res = await runGemini(prompt, {
         tools: makeTools(t, run), images, signal: ac.signal, tier: st.tier,
         onText: ({ text }) => { run.reply = text; renderRun(run); },
@@ -1191,7 +1236,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
   }
   function layout() { document.body.classList.toggle('wide', window.innerWidth >= 900); }
   function autoGrow() { const c = $('#cmd'); c.style.height = 'auto'; c.style.height = Math.min(150, c.scrollHeight) + 'px'; }
-  const openDrawer = () => { renderTasks(); renderTier(); $('#keyIn').value = getKey(); document.body.classList.add('drawer-open'); };
+  const openDrawer = () => { renderTasks(); renderTier(); renderMem(); $('#keyIn').value = getKey(); document.body.classList.add('drawer-open'); };
   const closeDrawer = () => document.body.classList.remove('drawer-open');
   function submit() { const v = $('#cmd').value.trim(); if (!v || st.run) return; $('#cmd').value = ''; autoGrow(); updateGo(); startRun(v); }
   function renderAll() { renderLog(); const t0 = cur(); if (t0 && t0.runs.length) scrollLogEnd(); else $('#log').scrollTop = 0; renderChips(); renderComp(); renderTier(); renderTaskName(); updateGo(); }
@@ -1211,6 +1256,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     $('#newBtn').addEventListener('click', () => { if (st.run) return toast('Ajan çalışırken yeni görev açılamaz'); newTask(); setTab('task'); renderAll(); $('#cmd').focus(); });
     $('#newTask').addEventListener('click', () => { if (st.run) return toast('Ajan çalışırken yeni görev açılamaz'); newTask(); closeDrawer(); setTab('task'); renderAll(); });
     document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => { st.tier = b.dataset.tier; save(); renderTier(); }));
+    $('#memList').addEventListener('click', e => { const b = e.target.closest('button[data-delmem]'); if (!b) return; const m = getMem(); m.splice(Number(b.dataset.delmem), 1); setMem(m); });
     $('#keySave').addEventListener('click', () => { const v = setKey($('#keyIn').value || ''); $('#keyIn').value = v; renderLog(); if (!v) return toast('Anahtar silindi'); if (v.length < 20) return toast('Anahtar eksik görünüyor'); verifyKey(); });
     $('#plist').addEventListener('click', async e => {
       const b = e.target.closest('button'); if (!b) return;
