@@ -327,6 +327,720 @@ body.wide .comp { padding-top: 6px; }
   <div class="box"><h2 id="cT"></h2><p id="cP"></p><div class="row"><button class="btn" id="cNo" type="button">Vazgeç</button><button class="btn danger" id="cYes" type="button">Sil</button></div></div>
 </div>
 <div class="toast" id="toast" role="status"></div>
+<script type="text/plain" id="tpl-index">
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>OYUN ADI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }<\/script>
+</head>
+<body>
+<div id="app"></div>
+
+<div id="hud">
+  <div class="stat"><small>SKOR</small><b id="score">0</b></div>
+  <button id="pauseBtn" aria-label="Duraklat">II</button>
+</div>
+
+<section id="menu" class="screen show">
+  <h1 class="title">OYUN<br>ADI</h1>
+  <p class="sub">Tek cümlelik, merak uyandıran açıklama.</p>
+  <button class="btn" data-act="start">OYNA</button>
+  <p class="hint">Telefonda: sol joystick ile hareket, A ile aksiyon<br>Klavye: oklar / WASD, boşluk</p>
+  <div class="best">EN İYİ <span id="bestMenu">0</span></div>
+</section>
+
+<section id="pause" class="screen">
+  <div class="panel">
+    <h2 class="title small">DURAKLADI</h2>
+    <button class="btn" data-act="resume">DEVAM</button>
+    <button class="btn ghost" data-act="menu">MENÜ</button>
+  </div>
+</section>
+
+<section id="over" class="screen">
+  <div class="panel">
+    <div class="best">SKOR</div>
+    <div class="final" id="finalScore">0</div>
+    <div class="best">EN İYİ <span id="bestOver">0</span></div>
+    <button class="btn" data-act="start">TEKRAR</button>
+    <button class="btn ghost" data-act="menu">MENÜ</button>
+  </div>
+</section>
+
+<div id="touch"><div id="stick"><div id="knob"></div></div><button id="btnA" aria-label="Aksiyon">A</button></div>
+<div id="flash"></div>
+<script type="module" src="game.js"><\/script>
+</body>
+</html>
+</script>
+<script type="text/plain" id="tpl-style">
+:root {
+  --accent: #5ef2ff;
+  --hot: #ff4f8b;
+  --gold: #ffd166;
+  --ink: #ffffff;
+  --glass: rgba(18, 12, 40, .55);
+  --font-display: "Russo One", "Arial Black", system-ui, sans-serif;
+  --font-ui: "Rajdhani", system-ui, -apple-system, sans-serif;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+html, body { width: 100%; height: 100%; overflow: hidden; background: #0b0820; color: var(--ink); font-family: var(--font-ui); touch-action: none; user-select: none; -webkit-user-select: none; }
+#app, #app canvas { position: fixed; inset: 0; width: 100%; height: 100%; display: block; }
+
+.screen { position: fixed; inset: 0; z-index: 10; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; padding: 24px; text-align: center;
+  background: radial-gradient(ellipse at 50% 40%, rgba(30, 15, 70, .35), rgba(5, 3, 15, .85)); opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+.screen.show { opacity: 1; pointer-events: auto; }
+.title { font-family: var(--font-display); font-weight: 400; font-size: clamp(40px, 13vw, 84px); line-height: .92; letter-spacing: 2px;
+  background: linear-gradient(180deg, #fff 10%, var(--gold) 55%, var(--hot)); -webkit-background-clip: text; background-clip: text; color: transparent;
+  filter: drop-shadow(0 6px 30px rgba(255, 90, 160, .45)); animation: float 3s ease-in-out infinite; }
+.title.small { font-size: 40px; animation: none; }
+@keyframes float { 50% { transform: translateY(-6px); } }
+.sub { font-size: 18px; font-weight: 600; opacity: .88; max-width: 24em; }
+.hint { font-size: 14px; opacity: .55; line-height: 1.5; }
+.btn { font-family: var(--font-display); font-size: 20px; letter-spacing: 3px; color: #1a0b22; background: linear-gradient(135deg, var(--gold), var(--hot)); border: 0; border-radius: 999px;
+  padding: 16px 46px; box-shadow: 0 10px 34px rgba(255, 90, 160, .45), inset 0 -3px 0 rgba(0, 0, 0, .2); cursor: pointer; transition: transform .1s; }
+.btn:active { transform: scale(.95); }
+.btn.ghost { background: transparent; color: #fff; border: 2px solid rgba(255, 255, 255, .35); box-shadow: none; padding: 12px 34px; font-size: 16px; }
+.best { font-size: 15px; letter-spacing: 3px; opacity: .75; font-weight: 700; }
+.panel { background: var(--glass); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, .12); border-radius: 24px; padding: 26px 30px;
+  display: flex; flex-direction: column; gap: 14px; align-items: center; min-width: 260px; }
+.final { font-family: var(--font-display); font-size: 64px; line-height: 1; font-variant-numeric: tabular-nums; }
+
+#hud { position: fixed; left: 0; right: 0; top: 0; z-index: 5; display: flex; justify-content: space-between; align-items: flex-start; gap: 10px;
+  padding: calc(env(safe-area-inset-top) + 12px) 16px 0; opacity: 0; transition: opacity .3s; pointer-events: none; }
+#hud.show { opacity: 1; }
+.stat { background: var(--glass); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, .12); border-radius: 16px; padding: 8px 14px; min-width: 92px; }
+.stat small { display: block; font-size: 11px; letter-spacing: 3px; opacity: .65; font-weight: 700; }
+.stat b { font-family: var(--font-display); font-weight: 400; font-size: 26px; font-variant-numeric: tabular-nums; }
+#pauseBtn { pointer-events: auto; width: 46px; height: 46px; border-radius: 14px; border: 1px solid rgba(255, 255, 255, .15); background: var(--glass); color: #fff; font-family: var(--font-display); font-size: 16px; }
+
+#touch { position: fixed; left: 0; right: 0; bottom: 0; z-index: 6; display: none; justify-content: space-between; align-items: flex-end;
+  padding: 0 24px calc(env(safe-area-inset-bottom) + 24px); pointer-events: none; }
+@media (pointer: coarse) { body.playing #touch { display: flex; } }
+#stick { pointer-events: auto; width: 130px; height: 130px; border-radius: 50%; background: rgba(255, 255, 255, .08); border: 2px solid rgba(255, 255, 255, .18); display: grid; place-items: center; touch-action: none; }
+#knob { width: 58px; height: 58px; border-radius: 50%; background: rgba(255, 255, 255, .35); box-shadow: 0 4px 18px rgba(0, 0, 0, .35); }
+#btnA { pointer-events: auto; width: 84px; height: 84px; border-radius: 50%; border: 0; background: linear-gradient(135deg, var(--gold), var(--hot)); color: #1a0b22;
+  font-family: var(--font-display); font-size: 26px; box-shadow: 0 8px 26px rgba(255, 90, 160, .45); touch-action: none; }
+#btnA:active { transform: scale(.94); }
+#flash { position: fixed; inset: 0; z-index: 8; pointer-events: none; opacity: 0; }
+</script>
+<script type="text/plain" id="tpl-g3">
+// =====================================================================
+//  ZİHİN 3D OYUN ŞABLONU (three.js 0.160)
+//  Hazır altyapı: renderer + gökyüzü + ışık/gölge + bloom parlama,
+//  kamera takibi ve sarsıntı, parçacıklar, ses efektleri ve müzik,
+//  klavye + dokunmatik joystick + A butonu, menü/duraklat/bitiş, en iyi skor.
+//  Oyunu yazmak için sadece "ÖRNEK OYUN" bölümünü değiştir.
+// =====================================================================
+import * as THREE from 'three';
+
+const $ = id => document.getElementById(id);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+// ---------- Kayıt ----------
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* yok */ } },
+};
+const SAVE_KEY = 'oyun-en-iyi';
+
+// ---------- Renk paleti (oyuna göre değiştir) ----------
+const PALETTE = { skyTop: 0x1b1446, skyBottom: 0xff7a59, fog: 0x3a2a5c, accent: 0x5ef2ff, hot: 0xff4f8b, gold: 0xffd166 };
+
+// ---------- Renderer ----------
+const renderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
+renderer.setSize(window.innerWidth, window.innerHeight);
+renderer.outputColorSpace = THREE.SRGBColorSpace;
+renderer.toneMapping = THREE.ACESFilmicToneMapping;
+renderer.toneMappingExposure = 1.05;
+renderer.shadowMap.enabled = true;
+renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+$('app').appendChild(renderer.domElement);
+
+// ---------- Sahne, gökyüzü, ışıklar ----------
+const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(PALETTE.fog, 30, 170);
+
+const sky = new THREE.Mesh(
+  new THREE.SphereGeometry(500, 32, 16),
+  new THREE.ShaderMaterial({
+    side: THREE.BackSide, depthWrite: false, fog: false,
+    uniforms: { top: { value: new THREE.Color(PALETTE.skyTop) }, bottom: { value: new THREE.Color(PALETTE.skyBottom) } },
+    vertexShader: 'varying vec3 vDir;\nvoid main() { vDir = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0); }',
+    fragmentShader: 'uniform vec3 top;\nuniform vec3 bottom;\nvarying vec3 vDir;\nvoid main() { float h = clamp(vDir.y * 0.5 + 0.5, 0.0, 1.0); gl_FragColor = vec4(mix(bottom, top, smoothstep(0.42, 0.9, h)), 1.0); }',
+  })
+);
+scene.add(sky);
+
+const hemi = new THREE.HemisphereLight(0xc4d4ff, 0x2a1640, 1.1);
+scene.add(hemi);
+const sun = new THREE.DirectionalLight(0xfff0dd, 2.4);
+sun.castShadow = true;
+sun.shadow.mapSize.set(1024, 1024);
+Object.assign(sun.shadow.camera, { left: -40, right: 40, top: 40, bottom: -40, near: 1, far: 160 });
+sun.shadow.camera.updateProjectionMatrix();
+sun.shadow.bias = -0.0005;
+scene.add(sun, sun.target);
+const rim = new THREE.DirectionalLight(PALETTE.accent, 0.7);
+rim.position.set(-30, 20, -40);
+scene.add(rim);
+
+// ---------- Kamera ve sarsıntı ----------
+const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 1200);
+camera.position.set(0, 8, 14);
+const camRig = { offset: new THREE.Vector3(0, 7, 13), look: new THREE.Vector3(0, 1, -5), shake: 0 };
+const _tmp = new THREE.Vector3();
+function updateCamera(target, dt) {
+  _tmp.copy(target).add(camRig.offset);
+  camera.position.lerp(_tmp, 1 - Math.pow(0.002, dt));
+  if (camRig.shake > 0) {
+    camRig.shake = Math.max(0, camRig.shake - dt * 2.5);
+    const k = camRig.shake * camRig.shake * 0.8;
+    camera.position.x += rand(-1, 1) * k;
+    camera.position.y += rand(-1, 1) * k;
+  }
+  camera.lookAt(_tmp.copy(target).add(camRig.look));
+  sky.position.copy(camera.position);
+  sun.position.set(target.x + 30, target.y + 50, target.z + 20);
+  sun.target.position.copy(target);
+}
+
+// ---------- Prosedürel doku ve malzeme yardımcıları ----------
+function gridTexture(base = '#241a3d', line = '#3d2c78', size = 512, cells = 8) {
+  const cv = document.createElement('canvas'); cv.width = cv.height = size;
+  const g = cv.getContext('2d');
+  g.fillStyle = base; g.fillRect(0, 0, size, size);
+  g.strokeStyle = line; g.lineWidth = 4;
+  const s = size / cells;
+  for (let i = 0; i <= cells; i++) { g.beginPath(); g.moveTo(i * s, 0); g.lineTo(i * s, size); g.stroke(); g.beginPath(); g.moveTo(0, i * s); g.lineTo(size, i * s); g.stroke(); }
+  const t = new THREE.CanvasTexture(cv);
+  t.wrapS = t.wrapT = THREE.RepeatWrapping; t.colorSpace = THREE.SRGBColorSpace; t.anisotropy = 4;
+  return t;
+}
+const mat = (color, opts = {}) => new THREE.MeshStandardMaterial({ color, roughness: 0.5, metalness: 0.1, ...opts });
+const glowMat = (color, intensity = 1.4) => new THREE.MeshStandardMaterial({ color, emissive: color, emissiveIntensity: intensity, roughness: 0.3 });
+
+// ---------- Bloom parlama (yüklenemezse oyun normal çalışır) ----------
+let composer = null;
+async function setupPost() {
+  try {
+    const [{ EffectComposer }, { RenderPass }, { UnrealBloomPass }, { OutputPass }] = await Promise.all([
+      import('three/addons/postprocessing/EffectComposer.js'),
+      import('three/addons/postprocessing/RenderPass.js'),
+      import('three/addons/postprocessing/UnrealBloomPass.js'),
+      import('three/addons/postprocessing/OutputPass.js'),
+    ]);
+    const c = new EffectComposer(renderer);
+    c.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.5));
+    c.setSize(window.innerWidth, window.innerHeight);
+    c.addPass(new RenderPass(scene, camera));
+    c.addPass(new UnrealBloomPass(new THREE.Vector2(window.innerWidth / 2, window.innerHeight / 2), 0.55, 0.4, 0.82));
+    c.addPass(new OutputPass());
+    composer = c;
+  } catch (e) { console.warn('Bloom kapalı: ' + e.message); composer = null; }
+}
+
+// ---------- Parçacıklar ----------
+const FX = { list: [], geo: new THREE.IcosahedronGeometry(0.12, 0), mats: new Map() };
+function fxMat(color) { if (!FX.mats.has(color)) FX.mats.set(color, new THREE.MeshBasicMaterial({ color })); return FX.mats.get(color); }
+function burst(pos, color = 0xffffff, count = 18, speed = 7, life = 0.7) {
+  for (let i = 0; i < count; i++) {
+    const m = new THREE.Mesh(FX.geo, fxMat(color));
+    m.position.copy(pos);
+    scene.add(m);
+    const v = new THREE.Vector3(rand(-1, 1), rand(0.2, 1.3), rand(-1, 1)).normalize().multiplyScalar(rand(speed * 0.4, speed));
+    FX.list.push({ m, v, life: rand(life * 0.6, life), max: life });
+  }
+}
+function updateFX(dt) {
+  for (let i = FX.list.length - 1; i >= 0; i--) {
+    const p = FX.list[i];
+    p.life -= dt;
+    p.v.y -= 14 * dt;
+    p.m.position.addScaledVector(p.v, dt);
+    p.m.scale.setScalar(Math.max(0.001, p.life / p.max));
+    if (p.life <= 0) { scene.remove(p.m); FX.list.splice(i, 1); }
+  }
+}
+function flash(color = '#ffffff', strength = 0.5) {
+  const f = $('flash');
+  f.style.transition = 'none'; f.style.background = color; f.style.opacity = String(strength);
+  requestAnimationFrame(() => { f.style.transition = 'opacity .4s ease'; f.style.opacity = '0'; });
+}
+
+// ---------- Ses (dosya gerekmez, WebAudio ile üretilir) ----------
+const Sound = {
+  ctx: null, master: null, timer: null,
+  init() {
+    if (this.ctx) { if (this.ctx.state === 'suspended') this.ctx.resume(); return; }
+    try { this.ctx = new (window.AudioContext || window.webkitAudioContext)(); this.master = this.ctx.createGain(); this.master.gain.value = 0.6; this.master.connect(this.ctx.destination); }
+    catch { this.ctx = null; }
+  },
+  tone(freq, dur = 0.15, type = 'sine', vol = 0.2, slide = 0) {
+    const c = this.ctx; if (!c) return;
+    const t = c.currentTime, o = c.createOscillator(), g = c.createGain();
+    o.type = type; o.frequency.setValueAtTime(freq, t);
+    if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(30, freq + slide), t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(this.master); o.start(t); o.stop(t + dur + 0.02);
+  },
+  noise(dur = 0.3, vol = 0.25) {
+    const c = this.ctx; if (!c) return;
+    const b = c.createBuffer(1, Math.floor(c.sampleRate * dur), c.sampleRate), d = b.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length);
+    const s = c.createBufferSource(), g = c.createGain(); s.buffer = b; g.gain.value = vol; s.connect(g); g.connect(this.master); s.start();
+  },
+  sfx: {
+    pickup() { Sound.tone(880, 0.12, 'triangle', 0.18, 500); },
+    hit() { Sound.noise(0.35, 0.3); Sound.tone(140, 0.4, 'sawtooth', 0.2, -90); },
+    click() { Sound.tone(520, 0.06, 'square', 0.07); },
+    jump() { Sound.tone(300, 0.18, 'sine', 0.15, 400); },
+    start() { Sound.tone(440, 0.1, 'triangle', 0.15, 220); setTimeout(() => Sound.tone(660, 0.16, 'triangle', 0.15, 330), 90); },
+    levelUp() { [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => Sound.tone(f, 0.14, 'triangle', 0.14), i * 80)); },
+  },
+  startMusic(bpm = 112) {
+    if (!this.ctx || this.timer) return;
+    const notes = [0, 3, 7, 10, 12, 10, 7, 3], root = 110, beat = 60 / bpm / 2; let step = 0;
+    this.timer = setInterval(() => {
+      const n = notes[step % notes.length];
+      this.tone(root * Math.pow(2, n / 12) * 2, beat * 0.9, 'triangle', 0.045);
+      if (step % 4 === 0) this.tone(root / 2, beat * 1.8, 'sine', 0.1);
+      step++;
+    }, beat * 1000);
+  },
+  stopMusic() { clearInterval(this.timer); this.timer = null; },
+};
+
+// ---------- Girdi: klavye + dokunmatik joystick + A butonu ----------
+const input = { x: 0, y: 0, action: false, actionPressed: false, keys: new Set(), stick: null };
+const KEYS = { left: ['ArrowLeft', 'KeyA'], right: ['ArrowRight', 'KeyD'], up: ['ArrowUp', 'KeyW'], down: ['ArrowDown', 'KeyS'], action: ['Space', 'Enter'] };
+addEventListener('keydown', e => {
+  if (e.repeat) return;
+  input.keys.add(e.code);
+  if (KEYS.action.includes(e.code)) { input.action = true; input.actionPressed = true; if (state === 'menu' || state === 'over') startGame(); }
+  if (e.code === 'Escape' || e.code === 'KeyP') togglePause();
+});
+addEventListener('keyup', e => { input.keys.delete(e.code); if (KEYS.action.includes(e.code)) input.action = false; });
+function readInput() {
+  const has = list => list.some(c => input.keys.has(c));
+  let x = (has(KEYS.right) ? 1 : 0) - (has(KEYS.left) ? 1 : 0);
+  let y = (has(KEYS.up) ? 1 : 0) - (has(KEYS.down) ? 1 : 0);
+  if (input.stick) { x = input.stick.x; y = input.stick.y; }
+  input.x = clamp(x, -1, 1); input.y = clamp(y, -1, 1);
+}
+const stickEl = $('stick'), knobEl = $('knob');
+function moveStick(e) {
+  const r = stickEl.getBoundingClientRect();
+  let dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2), dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+  const len = Math.hypot(dx, dy); if (len > 1) { dx /= len; dy /= len; }
+  input.stick = { x: dx, y: -dy };
+  knobEl.style.transform = `translate(${dx * 36}px, ${dy * 36}px)`;
+}
+stickEl.addEventListener('pointerdown', e => { stickEl.setPointerCapture(e.pointerId); moveStick(e); });
+stickEl.addEventListener('pointermove', e => { if (stickEl.hasPointerCapture(e.pointerId)) moveStick(e); });
+const endStick = () => { input.stick = null; knobEl.style.transform = ''; };
+stickEl.addEventListener('pointerup', endStick);
+stickEl.addEventListener('pointercancel', endStick);
+const btnA = $('btnA');
+btnA.addEventListener('pointerdown', e => { e.preventDefault(); input.action = true; input.actionPressed = true; Sound.init(); });
+btnA.addEventListener('pointerup', () => { input.action = false; });
+btnA.addEventListener('pointercancel', () => { input.action = false; });
+
+// ---------- Ekranlar ve oyun durumu ----------
+let state = 'menu', score = 0, best = store.get(SAVE_KEY, 0), time = 0;
+$('bestMenu').textContent = best;
+function show(id) {
+  for (const s of document.querySelectorAll('.screen')) s.classList.toggle('show', s.id === id);
+  $('hud').classList.toggle('show', id === null);
+  document.body.classList.toggle('playing', id === null);
+}
+function setScore(v) { score = v; $('score').textContent = Math.floor(score); }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  Sound.init(); Sound.sfx.click();
+  const a = b.dataset.act;
+  if (a === 'start') startGame();
+  else if (a === 'resume') togglePause();
+  else if (a === 'menu') { state = 'menu'; Sound.stopMusic(); show('menu'); }
+});
+$('menu').addEventListener('click', e => { if (!e.target.closest('button')) startGame(); });
+$('pauseBtn').addEventListener('click', () => togglePause());
+function togglePause() {
+  if (state === 'play') { state = 'pause'; show('pause'); Sound.stopMusic(); }
+  else if (state === 'pause') { state = 'play'; show(null); Sound.startMusic(); clock.getDelta(); }
+}
+document.addEventListener('visibilitychange', () => { if (document.hidden && state === 'play') togglePause(); });
+
+function startGame() {
+  Sound.init(); Sound.sfx.start(); Sound.startMusic();
+  resetGame();
+  state = 'play'; show(null); clock.getDelta();
+}
+function gameOver() {
+  if (state !== 'play') return;
+  state = 'over';
+  Sound.sfx.hit(); Sound.stopMusic();
+  camRig.shake = 1; flash('#ff3366', 0.45);
+  burst(player.position, PALETTE.gold, 30, 10);
+  if (score > best) { best = Math.floor(score); store.set(SAVE_KEY, best); }
+  $('finalScore').textContent = Math.floor(score);
+  $('bestOver').textContent = best; $('bestMenu').textContent = best;
+  setTimeout(() => show('over'), 700);
+}
+
+// =====================================================================
+//  ÖRNEK OYUN — bu bölümü kendi oyununla değiştir
+//  (oyuncu küresi, toplanacak kristaller, kaçılacak dikenler)
+// =====================================================================
+const groundTex = gridTexture();
+groundTex.repeat.set(40, 40);
+const ground = new THREE.Mesh(new THREE.PlaneGeometry(400, 400), new THREE.MeshStandardMaterial({ map: groundTex, roughness: 0.9 }));
+ground.rotation.x = -Math.PI / 2;
+ground.receiveShadow = true;
+scene.add(ground);
+
+const player = new THREE.Mesh(new THREE.IcosahedronGeometry(0.8, 2), new THREE.MeshStandardMaterial({ color: PALETTE.gold, emissive: 0xff8a00, emissiveIntensity: 0.6, roughness: 0.3, metalness: 0.2 }));
+player.castShadow = true;
+player.position.y = 0.8;
+scene.add(player);
+const playerVel = new THREE.Vector3();
+
+const items = [];
+const orbGeo = new THREE.OctahedronGeometry(0.5), orbMat = glowMat(PALETTE.accent, 1.6);
+const spikeGeo = new THREE.ConeGeometry(0.7, 1.6, 6), spikeMat = mat(PALETTE.hot, { emissive: 0x99113f, emissiveIntensity: 0.8 });
+function spawn(type) {
+  const m = new THREE.Mesh(type === 'orb' ? orbGeo : spikeGeo, type === 'orb' ? orbMat : spikeMat);
+  const a = rand(0, Math.PI * 2), d = rand(8, 24);
+  m.position.set(player.position.x + Math.cos(a) * d, type === 'orb' ? 1 : 0.8, player.position.z + Math.sin(a) * d);
+  m.castShadow = true;
+  scene.add(m);
+  items.push({ mesh: m, type });
+}
+function resetGame() {
+  for (const it of items) scene.remove(it.mesh);
+  items.length = 0;
+  player.position.set(0, 0.8, 0); playerVel.set(0, 0, 0);
+  setScore(0); time = 0;
+  for (let i = 0; i < 8; i++) spawn('orb');
+  for (let i = 0; i < 4; i++) spawn('spike');
+}
+function updateGame(dt) {
+  time += dt;
+  playerVel.x += input.x * 40 * dt;
+  playerVel.z -= input.y * 40 * dt;
+  playerVel.multiplyScalar(Math.pow(0.05, dt));
+  if (playerVel.length() > 12) playerVel.setLength(12);
+  player.position.addScaledVector(playerVel, dt);
+  player.rotation.x += playerVel.z * dt;
+  player.rotation.z -= playerVel.x * dt;
+  for (let i = items.length - 1; i >= 0; i--) {
+    const it = items[i];
+    if (it.type === 'orb') { it.mesh.rotation.y += dt * 2; it.mesh.position.y = 1 + Math.sin(time * 3 + i) * 0.2; }
+    const dist = it.mesh.position.distanceTo(player.position);
+    if (it.type === 'orb' && dist < 1.4) {
+      burst(it.mesh.position, PALETTE.accent, 16); Sound.sfx.pickup(); setScore(score + 10);
+      scene.remove(it.mesh); items.splice(i, 1); spawn('orb');
+      if (Math.random() < 0.5 + time / 120) spawn('spike');
+      continue;
+    }
+    if (it.type === 'spike' && dist < 1.3) { gameOver(); return; }
+    if (dist > 40) { scene.remove(it.mesh); items.splice(i, 1); spawn(it.type); }
+  }
+}
+function idleScene(dt) { player.rotation.y += dt * 0.6; }
+// ======================= ÖRNEK OYUN SONU =============================
+
+// ---------- Döngü, otomatik kalite, yeniden boyutlandırma ----------
+const clock = new THREE.Clock();
+let fpsTime = 0, fpsFrames = 0, qualityChecked = false;
+function frame() {
+  requestAnimationFrame(frame);
+  const dt = Math.min(0.05, clock.getDelta());
+  readInput();
+  if (state === 'play') {
+    updateGame(dt);
+    if (!qualityChecked) {
+      fpsTime += dt; fpsFrames++;
+      if (fpsTime > 3) { qualityChecked = true; if (fpsFrames / fpsTime < 40) { composer = null; renderer.setPixelRatio(1); } }
+    }
+  } else idleScene(dt);
+  input.actionPressed = false;
+  updateFX(dt);
+  ground.position.set(Math.round(player.position.x / 10) * 10, 0, Math.round(player.position.z / 10) * 10);
+  updateCamera(player.position, dt);
+  if (composer) composer.render(dt); else renderer.render(scene, camera);
+}
+function onResize() {
+  camera.aspect = window.innerWidth / window.innerHeight;
+  camera.fov = camera.aspect < 0.8 ? 72 : 60;
+  camera.updateProjectionMatrix();
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  if (composer) composer.setSize(window.innerWidth, window.innerHeight);
+}
+addEventListener('resize', onResize);
+onResize();
+setupPost();
+show('menu');
+frame();
+</script>
+<script type="text/plain" id="tpl-g2">
+// =====================================================================
+//  ZİHİN 2D OYUN ŞABLONU (Canvas 2D, kütüphane gerekmez)
+//  Hazır altyapı: keskin (retina) canvas, kamera sarsıntısı, parçacıklar,
+//  parlayan çizim, ses efektleri ve müzik, klavye + joystick + A butonu,
+//  menü/duraklat/bitiş, en iyi skor. Sadece "ÖRNEK OYUN" bölümünü değiştir.
+// =====================================================================
+const $ = id => document.getElementById(id);
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
+const lerp = (a, b, t) => a + (b - a) * t;
+const rand = (a, b) => a + Math.random() * (b - a);
+const pick = arr => arr[Math.floor(Math.random() * arr.length)];
+
+const store = {
+  get(k, d) { try { const v = localStorage.getItem(k); return v == null ? d : JSON.parse(v); } catch { return d; } },
+  set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* yok */ } },
+};
+const SAVE_KEY = 'oyun-en-iyi';
+const PALETTE = { bgTop: '#1b1446', bgBottom: '#3a1d4f', accent: '#5ef2ff', hot: '#ff4f8b', gold: '#ffd166', ink: '#ffffff' };
+
+// ---------- Canvas ----------
+const canvas = document.createElement('canvas');
+$('app').appendChild(canvas);
+const ctx = canvas.getContext('2d');
+let W = 0, H = 0, DPR = 1;
+function onResize() {
+  DPR = Math.min(window.devicePixelRatio || 1, 2);
+  W = window.innerWidth; H = window.innerHeight;
+  canvas.width = Math.floor(W * DPR); canvas.height = Math.floor(H * DPR);
+  ctx.setTransform(DPR, 0, 0, DPR, 0, 0);
+}
+addEventListener('resize', onResize);
+onResize();
+
+// ---------- Kamera sarsıntısı, parçacıklar, flash ----------
+const cam = { x: 0, y: 0, shake: 0 };
+const FX = [];
+function burst(x, y, color = '#ffffff', count = 18, speed = 260, life = 0.7) {
+  for (let i = 0; i < count; i++) {
+    const a = rand(0, Math.PI * 2), s = rand(speed * 0.3, speed);
+    FX.push({ x, y, vx: Math.cos(a) * s, vy: Math.sin(a) * s, life: rand(life * 0.6, life), max: life, color, r: rand(2, 5) });
+  }
+}
+function updateFX(dt) {
+  for (let i = FX.length - 1; i >= 0; i--) {
+    const p = FX[i]; p.life -= dt; p.vy += 500 * dt; p.x += p.vx * dt; p.y += p.vy * dt;
+    if (p.life <= 0) FX.splice(i, 1);
+  }
+}
+function drawFX() {
+  ctx.save(); ctx.globalCompositeOperation = 'lighter';
+  for (const p of FX) { ctx.globalAlpha = Math.max(0, p.life / p.max); ctx.fillStyle = p.color; ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2); ctx.fill(); }
+  ctx.restore();
+}
+function glow(color, blur = 18) { ctx.shadowColor = color; ctx.shadowBlur = blur; }
+function noGlow() { ctx.shadowBlur = 0; }
+function flash(color = '#ffffff', strength = 0.5) {
+  const f = $('flash');
+  f.style.transition = 'none'; f.style.background = color; f.style.opacity = String(strength);
+  requestAnimationFrame(() => { f.style.transition = 'opacity .4s ease'; f.style.opacity = '0'; });
+}
+
+// ---------- Ses ----------
+const Sound = {
+  ctx: null, master: null, timer: null,
+  init() {
+    if (this.ctx) { if (this.ctx.state === 'suspended') this.ctx.resume(); return; }
+    try { this.ctx = new (window.AudioContext || window.webkitAudioContext)(); this.master = this.ctx.createGain(); this.master.gain.value = 0.6; this.master.connect(this.ctx.destination); }
+    catch { this.ctx = null; }
+  },
+  tone(freq, dur = 0.15, type = 'sine', vol = 0.2, slide = 0) {
+    const c = this.ctx; if (!c) return;
+    const t = c.currentTime, o = c.createOscillator(), g = c.createGain();
+    o.type = type; o.frequency.setValueAtTime(freq, t);
+    if (slide) o.frequency.exponentialRampToValueAtTime(Math.max(30, freq + slide), t + dur);
+    g.gain.setValueAtTime(0.0001, t); g.gain.exponentialRampToValueAtTime(vol, t + 0.01); g.gain.exponentialRampToValueAtTime(0.0001, t + dur);
+    o.connect(g); g.connect(this.master); o.start(t); o.stop(t + dur + 0.02);
+  },
+  noise(dur = 0.3, vol = 0.25) {
+    const c = this.ctx; if (!c) return;
+    const b = c.createBuffer(1, Math.floor(c.sampleRate * dur), c.sampleRate), d = b.getChannelData(0);
+    for (let i = 0; i < d.length; i++) d[i] = (Math.random() * 2 - 1) * (1 - i / d.length);
+    const s = c.createBufferSource(), g = c.createGain(); s.buffer = b; g.gain.value = vol; s.connect(g); g.connect(this.master); s.start();
+  },
+  sfx: {
+    pickup() { Sound.tone(880, 0.12, 'triangle', 0.18, 500); },
+    hit() { Sound.noise(0.35, 0.3); Sound.tone(140, 0.4, 'sawtooth', 0.2, -90); },
+    click() { Sound.tone(520, 0.06, 'square', 0.07); },
+    jump() { Sound.tone(300, 0.18, 'sine', 0.15, 400); },
+    start() { Sound.tone(440, 0.1, 'triangle', 0.15, 220); setTimeout(() => Sound.tone(660, 0.16, 'triangle', 0.15, 330), 90); },
+    levelUp() { [523, 659, 784, 1046].forEach((f, i) => setTimeout(() => Sound.tone(f, 0.14, 'triangle', 0.14), i * 80)); },
+  },
+  startMusic(bpm = 116) {
+    if (!this.ctx || this.timer) return;
+    const notes = [0, 3, 7, 10, 12, 10, 7, 3], root = 110, beat = 60 / bpm / 2; let step = 0;
+    this.timer = setInterval(() => {
+      const n = notes[step % notes.length];
+      this.tone(root * Math.pow(2, n / 12) * 2, beat * 0.9, 'triangle', 0.045);
+      if (step % 4 === 0) this.tone(root / 2, beat * 1.8, 'sine', 0.1);
+      step++;
+    }, beat * 1000);
+  },
+  stopMusic() { clearInterval(this.timer); this.timer = null; },
+};
+
+// ---------- Girdi ----------
+const input = { x: 0, y: 0, action: false, actionPressed: false, keys: new Set(), stick: null };
+const KEYS = { left: ['ArrowLeft', 'KeyA'], right: ['ArrowRight', 'KeyD'], up: ['ArrowUp', 'KeyW'], down: ['ArrowDown', 'KeyS'], action: ['Space', 'Enter'] };
+addEventListener('keydown', e => {
+  if (e.repeat) return;
+  input.keys.add(e.code);
+  if (KEYS.action.includes(e.code)) { input.action = true; input.actionPressed = true; if (state === 'menu' || state === 'over') startGame(); }
+  if (e.code === 'Escape' || e.code === 'KeyP') togglePause();
+});
+addEventListener('keyup', e => { input.keys.delete(e.code); if (KEYS.action.includes(e.code)) input.action = false; });
+function readInput() {
+  const has = list => list.some(c => input.keys.has(c));
+  let x = (has(KEYS.right) ? 1 : 0) - (has(KEYS.left) ? 1 : 0);
+  let y = (has(KEYS.down) ? 1 : 0) - (has(KEYS.up) ? 1 : 0); // 2D'de y aşağı doğru artar
+  if (input.stick) { x = input.stick.x; y = -input.stick.y; }
+  input.x = clamp(x, -1, 1); input.y = clamp(y, -1, 1);
+}
+const stickEl = $('stick'), knobEl = $('knob');
+function moveStick(e) {
+  const r = stickEl.getBoundingClientRect();
+  let dx = (e.clientX - (r.left + r.width / 2)) / (r.width / 2), dy = (e.clientY - (r.top + r.height / 2)) / (r.height / 2);
+  const len = Math.hypot(dx, dy); if (len > 1) { dx /= len; dy /= len; }
+  input.stick = { x: dx, y: -dy };
+  knobEl.style.transform = `translate(${dx * 36}px, ${dy * 36}px)`;
+}
+stickEl.addEventListener('pointerdown', e => { stickEl.setPointerCapture(e.pointerId); moveStick(e); });
+stickEl.addEventListener('pointermove', e => { if (stickEl.hasPointerCapture(e.pointerId)) moveStick(e); });
+const endStick = () => { input.stick = null; knobEl.style.transform = ''; };
+stickEl.addEventListener('pointerup', endStick);
+stickEl.addEventListener('pointercancel', endStick);
+const btnA = $('btnA');
+btnA.addEventListener('pointerdown', e => { e.preventDefault(); input.action = true; input.actionPressed = true; Sound.init(); });
+btnA.addEventListener('pointerup', () => { input.action = false; });
+btnA.addEventListener('pointercancel', () => { input.action = false; });
+
+// ---------- Ekranlar ve durum ----------
+let state = 'menu', score = 0, best = store.get(SAVE_KEY, 0), time = 0;
+$('bestMenu').textContent = best;
+function show(id) {
+  for (const s of document.querySelectorAll('.screen')) s.classList.toggle('show', s.id === id);
+  $('hud').classList.toggle('show', id === null);
+  document.body.classList.toggle('playing', id === null);
+}
+function setScore(v) { score = v; $('score').textContent = Math.floor(score); }
+document.addEventListener('click', e => {
+  const b = e.target.closest('[data-act]'); if (!b) return;
+  Sound.init(); Sound.sfx.click();
+  const a = b.dataset.act;
+  if (a === 'start') startGame();
+  else if (a === 'resume') togglePause();
+  else if (a === 'menu') { state = 'menu'; Sound.stopMusic(); show('menu'); }
+});
+$('menu').addEventListener('click', e => { if (!e.target.closest('button')) startGame(); });
+$('pauseBtn').addEventListener('click', () => togglePause());
+function togglePause() {
+  if (state === 'play') { state = 'pause'; show('pause'); Sound.stopMusic(); }
+  else if (state === 'pause') { state = 'play'; show(null); Sound.startMusic(); last = performance.now(); }
+}
+document.addEventListener('visibilitychange', () => { if (document.hidden && state === 'play') togglePause(); });
+function startGame() { Sound.init(); Sound.sfx.start(); Sound.startMusic(); resetGame(); state = 'play'; show(null); last = performance.now(); }
+function gameOver() {
+  if (state !== 'play') return;
+  state = 'over'; Sound.sfx.hit(); Sound.stopMusic();
+  cam.shake = 1; flash('#ff3366', 0.45); burst(player.x, player.y, PALETTE.gold, 34, 360);
+  if (score > best) { best = Math.floor(score); store.set(SAVE_KEY, best); }
+  $('finalScore').textContent = Math.floor(score); $('bestOver').textContent = best; $('bestMenu').textContent = best;
+  setTimeout(() => show('over'), 700);
+}
+
+// =====================================================================
+//  ÖRNEK OYUN — bu bölümü kendi oyununla değiştir
+//  (parlayan oyuncu, toplanacak yıldızlar, kovalayan düşmanlar)
+// =====================================================================
+const player = { x: 0, y: 0, vx: 0, vy: 0, r: 16 };
+const stars = [], enemies = [], bgDots = Array.from({ length: 70 }, () => ({ x: Math.random(), y: Math.random(), s: rand(0.5, 2) }));
+function spawnStar() { stars.push({ x: rand(40, W - 40), y: rand(120, H - 160), t: rand(0, 6) }); }
+function spawnEnemy() { const side = Math.random() < 0.5 ? -30 : W + 30; enemies.push({ x: side, y: rand(100, H - 100), r: rand(12, 20), sp: rand(70, 110) + time * 3 }); }
+function resetGame() {
+  player.x = W / 2; player.y = H / 2; player.vx = player.vy = 0;
+  stars.length = 0; enemies.length = 0; FX.length = 0; setScore(0); time = 0;
+  for (let i = 0; i < 5; i++) spawnStar();
+  for (let i = 0; i < 2; i++) spawnEnemy();
+}
+function updateGame(dt) {
+  time += dt;
+  player.vx = lerp(player.vx, input.x * 320, 1 - Math.pow(0.001, dt));
+  player.vy = lerp(player.vy, input.y * 320, 1 - Math.pow(0.001, dt));
+  player.x = clamp(player.x + player.vx * dt, player.r, W - player.r);
+  player.y = clamp(player.y + player.vy * dt, player.r + 70, H - player.r);
+  for (let i = stars.length - 1; i >= 0; i--) {
+    const s = stars[i]; s.t += dt;
+    if (Math.hypot(s.x - player.x, s.y - player.y) < player.r + 14) {
+      burst(s.x, s.y, PALETTE.accent, 16); Sound.sfx.pickup(); setScore(score + 10);
+      stars.splice(i, 1); spawnStar(); if (Math.random() < 0.35 + time / 90) spawnEnemy();
+    }
+  }
+  for (const e of enemies) {
+    const a = Math.atan2(player.y - e.y, player.x - e.x);
+    e.x += Math.cos(a) * e.sp * dt; e.y += Math.sin(a) * e.sp * dt;
+    if (Math.hypot(e.x - player.x, e.y - player.y) < e.r + player.r - 4) { gameOver(); return; }
+  }
+}
+function drawGame() {
+  const g = ctx.createLinearGradient(0, 0, 0, H); g.addColorStop(0, PALETTE.bgTop); g.addColorStop(1, PALETTE.bgBottom);
+  ctx.fillStyle = g; ctx.fillRect(-50, -50, W + 100, H + 100);
+  ctx.fillStyle = 'rgba(255,255,255,.5)';
+  for (const d of bgDots) { ctx.globalAlpha = 0.3 + 0.3 * Math.sin(time * 2 + d.x * 10); ctx.fillRect(d.x * W, d.y * H, d.s, d.s); }
+  ctx.globalAlpha = 1;
+  for (const s of stars) {
+    const r = 10 + Math.sin(s.t * 4) * 2;
+    glow(PALETTE.accent); ctx.fillStyle = PALETTE.accent; ctx.beginPath();
+    for (let i = 0; i < 10; i++) { const a = i / 10 * Math.PI * 2 - Math.PI / 2, rr = i % 2 ? r * 0.45 : r; ctx.lineTo(s.x + Math.cos(a) * rr, s.y + Math.sin(a) * rr); }
+    ctx.closePath(); ctx.fill();
+  }
+  for (const e of enemies) { glow(PALETTE.hot); ctx.fillStyle = PALETTE.hot; ctx.beginPath(); ctx.arc(e.x, e.y, e.r, 0, Math.PI * 2); ctx.fill(); }
+  if (state !== 'over') { glow(PALETTE.gold, 26); ctx.fillStyle = PALETTE.gold; ctx.beginPath(); ctx.arc(player.x, player.y, player.r, 0, Math.PI * 2); ctx.fill(); }
+  noGlow();
+}
+// ======================= ÖRNEK OYUN SONU =============================
+
+// ---------- Döngü ----------
+let last = performance.now();
+function frame(now) {
+  requestAnimationFrame(frame);
+  const dt = Math.min(0.05, (now - last) / 1000 || 0); last = now;
+  readInput();
+  if (state === 'play') updateGame(dt); else time += dt;
+  input.actionPressed = false;
+  updateFX(dt);
+  cam.shake = Math.max(0, cam.shake - dt * 2.5);
+  const k = cam.shake * cam.shake * 14;
+  ctx.save();
+  ctx.translate(rand(-1, 1) * k, rand(-1, 1) * k);
+  drawGame();
+  drawFX();
+  ctx.restore();
+}
+resetGame();
+show('menu');
+requestAnimationFrame(frame);
+</script>
+
 
 <script>
 'use strict';
@@ -625,7 +1339,8 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
 [Çıktı türleri]
 - Yazı, rapor, plan, makale, CV, mektup, ders notu: iyi biçimlenmiş Markdown (.md): başlıklar, tablolar, maddeler; gerçek ve dolu içerik.
 - Web sitesi, uygulama, araç: index.html (+ style.css, app.js). Telefon önce, modern ve özenli tasarım (iyi tipografi, boşluklar, renk paleti). Dış görsel yok; SVG/CSS ile üret.
-- Oyun: 2D için Canvas; 3D için three.js 0.160.0. 3D'de index.html <head> içine şunu koy:
+- Oyun: YENİ OYUNDA İLK İŞ use_template aracını çağır (3d ya da 2d) ve şablonun altyapısı üzerine kur; sıfırdan yazma. Profesyonel bir oyunda şunlar olmalı: oyuna özel tema ve renk paleti, en az 3 farklı engel/düşman/ödül türü, zorluk eğrisi ve seviye/hız artışı, her etkileşimde ses + parçacık + sarsıntı/flash, kombo ya da çarpan gibi ilerleme hissi, oyuna uygun kamera, menü ve bitiş ekranında oyuna özel metinler. Çalışan sürümden sonra bir CİLALAMA turu yap: daha zengin görsel (detaylı modeller birden çok geometriyle, ışık, animasyon), daha iyi his ve denge.
+  Şablonsuz yazman gerekirse: 2D için Canvas; 3D için three.js 0.160.0. 3D'de index.html <head> içine şunu koy:
 <script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }<\/script>
   ve game.js'i <script type="module" src="game.js"><\/script> ile bağla; game.js başka yerel dosya import etmesin. Dokunmatik + klavye kontrol, başlangıç ve bitiş ekranı, skor, WebAudio ses, parçacık/ekran sarsıntısı gibi oyun hissi.
 - Sunum: tek dosya HTML slayt gösterisi (kaydırma/ok tuşlarıyla geçiş, sayfa numarası) ya da Markdown.
@@ -781,6 +1496,24 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
         },
       },
       {
+        name: 'use_template',
+        description: 'Oyunlar için profesyonel başlangıç şablonunu çalışma alanına yazar (index.html, style.css, game.js): hazır menü/duraklat/bitiş ekranları, HUD, dokunmatik joystick + A butonu, klavye, ses efektleri ve müzik, parçacıklar, ekran sarsıntısı, flash, en iyi skor; 3D sürümde gökyüzü, ışık, gölge, bloom parlama ve otomatik kalite. YENİ OYUNLARA HER ZAMAN BUNUNLA BAŞLA. Sonuçta game.js içeriği döner; "ÖRNEK OYUN" bölümünü kendi oyununla değiştir.',
+        inputSchema: { type: 'object', properties: { tur: { type: 'string', enum: ['3d', '2d'], description: '3d (three.js) ya da 2d (canvas)' } }, required: ['tur'] },
+        execute: async ({ tur } = {}) => {
+          const is2d = String(tur).toLowerCase() === '2d';
+          const files = { 'index.html': tplText('index'), 'style.css': tplText('style'), 'game.js': tplText(is2d ? 'g2' : 'g3') };
+          if (is2d) files['index.html'] = files['index.html'].replace(/\s*<script type="importmap">[\s\S]*?<\/script>/, '');
+          for (const [k, v] of Object.entries(files)) writeOne(k, v);
+          t.updatedAt = Date.now(); run.wrote = true; save(); renderComp('index.html');
+          step('write', `Profesyonel ${is2d ? '2D' : '3D'} oyun şablonu kuruldu`, { ok: true });
+          return {
+            yazildi: Object.keys(files),
+            game_js: files['game.js'],
+            nasil: 'game.js altyapısını (Sound.sfx, Sound.startMusic, burst, flash, ' + (is2d ? 'cam.shake, glow' : 'camRig.shake, glowMat, mat, gridTexture, PALETTE') + ', input.x/y/action/actionPressed, show, setScore, gameOver) KORU ve kullan. Sadece ÖRNEK OYUN bölümünü (resetGame, updateGame, ' + (is2d ? 'drawGame' : 'idleScene') + ' ve nesneler) kendi oyununla değiştir. index.html içindeki OYUN ADI, açıklama ve ipucu metinlerini Türkçe olarak oyuna göre düzenle; PALETTE renklerini temaya göre seç. Büyük değişikliklerde game.js dosyasını write_files ile baştan, eksiksiz yaz.',
+          };
+        },
+      },
+      {
         name: 'plan',
         description: 'Çok adımlı işlerin başında 3-8 kısa adımlık plan yazar; kullanıcı yüzde ilerlemeyi ve tahmini kalan süreyi görür. Plan değişirse tekrar çağır.',
         inputSchema: { type: 'object', properties: { adimlar: { type: 'array', items: { type: 'string' }, description: 'Kısa adım başlıkları (ör. "Oyun dosyalarını yaz")' } }, required: ['adimlar'] },
@@ -832,6 +1565,9 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
       },
     ];
   }
+
+  // ---------- Oyun şablonları ----------
+  const tplText = id => { const el = document.getElementById('tpl-' + id); return el ? el.textContent.replace(/<\\\/script/g, '<' + '/script').replace(/^\n/, '') : ''; };
 
   // ---------- Hafıza ----------
   const MEM_KEY = 'zihin.memory';
@@ -908,10 +1644,15 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     } catch (e) { if (e.name === 'AbortError' || e instanceof GemError) throw e; throw new GemError('net', 'Bağlantı koptu.'); }
     return { candidates: [{ content: { role: 'model', parts }, finishReason }], promptFeedback };
   }
-  function thinkFor(model) {
-    if (ver(model) >= 300) return { thinkingLevel: 'low' };
-    if (/^gemini-2\.5-flash(-preview[\w-]*)?$/.test(model)) return { thinkingBudget: 1024 };
-    if (/^gemini-2\.5-pro(-preview[\w-]*)?$/.test(model)) return { thinkingBudget: 2048 };
+  // Düşünme: Hızlı az, Dengeli orta, Güçlü tam düşünür (kalite)
+  function thinkFor(model, tier) {
+    if (ver(model) >= 300) {
+      if (tier === 'complex') return { thinkingLevel: 'high' };
+      if (tier === 'default' && !/lite|pro/.test(model)) return { thinkingLevel: 'medium' };
+      return { thinkingLevel: 'low' };
+    }
+    if (/^gemini-2\.5-flash(-preview[\w-]*)?$/.test(model)) return { thinkingBudget: tier === 'complex' ? 8192 : tier === 'default' ? 2048 : 512 };
+    if (/^gemini-2\.5-pro(-preview[\w-]*)?$/.test(model)) return tier === 'complex' ? null : { thinkingBudget: 2048 };
     return null;
   }
   let modelList = null;
@@ -956,7 +1697,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     const tried = new Set();
     for (;;) {
       const b = { ...body };
-      const tc = !noThink && thinkFor(m);
+      const tc = !noThink && thinkFor(m, tier);
       if (tc) b.generationConfig = { ...(body.generationConfig || {}), thinkingConfig: tc };
       try {
         if (stream) { stream.reset(m); return { j: await gemStream(m, b, signal, stream.delta), model: m, tier }; }
@@ -1065,7 +1806,8 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     try {
       const imgNote = images.length ? `\n[Kullanıcı bu mesaja ${images.length} görsel ekledi; görseller ekte.]` : '';
       const inNote = inputsNow.length ? `\n[Kullanıcının eklediği dosyalar girdi/ klasöründe: ${inputsNow.length} dosya]` : '';
-      const prompt = `${AGENT}\n\nBugünün tarihi: ${new Date().toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} (${new Date().toISOString().slice(0, 10)}).\n${memNote()}\n${taskState(t, run)}${inNote}\n[Kullanıcının yeni isteği]\n${cmdText}${imgNote}`;
+      const modeLine = st.tier === 'complex' ? '[Mod: GÜÇLÜ] Kaliteye öncelik ver: acele etme, detaylı ve profesyonel sonuç üret, cilalama turunu mutlaka yap.' : st.tier === 'quick' ? '[Mod: HIZLI] Kısa ve hızlı çalış; az adımda bitir.' : '[Mod: DENGELİ] Kalite ve hızı dengele.';
+      const prompt = `${AGENT}\n\n${modeLine}\nBugünün tarihi: ${new Date().toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} (${new Date().toISOString().slice(0, 10)}).\n${memNote()}\n${taskState(t, run)}${inNote}\n[Kullanıcının yeni isteği]\n${cmdText}${imgNote}`;
       run.started = Date.now();
       tick = setInterval(() => {
         if (!(st.run && st.run.run === run)) return;

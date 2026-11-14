@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<title>OYUN ADI</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Russo+One&family=Rajdhani:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<script type="importmap">{ "imports": { "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js", "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/" } }</script>
+</head>
+<body>
+<div id="app"></div>
+
+<div id="hud">
+  <div class="stat"><small>SKOR</small><b id="score">0</b></div>
+  <button id="pauseBtn" aria-label="Duraklat">II</button>
+</div>
+
+<section id="menu" class="screen show">
+  <h1 class="title">OYUN<br>ADI</h1>
+  <p class="sub">Tek cümlelik, merak uyandıran açıklama.</p>
+  <button class="btn" data-act="start">OYNA</button>
+  <p class="hint">Telefonda: sol joystick ile hareket, A ile aksiyon<br>Klavye: oklar / WASD, boşluk</p>
+  <div class="best">EN İYİ <span id="bestMenu">0</span></div>
+</section>
+
+<section id="pause" class="screen">
+  <div class="panel">
+    <h2 class="title small">DURAKLADI</h2>
+    <button class="btn" data-act="resume">DEVAM</button>
+    <button class="btn ghost" data-act="menu">MENÜ</button>
+  </div>
+</section>
+
+<section id="over" class="screen">
+  <div class="panel">
+    <div class="best">SKOR</div>
+    <div class="final" id="finalScore">0</div>
+    <div class="best">EN İYİ <span id="bestOver">0</span></div>
+    <button class="btn" data-act="start">TEKRAR</button>
+    <button class="btn ghost" data-act="menu">MENÜ</button>
+  </div>
+</section>
+
+<div id="touch"><div id="stick"><div id="knob"></div></div><button id="btnA" aria-label="Aksiyon">A</button></div>
+<div id="flash"></div>
+<script type="module" src="game.js"></script>
+</body>
+</html>
