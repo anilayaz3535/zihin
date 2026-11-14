@@ -869,6 +869,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
   function thinkFor(model) {
     if (ver(model) >= 300) return { thinkingLevel: 'low' };
     if (/^gemini-2\.5-flash(-preview[\w-]*)?$/.test(model)) return { thinkingBudget: 1024 };
+    if (/^gemini-2\.5-pro(-preview[\w-]*)?$/.test(model)) return { thinkingBudget: 2048 };
     return null;
   }
   let modelList = null;
