@@ -805,12 +805,29 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     return c[0] || (tier === 'quick' ? 'gemini-2.5-flash-lite' : tier === 'complex' ? 'gemini-2.5-pro' : 'gemini-2.5-flash');
   }
   const toB64 = blob => new Promise((res, rej) => { const fr = new FileReader(); fr.onload = () => res(String(fr.result).split(',')[1]); fr.onerror = () => rej(fr.error); fr.readAsDataURL(blob); });
+  function waitVisible(signal) {
+    if (document.visibilityState === 'visible') return Promise.resolve();
+    return new Promise((res, rej) => {
+      const on = () => { if (document.visibilityState === 'visible') { document.removeEventListener('visibilitychange', on); res(); } };
+      document.addEventListener('visibilitychange', on);
+      if (signal) signal.addEventListener('abort', () => { document.removeEventListener('visibilitychange', on); rej(new DOMException('aborted', 'AbortError')); }, { once: true });
+    });
+  }
+  // Ajan çalışırken ekranın kapanmasını engelle (destekleyen telefonlarda)
+  let wakeLock = null;
+  async function keepAwake(on) {
+    try {
+      if (on && !wakeLock && navigator.wakeLock) { wakeLock = await navigator.wakeLock.request('screen'); wakeLock.addEventListener('release', () => { wakeLock = null; }); }
+      if (!on && wakeLock) { await wakeLock.release(); wakeLock = null; }
+    } catch { /* desteklenmiyor */ }
+  }
+  document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'visible' && st.run) keepAwake(true); });
   async function waitCountdown(secs, signal, onWait) {
     for (let s = secs; s > 0; s--) { if (signal && signal.aborted) throw new DOMException('aborted', 'AbortError'); onWait && onWait(s); await sleep(1000); }
     onWait && onWait(0);
   }
   async function callModel(model, body, signal, onWait, tier) {
-    let tries = 0, busy = 0, m = model;
+    let tries = 0, busy = 0, net = 0, m = model;
     const tried = new Set();
     for (;;) {
       try { return { j: await gemFetch(`models/${m}:generateContent`, body, signal), model: m, tier }; }
@@ -823,6 +840,14 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
           onWait && onWait(0, `Kota doldu, ${m} modeline geçildi`); continue;
         }
         if (e.code === 'rate' && !e.daily && tries < 3) { tries++; await waitCountdown(e.wait, signal, onWait); continue; }
+        // Bağlantı koptu (zayıf çekim, ekran kilidi, uygulamadan çıkma): ekran açılınca tekrar dene
+        if (e.code === 'net' && net < 4) {
+          net++;
+          onWait && onWait(0, 'Bağlantı koptu, tekrar deneniyor');
+          await waitVisible(signal);
+          await waitCountdown(2 * net, signal, onWait);
+          continue;
+        }
         // Google sunucusu yoğun (503): kısa bekleyip tekrar dene, olmazsa başka modele geç
         if (e.code === 'busy') {
           if (busy < 2) { busy++; await waitCountdown(3 * busy, signal, onWait); continue; }
@@ -897,7 +922,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     t.runs.push(run); t.updatedAt = Date.now(); save();
     renderAll(); scrollLogEnd(); renderChips();
     const ac = new AbortController(); st.run = { ac, run };
-    updateGo(); $('#liveDot').hidden = false;
+    updateGo(); $('#liveDot').hidden = false; keepAwake(true);
     let waitStep = null;
     try {
       const imgNote = images.length ? `\n[Kullanıcı bu mesaja ${images.length} görsel ekledi; görseller ekte.]` : '';
@@ -923,11 +948,12 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
         const c = e && e.code;
         run.error = c === 'key' ? `API anahtarı kabul edilmedi. Menüden (☰) anahtarı silip yeniden yapıştır. Google’ın mesajı: ${String(e.message || '').slice(0, 220)}`
           : c === 'rate' ? (e.daily ? 'Gemini’nin ücretsiz günlük kotası doldu. Yarın tekrar dene ya da menüden başka mod seç.' : 'Ücretsiz kota doldu. Bir dakika bekleyip tekrar dene.')
-          : c === 'net' || c === 'busy' ? (c === 'busy' ? 'Google’ın sunucuları şu an çok yoğun. Birkaç dakika sonra tekrar dene.' : e.message)
+          : c === 'busy' ? 'Google’ın sunucuları şu an çok yoğun. Birkaç dakika sonra tekrar dene.'
+          : c === 'net' ? 'Bağlantı birkaç kez koptu. İnternetini kontrol et; iş sürerken Zihin’i ekranda açık tut (telefon kilitlenirse ya da başka uygulamaya geçersen bağlantı kesilir). Sonra “devam et” yaz.'
           : (e && e.message) ? `Hata: ${String(e.message).slice(0, 300)}` : 'Bir hata oldu.';
       }
     } finally {
-      st.run = null; $('#liveDot').hidden = true;
+      st.run = null; $('#liveDot').hidden = true; keepAwake(false);
       for (const s of run.steps) if (s.live) { s.live = false; s.ok = false; s.label += ' (yarım kaldı)'; }
       t.updatedAt = Date.now(); save();
       renderRun(run); updateGo(); renderComp(); renderTaskName();
