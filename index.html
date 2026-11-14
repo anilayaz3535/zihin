@@ -138,6 +138,17 @@ body:not(.wide) .pane:not(.active) { display: none; }
 .memitem button { border: 0; background: transparent; color: var(--dim); width: 26px; height: 26px; border-radius: 8px; display: grid; place-items: center; flex: none; }
 .memitem button svg.i { width: 14px; height: 14px; }
 
+.plan { margin-top: 10px; padding: 12px 12px 10px; border-radius: 16px; background: var(--panel); border: 1px solid var(--line); }
+.plan-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; font-size: 13px; color: var(--dim); }
+.plan-head b { font: 800 18px/1 var(--font-display); color: var(--text); font-variant-numeric: tabular-nums; }
+.pbar { height: 6px; border-radius: 99px; background: var(--void); margin: 10px 0 8px; overflow: hidden; }
+.pbar i { display: block; height: 100%; background: var(--grad); border-radius: 99px; transition: width .6s ease; }
+.plan ol { margin: 0; padding: 0; list-style: none; display: grid; gap: 3px; counter-reset: ps; }
+.plan li { counter-increment: ps; font-size: 13px; color: var(--dim); display: flex; gap: 8px; align-items: baseline; }
+.plan li::before { content: counter(ps); font: 600 11px/1 var(--font-mono); width: 18px; height: 18px; border-radius: 6px; display: inline-grid; place-items: center; background: var(--panel-2); color: var(--dim); flex: none; transform: translateY(3px); }
+.plan li.d { color: var(--text); } .plan li.d::before { content: "✓"; color: var(--ok); }
+.plan li.c { color: var(--text); font-weight: 600; } .plan li.c::before { background: var(--hot); color: var(--on-grad); }
+
 /* Komut kutusu */
 .composer { padding: 8px 12px calc(10px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); background: var(--void); }
 .chips { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 8px; scrollbar-width: none; }
@@ -589,6 +600,11 @@ Basit bir soru ya da sohbetse dosya oluşturmadan doğrudan, net cevap ver.
 - Emin olmadığın bilgiyi kesinmiş gibi söyleme; güncel bilgi gerekiyorsa web_search kullan.
 - Sağlık, hukuk, para gibi konularda genel bilgi ver ve kesin karar için uzmana (doktor, avukat vb.) danışmasını kısaca hatırlat.
 
+[İlerleme ve kalan süre]
+- Birden fazla adım gerektiren işlerde (oyun, site, uygulama, rapor, sunum…) İLK iş olarak plan aracıyla 3-8 kısa adımlık bir plan yaz (ilk dosyaları yazarken aynı turda çağırabilirsin). Kullanıcı ilerlemeyi ve kalan süreyi bununla görüyor.
+- Bir adımı bitirdiğinde progress aracını o adımın numarasıyla, diğer araçlarla AYNI turda çağır.
+- Basit soru ve sohbetlerde plan yapma.
+
 [Hafıza — öğren]
 - Kullanıcı seni düzeltirse ("yanlış, doğrusu şu") ya da kendisi hakkında kalıcı bir bilgi/tercih söylerse remember aracıyla kısa bir not kaydet. Aşağıdaki hafıza notlarını her zaman dikkate al.
 
@@ -762,6 +778,32 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
             s.live = false; s.ok = false; s.label = 'Web araması yapılamadı'; s.detail = String(e.message || e).slice(0, 160); renderRun(run);
             throw new Error('Web araması başarısız: ' + (e.message || e));
           }
+        },
+      },
+      {
+        name: 'plan',
+        description: 'Çok adımlı işlerin başında 3-8 kısa adımlık plan yazar; kullanıcı yüzde ilerlemeyi ve tahmini kalan süreyi görür. Plan değişirse tekrar çağır.',
+        inputSchema: { type: 'object', properties: { adimlar: { type: 'array', items: { type: 'string' }, description: 'Kısa adım başlıkları (ör. "Oyun dosyalarını yaz")' } }, required: ['adimlar'] },
+        execute: async ({ adimlar } = {}) => {
+          const a = (Array.isArray(adimlar) ? adimlar : []).map(x => String(x).trim().slice(0, 90)).filter(Boolean).slice(0, 12);
+          if (!a.length) throw new Error('adimlar boş');
+          const old = run.plan || [];
+          run.plan = a.map((t, i) => ({ t, done: !!(old[i] && old[i].t === t && old[i].done) }));
+          if (!run.planAt) run.planAt = Date.now();
+          save(); renderRun(run);
+          return { ok: true, adim_sayisi: a.length, not: 'Her adım bitince progress çağır.' };
+        },
+      },
+      {
+        name: 'progress',
+        description: 'Plandaki bir adım bittiğinde çağır (adım numarası 1’den başlar). Diğer araçlarla aynı turda çağır.',
+        inputSchema: { type: 'object', properties: { adim: { type: 'integer', description: 'Biten adımın numarası' } }, required: ['adim'] },
+        execute: async ({ adim } = {}) => {
+          if (!run.plan) throw new Error('Önce plan aracıyla plan yaz.');
+          const i = Math.min(run.plan.length, Math.max(1, Number(adim) | 0));
+          for (let k = 0; k < i; k++) run.plan[k].done = true;
+          save(); renderRun(run);
+          return { ok: true, kalan_adim: run.plan.filter(x => !x.done).length };
         },
       },
       {
@@ -1025,7 +1067,11 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
       const inNote = inputsNow.length ? `\n[Kullanıcının eklediği dosyalar girdi/ klasöründe: ${inputsNow.length} dosya]` : '';
       const prompt = `${AGENT}\n\nBugünün tarihi: ${new Date().toLocaleDateString('tr-TR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })} (${new Date().toISOString().slice(0, 10)}).\n${memNote()}\n${taskState(t, run)}${inNote}\n[Kullanıcının yeni isteği]\n${cmdText}${imgNote}`;
       run.started = Date.now();
-      tick = setInterval(() => { if (st.run && st.run.run === run) renderRun(run); }, 1000);
+      tick = setInterval(() => {
+        if (!(st.run && st.run.run === run)) return;
+        renderRun(run);
+        const p = run.plan; $('#liveDot').title = p ? `${p.filter(x => x.done).length}/${p.length}` : '';
+      }, 1000);
       const res = await runGemini(prompt, {
         tools: makeTools(t, run), images, signal: ac.signal, tier: st.tier,
         onModel: m => { run.model = m; },
@@ -1053,6 +1099,8 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
       }
     } finally {
       st.run = null; $('#liveDot').hidden = true; keepAwake(false); if (tick) clearInterval(tick);
+      run.ended = Date.now();
+      if (run.plan && run.status === 'done' && (run.finished || !run.error)) run.plan.forEach(x => { x.done = true; });
       for (const s of run.steps) if (s.live) { s.live = false; s.ok = false; s.label += ' (yarım kaldı)'; }
       t.updatedAt = Date.now(); save();
       renderRun(run); updateGo(); renderComp(); renderTaskName();
@@ -1114,8 +1162,30 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     return `<li class="step ${cls}"><span class="dot">${icon}</span><span class="lbl">${s.label}</span></li>${s.detail ? `<div class="step-detail">${esc(s.detail)}</div>` : ''}`;
   }
   function ftLabel(p) { const e = extOf(p); return (e || 'DOS').slice(0, 4).toUpperCase(); }
+  const fmtDur = ms => { const s = Math.max(0, Math.round(ms / 1000)); if (s < 60) return `${s} sn`; const m = Math.floor(s / 60), r = s % 60; return m < 10 && r ? `${m} dk ${r} sn` : `${Math.round(s / 60)} dk`; };
+  function planHTML(r) {
+    const p = r.plan; if (!p || !p.length) return '';
+    const total = p.length, done = p.filter(x => x.done).length;
+    const running = r.status === 'running';
+    let pct = Math.round(done / total * 100), head;
+    if (running) {
+      const since = Date.now() - (r.planAt || r.started || Date.now());
+      const per = done > 0 ? since / done : ({ quick: 25, default: 45, complex: 75 }[st.tier] || 45) * 1000;
+      const remain = done > 0 ? per * (total - done) : Math.max(per * total - since, 15000);
+      if (done < total) pct = Math.min(99, Math.round((done + Math.min(0.9, (since - per * done) / per)) / total * 100));
+      head = `<b>%${Math.max(pct, 1)}</b><span>Adım ${Math.min(done + 1, total)}/${total}</span><span>tahmini ~${fmtDur(Math.max(remain, 5000))} kaldı</span>`;
+    } else {
+      const took = r.ended && r.started ? ` · ${fmtDur(r.ended - r.started)} sürdü` : '';
+      head = r.status === 'done' ? `<b>%100</b><span>Tamamlandı${took}</span>` : `<b>%${pct}</b><span>${r.status === 'stopped' ? 'Durduruldu' : 'Yarım kaldı'} · ${done}/${total} adım${took}</span>`;
+      if (r.status === 'done') pct = 100;
+    }
+    const cur = p.findIndex(x => !x.done);
+    const items = p.map((x, i) => `<li class="${x.done || (!running && r.status === 'done') ? 'd' : running && i === cur ? 'c' : ''}">${esc(x.t)}</li>`).join('');
+    return `<div class="plan"><div class="plan-head">${head}</div><div class="pbar"><i style="width:${pct}%"></i></div><ol>${items}</ol></div>`;
+  }
   function runHTML(r) {
     let h = `<div class="cmd${r.undo ? ' auto' : ''}"><div class="bubble">${esc(r.cmd)}</div>${r.att ? `<div class="att">${esc(r.att)}</div>` : ''}</div>`;
+    h += planHTML(r);
     if (r.steps.length) h += `<ul class="steps">${r.steps.map(stepHTML).join('')}</ul>`;
     if (r.reply) h += `<div class="reply md">${md(r.reply)}</div>`;
     if (r.status === 'running' && !r.steps.some(s => s.live) && !(r.lastText && Date.now() - r.lastText < 1500)) {
