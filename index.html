@@ -761,7 +761,13 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
   const GEM = 'https://generativelanguage.googleapis.com/v1beta';
   const KEY_LS = 'zihin.gemini.key';
   const getKey = () => { try { return localStorage.getItem(KEY_LS) || st.memKey; } catch { return st.memKey; } };
-  const setKey = k => { st.memKey = k; try { localStorage.setItem(KEY_LS, k); } catch { /* bellekte kalır */ } };
+  const setKey = k => { k = String(k || '').replace(/["'`\s\u200b-\u200f\u2028\u2029\ufeff]/g, ''); st.memKey = k; try { localStorage.setItem(KEY_LS, k); } catch { /* bellekte kalır */ } return k; };
+  async function verifyKey() {
+    modelList = null;
+    toast('Anahtar deneniyor…', 4000);
+    try { const l = await listModels(); toast(`Anahtar çalışıyor ✓ (${l.length} model)`, 3500); return true; }
+    catch (e) { toast('Anahtar çalışmadı: ' + String(e.message || e).slice(0, 160), 9000); return false; }
+  }
   class GemError extends Error { constructor(code, msg, extra) { super(msg); this.code = code; Object.assign(this, extra || {}); } }
   async function gemFetch(path, body, signal) {
     let r;
@@ -903,10 +909,10 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
       else {
         run.status = 'error';
         const c = e && e.code;
-        run.error = c === 'key' ? 'API anahtarı geçersiz ya da yetkisiz. Menüden anahtarı kontrol et (aistudio.google.com/apikey).'
+        run.error = c === 'key' ? `API anahtarı kabul edilmedi. Menüden (☰) anahtarı silip yeniden yapıştır. Google’ın mesajı: ${String(e.message || '').slice(0, 220)}`
           : c === 'rate' ? (e.daily ? 'Gemini’nin ücretsiz günlük kotası doldu. Yarın tekrar dene ya da menüden başka mod seç.' : 'Ücretsiz kota doldu. Bir dakika bekleyip tekrar dene.')
           : c === 'net' ? e.message
-          : (e && e.message) || 'Bir hata oldu.';
+          : (e && e.message) ? `Hata: ${String(e.message).slice(0, 300)}` : 'Bir hata oldu.';
       }
     } finally {
       st.run = null; $('#liveDot').hidden = true;
@@ -1167,7 +1173,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     $('#newBtn').addEventListener('click', () => { if (st.run) return toast('Ajan çalışırken yeni görev açılamaz'); newTask(); setTab('task'); renderAll(); $('#cmd').focus(); });
     $('#newTask').addEventListener('click', () => { if (st.run) return toast('Ajan çalışırken yeni görev açılamaz'); newTask(); closeDrawer(); setTab('task'); renderAll(); });
     document.querySelectorAll('.seg button').forEach(b => b.addEventListener('click', () => { st.tier = b.dataset.tier; save(); renderTier(); }));
-    $('#keySave').addEventListener('click', () => { const v = $('#keyIn').value.trim(); if (v && v.length < 20) return toast('Anahtar eksik görünüyor'); setKey(v); modelList = null; toast(v ? 'Anahtar kaydedildi' : 'Anahtar silindi'); renderLog(); });
+    $('#keySave').addEventListener('click', () => { const v = setKey($('#keyIn').value || ''); $('#keyIn').value = v; renderLog(); if (!v) return toast('Anahtar silindi'); if (v.length < 20) return toast('Anahtar eksik görünüyor'); verifyKey(); });
     $('#plist').addEventListener('click', async e => {
       const b = e.target.closest('button'); if (!b) return;
       if (b.dataset.task) { if (st.run) return toast('Ajan çalışırken görev değiştirilemez'); st.currentId = b.dataset.task; st.view = { path: null, src: false }; st.pendingImages = []; save(); closeDrawer(); renderAll(); }
@@ -1183,7 +1189,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     $('#log').addEventListener('click', e => {
       const b = e.target.closest('button'); if (!b) return;
       if (b.dataset.idea) { $('#cmd').value = b.dataset.idea; autoGrow(); updateGo(); $('#cmd').focus(); }
-      if (b.dataset.savekey) { const v = ($('#keyIn2').value || '').trim(); if (v.length < 20) return toast('Anahtar eksik görünüyor'); setKey(v); modelList = null; toast('Anahtar kaydedildi'); renderLog(); }
+      if (b.dataset.savekey) { const v = setKey($('#keyIn2').value || ''); if (v.length < 20) return toast('Anahtar eksik görünüyor'); renderLog(); verifyKey(); }
       if (b.dataset.open) { st.view = { path: b.dataset.open, src: false }; renderComp(); if (!document.body.classList.contains('wide')) setTab('comp'); }
     });
     $('#chips').addEventListener('click', e => {
