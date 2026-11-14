@@ -805,10 +805,15 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
   async function callModel(model, body, signal, onWait, tier) {
     let tries = 0, m = model;
     for (;;) {
-      try { return { j: await gemFetch(`models/${m}:generateContent`, body, signal), model: m }; }
+      try { return { j: await gemFetch(`models/${m}:generateContent`, body, signal), model: m, tier }; }
       catch (e) {
         if (e.name === 'AbortError' || (signal && signal.aborted)) throw e;
-        if (e.code === 'rate' && tier !== 'default' && (e.zero || e.daily || tries >= 1)) { tier = 'default'; m = await pickModel('default'); onWait && onWait(0, `${m} modeline geçildi`); continue; }
+        // Günlük kota bitti ya da bu modelde ücretsiz kota yok: bir alt modele geç (Pro → Flash → Flash-Lite)
+        const next = tier === 'complex' ? 'default' : tier === 'default' ? 'quick' : null;
+        if (e.code === 'rate' && next && (e.zero || e.daily || (tier === 'complex' && tries >= 1))) {
+          tier = next; tries = 0; m = await pickModel(next);
+          onWait && onWait(0, `Kota doldu, ${m} modeline geçildi`); continue;
+        }
         if (e.code === 'rate' && !e.daily && tries < 3) { tries++; await waitCountdown(e.wait, signal, onWait); continue; }
         if (e.code === 'model' && tries < 1) { tries++; modelList = null; m = await pickModel('default'); continue; }
         throw e;
@@ -835,7 +840,7 @@ Bir turda birden çok aracı aynı anda çağırabilirsin. Ücretsiz kota sını
     let all = '';
     for (let round = 0; round < 40; round++) {
       const r = await callModel(model, { contents, tools: [{ functionDeclarations: decl }], generationConfig: { maxOutputTokens: 65536 } }, signal, onWait, tier);
-      if (r.model !== model) { model = r.model; tier = 'default'; }
+      if (r.model !== model) { model = r.model; tier = r.tier; }
       const res = r.j;
       const cand = res.candidates && res.candidates[0];
       if (!cand || !cand.content || !(cand.content.parts || []).length) {
