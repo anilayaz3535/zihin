@@ -1,0 +1,71 @@
+BIZ-1:0 | I have attached the report to this email. | Raporu bu e-postaya ekledim.
+BIZ-1:1 | Please reply by Friday. | Lütfen cuma gününe kadar yanıt verin.
+BIZ-1:2 | The deadline for the project is next Monday. | Projenin son teslim tarihi gelecek pazartesi.
+BIZ-1:3 | Could you confirm the meeting time? | Toplantı saatini onaylayabilir misiniz?
+BIZ-1:4 | Thank you for your quick reply. | Hızlı yanıtınız için teşekkür ederim.
+BIZ-1:5 | I am writing to ask about your prices. | Fiyatlarınızı sormak için yazıyorum.
+BIZ-1:6 | Please find the invoice attached. | Faturayı ekte bulabilirsiniz.
+BIZ-1:7 | We need to change the schedule. | Programı değiştirmemiz gerekiyor.
+BIZ-1:8 | Here is a quick update on the project. | Projeyle ilgili kısa bir güncelleme paylaşıyorum.
+BIZ-1:9 | I will send you the details tomorrow. | Ayrıntıları size yarın göndereceğim.
+BIZ-1:10 | We received your request this morning. | Talebinizi bu sabah aldık.
+BIZ-1:11 | Sorry for the late reply. | Geç yanıt için özür dilerim.
+BIZ-1:12 | Can we move the deadline to Thursday? | Son tarihi perşembeye alabilir miyiz?
+BIZ-1:13 | Please let me know if you have any questions. | Sorunuz olursa lütfen bana bildirin.
+BIZ-1:14 | The invoice is due at the end of the month. | Faturanın son ödeme tarihi ay sonu.
+BIZ-1:15 | Could you send me an update by noon? | Öğlene kadar bana son durumu gönderebilir misiniz?
+BIZ-1:16 | I am copying my manager on this email. | Müdürümü de bu e-postaya ekliyorum.
+BIZ-1:17 | We are happy to confirm your order. | Siparişinizi onaylamaktan memnuniyet duyarız.
+BIZ-1:18 | The file is too large to attach. | Dosya eklemek için çok büyük.
+BIZ-1:19 | Our schedule is very busy this week. | Bu hafta programımız çok yoğun.
+BIZ-1:20 | I am happy to help with your request. | Talebinize yardımcı olmaktan memnuniyet duyarım.
+BIZ-1:21 | Please check the attachment and reply. | Lütfen eki kontrol edip yanıt verin.
+BIZ-1:22 | Best regards and have a nice weekend. | Saygılarımla, iyi hafta sonları.
+BIZ-2:0 | We can start with the first item on the agenda. | Gündemdeki ilk maddeyle başlayabiliriz.
+BIZ-2:1 | I cannot attend the meeting tomorrow. | Yarınki toplantıya katılamıyorum.
+BIZ-2:2 | We have to postpone the meeting until Friday. | Toplantıyı cumaya ertelemek zorundayız.
+BIZ-2:3 | Can you send everyone a short summary? | Herkese kısa bir özet gönderebilir misin?
+BIZ-2:4 | I have a suggestion about the budget. | Bütçeyle ilgili bir önerim var.
+BIZ-2:5 | We need to make a decision today. | Bugün bir karar vermemiz gerekiyor.
+BIZ-2:6 | My colleague will present the results. | Sonuçları iş arkadaşım sunacak.
+BIZ-2:7 | Sorry, could you repeat that, please? | Pardon, onu tekrar edebilir misiniz lütfen?
+BIZ-2:8 | I agree with you on this point. | Bu konuda size katılıyorum.
+BIZ-2:9 | I see your point, but I have a different idea. | Ne demek istediğinizi anlıyorum ama farklı bir fikrim var.
+BIZ-2:10 | What is the next item on the agenda? | Gündemdeki sıradaki madde ne?
+BIZ-2:11 | The meeting will take about thirty minutes. | Toplantı yaklaşık otuz dakika sürecek.
+BIZ-2:12 | Who is going to take notes today? | Bugün notları kim alacak?
+BIZ-2:13 | Let me share my screen. | Ekranımı paylaşayım.
+BIZ-2:14 | Thank you all for joining the call. | Görüşmeye katıldığınız için hepinize teşekkürler.
+BIZ-2:15 | Can everyone hear me clearly? | Herkes beni net duyabiliyor mu?
+BIZ-2:16 | I will present our plan for next month. | Gelecek ayki planımızı sunacağım.
+BIZ-2:17 | We should postpone this decision. | Bu kararı ertelemeliyiz.
+BIZ-2:18 | That is a very good suggestion. | Bu çok iyi bir öneri.
+BIZ-2:19 | Let me give you a quick summary. | Size kısa bir özet vereyim.
+BIZ-2:20 | Most of my colleagues work from home on Fridays. | İş arkadaşlarımın çoğu cuma günleri evden çalışıyor.
+BIZ-2:21 | Please attend the training on Monday morning. | Lütfen pazartesi sabahki eğitime katılın.
+BIZ-2:22 | We are running out of time. | Vaktimiz azalıyor.
+BIZ-2:23 | We can continue this discussion next week. | Bu tartışmaya gelecek hafta devam edebiliriz.
+BIZ-3:0 | Hello, this is Elif from the sales department. | Merhaba, ben satış departmanından Elif.
+BIZ-3:1 | Is Mr Brown available right now? | Bay Brown şu an müsait mi?
+BIZ-3:2 | Can I leave a message for her? | Ona bir mesaj bırakabilir miyim?
+BIZ-3:3 | I will connect you to the right person. | Sizi doğru kişiye bağlayacağım.
+BIZ-3:4 | Could you hold for a moment, please? | Bir dakika hatta bekleyebilir misiniz lütfen?
+BIZ-3:5 | I am calling about an urgent problem. | Acil bir sorun için arıyorum.
+BIZ-3:6 | The customer wants to speak to a manager. | Müşteri bir yöneticiyle görüşmek istiyor.
+BIZ-3:7 | I would like to make an appointment. | Randevu almak istiyorum.
+BIZ-3:8 | Sorry, the line is busy. | Üzgünüm, hat meşgul.
+BIZ-3:9 | Could you spell your last name, please? | Soyadınızı harf harf söyler misiniz lütfen?
+BIZ-3:10 | I will call you back in ten minutes. | Sizi on dakika içinde geri arayacağım.
+BIZ-3:11 | Which department do you work in? | Hangi departmanda çalışıyorsunuz?
+BIZ-3:12 | She is not available until three in the afternoon. | Öğleden sonra üçe kadar müsait değil.
+BIZ-3:13 | Thank you for calling, have a nice day. | Aradığınız için teşekkürler, iyi günler.
+BIZ-3:14 | Our customer service team is here to help. | Müşteri hizmetleri ekibimiz yardım için burada.
+BIZ-3:15 | This is urgent, so please call me soon. | Bu acil, lütfen beni kısa süre içinde arayın.
+BIZ-3:16 | I missed your call this morning. | Bu sabah aramanızı kaçırdım.
+BIZ-3:17 | Can we change the appointment to Wednesday? | Randevuyu çarşambaya alabilir miyiz?
+BIZ-3:18 | Please connect me to the finance department. | Lütfen beni finans departmanına bağlayın.
+BIZ-3:19 | Your message was very clear. | Mesajınız çok açıktı.
+BIZ-3:20 | Are you available for a quick call? | Kısa bir görüşme için müsait misiniz?
+BIZ-3:21 | The printer on our floor is not working. | Katımızdaki yazıcı çalışmıyor.
+BIZ-3:22 | I will be out of the office tomorrow. | Yarın ofiste olmayacağım.
+BIZ-3:23 | Who should I contact about this issue? | Bu konuyla ilgili kiminle iletişime geçmeliyim?

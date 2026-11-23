@@ -1,0 +1,72 @@
+JOB-1:0 | Thank you for inviting me to this interview. | Beni bu görüşmeye davet ettiğiniz için teşekkür ederim.
+JOB-1:1 | I graduated from Ankara University in 2020. | 2020’de Ankara Üniversitesi’nden mezun oldum.
+JOB-1:2 | I have a degree in computer engineering. | Bilgisayar mühendisliği diplomam var.
+JOB-1:3 | I have three years of experience in marketing. | Pazarlamada üç yıllık deneyimim var.
+JOB-1:4 | I am currently working as a sales assistant. | Şu anda satış asistanı olarak çalışıyorum.
+JOB-1:5 | I was responsible for social media at my last job. | Son işimde sosyal medyadan sorumluydum.
+JOB-1:6 | My background is in finance. | Altyapım finans alanında.
+JOB-1:7 | I am applying for the position of project manager. | Proje yöneticisi pozisyonuna başvuruyorum.
+JOB-1:8 | I speak Turkish, English and a little German. | Türkçe, İngilizce ve biraz Almanca konuşuyorum.
+JOB-1:9 | Communication is one of my best skills. | İletişim en iyi becerilerimden biri.
+JOB-1:10 | I enjoy working with people. | İnsanlarla çalışmaktan keyif alıyorum.
+JOB-1:11 | I learn new things very quickly. | Yeni şeyleri çok hızlı öğrenirim.
+JOB-1:12 | I moved to Istanbul for my first job. | İlk işim için İstanbul’a taşındım.
+JOB-1:13 | I am excited about this opportunity. | Bu fırsat için heyecanlıyım.
+JOB-1:14 | Let me tell you a little about myself. | Size biraz kendimden bahsedeyim.
+JOB-1:15 | I have worked in this industry since 2019. | 2019’dan beri bu sektörde çalışıyorum.
+JOB-1:16 | My main skill is solving problems. | Ana becerim problem çözmek.
+JOB-1:17 | I was responsible for a team of five people. | Beş kişilik bir ekipten sorumluydum.
+JOB-1:18 | I want to use my experience in a bigger company. | Deneyimimi daha büyük bir şirkette kullanmak istiyorum.
+JOB-1:19 | I am currently looking for a new challenge. | Şu anda kendimi geliştirebileceğim yeni bir iş arıyorum.
+JOB-1:20 | This position matches my background well. | Bu pozisyon altyapımla çok iyi örtüşüyor.
+JOB-1:21 | I finished my degree while I was working. | Diplomamı çalışırken tamamladım.
+JOB-1:22 | I did an internship at a bank. | Bir bankada staj yaptım.
+JOB-1:23 | I can work well under pressure. | Baskı altında iyi çalışabilirim.
+JOB-2:0 | My biggest strength is my attention to detail. | En büyük güçlü yönüm ayrıntılara dikkat etmem.
+JOB-2:1 | One weakness is that I sometimes work too much. | Zayıf yönlerimden biri bazen fazla çalışmam.
+JOB-2:2 | I am working to improve my presentation skills. | Sunum becerilerimi geliştirmek için çalışıyorum.
+JOB-2:3 | My goal is to become a team leader. | Hedefim ekip lideri olmak.
+JOB-2:4 | I am a very organized person. | Çok düzenli bir insanım.
+JOB-2:5 | My last manager said I was very reliable. | Son müdürüm çok güvenilir olduğumu söyledi.
+JOB-2:6 | We achieved our sales target last year. | Geçen yıl satış hedefimize ulaştık.
+JOB-2:7 | I always plan my day in the morning. | Günümü her zaman sabah planlarım.
+JOB-2:8 | In five years, I see myself in a management role. | Beş yıl içinde kendimi yönetici bir rolde görüyorum.
+JOB-2:9 | I want to grow my career in this company. | Kariyerimi bu şirkette geliştirmek istiyorum.
+JOB-2:10 | I stay calm when there is a problem. | Bir sorun olduğunda sakin kalırım.
+JOB-2:11 | I am good at working in a team. | Ekip içinde çalışmakta iyiyim.
+JOB-2:12 | I take feedback seriously. | Geri bildirimi ciddiye alırım.
+JOB-2:13 | My colleagues can always count on me. | İş arkadaşlarım her zaman bana güvenebilir.
+JOB-2:14 | Can you give me an example of a difficult situation? | Bana zor bir durumdan örnek verebilir misiniz?
+JOB-2:15 | Once, a customer was very angry with our service. | Bir keresinde bir müşteri hizmetimize çok kızmıştı.
+JOB-2:16 | I listened carefully and solved the problem. | Dikkatlice dinledim ve sorunu çözdüm.
+JOB-2:17 | As a result, the customer stayed with us. | Sonuç olarak müşteri bizimle kaldı.
+JOB-2:18 | I am proud of what our team achieved. | Ekibimizin başardıklarıyla gurur duyuyorum.
+JOB-2:19 | I want to improve my leadership skills. | Liderlik becerilerimi geliştirmek istiyorum.
+JOB-2:20 | Being organized helps me meet deadlines. | Düzenli olmak son tarihlere yetişmeme yardımcı oluyor.
+JOB-2:21 | My long-term goal is to work abroad. | Uzun vadeli hedefim yurt dışında çalışmak.
+JOB-2:22 | I learned a lot from my mistakes. | Hatalarımdan çok şey öğrendim.
+JOB-2:23 | A reliable team is the key to a successful career. | Güvenilir bir ekip başarılı bir kariyerin anahtarıdır.
+JOB-3:0 | What does a typical day look like in this role? | Bu rolde tipik bir gün nasıl geçiyor?
+JOB-3:1 | Is there any training for new employees? | Yeni çalışanlar için bir eğitim var mı?
+JOB-3:2 | Do you offer flexible working hours? | Esnek çalışma saatleri sunuyor musunuz?
+JOB-3:3 | Is this a remote position? | Bu uzaktan çalışma pozisyonu mu?
+JOB-3:4 | What are your salary expectations? | Maaş beklentiniz nedir?
+JOB-3:5 | I expect a salary that matches my experience. | Deneyimime uygun bir maaş bekliyorum.
+JOB-3:6 | What benefits does the company offer? | Şirket hangi yan hakları sunuyor?
+JOB-3:7 | When can you start? | Ne zaman başlayabilirsiniz?
+JOB-3:8 | My notice period is one month. | İhbar sürem bir ay.
+JOB-3:9 | Thank you, I am happy to accept your offer. | Teşekkürler, teklifinizi kabul etmekten mutluluk duyarım.
+JOB-3:10 | Can I see the contract before I sign it? | İmzalamadan önce sözleşmeyi görebilir miyim?
+JOB-3:11 | What are the next steps in the process? | Süreçteki sonraki adımlar neler?
+JOB-3:12 | When will I hear back from you? | Sizden ne zaman haber alırım?
+JOB-3:13 | Do you have any questions for us? | Bize sormak istediğiniz bir şey var mı?
+JOB-3:14 | Yes, how big is the team I would work with? | Evet, birlikte çalışacağım ekip ne kadar büyük?
+JOB-3:15 | The job offer includes health insurance. | İş teklifi sağlık sigortasını da içeriyor.
+JOB-3:16 | Is the salary negotiable? | Maaş pazarlığa açık mı?
+JOB-3:17 | We offer two weeks of training. | İki haftalık eğitim veriyoruz.
+JOB-3:18 | The contract is for one year. | Sözleşme bir yıllık.
+JOB-3:19 | I prefer a flexible schedule. | Esnek bir programı tercih ederim.
+JOB-3:20 | Most of our team is remote. | Ekibimizin çoğu uzaktan çalışıyor.
+JOB-3:21 | I would like some time to think about the offer. | Teklifi düşünmek için biraz zaman istiyorum.
+JOB-3:22 | Thank you for your time today. | Bugün ayırdığınız zaman için teşekkür ederim.
+JOB-3:23 | I look forward to working with you. | Sizinle çalışmayı dört gözle bekliyorum.

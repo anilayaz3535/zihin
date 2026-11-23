@@ -1,0 +1,20 @@
+LGS-9:4 | The students are observing the plants carefully. | Öğrenciler bitkileri dikkatle gözlemliyor.
+LGS-9:5 | Penicillin was discovered by accident. | Penisilin tesadüfen keşfedildi.
+LGS-9:6 | What are you working on now? | Şu an ne üzerinde çalışıyorsun?
+LGS-9:7 | Robots will do many jobs in the future. | Gelecekte birçok işi robotlar yapacak.
+LGS-9:8 | First, we put the liquid into a test tube. | Önce sıvıyı bir deney tüpüne koyuyoruz.
+LGS-9:9 | Science helps us understand the world. | Bilim dünyayı anlamamıza yardım eder.
+LGS-9:10 | Cahit Arf was a famous Turkish mathematician. | Cahit Arf ünlü bir Türk matematikçiydi.
+LGS-9:11 | The results of the experiment were surprising. | Deneyin sonuçları şaşırtıcıydı.
+LGS-10:0 | An earthquake can destroy buildings in seconds. | Bir deprem binaları saniyeler içinde yıkabilir.
+LGS-10:1 | We should prepare an emergency kit. | Bir acil durum çantası hazırlamalıyız.
+LGS-10:2 | Floods happen after heavy rain. | Seller şiddetli yağmurdan sonra olur.
+LGS-10:3 | Global warming will cause more droughts. | Küresel ısınma daha fazla kuraklığa yol açacak.
+LGS-10:4 | During an earthquake, drop, cover and hold on. | Deprem sırasında çök, kapan, tutun.
+LGS-10:5 | The forest fire spread quickly because of the wind. | Orman yangını rüzgâr yüzünden hızla yayıldı.
+LGS-10:6 | People must leave the area before the storm arrives. | İnsanlar fırtına gelmeden önce bölgeyi terk etmeli.
+LGS-10:7 | If we plant more trees, we can prevent floods. | Daha çok ağaç dikersek selleri önleyebiliriz.
+LGS-10:8 | The volcano erupted last year. | Yanardağ geçen yıl patladı.
+LGS-10:9 | Many animals lost their homes in the fire. | Birçok hayvan yangında yuvasını kaybetti.
+LGS-10:10 | Scientists predict that the sea level will rise. | Bilim insanları deniz seviyesinin yükseleceğini öngörüyor.
+LGS-10:11 | Turn off the gas and the electricity after an earthquake. | Depremden sonra gazı ve elektriği kapat.

@@ -1,0 +1,72 @@
+TRIP-1:0 | Can I see your passport, please? | Pasaportunuzu görebilir miyim lütfen?
+TRIP-1:1 | Here is my boarding pass. | İşte biniş kartım.
+TRIP-1:2 | How many bags are you checking in? | Kaç bavul teslim ediyorsunuz?
+TRIP-1:3 | My luggage is too heavy. | Bagajım çok ağır.
+TRIP-1:4 | Our flight is delayed by two hours. | Uçuşumuz iki saat rötarlı.
+TRIP-1:5 | Which gate does the flight leave from? | Uçuş hangi kapıdan kalkıyor?
+TRIP-1:6 | Boarding starts at ten fifteen. | Biniş on onbeşte başlıyor.
+TRIP-1:7 | I would like an aisle seat, please. | Koridor tarafında bir koltuk istiyorum lütfen.
+TRIP-1:8 | Where is the departure board? | Kalkış ekranı nerede?
+TRIP-1:9 | I have nothing to declare at customs. | Gümrükte beyan edecek bir şeyim yok.
+TRIP-1:10 | My suitcase did not arrive. | Bavulum gelmedi.
+TRIP-1:11 | Is this the line for passport control? | Pasaport kontrolü sırası bu mu?
+TRIP-1:12 | How long does the flight take? | Uçuş ne kadar sürüyor?
+TRIP-1:13 | Please put your laptop in a separate box. | Lütfen dizüstü bilgisayarınızı ayrı bir kutuya koyun.
+TRIP-1:14 | The departure time has changed. | Kalkış saati değişti.
+TRIP-1:15 | We have to go through customs first. | Önce gümrükten geçmemiz gerekiyor.
+TRIP-1:16 | Excuse me, is this seat taken? | Affedersiniz, bu koltuk dolu mu?
+TRIP-1:17 | Could you help me with my luggage? | Bagajımda bana yardım edebilir misiniz?
+TRIP-1:18 | The gate has changed, so we need to hurry. | Kapı değişti, acele etmemiz gerekiyor.
+TRIP-1:19 | Your flight is now boarding. | Uçuşunuz şu anda yolcu alıyor.
+TRIP-1:20 | I lost my passport at the airport. | Havalimanında pasaportumu kaybettim.
+TRIP-1:21 | How much is the fee for extra luggage? | Fazla bagaj ücreti ne kadar?
+TRIP-1:22 | Because the flight was delayed, I missed my connection. | Uçuş rötar yaptığı için aktarmamı kaçırdım.
+TRIP-1:23 | Please fasten your seat belt. | Lütfen emniyet kemerinizi takın.
+TRIP-2:0 | I have a reservation under the name Kaya. | Kaya adına bir rezervasyonum var.
+TRIP-2:1 | How many nights will you stay? | Kaç gece kalacaksınız?
+TRIP-2:2 | Is breakfast included in the price? | Kahvaltı fiyata dahil mi?
+TRIP-2:3 | Could I have a room with a sea view? | Deniz manzaralı bir oda alabilir miyim?
+TRIP-2:4 | What time is checkout? | Çıkış saati kaçta?
+TRIP-2:5 | The reception is open all night. | Resepsiyon bütün gece açık.
+TRIP-2:6 | Can I get an extra towel, please? | Fazladan bir havlu alabilir miyim lütfen?
+TRIP-2:7 | My room key does not work. | Oda anahtarım çalışmıyor.
+TRIP-2:8 | The room next to mine is very noisy. | Yanımdaki oda çok gürültülü.
+TRIP-2:9 | Is there free internet in the rooms? | Odalarda ücretsiz internet var mı?
+TRIP-2:10 | Could you call a taxi for me? | Benim için bir taksi çağırabilir misiniz?
+TRIP-2:11 | Can I leave my bags here until the evening? | Çantalarımı akşama kadar burada bırakabilir miyim?
+TRIP-2:12 | The air conditioning in my room is broken. | Odamdaki klima bozuk.
+TRIP-2:13 | We would like to stay one more night. | Bir gece daha kalmak istiyoruz.
+TRIP-2:14 | I would like to cancel my reservation. | Rezervasyonumu iptal etmek istiyorum.
+TRIP-2:15 | Please ask at reception for a map. | Harita için lütfen resepsiyona sorun.
+TRIP-2:16 | Parking is not included. | Otopark dahil değil.
+TRIP-2:17 | Could you change my room? | Odamı değiştirebilir misiniz?
+TRIP-2:18 | It is too noisy. | Çok gürültülü.
+TRIP-2:19 | The view from our balcony is amazing. | Balkonumuzdan manzara harika.
+TRIP-2:20 | Where can I get fresh towels? | Temiz havluları nereden alabilirim?
+TRIP-2:21 | I left my key in the room. | Anahtarımı odada unuttum.
+TRIP-2:22 | How far is the hotel from the city centre? | Otel şehir merkezine ne kadar uzak?
+TRIP-2:23 | We enjoyed our stay very much. | Konaklamamızdan çok memnun kaldık.
+TRIP-3:0 | Excuse me, how do I get to the museum? | Affedersiniz, müzeye nasıl giderim?
+TRIP-3:1 | Go straight and turn left at the corner. | Düz gidin ve köşeden sola dönün.
+TRIP-3:2 | Is there a pharmacy nearby? | Yakınlarda eczane var mı?
+TRIP-3:3 | Where can I buy a metro ticket? | Metro biletini nereden alabilirim?
+TRIP-3:4 | Is it far from here? | Buradan uzak mı?
+TRIP-3:5 | A table for two, please. | İki kişilik bir masa lütfen.
+TRIP-3:6 | Could we see the menu, please? | Menüye bakabilir miyiz lütfen?
+TRIP-3:7 | What do you recommend? | Ne önerirsiniz?
+TRIP-3:8 | Do you have any vegetarian dishes? | Vejetaryen yemekleriniz var mı?
+TRIP-3:9 | I am allergic to nuts. | Kuruyemişe alerjim var.
+TRIP-3:10 | Could we have the bill, please? | Hesabı alabilir miyiz lütfen?
+TRIP-3:11 | Can we pay separately? | Ayrı ayrı ödeyebilir miyiz?
+TRIP-3:12 | Keep the change. | Üstü kalsın.
+TRIP-3:13 | The food was delicious, thank you. | Yemek çok lezzetliydi, teşekkürler.
+TRIP-3:14 | Take the second street on the right. | Sağdaki ikinci sokağa girin.
+TRIP-3:15 | The bus stop is just around the corner. | Otobüs durağı hemen köşede.
+TRIP-3:16 | Could you recommend a good place to eat? | Yemek için iyi bir yer önerebilir misiniz?
+TRIP-3:17 | Is this the right way to the station? | İstasyona giden doğru yol bu mu?
+TRIP-3:18 | A return ticket to Oxford, please. | Oxford’a gidiş-dönüş bir bilet lütfen.
+TRIP-3:19 | I think we are lost. | Sanırım kaybolduk.
+TRIP-3:20 | Could you show me on the map? | Haritada gösterebilir misiniz?
+TRIP-3:21 | Is service included in the bill? | Servis ücreti hesaba dahil mi?
+TRIP-3:22 | Are there any good restaurants nearby? | Yakında iyi restoran var mı?
+TRIP-3:23 | I would like to book a table for tonight. | Bu akşam için masa ayırtmak istiyorum.

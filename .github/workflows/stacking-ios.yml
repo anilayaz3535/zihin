@@ -1,0 +1,61 @@
+# Stacking Sentences · iOS derlemesi (Mac gerekmez: GitHub'ın Mac makinesinde derlenir)
+# Her değişiklikte simülatör için derlenir (kod derleniyor mu denetimi).
+# App Store Connect API anahtarı GitHub Secrets'a eklendiyse ve iş elle başlatılırsa (Run workflow → testflight: true)
+# imzalı sürüm üretilip TestFlight'a yüklenir. Ayrıntı: stacking-sentences/MAGAZA/YAYIN-REHBERI.md
+#   APPLE_TEAM_ID, ASC_KEY_ID, ASC_ISSUER_ID, ASC_KEY_P8_BASE64
+name: Stacking Sentences · iOS
+on:
+  push:
+    paths: ['stacking-sentences/**', '.github/workflows/stacking-ios.yml']
+  workflow_dispatch:
+    inputs:
+      testflight:
+        description: "TestFlight'a yükle"
+        type: boolean
+        default: false
+jobs:
+  ios:
+    runs-on: macos-latest
+    defaults:
+      run:
+        working-directory: stacking-sentences/uygulama
+    steps:
+      - uses: actions/checkout@v4
+      - uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: stacking-sentences/uygulama/package-lock.json
+      - run: npm ci
+      - run: npm run www && npx cap sync ios
+      - name: Simülatör derlemesi
+        if: ${{ !inputs.testflight }}
+        run: xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build | tail -30
+      - name: Arşivle ve TestFlight'a yükle
+        if: ${{ inputs.testflight }}
+        env:
+          TEAM: ${{ secrets.APPLE_TEAM_ID }}
+          KEY_ID: ${{ secrets.ASC_KEY_ID }}
+          ISSUER: ${{ secrets.ASC_ISSUER_ID }}
+          P8: ${{ secrets.ASC_KEY_P8_BASE64 }}
+        run: |
+          echo "$P8" | base64 -d > "$RUNNER_TEMP/AuthKey.p8"
+          AUTH="-allowProvisioningUpdates -authenticationKeyPath $RUNNER_TEMP/AuthKey.p8 -authenticationKeyID $KEY_ID -authenticationKeyIssuerID $ISSUER"
+          xcodebuild -project ios/App/App.xcodeproj -scheme App -configuration Release -destination 'generic/platform=iOS' \
+            -archivePath "$RUNNER_TEMP/App.xcarchive" DEVELOPMENT_TEAM="$TEAM" CODE_SIGN_STYLE=Automatic \
+            CURRENT_PROJECT_VERSION=${{ github.run_number }} $AUTH archive | tail -30
+          cat > "$RUNNER_TEMP/export.plist" <<PLIST
+          <?xml version="1.0" encoding="UTF-8"?>
+          <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+          <plist version="1.0"><dict>
+            <key>method</key><string>app-store-connect</string>
+            <key>destination</key><string>upload</string>
+            <key>teamID</key><string>$TEAM</string>
+            <key>signingStyle</key><string>automatic</string>
+          </dict></plist>
+          PLIST
+          xcodebuild -exportArchive -archivePath "$RUNNER_TEMP/App.xcarchive" -exportOptionsPlist "$RUNNER_TEMP/export.plist" \
+            -exportPath "$RUNNER_TEMP/export" $AUTH | tail -30

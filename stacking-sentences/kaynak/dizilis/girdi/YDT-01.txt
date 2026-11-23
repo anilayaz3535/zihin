@@ -1,0 +1,96 @@
+YDT-1:0 | By the time the rescue team arrived, the fire had already spread to the nearby houses. | Kurtarma ekibi geldiğinde yangın çoktan yakındaki evlere sıçramıştı.
+YDT-1:1 | Researchers have been studying the effects of social media on teenagers for over a decade. | Araştırmacılar on yılı aşkın süredir sosyal medyanın gençler üzerindeki etkilerini inceliyor.
+YDT-1:2 | The population of the city has doubled since the new factory opened. | Yeni fabrika açıldığından beri şehrin nüfusu iki katına çıktı.
+YDT-1:3 | When I was a child, people used to write letters instead of sending messages. | Ben çocukken insanlar mesaj göndermek yerine mektup yazardı.
+YDT-1:4 | By 2050, most cars will have been replaced by electric vehicles. | 2050'ye kadar arabaların çoğunun yerini elektrikli araçlar almış olacak.
+YDT-1:5 | While the scientists were analysing the data, they noticed an unexpected pattern. | Bilim insanları verileri analiz ederken beklenmedik bir örüntü fark etti.
+YDT-1:6 | The ancient city had been buried under the sand for centuries before it was discovered. | Antik kent keşfedilmeden önce yüzyıllarca kumun altında kalmıştı.
+YDT-1:7 | Hardly had the meeting started when the electricity went off. | Toplantı başlar başlamaz elektrikler kesildi.
+YDT-1:8 | The museum is going to open a new exhibition on Ottoman art next month. | Müze gelecek ay Osmanlı sanatı üzerine yeni bir sergi açacak.
+YDT-1:9 | Since the beginning of the century, global temperatures have risen considerably. | Yüzyılın başından bu yana küresel sıcaklıklar önemli ölçüde arttı.
+YDT-1:10 | The company was founded in 1998 and has grown rapidly ever since. | Şirket 1998'de kuruldu ve o zamandan beri hızla büyüdü.
+YDT-1:11 | Until recently, scientists believed that this species had become extinct. | Yakın zamana kadar bilim insanları bu türün neslinin tükendiğine inanıyordu.
+YDT-2:0 | The ancient Egyptians must have used advanced techniques to build the pyramids. | Eski Mısırlılar piramitleri inşa etmek için gelişmiş teknikler kullanmış olmalı.
+YDT-2:1 | You needn't have bought a new laptop; the old one could have been repaired. | Yeni dizüstü bilgisayar almana gerek yoktu; eskisi tamir edilebilirdi.
+YDT-2:2 | Patients should not stop taking antibiotics without consulting their doctor. | Hastalar doktorlarına danışmadan antibiyotik almayı bırakmamalıdır.
+YDT-2:3 | The disease may be caused by a combination of genetic and environmental factors. | Hastalık genetik ve çevresel etkenlerin bir araya gelmesinden kaynaklanıyor olabilir.
+YDT-2:4 | The rescue workers were able to save everyone trapped in the building. | Kurtarma görevlileri binada mahsur kalan herkesi kurtarmayı başardı.
+YDT-2:5 | The letter can't have been written by Shakespeare, as the paper is too modern. | Mektubu Shakespeare yazmış olamaz, çünkü kâğıt fazla modern.
+YDT-2:6 | Students are required to submit their projects before the end of the term. | Öğrencilerin projelerini dönem sonundan önce teslim etmeleri gerekiyor.
+YDT-2:7 | The expedition might have succeeded if the weather had been better. | Hava daha iyi olsaydı keşif gezisi başarılı olabilirdi.
+YDT-2:8 | Visitors are not allowed to take photographs inside the palace. | Ziyaretçilerin sarayın içinde fotoğraf çekmesine izin verilmiyor.
+YDT-2:9 | Governments ought to invest more in renewable energy sources. | Hükümetler yenilenebilir enerji kaynaklarına daha çok yatırım yapmalı.
+YDT-2:10 | Without the internet, modern businesses would not be able to operate efficiently. | İnternet olmasaydı modern işletmeler verimli biçimde çalışamazdı.
+YDT-2:11 | The young athlete could run faster than anyone else in his school. | Genç atlet okulundaki herkesten daha hızlı koşabiliyordu.
+YDT-3:0 | More than a million tourists are expected to visit the region this summer. | Bu yaz bölgeyi bir milyondan fazla turistin ziyaret etmesi bekleniyor.
+YDT-3:1 | The bridge is being repaired, so drivers have to use a different route. | Köprü onarılıyor, bu yüzden sürücüler farklı bir yol kullanmak zorunda.
+YDT-3:2 | The results of the study have not been published yet. | Çalışmanın sonuçları henüz yayımlanmadı.
+YDT-3:3 | The painting is believed to have been stolen during the war. | Tablonun savaş sırasında çalındığına inanılıyor.
+YDT-3:4 | Thousands of new species are discovered every year. | Her yıl binlerce yeni tür keşfediliyor.
+YDT-3:5 | The new hospital will be opened by the minister next week. | Yeni hastane gelecek hafta bakan tarafından açılacak.
+YDT-3:6 | The ancient manuscripts were kept in a dark room to protect them from light. | Antik el yazmaları ışıktan korunsun diye karanlık bir odada saklanıyordu.
+YDT-3:7 | It is widely accepted that regular exercise improves mental health. | Düzenli egzersizin ruh sağlığını iyileştirdiği yaygın olarak kabul edilir.
+YDT-3:8 | The suspects were questioned by the police for several hours. | Şüpheliler polis tarafından saatlerce sorgulandı.
+YDT-3:9 | Plastic waste should be recycled instead of being thrown away. | Plastik atıklar çöpe atılmak yerine geri dönüştürülmelidir.
+YDT-3:10 | The experiment had to be repeated because the equipment was faulty. | Ekipman arızalı olduğu için deneyin tekrarlanması gerekti.
+YDT-3:11 | Turkish coffee was added to UNESCO's list of intangible cultural heritage in 2013. | Türk kahvesi 2013'te UNESCO'nun somut olmayan kültürel miras listesine eklendi.
+YDT-4:0 | If the government had acted earlier, the crisis could have been avoided. | Hükümet daha erken harekete geçseydi kriz önlenebilirdi.
+YDT-4:1 | Unless we reduce carbon emissions, the climate will continue to change. | Karbon salımını azaltmazsak iklim değişmeye devam edecek.
+YDT-4:2 | If I were you, I would apply for the scholarship. | Yerinde olsam bursa başvururdum.
+YDT-4:3 | I wish I had studied harder for the entrance exam. | Keşke giriş sınavına daha çok çalışsaydım.
+YDT-4:4 | Provided that you finish your work, you can leave early. | İşini bitirmen koşuluyla erken çıkabilirsin.
+YDT-4:5 | Had they known about the storm, they would not have set sail. | Fırtınayı bilselerdi denize açılmazlardı.
+YDT-4:6 | If water is heated to 100 degrees, it boils. | Su 100 dereceye kadar ısıtılırsa kaynar.
+YDT-4:7 | She wishes she could speak a foreign language fluently. | Bir yabancı dili akıcı konuşabilmeyi çok istiyor.
+YDT-4:8 | Even if it rains tomorrow, the match will be played. | Yarın yağmur yağsa bile maç oynanacak.
+YDT-4:9 | As long as you keep practising, your English will improve. | Pratik yapmaya devam ettiğin sürece İngilizcen gelişecek.
+YDT-4:10 | If it hadn't been for your help, I would have failed. | Senin yardımın olmasaydı başarısız olurdum.
+YDT-4:11 | Suppose you won the lottery, what would you do first? | Diyelim ki piyangoyu kazandın, ilk ne yapardın?
+YDT-5:0 | The scientist who discovered the vaccine received an international award. | Aşıyı keşfeden bilim insanı uluslararası bir ödül aldı.
+YDT-5:1 | Istanbul, which was once the capital of an empire, attracts millions of visitors. | Bir zamanlar bir imparatorluğun başkenti olan İstanbul milyonlarca ziyaretçi çekiyor.
+YDT-5:2 | This is the village where my grandparents were born. | Burası büyükanne ve büyükbabamın doğduğu köy.
+YDT-5:3 | Students whose parents read to them tend to have larger vocabularies. | Ailesi onlara kitap okuyan öğrencilerin kelime dağarcığı genellikle daha geniştir.
+YDT-5:4 | The book that I borrowed from the library is about ancient Rome. | Kütüphaneden ödünç aldığım kitap antik Roma hakkında.
+YDT-5:5 | 1923 is the year when the Republic of Türkiye was founded. | 1923, Türkiye Cumhuriyeti'nin kurulduğu yıldır.
+YDT-5:6 | The reason why many species are endangered is habitat loss. | Pek çok türün tehlikede olmasının nedeni yaşam alanlarının yok olmasıdır.
+YDT-5:7 | He gave me a gift, which was a complete surprise. | Bana bir hediye verdi; bu tam bir sürpriz oldu.
+YDT-5:8 | The people living near the river were warned about the flood. | Nehrin yakınında yaşayan insanlar sel konusunda uyarıldı.
+YDT-5:9 | Everything that the witness said turned out to be true. | Tanığın söylediği her şey doğru çıktı.
+YDT-5:10 | The company, whose products are sold worldwide, was founded by two students. | Ürünleri dünya çapında satılan şirket iki öğrenci tarafından kuruldu.
+YDT-5:11 | There are several factors which influence a child's success at school. | Bir çocuğun okul başarısını etkileyen birkaç etken vardır.
+YDT-6:0 | Although the test was difficult, most students passed it. | Sınav zor olmasına rağmen öğrencilerin çoğu geçti.
+YDT-6:1 | Despite the heavy rain, thousands of people attended the concert. | Şiddetli yağmura rağmen binlerce kişi konsere katıldı.
+YDT-6:2 | The project failed because of a lack of funding. | Proje fon yetersizliği yüzünden başarısız oldu.
+YDT-6:3 | Not only is the plan expensive, but it is also impractical. | Plan yalnızca pahalı değil, aynı zamanda uygulanamaz.
+YDT-6:4 | Some students learn best by reading, whereas others learn by doing. | Bazı öğrenciler en iyi okuyarak öğrenirken diğerleri yaparak öğrenir.
+YDT-6:5 | The roads were icy; therefore, the schools were closed. | Yollar buzluydu; bu nedenle okullar kapatıldı.
+YDT-6:6 | She saved money so that she could travel abroad. | Yurt dışına gidebilmek için para biriktirdi.
+YDT-6:7 | Neither the teacher nor the students knew the answer. | Ne öğretmen ne de öğrenciler cevabı biliyordu.
+YDT-6:8 | In spite of being tired, he continued working. | Yorgun olmasına rağmen çalışmaya devam etti.
+YDT-6:9 | The medicine is effective; however, it has some side effects. | İlaç etkili; ancak bazı yan etkileri var.
+YDT-6:10 | As soon as the results are announced, we will inform you. | Sonuçlar açıklanır açıklanmaz sizi bilgilendireceğiz.
+YDT-6:11 | Both the economy and the environment benefit from renewable energy. | Hem ekonomi hem de çevre yenilenebilir enerjiden yarar sağlar.
+YDT-7:0 | Nobody knows exactly how the universe began. | Evrenin tam olarak nasıl başladığını kimse bilmiyor.
+YDT-7:1 | The doctor said that the patient was recovering well. | Doktor hastanın iyileşmesinin iyi gittiğini söyledi.
+YDT-7:2 | What surprised me most was the kindness of the local people. | Beni en çok şaşırtan, yerel halkın nezaketiydi.
+YDT-7:3 | She asked me whether I had finished the report. | Raporu bitirip bitirmediğimi sordu.
+YDT-7:4 | It is important that every child has access to education. | Her çocuğun eğitime erişebilmesi önemlidir.
+YDT-7:5 | The teacher told us not to use our phones during the exam. | Öğretmen sınav sırasında telefonlarımızı kullanmamamızı söyledi.
+YDT-7:6 | Whether the plan will work depends on public support. | Planın işe yarayıp yaramayacağı halkın desteğine bağlı.
+YDT-7:7 | He admitted that he had made a serious mistake. | Ciddi bir hata yaptığını kabul etti.
+YDT-7:8 | The fact that she won the competition surprised everyone. | Yarışmayı kazanmış olması herkesi şaşırttı.
+YDT-7:9 | I wonder why the museum is closed today. | Müzenin bugün neden kapalı olduğunu merak ediyorum.
+YDT-7:10 | The report suggests that young people sleep less than before. | Rapor gençlerin eskisinden daha az uyuduğunu ileri sürüyor.
+YDT-7:11 | Can you tell me where the nearest pharmacy is? | En yakın eczanenin nerede olduğunu söyleyebilir misiniz?
+YDT-8:0 | Learning a new language requires patience and practice. | Yeni bir dil öğrenmek sabır ve pratik gerektirir.
+YDT-8:1 | Many people avoid eating sugar to stay healthy. | Pek çok insan sağlıklı kalmak için şeker yemekten kaçınır.
+YDT-8:2 | The government decided to build a new airport. | Hükümet yeni bir havalimanı inşa etmeye karar verdi.
+YDT-8:3 | I remember visiting this museum when I was a child. | Bu müzeyi çocukken ziyaret ettiğimi hatırlıyorum.
+YDT-8:4 | Don't forget to turn off the lights before leaving. | Çıkmadan önce ışıkları kapatmayı unutma.
+YDT-8:5 | She is used to working under pressure. | Baskı altında çalışmaya alışkın.
+YDT-8:6 | It is no use complaining about the weather. | Hava hakkında şikâyet etmenin faydası yok.
+YDT-8:7 | The students were too tired to concentrate. | Öğrenciler dikkatlerini toplayamayacak kadar yorgundu.
+YDT-8:8 | He stopped smoking after his doctor warned him. | Doktoru onu uyarınca sigarayı bıraktı.
+YDT-8:9 | We look forward to hearing from you soon. | Yakında sizden haber almayı dört gözle bekliyoruz.
+YDT-8:10 | The aim of this study is to examine the causes of stress. | Bu çalışmanın amacı stresin nedenlerini incelemektir.
+YDT-8:11 | Instead of driving to work, he started cycling. | İşe arabayla gitmek yerine bisiklete binmeye başladı.

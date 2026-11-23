@@ -1,0 +1,73 @@
+{"id": "A1-19:0", "en": "I am ready for the lesson.", "p": [["S", "I", "ben"], ["V", "am ready", "hazırım"], ["EK", "for the lesson", "ders için"]]}
+{"id": "A1-19:1", "en": "Her brother has a green bicycle.", "p": [["S", "Her brother", "onun erkek kardeşinin"], ["V", "has", "var"], ["O", "a green bicycle", "bir yeşil bisikleti"]]}
+{"id": "A1-19:2", "en": "Where do your parents work?", "p": [["SORU", "Where", "nerede"], ["SORU", "do", "(soru)"], ["S", "your parents", "anne baban"], ["V", "work", "çalışıyor"]]}
+{"id": "A1-19:3", "en": "We usually eat dinner at seven.", "p": [["S", "We", "biz"], ["V", "usually eat", "genellikle yeriz"], ["O", "dinner", "akşam yemeği"], ["T", "at seven", "saat yedide"]]}
+{"id": "A1-19:4", "en": "There are three cups on the table.", "p": [["V", "There are", "var"], ["S", "three cups", "üç fincan"], ["P", "on the table", "masanın üstünde"]]}
+{"id": "A1-19:5", "en": "I need some water.", "p": [["S", "I", "benim"], ["V", "need", "ihtiyacım var"], ["O", "some water", "biraz suya"]]}
+{"id": "A1-19:6", "en": "He does not drink coffee.", "p": [["S", "He", "o"], ["V", "does not drink", "içmez"], ["O", "coffee", "kahve"]]}
+{"id": "A1-19:7", "en": "The children are drawing a picture.", "p": [["S", "The children", "çocuklar"], ["V", "are drawing", "çiziyor"], ["O", "a picture", "bir resim"]]}
+{"id": "A1-19:8", "en": "Can your sister swim?", "p": [["SORU", "Can", "(soru)"], ["S", "your sister", "kız kardeşin"], ["V", "swim", "yüzebilir mi"]]}
+{"id": "A1-19:9", "en": "The keys are under the chair.", "p": [["S", "The keys", "anahtarlar"], ["V", "are", "(ek fiil)"], ["P", "under the chair", "sandalyenin altında"]]}
+{"id": "A1-19:10", "en": "She is an engineer.", "p": [["S", "She", "o"], ["V", "is an engineer", "bir mühendis"]]}
+{"id": "A1-19:11", "en": "Please close the window.", "p": [["KALIP", "Please", "lütfen"], ["V", "close", "kapat"], ["O", "the window", "pencereyi"]]}
+{"id": "A1-19:12", "en": "Please open the blue box.", "p": [["KALIP", "Please", "lütfen"], ["V", "open", "aç"], ["O", "the blue box", "mavi kutuyu"]]}
+{"id": "A1-19:13", "en": "Close the door, please.", "p": [["V", "Close", "kapat"], ["O", "the door", "kapıyı"], ["KALIP", "please", "lütfen"]]}
+{"id": "A1-19:14", "en": "I wash my hands before lunch.", "p": [["S", "I", "ben"], ["V", "wash", "yıkarım"], ["O", "my hands", "ellerimi"], ["T", "before lunch", "öğle yemeğinden önce"]]}
+{"id": "A1-19:15", "en": "I wear a coat in winter.", "p": [["S", "I", "ben"], ["V", "wear", "giyerim"], ["O", "a coat", "bir palto"], ["T", "in winter", "kışın"]]}
+{"id": "A1-19:16", "en": "Bring your book to class.", "p": [["V", "Bring", "getir"], ["O", "your book", "kitabını"], ["P", "to class", "derse"]]}
+{"id": "A1-19:17", "en": "You can choose a red pen.", "p": [["S", "You", "sen"], ["V", "can choose", "seçebilirsin"], ["O", "a red pen", "bir kırmızı kalem"]]}
+{"id": "A1-19:18", "en": "We clean the kitchen on Sundays.", "p": [["S", "We", "biz"], ["V", "clean", "temizleriz"], ["O", "the kitchen", "mutfağı"], ["T", "on Sundays", "pazar günleri"]]}
+{"id": "A1-19:19", "en": "Please wait near the door.", "p": [["KALIP", "Please", "lütfen"], ["V", "wait", "bekle"], ["P", "near the door", "kapının yanında"]]}
+{"id": "A1-19:20", "en": "My father is busy today.", "p": [["S", "My father", "babam"], ["V", "is busy", "meşgul"], ["T", "today", "bugün"]]}
+{"id": "A1-19:21", "en": "This room is quiet.", "p": [["S", "This room", "bu oda"], ["V", "is quiet", "sessiz"]]}
+{"id": "A1-19:22", "en": "The glass is empty.", "p": [["S", "The glass", "bardak"], ["V", "is empty", "boş"]]}
+{"id": "A1-19:23", "en": "The bus is full.", "p": [["S", "The bus", "otobüs"], ["V", "is full", "dolu"]]}
+{"id": "A1-19:24", "en": "Are you hungry now?", "p": [["SORU", "Are", "(soru)"], ["S", "you", "sen"], ["V", "hungry", "aç mısın"], ["T", "now", "şimdi"]]}
+{"id": "A1-19:25", "en": "I am thirsty after my walk.", "p": [["S", "I", "ben"], ["V", "am thirsty", "susadım"], ["T", "after my walk", "yürüyüşümden sonra"]]}
+{"id": "A1-19:26", "en": "We get up early.", "p": [["S", "We", "biz"], ["V", "get up", "kalkarız"], ["T", "early", "erken"]]}
+{"id": "A1-19:27", "en": "They go to bed late.", "p": [["S", "They", "onlar"], ["V", "go to bed", "yatarlar"], ["T", "late", "geç"]]}
+{"id": "A1-19:28", "en": "Please speak slowly.", "p": [["KALIP", "Please", "lütfen"], ["V", "speak", "konuş"], ["NASIL", "slowly", "yavaş"]]}
+{"id": "A1-19:29", "en": "The children walk quickly.", "p": [["S", "The children", "çocuklar"], ["V", "walk", "yürür"], ["NASIL", "quickly", "hızlı"]]}
+{"id": "A1-19:30", "en": "The bank is next to the school.", "p": [["S", "The bank", "banka"], ["V", "is", "(ek fiil)"], ["P", "next to the school", "okulun yanındadır"]]}
+{"id": "A1-19:31", "en": "A car is in front of the house.", "p": [["S", "A car", "bir araba"], ["V", "is", "var"], ["P", "in front of the house", "evin önünde"]]}
+{"id": "A1-19:32", "en": "I am ready.", "p": [["S", "I", "ben"], ["V", "am ready", "hazırım"]]}
+{"id": "A1-19:33", "en": "She has a red bag.", "p": [["S", "She", "onun"], ["V", "has", "var"], ["O", "a red bag", "bir kırmızı çantası"]]}
+{"id": "A1-19:34", "en": "He doesn't like tea.", "p": [["S", "He", "o"], ["V", "doesn't like", "sevmez"], ["O", "tea", "çayı"]]}
+{"id": "A1-19:35", "en": "Does she live here?", "p": [["SORU", "Does", "(soru)"], ["S", "she", "o"], ["V", "live", "yaşıyor"], ["P", "here", "burada mı"]]}
+{"id": "A1-19:36", "en": "This is an apple.", "p": [["S", "This", "bu"], ["V", "is an apple", "bir elmadır"]]}
+{"id": "A1-19:37", "en": "I have two children.", "p": [["S", "I", "benim"], ["V", "have", "var"], ["O", "two children", "iki çocuğum"]]}
+{"id": "A1-19:38", "en": "The bag is hers.", "p": [["S", "The bag", "çanta"], ["V", "is hers", "onun"]]}
+{"id": "A1-19:39", "en": "We study on Monday.", "p": [["S", "We", "biz"], ["V", "study", "çalışırız"], ["T", "on Monday", "pazartesi günü"]]}
+{"id": "A1-19:40", "en": "There are three chairs.", "p": [["V", "There are", "var"], ["S", "three chairs", "üç sandalye"]]}
+{"id": "A1-19:41", "en": "These books are new.", "p": [["S", "These books", "bu kitaplar"], ["V", "are new", "yeni"]]}
+{"id": "A1-20:0", "en": "I get dressed after breakfast.", "p": [["S", "I", "ben"], ["V", "get dressed", "giyinirim"], ["T", "after breakfast", "kahvaltıdan sonra"]]}
+{"id": "A1-20:1", "en": "Please get dressed before we leave.", "p": [["KALIP", "Please", "lütfen"], ["V", "get dressed", "giyin"], ["BAG", "before", "önce"], ["S", "we", "biz"], ["V", "leave", "çıkmadan"]]}
+{"id": "A1-20:2", "en": "Brush your teeth before bed.", "p": [["V", "Brush", "fırçala"], ["O", "your teeth", "dişlerini"], ["T", "before bed", "yatmadan önce"]]}
+{"id": "A1-20:3", "en": "Do you brush your teeth after breakfast?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sen"], ["V", "brush", "fırçalar mısın"], ["O", "your teeth", "dişlerini"], ["T", "after breakfast", "kahvaltıdan sonra"]]}
+{"id": "A1-20:4", "en": "I make the bed every morning.", "p": [["S", "I", "ben"], ["V", "make", "toplarım"], ["O", "the bed", "yatağı"], ["T", "every morning", "her sabah"]]}
+{"id": "A1-20:5", "en": "Can you make the bed, please?", "p": [["SORU", "Can", "(soru)"], ["S", "you", "sen"], ["V", "make", "toplar mısın"], ["O", "the bed", "yatağı"], ["KALIP", "please", "lütfen"]]}
+{"id": "A1-20:6", "en": "I take a shower after work.", "p": [["S", "I", "ben"], ["V", "take", "alırım"], ["O", "a shower", "bir duş"], ["T", "after work", "işten sonra"]]}
+{"id": "A1-20:7", "en": "She wants to take a shower.", "p": [["S", "She", "o"], ["V", "wants to take", "almak istiyor"], ["O", "a shower", "bir duş"]]}
+{"id": "A1-20:8", "en": "Turn left at the bank.", "p": [["V", "Turn", "dön"], ["NASIL", "left", "sola"], ["P", "at the bank", "bankanın orada"]]}
+{"id": "A1-20:9", "en": "Do we turn left here?", "p": [["SORU", "Do", "(soru)"], ["S", "we", "biz"], ["V", "turn", "dönüyoruz"], ["NASIL", "left", "sola mı"], ["P", "here", "burada"]]}
+{"id": "A1-20:10", "en": "Turn right after the bridge.", "p": [["V", "Turn", "dön"], ["NASIL", "right", "sağa"], ["P", "after the bridge", "köprüden sonra"]]}
+{"id": "A1-20:11", "en": "You can turn right at the next street.", "p": [["S", "You", "sen"], ["V", "can turn", "dönebilirsin"], ["NASIL", "right", "sağa"], ["P", "at the next street", "bir sonraki sokakta"]]}
+{"id": "A1-20:12", "en": "Go straight for two minutes.", "p": [["V", "Go", "git"], ["NASIL", "straight", "düz"], ["T", "for two minutes", "iki dakika"]]}
+{"id": "A1-20:13", "en": "We go straight and then turn left.", "p": [["S", "We", "biz"], ["V", "go", "gidip"], ["NASIL", "straight", "düz"], ["BAG", "and", "ve"], ["T", "then", "sonra"], ["V", "turn", "dönüyoruz"], ["NASIL", "left", "sola"]]}
+{"id": "A1-20:14", "en": "Can I pay by card?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "pay", "ödeyebilir miyim"], ["NASIL", "by card", "kartla"]]}
+{"id": "A1-20:15", "en": "We usually pay by card.", "p": [["S", "We", "biz"], ["V", "usually pay", "genellikle öderiz"], ["NASIL", "by card", "kartla"]]}
+{"id": "A1-20:16", "en": "I want to pay in cash.", "p": [["S", "I", "ben"], ["V", "want to pay", "ödemek istiyorum"], ["NASIL", "in cash", "nakit"]]}
+{"id": "A1-20:17", "en": "Can you pay in cash today?", "p": [["SORU", "Can", "(soru)"], ["S", "you", "sen"], ["V", "pay", "ödeyebilir misin"], ["NASIL", "in cash", "nakit"], ["T", "today", "bugün"]]}
+{"id": "A1-20:18", "en": "We get on the bus near school.", "p": [["S", "We", "biz"], ["V", "get on", "bineriz"], ["O", "the bus", "otobüse"], ["P", "near school", "okulun yakınında"]]}
+{"id": "A1-20:19", "en": "Please get on the bus now.", "p": [["KALIP", "Please", "lütfen"], ["V", "get on", "bin"], ["O", "the bus", "otobüse"], ["T", "now", "şimdi"]]}
+{"id": "A1-20:20", "en": "I get off the bus at the station.", "p": [["S", "I", "ben"], ["V", "get off", "inerim"], ["O", "the bus", "otobüsten"], ["P", "at the station", "istasyonda"]]}
+{"id": "A1-20:21", "en": "Where do we get off the bus?", "p": [["SORU", "Where", "nerede"], ["SORU", "do", "(soru)"], ["S", "we", "biz"], ["V", "get off", "iniyoruz"], ["O", "the bus", "otobüsten"]]}
+{"id": "A1-20:22", "en": "You can ask for help.", "p": [["S", "You", "sen"], ["V", "can ask for", "isteyebilirsin"], ["O", "help", "yardım"]]}
+{"id": "A1-20:23", "en": "I ask for help when I need it.", "p": [["S", "I", "ben"], ["V", "ask for", "isterim"], ["O", "help", "yardım"], ["BAG", "when", "-dığında"], ["S", "I", "benim"], ["V", "need it", "ihtiyacım olduğunda"]]}
+{"id": "A1-20:24", "en": "I eat breakfast at home.", "p": [["S", "I", "ben"], ["V", "eat", "yaparım"], ["O", "breakfast", "kahvaltı"], ["P", "at home", "evde"]]}
+{"id": "A1-20:25", "en": "My neighbor is very kind.", "p": [["S", "My neighbor", "komşum"], ["V", "is very kind", "çok naziktir"]]}
+{"id": "A1-20:26", "en": "I need a ticket.", "p": [["S", "I", "benim"], ["V", "need", "ihtiyacım var"], ["O", "a ticket", "bir bilete"]]}
+{"id": "A1-20:27", "en": "The kitchen is clean.", "p": [["S", "The kitchen", "mutfak"], ["V", "is clean", "temiz"]]}
+{"id": "A1-20:28", "en": "I am thirsty.", "p": [["S", "I", "ben"], ["V", "am thirsty", "susadım"]]}
+{"id": "A1-20:29", "en": "Can I borrow your pen?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "borrow", "ödünç alabilir miyim"], ["O", "your pen", "kalemini"]]}
+{"id": "A1-20:30", "en": "My umbrella is blue.", "p": [["S", "My umbrella", "şemsiyem"], ["V", "is blue", "mavi"]]}

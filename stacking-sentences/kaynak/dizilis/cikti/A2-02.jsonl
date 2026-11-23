@@ -1,0 +1,100 @@
+{"id": "A2-2:35", "en": "Will there be a pool at the hotel?", "p": [["SORU", "Will", "(soru)"], ["V", "there be", "olacak mı"], ["S", "a pool", "bir havuz"], ["P", "at the hotel", "otelde"]]}
+{"id": "A2-2:36", "en": "She won't come with us.", "p": [["S", "She", "o"], ["V", "won't come", "gelmeyecek"], ["EK", "with us", "bizimle"]]}
+{"id": "A2-2:37", "en": "We are going to eat on the ship.", "p": [["S", "We", "biz"], ["V", "are going to eat", "yemek yiyeceğiz"], ["P", "on the ship", "gemide"]]}
+{"id": "A2-2:38", "en": "Are you going to dive?", "p": [["SORU", "Are", "(soru)"], ["S", "you", "sen"], ["V", "going to dive", "dalış yapacak mısın"]]}
+{"id": "A2-2:39", "en": "I will sit on the sand.", "p": [["S", "I", "ben"], ["V", "will sit", "oturacağım"], ["P", "on the sand", "kuma"]]}
+{"id": "A2-2:40", "en": "We will collect seashells.", "p": [["S", "We", "biz"], ["V", "will collect", "toplayacağız"], ["O", "seashells", "deniz kabuğu"]]}
+{"id": "A2-2:41", "en": "Will the water be clean?", "p": [["SORU", "Will", "(soru)"], ["S", "the water", "su"], ["V", "be clean", "temiz olacak mı"]]}
+{"id": "A2-2:42", "en": "My sister is going to try surfing.", "p": [["S", "My sister", "kız kardeşim"], ["V", "is going to try", "deneyecek"], ["O", "surfing", "sörf yapmayı"]]}
+{"id": "A2-2:43", "en": "My dad will drive the car.", "p": [["S", "My dad", "babam"], ["V", "will drive", "sürecek"], ["O", "the car", "arabayı"]]}
+{"id": "A2-2:44", "en": "The journey will take four hours.", "p": [["S", "The journey", "yolculuk"], ["V", "will take", "sürecek"], ["O", "four hours", "dört saat"]]}
+{"id": "A2-2:45", "en": "We won't get lost.", "p": [["S", "We", "biz"], ["V", "won't get lost", "kaybolmayacağız"]]}
+{"id": "A2-2:46", "en": "Will the museum be open on Monday?", "p": [["SORU", "Will", "(soru)"], ["S", "the museum", "müze"], ["V", "be open", "açık olacak mı"], ["T", "on Monday", "pazartesi"]]}
+{"id": "A2-2:47", "en": "Which city will you visit first?", "p": [["SORU", "Which city", "hangi şehri"], ["SORU", "will", "(soru)"], ["S", "you", "sen"], ["V", "visit", "ziyaret edeceksin"], ["T", "first", "önce"]]}
+{"id": "A2-2:48", "en": "We are going to make a campfire.", "p": [["S", "We", "biz"], ["V", "are going to make", "yakacağız"], ["O", "a campfire", "bir kamp ateşi"]]}
+{"id": "A2-2:49", "en": "We will sleep in a tent.", "p": [["S", "We", "biz"], ["V", "will sleep", "uyuyacağız"], ["P", "in a tent", "bir çadırda"]]}
+{"id": "A2-2:51", "en": "We will cross the bridge on foot.", "p": [["S", "We", "biz"], ["V", "will cross", "geçeceğiz"], ["O", "the bridge", "köprüyü"], ["NASIL", "on foot", "yürüyerek"]]}
+{"id": "A2-2:52", "en": "I will send you a postcard.", "p": [["S", "I", "ben"], ["V", "will send", "göndereceğim"], ["O", "you", "sana"], ["O", "a postcard", "bir kartpostal"]]}
+{"id": "A2-2:53", "en": "We will meet new people.", "p": [["S", "We", "biz"], ["V", "will meet", "tanışacağız"], ["O", "new people", "yeni insanlarla"]]}
+{"id": "A2-2:54", "en": "We are going to buy souvenirs.", "p": [["S", "We", "biz"], ["V", "are going to buy", "alacağız"], ["O", "souvenirs", "hediyelik eşya"]]}
+{"id": "A2-2:55", "en": "Our plane will land in two hours.", "p": [["S", "Our plane", "uçağımız"], ["V", "will land", "inecek"], ["T", "in two hours", "iki saat sonra"]]}
+{"id": "A2-2:56", "en": "This holiday will be amazing.", "p": [["S", "This holiday", "bu tatil"], ["V", "will be amazing", "harika olacak"]]}
+{"id": "A2-2:58", "en": "I think it will snow.", "p": [["KALIP", "I think", "bence"], ["S", "it", "—"], ["V", "will snow", "kar yağacak"]]}
+{"id": "A2-2:59", "en": "The tickets won't be expensive.", "p": [["S", "The tickets", "biletler"], ["V", "won't be expensive", "pahalı olmayacak"]]}
+{"id": "A2-2:60", "en": "My bag will be very heavy.", "p": [["S", "My bag", "çantam"], ["V", "will be very heavy", "çok ağır olacak"]]}
+{"id": "A2-2:61", "en": "The guide will tell us about the castle.", "p": [["S", "The guide", "rehber"], ["V", "will tell", "anlatacak"], ["O", "us", "bize"], ["O", "about the castle", "kaleyi"]]}
+{"id": "A2-2:62", "en": "The ferry is going to arrive at seven.", "p": [["S", "The ferry", "feribot"], ["V", "is going to arrive", "varacak"], ["T", "at seven", "saat yedide"]]}
+{"id": "A2-3:0", "en": "We went camping in the valley.", "p": [["S", "We", "biz"], ["V", "went camping", "kampa gittik"], ["P", "in the valley", "vadide"]]}
+{"id": "A2-3:1", "en": "The river was wide and deep.", "p": [["S", "The river", "nehir"], ["V", "was wide and deep", "geniş ve derindi"]]}
+{"id": "A2-3:2", "en": "Ali rode his motorcycle along the coast.", "p": [["S", "Ali", "Ali"], ["V", "rode", "sürdü"], ["O", "his motorcycle", "motosikletini"], ["P", "along the coast", "sahil boyunca"]]}
+{"id": "A2-3:3", "en": "A big spider was on the roof.", "p": [["S", "A big spider", "bir büyük örümcek"], ["V", "was", "vardı"], ["P", "on the roof", "çatıda"]]}
+{"id": "A2-3:4", "en": "They walked towards the wooden bridge.", "p": [["S", "They", "onlar"], ["V", "walked", "yürüdüler"], ["P", "towards the wooden bridge", "tahta köprüye doğru"]]}
+{"id": "A2-3:5", "en": "The lorry stopped at the corner.", "p": [["S", "The lorry", "kamyon"], ["V", "stopped", "durdu"], ["P", "at the corner", "köşede"]]}
+{"id": "A2-3:6", "en": "We could see the sea from the top.", "p": [["S", "We", "biz"], ["V", "could see", "görebiliyorduk"], ["O", "the sea", "denizi"], ["P", "from the top", "tepeden"]]}
+{"id": "A2-3:7", "en": "The train left from platform three.", "p": [["S", "The train", "tren"], ["V", "left", "kalktı"], ["P", "from platform three", "üç numaralı perondan"]]}
+{"id": "A2-3:8", "en": "Elif went sailing with her father yesterday.", "p": [["S", "Elif", "Elif"], ["V", "went sailing", "yelken yapmaya gitti"], ["EK", "with her father", "babasıyla"], ["T", "yesterday", "dün"]]}
+{"id": "A2-3:9", "en": "Our van didn't have any petrol.", "p": [["S", "Our van", "minibüsümüzde"], ["V", "didn't have", "yoktu"], ["O", "any petrol", "hiç benzin"]]}
+{"id": "A2-3:10", "en": "The insect fell into a small hole.", "p": [["S", "The insect", "böcek"], ["V", "fell", "düştü"], ["P", "into a small hole", "bir küçük deliğe"]]}
+{"id": "A2-3:11", "en": "Is there any parking near the station?", "p": [["V", "Is there", "var mı"], ["S", "any parking", "park yeri"], ["P", "near the station", "istasyonun yakınında"]]}
+{"id": "A2-3:12", "en": "We cycled straight to the beach.", "p": [["S", "We", "biz"], ["V", "cycled", "bisikletle gittik"], ["NASIL", "straight", "doğruca"], ["P", "to the beach", "plaja"]]}
+{"id": "A2-3:13", "en": "Mert lost his keys somewhere in the park.", "p": [["S", "Mert", "Mert"], ["V", "lost", "kaybetti"], ["O", "his keys", "anahtarlarını"], ["P", "somewhere in the park", "parkta bir yerde"]]}
+{"id": "A2-3:14", "en": "I can't find my glasses anywhere.", "p": [["S", "I", "ben"], ["V", "can't find", "bulamıyorum"], ["O", "my glasses", "gözlüklerimi"], ["P", "anywhere", "hiçbir yerde"]]}
+{"id": "A2-3:15", "en": "There was snow everywhere in the mountains.", "p": [["V", "There was", "vardı"], ["S", "snow", "kar"], ["P", "everywhere", "her yerde"], ["P", "in the mountains", "dağlarda"]]}
+{"id": "A2-3:16", "en": "The old railway goes through the forest.", "p": [["S", "The old railway", "eski demiryolu"], ["V", "goes", "geçer"], ["P", "through the forest", "ormanın içinden"]]}
+{"id": "A2-3:17", "en": "Africa is a very large continent.", "p": [["S", "Africa", "Afrika"], ["V", "is a very large continent", "çok büyük bir kıtadır"]]}
+{"id": "A2-3:18", "en": "The earth goes round the sun.", "p": [["S", "The earth", "dünya"], ["V", "goes", "döner"], ["P", "round the sun", "güneşin etrafında"]]}
+{"id": "A2-3:19", "en": "Mars is a red planet.", "p": [["S", "Mars", "Mars"], ["V", "is a red planet", "bir kırmızı gezegendir"]]}
+{"id": "A2-3:20", "en": "We should protect the environment.", "p": [["S", "We", "biz"], ["V", "should protect", "korumalıyız"], ["O", "the environment", "çevreyi"]]}
+{"id": "A2-3:21", "en": "The sun gives us heat and energy.", "p": [["S", "The sun", "güneş"], ["V", "gives", "verir"], ["O", "us", "bize"], ["O", "heat and energy", "ısı ve enerji"]]}
+{"id": "A2-3:22", "en": "The cat jumped onto the table.", "p": [["S", "The cat", "kedi"], ["V", "jumped", "atladı"], ["P", "onto the table", "masanın üstüne"]]}
+{"id": "A2-3:23", "en": "Zeynep sat among her friends.", "p": [["S", "Zeynep", "Zeynep"], ["V", "sat", "oturdu"], ["P", "among her friends", "arkadaşlarının arasında"]]}
+{"id": "A2-3:24", "en": "The boy put his bike against the wall.", "p": [["S", "The boy", "çocuk"], ["V", "put", "dayadı"], ["O", "his bike", "bisikletini"], ["P", "against the wall", "duvara"]]}
+{"id": "A2-3:25", "en": "The ball rolled to the bottom of the hill.", "p": [["S", "The ball", "top"], ["V", "rolled", "yuvarlandı"], ["P", "to the bottom of the hill", "tepenin dibine"]]}
+{"id": "A2-3:26", "en": "What is the distance to the next town?", "p": [["SORU", "What", "ne kadar"], ["V", "is", "(ek fiil)"], ["S", "the distance", "uzaklık"], ["P", "to the next town", "sonraki kasabaya"]]}
+{"id": "A2-3:27", "en": "Which direction did they go?", "p": [["SORU", "Which direction", "hangi yöne"], ["SORU", "did", "(soru)"], ["S", "they", "onlar"], ["V", "go", "gittiler"]]}
+{"id": "A2-3:28", "en": "The bus is in the middle of the road.", "p": [["S", "The bus", "otobüs"], ["V", "is", "(ek fiil)"], ["P", "in the middle of the road", "yolun ortasında"]]}
+{"id": "A2-3:29", "en": "The children are fishing by the lake.", "p": [["S", "The children", "çocuklar"], ["V", "are fishing", "balık tutuyor"], ["P", "by the lake", "gölün yanında"]]}
+{"id": "A2-3:30", "en": "The birds were flying over the desert.", "p": [["S", "The birds", "kuşlar"], ["V", "were flying", "uçuyordu"], ["P", "over the desert", "çölün üzerinde"]]}
+{"id": "A2-3:31", "en": "We cooked our dinner on a gas cooker.", "p": [["S", "We", "biz"], ["V", "cooked", "pişirdik"], ["O", "our dinner", "akşam yemeğimizi"], ["P", "on a gas cooker", "bir gaz ocağında"]]}
+{"id": "A2-3:32", "en": "The ground was wet after the rain.", "p": [["S", "The ground", "zemin"], ["V", "was wet", "ıslaktı"], ["T", "after the rain", "yağmurdan sonra"]]}
+{"id": "A2-3:33", "en": "What is the height of that tower?", "p": [["SORU", "What", "ne kadar"], ["V", "is", "(ek fiil)"], ["S", "the height of that tower", "o kulenin yüksekliği"]]}
+{"id": "A2-3:34", "en": "He kept his money in a metal box.", "p": [["S", "He", "o"], ["V", "kept", "sakladı"], ["O", "his money", "parasını"], ["P", "in a metal box", "bir metal kutuda"]]}
+{"id": "A2-3:35", "en": "It was cold inside the tent.", "p": [["S", "It", "—"], ["V", "was cold", "soğuktu"], ["P", "inside the tent", "çadırın içinde"]]}
+{"id": "A2-3:36", "en": "There was nowhere to sit on the train.", "p": [["V", "There was", "yoktu"], ["S", "nowhere to sit", "oturacak hiçbir yer"], ["P", "on the train", "trende"]]}
+{"id": "A2-3:37", "en": "Be careful, there is a step here.", "p": [["V", "Be careful", "dikkat et"], ["V", "there is", "var"], ["S", "a step", "bir basamak"], ["P", "here", "burada"]]}
+{"id": "A2-3:38", "en": "The train went at a high speed.", "p": [["S", "The train", "tren"], ["V", "went", "gitti"], ["NASIL", "at a high speed", "yüksek hızla"]]}
+{"id": "A2-3:39", "en": "We took the shortest route to the village.", "p": [["S", "We", "biz"], ["V", "took", "gittik"], ["O", "the shortest route", "en kısa güzergâhtan"], ["P", "to the village", "köye"]]}
+{"id": "A2-3:40", "en": "A narrow track went up the hill.", "p": [["S", "A narrow track", "bir dar patika"], ["V", "went", "çıkıyordu"], ["P", "up the hill", "tepeye"]]}
+{"id": "A2-3:41", "en": "Public transport is cheap in this city.", "p": [["S", "Public transport", "toplu taşıma"], ["V", "is cheap", "ucuz"], ["P", "in this city", "bu şehirde"]]}
+{"id": "A2-3:42", "en": "The traveller was very tired and hungry.", "p": [["S", "The traveller", "gezgin"], ["V", "was very tired and hungry", "çok yorgun ve açtı"]]}
+{"id": "A2-3:43", "en": "We took the underground to the museum.", "p": [["S", "We", "biz"], ["V", "took", "gittik"], ["NASIL", "the underground", "metroyla"], ["P", "to the museum", "müzeye"]]}
+{"id": "A2-3:44", "en": "A big wave hit our boat.", "p": [["S", "A big wave", "bir büyük dalga"], ["V", "hit", "çarptı"], ["O", "our boat", "teknemize"]]}
+{"id": "A2-3:45", "en": "Mert broke the wheel of his bike.", "p": [["S", "Mert", "Mert"], ["V", "broke", "kırdı"], ["O", "the wheel of his bike", "bisikletinin tekerleğini"]]}
+{"id": "A2-3:46", "en": "Wild animals live in the forest.", "p": [["S", "Wild animals", "vahşi hayvanlar"], ["V", "live", "yaşar"], ["P", "in the forest", "ormanda"]]}
+{"id": "A2-3:47", "en": "Our trip to the island was a great adventure.", "p": [["S", "Our trip", "yolculuğumuz"], ["P", "to the island", "adaya"], ["V", "was a great adventure", "bir harika maceraydı"]]}
+{"id": "A2-3:48", "en": "Every vehicle should stop at the red light.", "p": [["S", "Every vehicle", "her araç"], ["V", "should stop", "durmalı"], ["P", "at the red light", "kırmızı ışıkta"]]}
+{"id": "A2-3:49", "en": "Are you going to cycle to school tomorrow?", "p": [["SORU", "Are", "(soru)"], ["S", "you", "sen"], ["V", "going to cycle", "bisikletle mi gideceksin"], ["P", "to school", "okula"], ["T", "tomorrow", "yarın"]]}
+{"id": "A2-3:50", "en": "Turn right at the next corner.", "p": [["V", "Turn", "dön"], ["NASIL", "right", "sağa"], ["P", "at the next corner", "bir sonraki köşeden"]]}
+{"id": "A2-3:51", "en": "Go straight along this road.", "p": [["V", "Go", "git"], ["NASIL", "straight", "dümdüz"], ["P", "along this road", "bu yol boyunca"]]}
+{"id": "A2-3:52", "en": "Spiders have eight legs.", "p": [["S", "Spiders", "örümceklerin"], ["V", "have", "vardır"], ["O", "eight legs", "sekiz bacağı"]]}
+{"id": "A2-3:53", "en": "The van went towards the railway station.", "p": [["S", "The van", "minibüs"], ["V", "went", "gitti"], ["P", "towards the railway station", "tren istasyonuna doğru"]]}
+{"id": "A2-3:54", "en": "We slept in a wooden house in the mountains.", "p": [["S", "We", "biz"], ["V", "slept", "uyuduk"], ["P", "in a wooden house", "bir ahşap evde"], ["P", "in the mountains", "dağlarda"]]}
+{"id": "A2-3:55", "en": "My grandfather went fishing every weekend.", "p": [["S", "My grandfather", "dedem"], ["V", "went fishing", "balığa giderdi"], ["T", "every weekend", "her hafta sonu"]]}
+{"id": "A2-3:56", "en": "There isn't any water in the desert.", "p": [["V", "There isn't", "yok"], ["S", "any water", "hiç su"], ["P", "in the desert", "çölde"]]}
+{"id": "A2-3:57", "en": "The heat was terrible in July.", "p": [["S", "The heat", "sıcak"], ["V", "was terrible", "berbattı"], ["T", "in July", "temmuzda"]]}
+{"id": "A2-3:58", "en": "Can you see the top of the mountain?", "p": [["SORU", "Can", "(soru)"], ["S", "you", "sen"], ["V", "see", "görebiliyor musun"], ["O", "the top of the mountain", "dağın tepesini"]]}
+{"id": "A2-3:59", "en": "Did you travel to another continent?", "p": [["SORU", "Did", "(soru)"], ["S", "you", "sen"], ["V", "travel", "seyahat ettin mi"], ["P", "to another continent", "başka bir kıtaya"]]}
+{"id": "A2-4:0", "en": "We had dinner at a lovely pub.", "p": [["S", "We", "biz"], ["V", "had", "yedik"], ["O", "dinner", "akşam yemeği"], ["P", "at a lovely pub", "bir güzel lokantada"]]}
+{"id": "A2-4:1", "en": "The owner of the pub smiled at us.", "p": [["S", "The owner of the pub", "lokantanın sahibi"], ["V", "smiled", "gülümsedi"], ["O", "at us", "bize"]]}
+{"id": "A2-4:2", "en": "Did you get my wedding invitation?", "p": [["SORU", "Did", "(soru)"], ["S", "you", "sen"], ["V", "get", "aldın mı"], ["O", "my wedding invitation", "düğün davetiyemi"]]}
+{"id": "A2-4:3", "en": "My cousin is going to celebrate her birthday.", "p": [["S", "My cousin", "kuzenim"], ["V", "is going to celebrate", "kutlayacak"], ["O", "her birthday", "doğum gününü"]]}
+{"id": "A2-4:4", "en": "Please write your date of birth here.", "p": [["KALIP", "Please", "lütfen"], ["V", "write", "yazın"], ["O", "your date of birth", "doğum tarihinizi"], ["P", "here", "buraya"]]}
+{"id": "A2-4:5", "en": "The guests came to the wedding reception.", "p": [["S", "The guests", "misafirler"], ["V", "came", "geldi"], ["P", "to the wedding reception", "düğün resepsiyonuna"]]}
+{"id": "A2-4:6", "en": "The couple got married last summer.", "p": [["S", "The couple", "çift"], ["V", "got married", "evlendi"], ["T", "last summer", "geçen yaz"]]}
+{"id": "A2-4:7", "en": "My aunt and uncle are divorced now.", "p": [["S", "My aunt and uncle", "teyzem ve eniştem"], ["V", "are divorced", "boşanmış"], ["T", "now", "artık"]]}
+{"id": "A2-4:8", "en": "The twins always wear the same clothing.", "p": [["S", "The twins", "ikizler"], ["T", "always", "hep"], ["V", "wear", "giyer"], ["O", "the same clothing", "aynı kıyafetleri"]]}
+{"id": "A2-4:9", "en": "Elif has long curly hair.", "p": [["S", "Elif", "Elif'in"], ["V", "has", "var"], ["O", "long curly hair", "uzun kıvırcık saçları"]]}
+{"id": "A2-4:10", "en": "That guy in the blue tie is my brother.", "p": [["S", "That guy", "o adam"], ["EK", "in the blue tie", "mavi kravatlı"], ["V", "is my brother", "benim abim"]]}
+{"id": "A2-4:11", "en": "Who is that lady with the red bag?", "p": [["SORU", "Who", "kim"], ["V", "is", "(ek fiil)"], ["S", "that lady", "o hanım"], ["EK", "with the red bag", "kırmızı çantalı"]]}
+{"id": "A2-4:12", "en": "Excuse me, sir, is this table free?", "p": [["KALIP", "Excuse me", "affedersiniz"], ["KALIP", "sir", "efendim"], ["SORU", "is", "(soru)"], ["S", "this table", "bu masa"], ["V", "free", "boş mu"]]}
+{"id": "A2-4:13", "en": "Can I have a knife and fork, please?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "have", "alabilir miyim"], ["O", "a knife and fork", "bir bıçak ve çatal"], ["KALIP", "please", "lütfen"]]}

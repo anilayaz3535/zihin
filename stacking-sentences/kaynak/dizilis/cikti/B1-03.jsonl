@@ -1,0 +1,100 @@
+{"id": "B1-4:14", "en": "The police have caught the criminal.", "p": [["S", "The police", "polis"], ["V", "have caught", "yakaladı"], ["O", "the criminal", "suçluyu"]]}
+{"id": "B1-4:15", "en": "Children must stay away from danger.", "p": [["S", "Children", "çocuklar"], ["V", "must stay away", "uzak durmalı"], ["EK", "from danger", "tehlikeden"]]}
+{"id": "B1-4:16", "en": "My father works in the sales department.", "p": [["S", "My father", "babam"], ["V", "works", "çalışıyor"], ["P", "in the sales department", "satış bölümünde"]]}
+{"id": "B1-4:17", "en": "The flood was a terrible disaster.", "p": [["S", "The flood", "sel"], ["V", "was a terrible disaster", "bir korkunç felaketti"]]}
+{"id": "B1-4:18", "en": "This factory employs two hundred people.", "p": [["S", "This factory", "bu fabrika"], ["V", "employs", "istihdam ediyor"], ["O", "two hundred people", "iki yüz kişiyi"]]}
+{"id": "B1-4:19", "en": "My employer has given me a day off.", "p": [["S", "My employer", "işverenim"], ["V", "has given", "verdi"], ["O", "me", "bana"], ["O", "a day off", "bir gün izin"]]}
+{"id": "B1-4:20", "en": "Workers must check their equipment every day.", "p": [["S", "Workers", "işçiler"], ["V", "must check", "kontrol etmeli"], ["O", "their equipment", "ekipmanlarını"], ["T", "every day", "her gün"]]}
+{"id": "B1-4:21", "en": "Farming is very important in this village.", "p": [["S", "Farming", "tarım"], ["V", "is very important", "çok önemli"], ["P", "in this village", "bu köyde"]]}
+{"id": "B1-4:22", "en": "My little brother has a fear of dogs.", "p": [["S", "My little brother", "küçük erkek kardeşimin"], ["V", "has", "var"], ["O", "a fear of dogs", "bir köpek korkusu"]]}
+{"id": "B1-4:23", "en": "The firefighters have fought the fire all night.", "p": [["S", "The firefighters", "itfaiyeciler"], ["V", "have fought", "mücadele etti"], ["O", "the fire", "yangınla"], ["T", "all night", "bütün gece"]]}
+{"id": "B1-4:24", "en": "Poseidon is the Greek god of the sea.", "p": [["S", "Poseidon", "Poseidon"], ["V", "is the Greek god of the sea", "Yunan deniz tanrısıdır"]]}
+{"id": "B1-4:25", "en": "The boy is playing with a water gun.", "p": [["S", "The boy", "çocuk"], ["V", "is playing", "oynuyor"], ["EK", "with a water gun", "bir su tabancasıyla"]]}
+{"id": "B1-4:26", "en": "The car industry is very big in Germany.", "p": [["S", "The car industry", "otomobil sanayisi"], ["V", "is very big", "çok büyük"], ["P", "in Germany", "Almanya'da"]]}
+{"id": "B1-4:27", "en": "Istanbul has a big international airport.", "p": [["S", "Istanbul", "İstanbul'un"], ["V", "has", "var"], ["O", "a big international airport", "bir büyük uluslararası havalimanı"]]}
+{"id": "B1-4:28", "en": "Each item in this shop costs ten lira.", "p": [["S", "Each item", "her ürün"], ["P", "in this shop", "bu dükkândaki"], ["V", "costs", "eder"], ["O", "ten lira", "on lira"]]}
+{"id": "B1-4:29", "en": "Wood is a strong material.", "p": [["S", "Wood", "tahta"], ["V", "is a strong material", "bir sağlam malzemedir"]]}
+{"id": "B1-4:30", "en": "Today is a national holiday in Turkey.", "p": [["S", "Today", "bugün"], ["V", "is a national holiday", "bir ulusal bayram"], ["P", "in Turkey", "Türkiye'de"]]}
+{"id": "B1-4:31", "en": "The police officer has helped the old woman.", "p": [["S", "The police officer", "polis memuru"], ["V", "has helped", "yardım etti"], ["O", "the old woman", "yaşlı kadına"]]}
+{"id": "B1-4:32", "en": "My aunt works for a health organization.", "p": [["S", "My aunt", "teyzem"], ["V", "works", "çalışıyor"], ["EK", "for a health organization", "bir sağlık kuruluşunda"]]}
+{"id": "B1-4:33", "en": "We have organized a party for our teacher.", "p": [["S", "We", "biz"], ["V", "have organized", "düzenledik"], ["O", "a party", "bir parti"], ["EK", "for our teacher", "öğretmenimiz için"]]}
+{"id": "B1-4:34", "en": "You must ask for permission first.", "p": [["S", "You", "sen"], ["V", "must ask for", "istemelisin"], ["O", "permission", "izin"], ["T", "first", "önce"]]}
+{"id": "B1-4:35", "en": "The population of Istanbul is very large.", "p": [["S", "The population of Istanbul", "İstanbul'un nüfusu"], ["V", "is very large", "çok fazla"]]}
+{"id": "B1-4:36", "en": "This old watch is my most important possession.", "p": [["S", "This old watch", "bu eski saat"], ["V", "is my most important possession", "en değerli eşyam"]]}
+{"id": "B1-4:37", "en": "Many homes have no power after the storm.", "p": [["S", "Many homes", "birçok evde"], ["V", "have no", "yok"], ["O", "power", "elektrik"], ["T", "after the storm", "fırtınadan sonra"]]}
+{"id": "B1-4:38", "en": "We must prevent fires in the forest.", "p": [["S", "We", "biz"], ["V", "must prevent", "önlemeliyiz"], ["O", "fires", "yangınları"], ["P", "in the forest", "ormanda"]]}
+{"id": "B1-4:39", "en": "The thief has been in prison for two years.", "p": [["S", "The thief", "hırsız"], ["V", "has been", "(ek fiil)"], ["P", "in prison", "hapiste"], ["T", "for two years", "iki yıldır"]]}
+{"id": "B1-4:40", "en": "Parents have to protect their children.", "p": [["S", "Parents", "ebeveynler"], ["V", "have to protect", "korumak zorunda"], ["O", "their children", "çocuklarını"]]}
+{"id": "B1-4:41", "en": "You mustn't smoke in public places.", "p": [["S", "You", "sen"], ["V", "mustn't smoke", "sigara içmemelisin"], ["P", "in public places", "halka açık yerlerde"]]}
+{"id": "B1-4:42", "en": "The queen has visited our school.", "p": [["S", "The queen", "kraliçe"], ["V", "has visited", "ziyaret etti"], ["O", "our school", "okulumuzu"]]}
+{"id": "B1-4:43", "en": "Have you seen the train schedule?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["V", "seen", "gördün mü"], ["O", "the train schedule", "tren tarifesini"]]}
+{"id": "B1-4:44", "en": "The secretary has already sent the email.", "p": [["S", "The secretary", "sekreter"], ["V", "has already sent", "çoktan gönderdi"], ["O", "the email", "e-postayı"]]}
+{"id": "B1-4:45", "en": "We must respect everyone in our society.", "p": [["S", "We", "biz"], ["V", "must respect", "saygı göstermeliyiz"], ["O", "everyone", "herkese"], ["P", "in our society", "toplumumuzdaki"]]}
+{"id": "B1-4:46", "en": "The sun is a source of energy.", "p": [["S", "The sun", "güneş"], ["V", "is a source of energy", "bir enerji kaynağıdır"]]}
+{"id": "B1-4:47", "en": "Texas is a big state in the USA.", "p": [["S", "Texas", "Teksas"], ["V", "is a big state", "bir büyük eyalettir"], ["P", "in the USA", "ABD'de"]]}
+{"id": "B1-4:48", "en": "Someone has stolen my bike!", "p": [["S", "Someone", "biri"], ["V", "has stolen", "çaldı"], ["O", "my bike", "bisikletimi"]]}
+{"id": "B1-4:49", "en": "Our team needs a new strategy.", "p": [["S", "Our team", "takımımızın"], ["V", "needs", "ihtiyacı var"], ["O", "a new strategy", "bir yeni stratejiye"]]}
+{"id": "B1-4:50", "en": "Our target is to finish by Friday.", "p": [["S", "Our target", "hedefimiz"], ["V", "is to finish", "bitirmek"], ["T", "by Friday", "cumaya kadar"]]}
+{"id": "B1-4:51", "en": "A hammer is a useful tool.", "p": [["S", "A hammer", "bir çekiç"], ["V", "is a useful tool", "bir kullanışlı alettir"]]}
+{"id": "B1-4:52", "en": "It's a tradition to eat sweets at Bayram.", "p": [["S", "It's", "—"], ["V", "a tradition", "bir gelenektir"], ["S", "to eat sweets", "tatlı yemek"], ["T", "at Bayram", "bayramda"]]}
+{"id": "B1-4:53", "en": "My grandmother wears traditional clothes at weddings.", "p": [["S", "My grandmother", "büyükannem"], ["V", "wears", "giyer"], ["O", "traditional clothes", "geleneksel kıyafetler"], ["P", "at weddings", "düğünlerde"]]}
+{"id": "B1-4:54", "en": "Have you ever been to the United States?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "been", "gittin mi"], ["P", "to the United States", "Amerika Birleşik Devletleri'ne"]]}
+{"id": "B1-4:55", "en": "The war ended in 1945.", "p": [["S", "The war", "savaş"], ["V", "ended", "sona erdi"], ["T", "in 1945", "1945'te"]]}
+{"id": "B1-4:56", "en": "You have to wear a uniform in the army.", "p": [["S", "You", "sen"], ["V", "have to wear", "giymek zorundasın"], ["O", "a uniform", "bir üniforma"], ["P", "in the army", "orduda"]]}
+{"id": "B1-4:57", "en": "If you steal, you will go to prison.", "p": [["BAG", "If", "-rsa"], ["S", "you", "sen"], ["V", "steal", "çalarsan"], ["S", "you", "sen"], ["V", "will go", "girersin"], ["P", "to prison", "hapse"]]}
+{"id": "B1-4:58", "en": "The museum has organized an international exhibition.", "p": [["S", "The museum", "müze"], ["V", "has organized", "düzenledi"], ["O", "an international exhibition", "bir uluslararası sergi"]]}
+{"id": "B1-4:59", "en": "Have you ever helped a charity?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "helped", "yardım ettin mi"], ["O", "a charity", "bir hayır kurumuna"]]}
+{"id": "B1-5:0", "en": "She always sings quietly.", "p": [["S", "She", "o"], ["T", "always", "her zaman"], ["V", "sings", "şarkı söyler"], ["NASIL", "quietly", "sessizce"]]}
+{"id": "B1-5:1", "en": "According to the teacher, the test is simple.", "p": [["EK", "According to the teacher", "öğretmene göre"], ["S", "the test", "sınav"], ["V", "is simple", "basit"]]}
+{"id": "B1-5:2", "en": "Actually, I have never been to Paris.", "p": [["EK", "Actually", "aslında"], ["S", "I", "ben"], ["V", "have never been", "hiç gitmedim"], ["P", "to Paris", "Paris'e"]]}
+{"id": "B1-5:3", "en": "Ah, now I understand you.", "p": [["KALIP", "Ah", "ah"], ["T", "now", "şimdi"], ["S", "I", "ben"], ["V", "understand", "anlıyorum"], ["O", "you", "seni"]]}
+{"id": "B1-5:4", "en": "All right, I will call you tomorrow.", "p": [["KALIP", "All right", "tamam"], ["S", "I", "ben"], ["V", "will call", "arayacağım"], ["O", "you", "seni"], ["T", "tomorrow", "yarın"]]}
+{"id": "B1-5:5", "en": "We have almost finished our homework.", "p": [["S", "We", "biz"], ["V", "have almost finished", "neredeyse bitirdik"], ["O", "our homework", "ödevimizi"]]}
+{"id": "B1-5:6", "en": "My grandfather lives alone in a small house.", "p": [["S", "My grandfather", "büyükbabam"], ["V", "lives", "yaşıyor"], ["NASIL", "alone", "yalnız"], ["P", "in a small house", "bir küçük evde"]]}
+{"id": "B1-5:7", "en": "Has anybody seen my keys?", "p": [["SORU", "Has", "(soru)"], ["S", "anybody", "biri"], ["V", "seen", "gördü mü"], ["O", "my keys", "anahtarlarımı"]]}
+{"id": "B1-5:8", "en": "I don't play tennis any more.", "p": [["S", "I", "ben"], ["V", "don't play", "oynamıyorum"], ["O", "tennis", "tenis"], ["T", "any more", "artık"]]}
+{"id": "B1-5:9", "en": "It was raining, but we went out anyway.", "p": [["S", "It", "—"], ["V", "was raining", "yağmur yağıyordu"], ["BAG", "but", "ama"], ["S", "we", "biz"], ["V", "went out", "dışarı çıktık"], ["EK", "anyway", "yine de"]]}
+{"id": "B1-5:10", "en": "Is this room available tonight?", "p": [["SORU", "Is", "(soru)"], ["S", "this room", "bu oda"], ["V", "available", "müsait mi"], ["T", "tonight", "bu gece"]]}
+{"id": "B1-5:11", "en": "Please carry the glasses carefully.", "p": [["KALIP", "Please", "lütfen"], ["V", "carry", "taşı"], ["O", "the glasses", "bardakları"], ["NASIL", "carefully", "dikkatlice"]]}
+{"id": "B1-5:12", "en": "I am certain that Ali is right.", "p": [["S", "I", "ben"], ["V", "am certain", "eminim"], ["BAG", "that", "-dığından"], ["S", "Ali", "Ali'nin"], ["V", "is right", "haklı olduğundan"]]}
+{"id": "B1-5:13", "en": "She will certainly win the race.", "p": [["S", "She", "o"], ["V", "will certainly win", "kesinlikle kazanacak"], ["O", "the race", "yarışı"]]}
+{"id": "B1-5:14", "en": "The teacher explained the rule clearly.", "p": [["S", "The teacher", "öğretmen"], ["V", "explained", "anlattı"], ["O", "the rule", "kuralı"], ["NASIL", "clearly", "açıkça"]]}
+{"id": "B1-5:15", "en": "I have completely forgotten Zeynep's birthday.", "p": [["S", "I", "ben"], ["V", "have completely forgotten", "tamamen unuttum"], ["O", "Zeynep's birthday", "Zeynep'in doğum gününü"]]}
+{"id": "B1-5:16", "en": "We will definitely come to your party.", "p": [["S", "We", "biz"], ["V", "will definitely come", "kesinlikle geleceğiz"], ["P", "to your party", "partine"]]}
+{"id": "B1-5:17", "en": "My brother and I think differently.", "p": [["S", "My brother and I", "erkek kardeşim ve ben"], ["V", "think", "düşünürüz"], ["NASIL", "differently", "farklı"]]}
+{"id": "B1-5:18", "en": "I can't swim, and my sister can't either.", "p": [["S", "I", "ben"], ["V", "can't swim", "yüzemem"], ["BAG", "and", "ve"], ["S", "my sister", "kız kardeşim"], ["V", "can't", "yüzemez"], ["EK", "either", "de"]]}
+{"id": "B1-5:19", "en": "You can drink either tea or coffee.", "p": [["S", "You", "sen"], ["V", "can drink", "içebilirsin"], ["BAG", "either", "ya"], ["O", "tea", "çay"], ["BAG", "or", "ya da"], ["O", "coffee", "kahve"]]}
+{"id": "B1-5:20", "en": "Neither Ali nor Can likes fish.", "p": [["BAG", "Neither", "ne"], ["S", "Ali", "Ali"], ["BAG", "nor", "ne de"], ["S", "Can", "Can"], ["V", "likes", "sever"], ["O", "fish", "balık"]]}
+{"id": "B1-5:21", "en": "I love fruit, especially strawberries.", "p": [["S", "I", "ben"], ["V", "love", "severim"], ["O", "fruit", "meyveyi"], ["EK", "especially strawberries", "özellikle çileği"]]}
+{"id": "B1-5:22", "en": "Everyone came except Mert.", "p": [["S", "Everyone", "herkes"], ["V", "came", "geldi"], ["EK", "except Mert", "Mert hariç"]]}
+{"id": "B1-5:23", "en": "Firstly, open your books.", "p": [["T", "Firstly", "ilk olarak"], ["V", "open", "açın"], ["O", "your books", "kitaplarınızı"]]}
+{"id": "B1-5:24", "en": "Secondly, write your name on the paper.", "p": [["T", "Secondly", "ikinci olarak"], ["V", "write", "yaz"], ["O", "your name", "adını"], ["P", "on the paper", "kâğıda"]]}
+{"id": "B1-5:25", "en": "Fortunately, I found my wallet.", "p": [["EK", "Fortunately", "neyse ki"], ["S", "I", "ben"], ["V", "found", "buldum"], ["O", "my wallet", "cüzdanımı"]]}
+{"id": "B1-5:26", "en": "Unfortunately, the shop is closed today.", "p": [["EK", "Unfortunately", "maalesef"], ["S", "the shop", "dükkân"], ["V", "is closed", "kapalı"], ["T", "today", "bugün"]]}
+{"id": "B1-5:27", "en": "The park is further than the station.", "p": [["S", "The park", "park"], ["V", "is further", "daha uzak"], ["EK", "than the station", "istasyondan"]]}
+{"id": "B1-5:28", "en": "In general, people here are very kind.", "p": [["EK", "In general", "genel olarak"], ["S", "people", "insanlar"], ["P", "here", "buradaki"], ["V", "are very kind", "çok nazik"]]}
+{"id": "B1-5:29", "en": "The children played happily in the garden.", "p": [["S", "The children", "çocuklar"], ["V", "played", "oynadı"], ["NASIL", "happily", "neşeyle"], ["P", "in the garden", "bahçede"]]}
+{"id": "B1-5:30", "en": "This is an ideal place for a picnic.", "p": [["S", "This", "burası"], ["V", "is an ideal place", "bir ideal yer"], ["EK", "for a picnic", "piknik için"]]}
+{"id": "B1-5:31", "en": "Call the doctor immediately!", "p": [["V", "Call", "ara"], ["O", "the doctor", "doktoru"], ["T", "immediately", "hemen"]]}
+{"id": "B1-5:32", "en": "It is impossible to finish this today.", "p": [["S", "It", "—"], ["V", "is impossible", "imkânsız"], ["S", "to finish this", "bunu bitirmek"], ["T", "today", "bugün"]]}
+{"id": "B1-5:33", "en": "My sister is very independent.", "p": [["S", "My sister", "kız kardeşim"], ["V", "is very independent", "çok bağımsız"]]}
+{"id": "B1-5:34", "en": "Each student has an individual plan.", "p": [["S", "Each student", "her öğrencinin"], ["V", "has", "var"], ["O", "an individual plan", "bir bireysel planı"]]}
+{"id": "B1-5:35", "en": "Instead of the bus, we took a taxi.", "p": [["EK", "Instead of the bus", "otobüs yerine"], ["S", "we", "biz"], ["V", "took", "bindik"], ["O", "a taxi", "bir taksiye"]]}
+{"id": "B1-5:36", "en": "It is likely to rain tomorrow.", "p": [["S", "It", "—"], ["V", "is likely to rain", "yağmur yağması muhtemel"], ["T", "tomorrow", "yarın"]]}
+{"id": "B1-5:37", "en": "The students are mostly from Ankara.", "p": [["S", "The students", "öğrenciler"], ["V", "are", "(ek fiil)"], ["EK", "mostly", "çoğunlukla"], ["P", "from Ankara", "Ankaralı"]]}
+{"id": "B1-5:38", "en": "We nearly missed the train.", "p": [["S", "We", "biz"], ["V", "nearly missed", "az kalsın kaçırıyorduk"], ["O", "the train", "treni"]]}
+{"id": "B1-5:39", "en": "Is it necessary to bring a passport?", "p": [["SORU", "Is", "(soru)"], ["S", "it", "—"], ["V", "necessary", "gerekli mi"], ["S", "to bring a passport", "bir pasaport getirmek"]]}
+{"id": "B1-5:40", "en": "Neither answer is correct.", "p": [["S", "Neither answer", "cevapların ikisi de"], ["V", "is correct", "doğru değil"]]}
+{"id": "B1-5:41", "en": "None of my friends can swim.", "p": [["S", "None of my friends", "arkadaşlarımın hiçbiri"], ["V", "can swim", "yüzemez"]]}
+{"id": "B1-5:42", "en": "Is this the original painting?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "the original painting", "orijinal tablo mu"]]}
+{"id": "B1-5:43", "en": "Do you want a particular colour?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sen"], ["V", "want", "istiyor musun"], ["O", "a particular colour", "bir belirli renk"]]}
+{"id": "B1-5:44", "en": "Perhaps we will see the sea tomorrow.", "p": [["EK", "Perhaps", "belki"], ["S", "we", "biz"], ["V", "will see", "göreceğiz"], ["O", "the sea", "denizi"], ["T", "tomorrow", "yarın"]]}
+{"id": "B1-5:45", "en": "This is a recent photo of my cat.", "p": [["S", "This", "bu"], ["V", "is a recent photo of my cat", "kedimin yakın zamanda çekilmiş bir fotoğrafı"]]}
+{"id": "B1-5:46", "en": "I have recently started a new job.", "p": [["S", "I", "ben"], ["V", "have recently started", "yakın zamanda başladım"], ["O", "a new job", "bir yeni işe"]]}
+{"id": "B1-5:47", "en": "Sadly, our team lost the match.", "p": [["EK", "Sadly", "ne yazık ki"], ["S", "our team", "takımımız"], ["V", "lost", "kaybetti"], ["O", "the match", "maçı"]]}
+{"id": "B1-5:48", "en": "The old man walked slowly to the park.", "p": [["S", "The old man", "yaşlı adam"], ["V", "walked", "yürüdü"], ["NASIL", "slowly", "yavaşça"], ["P", "to the park", "parka"]]}
+{"id": "B1-5:49", "en": "Please give me a specific example.", "p": [["KALIP", "Please", "lütfen"], ["V", "give", "ver"], ["O", "me", "bana"], ["O", "a specific example", "bir belirli örnek"]]}
+{"id": "B1-5:50", "en": "Suddenly, the lights went out.", "p": [["T", "Suddenly", "aniden"], ["S", "the lights", "ışıklar"], ["V", "went out", "söndü"]]}
+{"id": "B1-5:51", "en": "Elif read the whole book in one day.", "p": [["S", "Elif", "Elif"], ["V", "read", "okudu"], ["O", "the whole book", "bütün kitabı"], ["T", "in one day", "bir günde"]]}
+{"id": "B1-5:52", "en": "Wow, your new car is amazing!", "p": [["KALIP", "Wow", "vay canına"], ["S", "your new car", "yeni araban"], ["V", "is amazing", "harika"]]}
+{"id": "B1-5:53", "en": "We used to have separate rooms.", "p": [["S", "We", "bizim"], ["V", "used to have", "eskiden vardı"], ["O", "separate rooms", "ayrı odalarımız"]]}

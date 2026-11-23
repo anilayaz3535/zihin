@@ -1,0 +1,100 @@
+{"id": "A2-5:54", "en": "I didn't like the end of the series.", "p": [["S", "I", "ben"], ["V", "didn't like", "beğenmedim"], ["O", "the end of the series", "dizinin sonunu"]]}
+{"id": "A2-5:55", "en": "The new device doesn't need electricity.", "p": [["S", "The new device", "yeni cihazın"], ["V", "doesn't need", "ihtiyacı yok"], ["O", "electricity", "elektriğe"]]}
+{"id": "A2-5:56", "en": "The painter is going to open a gallery.", "p": [["S", "The painter", "ressam"], ["V", "is going to open", "açacak"], ["O", "a gallery", "bir galeri"]]}
+{"id": "A2-5:57", "en": "Did you read the comments on the site?", "p": [["SORU", "Did", "(soru)"], ["S", "you", "sen"], ["V", "read", "okudun mu"], ["O", "the comments", "yorumları"], ["P", "on the site", "sitedeki"]]}
+{"id": "A2-5:58", "en": "Ali was a famous runner at school.", "p": [["S", "Ali", "Ali"], ["V", "was a famous runner", "bir ünlü koşucuydu"], ["P", "at school", "okulda"]]}
+{"id": "A2-5:59", "en": "We will chat online after the match.", "p": [["S", "We", "biz"], ["V", "will chat", "sohbet edeceğiz"], ["P", "online", "internette"], ["T", "after the match", "maçtan sonra"]]}
+{"id": "A2-6:0", "en": "I have a headache.", "p": [["S", "I", "benim"], ["V", "have", "var"], ["O", "a headache", "bir baş ağrım"]]}
+{"id": "A2-6:1", "en": "My ankle hurts after the game.", "p": [["S", "My ankle", "bileğim"], ["V", "hurts", "ağrıyor"], ["T", "after the game", "maçtan sonra"]]}
+{"id": "A2-6:2", "en": "You should rest your shoulder.", "p": [["S", "You", "sen"], ["V", "should rest", "dinlendirmelisin"], ["O", "your shoulder", "omzunu"]]}
+{"id": "A2-6:3", "en": "She had a pain in her neck.", "p": [["S", "She", "onun"], ["V", "had", "vardı"], ["O", "a pain", "bir ağrısı"], ["P", "in her neck", "boynunda"]]}
+{"id": "A2-6:4", "en": "The doctor said it was a virus.", "p": [["S", "The doctor", "doktor"], ["V", "said", "söyledi"], ["S", "it", "bunun"], ["V", "was a virus", "bir virüs olduğunu"]]}
+{"id": "A2-6:5", "en": "This drug helps with pain.", "p": [["S", "This drug", "bu ilaç"], ["V", "helps", "iyi gelir"], ["EK", "with pain", "ağrıya"]]}
+{"id": "A2-6:6", "en": "Mert had a small injury in the match.", "p": [["S", "Mert", "Mert"], ["V", "had", "geçirdi"], ["O", "a small injury", "bir küçük sakatlık"], ["P", "in the match", "maçta"]]}
+{"id": "A2-6:7", "en": "Heart disease is a serious problem.", "p": [["S", "Heart disease", "kalp hastalığı"], ["V", "is a serious problem", "bir ciddi sorundur"]]}
+{"id": "A2-6:8", "en": "Her illness was not dangerous.", "p": [["S", "Her illness", "onun hastalığı"], ["V", "was not dangerous", "tehlikeli değildi"]]}
+{"id": "A2-6:9", "en": "We need medical help now.", "p": [["S", "We", "bizim"], ["V", "need", "ihtiyacımız var"], ["O", "medical help", "tıbbi yardıma"], ["T", "now", "şimdi"]]}
+{"id": "A2-6:10", "en": "Stress is bad for your brain.", "p": [["S", "Stress", "stres"], ["V", "is bad", "kötüdür"], ["EK", "for your brain", "beynin için"]]}
+{"id": "A2-6:11", "en": "Walking is a good daily habit.", "p": [["S", "Walking", "yürümek"], ["V", "is a good daily habit", "bir iyi günlük alışkanlıktır"]]}
+{"id": "A2-6:12", "en": "My uncle has a healthy lifestyle.", "p": [["S", "My uncle", "amcamın"], ["V", "has", "var"], ["O", "a healthy lifestyle", "bir sağlıklı yaşam tarzı"]]}
+{"id": "A2-6:13", "en": "Don't be lazy, go for a walk.", "p": [["V", "Don't be lazy", "tembel olma"], ["V", "go", "çık"], ["EK", "for a walk", "yürüyüşe"]]}
+{"id": "A2-6:14", "en": "This diet is crazy and extreme.", "p": [["S", "This diet", "bu diyet"], ["V", "is crazy and extreme", "çılgınca ve aşırı"]]}
+{"id": "A2-6:15", "en": "Zeynep was extremely nervous before the exam.", "p": [["S", "Zeynep", "Zeynep"], ["V", "was extremely nervous", "son derece gergindi"], ["T", "before the exam", "sınavdan önce"]]}
+{"id": "A2-6:16", "en": "Good luck with the doctor tomorrow!", "p": [["KALIP", "Good luck", "bol şans"], ["EK", "with the doctor", "doktorda"], ["T", "tomorrow", "yarın"]]}
+{"id": "A2-6:17", "en": "We were lucky in the accident.", "p": [["S", "We", "biz"], ["V", "were lucky", "şanslıydık"], ["P", "in the accident", "kazada"]]}
+{"id": "A2-6:18", "en": "The brain is an incredible organ.", "p": [["S", "The brain", "beyin"], ["V", "is an incredible organ", "bir inanılmaz organdır"]]}
+{"id": "A2-6:19", "en": "Dolphins are intelligent animals.", "p": [["S", "Dolphins", "yunuslar"], ["V", "are intelligent animals", "zeki hayvanlardır"]]}
+{"id": "A2-6:20", "en": "My sister is very clever.", "p": [["S", "My sister", "kız kardeşim"], ["V", "is very clever", "çok zekidir"]]}
+{"id": "A2-6:21", "en": "Painting makes me feel creative.", "p": [["S", "Painting", "resim yapmak"], ["V", "makes", "(makes … feel)"], ["O", "me", "beni"], ["V", "feel creative", "yaratıcı hissettirir"]]}
+{"id": "A2-6:22", "en": "He has an attractive personality.", "p": [["S", "He", "onun"], ["V", "has", "var"], ["O", "an attractive personality", "bir çekici kişiliği"]]}
+{"id": "A2-6:23", "en": "The average heart rate is about seventy.", "p": [["S", "The average heart rate", "ortalama kalp atış hızı"], ["V", "is about seventy", "yaklaşık yetmiştir"]]}
+{"id": "A2-6:24", "en": "Take this medicine twice per day.", "p": [["V", "Take", "al"], ["O", "this medicine", "bu ilacı"], ["T", "twice per day", "günde iki kez"]]}
+{"id": "A2-6:25", "en": "Ninety per cent of my patients feel better.", "p": [["S", "Ninety per cent of my patients", "hastalarımın yüzde doksanı"], ["V", "feel better", "daha iyi hissediyor"]]}
+{"id": "A2-6:26", "en": "The body has billions of cells.", "p": [["S", "The body", "vücutta"], ["V", "has", "vardır"], ["O", "billions of cells", "milyarlarca hücre"]]}
+{"id": "A2-6:27", "en": "Eat a small amount of sugar.", "p": [["V", "Eat", "ye"], ["O", "a small amount of sugar", "az miktarda şeker"]]}
+{"id": "A2-6:28", "en": "The quantity of salt was too high.", "p": [["S", "The quantity of salt", "tuzun miktarı"], ["V", "was too high", "çok yüksekti"]]}
+{"id": "A2-6:29", "en": "Ayşe ordered a double portion of vegetables.", "p": [["S", "Ayşe", "Ayşe"], ["V", "ordered", "sipariş etti"], ["O", "a double portion of vegetables", "çift porsiyon sebze"]]}
+{"id": "A2-6:30", "en": "The battery is dead.", "p": [["S", "The battery", "pil"], ["V", "is dead", "bitmiş"]]}
+{"id": "A2-6:31", "en": "There was a huge queue at the hospital.", "p": [["V", "There was", "vardı"], ["S", "a huge queue", "bir kocaman kuyruk"], ["P", "at the hospital", "hastanede"]]}
+{"id": "A2-6:32", "en": "Elephants have enormous ears.", "p": [["S", "Elephants", "fillerin"], ["V", "have", "vardır"], ["O", "enormous ears", "kocaman kulakları"]]}
+{"id": "A2-6:33", "en": "Exercise should be part of everyday life.", "p": [["S", "Exercise", "egzersiz"], ["V", "should be part of everyday life", "günlük hayatın bir parçası olmalı"]]}
+{"id": "A2-6:34", "en": "It was just an ordinary cold.", "p": [["S", "It", "bu"], ["V", "was just an ordinary cold", "sadece bir sıradan soğuk algınlığıydı"]]}
+{"id": "A2-6:35", "en": "Your temperature is normal.", "p": [["S", "Your temperature", "ateşin"], ["V", "is normal", "normal"]]}
+{"id": "A2-6:36", "en": "I normally sleep eight hours.", "p": [["S", "I", "ben"], ["T", "normally", "normalde"], ["V", "sleep", "uyurum"], ["T", "eight hours", "sekiz saat"]]}
+{"id": "A2-6:37", "en": "The nurse was very helpful.", "p": [["S", "The nurse", "hemşire"], ["V", "was very helpful", "çok yardımseverdi"]]}
+{"id": "A2-6:38", "en": "We were pleased with the results.", "p": [["S", "We", "biz"], ["V", "were pleased", "memnun kaldık"], ["EK", "with the results", "sonuçlardan"]]}
+{"id": "A2-6:39", "en": "It was rude to shout at the nurse.", "p": [["S", "It", "—"], ["V", "was rude", "kabaydı"], ["S", "to shout", "bağırmak"], ["O", "at the nurse", "hemşireye"]]}
+{"id": "A2-6:40", "en": "I felt strange after the medicine.", "p": [["S", "I", "ben"], ["V", "felt strange", "garip hissettim"], ["T", "after the medicine", "ilaçtan sonra"]]}
+{"id": "A2-6:41", "en": "The test results were surprising.", "p": [["S", "The test results", "test sonuçları"], ["V", "were surprising", "şaşırtıcıydı"]]}
+{"id": "A2-6:42", "en": "Wear a thick coat in winter.", "p": [["V", "Wear", "giy"], ["O", "a thick coat", "bir kalın mont"], ["T", "in winter", "kışın"]]}
+{"id": "A2-6:43", "en": "Fever is a typical sign of flu.", "p": [["S", "Fever", "ateş"], ["V", "is a typical sign of flu", "gribin tipik bir belirtisidir"]]}
+{"id": "A2-6:44", "en": "This pain is very unusual for me.", "p": [["S", "This pain", "bu ağrı"], ["V", "is very unusual", "çok alışılmadık"], ["EK", "for me", "benim için"]]}
+{"id": "A2-6:45", "en": "I went to bed later than usual.", "p": [["S", "I", "ben"], ["V", "went to bed", "yattım"], ["T", "later than usual", "her zamankinden daha geç"]]}
+{"id": "A2-6:46", "en": "My grandmother felt weak this morning.", "p": [["S", "My grandmother", "büyükannem"], ["V", "felt weak", "kendini halsiz hissetti"], ["T", "this morning", "bu sabah"]]}
+{"id": "A2-6:47", "en": "There are zero calories in water.", "p": [["V", "There are", "vardır"], ["S", "zero calories", "sıfır kalori"], ["P", "in water", "suda"]]}
+{"id": "A2-6:48", "en": "The advice didn't cost a penny.", "p": [["S", "The advice", "bu tavsiye"], ["V", "didn't cost", "mal olmadı"], ["O", "a penny", "bir kuruşa bile"]]}
+{"id": "A2-6:49", "en": "Running on ice was a stupid mistake.", "p": [["S", "Running", "koşmak"], ["P", "on ice", "buzun üstünde"], ["V", "was a stupid mistake", "bir aptalca hataydı"]]}
+{"id": "A2-6:50", "en": "Physical activity is good for the heart.", "p": [["S", "Physical activity", "fiziksel aktivite"], ["V", "is good", "iyidir"], ["EK", "for the heart", "kalp için"]]}
+{"id": "A2-6:51", "en": "She goes for regular check-ups.", "p": [["S", "She", "o"], ["V", "goes", "gider"], ["EK", "for regular check-ups", "düzenli kontrollere"]]}
+{"id": "A2-6:52", "en": "Extreme heat is dangerous for babies.", "p": [["S", "Extreme heat", "aşırı sıcak"], ["V", "is dangerous", "tehlikelidir"], ["EK", "for babies", "bebekler için"]]}
+{"id": "A2-6:53", "en": "Can's job causes a lot of stress.", "p": [["S", "Can's job", "Can'ın işi"], ["V", "causes", "neden oluyor"], ["O", "a lot of stress", "çok strese"]]}
+{"id": "A2-6:54", "en": "The plant in the hospital is dead.", "p": [["S", "The plant", "bitki"], ["P", "in the hospital", "hastanedeki"], ["V", "is dead", "ölmüş"]]}
+{"id": "A2-6:55", "en": "Will you take your medicine daily?", "p": [["SORU", "Will", "(soru)"], ["S", "you", "sen"], ["V", "take", "alacak mısın"], ["O", "your medicine", "ilacını"], ["T", "daily", "her gün"]]}
+{"id": "A2-6:56", "en": "I'm going to change my lifestyle.", "p": [["S", "I'm", "ben"], ["V", "going to change", "değiştireceğim"], ["O", "my lifestyle", "yaşam tarzımı"]]}
+{"id": "A2-6:57", "en": "Could you check my shoulder, please?", "p": [["SORU", "Could", "(soru)"], ["S", "you", "siz"], ["V", "check", "bakabilir misiniz"], ["O", "my shoulder", "omzuma"], ["KALIP", "please", "lütfen"]]}
+{"id": "A2-6:58", "en": "Why did your neck hurt last night?", "p": [["SORU", "Why", "neden"], ["SORU", "did", "(soru)"], ["S", "your neck", "boynun"], ["V", "hurt", "ağrıdı"], ["T", "last night", "dün gece"]]}
+{"id": "A2-6:59", "en": "Smoking is a really bad habit.", "p": [["S", "Smoking", "sigara içmek"], ["V", "is a really bad habit", "gerçekten kötü bir alışkanlık"]]}
+{"id": "A2-7:0", "en": "I like making a reservation in advance.", "p": [["S", "I", "ben"], ["V", "like", "severim"], ["O", "making a reservation", "rezervasyon yapmayı"], ["T", "in advance", "önceden"]]}
+{"id": "A2-7:1", "en": "She enjoys planning a trip before making a reservation.", "p": [["S", "She", "o"], ["V", "enjoys", "hoşlanır"], ["O", "planning a trip", "bir gezi planlamaktan"], ["T", "before making a reservation", "rezervasyon yapmadan önce"]]}
+{"id": "A2-7:2", "en": "We made a reservation last weekend.", "p": [["S", "We", "biz"], ["V", "made", "yaptık"], ["O", "a reservation", "bir rezervasyon"], ["T", "last weekend", "geçen hafta sonu"]]}
+{"id": "A2-7:3", "en": "I did not make a reservation.", "p": [["S", "I", "ben"], ["V", "did not make", "yapmadım"], ["O", "a reservation", "bir rezervasyon"]]}
+{"id": "A2-7:4", "en": "Did you make a reservation?", "p": [["SORU", "Did", "(soru)"], ["S", "you", "sen"], ["V", "make", "yaptın mı"], ["O", "a reservation", "bir rezervasyon"]]}
+{"id": "A2-19:0", "en": "We missed the train yesterday.", "p": [["S", "We", "biz"], ["V", "missed", "kaçırdık"], ["O", "the train", "treni"], ["T", "yesterday", "dün"]]}
+{"id": "A2-19:1", "en": "I was cooking when you called.", "p": [["S", "I", "ben"], ["V", "was cooking", "yemek pişiriyordum"], ["BAG", "when", "-dığında"], ["S", "you", "sen"], ["V", "called", "aradığında"]]}
+{"id": "A2-19:2", "en": "They are going to move next month.", "p": [["S", "They", "onlar"], ["V", "are going to move", "taşınacaklar"], ["T", "next month", "gelecek ay"]]}
+{"id": "A2-19:3", "en": "This route is shorter than the other one.", "p": [["S", "This route", "bu güzergâh"], ["V", "is shorter", "daha kısa"], ["EK", "than the other one", "diğerinden"]]}
+{"id": "A2-19:4", "en": "It is the oldest building in the town.", "p": [["S", "It", "bu"], ["V", "is the oldest building", "en eski bina"], ["P", "in the town", "kasabadaki"]]}
+{"id": "A2-19:5", "en": "There is not much milk left.", "p": [["V", "There is not", "(there is not … left)"], ["S", "much milk", "fazla süt"], ["V", "left", "kalmadı"]]}
+{"id": "A2-19:6", "en": "We have a few minutes before the bus arrives.", "p": [["S", "We", "bizim"], ["V", "have", "var"], ["O", "a few minutes", "birkaç dakikamız"], ["BAG", "before", "-madan önce"], ["S", "the bus", "otobüs"], ["V", "arrives", "gelmeden"]]}
+{"id": "A2-19:7", "en": "You have to show your ticket.", "p": [["S", "You", "sen"], ["V", "have to show", "göstermek zorundasın"], ["O", "your ticket", "biletini"]]}
+{"id": "A2-19:8", "en": "You should take a warm jacket.", "p": [["S", "You", "sen"], ["V", "should take", "almalısın"], ["O", "a warm jacket", "bir sıcak ceket"]]}
+{"id": "A2-19:9", "en": "I went to the library to borrow a book.", "p": [["S", "I", "ben"], ["V", "went", "gittim"], ["P", "to the library", "kütüphaneye"], ["EK", "to borrow a book", "bir kitap ödünç almak için"]]}
+{"id": "A2-19:10", "en": "She decided to study abroad.", "p": [["S", "She", "o"], ["V", "decided", "karar verdi"], ["O", "to study", "okumaya"], ["P", "abroad", "yurt dışında"]]}
+{"id": "A2-19:11", "en": "I enjoy listening to music on the train.", "p": [["S", "I", "ben"], ["V", "enjoy", "hoşlanırım"], ["O", "listening to music", "müzik dinlemekten"], ["P", "on the train", "trende"]]}
+{"id": "A2-19:12", "en": "We invited our neighbors to dinner.", "p": [["S", "We", "biz"], ["V", "invited", "davet ettik"], ["O", "our neighbors", "komşularımızı"], ["EK", "to dinner", "akşam yemeğine"]]}
+{"id": "A2-19:13", "en": "I returned home before dark.", "p": [["S", "I", "ben"], ["V", "returned", "döndüm"], ["P", "home", "eve"], ["T", "before dark", "hava kararmadan"]]}
+{"id": "A2-19:14", "en": "He repaired my bicycle yesterday.", "p": [["S", "He", "o"], ["V", "repaired", "tamir etti"], ["O", "my bicycle", "bisikletimi"], ["T", "yesterday", "dün"]]}
+{"id": "A2-19:15", "en": "Do not forget your ticket.", "p": [["V", "Do not forget", "unutma"], ["O", "your ticket", "biletini"]]}
+{"id": "A2-19:16", "en": "We arranged a picnic for Saturday.", "p": [["S", "We", "biz"], ["V", "arranged", "düzenledik"], ["O", "a picnic", "bir piknik"], ["T", "for Saturday", "cumartesi için"]]}
+{"id": "A2-19:17", "en": "She collects old postcards.", "p": [["S", "She", "o"], ["V", "collects", "toplar"], ["O", "old postcards", "eski kartpostallar"]]}
+{"id": "A2-19:18", "en": "Can we share this table?", "p": [["SORU", "Can", "(soru)"], ["S", "we", "biz"], ["V", "share", "paylaşabilir miyiz"], ["O", "this table", "bu masayı"]]}
+{"id": "A2-19:19", "en": "I am saving money for a new computer.", "p": [["S", "I", "ben"], ["V", "am saving", "biriktiriyorum"], ["O", "money", "para"], ["EK", "for a new computer", "bir yeni bilgisayar için"]]}
+{"id": "A2-19:20", "en": "These shoes are very comfortable.", "p": [["S", "These shoes", "bu ayakkabılar"], ["V", "are very comfortable", "çok rahat"]]}
+{"id": "A2-19:21", "en": "The receptionist was polite and helpful.", "p": [["S", "The receptionist", "resepsiyon görevlisi"], ["V", "was polite and helpful", "kibar ve yardımseverdi"]]}
+{"id": "A2-19:22", "en": "I was worried about the weather.", "p": [["S", "I", "ben"], ["V", "was worried", "endişeliydim"], ["EK", "about the weather", "hava konusunda"]]}
+{"id": "A2-19:23", "en": "She was surprised by the gift.", "p": [["S", "She", "o"], ["V", "was surprised", "şaşırdı"], ["EK", "by the gift", "hediyeye"]]}
+{"id": "A2-19:24", "en": "The market sells cheap vegetables.", "p": [["S", "The market", "pazar"], ["V", "sells", "satıyor"], ["O", "cheap vegetables", "ucuz sebzeler"]]}
+{"id": "A2-19:25", "en": "This hotel is too expensive for us.", "p": [["S", "This hotel", "bu otel"], ["V", "is too expensive", "fazla pahalı"], ["EK", "for us", "bizim için"]]}
+{"id": "A2-19:26", "en": "Fortunately, we caught the last bus.", "p": [["EK", "Fortunately", "neyse ki"], ["S", "we", "biz"], ["V", "caught", "yetiştik"], ["O", "the last bus", "son otobüse"]]}
+{"id": "A2-19:27", "en": "Suddenly, the lights went out.", "p": [["T", "Suddenly", "aniden"], ["S", "the lights", "ışıklar"], ["V", "went out", "söndü"]]}
+{"id": "A2-19:28", "en": "Read the instructions carefully.", "p": [["V", "Read", "oku"], ["O", "the instructions", "talimatları"], ["NASIL", "carefully", "dikkatlice"]]}

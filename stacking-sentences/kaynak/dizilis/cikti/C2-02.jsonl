@@ -1,0 +1,100 @@
+{"id": "C2-2:40", "en": "The orchestra should have tuned their instruments.", "p": [["S", "The orchestra", "orkestra"], ["V", "should have tuned", "akort etmeliydi"], ["O", "their instruments", "enstrümanlarını"]]}
+{"id": "C2-2:41", "en": "I'd rather you hadn't invited the press.", "p": [["KALIP", "I'd rather", "… daha iyi olurdu"], ["S", "you", "sen"], ["V", "hadn't invited", "davet etmeseydin"], ["O", "the press", "basını"]]}
+{"id": "C2-2:42", "en": "The detective can't have overlooked such an obvious clue.", "p": [["S", "The detective", "dedektif"], ["V", "can't have overlooked", "gözden kaçırmış olamaz"], ["O", "such an obvious clue", "bu kadar bariz bir ipucunu"]]}
+{"id": "C2-2:43", "en": "It's time the audience took their seats.", "p": [["KALIP", "It's time", "vakti geldi"], ["S", "the audience", "seyircilerin"], ["V", "took", "oturma"], ["O", "their seats", "yerlerine"]]}
+{"id": "C2-2:44", "en": "He might have heard that the show was cancelled.", "p": [["S", "He", "o"], ["V", "might have heard", "duymuş olabilir"], ["BAG", "that", "-dığını"], ["S", "the show", "gösterinin"], ["V", "was cancelled", "iptal edildiğini"]]}
+{"id": "C2-2:45", "en": "I insist that the understudy replace her tonight.", "p": [["S", "I", "ben"], ["V", "insist", "ısrar ediyorum"], ["BAG", "that", "-mesinde"], ["S", "the understudy", "yedeğin"], ["V", "replace", "yerine geçmesinde"], ["O", "her", "onun"], ["T", "tonight", "bu akşam"]]}
+{"id": "C2-2:46", "en": "The lighting technician must have pressed the wrong button.", "p": [["S", "The lighting technician", "ışık teknisyeni"], ["V", "must have pressed", "basmış olmalı"], ["O", "the wrong button", "yanlış düğmeye"]]}
+{"id": "C2-2:47", "en": "You could have saved me a seat.", "p": [["S", "You", "sen"], ["V", "could have saved", "ayırabilirdin"], ["O", "me", "bana"], ["O", "a seat", "bir yer"]]}
+{"id": "C2-2:48", "en": "I'd rather he directed the sequel.", "p": [["KALIP", "I'd rather", "tercih ederim"], ["S", "he", "onun"], ["V", "directed", "yönetmesini"], ["O", "the sequel", "devam filmini"]]}
+{"id": "C2-2:49", "en": "They can't have completed the filming already.", "p": [["S", "They", "onlar"], ["V", "can't have completed", "tamamlamış olamazlar"], ["O", "the filming", "çekimleri"], ["T", "already", "şimdiden"]]}
+{"id": "C2-2:50", "en": "It's high time the producers paid the extras.", "p": [["KALIP", "It's high time", "vakti çoktan geldi"], ["S", "the producers", "yapımcıların"], ["V", "paid", "ödeme yapmasının"], ["O", "the extras", "figüranlara"]]}
+{"id": "C2-2:51", "en": "Her performance must have moved everyone.", "p": [["S", "Her performance", "onun performansı"], ["V", "must have moved", "duygulandırmış olmalı"], ["O", "everyone", "herkesi"]]}
+{"id": "C2-2:52", "en": "The duel can't have been improvised.", "p": [["S", "The duel", "düello sahnesi"], ["V", "can't have been improvised", "doğaçlama yapılmış olamaz"]]}
+{"id": "C2-2:53", "en": "It was as if time had stopped.", "p": [["S", "It", "—"], ["V", "was", "(ek fiil)"], ["BAG", "as if", "sanki"], ["S", "time", "zaman"], ["V", "had stopped", "durmuştu"]]}
+{"id": "C2-2:54", "en": "You should have seen his face!", "p": [["S", "You", "sen"], ["V", "should have seen", "görmeliydin"], ["O", "his face", "onun yüzünü"]]}
+{"id": "C2-2:55", "en": "The magician must have used a secret trapdoor.", "p": [["S", "The magician", "sihirbaz"], ["V", "must have used", "kullanmış olmalı"], ["O", "a secret trapdoor", "bir gizli kapak"]]}
+{"id": "C2-2:56", "en": "I suggest that the premiere be postponed.", "p": [["S", "I", "ben"], ["V", "suggest", "öneririm"], ["BAG", "that", "-ması"], ["S", "the premiere", "galanın"], ["V", "be postponed", "ertelenmesini"]]}
+{"id": "C2-2:57", "en": "The soundtrack might have been composed by a teenager.", "p": [["S", "The soundtrack", "film müziği"], ["V", "might have been composed", "bestelenmiş olabilir"], ["EK", "by a teenager", "bir genç tarafından"]]}
+{"id": "C2-2:58", "en": "The prompter can't have fallen asleep.", "p": [["S", "The prompter", "suflör"], ["V", "can't have fallen asleep", "uyuyakalmış olamaz"]]}
+{"id": "C2-2:59", "en": "I'd rather you whispered backstage.", "p": [["KALIP", "I'd rather", "tercih ederim"], ["S", "you", "sizin"], ["V", "whispered", "fısıldamanızı"], ["P", "backstage", "kuliste"]]}
+{"id": "C2-3:0", "en": "The exam was a piece of cake.", "p": [["S", "The exam", "sınav"], ["V", "was a piece of cake", "çok kolaydı (deyim)"]]}
+{"id": "C2-3:1", "en": "I am going to hit the sack early tonight.", "p": [["S", "I", "ben"], ["V", "am going to hit the sack", "yatacağım (deyim)"], ["T", "early tonight", "bu gece erkenden"]]}
+{"id": "C2-3:2", "en": "I am feeling a bit under the weather.", "p": [["S", "I", "ben"], ["V", "am feeling a bit under the weather", "kendimi biraz rahatsız hissediyorum (deyim)"]]}
+{"id": "C2-3:3", "en": "She broke the ice at the meeting.", "p": [["S", "She", "o"], ["V", "broke the ice", "buzları kırdı (deyim)"], ["P", "at the meeting", "toplantıda"]]}
+{"id": "C2-3:4", "en": "We need to make an important decision.", "p": [["S", "We", "bizim"], ["V", "need to make", "vermemiz gerekiyor"], ["O", "an important decision", "bir önemli karar"]]}
+{"id": "C2-3:5", "en": "He let the cat out of the bag.", "p": [["S", "He", "o"], ["V", "let the cat out of the bag", "sırrı ağzından kaçırdı (deyim)"]]}
+{"id": "C2-3:6", "en": "This phone cost an arm and a leg.", "p": [["S", "This phone", "bu telefon"], ["V", "cost an arm and a leg", "çok pahalıya mal oldu (deyim)"]]}
+{"id": "C2-3:7", "en": "I will do my best to help her.", "p": [["S", "I", "ben"], ["V", "will do my best", "elimden geleni yapacağım"], ["EK", "to help her", "ona yardım etmek için"]]}
+{"id": "C2-3:8", "en": "Please pay attention to the lesson.", "p": [["KALIP", "Please", "lütfen"], ["V", "pay attention", "dikkat edin"], ["EK", "to the lesson", "derse"]]}
+{"id": "C2-3:9", "en": "I like my coffee strong.", "p": [["S", "I", "ben"], ["V", "like", "severim"], ["O", "my coffee", "kahvemi"], ["EK", "strong", "sert"]]}
+{"id": "C2-3:10", "en": "There was heavy rain last night.", "p": [["V", "There was", "yağdı"], ["S", "heavy rain", "şiddetli yağmur"], ["T", "last night", "dün gece"]]}
+{"id": "C2-3:11", "en": "You hit the nail on the head.", "p": [["S", "You", "sen"], ["V", "hit the nail on the head", "tam üstüne bastın (deyim)"]]}
+{"id": "C2-3:12", "en": "I finally bit the bullet and saw a doctor.", "p": [["S", "I", "ben"], ["T", "finally", "sonunda"], ["V", "bit the bullet", "gözümü kararttım (deyim)"], ["BAG", "and", "ve"], ["V", "saw", "gittim"], ["O", "a doctor", "doktora"]]}
+{"id": "C2-3:13", "en": "She always keeps her promises.", "p": [["S", "She", "o"], ["T", "always", "hep"], ["V", "keeps", "tutar"], ["O", "her promises", "sözünü"]]}
+{"id": "C2-3:14", "en": "I burned the midnight oil before the exam.", "p": [["S", "I", "ben"], ["V", "burned the midnight oil", "sabaha kadar ders çalıştım (deyim)"], ["T", "before the exam", "sınavdan önce"]]}
+{"id": "C2-3:15", "en": "My brother and I are in the same boat.", "p": [["S", "My brother and I", "erkek kardeşim ve ben"], ["V", "are in the same boat", "aynı durumdayız (deyim)"]]}
+{"id": "C2-3:16", "en": "Don't jump to conclusions.", "p": [["V", "Don't jump to conclusions", "aceleyle hüküm verme (deyim)"]]}
+{"id": "C2-3:17", "en": "He made a terrible mistake.", "p": [["S", "He", "o"], ["V", "made", "yaptı"], ["O", "a terrible mistake", "bir korkunç hata"]]}
+{"id": "C2-3:18", "en": "I do the housework on Saturdays.", "p": [["S", "I", "ben"], ["V", "do", "yaparım"], ["O", "the housework", "ev işlerini"], ["T", "on Saturdays", "cumartesileri"]]}
+{"id": "C2-3:19", "en": "Let's take a break.", "p": [["KALIP", "Let's", "haydi"], ["V", "take", "verelim"], ["O", "a break", "bir mola"]]}
+{"id": "C2-3:20", "en": "She is the apple of her father's eye.", "p": [["S", "She", "o"], ["V", "is the apple of her father's eye", "babasının gözbebeği (deyim)"]]}
+{"id": "C2-3:21", "en": "I was over the moon when I heard the news.", "p": [["S", "I", "ben"], ["V", "was over the moon", "havalara uçtum (deyim)"], ["BAG", "when", "-ince"], ["S", "I", "ben"], ["V", "heard", "duyunca"], ["O", "the news", "haberi"]]}
+{"id": "C2-3:22", "en": "I had butterflies in my stomach before the interview.", "p": [["S", "I", "benim"], ["V", "had butterflies in my stomach", "heyecandan midem kasılıyordu (deyim)"], ["T", "before the interview", "mülakattan önce"]]}
+{"id": "C2-3:23", "en": "Can you take a photo of us?", "p": [["SORU", "Can", "(soru)"], ["S", "you", "sen"], ["V", "take", "çeker misin"], ["O", "a photo", "bir fotoğrafımızı"], ["EK", "of us", "bizim"]]}
+{"id": "C2-3:24", "en": "Every cloud has a silver lining.", "p": [["S", "Every cloud", "her işte"], ["V", "has a silver lining", "bir hayır vardır (deyim)"]]}
+{"id": "C2-3:25", "en": "It breaks my heart to see him like this.", "p": [["S", "It", "—"], ["V", "breaks", "kırıyor"], ["O", "my heart", "kalbimi"], ["S", "to see him like this", "onu böyle görmek"]]}
+{"id": "C2-3:26", "en": "I didn't sleep a wink last night.", "p": [["S", "I", "ben"], ["V", "didn't sleep a wink", "gözümü kırpmadım (deyim)"], ["T", "last night", "dün gece"]]}
+{"id": "C2-3:27", "en": "Children make friends easily.", "p": [["S", "Children", "çocuklar"], ["V", "make", "edinir"], ["O", "friends", "arkadaş"], ["NASIL", "easily", "kolayca"]]}
+{"id": "C2-3:28", "en": "His name is on the tip of my tongue.", "p": [["S", "His name", "onun adı"], ["V", "is on the tip of my tongue", "dilimin ucunda (deyim)"]]}
+{"id": "C2-3:29", "en": "It is raining cats and dogs.", "p": [["S", "It", "yağmur"], ["V", "is raining cats and dogs", "bardaktan boşanırcasına yağıyor (deyim)"]]}
+{"id": "C2-3:30", "en": "My boss is in a bad mood today.", "p": [["S", "My boss", "patronum"], ["V", "is in a bad mood", "keyifsiz"], ["T", "today", "bugün"]]}
+{"id": "C2-3:31", "en": "Could you do me a favour?", "p": [["SORU", "Could", "(soru)"], ["S", "you", "sen"], ["V", "do", "yapar mısın"], ["O", "me", "bana"], ["O", "a favour", "bir iyilik"]]}
+{"id": "C2-3:32", "en": "I have changed my mind about this.", "p": [["S", "I", "ben"], ["V", "have changed", "değiştirdim"], ["O", "my mind", "fikrimi"], ["EK", "about this", "bu konuda"]]}
+{"id": "C2-3:33", "en": "He always makes a mountain out of a molehill.", "p": [["S", "He", "o"], ["T", "always", "hep"], ["V", "makes a mountain out of a molehill", "pireyi deve yapar (deyim)"]]}
+{"id": "C2-3:34", "en": "Let's call it a day.", "p": [["KALIP", "Let's", "haydi"], ["V", "call it a day", "bugünlük bu kadar yeter (deyim)"]]}
+{"id": "C2-3:35", "en": "She has a heart of gold.", "p": [["S", "She", "onun"], ["V", "has", "var"], ["O", "a heart of gold", "altın gibi bir kalbi"]]}
+{"id": "C2-3:36", "en": "Prices are rising sharply.", "p": [["S", "Prices", "fiyatlar"], ["V", "are rising", "yükseliyor"], ["NASIL", "sharply", "sert"]]}
+{"id": "C2-3:37", "en": "He makes a lot of money.", "p": [["S", "He", "o"], ["V", "makes", "kazanıyor"], ["O", "a lot of money", "çok para"]]}
+{"id": "C2-3:38", "en": "A little bird told me.", "p": [["S", "A little bird", "(deyim: birisi)"], ["V", "told", "çalındı"], ["O", "me", "kulağıma"]]}
+{"id": "C2-3:39", "en": "There was heavy traffic on the bridge.", "p": [["V", "There was", "vardı"], ["S", "heavy traffic", "yoğun trafik"], ["P", "on the bridge", "köprüde"]]}
+{"id": "C2-3:40", "en": "He paid me a nice compliment.", "p": [["S", "He", "o"], ["V", "paid", "etti"], ["O", "me", "bana"], ["O", "a nice compliment", "bir güzel iltifat"]]}
+{"id": "C2-3:41", "en": "They are like two peas in a pod.", "p": [["S", "They", "ikisi"], ["V", "are like two peas in a pod", "bir elmanın iki yarısı gibi (deyim)"]]}
+{"id": "C2-3:42", "en": "I took her advice.", "p": [["S", "I", "ben"], ["V", "took", "uydum"], ["O", "her advice", "onun tavsiyesine"]]}
+{"id": "C2-3:43", "en": "The children turned the house upside down.", "p": [["S", "The children", "çocuklar"], ["V", "turned", "(turn … upside down)"], ["O", "the house", "evi"], ["V", "upside down", "altüst etti"]]}
+{"id": "C2-3:44", "en": "We see eye to eye on most things.", "p": [["S", "We", "biz"], ["V", "see eye to eye", "aynı fikirdeyiz (deyim)"], ["EK", "on most things", "çoğu konuda"]]}
+{"id": "C2-3:45", "en": "I highly recommend this book.", "p": [["S", "I", "ben"], ["NASIL", "highly", "kesinlikle"], ["V", "recommend", "tavsiye ederim"], ["O", "this book", "bu kitabı"]]}
+{"id": "C2-3:46", "en": "That ship has sailed.", "p": [["S", "That ship", "(deyim)"], ["V", "has sailed", "atı alan Üsküdar'ı geçti"]]}
+{"id": "C2-3:47", "en": "I lost my temper with him yesterday.", "p": [["S", "I", "ben"], ["V", "lost my temper", "sinirlenip kontrolümü kaybettim (deyim)"], ["EK", "with him", "ona"], ["T", "yesterday", "dün"]]}
+{"id": "C2-3:48", "en": "I was scared to death.", "p": [["S", "I", "ben"], ["V", "was scared to death", "ödüm koptu (deyim)"]]}
+{"id": "C2-3:49", "en": "She passed the test by the skin of her teeth.", "p": [["S", "She", "o"], ["V", "passed", "geçti"], ["O", "the test", "sınavı"], ["KALIP", "by the skin of her teeth", "kıl payı (deyim)"]]}
+{"id": "C2-3:50", "en": "I couldn't believe my ears.", "p": [["S", "I", "ben"], ["V", "couldn't believe", "inanamadım"], ["O", "my ears", "kulaklarıma"]]}
+{"id": "C2-3:51", "en": "My aunt runs a small business.", "p": [["S", "My aunt", "teyzem"], ["V", "runs", "yönetiyor"], ["O", "a small business", "bir küçük işletme"]]}
+{"id": "C2-3:52", "en": "I killed two birds with one stone.", "p": [["S", "I", "ben"], ["V", "killed two birds with one stone", "bir taşla iki kuş vurdum (deyim)"]]}
+{"id": "C2-3:53", "en": "I caught a bad cold last week.", "p": [["S", "I", "ben"], ["V", "caught", "yakalandım"], ["O", "a bad cold", "bir kötü soğuk algınlığına"], ["T", "last week", "geçen hafta"]]}
+{"id": "C2-3:54", "en": "We need to clear the air.", "p": [["S", "We", "bizim"], ["V", "need to clear the air", "aramızdaki gerginliği gidermemiz lazım (deyim)"]]}
+{"id": "C2-3:55", "en": "This shortcut will save us a lot of time.", "p": [["S", "This shortcut", "bu kestirme yol"], ["V", "will save", "kazandıracak"], ["O", "us", "bize"], ["O", "a lot of time", "çok zaman"]]}
+{"id": "C2-3:56", "en": "He always leaves everything until the last minute.", "p": [["S", "He", "o"], ["T", "always", "hep"], ["V", "leaves", "bırakır"], ["O", "everything", "her şeyi"], ["T", "until the last minute", "son dakikaya"]]}
+{"id": "C2-3:57", "en": "I didn't have breakfast this morning.", "p": [["S", "I", "ben"], ["V", "didn't have", "etmedim"], ["O", "breakfast", "kahvaltı"], ["T", "this morning", "bu sabah"]]}
+{"id": "C2-3:58", "en": "Rome wasn't built in a day.", "p": [["S", "Rome", "Roma"], ["V", "wasn't built", "kurulmadı"], ["T", "in a day", "bir günde"]]}
+{"id": "C2-4:0", "en": "The leaders agreed to sign the deal.", "p": [["S", "The leaders", "liderler"], ["V", "agreed", "kabul etti"], ["O", "to sign the deal", "anlaşmayı imzalamayı"]]}
+{"id": "C2-4:1", "en": "The talks fell through at the last minute.", "p": [["S", "The talks", "görüşmeler"], ["V", "fell through", "suya düştü"], ["T", "at the last minute", "son dakikada"]]}
+{"id": "C2-4:2", "en": "The delegation will set off tomorrow morning.", "p": [["S", "The delegation", "heyet"], ["V", "will set off", "yola çıkacak"], ["T", "tomorrow morning", "yarın sabah"]]}
+{"id": "C2-4:3", "en": "The minister is thinking of resigning.", "p": [["S", "The minister", "bakan"], ["V", "is thinking", "düşünüyor"], ["O", "of resigning", "istifa etmeyi"]]}
+{"id": "C2-4:4", "en": "We must come up with a solution.", "p": [["S", "We", "biz"], ["V", "must come up with", "üretmeliyiz"], ["O", "a solution", "bir çözüm"]]}
+{"id": "C2-4:5", "en": "The envoy politely turned down the offer.", "p": [["S", "The envoy", "elçi"], ["NASIL", "politely", "kibarca"], ["V", "turned down", "geri çevirdi"], ["O", "the offer", "teklifi"]]}
+{"id": "C2-4:6", "en": "We will never give up.", "p": [["S", "We", "biz"], ["V", "will never give up", "asla pes etmeyeceğiz"]]}
+{"id": "C2-4:7", "en": "The president is determined to settle the dispute.", "p": [["S", "The president", "başkan"], ["V", "is determined", "kararlı"], ["O", "to settle the dispute", "anlaşmazlığı çözmeye"]]}
+{"id": "C2-4:8", "en": "I enjoy travelling to new countries.", "p": [["S", "I", "ben"], ["V", "enjoy", "keyif alırım"], ["O", "travelling to new countries", "yeni ülkelere seyahat etmekten"]]}
+{"id": "C2-4:9", "en": "Both sides agreed on a ceasefire.", "p": [["S", "Both sides", "iki taraf"], ["V", "agreed", "uzlaştı"], ["EK", "on a ceasefire", "ateşkes konusunda"]]}
+{"id": "C2-4:10", "en": "I don't agree with her ideas.", "p": [["S", "I", "ben"], ["V", "don't agree", "katılmıyorum"], ["EK", "with her ideas", "onun fikirlerine"]]}
+{"id": "C2-4:11", "en": "This decision depends on your courage.", "p": [["S", "This decision", "bu karar"], ["V", "depends", "bağlı"], ["EK", "on your courage", "senin cesaretine"]]}
+{"id": "C2-4:12", "en": "You should stop worrying about small details.", "p": [["S", "You", "sen"], ["V", "should stop", "bırakmalısın"], ["O", "worrying about small details", "küçük ayrıntılar için endişelenmeyi"]]}
+{"id": "C2-4:13", "en": "I look forward to seeing you again.", "p": [["S", "I", "ben"], ["V", "look forward", "dört gözle bekliyorum"], ["EK", "to seeing you again", "seni tekrar görmeyi"]]}
+{"id": "C2-4:14", "en": "The country went through a difficult period.", "p": [["S", "The country", "ülke"], ["V", "went through", "geçti"], ["O", "a difficult period", "bir zor dönemden"]]}
+{"id": "C2-4:15", "en": "She referred to climate change in her speech.", "p": [["S", "She", "o"], ["V", "referred", "değindi"], ["EK", "to climate change", "iklim değişikliğine"], ["P", "in her speech", "konuşmasında"]]}
+{"id": "C2-4:16", "en": "They put off the meeting until next week.", "p": [["S", "They", "onlar"], ["V", "put off", "ertelediler"], ["O", "the meeting", "toplantıyı"], ["T", "until next week", "gelecek haftaya"]]}
+{"id": "C2-4:17", "en": "We decided to go ahead with the plan.", "p": [["S", "We", "biz"], ["V", "decided", "karar verdik"], ["O", "to go ahead with the plan", "planla devam etmeye"]]}
+{"id": "C2-4:18", "en": "Don't try to get out of your duties.", "p": [["V", "Don't try", "çalışma"], ["O", "to get out of your duties", "görevlerinden kaçmaya"]]}
+{"id": "C2-4:19", "en": "He avoided answering the journalists' questions.", "p": [["S", "He", "o"], ["V", "avoided", "kaçındı"], ["O", "answering the journalists' questions", "gazetecilerin sorularını yanıtlamaktan"]]}
+{"id": "C2-4:20", "en": "The management finally gave in to our demands.", "p": [["S", "The management", "yönetim"], ["T", "finally", "sonunda"], ["V", "gave in", "boyun eğdi"], ["EK", "to our demands", "taleplerimize"]]}

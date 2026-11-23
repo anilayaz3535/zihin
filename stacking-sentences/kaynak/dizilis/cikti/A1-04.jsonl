@@ -1,0 +1,68 @@
+{"id": "A1-5:52", "en": "Mert is not interested in tennis.", "p": [["S", "Mert", "Mert"], ["V", "is not interested", "ilgilenmiyor"], ["EK", "in tennis", "tenisle"]]}
+{"id": "A1-5:53", "en": "History lessons are boring.", "p": [["S", "History lessons", "tarih dersleri"], ["V", "are boring", "sıkıcı"]]}
+{"id": "A1-5:54", "en": "Everybody loves this club.", "p": [["S", "Everybody", "herkes"], ["V", "loves", "sever"], ["O", "this club", "bu kulübü"]]}
+{"id": "A1-5:55", "en": "Swimming at night is dangerous.", "p": [["S", "Swimming", "yüzmek"], ["T", "at night", "gece"], ["V", "is dangerous", "tehlikelidir"]]}
+{"id": "A1-5:56", "en": "Let's exercise together in the park.", "p": [["V", "Let's exercise", "egzersiz yapalım"], ["NASIL", "together", "birlikte"], ["P", "in the park", "parkta"]]}
+{"id": "A1-5:57", "en": "There is a special film on television tonight.", "p": [["V", "There is", "var"], ["S", "a special film", "bir özel film"], ["P", "on television", "televizyonda"], ["T", "tonight", "bu gece"]]}
+{"id": "A1-5:58", "en": "She enjoys taking photographs.", "p": [["S", "She", "o"], ["V", "enjoys", "hoşlanır"], ["O", "taking photographs", "fotoğraf çekmekten"]]}
+{"id": "A1-5:59", "en": "This club is for everybody.", "p": [["S", "This club", "bu kulüp"], ["V", "is", "(ek fiil)"], ["EK", "for everybody", "herkes için"]]}
+{"id": "A1-6:0", "en": "I can spell my name.", "p": [["S", "I", "ben"], ["V", "can spell", "heceleyebilirim"], ["O", "my name", "adımı"]]}
+{"id": "A1-6:1", "en": "We have to practise every day.", "p": [["S", "We", "biz"], ["V", "have to practise", "pratik yapmak zorundayız"], ["T", "every day", "her gün"]]}
+{"id": "A1-6:2", "en": "This dictionary is very useful.", "p": [["S", "This dictionary", "bu sözlük"], ["V", "is very useful", "çok faydalı"]]}
+{"id": "A1-6:3", "en": "What is the meaning of this word?", "p": [["SORU", "What", "ne"], ["V", "is", "(ek fiil)"], ["S", "the meaning of this word", "bu kelimenin anlamı"]]}
+{"id": "A1-6:4", "en": "Please add your name to the list.", "p": [["KALIP", "Please", "lütfen"], ["V", "add", "ekle"], ["O", "your name", "adını"], ["P", "to the list", "listeye"]]}
+{"id": "A1-6:5", "en": "Write your address on the form.", "p": [["V", "Write", "yaz"], ["O", "your address", "adresini"], ["P", "on the form", "forma"]]}
+{"id": "A1-6:6", "en": "The beginning of the story is quite funny.", "p": [["S", "The beginning of the story", "hikâyenin başlangıcı"], ["V", "is quite funny", "oldukça komik"]]}
+{"id": "A1-6:7", "en": "I cannot find my pencil.", "p": [["S", "I", "ben"], ["V", "cannot find", "bulamıyorum"], ["O", "my pencil", "kurşun kalemimi"]]}
+{"id": "A1-6:8", "en": "Our class starts at nine.", "p": [["S", "Our class", "dersimiz"], ["V", "starts", "başlıyor"], ["T", "at nine", "saat dokuzda"]]}
+{"id": "A1-6:9", "en": "My sister goes to college.", "p": [["S", "My sister", "kız kardeşim"], ["V", "goes", "gidiyor"], ["P", "to college", "yüksekokula"]]}
+{"id": "A1-6:10", "en": "Ali is a common name in Turkey.", "p": [["S", "Ali", "Ali"], ["V", "is a common name", "bir yaygın isim"], ["P", "in Turkey", "Türkiye'de"]]}
+{"id": "A1-6:11", "en": "Compare the two sentences, please.", "p": [["V", "Compare", "karşılaştır"], ["O", "the two sentences", "iki cümleyi"], ["KALIP", "please", "lütfen"]]}
+{"id": "A1-6:12", "en": "We are having a conversation in English.", "p": [["S", "We", "biz"], ["V", "are having a conversation", "sohbet ediyoruz"], ["EK", "in English", "İngilizce"]]}
+{"id": "A1-6:13", "en": "Is this answer correct?", "p": [["SORU", "Is", "(soru)"], ["S", "this answer", "bu cevap"], ["V", "correct", "doğru mu"]]}
+{"id": "A1-6:14", "en": "The course includes ten lessons.", "p": [["S", "The course", "kurs"], ["V", "includes", "içeriyor"], ["O", "ten lessons", "on ders"]]}
+{"id": "A1-6:15", "en": "The children are creating a poster.", "p": [["S", "The children", "çocuklar"], ["V", "are creating", "oluşturuyor"], ["O", "a poster", "bir afiş"]]}
+{"id": "A1-6:16", "en": "Can you describe your room?", "p": [["SORU", "Can", "(soru)"], ["S", "you", "sen"], ["V", "describe", "tarif edebilir misin"], ["O", "your room", "odanı"]]}
+{"id": "A1-6:17", "en": "Read the description of the picture.", "p": [["V", "Read", "oku"], ["O", "the description of the picture", "resmin açıklamasını"]]}
+{"id": "A1-6:18", "en": "Listen to the dialogue and answer.", "p": [["V", "Listen to", "dinle"], ["O", "the dialogue", "diyaloğu"], ["BAG", "and", "ve"], ["V", "answer", "cevap ver"]]}
+{"id": "A1-6:19", "en": "Plants die without water.", "p": [["S", "Plants", "bitkiler"], ["V", "die", "ölür"], ["EK", "without water", "su olmadan"]]}
+{"id": "A1-6:20", "en": "What is the difference between these words?", "p": [["SORU", "What", "ne"], ["V", "is", "(ek fiil)"], ["S", "the difference", "fark"], ["EK", "between these words", "bu kelimeler arasındaki"]]}
+{"id": "A1-6:21", "en": "Each student has a dictionary.", "p": [["S", "Each student", "her öğrencinin"], ["V", "has", "var"], ["O", "a dictionary", "bir sözlüğü"]]}
+{"id": "A1-6:22", "en": "What else do you need?", "p": [["SORU", "What else", "başka neye"], ["SORU", "do", "(soru)"], ["S", "you", "senin"], ["V", "need", "ihtiyacın var"]]}
+{"id": "A1-6:23", "en": "Can you give me an example?", "p": [["SORU", "Can", "(soru)"], ["S", "you", "sen"], ["V", "give", "verebilir misin"], ["O", "me", "bana"], ["O", "an example", "bir örnek"]]}
+{"id": "A1-6:24", "en": "This is a fact, not an opinion.", "p": [["S", "This", "bu"], ["V", "is a fact", "bir gerçek"], ["EK", "not an opinion", "bir fikir değil"]]}
+{"id": "A1-6:25", "en": "My grandmother is fine today.", "p": [["S", "My grandmother", "büyükannem"], ["V", "is fine", "iyi"], ["T", "today", "bugün"]]}
+{"id": "A1-6:26", "en": "Please follow the arrows.", "p": [["KALIP", "Please", "lütfen"], ["V", "follow", "takip edin"], ["O", "the arrows", "okları"]]}
+{"id": "A1-6:27", "en": "Guess the word in the picture.", "p": [["V", "Guess", "tahmin et"], ["O", "the word", "kelimeyi"], ["P", "in the picture", "resimdeki"]]}
+{"id": "A1-6:28", "en": "However, this problem is not easy.", "p": [["BAG", "However", "ancak"], ["S", "this problem", "bu problem"], ["V", "is not easy", "kolay değil"]]}
+{"id": "A1-6:29", "en": "Imagine a big blue house.", "p": [["V", "Imagine", "hayal et"], ["O", "a big blue house", "bir büyük mavi ev"]]}
+{"id": "A1-6:30", "en": "Where can I find information?", "p": [["SORU", "Where", "nerede"], ["SORU", "can", "(soru)"], ["S", "I", "ben"], ["V", "find", "bulabilirim"], ["O", "information", "bilgi"]]}
+{"id": "A1-6:31", "en": "I want to introduce my friend Elif.", "p": [["S", "I", "ben"], ["V", "want to introduce", "tanıştırmak istiyorum"], ["O", "my friend Elif", "arkadaşım Elif'i"]]}
+{"id": "A1-6:32", "en": "The main idea is in the first paragraph.", "p": [["S", "The main idea", "ana fikir"], ["V", "is", "(ek fiil)"], ["P", "in the first paragraph", "ilk paragrafta"]]}
+{"id": "A1-6:33", "en": "Honey is a natural food.", "p": [["S", "Honey", "bal"], ["V", "is a natural food", "bir doğal yiyecektir"]]}
+{"id": "A1-6:34", "en": "Make this sentence negative.", "p": [["V", "Make", "yap"], ["O", "this sentence", "bu cümleyi"], ["NASIL", "negative", "olumsuz"]]}
+{"id": "A1-6:35", "en": "Write a short note to your mother.", "p": [["V", "Write", "yaz"], ["O", "a short note", "bir kısa not"], ["EK", "to your mother", "annene"]]}
+{"id": "A1-6:36", "en": "Do you want tea or coffee?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sen"], ["V", "want", "istersin"], ["O", "tea or coffee", "çay mı kahve mi"]]}
+{"id": "A1-6:37", "en": "Read the first part of the text.", "p": [["V", "Read", "oku"], ["O", "the first part of the text", "metnin ilk bölümünü"]]}
+{"id": "A1-6:38", "en": "You get one point for each answer.", "p": [["S", "You", "sen"], ["V", "get", "alırsın"], ["O", "one point", "bir puan"], ["EK", "for each answer", "her cevap için"]]}
+{"id": "A1-6:39", "en": "Think about the positive things.", "p": [["V", "Think about", "düşün"], ["O", "the positive things", "olumlu şeyleri"]]}
+{"id": "A1-6:40", "en": "Is it possible to change the title?", "p": [["SORU", "Is", "(soru)"], ["S", "it", "—"], ["V", "possible", "mümkün mü"], ["V", "to change", "değiştirmek"], ["O", "the title", "başlığı"]]}
+{"id": "A1-6:41", "en": "We need more practice.", "p": [["S", "We", "biz"], ["V", "need", "ihtiyacımız var"], ["O", "more practice", "daha fazla pratiğe"]]}
+{"id": "A1-6:42", "en": "The teacher is preparing the lesson.", "p": [["S", "The teacher", "öğretmen"], ["V", "is preparing", "hazırlıyor"], ["O", "the lesson", "dersi"]]}
+{"id": "A1-6:43", "en": "This TV programme is for children.", "p": [["S", "This TV programme", "bu TV programı"], ["V", "is", "(ek fiil)"], ["EK", "for children", "çocuklar için"]]}
+{"id": "A1-6:44", "en": "Do you remember my name?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sen"], ["V", "remember", "hatırlıyor musun"], ["O", "my name", "adımı"]]}
+{"id": "A1-6:45", "en": "The test results are on the wall.", "p": [["S", "The test results", "sınav sonuçları"], ["V", "are", "(ek fiil)"], ["P", "on the wall", "duvarda"]]}
+{"id": "A1-6:46", "en": "Turn right at the school.", "p": [["V", "Turn", "dön"], ["NASIL", "right", "sağa"], ["P", "at the school", "okulda"]]}
+{"id": "A1-6:47", "en": "Read section two at home.", "p": [["V", "Read", "oku"], ["O", "section two", "ikinci bölümü"], ["P", "at home", "evde"]]}
+{"id": "A1-6:48", "en": "These two pictures are similar.", "p": [["S", "These two pictures", "bu iki resim"], ["V", "are similar", "birbirine benzer"]]}
+{"id": "A1-6:49", "en": "This is a difficult situation.", "p": [["S", "This", "bu"], ["V", "is a difficult situation", "bir zor durum"]]}
+{"id": "A1-6:50", "en": "Listening is an important skill.", "p": [["S", "Listening", "dinlemek"], ["V", "is an important skill", "bir önemli beceridir"]]}
+{"id": "A1-6:51", "en": "There is no space on the page.", "p": [["V", "There is", "yok"], ["S", "no space", "hiç yer"], ["P", "on the page", "sayfada"]]}
+{"id": "A1-6:52", "en": "Your spelling is very good.", "p": [["S", "Your spelling", "imlan"], ["V", "is very good", "çok iyi"]]}
+{"id": "A1-6:53", "en": "Is this statement true?", "p": [["SORU", "Is", "(soru)"], ["S", "this statement", "bu ifade"], ["V", "true", "doğru mu"]]}
+{"id": "A1-6:54", "en": "What is the title of the book?", "p": [["SORU", "What", "ne"], ["V", "is", "(ek fiil)"], ["S", "the title of the book", "kitabın adı"]]}
+{"id": "A1-6:55", "en": "What type of music do you like?", "p": [["SORU", "What type of music", "ne tür müzik"], ["SORU", "do", "(soru)"], ["S", "you", "sen"], ["V", "like", "seversin"]]}
+{"id": "A1-6:56", "en": "My brother is at university.", "p": [["S", "My brother", "abim"], ["V", "is", "(ek fiil)"], ["P", "at university", "üniversitede"]]}
+{"id": "A1-6:57", "en": "Learn this phrase for the test.", "p": [["V", "Learn", "öğren"], ["O", "this phrase", "bu kalıbı"], ["EK", "for the test", "sınav için"]]}
+{"id": "A1-6:58", "en": "Mert has to correct his mistakes.", "p": [["S", "Mert", "Mert"], ["V", "has to correct", "düzeltmek zorunda"], ["O", "his mistakes", "hatalarını"]]}
+{"id": "A1-6:59", "en": "How do you spell your surname?", "p": [["SORU", "How", "nasıl"], ["SORU", "do", "(soru)"], ["S", "you", "sen"], ["V", "spell", "hecelersin"], ["O", "your surname", "soyadını"]]}

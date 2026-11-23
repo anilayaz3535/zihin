@@ -1,0 +1,144 @@
+{"id": "TRIP-1:0", "en": "Can I see your passport, please?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "see", "görebilir miyim"], ["O", "your passport", "pasaportunuzu"], ["KALIP", "please", "lütfen"]]}
+{"id": "TRIP-1:1", "en": "Here is my boarding pass.", "p": [["KALIP", "Here is", "işte"], ["O", "my boarding pass", "biniş kartım"]]}
+{"id": "TRIP-1:2", "en": "How many bags are you checking in?", "p": [["SORU", "How many bags", "kaç bavul"], ["V", "are", "(soru)"], ["S", "you", "siz"], ["V", "checking in", "teslim ediyorsunuz"]]}
+{"id": "TRIP-1:3", "en": "My luggage is too heavy.", "p": [["S", "My luggage", "bagajım"], ["V", "is too heavy", "çok ağır"]]}
+{"id": "TRIP-1:4", "en": "Our flight is delayed by two hours.", "p": [["S", "Our flight", "uçuşumuz"], ["V", "is delayed", "rötarlı"], ["T", "by two hours", "iki saat"]]}
+{"id": "TRIP-1:5", "en": "Which gate does the flight leave from?", "p": [["SORU", "Which gate", "hangi kapıdan"], ["SORU", "does", "(soru)"], ["S", "the flight", "uçuş"], ["V", "leave from", "kalkıyor"]]}
+{"id": "TRIP-1:6", "en": "Boarding starts at ten fifteen.", "p": [["S", "Boarding", "biniş"], ["V", "starts", "başlıyor"], ["T", "at ten fifteen", "on onbeşte"]]}
+{"id": "TRIP-1:7", "en": "I would like an aisle seat, please.", "p": [["S", "I", "ben"], ["V", "would like", "istiyorum"], ["O", "an aisle seat", "koridor tarafında bir koltuk"], ["KALIP", "please", "lütfen"]]}
+{"id": "TRIP-1:8", "en": "Where is the departure board?", "p": [["SORU", "Where", "nerede"], ["V", "is", "(ek fiil)"], ["S", "the departure board", "kalkış ekranı"]]}
+{"id": "TRIP-1:9", "en": "I have nothing to declare at customs.", "p": [["S", "I", "benim"], ["V", "have nothing", "bir şeyim yok"], ["EK", "to declare", "beyan edecek"], ["P", "at customs", "gümrükte"]]}
+{"id": "TRIP-1:10", "en": "My suitcase did not arrive.", "p": [["S", "My suitcase", "bavulum"], ["V", "did not arrive", "gelmedi"]]}
+{"id": "TRIP-1:11", "en": "Is this the line for passport control?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "the line", "sırası mı"], ["EK", "for passport control", "pasaport kontrolü"]]}
+{"id": "TRIP-1:12", "en": "How long does the flight take?", "p": [["SORU", "How long", "ne kadar"], ["SORU", "does", "(soru)"], ["S", "the flight", "uçuş"], ["V", "take", "sürüyor"]]}
+{"id": "TRIP-1:13", "en": "Please put your laptop in a separate box.", "p": [["KALIP", "Please", "lütfen"], ["V", "put", "koyun"], ["O", "your laptop", "dizüstü bilgisayarınızı"], ["P", "in a separate box", "bir ayrı kutuya"]]}
+{"id": "TRIP-1:14", "en": "The departure time has changed.", "p": [["S", "The departure time", "kalkış saati"], ["V", "has changed", "değişti"]]}
+{"id": "TRIP-1:15", "en": "We have to go through customs first.", "p": [["S", "We", "bizim"], ["V", "have to go through", "geçmemiz gerekiyor"], ["O", "customs", "gümrükten"], ["T", "first", "önce"]]}
+{"id": "TRIP-1:16", "en": "Excuse me, is this seat taken?", "p": [["KALIP", "Excuse me", "affedersiniz"], ["SORU", "is", "(soru)"], ["S", "this seat", "bu koltuk"], ["V", "taken", "dolu mu"]]}
+{"id": "TRIP-1:17", "en": "Could you help me with my luggage?", "p": [["SORU", "Could", "(soru)"], ["S", "you", "siz"], ["V", "help", "yardım edebilir misiniz"], ["O", "me", "bana"], ["EK", "with my luggage", "bagajımda"]]}
+{"id": "TRIP-1:18", "en": "The gate has changed, so we need to hurry.", "p": [["S", "The gate", "kapı"], ["V", "has changed", "değişti"], ["BAG", "so", "bu yüzden"], ["S", "we", "bizim"], ["V", "need to hurry", "acele etmemiz gerekiyor"]]}
+{"id": "TRIP-1:19", "en": "Your flight is now boarding.", "p": [["S", "Your flight", "uçuşunuz"], ["V", "is now boarding", "şu anda yolcu alıyor"]]}
+{"id": "TRIP-1:20", "en": "I lost my passport at the airport.", "p": [["S", "I", "ben"], ["V", "lost", "kaybettim"], ["O", "my passport", "pasaportumu"], ["P", "at the airport", "havalimanında"]]}
+{"id": "TRIP-1:21", "en": "How much is the fee for extra luggage?", "p": [["SORU", "How much", "ne kadar"], ["V", "is", "(ek fiil)"], ["S", "the fee", "ücreti"], ["EK", "for extra luggage", "fazla bagaj"]]}
+{"id": "TRIP-1:22", "en": "Because the flight was delayed, I missed my connection.", "p": [["BAG", "Because", "-dığı için"], ["S", "the flight", "uçuş"], ["V", "was delayed", "rötar yaptığı için"], ["S", "I", "ben"], ["V", "missed", "kaçırdım"], ["O", "my connection", "aktarmamı"]]}
+{"id": "TRIP-1:23", "en": "Please fasten your seat belt.", "p": [["KALIP", "Please", "lütfen"], ["V", "fasten", "takın"], ["O", "your seat belt", "emniyet kemerinizi"]]}
+{"id": "TRIP-2:0", "en": "I have a reservation under the name Kaya.", "p": [["S", "I", "benim"], ["V", "have", "var"], ["O", "a reservation", "bir rezervasyonum"], ["EK", "under the name Kaya", "Kaya adına"]]}
+{"id": "TRIP-2:1", "en": "How many nights will you stay?", "p": [["SORU", "How many nights", "kaç gece"], ["SORU", "will", "(soru)"], ["S", "you", "siz"], ["V", "stay", "kalacaksınız"]]}
+{"id": "TRIP-2:2", "en": "Is breakfast included in the price?", "p": [["SORU", "Is", "(soru)"], ["S", "breakfast", "kahvaltı"], ["V", "included", "dahil mi"], ["EK", "in the price", "fiyata"]]}
+{"id": "TRIP-2:3", "en": "Could I have a room with a sea view?", "p": [["SORU", "Could", "(soru)"], ["S", "I", "ben"], ["V", "have", "alabilir miyim"], ["O", "a room", "bir oda"], ["EK", "with a sea view", "deniz manzaralı"]]}
+{"id": "TRIP-2:4", "en": "What time is checkout?", "p": [["SORU", "What time", "saat kaçta"], ["V", "is", "(ek fiil)"], ["S", "checkout", "çıkış"]]}
+{"id": "TRIP-2:5", "en": "The reception is open all night.", "p": [["S", "The reception", "resepsiyon"], ["V", "is open", "açık"], ["T", "all night", "bütün gece"]]}
+{"id": "TRIP-2:6", "en": "Can I get an extra towel, please?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "get", "alabilir miyim"], ["O", "an extra towel", "fazladan bir havlu"], ["KALIP", "please", "lütfen"]]}
+{"id": "TRIP-2:7", "en": "My room key does not work.", "p": [["S", "My room key", "oda anahtarım"], ["V", "does not work", "çalışmıyor"]]}
+{"id": "TRIP-2:8", "en": "The room next to mine is very noisy.", "p": [["S", "The room", "oda"], ["P", "next to mine", "yanımdaki"], ["V", "is very noisy", "çok gürültülü"]]}
+{"id": "TRIP-2:9", "en": "Is there free internet in the rooms?", "p": [["SORU", "Is", "(soru)"], ["V", "there", "var mı"], ["S", "free internet", "ücretsiz internet"], ["P", "in the rooms", "odalarda"]]}
+{"id": "TRIP-2:10", "en": "Could you call a taxi for me?", "p": [["SORU", "Could", "(soru)"], ["S", "you", "siz"], ["V", "call", "çağırabilir misiniz"], ["O", "a taxi", "bir taksi"], ["EK", "for me", "benim için"]]}
+{"id": "TRIP-2:11", "en": "Can I leave my bags here until the evening?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "leave", "bırakabilir miyim"], ["O", "my bags", "çantalarımı"], ["P", "here", "burada"], ["T", "until the evening", "akşama kadar"]]}
+{"id": "TRIP-2:12", "en": "The air conditioning in my room is broken.", "p": [["S", "The air conditioning", "klima"], ["P", "in my room", "odamdaki"], ["V", "is broken", "bozuk"]]}
+{"id": "TRIP-2:13", "en": "We would like to stay one more night.", "p": [["S", "We", "biz"], ["V", "would like to stay", "kalmak istiyoruz"], ["T", "one more night", "bir gece daha"]]}
+{"id": "TRIP-2:14", "en": "I would like to cancel my reservation.", "p": [["S", "I", "ben"], ["V", "would like to cancel", "iptal etmek istiyorum"], ["O", "my reservation", "rezervasyonumu"]]}
+{"id": "TRIP-2:15", "en": "Please ask at reception for a map.", "p": [["KALIP", "Please", "lütfen"], ["V", "ask", "sorun"], ["P", "at reception", "resepsiyona"], ["EK", "for a map", "harita için"]]}
+{"id": "TRIP-2:16", "en": "Parking is not included.", "p": [["S", "Parking", "otopark"], ["V", "is not included", "dahil değil"]]}
+{"id": "TRIP-2:17", "en": "Could you change my room?", "p": [["SORU", "Could", "(soru)"], ["S", "you", "siz"], ["V", "change", "değiştirebilir misiniz"], ["O", "my room", "odamı"]]}
+{"id": "TRIP-2:18", "en": "It is too noisy.", "p": [["S", "It", "—"], ["V", "is too noisy", "çok gürültülü"]]}
+{"id": "TRIP-2:19", "en": "The view from our balcony is amazing.", "p": [["S", "The view", "manzara"], ["P", "from our balcony", "balkonumuzdan"], ["V", "is amazing", "harika"]]}
+{"id": "TRIP-2:20", "en": "Where can I get fresh towels?", "p": [["SORU", "Where", "nereden"], ["SORU", "can", "(soru)"], ["S", "I", "ben"], ["V", "get", "alabilirim"], ["O", "fresh towels", "temiz havluları"]]}
+{"id": "TRIP-2:21", "en": "I left my key in the room.", "p": [["S", "I", "ben"], ["V", "left", "unuttum"], ["O", "my key", "anahtarımı"], ["P", "in the room", "odada"]]}
+{"id": "TRIP-2:22", "en": "How far is the hotel from the city centre?", "p": [["SORU", "How far", "ne kadar uzak"], ["V", "is", "(ek fiil)"], ["S", "the hotel", "otel"], ["EK", "from the city centre", "şehir merkezine"]]}
+{"id": "TRIP-2:23", "en": "We enjoyed our stay very much.", "p": [["S", "We", "biz"], ["V", "enjoyed", "memnun kaldık"], ["O", "our stay", "konaklamamızdan"], ["NASIL", "very much", "çok"]]}
+{"id": "TRIP-3:0", "en": "Excuse me, how do I get to the museum?", "p": [["KALIP", "Excuse me", "affedersiniz"], ["SORU", "how", "nasıl"], ["SORU", "do", "(soru)"], ["S", "I", "ben"], ["V", "get", "giderim"], ["P", "to the museum", "müzeye"]]}
+{"id": "TRIP-3:1", "en": "Go straight and turn left at the corner.", "p": [["V", "Go", "gidin"], ["NASIL", "straight", "düz"], ["BAG", "and", "ve"], ["V", "turn", "dönün"], ["NASIL", "left", "sola"], ["P", "at the corner", "köşeden"]]}
+{"id": "TRIP-3:2", "en": "Is there a pharmacy nearby?", "p": [["SORU", "Is", "(soru)"], ["V", "there", "var mı"], ["S", "a pharmacy", "bir eczane"], ["P", "nearby", "yakınlarda"]]}
+{"id": "TRIP-3:3", "en": "Where can I buy a metro ticket?", "p": [["SORU", "Where", "nereden"], ["SORU", "can", "(soru)"], ["S", "I", "ben"], ["V", "buy", "alabilirim"], ["O", "a metro ticket", "metro biletini"]]}
+{"id": "TRIP-3:4", "en": "Is it far from here?", "p": [["SORU", "Is", "(soru)"], ["S", "it", "—"], ["V", "far", "uzak mı"], ["P", "from here", "buradan"]]}
+{"id": "TRIP-3:5", "en": "A table for two, please.", "p": [["O", "A table for two", "iki kişilik bir masa"], ["KALIP", "please", "lütfen"]]}
+{"id": "TRIP-3:6", "en": "Could we see the menu, please?", "p": [["SORU", "Could", "(soru)"], ["S", "we", "biz"], ["V", "see", "bakabilir miyiz"], ["O", "the menu", "menüye"], ["KALIP", "please", "lütfen"]]}
+{"id": "TRIP-3:7", "en": "What do you recommend?", "p": [["SORU", "What", "ne"], ["SORU", "do", "(soru)"], ["S", "you", "siz"], ["V", "recommend", "önerirsiniz"]]}
+{"id": "TRIP-3:8", "en": "Do you have any vegetarian dishes?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sizin"], ["V", "have", "var mı"], ["O", "any vegetarian dishes", "vejetaryen yemekleriniz"]]}
+{"id": "TRIP-3:9", "en": "I am allergic to nuts.", "p": [["S", "I", "benim"], ["V", "am allergic", "alerjim var"], ["EK", "to nuts", "kuruyemişe"]]}
+{"id": "TRIP-3:10", "en": "Could we have the bill, please?", "p": [["SORU", "Could", "(soru)"], ["S", "we", "biz"], ["V", "have", "alabilir miyiz"], ["O", "the bill", "hesabı"], ["KALIP", "please", "lütfen"]]}
+{"id": "TRIP-3:11", "en": "Can we pay separately?", "p": [["SORU", "Can", "(soru)"], ["S", "we", "biz"], ["V", "pay", "ödeyebilir miyiz"], ["NASIL", "separately", "ayrı ayrı"]]}
+{"id": "TRIP-3:12", "en": "Keep the change.", "p": [["V", "Keep", "kalsın"], ["O", "the change", "üstü"]]}
+{"id": "TRIP-3:13", "en": "The food was delicious, thank you.", "p": [["S", "The food", "yemek"], ["V", "was delicious", "çok lezzetliydi"], ["KALIP", "thank you", "teşekkürler"]]}
+{"id": "TRIP-3:14", "en": "Take the second street on the right.", "p": [["V", "Take", "girin"], ["O", "the second street", "ikinci sokağa"], ["P", "on the right", "sağdaki"]]}
+{"id": "TRIP-3:15", "en": "The bus stop is just around the corner.", "p": [["S", "The bus stop", "otobüs durağı"], ["V", "is", "(ek fiil)"], ["P", "just around the corner", "hemen köşede"]]}
+{"id": "TRIP-3:16", "en": "Could you recommend a good place to eat?", "p": [["SORU", "Could", "(soru)"], ["S", "you", "siz"], ["V", "recommend", "önerebilir misiniz"], ["O", "a good place", "bir iyi yer"], ["EK", "to eat", "yemek için"]]}
+{"id": "TRIP-3:17", "en": "Is this the right way to the station?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "the right way", "doğru yol mu"], ["P", "to the station", "istasyona giden"]]}
+{"id": "TRIP-3:18", "en": "A return ticket to Oxford, please.", "p": [["O", "A return ticket", "gidiş-dönüş bir bilet"], ["P", "to Oxford", "Oxford’a"], ["KALIP", "please", "lütfen"]]}
+{"id": "TRIP-3:19", "en": "I think we are lost.", "p": [["KALIP", "I think", "sanırım"], ["S", "we", "biz"], ["V", "are lost", "kaybolduk"]]}
+{"id": "TRIP-3:20", "en": "Could you show me on the map?", "p": [["SORU", "Could", "(soru)"], ["S", "you", "siz"], ["V", "show", "gösterebilir misiniz"], ["O", "me", "bana"], ["P", "on the map", "haritada"]]}
+{"id": "TRIP-3:21", "en": "Is service included in the bill?", "p": [["SORU", "Is", "(soru)"], ["S", "service", "servis ücreti"], ["V", "included", "dahil mi"], ["EK", "in the bill", "hesaba"]]}
+{"id": "TRIP-3:22", "en": "Are there any good restaurants nearby?", "p": [["SORU", "Are", "(soru)"], ["V", "there", "var mı"], ["S", "any good restaurants", "iyi restoran"], ["P", "nearby", "yakında"]]}
+{"id": "TRIP-3:23", "en": "I would like to book a table for tonight.", "p": [["S", "I", "ben"], ["V", "would like to book", "ayırtmak istiyorum"], ["O", "a table", "bir masa"], ["T", "for tonight", "bu akşam için"]]}
+{"id": "TALK-1:0", "en": "Nice to meet you, I am Deniz.", "p": [["KALIP", "Nice to meet you", "tanıştığımıza memnun oldum"], ["S", "I", "ben"], ["V", "am Deniz", "Deniz"]]}
+{"id": "TALK-1:1", "en": "Where are you from originally?", "p": [["SORU", "Where", "nereli"], ["V", "are", "(soru)"], ["S", "you", "sen"], ["V", "from", "-lisin"], ["NASIL", "originally", "aslen"]]}
+{"id": "TALK-1:2", "en": "My hometown is a small city near the sea.", "p": [["S", "My hometown", "memleketim"], ["V", "is a small city", "küçük bir şehir"], ["EK", "near the sea", "denize yakın"]]}
+{"id": "TALK-1:3", "en": "What do you do for a living?", "p": [["SORU", "What", "ne iş"], ["SORU", "do", "(soru)"], ["S", "you", "sen"], ["V", "do", "yapıyorsun"], ["EK", "for a living", "(geçimini sağlamak için)"]]}
+{"id": "TALK-1:4", "en": "How was your weekend?", "p": [["SORU", "How", "nasıl"], ["V", "was", "geçti"], ["S", "your weekend", "hafta sonun"]]}
+{"id": "TALK-1:5", "en": "It was great, I went hiking with friends.", "p": [["S", "It", "—"], ["V", "was great", "harikaydı"], ["S", "I", "ben"], ["V", "went hiking", "doğa yürüyüşüne gittim"], ["EK", "with friends", "arkadaşlarla"]]}
+{"id": "TALK-1:6", "en": "What do you usually do in your free time?", "p": [["SORU", "What", "ne"], ["SORU", "do", "(soru)"], ["S", "you", "sen"], ["T", "usually", "genelde"], ["V", "do", "yaparsın"], ["T", "in your free time", "boş zamanlarında"]]}
+{"id": "TALK-1:7", "en": "My favourite hobby is photography.", "p": [["S", "My favourite hobby", "en sevdiğim hobi"], ["V", "is photography", "fotoğrafçılık"]]}
+{"id": "TALK-1:8", "en": "Have you been here before?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["V", "been", "bulundun mu"], ["P", "here", "burada"], ["T", "before", "daha önce"]]}
+{"id": "TALK-1:9", "en": "Actually, this is my first time.", "p": [["KALIP", "Actually", "aslında"], ["S", "this", "bu"], ["V", "is my first time", "ilk gelişim"]]}
+{"id": "TALK-1:10", "en": "I live in a quiet neighborhood.", "p": [["S", "I", "ben"], ["V", "live", "yaşıyorum"], ["P", "in a quiet neighborhood", "bir sakin mahallede"]]}
+{"id": "TALK-1:11", "en": "Have you seen any good movies recently?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["V", "seen", "izledin mi"], ["O", "any good movies", "güzel bir film"], ["T", "recently", "son zamanlarda"]]}
+{"id": "TALK-1:12", "en": "The weather is really nice today.", "p": [["S", "The weather", "hava"], ["V", "is really nice", "gerçekten güzel"], ["T", "today", "bugün"]]}
+{"id": "TALK-1:13", "en": "It was nice talking to you.", "p": [["S", "It", "—"], ["V", "was nice", "güzeldi"], ["S", "talking to you", "seninle konuşmak"]]}
+{"id": "TALK-1:14", "en": "How long have you lived here?", "p": [["SORU", "How long", "ne zamandır"], ["V", "have", "(soru)"], ["S", "you", "sen"], ["V", "lived", "yaşıyorsun"], ["P", "here", "burada"]]}
+{"id": "TALK-1:15", "en": "I recently started learning the guitar.", "p": [["S", "I", "ben"], ["T", "recently", "kısa süre önce"], ["V", "started", "başladım"], ["O", "learning the guitar", "gitar öğrenmeye"]]}
+{"id": "TALK-1:16", "en": "Are you free this weekend?", "p": [["SORU", "Are", "(soru)"], ["S", "you", "sen"], ["V", "free", "boş musun"], ["T", "this weekend", "bu hafta sonu"]]}
+{"id": "TALK-1:17", "en": "My neighborhood has a great coffee shop.", "p": [["S", "My neighborhood", "mahallemde"], ["V", "has", "var"], ["O", "a great coffee shop", "bir harika kahveci"]]}
+{"id": "TALK-1:18", "en": "Actually, I am more of a morning person.", "p": [["KALIP", "Actually", "aslında"], ["S", "I", "ben"], ["V", "am more of a morning person", "daha çok sabah insanıyım"]]}
+{"id": "TALK-1:19", "en": "What kind of music do you like?", "p": [["SORU", "What kind of music", "ne tür müzik"], ["SORU", "do", "(soru)"], ["S", "you", "sen"], ["V", "like", "seversin"]]}
+{"id": "TALK-1:20", "en": "I grew up in my hometown and moved here for work.", "p": [["S", "I", "ben"], ["V", "grew up", "büyüdüm"], ["P", "in my hometown", "memleketimde"], ["BAG", "and", "ve"], ["V", "moved", "taşındım"], ["P", "here", "buraya"], ["EK", "for work", "iş için"]]}
+{"id": "TALK-1:21", "en": "That sounds like a lot of fun.", "p": [["S", "That", "bu"], ["V", "sounds", "kulağa geliyor"], ["EK", "like a lot of fun", "çok eğlenceli"]]}
+{"id": "TALK-1:22", "en": "We should get coffee sometime.", "p": [["S", "We", "biz"], ["V", "should get", "içmeliyiz"], ["O", "coffee", "kahve"], ["T", "sometime", "bir ara"]]}
+{"id": "TALK-1:23", "en": "See you soon, have a good day.", "p": [["KALIP", "See you soon", "görüşürüz"], ["V", "have", "(dilek)"], ["O", "a good day", "iyi günler"]]}
+{"id": "TALK-2:0", "en": "Do you have any plans for tonight?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "senin"], ["V", "have", "var mı"], ["O", "any plans", "planın"], ["T", "for tonight", "bu akşam için"]]}
+{"id": "TALK-2:1", "en": "Would you like to join us for dinner?", "p": [["SORU", "Would", "(soru)"], ["S", "you", "sen"], ["V", "like to join", "katılmak ister misin"], ["O", "us", "bize"], ["EK", "for dinner", "akşam yemeğinde"]]}
+{"id": "TALK-2:2", "en": "I would love to, thank you.", "p": [["S", "I", "ben"], ["V", "would love to", "çok isterim"], ["KALIP", "thank you", "teşekkürler"]]}
+{"id": "TALK-2:3", "en": "Sorry, I am busy on Saturday.", "p": [["KALIP", "Sorry", "üzgünüm"], ["S", "I", "ben"], ["V", "am busy", "meşgulüm"], ["T", "on Saturday", "cumartesi"]]}
+{"id": "TALK-2:4", "en": "Maybe we can meet next week instead.", "p": [["KALIP", "Maybe", "belki"], ["S", "we", "biz"], ["V", "can meet", "buluşabiliriz"], ["T", "next week", "gelecek hafta"], ["EK", "instead", "onun yerine"]]}
+{"id": "TALK-2:5", "en": "What time works for you?", "p": [["SORU", "What time", "hangi saat"], ["V", "works", "uygun"], ["EK", "for you", "senin için"]]}
+{"id": "TALK-2:6", "en": "We can meet in front of the cinema.", "p": [["S", "We", "biz"], ["V", "can meet", "buluşabiliriz"], ["P", "in front of the cinema", "sinemanın önünde"]]}
+{"id": "TALK-2:7", "en": "I am running a little late.", "p": [["S", "I", "ben"], ["V", "am running", "gecikiyorum"], ["NASIL", "a little", "biraz"], ["V", "late", "(running late: gecikmek)"]]}
+{"id": "TALK-2:8", "en": "I am sorry, but I have to cancel our plans.", "p": [["KALIP", "I am sorry", "üzgünüm"], ["BAG", "but", "ama"], ["S", "I", "benim"], ["V", "have to cancel", "iptal etmem gerekiyor"], ["O", "our plans", "planlarımızı"]]}
+{"id": "TALK-2:9", "en": "They invited us to their wedding.", "p": [["S", "They", "onlar"], ["V", "invited", "davet ettiler"], ["O", "us", "bizi"], ["EK", "to their wedding", "düğünlerine"]]}
+{"id": "TALK-2:10", "en": "How about going to the beach on Sunday?", "p": [["KALIP", "How about", "ne dersin"], ["O", "going to the beach", "sahile gitmeye"], ["T", "on Sunday", "pazar günü"]]}
+{"id": "TALK-2:11", "en": "That sounds perfect.", "p": [["S", "That", "bu"], ["V", "sounds perfect", "kulağa mükemmel geliyor"]]}
+{"id": "TALK-2:12", "en": "Text me when you arrive.", "p": [["V", "Text", "mesaj at"], ["O", "me", "bana"], ["BAG", "when", "-ınca"], ["S", "you", "sen"], ["V", "arrive", "varınca"]]}
+{"id": "TALK-2:13", "en": "I will be there in ten minutes.", "p": [["S", "I", "ben"], ["V", "will be", "olacağım"], ["P", "there", "orada"], ["T", "in ten minutes", "on dakikaya"]]}
+{"id": "TALK-2:14", "en": "I cannot make it tonight, sorry.", "p": [["S", "I", "ben"], ["V", "cannot make it", "gelemiyorum"], ["T", "tonight", "bu akşam"], ["KALIP", "sorry", "kusura bakma"]]}
+{"id": "TALK-2:15", "en": "Can I bring a friend?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "bring", "getirebilir miyim"], ["O", "a friend", "bir arkadaşımı"]]}
+{"id": "TALK-2:16", "en": "We are planning a trip to the mountains.", "p": [["S", "We", "biz"], ["V", "are planning", "planlıyoruz"], ["O", "a trip", "bir gezi"], ["P", "to the mountains", "dağlara"]]}
+{"id": "TALK-2:17", "en": "I am too busy with work this month.", "p": [["S", "I", "ben"], ["V", "am too busy", "çok yoğunum"], ["EK", "with work", "işten dolayı"], ["T", "this month", "bu ay"]]}
+{"id": "TALK-2:18", "en": "Thanks for inviting me, I had a great time.", "p": [["KALIP", "Thanks", "teşekkürler"], ["EK", "for inviting me", "davet ettiğin için"], ["S", "I", "ben"], ["V", "had", "geçirdim"], ["O", "a great time", "çok iyi vakit"]]}
+{"id": "TALK-2:19", "en": "Maybe another time.", "p": [["KALIP", "Maybe", "belki"], ["T", "another time", "başka zaman"]]}
+{"id": "TALK-2:20", "en": "Do you want to join our running group?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sen"], ["V", "want to join", "katılmak ister misin"], ["O", "our running group", "koşu grubumuza"]]}
+{"id": "TALK-2:21", "en": "The concert was cancelled because of the rain.", "p": [["S", "The concert", "konser"], ["V", "was cancelled", "iptal edildi"], ["EK", "because of the rain", "yağmur yüzünden"]]}
+{"id": "TALK-2:22", "en": "Sorry I am late, the traffic was terrible.", "p": [["KALIP", "Sorry", "özür dilerim"], ["S", "I", "ben"], ["V", "am late", "geç kaldığım için"], ["S", "the traffic", "trafik"], ["V", "was terrible", "berbattı"]]}
+{"id": "TALK-2:23", "en": "Let me know if anything changes.", "p": [["KALIP", "Let me know", "bana haber ver"], ["BAG", "if", "-sa"], ["S", "anything", "bir şey"], ["V", "changes", "değişirse"]]}
+{"id": "TALK-3:0", "en": "In my opinion, the first movie was better.", "p": [["KALIP", "In my opinion", "bence"], ["S", "the first movie", "ilk film"], ["V", "was better", "daha iyiydi"]]}
+{"id": "TALK-3:1", "en": "I totally agree with you.", "p": [["S", "I", "ben"], ["NASIL", "totally", "tamamen"], ["V", "agree", "katılıyorum"], ["EK", "with you", "sana"]]}
+{"id": "TALK-3:2", "en": "I am not sure that is a good idea.", "p": [["S", "I", "ben"], ["V", "am not sure", "emin değilim"], ["S", "that", "bunun"], ["V", "is a good idea", "iyi bir fikir olduğundan"]]}
+{"id": "TALK-3:3", "en": "Honestly, I did not like the ending.", "p": [["KALIP", "Honestly", "açıkçası"], ["S", "I", "ben"], ["V", "did not like", "beğenmedim"], ["O", "the ending", "sonunu"]]}
+{"id": "TALK-3:4", "en": "I am a bit worried about the exam.", "p": [["S", "I", "ben"], ["V", "am a bit worried", "biraz endişeliyim"], ["EK", "about the exam", "sınav konusunda"]]}
+{"id": "TALK-3:5", "en": "I am exhausted after this long week.", "p": [["S", "I", "ben"], ["V", "am exhausted", "bitkinim"], ["T", "after this long week", "bu uzun haftadan sonra"]]}
+{"id": "TALK-3:6", "en": "I was disappointed with the service.", "p": [["S", "I", "ben"], ["V", "was disappointed", "hayal kırıklığına uğradım"], ["EK", "with the service", "hizmetten"]]}
+{"id": "TALK-3:7", "en": "You look happy today, what happened?", "p": [["S", "You", "sen"], ["V", "look happy", "mutlu görünüyorsun"], ["T", "today", "bugün"], ["SORU", "what", "ne"], ["V", "happened", "oldu"]]}
+{"id": "TALK-3:8", "en": "I am in a good mood this morning.", "p": [["S", "I", "benim"], ["V", "am in a good mood", "keyfim yerinde"], ["T", "this morning", "bu sabah"]]}
+{"id": "TALK-3:9", "en": "I am really proud of you.", "p": [["S", "I", "ben"], ["V", "am really proud", "gerçekten gurur duyuyorum"], ["EK", "of you", "seninle"]]}
+{"id": "TALK-3:10", "en": "What do you think about the new plan?", "p": [["SORU", "What", "ne"], ["SORU", "do", "(soru)"], ["S", "you", "sen"], ["V", "think", "düşünüyorsun"], ["EK", "about the new plan", "yeni plan hakkında"]]}
+{"id": "TALK-3:11", "en": "It depends on the price.", "p": [["S", "It", "—"], ["V", "depends", "bağlı"], ["EK", "on the price", "fiyata"]]}
+{"id": "TALK-3:12", "en": "I see what you mean.", "p": [["S", "I", "ben"], ["V", "see", "anlıyorum"], ["SORU", "what", "ne"], ["S", "you", "senin"], ["V", "mean", "demek istediğini"]]}
+{"id": "TALK-3:13", "en": "Try not to worry, everything will be fine.", "p": [["V", "Try not to worry", "endişelenmemeye çalış"], ["S", "everything", "her şey"], ["V", "will be fine", "yoluna girecek"]]}
+{"id": "TALK-3:14", "en": "That is a good point.", "p": [["S", "That", "bu"], ["V", "is a good point", "iyi bir nokta"]]}
+{"id": "TALK-3:15", "en": "I do not agree, but I respect your opinion.", "p": [["S", "I", "ben"], ["V", "do not agree", "katılmıyorum"], ["BAG", "but", "ama"], ["S", "I", "ben"], ["V", "respect", "saygı duyuyorum"], ["O", "your opinion", "fikrine"]]}
+{"id": "TALK-3:16", "en": "Honestly, I prefer staying at home on weekends.", "p": [["KALIP", "Honestly", "açıkçası"], ["S", "I", "ben"], ["V", "prefer", "tercih ederim"], ["O", "staying at home", "evde kalmayı"], ["T", "on weekends", "hafta sonları"]]}
+{"id": "TALK-3:17", "en": "My mother was worried because I did not call.", "p": [["S", "My mother", "annem"], ["V", "was worried", "endişelenmişti"], ["BAG", "because", "-dığı için"], ["S", "I", "ben"], ["V", "did not call", "aramadığım için"]]}
+{"id": "TALK-3:18", "en": "I feel much better now, thanks for asking.", "p": [["S", "I", "ben"], ["V", "feel much better", "çok daha iyiyim"], ["T", "now", "şimdi"], ["KALIP", "thanks for asking", "sorduğun için teşekkürler"]]}
+{"id": "TALK-3:19", "en": "Why are you in such a bad mood?", "p": [["SORU", "Why", "neden"], ["V", "are", "(soru)"], ["S", "you", "sen"], ["V", "in such a bad mood", "bu kadar keyifsizsin"]]}
+{"id": "TALK-3:20", "en": "We are so proud of what you did.", "p": [["S", "We", "biz"], ["V", "are so proud", "çok gurur duyuyoruz"], ["EK", "of what you did", "yaptığın şeyle"]]}
+{"id": "TALK-3:21", "en": "I was so exhausted that I fell asleep on the sofa.", "p": [["S", "I", "ben"], ["V", "was so exhausted", "o kadar yorgundum"], ["BAG", "that", "ki"], ["S", "I", "ben"], ["V", "fell asleep", "uyuyakaldım"], ["P", "on the sofa", "koltukta"]]}
+{"id": "TALK-3:22", "en": "It is not a big deal.", "p": [["S", "It", "—"], ["V", "is not a big deal", "önemli bir şey değil"]]}
+{"id": "TALK-3:23", "en": "I am really happy for you.", "p": [["S", "I", "ben"], ["V", "am really happy", "çok mutluyum"], ["EK", "for you", "senin adına"]]}

@@ -1,0 +1,28 @@
+{
+ "360x640": {
+  "cumle": 9031,
+  "kelime": 11253,
+  "sorun": {
+   "karo-yazi-kucuk(<8)": 266,
+   "word-no-example": 5922,
+   "header-overflow": 2
+  }
+ },
+ "390x844": {
+  "cumle": 9031,
+  "kelime": 11253,
+  "sorun": {
+   "karo-yazi-kucuk(<8)": 72,
+   "word-no-example": 5922,
+   "header-overflow": 3
+  }
+ },
+ "844x390": {
+  "cumle": 9031,
+  "kelime": 11253,
+  "sorun": {
+   "karo-yazi-kucuk(<8)": 72,
+   "word-no-example": 5922
+  }
+ }
+}

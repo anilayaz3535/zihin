@@ -1,0 +1,100 @@
+LGS-1:0 | Would you like to come to my birthday party? | Doğum günü partime gelmek ister misin?
+LGS-1:1 | Sure, I would love to come. | Tabii, gelmeyi çok isterim.
+LGS-1:2 | Sorry, I can't. I have to study for my exam. | Üzgünüm, gelemem. Sınavım için çalışmam gerekiyor.
+LGS-1:3 | Thanks for the invitation, but I am busy on Saturday. | Davet için teşekkürler ama cumartesi meşgulüm.
+LGS-1:4 | A true friend always keeps your secrets. | Gerçek bir arkadaş sırlarını her zaman saklar.
+LGS-1:5 | She is very reliable and never lets me down. | O çok güvenilirdir ve beni asla hayal kırıklığına uğratmaz.
+LGS-1:6 | Let's hang out at the mall this weekend. | Bu hafta sonu alışveriş merkezinde takılalım.
+LGS-1:7 | I am sorry for being late. | Geç kaldığım için özür dilerim.
+LGS-1:8 | My best friend and I share everything. | En iyi arkadaşım ve ben her şeyi paylaşırız.
+LGS-1:9 | How about going to the cinema tonight? | Bu akşam sinemaya gitmeye ne dersin?
+LGS-1:10 | That sounds great! What time shall we meet? | Harika olur! Saat kaçta buluşalım?
+LGS-1:11 | He is a good listener, so everybody trusts him. | O iyi bir dinleyicidir, bu yüzden herkes ona güvenir.
+LGS-2:0 | I usually get up at seven on weekdays. | Hafta içi genellikle yedide kalkarım.
+LGS-2:1 | My sister hates doing the dishes. | Kız kardeşim bulaşık yıkamaktan nefret eder.
+LGS-2:2 | I prefer reading books to watching TV. | Kitap okumayı televizyon izlemeye tercih ederim.
+LGS-2:3 | He is crazy about playing basketball. | O basketbol oynamaya bayılır.
+LGS-2:4 | What do you do in your free time? | Boş zamanında ne yaparsın?
+LGS-2:5 | I can't stand loud music. | Yüksek sesli müziğe dayanamam.
+LGS-2:6 | Teenagers often spend hours on social media. | Gençler sık sık sosyal medyada saatler geçirir.
+LGS-2:7 | We never go to bed before midnight on Fridays. | Cuma günleri asla gece yarısından önce yatmayız.
+LGS-2:8 | She enjoys hanging out with her friends at the park. | Arkadaşlarıyla parkta takılmaktan hoşlanır.
+LGS-2:9 | I am interested in photography. | Fotoğrafçılıkla ilgileniyorum.
+LGS-2:10 | My parents don't let me stay out late. | Ailem geç saate kadar dışarıda kalmama izin vermez.
+LGS-2:11 | In my opinion, school uniforms are a good idea. | Bence okul üniformaları iyi bir fikir.
+LGS-3:0 | First, chop the onions into small pieces. | Önce soğanları küçük parçalara doğra.
+LGS-3:1 | Then, add some salt and pepper. | Sonra biraz tuz ve karabiber ekle.
+LGS-3:2 | Boil the water in a large pot. | Suyu büyük bir tencerede kaynat.
+LGS-3:3 | Mix the flour and the eggs in a bowl. | Unu ve yumurtaları bir kasede karıştır.
+LGS-3:4 | After that, bake the cake for forty minutes. | Ondan sonra keki fırında kırk dakika pişir.
+LGS-3:5 | Finally, serve the soup hot. | Son olarak çorbayı sıcak servis et.
+LGS-3:6 | How much sugar do we need? | Ne kadar şekere ihtiyacımız var?
+LGS-3:7 | You need two cups of milk for this recipe. | Bu tarif için iki su bardağı süt gerekiyor.
+LGS-3:8 | Peel the potatoes and slice them. | Patatesleri soy ve dilimle.
+LGS-3:9 | The pasta is boiled for ten minutes. | Makarna on dakika haşlanır.
+LGS-3:10 | Don't forget to stir the sauce. | Sosu karıştırmayı unutma.
+LGS-3:11 | Pour the mixture into the pan. | Karışımı tavaya dök.
+LGS-4:0 | Hello, can I speak to Ayşe, please? | Merhaba, Ayşe ile görüşebilir miyim lütfen?
+LGS-4:1 | Hold on a minute, please. | Bir dakika bekleyin lütfen.
+LGS-4:2 | I'm afraid she is not at home right now. | Korkarım şu an evde değil.
+LGS-4:3 | Can I leave a message? | Mesaj bırakabilir miyim?
+LGS-4:4 | I will call you back later. | Seni sonra geri arayacağım.
+LGS-4:5 | Could you speak up, please? | Daha yüksek sesle konuşabilir misiniz lütfen?
+LGS-4:6 | Sorry, you have the wrong number. | Üzgünüm, yanlış numarayı aradınız.
+LGS-4:7 | The line is busy at the moment. | Hat şu anda meşgul.
+LGS-4:8 | Who is calling, please? | Kim arıyor acaba?
+LGS-4:9 | I'll tell him that you called. | Aradığını ona söyleyeceğim.
+LGS-4:10 | My battery is low, so I have to hang up. | Şarjım az, bu yüzden kapatmam gerekiyor.
+LGS-4:11 | Please answer the phone, it is ringing. | Lütfen telefonu aç, çalıyor.
+LGS-5:0 | I check my e-mails every morning. | Her sabah e-postalarımı kontrol ederim.
+LGS-5:1 | You shouldn't share your password with anyone. | Şifreni kimseyle paylaşmamalısın.
+LGS-5:2 | Do you want to join our online game? | Çevrim içi oyunumuza katılmak ister misin?
+LGS-5:3 | Sorry, I can't. My internet connection is too slow. | Üzgünüm, katılamam. İnternet bağlantım çok yavaş.
+LGS-5:4 | She downloads music from a safe website. | Güvenli bir siteden müzik indirir.
+LGS-5:5 | Cyberbullying is a serious problem. | Siber zorbalık ciddi bir sorundur.
+LGS-5:6 | I spend two hours online every day. | Her gün iki saat çevrim içi geçiririm.
+LGS-5:7 | Don't click on strange links. | Tuhaf bağlantılara tıklama.
+LGS-5:8 | He uploaded the photos to his blog. | Fotoğrafları bloguna yükledi.
+LGS-5:9 | We use the internet to do our homework. | Ödevimizi yapmak için interneti kullanırız.
+LGS-5:10 | You need a strong password to protect your account. | Hesabını korumak için güçlü bir şifreye ihtiyacın var.
+LGS-5:11 | I would love to, but I have to finish my project. | Çok isterdim ama projemi bitirmem gerekiyor.
+LGS-6:0 | Rafting is more exciting than swimming. | Rafting yüzmekten daha heyecan vericidir.
+LGS-6:1 | Skydiving is the most dangerous sport I know. | Paraşütle atlama bildiğim en tehlikeli spor.
+LGS-6:2 | I would rather go camping than stay at home. | Evde kalmaktansa kampa gitmeyi tercih ederim.
+LGS-6:3 | Bungee jumping is too scary for me. | Bungee jumping benim için fazla korkutucu.
+LGS-6:4 | Scuba diving is safer than people think. | Tüplü dalış insanların sandığından daha güvenlidir.
+LGS-6:5 | You need special equipment for rock climbing. | Kaya tırmanışı için özel ekipmana ihtiyacın var.
+LGS-6:6 | Paragliding gives me a sense of freedom. | Yamaç paraşütü bana özgürlük hissi verir.
+LGS-6:7 | He prefers hiking because he loves nature. | Doğayı sevdiği için doğa yürüyüşünü tercih eder.
+LGS-6:8 | Canoeing is not as difficult as it looks. | Kano göründüğü kadar zor değil.
+LGS-6:9 | I have never tried an extreme sport. | Hiç ekstrem bir spor denemedim.
+LGS-6:10 | Always wear a helmet when you go mountain biking. | Dağ bisikletine çıkarken her zaman kask tak.
+LGS-6:11 | It was the most thrilling day of my life. | Hayatımın en heyecanlı günüydü.
+LGS-7:0 | Have you ever been to Cappadocia? | Hiç Kapadokya'ya gittin mi?
+LGS-7:1 | We visited many historical places in Istanbul. | İstanbul'da birçok tarihi yer gezdik.
+LGS-7:2 | The hotel was clean and comfortable. | Otel temiz ve rahattı.
+LGS-7:3 | Antalya is famous for its beautiful beaches. | Antalya güzel plajlarıyla ünlüdür.
+LGS-7:4 | I bought some souvenirs for my family. | Ailem için birkaç hediyelik eşya aldım.
+LGS-7:5 | The view from the tower was amazing. | Kuleden manzara muhteşemdi.
+LGS-7:6 | We stayed in a small hotel near the sea. | Denize yakın küçük bir otelde kaldık.
+LGS-7:7 | Mardin is older than many cities in Türkiye. | Mardin Türkiye'deki birçok şehirden daha eskidir.
+LGS-7:8 | Did you take a lot of photos? | Çok fotoğraf çektin mi?
+LGS-7:9 | You should visit the museum when you go there. | Oraya gittiğinde müzeyi ziyaret etmelisin.
+LGS-7:10 | The tour guide told us the history of the castle. | Tur rehberi bize kalenin tarihini anlattı.
+LGS-7:11 | It was the best holiday I have ever had. | Şimdiye kadar yaptığım en iyi tatildi.
+LGS-8:0 | I have to tidy my room every Saturday. | Her cumartesi odamı toplamak zorundayım.
+LGS-8:1 | My brother is responsible for taking out the rubbish. | Erkek kardeşim çöpü çıkarmaktan sorumludur.
+LGS-8:2 | You don't have to do the ironing today. | Bugün ütü yapmak zorunda değilsin.
+LGS-8:3 | We must feed the cat before we leave. | Çıkmadan önce kediyi beslemeliyiz.
+LGS-8:4 | My mother vacuums the carpet once a week. | Annem halıyı haftada bir süpürür.
+LGS-8:5 | Who sets the table in your family? | Sizin ailede sofrayı kim kurar?
+LGS-8:6 | I hate doing the laundry. | Çamaşır yıkamaktan nefret ederim.
+LGS-8:7 | Can you help me with the dishes? | Bulaşıklarda bana yardım edebilir misin?
+LGS-8:8 | My father usually cooks dinner on Sundays. | Babam pazar günleri genellikle akşam yemeğini pişirir.
+LGS-8:9 | Everyone in our house shares the chores. | Evimizde herkes ev işlerini paylaşır.
+LGS-8:10 | I water the plants every other day. | Bitkileri iki günde bir sularım.
+LGS-8:11 | She has to make her bed every morning. | Her sabah yatağını toplamak zorunda.
+LGS-9:0 | The telephone was invented by Alexander Graham Bell. | Telefon Alexander Graham Bell tarafından icat edildi.
+LGS-9:1 | Scientists are doing an experiment in the laboratory. | Bilim insanları laboratuvarda bir deney yapıyor.
+LGS-9:2 | Marie Curie discovered radium. | Marie Curie radyumu keşfetti.
+LGS-9:3 | Aziz Sancar won the Nobel Prize in Chemistry. | Aziz Sancar Nobel Kimya Ödülü'nü kazandı.

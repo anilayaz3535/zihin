@@ -1,0 +1,100 @@
+{"id": "B1-1:0", "en": "This bag is cheaper.", "p": [["S", "This bag", "bu çanta"], ["V", "is cheaper", "daha ucuz"]]}
+{"id": "B1-1:1", "en": "Apples are sweeter than oranges.", "p": [["S", "Apples", "elmalar"], ["V", "are sweeter", "daha tatlı"], ["EK", "than oranges", "portakallardan"]]}
+{"id": "B1-1:2", "en": "This is the most expensive shoe.", "p": [["S", "This", "bu"], ["V", "is the most expensive shoe", "en pahalı ayakkabı"]]}
+{"id": "B1-1:3", "en": "My brother is taller than me.", "p": [["S", "My brother", "kardeşim"], ["V", "is taller", "daha uzun"], ["EK", "than me", "benden"]]}
+{"id": "B1-1:4", "en": "This tea is too hot.", "p": [["S", "This tea", "bu çay"], ["V", "is too hot", "çok sıcak"]]}
+{"id": "B1-1:5", "en": "I don't have enough money.", "p": [["S", "I", "benim"], ["V", "don't have", "yok"], ["O", "enough money", "yeterince param"]]}
+{"id": "B1-1:6", "en": "This is the best market in the city.", "p": [["S", "This", "bu"], ["V", "is the best market", "en iyi market"], ["P", "in the city", "şehirdeki"]]}
+{"id": "B1-1:7", "en": "Are potatoes cheaper than tomatoes?", "p": [["SORU", "Are", "(soru)"], ["S", "potatoes", "patates"], ["V", "cheaper", "daha mı ucuz"], ["EK", "than tomatoes", "domatesten"]]}
+{"id": "B1-1:8", "en": "These sandals are too small for me.", "p": [["S", "These sandals", "bu sandaletler"], ["V", "are too small", "fazla küçük"], ["EK", "for me", "bana"]]}
+{"id": "B1-1:9", "en": "This red dress is more elegant.", "p": [["S", "This red dress", "bu kırmızı elbise"], ["V", "is more elegant", "daha şık"]]}
+{"id": "B1-1:10", "en": "This jacket is warmer than that coat.", "p": [["S", "This jacket", "bu ceket"], ["V", "is warmer", "daha sıcak tutar"], ["EK", "than that coat", "şu paltodan"]]}
+{"id": "B1-1:11", "en": "Strawberries are more expensive than bananas.", "p": [["S", "Strawberries", "çilekler"], ["V", "are more expensive", "daha pahalı"], ["EK", "than bananas", "muzlardan"]]}
+{"id": "B1-1:12", "en": "This watermelon is the heaviest.", "p": [["S", "This watermelon", "bu karpuz"], ["V", "is the heaviest", "en ağırı"]]}
+{"id": "B1-1:13", "en": "These trousers aren't long enough.", "p": [["S", "These trousers", "bu pantolon"], ["V", "aren't long enough", "yeterince uzun değil"]]}
+{"id": "B1-1:14", "en": "What is the biggest size in this shop?", "p": [["SORU", "What", "kaç"], ["V", "is", "(ek fiil)"], ["S", "the biggest size", "en büyük beden"], ["P", "in this shop", "bu dükkândaki"]]}
+{"id": "B1-1:15", "en": "This phone is as expensive as that computer.", "p": [["S", "This phone", "bu telefon"], ["V", "is as expensive", "pahalı"], ["EK", "as that computer", "şu bilgisayar kadar"]]}
+{"id": "B1-1:16", "en": "Is this tablet lighter than that laptop?", "p": [["SORU", "Is", "(soru)"], ["S", "this tablet", "bu tablet"], ["V", "lighter", "daha mı hafif"], ["EK", "than that laptop", "şu dizüstü bilgisayardan"]]}
+{"id": "B1-1:17", "en": "This hat is too tight for him.", "p": [["S", "This hat", "bu şapka"], ["V", "is too tight", "fazla dar"], ["EK", "for him", "ona"]]}
+{"id": "B1-1:18", "en": "Leather is stronger than plastic.", "p": [["S", "Leather", "deri"], ["V", "is stronger", "daha sağlam"], ["EK", "than plastic", "plastikten"]]}
+{"id": "B1-1:19", "en": "Silk is softer than wool.", "p": [["S", "Silk", "ipek"], ["V", "is softer", "daha yumuşak"], ["EK", "than wool", "yünden"]]}
+{"id": "B1-1:20", "en": "This is the cheapest watch in the store.", "p": [["S", "This", "bu"], ["V", "is the cheapest watch", "en ucuz saat"], ["P", "in the store", "mağazadaki"]]}
+{"id": "B1-1:21", "en": "These apples are fresher than those pears.", "p": [["S", "These apples", "bu elmalar"], ["V", "are fresher", "daha taze"], ["EK", "than those pears", "şu armutlardan"]]}
+{"id": "B1-1:22", "en": "The tomatoes aren't red enough.", "p": [["S", "The tomatoes", "domatesler"], ["V", "aren't red enough", "yeterince kırmızı değil"]]}
+{"id": "B1-1:23", "en": "These shoes are more comfortable than those boots.", "p": [["S", "These shoes", "bu ayakkabılar"], ["V", "are more comfortable", "daha rahat"], ["EK", "than those boots", "şu botlardan"]]}
+{"id": "B1-1:24", "en": "Green is darker than yellow.", "p": [["S", "Green", "yeşil"], ["V", "is darker", "daha koyu"], ["EK", "than yellow", "sarıdan"]]}
+{"id": "B1-1:25", "en": "Pink is the brightest colour.", "p": [["S", "Pink", "pembe"], ["V", "is the brightest colour", "en parlak renk"]]}
+{"id": "B1-1:26", "en": "Prices are higher this year.", "p": [["S", "Prices", "fiyatlar"], ["V", "are higher", "daha yüksek"], ["T", "this year", "bu yıl"]]}
+{"id": "B1-1:27", "en": "This bookshop is the oldest shop in town.", "p": [["S", "This bookshop", "bu kitapçı"], ["V", "is the oldest shop", "en eski dükkân"], ["P", "in town", "şehirdeki"]]}
+{"id": "B1-1:28", "en": "Is the bazaar busier than the mall?", "p": [["SORU", "Is", "(soru)"], ["S", "the bazaar", "pazar"], ["V", "busier", "daha mı kalabalık"], ["EK", "than the mall", "alışveriş merkezinden"]]}
+{"id": "B1-1:29", "en": "This wallet isn't as nice as my old wallet.", "p": [["S", "This wallet", "bu cüzdan"], ["V", "isn't as nice", "güzel değil"], ["EK", "as my old wallet", "eski cüzdanım kadar"]]}
+{"id": "B1-1:30", "en": "My sweater isn't as warm as yours.", "p": [["S", "My sweater", "kazağım"], ["V", "isn't as warm", "sıcak değil"], ["EK", "as yours", "seninki kadar"]]}
+{"id": "B1-1:31", "en": "These lemons are too sour to eat.", "p": [["S", "These lemons", "bu limonlar"], ["V", "are too sour", "çok ekşi"], ["EK", "to eat", "yenemeyecek kadar"]]}
+{"id": "B1-1:32", "en": "This necklace is the most beautiful gift.", "p": [["S", "This necklace", "bu kolye"], ["V", "is the most beautiful gift", "en güzel hediye"]]}
+{"id": "B1-1:33", "en": "Gold is more valuable than silver.", "p": [["S", "Gold", "altın"], ["V", "is more valuable", "daha değerli"], ["EK", "than silver", "gümüşten"]]}
+{"id": "B1-1:34", "en": "The medium size fits me better.", "p": [["S", "The medium size", "orta beden"], ["V", "fits", "oluyor"], ["O", "me", "bana"], ["NASIL", "better", "daha iyi"]]}
+{"id": "B1-1:35", "en": "My new phone is faster than my old one.", "p": [["S", "My new phone", "yeni telefonum"], ["V", "is faster", "daha hızlı"], ["EK", "than my old one", "eskisinden"]]}
+{"id": "B1-1:36", "en": "This TV is the thinnest of all.", "p": [["S", "This TV", "bu televizyon"], ["V", "is the thinnest", "en incesi"], ["EK", "of all", "hepsinin"]]}
+{"id": "B1-1:37", "en": "This camera is too expensive for us.", "p": [["S", "This camera", "bu kamera"], ["V", "is too expensive", "fazla pahalı"], ["EK", "for us", "bizim için"]]}
+{"id": "B1-1:38", "en": "This computer isn't powerful enough for games.", "p": [["S", "This computer", "bu bilgisayar"], ["V", "isn't powerful enough", "yeterince güçlü değil"], ["EK", "for games", "oyunlar için"]]}
+{"id": "B1-1:39", "en": "This battery lasts the longest.", "p": [["S", "This battery", "bu pil"], ["V", "lasts", "dayanır"], ["NASIL", "the longest", "en uzun"]]}
+{"id": "B1-1:40", "en": "Carrots are healthier than chips.", "p": [["S", "Carrots", "havuçlar"], ["V", "are healthier", "daha sağlıklı"], ["EK", "than chips", "cipsten"]]}
+{"id": "B1-1:41", "en": "These grapes are sweeter than those cherries.", "p": [["S", "These grapes", "bu üzümler"], ["V", "are sweeter", "daha tatlı"], ["EK", "than those cherries", "şu kirazlardan"]]}
+{"id": "B1-1:42", "en": "This is the ripest banana.", "p": [["S", "This", "bu"], ["V", "is the ripest banana", "en olgun muz"]]}
+{"id": "B1-1:43", "en": "Pumpkins are heavier than cucumbers.", "p": [["S", "Pumpkins", "balkabakları"], ["V", "are heavier", "daha ağır"], ["EK", "than cucumbers", "salatalıklardan"]]}
+{"id": "B1-1:44", "en": "Peppers are spicier than tomatoes.", "p": [["S", "Peppers", "biberler"], ["V", "are spicier", "daha acı"], ["EK", "than tomatoes", "domateslerden"]]}
+{"id": "B1-1:45", "en": "Are there enough potatoes in this basket?", "p": [["V", "Are there", "var mı"], ["S", "enough potatoes", "yeterince patates"], ["P", "in this basket", "bu sepette"]]}
+{"id": "B1-1:46", "en": "This handbag is twice as expensive as yours.", "p": [["S", "This handbag", "bu el çantası"], ["V", "is twice as expensive", "iki kat pahalı"], ["EK", "as yours", "seninkinden"]]}
+{"id": "B1-1:47", "en": "Cards are safer than cash.", "p": [["S", "Cards", "kartlar"], ["V", "are safer", "daha güvenli"], ["EK", "than cash", "nakitten"]]}
+{"id": "B1-1:48", "en": "This shirt costs less than that scarf.", "p": [["S", "This shirt", "bu gömlek"], ["V", "costs less", "daha az tutuyor"], ["EK", "than that scarf", "şu atkıdan"]]}
+{"id": "B1-1:49", "en": "Is this skirt big enough for my sister?", "p": [["SORU", "Is", "(soru)"], ["S", "this skirt", "bu etek"], ["V", "big enough", "yeterince büyük mü"], ["EK", "for my sister", "kız kardeşime"]]}
+{"id": "B1-1:50", "en": "Which colour is the most popular?", "p": [["SORU", "Which colour", "hangi renk"], ["V", "is the most popular", "en popüler"]]}
+{"id": "B1-1:51", "en": "The pharmacy is closer than the bakery.", "p": [["S", "The pharmacy", "eczane"], ["V", "is closer", "daha yakın"], ["EK", "than the bakery", "fırından"]]}
+{"id": "B1-1:52", "en": "This is the largest supermarket in the neighbourhood.", "p": [["S", "This", "bu"], ["V", "is the largest supermarket", "en büyük süpermarket"], ["P", "in the neighbourhood", "mahalledeki"]]}
+{"id": "B1-1:53", "en": "Black socks are more useful than white ones.", "p": [["S", "Black socks", "siyah çoraplar"], ["V", "are more useful", "daha kullanışlı"], ["EK", "than white ones", "beyazlardan"]]}
+{"id": "B1-1:54", "en": "This belt is shorter than his.", "p": [["S", "This belt", "bu kemer"], ["V", "is shorter", "daha kısa"], ["EK", "than his", "onunkinden"]]}
+{"id": "B1-1:55", "en": "These are the sweetest peaches.", "p": [["S", "These", "bunlar"], ["V", "are the sweetest peaches", "en tatlı şeftaliler"]]}
+{"id": "B1-1:56", "en": "Are these gloves warm enough for winter?", "p": [["SORU", "Are", "(soru)"], ["S", "these gloves", "bu eldivenler"], ["V", "warm enough", "yeterince sıcak mı"], ["EK", "for winter", "kış için"]]}
+{"id": "B1-1:57", "en": "This is the worst quality.", "p": [["S", "This", "bu"], ["V", "is the worst quality", "en kötü kalite"]]}
+{"id": "B1-1:58", "en": "Linen is cooler than wool in summer.", "p": [["S", "Linen", "keten"], ["V", "is cooler", "daha serin tutar"], ["EK", "than wool", "yünden"], ["T", "in summer", "yazın"]]}
+{"id": "B1-1:59", "en": "My trainers are as dirty as yours.", "p": [["S", "My trainers", "spor ayakkabılarım"], ["V", "are as dirty", "kirli"], ["EK", "as yours", "seninkiler kadar"]]}
+{"id": "B1-1:60", "en": "This printer is quieter than the old one.", "p": [["S", "This printer", "bu yazıcı"], ["V", "is quieter", "daha sessiz"], ["EK", "than the old one", "eskisinden"]]}
+{"id": "B1-1:61", "en": "These headphones are the loudest.", "p": [["S", "These headphones", "bu kulaklıklar"], ["V", "are the loudest", "en yüksek sesli"]]}
+{"id": "B1-1:62", "en": "Fish is cheaper today than yesterday.", "p": [["S", "Fish", "balık"], ["V", "is cheaper", "daha ucuz"], ["T", "today", "bugün"], ["EK", "than yesterday", "dünden"]]}
+{"id": "B1-2:0", "en": "Have you ever been on a plane?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "been", "bindin mi"], ["P", "on a plane", "bir uçağa"]]}
+{"id": "B1-2:1", "en": "I have never been to London.", "p": [["S", "I", "ben"], ["V", "have never been", "hiç gitmedim"], ["P", "to London", "Londra'ya"]]}
+{"id": "B1-2:2", "en": "I have lost my ticket.", "p": [["S", "I", "ben"], ["V", "have lost", "kaybettim"], ["O", "my ticket", "biletimi"]]}
+{"id": "B1-2:3", "en": "The plane hasn't landed yet.", "p": [["S", "The plane", "uçak"], ["V", "hasn't landed", "inmedi"], ["T", "yet", "henüz"]]}
+{"id": "B1-2:4", "en": "I have already found my passport.", "p": [["S", "I", "ben"], ["V", "have already found", "zaten buldum"], ["O", "my passport", "pasaportumu"]]}
+{"id": "B1-2:5", "en": "We have been here for two hours.", "p": [["S", "We", "biz"], ["V", "have been", "(ek fiil)"], ["P", "here", "buradayız"], ["T", "for two hours", "iki saattir"]]}
+{"id": "B1-2:6", "en": "She has lived here since 2020.", "p": [["S", "She", "o"], ["V", "has lived", "yaşıyor"], ["P", "here", "burada"], ["T", "since 2020", "2020'den beri"]]}
+{"id": "B1-2:7", "en": "Have you ever eaten sushi?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "eaten", "yedin mi"], ["O", "sushi", "suşi"]]}
+{"id": "B1-2:8", "en": "Have you ever been to Japan?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "been", "gittin mi"], ["P", "to Japan", "Japonya'ya"]]}
+{"id": "B1-2:9", "en": "She has learned three languages.", "p": [["S", "She", "o"], ["V", "has learned", "öğrendi"], ["O", "three languages", "üç dil"]]}
+{"id": "B1-2:10", "en": "I haven't packed my suitcase yet.", "p": [["S", "I", "ben"], ["V", "haven't packed", "toplamadım"], ["O", "my suitcase", "valizimi"], ["T", "yet", "henüz"]]}
+{"id": "B1-2:11", "en": "Have you ever spoken Spanish?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "spoken", "konuştun mu"], ["O", "Spanish", "İspanyolca"]]}
+{"id": "B1-2:12", "en": "My grandfather has never flown.", "p": [["S", "My grandfather", "dedem"], ["V", "has never flown", "hiç uçakla yolculuk etmedi"]]}
+{"id": "B1-2:13", "en": "We have missed our flight!", "p": [["S", "We", "biz"], ["V", "have missed", "kaçırdık"], ["O", "our flight", "uçağımızı"]]}
+{"id": "B1-2:14", "en": "I have forgotten the gate number.", "p": [["S", "I", "ben"], ["V", "have forgotten", "unuttum"], ["O", "the gate number", "kapı numarasını"]]}
+{"id": "B1-2:15", "en": "We have never tried Egyptian food.", "p": [["S", "We", "biz"], ["V", "have never tried", "hiç denemedik"], ["O", "Egyptian food", "Mısır yemeği"]]}
+{"id": "B1-2:16", "en": "He has run two marathons.", "p": [["S", "He", "o"], ["V", "has run", "koştu"], ["O", "two marathons", "iki maraton"]]}
+{"id": "B1-2:17", "en": "Have you ever held a snake?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "held", "tuttun mu"], ["O", "a snake", "bir yılan"]]}
+{"id": "B1-2:18", "en": "My passport has expired.", "p": [["S", "My passport", "pasaportumun"], ["V", "has expired", "süresi doldu"]]}
+{"id": "B1-2:19", "en": "My luggage hasn't arrived yet.", "p": [["S", "My luggage", "bavulum"], ["V", "hasn't arrived", "gelmedi"], ["T", "yet", "henüz"]]}
+{"id": "B1-2:20", "en": "Our plane has just taken off.", "p": [["S", "Our plane", "uçağımız"], ["V", "has just taken off", "az önce kalktı"]]}
+{"id": "B1-2:21", "en": "She has been a pilot for ten years.", "p": [["S", "She", "o"], ["V", "has been a pilot", "pilot"], ["T", "for ten years", "on yıldır"]]}
+{"id": "B1-2:22", "en": "I have known him since 2015.", "p": [["S", "I", "ben"], ["V", "have known", "tanıyorum"], ["O", "him", "onu"], ["T", "since 2015", "2015'ten beri"]]}
+{"id": "B1-2:23", "en": "Have you ever read a Chinese novel?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "read", "okudun mu"], ["O", "a Chinese novel", "bir Çince roman"]]}
+{"id": "B1-2:24", "en": "I have already seen this film.", "p": [["S", "I", "ben"], ["V", "have already seen", "zaten izledim"], ["O", "this film", "bu filmi"]]}
+{"id": "B1-2:25", "en": "Have you ever eaten frog legs?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "eaten", "yedin mi"], ["O", "frog legs", "kurbağa bacağı"]]}
+{"id": "B1-2:26", "en": "I have never tasted snails.", "p": [["S", "I", "ben"], ["V", "have never tasted", "hiç tatmadım"], ["O", "snails", "salyangoz"]]}
+{"id": "B1-2:27", "en": "Have you ever tried surfing?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "tried", "denedin mi"], ["O", "surfing", "sörf yapmayı"]]}
+{"id": "B1-2:28", "en": "My aunt has never ridden a horse.", "p": [["S", "My aunt", "teyzem"], ["V", "has never ridden", "hiç binmedi"], ["O", "a horse", "bir ata"]]}
+{"id": "B1-2:29", "en": "Has he ever driven a truck?", "p": [["SORU", "Has", "(soru)"], ["S", "he", "o"], ["T", "ever", "hiç"], ["V", "driven", "sürdü mü"], ["O", "a truck", "bir kamyon"]]}
+{"id": "B1-2:30", "en": "Our team has won the cup.", "p": [["S", "Our team", "takımımız"], ["V", "has won", "kazandı"], ["O", "the cup", "kupayı"]]}
+{"id": "B1-2:31", "en": "My sister has written a song.", "p": [["S", "My sister", "kız kardeşim"], ["V", "has written", "yazdı"], ["O", "a song", "bir şarkı"]]}
+{"id": "B1-2:32", "en": "Have you ever met a famous person?", "p": [["SORU", "Have", "(soru)"], ["S", "you", "sen"], ["T", "ever", "hiç"], ["V", "met", "tanıştın mı"], ["O", "a famous person", "bir ünlü kişiyle"]]}
+{"id": "B1-2:33", "en": "I have chosen a window seat.", "p": [["S", "I", "ben"], ["V", "have chosen", "seçtim"], ["O", "a window seat", "bir cam kenarı koltuk"]]}
+{"id": "B1-2:34", "en": "My uncle has never travelled abroad.", "p": [["S", "My uncle", "amcam"], ["V", "has never travelled", "hiç çıkmadı"], ["P", "abroad", "yurt dışına"]]}
+{"id": "B1-2:35", "en": "We have already printed our boarding passes.", "p": [["S", "We", "biz"], ["V", "have already printed", "zaten yazdırdık"], ["O", "our boarding passes", "biniş kartlarımızı"]]}
+{"id": "B1-2:36", "en": "Someone has stolen my laptop.", "p": [["S", "Someone", "biri"], ["V", "has stolen", "çaldı"], ["O", "my laptop", "dizüstü bilgisayarımı"]]}

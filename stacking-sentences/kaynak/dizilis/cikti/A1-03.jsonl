@@ -1,0 +1,100 @@
+{"id": "A1-4:12", "en": "Elif has got blonde hair.", "p": [["S", "Elif", "Elif'in"], ["V", "has got", "var"], ["O", "blonde hair", "sarı saçları"]]}
+{"id": "A1-4:13", "en": "Mert is wearing blue jeans.", "p": [["S", "Mert", "Mert"], ["V", "is wearing", "giyiyor"], ["O", "blue jeans", "mavi kot"]]}
+{"id": "A1-4:14", "en": "I have got a new pair of shoes.", "p": [["S", "I", "benim"], ["V", "have got", "var"], ["O", "a new pair of shoes", "bir yeni çift ayakkabım"]]}
+{"id": "A1-4:15", "en": "This T-shirt is purple.", "p": [["S", "This T-shirt", "bu tişört"], ["V", "is purple", "mor"]]}
+{"id": "A1-4:16", "en": "Her clothes are on the chair.", "p": [["S", "Her clothes", "onun kıyafetleri"], ["V", "are", "(ek fiil)"], ["P", "on the chair", "sandalyenin üstünde"]]}
+{"id": "A1-4:17", "en": "The cow is brown and white.", "p": [["S", "The cow", "inek"], ["V", "is brown and white", "kahverengi ve beyaz"]]}
+{"id": "A1-4:18", "en": "There are ten sheep on the hill.", "p": [["V", "There are", "var"], ["S", "ten sheep", "on koyun"], ["P", "on the hill", "tepede"]]}
+{"id": "A1-4:19", "en": "The pig is eating an apple.", "p": [["S", "The pig", "domuz"], ["V", "is eating", "yiyor"], ["O", "an apple", "bir elma"]]}
+{"id": "A1-4:20", "en": "The fat cat is on a diet.", "p": [["S", "The fat cat", "şişman kedi"], ["V", "is on a diet", "diyette"]]}
+{"id": "A1-4:21", "en": "Fill the glass with water.", "p": [["V", "Fill", "doldur"], ["O", "the glass", "bardağı"], ["EK", "with water", "suyla"]]}
+{"id": "A1-4:22", "en": "The box is full of toys.", "p": [["S", "The box", "kutu"], ["V", "is full", "dolu"], ["EK", "of toys", "oyuncaklarla"]]}
+{"id": "A1-4:23", "en": "Do you eat rice every day?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sen"], ["V", "eat", "yer misin"], ["O", "rice", "pirinç"], ["T", "every day", "her gün"]]}
+{"id": "A1-4:24", "en": "My daughter doesn't like salad.", "p": [["S", "My daughter", "kızım"], ["V", "doesn't like", "sevmez"], ["O", "salad", "salata"]]}
+{"id": "A1-4:25", "en": "Salad is good for your health.", "p": [["S", "Salad", "salata"], ["V", "is good", "iyidir"], ["EK", "for your health", "sağlığın için"]]}
+{"id": "A1-4:26", "en": "The menu is on the table.", "p": [["S", "The menu", "menü"], ["V", "is", "(ek fiil)"], ["P", "on the table", "masanın üstünde"]]}
+{"id": "A1-4:27", "en": "This meal is delicious.", "p": [["S", "This meal", "bu yemek"], ["V", "is delicious", "lezzetli"]]}
+{"id": "A1-4:28", "en": "Is your husband at home?", "p": [["SORU", "Is", "(soru)"], ["S", "your husband", "kocan"], ["P", "at home", "evde mi"]]}
+{"id": "A1-4:29", "en": "My wife is in the kitchen.", "p": [["S", "My wife", "karım"], ["V", "is", "(ek fiil)"], ["P", "in the kitchen", "mutfakta"]]}
+{"id": "A1-4:30", "en": "Ayşe and Mert are married.", "p": [["S", "Ayşe and Mert", "Ayşe ve Mert"], ["V", "are married", "evli"]]}
+{"id": "A1-4:31", "en": "His girlfriend lives upstairs.", "p": [["S", "His girlfriend", "onun kız arkadaşı"], ["V", "lives", "oturuyor"], ["P", "upstairs", "üst katta"]]}
+{"id": "A1-4:32", "en": "Her boyfriend is a cook.", "p": [["S", "Her boyfriend", "onun erkek arkadaşı"], ["V", "is a cook", "bir aşçı"]]}
+{"id": "A1-4:33", "en": "The boy is sitting between his parents.", "p": [["S", "The boy", "erkek çocuk"], ["V", "is sitting", "oturuyor"], ["P", "between his parents", "annesiyle babasının arasında"]]}
+{"id": "A1-4:34", "en": "Look at yourself in the mirror.", "p": [["V", "Look at", "bak"], ["O", "yourself", "kendine"], ["P", "in the mirror", "aynada"]]}
+{"id": "A1-4:35", "en": "The children are eating ice cream.", "p": [["S", "The children", "çocuklar"], ["V", "are eating", "yiyor"], ["O", "ice cream", "dondurma"]]}
+{"id": "A1-4:36", "en": "Put them in the fridge.", "p": [["V", "Put", "koy"], ["O", "them", "onları"], ["P", "in the fridge", "buzdolabına"]]}
+{"id": "A1-4:37", "en": "There is a cafe across the street.", "p": [["V", "There is", "var"], ["S", "a cafe", "bir kafe"], ["P", "across the street", "caddenin karşısında"]]}
+{"id": "A1-4:38", "en": "The cat is walking around the table.", "p": [["S", "The cat", "kedi"], ["V", "is walking", "yürüyor"], ["P", "around the table", "masanın etrafında"]]}
+{"id": "A1-4:39", "en": "Our flat is below their flat.", "p": [["S", "Our flat", "bizim dairemiz"], ["V", "is", "(ek fiil)"], ["P", "below their flat", "onların dairesinin altında"]]}
+{"id": "A1-4:40", "en": "The chair is in front of the desk.", "p": [["S", "The chair", "sandalye"], ["V", "is", "(ek fiil)"], ["P", "in front of the desk", "çalışma masasının önünde"]]}
+{"id": "A1-4:41", "en": "Open your mouth please.", "p": [["V", "Open", "aç"], ["O", "your mouth", "ağzını"], ["KALIP", "please", "lütfen"]]}
+{"id": "A1-4:42", "en": "Your body needs water.", "p": [["S", "Your body", "vücudunun"], ["V", "needs", "ihtiyacı var"], ["O", "water", "suya"]]}
+{"id": "A1-4:43", "en": "He is an adult now.", "p": [["S", "He", "o"], ["V", "is an adult", "bir yetişkin"], ["T", "now", "artık"]]}
+{"id": "A1-4:44", "en": "Ali and Elif are the same age.", "p": [["S", "Ali and Elif", "Ali ve Elif"], ["V", "are the same age", "aynı yaşta"]]}
+{"id": "A1-4:45", "en": "The kitchen chairs are grey.", "p": [["S", "The kitchen chairs", "mutfak sandalyeleri"], ["V", "are grey", "gri"]]}
+{"id": "A1-4:46", "en": "I like your style.", "p": [["S", "I", "ben"], ["V", "like", "seviyorum"], ["O", "your style", "senin tarzını"]]}
+{"id": "A1-4:47", "en": "Are there two bathrooms in your flat?", "p": [["V", "Are there", "var mı"], ["S", "two bathrooms", "iki banyo"], ["P", "in your flat", "dairende"]]}
+{"id": "A1-4:48", "en": "Is the kitchen downstairs?", "p": [["SORU", "Is", "(soru)"], ["S", "the kitchen", "mutfak"], ["P", "downstairs", "alt katta mı"]]}
+{"id": "A1-4:49", "en": "My husband can cook rice.", "p": [["S", "My husband", "kocam"], ["V", "can cook", "yapabilir"], ["O", "rice", "pilav"]]}
+{"id": "A1-4:50", "en": "Can you pass the salt?", "p": [["SORU", "Can", "(soru)"], ["S", "you", "sen"], ["V", "pass", "uzatabilir misin"], ["O", "the salt", "tuzu"]]}
+{"id": "A1-4:51", "en": "Don't put salt on the salad.", "p": [["V", "Don't put", "koyma"], ["O", "salt", "tuz"], ["P", "on the salad", "salataya"]]}
+{"id": "A1-4:52", "en": "These purple onions are from the market.", "p": [["S", "These purple onions", "bu mor soğanlar"], ["V", "are", "(ek fiil)"], ["P", "from the market", "pazardan"]]}
+{"id": "A1-4:53", "en": "Those chickens are in the garden.", "p": [["S", "Those chickens", "şu tavuklar"], ["V", "are", "(ek fiil)"], ["P", "in the garden", "bahçede"]]}
+{"id": "A1-4:54", "en": "Does your wife like chocolate?", "p": [["SORU", "Does", "(soru)"], ["S", "your wife", "karın"], ["V", "like", "sever mi"], ["O", "chocolate", "çikolata"]]}
+{"id": "A1-4:55", "en": "The butter is next to the bread.", "p": [["S", "The butter", "tereyağı"], ["V", "is", "(ek fiil)"], ["P", "next to the bread", "ekmeğin yanında"]]}
+{"id": "A1-4:56", "en": "She is filling the bath.", "p": [["S", "She", "o"], ["V", "is filling", "dolduruyor"], ["O", "the bath", "küveti"]]}
+{"id": "A1-4:57", "en": "The boy's T-shirt is blue.", "p": [["S", "The boy's T-shirt", "erkek çocuğun tişörtü"], ["V", "is blue", "mavi"]]}
+{"id": "A1-4:58", "en": "Breakfast is my favourite meal.", "p": [["S", "Breakfast", "kahvaltı"], ["V", "is my favourite meal", "en sevdiğim öğün"]]}
+{"id": "A1-4:59", "en": "The adults are in the cafe.", "p": [["S", "The adults", "yetişkinler"], ["V", "are", "(ek fiil)"], ["P", "in the cafe", "kafede"]]}
+{"id": "A1-5:0", "en": "I like dancing.", "p": [["S", "I", "ben"], ["V", "like", "severim"], ["O", "dancing", "dans etmeyi"]]}
+{"id": "A1-5:1", "en": "Elif is a dancer.", "p": [["S", "Elif", "Elif"], ["V", "is a dancer", "bir dansçı"]]}
+{"id": "A1-5:2", "en": "This movie is boring.", "p": [["S", "This movie", "bu film"], ["V", "is boring", "sıkıcı"]]}
+{"id": "A1-5:3", "en": "I am bored.", "p": [["S", "I", "ben"], ["V", "am bored", "sıkıldım"]]}
+{"id": "A1-5:4", "en": "Tennis is exciting.", "p": [["S", "Tennis", "tenis"], ["V", "is exciting", "heyecan verici"]]}
+{"id": "A1-5:5", "en": "We are excited today.", "p": [["S", "We", "biz"], ["V", "are excited", "heyecanlıyız"], ["T", "today", "bugün"]]}
+{"id": "A1-5:6", "en": "Are you interested in art?", "p": [["SORU", "Are", "(soru)"], ["S", "you", "sen"], ["V", "interested", "ilgileniyor musun"], ["EK", "in art", "sanatla"]]}
+{"id": "A1-5:7", "en": "This magazine is very interesting.", "p": [["S", "This magazine", "bu dergi"], ["V", "is very interesting", "çok ilginç"]]}
+{"id": "A1-5:8", "en": "My brother is a tennis player.", "p": [["S", "My brother", "erkek kardeşim"], ["V", "is a tennis player", "bir tenis oyuncusu"]]}
+{"id": "A1-5:9", "en": "Zeynep is an actress.", "p": [["S", "Zeynep", "Zeynep"], ["V", "is an actress", "bir aktris"]]}
+{"id": "A1-5:10", "en": "I love action films.", "p": [["S", "I", "ben"], ["V", "love", "çok severim"], ["O", "action films", "aksiyon filmlerini"]]}
+{"id": "A1-5:11", "en": "My father is an artist.", "p": [["S", "My father", "babam"], ["V", "is an artist", "bir sanatçı"]]}
+{"id": "A1-5:12", "en": "Can you pay the bill?", "p": [["SORU", "Can", "(soru)"], ["S", "you", "sen"], ["V", "pay", "ödeyebilir misin"], ["O", "the bill", "hesabı"]]}
+{"id": "A1-5:13", "en": "Mert is writing a blog.", "p": [["S", "Mert", "Mert"], ["V", "is writing", "yazıyor"], ["O", "a blog", "bir blog"]]}
+{"id": "A1-5:14", "en": "I post photos on my blog.", "p": [["S", "I", "ben"], ["V", "post", "paylaşırım"], ["O", "photos", "fotoğraf"], ["P", "on my blog", "blogumda"]]}
+{"id": "A1-5:15", "en": "We listen to CDs in the car.", "p": [["S", "We", "biz"], ["V", "listen to", "dinleriz"], ["O", "CDs", "CD"], ["P", "in the car", "arabada"]]}
+{"id": "A1-5:16", "en": "This song is number one in the charts.", "p": [["S", "This song", "bu şarkı"], ["V", "is number one", "bir numara"], ["P", "in the charts", "listelerde"]]}
+{"id": "A1-5:17", "en": "Are you a member of the club?", "p": [["SORU", "Are", "(soru)"], ["S", "you", "sen"], ["V", "a member of the club", "kulübün üyesi misin"]]}
+{"id": "A1-5:18", "en": "Our club has got fifty members.", "p": [["S", "Our club", "kulübümüzün"], ["V", "has got", "var"], ["O", "fifty members", "elli üyesi"]]}
+{"id": "A1-5:19", "en": "Dancing is a fun activity.", "p": [["S", "Dancing", "dans"], ["V", "is a fun activity", "bir eğlenceli etkinlik"]]}
+{"id": "A1-5:20", "en": "We watch DVDs together.", "p": [["S", "We", "biz"], ["V", "watch", "izleriz"], ["O", "DVDs", "DVD"], ["NASIL", "together", "birlikte"]]}
+{"id": "A1-5:21", "en": "Climbing is dangerous.", "p": [["S", "Climbing", "tırmanmak"], ["V", "is dangerous", "tehlikelidir"]]}
+{"id": "A1-5:22", "en": "This is a special event.", "p": [["S", "This", "bu"], ["V", "is a special event", "bir özel etkinlik"]]}
+{"id": "A1-5:23", "en": "Everybody is happy today.", "p": [["S", "Everybody", "herkes"], ["V", "is happy", "mutlu"], ["T", "today", "bugün"]]}
+{"id": "A1-5:24", "en": "I exercise every morning.", "p": [["S", "I", "ben"], ["V", "exercise", "egzersiz yaparım"], ["T", "every morning", "her sabah"]]}
+{"id": "A1-5:25", "en": "The concert is fantastic.", "p": [["S", "The concert", "konser"], ["V", "is fantastic", "harika"]]}
+{"id": "A1-5:26", "en": "Our teacher is very friendly.", "p": [["S", "Our teacher", "öğretmenimiz"], ["V", "is very friendly", "çok cana yakın"]]}
+{"id": "A1-5:27", "en": "We are in a music group.", "p": [["S", "We", "biz"], ["V", "are", "(ek fiil)"], ["P", "in a music group", "bir müzik grubundayız"]]}
+{"id": "A1-5:28", "en": "Ali goes to the gym on Mondays.", "p": [["S", "Ali", "Ali"], ["V", "goes", "gider"], ["P", "to the gym", "spor salonuna"], ["T", "on Mondays", "pazartesileri"]]}
+{"id": "A1-5:29", "en": "What is your hobby?", "p": [["SORU", "What", "ne"], ["V", "is", "(ek fiil)"], ["S", "your hobby", "hobin"]]}
+{"id": "A1-5:30", "en": "My hobby is taking photographs.", "p": [["S", "My hobby", "hobim"], ["V", "is taking photographs", "fotoğraf çekmek"]]}
+{"id": "A1-5:31", "en": "I don't use the internet at night.", "p": [["S", "I", "ben"], ["V", "don't use", "kullanmam"], ["O", "the internet", "interneti"], ["T", "at night", "geceleri"]]}
+{"id": "A1-5:32", "en": "She is reading a magazine.", "p": [["S", "She", "o"], ["V", "is reading", "okuyor"], ["O", "a magazine", "bir dergi"]]}
+{"id": "A1-5:33", "en": "Can is my tennis partner.", "p": [["S", "Can", "Can"], ["V", "is my tennis partner", "benim tenis partnerim"]]}
+{"id": "A1-5:34", "en": "I am sending a message to Ayşe.", "p": [["S", "I", "ben"], ["V", "am sending", "gönderiyorum"], ["O", "a message", "bir mesaj"], ["EK", "to Ayşe", "Ayşe'ye"]]}
+{"id": "A1-5:35", "en": "My sister is a model.", "p": [["S", "My sister", "ablam"], ["V", "is a model", "bir model"]]}
+{"id": "A1-5:36", "en": "I like modern art.", "p": [["S", "I", "ben"], ["V", "like", "severim"], ["O", "modern art", "modern sanatı"]]}
+{"id": "A1-5:37", "en": "No one is at the club.", "p": [["S", "No one", "kimse"], ["V", "is", "yok"], ["P", "at the club", "kulüpte"]]}
+{"id": "A1-5:38", "en": "This is a personal message.", "p": [["S", "This", "bu"], ["V", "is a personal message", "bir kişisel mesaj"]]}
+{"id": "A1-5:39", "en": "Your new dress is pretty.", "p": [["S", "Your new dress", "yeni elbisen"], ["V", "is pretty", "güzel"]]}
+{"id": "A1-5:40", "en": "Do you listen to the radio?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sen"], ["V", "listen to", "dinler misin"], ["O", "the radio", "radyo"]]}
+{"id": "A1-5:41", "en": "I relax on Sundays.", "p": [["S", "I", "ben"], ["V", "relax", "dinlenirim"], ["T", "on Sundays", "pazarları"]]}
+{"id": "A1-5:42", "en": "That sounds wonderful!", "p": [["S", "That", "bu"], ["V", "sounds wonderful", "kulağa harika geliyor"]]}
+{"id": "A1-5:43", "en": "I love the sound of the piano.", "p": [["S", "I", "ben"], ["V", "love", "çok severim"], ["O", "the sound of the piano", "piyanonun sesini"]]}
+{"id": "A1-5:44", "en": "Your party is a big success.", "p": [["S", "Your party", "partin"], ["V", "is a big success", "bir büyük başarı"]]}
+{"id": "A1-5:45", "en": "We are watching television together.", "p": [["S", "We", "biz"], ["V", "are watching", "izliyoruz"], ["O", "television", "televizyon"], ["NASIL", "together", "birlikte"]]}
+{"id": "A1-5:46", "en": "He doesn't like watching videos.", "p": [["S", "He", "o"], ["V", "doesn't like", "sevmez"], ["O", "watching videos", "video izlemeyi"]]}
+{"id": "A1-5:47", "en": "My mother is a worker in a factory.", "p": [["S", "My mother", "annem"], ["V", "is a worker", "bir işçi"], ["P", "in a factory", "bir fabrikada"]]}
+{"id": "A1-5:48", "en": "Who is your favourite writer?", "p": [["SORU", "Who", "kim"], ["V", "is", "(ek fiil)"], ["S", "your favourite writer", "en sevdiğin yazar"]]}
+{"id": "A1-5:49", "en": "Zeynep is excited about the event.", "p": [["S", "Zeynep", "Zeynep"], ["V", "is excited", "heyecanlı"], ["EK", "about the event", "etkinlik için"]]}
+{"id": "A1-5:50", "en": "The children are bored.", "p": [["S", "The children", "çocukların"], ["V", "are bored", "canı sıkkın"]]}
+{"id": "A1-5:51", "en": "Is the film interesting?", "p": [["SORU", "Is", "(soru)"], ["S", "the film", "film"], ["V", "interesting", "ilginç mi"]]}

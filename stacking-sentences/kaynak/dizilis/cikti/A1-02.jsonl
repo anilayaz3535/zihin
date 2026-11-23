@@ -1,0 +1,100 @@
+{"id": "A1-2:37", "en": "My friend hates geography.", "p": [["S", "My friend", "arkadaşım"], ["V", "hates", "nefret eder"], ["O", "geography", "coğrafyadan"]]}
+{"id": "A1-2:38", "en": "Art is my favourite subject.", "p": [["S", "Art", "resim"], ["V", "is my favourite subject", "en sevdiğim ders"]]}
+{"id": "A1-2:39", "en": "I have a notebook.", "p": [["S", "I", "ben"], ["V", "have", "var"], ["O", "a notebook", "bir defterim"]]}
+{"id": "A1-2:40", "en": "He has a ruler.", "p": [["S", "He", "onun"], ["V", "has", "var"], ["O", "a ruler", "bir cetveli"]]}
+{"id": "A1-2:41", "en": "Do you have an eraser?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "senin"], ["V", "have", "var mı"], ["O", "an eraser", "bir silgin"]]}
+{"id": "A1-2:42", "en": "Does your teacher have a computer?", "p": [["SORU", "Does", "(soru)"], ["S", "your teacher", "öğretmeninin"], ["V", "have", "var mı"], ["O", "a computer", "bir bilgisayarı"]]}
+{"id": "A1-2:43", "en": "Our classroom has a big board.", "p": [["S", "Our classroom", "sınıfımızın"], ["V", "has", "var"], ["O", "a big board", "bir büyük tahtası"]]}
+{"id": "A1-2:44", "en": "We play basketball twice a week.", "p": [["S", "We", "biz"], ["V", "play", "oynarız"], ["O", "basketball", "basketbol"], ["T", "twice a week", "haftada iki kez"]]}
+{"id": "A1-2:45", "en": "She goes skiing in winter.", "p": [["S", "She", "o"], ["V", "goes skiing", "kayağa gider"], ["T", "in winter", "kışın"]]}
+{"id": "A1-2:46", "en": "He runs in the park.", "p": [["S", "He", "o"], ["V", "runs", "koşar"], ["P", "in the park", "parkta"]]}
+{"id": "A1-2:47", "en": "Does she play chess?", "p": [["SORU", "Does", "(soru)"], ["S", "she", "o"], ["V", "play", "oynar mı"], ["O", "chess", "satranç"]]}
+{"id": "A1-2:48", "en": "My dad paints pictures.", "p": [["S", "My dad", "babam"], ["V", "paints", "yapar"], ["O", "pictures", "resim"]]}
+{"id": "A1-2:49", "en": "My mum sings in a choir.", "p": [["S", "My mum", "annem"], ["V", "sings", "şarkı söyler"], ["P", "in a choir", "bir koroda"]]}
+{"id": "A1-2:50", "en": "I collect stamps.", "p": [["S", "I", "ben"], ["V", "collect", "biriktiririm"], ["O", "stamps", "pul"]]}
+{"id": "A1-2:51", "en": "The girls dance every Friday.", "p": [["S", "The girls", "kızlar"], ["V", "dance", "dans eder"], ["T", "every Friday", "her cuma"]]}
+{"id": "A1-2:52", "en": "When does the library open?", "p": [["SORU", "When", "ne zaman"], ["SORU", "does", "(soru)"], ["S", "the library", "kütüphane"], ["V", "open", "açılır"]]}
+{"id": "A1-2:53", "en": "What time do you wake up?", "p": [["SORU", "What time", "kaçta"], ["SORU", "do", "(soru)"], ["S", "you", "sen"], ["V", "wake up", "uyanırsın"]]}
+{"id": "A1-2:54", "en": "Does he have a dog?", "p": [["SORU", "Does", "(soru)"], ["S", "he", "onun"], ["V", "have", "var mı"], ["O", "a dog", "bir köpeği"]]}
+{"id": "A1-2:55", "en": "She doesn't eat meat.", "p": [["S", "She", "o"], ["V", "doesn't eat", "yemez"], ["O", "meat", "et"]]}
+{"id": "A1-2:56", "en": "My parents don't drink coffee.", "p": [["S", "My parents", "annemle babam"], ["V", "don't drink", "içmez"], ["O", "coffee", "kahve"]]}
+{"id": "A1-2:57", "en": "The bus stops near our school.", "p": [["S", "The bus", "otobüs"], ["V", "stops", "durur"], ["P", "near our school", "okulumuzun yakınında"]]}
+{"id": "A1-2:58", "en": "The bakery opens at eight.", "p": [["S", "The bakery", "fırın"], ["V", "opens", "açılır"], ["T", "at eight", "saat sekizde"]]}
+{"id": "A1-2:59", "en": "Do you have PE on Fridays?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sizin"], ["V", "have", "var mı"], ["O", "PE", "beden eğitimi dersiniz"], ["T", "on Fridays", "cuma günleri"]]}
+{"id": "A1-2:60", "en": "Mechanics fix cars.", "p": [["S", "Mechanics", "tamirciler"], ["V", "fix", "tamir eder"], ["O", "cars", "araba"]]}
+{"id": "A1-2:61", "en": "A vet helps sick animals.", "p": [["S", "A vet", "bir veteriner"], ["V", "helps", "yardım eder"], ["O", "sick animals", "hasta hayvanlara"]]}
+{"id": "A1-2:62", "en": "She studies every night.", "p": [["S", "She", "o"], ["V", "studies", "ders çalışır"], ["T", "every night", "her gece"]]}
+{"id": "A1-2:63", "en": "The students wear uniforms.", "p": [["S", "The students", "öğrenciler"], ["V", "wear", "giyer"], ["O", "uniforms", "üniforma"]]}
+{"id": "A1-2:64", "en": "I wash my face every day.", "p": [["S", "I", "ben"], ["V", "wash", "yıkarım"], ["O", "my face", "yüzümü"], ["T", "every day", "her gün"]]}
+{"id": "A1-3:0", "en": "Hello, my name is Elif.", "p": [["KALIP", "Hello", "merhaba"], ["S", "my name", "benim adım"], ["V", "is Elif", "Elif"]]}
+{"id": "A1-3:1", "en": "Hi, how are you?", "p": [["KALIP", "Hi", "selam"], ["KALIP", "how are you", "nasılsın"]]}
+{"id": "A1-3:2", "en": "Hey, what time is it?", "p": [["KALIP", "Hey", "hey"], ["KALIP", "what time is it", "saat kaç"]]}
+{"id": "A1-3:3", "en": "It is half past seven.", "p": [["S", "It", "saat"], ["V", "is half past seven", "yedi buçuk"]]}
+{"id": "A1-3:4", "en": "It is a quarter past eleven.", "p": [["S", "It", "saat"], ["V", "is a quarter past eleven", "on biri çeyrek geçiyor"]]}
+{"id": "A1-3:5", "en": "The clock on the wall is slow.", "p": [["S", "The clock", "saat"], ["P", "on the wall", "duvardaki"], ["V", "is slow", "geri kalıyor"]]}
+{"id": "A1-3:6", "en": "Goodbye, see you later.", "p": [["KALIP", "Goodbye", "hoşça kal"], ["KALIP", "see you later", "sonra görüşürüz"]]}
+{"id": "A1-3:7", "en": "Bye, have a nice trip!", "p": [["KALIP", "Bye", "hoşça kal"], ["KALIP", "have a nice trip", "iyi yolculuklar"]]}
+{"id": "A1-3:8", "en": "Thank you very much.", "p": [["KALIP", "Thank you very much", "çok teşekkür ederim"]]}
+{"id": "A1-3:9", "en": "Thanks, see you on Thursday.", "p": [["KALIP", "Thanks", "teşekkürler"], ["KALIP", "see you", "görüşürüz"], ["T", "on Thursday", "perşembe"]]}
+{"id": "A1-3:10", "en": "Sorry, I am late.", "p": [["KALIP", "Sorry", "özür dilerim"], ["S", "I", "ben"], ["V", "am late", "geç kaldım"]]}
+{"id": "A1-3:11", "en": "Welcome to our city!", "p": [["KALIP", "Welcome", "hoş geldiniz"], ["P", "to our city", "şehrimize"]]}
+{"id": "A1-3:12", "en": "Yes, I am fifteen.", "p": [["KALIP", "Yes", "evet"], ["S", "I", "ben"], ["V", "am fifteen", "on beş yaşındayım"]]}
+{"id": "A1-3:13", "en": "Yeah, my brother is thirteen.", "p": [["KALIP", "Yeah", "evet"], ["S", "my brother", "erkek kardeşim"], ["V", "is thirteen", "on üç yaşında"]]}
+{"id": "A1-3:14", "en": "Oh, it is very cold today.", "p": [["KALIP", "Oh", "ah"], ["S", "it", "hava"], ["V", "is very cold", "çok soğuk"], ["T", "today", "bugün"]]}
+{"id": "A1-3:15", "en": "OK, let's go to the station.", "p": [["KALIP", "OK", "tamam"], ["V", "let's go", "gidelim"], ["P", "to the station", "istasyona"]]}
+{"id": "A1-3:16", "en": "My birthday is in January.", "p": [["S", "My birthday", "doğum günüm"], ["V", "is", "(ek fiil)"], ["T", "in January", "ocakta"]]}
+{"id": "A1-3:17", "en": "February is a short month.", "p": [["S", "February", "şubat"], ["V", "is a short month", "bir kısa aydır"]]}
+{"id": "A1-3:18", "en": "Spring starts in March.", "p": [["S", "Spring", "ilkbahar"], ["V", "starts", "başlar"], ["T", "in March", "martta"]]}
+{"id": "A1-3:19", "en": "It often rains in April.", "p": [["S", "It", "—"], ["V", "often rains", "sık sık yağmur yağar"], ["T", "in April", "nisanda"]]}
+{"id": "A1-3:20", "en": "My mother's birthday is in May.", "p": [["S", "My mother's birthday", "annemin doğum günü"], ["V", "is", "(ek fiil)"], ["T", "in May", "mayısta"]]}
+{"id": "A1-3:21", "en": "We go on vacation in June.", "p": [["S", "We", "biz"], ["V", "go on vacation", "tatile gideriz"], ["T", "in June", "haziranda"]]}
+{"id": "A1-3:22", "en": "It is hot in July and August.", "p": [["S", "It", "hava"], ["V", "is hot", "sıcaktır"], ["T", "in July and August", "temmuz ve ağustosta"]]}
+{"id": "A1-3:23", "en": "School starts in September.", "p": [["S", "School", "okul"], ["V", "starts", "başlar"], ["T", "in September", "eylülde"]]}
+{"id": "A1-3:24", "en": "Autumn is beautiful in October.", "p": [["S", "Autumn", "sonbahar"], ["V", "is beautiful", "güzeldir"], ["T", "in October", "ekimde"]]}
+{"id": "A1-3:25", "en": "It is cold in November.", "p": [["S", "It", "hava"], ["V", "is cold", "soğuktur"], ["T", "in November", "kasımda"]]}
+{"id": "A1-3:26", "en": "It snows in December.", "p": [["S", "It", "—"], ["V", "snows", "kar yağar"], ["T", "in December", "aralıkta"]]}
+{"id": "A1-3:27", "en": "What is the date today?", "p": [["KALIP", "What is the date", "ayın kaçı"], ["T", "today", "bugün"]]}
+{"id": "A1-3:28", "en": "My exam is on the fourth of June.", "p": [["S", "My exam", "sınavım"], ["V", "is", "(ek fiil)"], ["T", "on the fourth of June", "haziranın dördünde"]]}
+{"id": "A1-3:29", "en": "Today is the fifth of October.", "p": [["S", "Today", "bugün"], ["V", "is the fifth of October", "ekimin beşi"]]}
+{"id": "A1-3:30", "en": "I have English on Wednesday at twelve.", "p": [["S", "I", "benim"], ["V", "have", "var"], ["O", "English", "İngilizce dersim"], ["T", "on Wednesday", "çarşamba"], ["T", "at twelve", "saat on ikide"]]}
+{"id": "A1-3:31", "en": "There are fourteen students in my class.", "p": [["V", "There are", "var"], ["S", "fourteen students", "on dört öğrenci"], ["P", "in my class", "sınıfımda"]]}
+{"id": "A1-3:32", "en": "My sisters are sixteen and seventeen.", "p": [["S", "My sisters", "kız kardeşlerim"], ["V", "are sixteen and seventeen", "on altı ve on yedi yaşında"]]}
+{"id": "A1-3:33", "en": "Mert is eighteen and Zeynep is nineteen.", "p": [["S", "Mert", "Mert"], ["V", "is eighteen", "on sekiz yaşında"], ["BAG", "and", "ve"], ["S", "Zeynep", "Zeynep"], ["V", "is nineteen", "on dokuz yaşında"]]}
+{"id": "A1-3:34", "en": "There are twenty people at the party.", "p": [["V", "There are", "var"], ["S", "twenty people", "yirmi kişi"], ["P", "at the party", "partide"]]}
+{"id": "A1-3:35", "en": "My grandfather is eighty.", "p": [["S", "My grandfather", "dedem"], ["V", "is eighty", "seksen yaşında"]]}
+{"id": "A1-3:36", "en": "Elif's grandmother is ninety years old.", "p": [["S", "Elif's grandmother", "Elif'in büyükannesi"], ["V", "is ninety years old", "doksan yaşında"]]}
+{"id": "A1-3:37", "en": "There are forty chairs in the room.", "p": [["V", "There are", "var"], ["S", "forty chairs", "kırk sandalye"], ["P", "in the room", "odada"]]}
+{"id": "A1-3:38", "en": "This book costs fifty pounds.", "p": [["S", "This book", "bu kitap"], ["V", "costs", "eder"], ["O", "fifty pounds", "elli sterlin"]]}
+{"id": "A1-3:39", "en": "An apple costs sixty cents.", "p": [["S", "An apple", "bir elma"], ["V", "costs", "eder"], ["O", "sixty cents", "altmış sent"]]}
+{"id": "A1-3:40", "en": "Seventy people work in this office.", "p": [["S", "Seventy people", "yetmiş kişi"], ["V", "work", "çalışıyor"], ["P", "in this office", "bu ofiste"]]}
+{"id": "A1-3:41", "en": "There are a hundred trees in the park.", "p": [["V", "There are", "var"], ["S", "a hundred trees", "yüz ağaç"], ["P", "in the park", "parkta"]]}
+{"id": "A1-3:42", "en": "The station is not far.", "p": [["S", "The station", "istasyon"], ["V", "is not far", "uzak değil"]]}
+{"id": "A1-3:43", "en": "The school is one kilometre from here.", "p": [["S", "The school", "okul"], ["V", "is one kilometre", "bir kilometre uzaklıkta"], ["P", "from here", "buraya"]]}
+{"id": "A1-3:44", "en": "The pool is fifty metres long.", "p": [["S", "The pool", "havuz"], ["V", "is fifty metres long", "elli metre uzunluğunda"]]}
+{"id": "A1-3:45", "en": "My house is two miles from the sea.", "p": [["S", "My house", "evim"], ["V", "is two miles", "iki mil uzaklıkta"], ["P", "from the sea", "denize"]]}
+{"id": "A1-3:46", "en": "We live in a quiet area.", "p": [["S", "We", "biz"], ["V", "live", "yaşıyoruz"], ["P", "in a quiet area", "bir sakin bölgede"]]}
+{"id": "A1-3:47", "en": "Ankara is the capital of Turkey.", "p": [["S", "Ankara", "Ankara"], ["V", "is the capital of Turkey", "Türkiye'nin başkentidir"]]}
+{"id": "A1-3:48", "en": "The sun rises in the east.", "p": [["S", "The sun", "güneş"], ["V", "rises", "doğar"], ["P", "in the east", "doğudan"]]}
+{"id": "A1-3:49", "en": "My uncle lives in the west.", "p": [["S", "My uncle", "amcam"], ["V", "lives", "yaşıyor"], ["P", "in the west", "batıda"]]}
+{"id": "A1-3:50", "en": "I want to see the world.", "p": [["S", "I", "ben"], ["V", "want to see", "görmek istiyorum"], ["O", "the world", "dünyayı"]]}
+{"id": "A1-3:51", "en": "We buy bread from the local shop.", "p": [["S", "We", "biz"], ["V", "buy", "alırız"], ["O", "bread", "ekmeği"], ["P", "from the local shop", "mahalledeki dükkândan"]]}
+{"id": "A1-3:52", "en": "Dear Ayşe, how are you?", "p": [["EK", "Dear Ayşe", "sevgili Ayşe"], ["KALIP", "how are you", "nasılsın"]]}
+{"id": "A1-3:53", "en": "Maybe it is in the bag.", "p": [["EK", "Maybe", "belki"], ["S", "it", "o"], ["V", "is", "(ek fiil)"], ["P", "in the bag", "çantadadır"]]}
+{"id": "A1-3:54", "en": "He is probably at home.", "p": [["S", "He", "o"], ["V", "is", "(ek fiil)"], ["EK", "probably", "muhtemelen"], ["P", "at home", "evde"]]}
+{"id": "A1-3:55", "en": "Are you sure?", "p": [["SORU", "Are", "(soru)"], ["S", "you", "sen"], ["V", "sure", "emin misin"]]}
+{"id": "A1-3:56", "en": "Sometimes I sleep in the afternoon.", "p": [["T", "Sometimes", "bazen"], ["S", "I", "ben"], ["V", "sleep", "uyurum"], ["T", "in the afternoon", "öğleden sonra"]]}
+{"id": "A1-3:57", "en": "My morning routine is very quick.", "p": [["S", "My morning routine", "sabah rutinim"], ["V", "is very quick", "çok hızlı"]]}
+{"id": "A1-3:58", "en": "She eats her breakfast quickly.", "p": [["S", "She", "o"], ["V", "eats", "yer"], ["O", "her breakfast", "kahvaltısını"], ["NASIL", "quickly", "hızlıca"]]}
+{"id": "A1-3:59", "en": "I often think about the future.", "p": [["S", "I", "ben"], ["V", "often think", "sık sık düşünürüm"], ["EK", "about the future", "geleceği"]]}
+{"id": "A1-4:0", "en": "There is butter on the table.", "p": [["V", "There is", "var"], ["S", "butter", "tereyağı"], ["P", "on the table", "masada"]]}
+{"id": "A1-4:1", "en": "The salt is next to the rice.", "p": [["S", "The salt", "tuz"], ["V", "is", "(ek fiil)"], ["P", "next to the rice", "pirincin yanında"]]}
+{"id": "A1-4:2", "en": "There are two onions in the box.", "p": [["V", "There are", "var"], ["S", "two onions", "iki soğan"], ["P", "in the box", "kutuda"]]}
+{"id": "A1-4:3", "en": "The mouse is under the chair.", "p": [["S", "The mouse", "fare"], ["V", "is", "(ek fiil)"], ["P", "under the chair", "sandalyenin altında"]]}
+{"id": "A1-4:4", "en": "Is there chocolate in the fridge?", "p": [["V", "Is there", "var mı"], ["S", "chocolate", "çikolata"], ["P", "in the fridge", "buzdolabında"]]}
+{"id": "A1-4:5", "en": "There is a lamp above the desk.", "p": [["V", "There is", "var"], ["S", "a lamp", "bir lamba"], ["P", "above the desk", "çalışma masasının yukarısında"]]}
+{"id": "A1-4:6", "en": "The cafe is opposite our flat.", "p": [["S", "The cafe", "kafe"], ["V", "is", "(ek fiil)"], ["P", "opposite our flat", "dairemizin karşısında"]]}
+{"id": "A1-4:7", "en": "My bedroom is upstairs.", "p": [["S", "My bedroom", "yatak odam"], ["V", "is", "(ek fiil)"], ["P", "upstairs", "üst katta"]]}
+{"id": "A1-4:8", "en": "The bathroom is downstairs.", "p": [["S", "The bathroom", "banyo"], ["V", "is", "(ek fiil)"], ["P", "downstairs", "alt katta"]]}
+{"id": "A1-4:9", "en": "The toilet is between two bedrooms.", "p": [["S", "The toilet", "tuvalet"], ["V", "is", "(ek fiil)"], ["P", "between two bedrooms", "iki yatak odasının arasında"]]}
+{"id": "A1-4:10", "en": "The baby is having a bath.", "p": [["S", "The baby", "bebek"], ["V", "is having", "yapıyor"], ["O", "a bath", "banyo"]]}
+{"id": "A1-4:11", "en": "Our apartment has got a big kitchen.", "p": [["S", "Our apartment", "dairemizin"], ["V", "has got", "var"], ["O", "a big kitchen", "bir büyük mutfağı"]]}

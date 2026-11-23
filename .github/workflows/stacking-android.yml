@@ -1,0 +1,51 @@
+# Stacking Sentences · Android derlemesi
+# Her değişiklikte telefona kurulabilen deneme APK'sı üretir (Actions → bu iş → Artifacts → stacking-sentences-android).
+# Yayın anahtarı GitHub Secrets'a eklendiyse Google Play'e yüklenecek imzalı AAB de üretir.
+# Gerekli gizli değerler (Settings → Secrets and variables → Actions), ayrıntı: stacking-sentences/MAGAZA/YAYIN-REHBERI.md
+#   ANDROID_KEYSTORE_BASE64, ANDROID_KEYSTORE_PASSWORD, ANDROID_KEY_ALIAS, ANDROID_KEY_PASSWORD
+name: Stacking Sentences · Android
+on:
+  push:
+    paths: ['stacking-sentences/**', '.github/workflows/stacking-android.yml']
+  workflow_dispatch:
+jobs:
+  android:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stacking-sentences/uygulama
+    env:
+      KS: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: stacking-sentences/uygulama/package-lock.json
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 21
+      - run: npm ci
+      - run: npm run www && npx cap sync android
+      - name: Yayın anahtarı
+        if: env.KS != ''
+        run: |
+          echo "$KS" | base64 -d > android/stacking-sentences.jks
+          printf 'storeFile=../stacking-sentences.jks\nstorePassword=%s\nkeyAlias=%s\nkeyPassword=%s\n' \
+            "${{ secrets.ANDROID_KEYSTORE_PASSWORD }}" "${{ secrets.ANDROID_KEY_ALIAS }}" "${{ secrets.ANDROID_KEY_PASSWORD }}" > android/keystore.properties
+      - name: Deneme APK
+        working-directory: stacking-sentences/uygulama/android
+        run: ./gradlew --no-daemon assembleDebug
+      - name: Google Play AAB (imzalı)
+        if: env.KS != ''
+        working-directory: stacking-sentences/uygulama/android
+        run: ./gradlew --no-daemon bundleRelease
+      - uses: actions/upload-artifact@v4
+        with:
+          name: stacking-sentences-android
+          path: |
+            stacking-sentences/uygulama/android/app/build/outputs/apk/debug/*.apk
+            stacking-sentences/uygulama/android/app/build/outputs/bundle/release/*.aab
+          if-no-files-found: warn

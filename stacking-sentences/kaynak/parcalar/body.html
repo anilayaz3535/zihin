@@ -1,0 +1,44 @@
+</style>
+</head>
+<body class="port">
+<canvas id="c"></canvas>
+
+<div id="pow">
+  <button class="pw bomba" data-k="bomb" aria-label="Cümle bombası" data-ta><span class="pw-ad" data-t>CÜMLE BOMBASI!</span><span class="rozet-b"><i>💣</i><b id="cB">0</b></span></button>
+  <div class="raf">
+    <div class="kutular"><button class="slot" aria-label="Güç kutusu" data-ta></button><button class="slot" aria-label="Güç kutusu" data-ta></button><button class="slot" aria-label="Güç kutusu" data-ta></button><button class="slot" aria-label="Güç kutusu" data-ta></button></div>
+    <div class="ilerle"><div class="cubuk"><u id="bIl"></u></div><span id="bIlY"></span></div>
+  </div>
+</div>
+<div id="sys">
+  <button id="pauseBtn" aria-label="Duraklat" data-ta>❚❚</button>
+  <button id="musicBtn" aria-label="Müzik" data-ta>🎵</button>
+  <button id="setBtn" aria-label="Ayarlar" data-ta>⚙</button>
+</div>
+<div id="ov" class="show"><div class="card" id="card"><div class="logo sm"><span class="a">STACKING</span> <span class="b">SENTENCES</span></div><div class="sub" id="yuk-1">YÜKLENİYOR…</div><p class="aciklama" style="text-align:center" id="yuk-2">9.000 cümle ve 11.000 kelime hazırlanıyor, birkaç saniye sürebilir.</p></div></div>
+<div id="not"></div>
+<div id="koc" role="status" aria-live="polite"></div>
+
+<script>
+window.__hata = [];
+// yükleme ekranı: İngilizce arayüz seçildiyse oyun dosyaları gelmeden önce de İngilizce görünsün
+try { if (localStorage.getItem('te_dil') === 'en') { document.getElementById('yuk-1').textContent = 'LOADING…'; document.getElementById('yuk-2').textContent = 'Preparing 9,000 sentences and 11,000 words. This can take a few seconds.'; } } catch (e) { }
+window.addEventListener('error', function (e) {
+  var m = (e && (e.message || (e.target && e.target.src && ('Yüklenemedi: ' + e.target.src)))) || 'Bilinmeyen hata';
+  window.__hata.push(m);
+  var c = document.getElementById('card'); if (!c || window.__acildi) return;
+  c.innerHTML = '<div class="go" style="font-size:34px">BİR SORUN VAR</div><p class="aciklama">Oyun açılırken hata oluştu. Bu yazıyı Claude\'a gönderirsen düzeltebilirim:</p><p class="aciklama" style="color:#ffb0b8;word-break:break-all">' + String(window.__hata.join(' | ')).replace(/[<>&]/g, '') + '</p>';
+}, true);
+window.addEventListener('unhandledrejection', function (e) { var r = e && e.reason; window.dispatchEvent(new ErrorEvent('error', { message: String(r && (r.message || r)) })); });
+</script>
+<script src="icerik.js"></script>
+<script src="siralama.js"></script>
+<script src="dizilis-hazir.js"></script>
+<script src="hatalar.js"></script>
+<script>
+'use strict';
+/* =====================================================================
+   STACKING SENTENCES
+   20 seviye, cümle bölümleri, kelime paketleri, dersler, hata kuralları, aralıklı tekrar, seviye testi.
+   Müzik: sakin lo-fi döngü (ses/muzik.wav). Erkek spiker sesi kaldırıldı.
+   ===================================================================== */

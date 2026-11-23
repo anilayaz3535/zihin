@@ -1,0 +1,45 @@
+{"id": "A2-19:29", "en": "We cooked dinner together.", "p": [["S", "We", "biz"], ["V", "cooked", "hazırladık"], ["O", "dinner", "akşam yemeğini"], ["NASIL", "together", "birlikte"]]}
+{"id": "A2-19:30", "en": "Everyone can make a mistake.", "p": [["S", "Everyone", "herkes"], ["V", "can make", "yapabilir"], ["O", "a mistake", "bir hata"]]}
+{"id": "A2-19:31", "en": "Let us take a break after this exercise.", "p": [["KALIP", "Let us", "haydi"], ["V", "take", "verelim"], ["O", "a break", "bir mola"], ["T", "after this exercise", "bu alıştırmadan sonra"]]}
+{"id": "A2-19:32", "en": "We didn't go outside.", "p": [["S", "We", "biz"], ["V", "didn't go", "çıkmadık"], ["P", "outside", "dışarı"]]}
+{"id": "A2-19:33", "en": "Did you see the film?", "p": [["SORU", "Did", "(soru)"], ["S", "you", "sen"], ["V", "see", "gördün mü"], ["O", "the film", "filmi"]]}
+{"id": "A2-19:34", "en": "I was watching television.", "p": [["S", "I", "ben"], ["V", "was watching", "izliyordum"], ["O", "television", "televizyon"]]}
+{"id": "A2-19:35", "en": "This road is longer than that one.", "p": [["S", "This road", "bu yol"], ["V", "is longer", "daha uzun"], ["EK", "than that one", "diğerinden"]]}
+{"id": "A2-19:36", "en": "She is the tallest student in the class.", "p": [["S", "She", "o"], ["V", "is the tallest student", "en uzun boylu öğrenci"], ["P", "in the class", "sınıftaki"]]}
+{"id": "A2-19:37", "en": "We haven't got any milk.", "p": [["S", "We", "bizim"], ["V", "haven't got", "yok"], ["O", "any milk", "hiç sütümüz"]]}
+{"id": "A2-19:38", "en": "How much water do you need?", "p": [["SORU", "How much", "ne kadar"], ["O", "water", "suya"], ["SORU", "do", "(soru)"], ["S", "you", "senin"], ["V", "need", "ihtiyacın var"]]}
+{"id": "A2-19:39", "en": "You should rest.", "p": [["S", "You", "sen"], ["V", "should rest", "dinlenmelisin"]]}
+{"id": "A2-19:40", "en": "I want to buy a ticket.", "p": [["S", "I", "ben"], ["V", "want to buy", "almak istiyorum"], ["O", "a ticket", "bir bilet"]]}
+{"id": "A2-19:41", "en": "There aren't enough chairs.", "p": [["V", "There aren't", "yok"], ["S", "enough chairs", "yeterince sandalye"]]}
+{"id": "A2-20:0", "en": "I need to make an appointment with the dentist.", "p": [["S", "I", "benim"], ["V", "need to make", "almam gerekiyor"], ["O", "an appointment", "bir randevu"], ["EK", "with the dentist", "diş hekiminden"]]}
+{"id": "A2-20:1", "en": "Did you make an appointment yesterday?", "p": [["SORU", "Did", "(soru)"], ["S", "you", "sen"], ["V", "make", "aldın mı"], ["O", "an appointment", "bir randevu"], ["T", "yesterday", "dün"]]}
+{"id": "A2-20:2", "en": "We left early to catch a train.", "p": [["S", "We", "biz"], ["V", "left", "çıktık"], ["T", "early", "erken"], ["EK", "to catch a train", "bir trene yetişmek için"]]}
+{"id": "A2-20:3", "en": "Can we catch a train before noon?", "p": [["SORU", "Can", "(soru)"], ["S", "we", "biz"], ["V", "catch", "binebilir miyiz"], ["O", "a train", "bir trene"], ["T", "before noon", "öğleden önce"]]}
+{"id": "A2-20:4", "en": "You might miss a flight if you arrive late.", "p": [["S", "You", "sen"], ["V", "might miss", "kaçırabilirsin"], ["O", "a flight", "bir uçağı"], ["BAG", "if", "-irsen"], ["S", "you", "sen"], ["V", "arrive", "gelirsen"], ["T", "late", "geç"]]}
+{"id": "A2-20:5", "en": "I do not want to miss a flight again.", "p": [["S", "I", "ben"], ["V", "do not want to miss", "kaçırmak istemiyorum"], ["O", "a flight", "bir uçak"], ["T", "again", "bir daha"]]}
+{"id": "A2-20:6", "en": "We can check in online tonight.", "p": [["S", "We", "biz"], ["V", "can check in", "uçuş kaydı yapabiliriz"], ["NASIL", "online", "çevrim içi"], ["T", "tonight", "bu akşam"]]}
+{"id": "A2-20:7", "en": "Did you check in online before leaving?", "p": [["SORU", "Did", "(soru)"], ["S", "you", "sen"], ["V", "check in", "uçuş kaydı yaptın mı"], ["NASIL", "online", "çevrim içi"], ["T", "before leaving", "çıkmadan önce"]]}
+{"id": "A2-20:8", "en": "Keep the receipt if you want to return it.", "p": [["V", "Keep", "sakla"], ["O", "the receipt", "fişi"], ["BAG", "if", "-sen"], ["S", "you", "sen"], ["V", "want to return", "iade etmek istiyorsan"], ["O", "it", "onu"]]}
+{"id": "A2-20:9", "en": "You should keep the receipt for a week.", "p": [["S", "You", "sen"], ["V", "should keep", "saklamalısın"], ["O", "the receipt", "fişi"], ["T", "for a week", "bir hafta"]]}
+{"id": "A2-20:10", "en": "You can try it on before buying it.", "p": [["S", "You", "sen"], ["V", "can try", "deneyebilirsin"], ["O", "it", "onu"], ["V", "on", "(try … on)"], ["T", "before buying it", "satın almadan önce"]]}
+{"id": "A2-20:11", "en": "May I try it on in the fitting room?", "p": [["SORU", "May", "(soru)"], ["S", "I", "ben"], ["V", "try", "deneyebilir miyim"], ["O", "it", "onu"], ["V", "on", "(try … on)"], ["P", "in the fitting room", "soyunma kabininde"]]}
+{"id": "A2-20:12", "en": "We may run out of time.", "p": [["S", "We", "bizim"], ["V", "may run out of", "tükenebilir"], ["O", "time", "zamanımız"]]}
+{"id": "A2-20:13", "en": "I do not want to run out of time during the test.", "p": [["S", "I", "ben"], ["V", "do not want to run out of", "tükenmesini istemiyorum"], ["O", "time", "zamanımın"], ["T", "during the test", "sınav sırasında"]]}
+{"id": "A2-20:14", "en": "You can get a refund within seven days.", "p": [["S", "You", "sen"], ["V", "can get", "alabilirsin"], ["O", "a refund", "bir para iadesi"], ["T", "within seven days", "yedi gün içinde"]]}
+{"id": "A2-20:15", "en": "Did she get a refund for the ticket?", "p": [["SORU", "Did", "(soru)"], ["S", "she", "o"], ["V", "get", "aldı mı"], ["O", "a refund", "bir para iadesi"], ["EK", "for the ticket", "bilet için"]]}
+{"id": "A2-20:16", "en": "I have a sore throat today.", "p": [["S", "I", "benim"], ["V", "have", "var"], ["O", "a sore throat", "bir boğaz ağrım"], ["T", "today", "bugün"]]}
+{"id": "A2-20:17", "en": "Do you have a sore throat as well?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "senin"], ["V", "have", "var mı"], ["O", "a sore throat", "bir boğaz ağrın"], ["EK", "as well", "de"]]}
+{"id": "A2-20:18", "en": "I hope you feel better soon.", "p": [["KALIP", "I hope", "umarım"], ["S", "you", "sen"], ["V", "feel better", "daha iyi hissedersin"], ["T", "soon", "yakında"]]}
+{"id": "A2-20:19", "en": "Do you feel better after resting?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sen"], ["V", "feel better", "daha iyi hissediyor musun"], ["T", "after resting", "dinlendikten sonra"]]}
+{"id": "A2-20:20", "en": "It takes patience to look after someone.", "p": [["S", "It", "—"], ["V", "takes", "gerektirir"], ["O", "patience", "sabır"], ["S", "to look after someone", "birine bakmak"]]}
+{"id": "A2-20:21", "en": "Could you look after someone for an afternoon?", "p": [["SORU", "Could", "(soru)"], ["S", "you", "sen"], ["V", "look after", "ilgilenebilir misin"], ["O", "someone", "biriyle"], ["T", "for an afternoon", "bir öğleden sonra boyunca"]]}
+{"id": "A2-20:22", "en": "I bought some bread on the way home.", "p": [["S", "I", "ben"], ["V", "bought", "aldım"], ["O", "some bread", "biraz ekmek"], ["T", "on the way home", "eve giderken"]]}
+{"id": "A2-20:23", "en": "We can stop at the shop on the way home.", "p": [["S", "We", "biz"], ["V", "can stop", "uğrayabiliriz"], ["P", "at the shop", "dükkâna"], ["T", "on the way home", "eve giderken"]]}
+{"id": "A2-20:24", "en": "I made an appointment yesterday.", "p": [["S", "I", "ben"], ["V", "made", "aldım"], ["O", "an appointment", "bir randevu"], ["T", "yesterday", "dün"]]}
+{"id": "A2-20:25", "en": "We left our luggage at the hotel.", "p": [["S", "We", "biz"], ["V", "left", "bıraktık"], ["O", "our luggage", "bagajımızı"], ["P", "at the hotel", "otelde"]]}
+{"id": "A2-20:26", "en": "Please keep the receipt.", "p": [["KALIP", "Please", "lütfen"], ["V", "keep", "saklayın"], ["O", "the receipt", "fişi"]]}
+{"id": "A2-20:27", "en": "The bus was crowded.", "p": [["S", "The bus", "otobüs"], ["V", "was crowded", "kalabalıktı"]]}
+{"id": "A2-20:28", "en": "I cannot afford a new car.", "p": [["S", "I", "benim"], ["V", "cannot afford", "almaya gücüm yetmiyor"], ["O", "a new car", "bir yeni araba"]]}
+{"id": "A2-20:29", "en": "He will repair the bicycle tomorrow.", "p": [["S", "He", "o"], ["V", "will repair", "tamir edecek"], ["O", "the bicycle", "bisikleti"], ["T", "tomorrow", "yarın"]]}
+{"id": "A2-20:30", "en": "Our journey was longer than expected.", "p": [["S", "Our journey", "yolculuğumuz"], ["V", "was longer", "daha uzundu"], ["EK", "than expected", "beklenenden"]]}
+{"id": "A2-20:31", "en": "We are going to invite our neighbors.", "p": [["S", "We", "biz"], ["V", "are going to invite", "davet edeceğiz"], ["O", "our neighbors", "komşularımızı"]]}

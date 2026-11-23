@@ -1,0 +1,100 @@
+{"id": "B2-1:0", "en": "This painting was made in 1889.", "p": [["S", "This painting", "bu tablo"], ["V", "was made", "yapıldı"], ["T", "in 1889", "1889'da"]]}
+{"id": "B2-1:1", "en": "The museum is cleaned every day.", "p": [["S", "The museum", "müze"], ["V", "is cleaned", "temizlenir"], ["T", "every day", "her gün"]]}
+{"id": "B2-1:2", "en": "This statue was made by a woman.", "p": [["S", "This statue", "bu heykel"], ["V", "was made", "yapıldı"], ["EK", "by a woman", "bir kadın tarafından"]]}
+{"id": "B2-1:3", "en": "Photos are not allowed here.", "p": [["S", "Photos", "fotoğrafa"], ["V", "are not allowed", "izin verilmez"], ["P", "here", "burada"]]}
+{"id": "B2-1:4", "en": "A new museum is being built.", "p": [["S", "A new museum", "bir yeni müze"], ["V", "is being built", "inşa ediliyor"]]}
+{"id": "B2-1:5", "en": "The tickets have already been sold.", "p": [["S", "The tickets", "biletler"], ["V", "have already been sold", "zaten satıldı"]]}
+{"id": "B2-1:6", "en": "The doors will be closed at six.", "p": [["S", "The doors", "kapılar"], ["V", "will be closed", "kapatılacak"], ["T", "at six", "saat altıda"]]}
+{"id": "B2-1:7", "en": "Has this book been translated into Turkish?", "p": [["SORU", "Has", "(soru)"], ["S", "this book", "bu kitap"], ["V", "been translated", "çevrildi mi"], ["EK", "into Turkish", "Türkçeye"]]}
+{"id": "B2-1:8", "en": "This mural was painted by Picasso.", "p": [["S", "This mural", "bu duvar resmi"], ["V", "was painted", "boyandı"], ["EK", "by Picasso", "Picasso tarafından"]]}
+{"id": "B2-1:9", "en": "The telephone was invented by Bell.", "p": [["S", "The telephone", "telefon"], ["V", "was invented", "icat edildi"], ["EK", "by Bell", "Bell tarafından"]]}
+{"id": "B2-1:10", "en": "The pyramids were constructed thousands of years ago.", "p": [["S", "The pyramids", "piramitler"], ["V", "were constructed", "inşa edildi"], ["T", "thousands of years ago", "binlerce yıl önce"]]}
+{"id": "B2-1:11", "en": "This bridge was opened in 1973.", "p": [["S", "This bridge", "bu köprü"], ["V", "was opened", "açıldı"], ["T", "in 1973", "1973'te"]]}
+{"id": "B2-1:12", "en": "Penicillin was discovered in 1928.", "p": [["S", "Penicillin", "penisilin"], ["V", "was discovered", "keşfedildi"], ["T", "in 1928", "1928'de"]]}
+{"id": "B2-1:13", "en": "The novel has been read by millions of people.", "p": [["S", "The novel", "roman"], ["V", "has been read", "okundu"], ["EK", "by millions of people", "milyonlarca kişi tarafından"]]}
+{"id": "B2-1:14", "en": "Smartphones are produced in China.", "p": [["S", "Smartphones", "akıllı telefonlar"], ["V", "are produced", "üretilir"], ["P", "in China", "Çin'de"]]}
+{"id": "B2-1:15", "en": "Coffee is exported from Brazil.", "p": [["S", "Coffee", "kahve"], ["V", "is exported", "ihraç edilir"], ["P", "from Brazil", "Brezilya'dan"]]}
+{"id": "B2-1:16", "en": "Forests are being destroyed every year.", "p": [["S", "Forests", "ormanlar"], ["V", "are being destroyed", "yok ediliyor"], ["T", "every year", "her yıl"]]}
+{"id": "B2-1:17", "en": "Plastic bottles should be recycled.", "p": [["S", "Plastic bottles", "plastik şişeler"], ["V", "should be recycled", "geri dönüştürülmeli"]]}
+{"id": "B2-1:18", "en": "Hieroglyphs were used by the Egyptians.", "p": [["S", "Hieroglyphs", "hiyeroglifler"], ["V", "were used", "kullanıldı"], ["EK", "by the Egyptians", "Mısırlılar tarafından"]]}
+{"id": "B2-1:19", "en": "The Colosseum was built by the Romans.", "p": [["S", "The Colosseum", "Kolezyum"], ["V", "was built", "inşa edildi"], ["EK", "by the Romans", "Romalılar tarafından"]]}
+{"id": "B2-1:20", "en": "This temple was damaged in an earthquake.", "p": [["S", "This temple", "bu tapınak"], ["V", "was damaged", "hasar gördü"], ["EK", "in an earthquake", "bir depremde"]]}
+{"id": "B2-1:21", "en": "Ancient coins were found in the garden.", "p": [["S", "Ancient coins", "antik paralar"], ["V", "were found", "bulundu"], ["P", "in the garden", "bahçede"]]}
+{"id": "B2-1:22", "en": "The letter was written by a soldier.", "p": [["S", "The letter", "mektup"], ["V", "was written", "yazıldı"], ["EK", "by a soldier", "bir asker tarafından"]]}
+{"id": "B2-1:23", "en": "The film was shot in Paris.", "p": [["S", "The film", "film"], ["V", "was shot", "çekildi"], ["P", "in Paris", "Paris'te"]]}
+{"id": "B2-1:24", "en": "The award was given to a young director.", "p": [["S", "The award", "ödül"], ["V", "was given", "verildi"], ["EK", "to a young director", "bir genç yönetmene"]]}
+{"id": "B2-1:25", "en": "Cars are manufactured in this factory.", "p": [["S", "Cars", "arabalar"], ["V", "are manufactured", "üretilir"], ["P", "in this factory", "bu fabrikada"]]}
+{"id": "B2-1:26", "en": "The products are carried by truck.", "p": [["S", "The products", "ürünler"], ["V", "are carried", "taşınır"], ["NASIL", "by truck", "kamyonla"]]}
+{"id": "B2-1:27", "en": "The parcels will be delivered tomorrow.", "p": [["S", "The parcels", "paketler"], ["V", "will be delivered", "teslim edilecek"], ["T", "tomorrow", "yarın"]]}
+{"id": "B2-1:29", "en": "The experiment was repeated by scientists.", "p": [["S", "The experiment", "deney"], ["V", "was repeated", "tekrarlandı"], ["EK", "by scientists", "bilim insanları tarafından"]]}
+{"id": "B2-1:30", "en": "The Moon was first visited in 1969.", "p": [["S", "The Moon", "Ay'a"], ["V", "was first visited", "ilk kez ayak basıldı"], ["T", "in 1969", "1969'da"]]}
+{"id": "B2-1:31", "en": "Dinosaur bones are displayed in the museum.", "p": [["S", "Dinosaur bones", "dinozor kemikleri"], ["V", "are displayed", "sergilenir"], ["P", "in the museum", "müzede"]]}
+{"id": "B2-1:32", "en": "This fortress was completed in the 17th century.", "p": [["S", "This fortress", "bu kale"], ["V", "was completed", "tamamlandı"], ["T", "in the 17th century", "17. yüzyılda"]]}
+{"id": "B2-1:33", "en": "The light bulb was improved by Edison.", "p": [["S", "The light bulb", "ampul"], ["V", "was improved", "geliştirildi"], ["EK", "by Edison", "Edison tarafından"]]}
+{"id": "B2-1:34", "en": "Gravity was explained by Newton.", "p": [["S", "Gravity", "yerçekimi"], ["V", "was explained", "açıklandı"], ["EK", "by Newton", "Newton tarafından"]]}
+{"id": "B2-1:35", "en": "My books were donated to the library.", "p": [["S", "My books", "kitaplarım"], ["V", "were donated", "bağışlandı"], ["EK", "to the library", "kütüphaneye"]]}
+{"id": "B2-1:36", "en": "The walls are made of stone.", "p": [["S", "The walls", "duvarlar"], ["V", "are made", "yapılmıştır"], ["EK", "of stone", "taştan"]]}
+{"id": "B2-1:37", "en": "The windows have been broken.", "p": [["S", "The windows", "pencereler"], ["V", "have been broken", "kırılmış"]]}
+{"id": "B2-1:38", "en": "The thief was caught by the police.", "p": [["S", "The thief", "hırsız"], ["V", "was caught", "yakalandı"], ["EK", "by the police", "polis tarafından"]]}
+{"id": "B2-1:39", "en": "A valuable painting has been stolen.", "p": [["S", "A valuable painting", "bir değerli tablo"], ["V", "has been stolen", "çalındı"]]}
+{"id": "B2-1:40", "en": "Visitors are asked to be quiet.", "p": [["S", "Visitors", "ziyaretçilerden"], ["V", "are asked", "istenir"], ["O", "to be quiet", "sessiz olmaları"]]}
+{"id": "B2-1:41", "en": "Guided tours are organised every hour.", "p": [["S", "Guided tours", "rehberli turlar"], ["V", "are organised", "düzenlenir"], ["T", "every hour", "her saat"]]}
+{"id": "B2-1:42", "en": "The exhibition will be held next month.", "p": [["S", "The exhibition", "sergi"], ["V", "will be held", "yapılacak"], ["T", "next month", "gelecek ay"]]}
+{"id": "B2-1:43", "en": "These manuscripts were copied by hand.", "p": [["S", "These manuscripts", "bu el yazmaları"], ["V", "were copied", "kopyalandı"], ["NASIL", "by hand", "elle"]]}
+{"id": "B2-1:44", "en": "Paper is obtained from wood.", "p": [["S", "Paper", "kâğıt"], ["V", "is obtained", "elde edilir"], ["EK", "from wood", "ağaçtan"]]}
+{"id": "B2-1:45", "en": "Rubbish is collected every Monday.", "p": [["S", "Rubbish", "çöp"], ["V", "is collected", "toplanır"], ["T", "every Monday", "her pazartesi"]]}
+{"id": "B2-1:46", "en": "This music was composed by a computer.", "p": [["S", "This music", "bu müzik"], ["V", "was composed", "bestelendi"], ["EK", "by a computer", "bir bilgisayar tarafından"]]}
+{"id": "B2-1:47", "en": "Your photos are stored in the cloud.", "p": [["S", "Your photos", "fotoğrafların"], ["V", "are stored", "saklanır"], ["P", "in the cloud", "bulutta"]]}
+{"id": "B2-1:48", "en": "Your password must never be shared.", "p": [["S", "Your password", "şifren"], ["V", "must never be shared", "asla paylaşılmamalı"]]}
+{"id": "B2-1:49", "en": "The app has been downloaded ten million times.", "p": [["S", "The app", "uygulama"], ["V", "has been downloaded", "indirildi"], ["T", "ten million times", "on milyon kez"]]}
+{"id": "B2-1:50", "en": "Emails are sent automatically.", "p": [["S", "Emails", "e-postalar"], ["V", "are sent", "gönderilir"], ["NASIL", "automatically", "otomatik olarak"]]}
+{"id": "B2-1:51", "en": "This robot was designed in Japan.", "p": [["S", "This robot", "bu robot"], ["V", "was designed", "tasarlandı"], ["P", "in Japan", "Japonya'da"]]}
+{"id": "B2-1:52", "en": "New laws will be discussed soon.", "p": [["S", "New laws", "yeni yasalar"], ["V", "will be discussed", "tartışılacak"], ["T", "soon", "yakında"]]}
+{"id": "B2-1:53", "en": "Air pollution is caused by traffic.", "p": [["S", "Air pollution", "hava kirliliği"], ["V", "is caused", "kaynaklanır"], ["EK", "by traffic", "trafikten"]]}
+{"id": "B2-1:54", "en": "The river was polluted by chemical waste.", "p": [["S", "The river", "nehir"], ["V", "was polluted", "kirletildi"], ["EK", "by chemical waste", "kimyasal atıklarla"]]}
+{"id": "B2-1:55", "en": "The trees were planted by schoolchildren.", "p": [["S", "The trees", "ağaçlar"], ["V", "were planted", "dikildi"], ["EK", "by schoolchildren", "okul çocukları tarafından"]]}
+{"id": "B2-1:56", "en": "Pandas have been saved from extinction.", "p": [["S", "Pandas", "pandalar"], ["V", "have been saved", "kurtarıldı"], ["EK", "from extinction", "yok olmaktan"]]}
+{"id": "B2-1:57", "en": "Has the meeting been cancelled?", "p": [["SORU", "Has", "(soru)"], ["S", "the meeting", "toplantı"], ["V", "been cancelled", "iptal edildi mi"]]}
+{"id": "B2-1:58", "en": "When was this palace built?", "p": [["SORU", "When", "ne zaman"], ["SORU", "was", "(soru)"], ["S", "this palace", "bu saray"], ["V", "built", "inşa edildi"]]}
+{"id": "B2-1:59", "en": "Who was this song written by?", "p": [["SORU", "Who", "kim"], ["SORU", "was", "(soru)"], ["S", "this song", "bu şarkı"], ["V", "written", "yazıldı"], ["EK", "by", "tarafından"]]}
+{"id": "B2-1:60", "en": "Seats can be booked online.", "p": [["S", "Seats", "koltuklar"], ["V", "can be booked", "ayırtılabilir"], ["NASIL", "online", "internetten"]]}
+{"id": "B2-1:62", "en": "The ivory trade has been banned.", "p": [["S", "The ivory trade", "fildişi ticareti"], ["V", "has been banned", "yasaklandı"]]}
+{"id": "B2-2:0", "en": "If I were rich, I would buy a castle.", "p": [["BAG", "If", "-saydım"], ["S", "I", "ben"], ["V", "were rich", "zengin olsaydım"], ["S", "I", "ben"], ["V", "would buy", "alırdım"], ["O", "a castle", "bir şato"]]}
+{"id": "B2-2:1", "en": "I wish I could fly.", "p": [["KALIP", "I wish", "keşke"], ["S", "I", "ben"], ["V", "could fly", "uçabilsem"]]}
+{"id": "B2-2:2", "en": "If I had known, I would have told you.", "p": [["BAG", "If", "-saydım"], ["S", "I", "ben"], ["V", "had known", "bilseydim"], ["S", "I", "ben"], ["V", "would have told", "söylerdim"], ["O", "you", "sana"]]}
+{"id": "B2-2:3", "en": "I wish I had studied more.", "p": [["KALIP", "I wish", "keşke"], ["S", "I", "ben"], ["V", "had studied", "çalışsaydım"], ["NASIL", "more", "daha çok"]]}
+{"id": "B2-2:4", "en": "She said that she was tired.", "p": [["S", "She", "o"], ["V", "said", "söyledi"], ["BAG", "that", "-dığını"], ["S", "she", "o"], ["V", "was tired", "yorgun olduğunu"]]}
+{"id": "B2-2:5", "en": "He asked me where I lived.", "p": [["S", "He", "o"], ["V", "asked", "sordu"], ["O", "me", "bana"], ["SORU", "where", "nerede"], ["S", "I", "benim"], ["V", "lived", "yaşadığımı"]]}
+{"id": "B2-2:6", "en": "If I were you, I would go.", "p": [["KALIP", "If I were you", "senin yerinde olsam"], ["S", "I", "ben"], ["V", "would go", "giderdim"]]}
+{"id": "B2-2:7", "en": "If you hadn't helped, we would have got lost.", "p": [["BAG", "If", "-saydın"], ["S", "you", "sen"], ["V", "hadn't helped", "yardım etmeseydin"], ["S", "we", "biz"], ["V", "would have got lost", "kaybolurduk"]]}
+{"id": "B2-2:8", "en": "I would ride a dragon if I could.", "p": [["S", "I", "ben"], ["V", "would ride", "binerdim"], ["O", "a dragon", "bir ejderhaya"], ["BAG", "if", "-saydım"], ["S", "I", "ben"], ["V", "could", "yapabilseydim"]]}
+{"id": "B2-2:9", "en": "I would close all schools if I were king.", "p": [["S", "I", "ben"], ["V", "would close", "kapatırdım"], ["O", "all schools", "bütün okulları"], ["BAG", "if", "-saydım"], ["S", "I", "ben"], ["V", "were king", "kral olsaydım"]]}
+{"id": "B2-2:10", "en": "I wish I had a magic wand.", "p": [["KALIP", "I wish", "keşke"], ["S", "I", "benim"], ["V", "had", "olsa"], ["O", "a magic wand", "bir sihirli değneğim"]]}
+{"id": "B2-2:11", "en": "I wish she were here.", "p": [["KALIP", "I wish", "keşke"], ["S", "she", "o"], ["V", "were", "olsa"], ["P", "here", "burada"]]}
+{"id": "B2-2:12", "en": "I would buy an island if I won.", "p": [["S", "I", "ben"], ["V", "would buy", "alırdım"], ["O", "an island", "bir ada"], ["BAG", "if", "-saydım"], ["S", "I", "ben"], ["V", "won", "kazansaydım"]]}
+{"id": "B2-2:13", "en": "What would you do if you won the lottery?", "p": [["SORU", "What", "ne"], ["SORU", "would", "(soru)"], ["S", "you", "sen"], ["V", "do", "yapardın"], ["BAG", "if", "-san"], ["S", "you", "sen"], ["V", "won", "kazansan"], ["O", "the lottery", "piyangoyu"]]}
+{"id": "B2-2:14", "en": "Where would you go if you were invisible?", "p": [["SORU", "Where", "nereye"], ["SORU", "would", "(soru)"], ["S", "you", "sen"], ["V", "go", "giderdin"], ["BAG", "if", "-saydın"], ["S", "you", "sen"], ["V", "were invisible", "görünmez olsaydın"]]}
+{"id": "B2-2:15", "en": "I would freeze time if I had a superpower.", "p": [["S", "I", "ben"], ["V", "would freeze", "dondururdum"], ["O", "time", "zamanı"], ["BAG", "if", "-saydı"], ["S", "I", "benim"], ["V", "had", "olsaydı"], ["O", "a superpower", "bir süper gücüm"]]}
+{"id": "B2-2:16", "en": "I wouldn't have been late if I had hurried.", "p": [["S", "I", "ben"], ["V", "wouldn't have been late", "geç kalmazdım"], ["BAG", "if", "-saydım"], ["S", "I", "ben"], ["V", "had hurried", "acele etseydim"]]}
+{"id": "B2-2:17", "en": "I wish I hadn't lied to her.", "p": [["KALIP", "I wish", "keşke"], ["S", "I", "ben"], ["V", "hadn't lied", "yalan söylemeseydim"], ["O", "to her", "ona"]]}
+{"id": "B2-2:18", "en": "I wish I had been braver.", "p": [["KALIP", "I wish", "keşke"], ["S", "I", "ben"], ["V", "had been braver", "daha cesur olsaydım"]]}
+{"id": "B2-2:19", "en": "I wish I had more money.", "p": [["KALIP", "I wish", "keşke"], ["S", "I", "benim"], ["V", "had", "olsa"], ["O", "more money", "daha fazla param"]]}
+{"id": "B2-2:20", "en": "I wish I had become a doctor.", "p": [["KALIP", "I wish", "keşke"], ["S", "I", "ben"], ["V", "had become", "olsaydım"], ["O", "a doctor", "doktor"]]}
+{"id": "B2-2:21", "en": "I would be a pilot if I could.", "p": [["S", "I", "ben"], ["V", "would be", "olurdum"], ["O", "a pilot", "pilot"], ["BAG", "if", "-saydım"], ["S", "I", "ben"], ["V", "could", "yapabilseydim"]]}
+{"id": "B2-2:22", "en": "He said that he would call me.", "p": [["S", "He", "o"], ["V", "said", "söyledi"], ["BAG", "that", "-ceğini"], ["S", "he", "o"], ["V", "would call", "arayacağını"], ["O", "me", "beni"]]}
+{"id": "B2-2:23", "en": "She told me that she felt lonely.", "p": [["S", "She", "o"], ["V", "told", "söyledi"], ["O", "me", "bana"], ["BAG", "that", "-dığını"], ["S", "she", "o"], ["V", "felt lonely", "yalnız hissettiğini"]]}
+{"id": "B2-2:24", "en": "They asked me why I was crying.", "p": [["S", "They", "onlar"], ["V", "asked", "sordular"], ["O", "me", "bana"], ["SORU", "why", "neden"], ["S", "I", "ben"], ["V", "was crying", "ağladığımı"]]}
+{"id": "B2-2:25", "en": "The teacher told us to sit down.", "p": [["S", "The teacher", "öğretmen"], ["V", "told", "söyledi"], ["O", "us", "bize"], ["EK", "to sit down", "oturmamızı"]]}
+{"id": "B2-2:26", "en": "He asked me if I believed in magic.", "p": [["S", "He", "o"], ["V", "asked", "sordu"], ["O", "me", "bana"], ["BAG", "if", "-ıp -madığımı"], ["S", "I", "ben"], ["V", "believed", "inanıp inanmadığımı"], ["EK", "in magic", "sihre"]]}
+{"id": "B2-2:27", "en": "The princess said that she didn't want to marry.", "p": [["S", "The princess", "prenses"], ["V", "said", "söyledi"], ["BAG", "that", "-dığını"], ["S", "she", "o"], ["V", "didn't want", "istemediğini"], ["O", "to marry", "evlenmek"]]}
+{"id": "B2-2:28", "en": "The dragon said that it would burn the castle.", "p": [["S", "The dragon", "ejderha"], ["V", "said", "söyledi"], ["BAG", "that", "-ceğini"], ["S", "it", "o"], ["V", "would burn", "yakacağını"], ["O", "the castle", "şatoyu"]]}
+{"id": "B2-2:29", "en": "The wizard told me that I had one wish.", "p": [["S", "The wizard", "büyücü"], ["V", "told", "söyledi"], ["O", "me", "bana"], ["BAG", "that", "-duğunu"], ["S", "I", "benim"], ["V", "had", "olduğunu"], ["O", "one wish", "bir dilek hakkım"]]}
+{"id": "B2-2:30", "en": "I would have helped you if you had asked.", "p": [["S", "I", "ben"], ["V", "would have helped", "yardım ederdim"], ["O", "you", "sana"], ["BAG", "if", "-saydın"], ["S", "you", "sen"], ["V", "had asked", "sorsaydın"]]}
+{"id": "B2-2:31", "en": "He would have passed if he had tried.", "p": [["S", "He", "o"], ["V", "would have passed", "geçerdi"], ["BAG", "if", "-saydı"], ["S", "he", "o"], ["V", "had tried", "deneseydi"]]}
+{"id": "B2-2:32", "en": "We would have won if it hadn't rained.", "p": [["S", "We", "biz"], ["V", "would have won", "kazanırdık"], ["BAG", "if", "-saydı"], ["S", "it", "—"], ["V", "hadn't rained", "yağmur yağmasaydı"]]}
+{"id": "B2-2:33", "en": "I would be happier if you stayed.", "p": [["S", "I", "ben"], ["V", "would be happier", "daha mutlu olurdum"], ["BAG", "if", "-san"], ["S", "you", "sen"], ["V", "stayed", "kalsan"]]}
+{"id": "B2-2:34", "en": "I wish I could go back to my childhood.", "p": [["KALIP", "I wish", "keşke"], ["S", "I", "ben"], ["V", "could go back", "geri dönebilsem"], ["P", "to my childhood", "çocukluğuma"]]}
+{"id": "B2-2:36", "en": "How would you spend a million dollars?", "p": [["SORU", "How", "nasıl"], ["SORU", "would", "(soru)"], ["S", "you", "sen"], ["V", "spend", "harcardın"], ["O", "a million dollars", "bir milyon doları"]]}
+{"id": "B2-2:37", "en": "Everyone would know me if I were famous.", "p": [["S", "Everyone", "herkes"], ["V", "would know", "tanırdı"], ["O", "me", "beni"], ["BAG", "if", "-saydım"], ["S", "I", "ben"], ["V", "were famous", "ünlü olsaydım"]]}
+{"id": "B2-2:38", "en": "I wish I could travel more.", "p": [["KALIP", "I wish", "keşke"], ["S", "I", "ben"], ["V", "could travel", "seyahat edebilsem"], ["NASIL", "more", "daha çok"]]}
+{"id": "B2-2:39", "en": "I wish I hadn't eaten that cake.", "p": [["KALIP", "I wish", "keşke"], ["S", "I", "ben"], ["V", "hadn't eaten", "yemeseydim"], ["O", "that cake", "o pastayı"]]}

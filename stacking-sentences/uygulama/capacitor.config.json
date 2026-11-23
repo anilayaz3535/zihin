@@ -1,0 +1,29 @@
+{
+  "appId": "com.stackingsentences.app",
+  "appName": "Stacking Sentences",
+  "webDir": "www",
+  "backgroundColor": "#2a1622",
+  "loggingBehavior": "none",
+  "ios": {
+    "contentInset": "never",
+    "backgroundColor": "#2a1622",
+    "allowsLinkPreview": false
+  },
+  "android": {
+    "backgroundColor": "#2a1622",
+    "allowMixedContent": false,
+    "captureInput": true
+  },
+  "plugins": {
+    "SystemBars": { "insetsHandling": "css", "initialViewportFitValueHint": "cover" },
+    "SplashScreen": {
+      "launchAutoHide": false,
+      "launchShowDuration": 6000,
+      "backgroundColor": "#2a1622",
+      "showSpinner": false,
+      "androidScaleType": "CENTER_CROP"
+    },
+    "StatusBar": { "overlaysWebView": true, "style": "DARK", "backgroundColor": "#00000000" },
+    "LocalNotifications": { "smallIcon": "ic_stat_icon", "iconColor": "#FFC83D" }
+  }
+}

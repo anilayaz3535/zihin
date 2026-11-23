@@ -1,0 +1,100 @@
+{"id": "A1-1:1", "en": "I am happy.", "p": [["S", "I", "ben"], ["V", "am happy", "mutluyum"]]}
+{"id": "A1-1:2", "en": "She is sleeping.", "p": [["S", "She", "o"], ["V", "is sleeping", "uyuyor"]]}
+{"id": "A1-1:3", "en": "We are playing football.", "p": [["S", "We", "biz"], ["V", "are playing", "oynuyoruz"], ["O", "football", "futbol"]]}
+{"id": "A1-1:4", "en": "They are drinking milk.", "p": [["S", "They", "onlar"], ["V", "are drinking", "içiyor"], ["O", "milk", "süt"]]}
+{"id": "A1-1:5", "en": "He is reading a book.", "p": [["S", "He", "o"], ["V", "is reading", "okuyor"], ["O", "a book", "bir kitap"]]}
+{"id": "A1-1:6", "en": "The cat is running.", "p": [["S", "The cat", "kedi"], ["V", "is running", "koşuyor"]]}
+{"id": "A1-1:7", "en": "I am eating an apple.", "p": [["S", "I", "ben"], ["V", "am eating", "yiyorum"], ["O", "an apple", "bir elma"]]}
+{"id": "A1-1:8", "en": "My mother is cooking.", "p": [["S", "My mother", "annem"], ["V", "is cooking", "yemek pişiriyor"]]}
+{"id": "A1-1:9", "en": "I am brushing my teeth.", "p": [["S", "I", "ben"], ["V", "am brushing", "fırçalıyorum"], ["O", "my teeth", "dişlerimi"]]}
+{"id": "A1-1:10", "en": "My father is drying the plates.", "p": [["S", "My father", "babam"], ["V", "is drying", "kuruluyor"], ["O", "the plates", "tabakları"]]}
+{"id": "A1-1:11", "en": "My sister is cleaning her room.", "p": [["S", "My sister", "kız kardeşim"], ["V", "is cleaning", "temizliyor"], ["O", "her room", "odasını"]]}
+{"id": "A1-1:12", "en": "My grandmother is making soup.", "p": [["S", "My grandmother", "büyükannem"], ["V", "is making", "yapıyor"], ["O", "soup", "çorba"]]}
+{"id": "A1-1:13", "en": "My grandfather is sleeping on the sofa.", "p": [["S", "My grandfather", "dedem"], ["V", "is sleeping", "uyuyor"], ["P", "on the sofa", "kanepede"]]}
+{"id": "A1-1:14", "en": "The kitten is hiding under the bed.", "p": [["S", "The kitten", "yavru kedi"], ["V", "is hiding", "saklanıyor"], ["P", "under the bed", "yatağın altında"]]}
+{"id": "A1-1:15", "en": "My dog is barking in the garden.", "p": [["S", "My dog", "köpeğim"], ["V", "is barking", "havlıyor"], ["P", "in the garden", "bahçede"]]}
+{"id": "A1-1:16", "en": "I am hungry.", "p": [["S", "I", "ben"], ["V", "am hungry", "açım"]]}
+{"id": "A1-1:17", "en": "We are thirsty.", "p": [["S", "We", "biz"], ["V", "are thirsty", "susadık"]]}
+{"id": "A1-1:18", "en": "They are very tired.", "p": [["S", "They", "onlar"], ["V", "are very tired", "çok yorgun"]]}
+{"id": "A1-1:19", "en": "My brother is playing with his toys.", "p": [["S", "My brother", "erkek kardeşim"], ["V", "is playing", "oynuyor"], ["EK", "with his toys", "oyuncaklarıyla"]]}
+{"id": "A1-1:20", "en": "My mother is baking a cake in the kitchen.", "p": [["S", "My mother", "annem"], ["V", "is baking", "pişiriyor"], ["O", "a cake", "bir kek"], ["P", "in the kitchen", "mutfakta"]]}
+{"id": "A1-1:21", "en": "I am washing my hands.", "p": [["S", "I", "ben"], ["V", "am washing", "yıkıyorum"], ["O", "my hands", "ellerimi"]]}
+{"id": "A1-1:22", "en": "She is combing her hair.", "p": [["S", "She", "o"], ["V", "is combing", "tarıyor"], ["O", "her hair", "saçını"]]}
+{"id": "A1-1:23", "en": "The baby is crying.", "p": [["S", "The baby", "bebek"], ["V", "is crying", "ağlıyor"]]}
+{"id": "A1-1:24", "en": "My cousin is eating pizza.", "p": [["S", "My cousin", "kuzenim"], ["V", "is eating", "yiyor"], ["O", "pizza", "pizza"]]}
+{"id": "A1-1:25", "en": "My uncle is reading the newspaper.", "p": [["S", "My uncle", "amcam"], ["V", "is reading", "okuyor"], ["O", "the newspaper", "gazete"]]}
+{"id": "A1-1:26", "en": "My aunt is wearing a dress.", "p": [["S", "My aunt", "teyzem"], ["V", "is wearing", "giyiyor"], ["O", "a dress", "bir elbise"]]}
+{"id": "A1-1:27", "en": "I am putting on my coat.", "p": [["S", "I", "ben"], ["V", "am putting on", "giyiyorum"], ["O", "my coat", "montumu"]]}
+{"id": "A1-1:28", "en": "I am looking for my shoes.", "p": [["S", "I", "ben"], ["V", "am looking for", "arıyorum"], ["O", "my shoes", "ayakkabılarımı"]]}
+{"id": "A1-1:29", "en": "We are having dinner.", "p": [["S", "We", "biz"], ["V", "are having", "yiyoruz"], ["O", "dinner", "akşam yemeği"]]}
+{"id": "A1-1:30", "en": "What are you doing?", "p": [["SORU", "What", "ne"], ["SORU", "are", "(soru)"], ["S", "you", "sen"], ["V", "doing", "yapıyorsun"]]}
+{"id": "A1-1:31", "en": "Where are you going?", "p": [["SORU", "Where", "nereye"], ["SORU", "are", "(soru)"], ["S", "you", "sen"], ["V", "going", "gidiyorsun"]]}
+{"id": "A1-1:32", "en": "Is your father at home?", "p": [["SORU", "Is", "(soru)"], ["S", "your father", "baban"], ["P", "at home", "evde mi"]]}
+{"id": "A1-1:33", "en": "The birds are singing.", "p": [["S", "The birds", "kuşlar"], ["V", "are singing", "şarkı söylüyor"]]}
+{"id": "A1-1:34", "en": "The turtle is swimming in the water.", "p": [["S", "The turtle", "kaplumbağa"], ["V", "is swimming", "yüzüyor"], ["P", "in the water", "suda"]]}
+{"id": "A1-1:35", "en": "My rabbit is eating a carrot.", "p": [["S", "My rabbit", "tavşanım"], ["V", "is eating", "yiyor"], ["O", "a carrot", "bir havuç"]]}
+{"id": "A1-1:36", "en": "My parrot is talking.", "p": [["S", "My parrot", "papağanım"], ["V", "is talking", "konuşuyor"]]}
+{"id": "A1-1:37", "en": "The puppy is chasing the ball.", "p": [["S", "The puppy", "yavru köpek"], ["V", "is chasing", "kovalıyor"], ["O", "the ball", "topu"]]}
+{"id": "A1-1:38", "en": "I am making my bed.", "p": [["S", "I", "ben"], ["V", "am making", "topluyorum"], ["O", "my bed", "yatağımı"]]}
+{"id": "A1-1:39", "en": "We are tidying our room.", "p": [["S", "We", "biz"], ["V", "are tidying", "topluyoruz"], ["O", "our room", "odamızı"]]}
+{"id": "A1-1:40", "en": "He is taking out the trash.", "p": [["S", "He", "o"], ["V", "is taking out", "çıkarıyor"], ["O", "the trash", "çöpü"]]}
+{"id": "A1-1:41", "en": "I am watering the flowers.", "p": [["S", "I", "ben"], ["V", "am watering", "suluyorum"], ["O", "the flowers", "çiçekleri"]]}
+{"id": "A1-1:42", "en": "My sister is ironing my shirt.", "p": [["S", "My sister", "ablam"], ["V", "is ironing", "ütülüyor"], ["O", "my shirt", "gömleğimi"]]}
+{"id": "A1-1:43", "en": "Our neighbour is washing the car.", "p": [["S", "Our neighbour", "komşumuz"], ["V", "is washing", "yıkıyor"], ["O", "the car", "arabayı"]]}
+{"id": "A1-1:44", "en": "She is closing her eyes.", "p": [["S", "She", "o"], ["V", "is closing", "kapatıyor"], ["O", "her eyes", "gözlerini"]]}
+{"id": "A1-1:45", "en": "I am covering my ears.", "p": [["S", "I", "ben"], ["V", "am covering", "kapatıyorum"], ["O", "my ears", "kulaklarımı"]]}
+{"id": "A1-1:46", "en": "My feet are cold.", "p": [["S", "My feet", "ayaklarım"], ["V", "are cold", "soğuk"]]}
+{"id": "A1-1:47", "en": "My nose is running.", "p": [["S", "My nose", "burnum"], ["V", "is running", "akıyor"]]}
+{"id": "A1-1:48", "en": "My grandfather is wearing glasses.", "p": [["S", "My grandfather", "dedem"], ["V", "is wearing", "takıyor"], ["O", "glasses", "gözlük"]]}
+{"id": "A1-1:49", "en": "I am cutting the bread.", "p": [["S", "I", "ben"], ["V", "am cutting", "kesiyorum"], ["O", "the bread", "ekmeği"]]}
+{"id": "A1-1:50", "en": "He is drinking orange juice.", "p": [["S", "He", "o"], ["V", "is drinking", "içiyor"], ["O", "orange juice", "portakal suyu"]]}
+{"id": "A1-1:51", "en": "We are boiling eggs.", "p": [["S", "We", "biz"], ["V", "are boiling", "haşlıyoruz"], ["O", "eggs", "yumurta"]]}
+{"id": "A1-1:52", "en": "The tea is getting cold.", "p": [["S", "The tea", "çay"], ["V", "is getting cold", "soğuyor"]]}
+{"id": "A1-1:53", "en": "I am setting the table.", "p": [["S", "I", "ben"], ["V", "am setting", "kuruyorum"], ["O", "the table", "sofrayı"]]}
+{"id": "A1-1:54", "en": "My cousin is opening the fridge.", "p": [["S", "My cousin", "kuzenim"], ["V", "is opening", "açıyor"], ["O", "the fridge", "buzdolabını"]]}
+{"id": "A1-1:55", "en": "I am putting the cups into the cupboard.", "p": [["S", "I", "ben"], ["V", "am putting", "koyuyorum"], ["O", "the cups", "bardakları"], ["P", "into the cupboard", "dolaba"]]}
+{"id": "A1-1:56", "en": "My brother is sweeping the floor.", "p": [["S", "My brother", "abim"], ["V", "is sweeping", "süpürüyor"], ["O", "the floor", "yeri"]]}
+{"id": "A1-1:57", "en": "I am building a tower with my blocks.", "p": [["S", "I", "ben"], ["V", "am building", "yapıyorum"], ["O", "a tower", "bir kule"], ["EK", "with my blocks", "bloklarımla"]]}
+{"id": "A1-1:58", "en": "My toy train is going fast.", "p": [["S", "My toy train", "oyuncak trenim"], ["V", "is going", "gidiyor"], ["NASIL", "fast", "hızlı"]]}
+{"id": "A1-1:59", "en": "My grandmother is knitting a red sweater.", "p": [["S", "My grandmother", "büyükannem"], ["V", "is knitting", "örüyor"], ["O", "a red sweater", "bir kırmızı kazak"]]}
+{"id": "A1-1:60", "en": "My hat is very big.", "p": [["S", "My hat", "şapkam"], ["V", "is very big", "çok büyük"]]}
+{"id": "A1-1:61", "en": "My trousers are dirty.", "p": [["S", "My trousers", "pantolonum"], ["V", "are dirty", "kirli"]]}
+{"id": "A1-1:62", "en": "Why are you laughing?", "p": [["SORU", "Why", "neden"], ["SORU", "are", "(soru)"], ["S", "you", "sen"], ["V", "laughing", "gülüyorsun"]]}
+{"id": "A1-1:63", "en": "Our house is warm.", "p": [["S", "Our house", "evimiz"], ["V", "is warm", "sıcak"]]}
+{"id": "A1-1:64", "en": "I am not watching TV.", "p": [["S", "I", "ben"], ["V", "am not watching", "izlemiyorum"], ["O", "TV", "televizyon"]]}
+{"id": "A1-2:0", "en": "I go to school.", "p": [["S", "I", "ben"], ["V", "go", "giderim"], ["P", "to school", "okula"]]}
+{"id": "A1-2:1", "en": "She speaks English.", "p": [["S", "She", "o"], ["V", "speaks", "konuşur"], ["O", "English", "İngilizce"]]}
+{"id": "A1-2:2", "en": "We read books.", "p": [["S", "We", "biz"], ["V", "read", "okuruz"], ["O", "books", "kitap"]]}
+{"id": "A1-2:3", "en": "He plays football.", "p": [["S", "He", "o"], ["V", "plays", "oynar"], ["O", "football", "futbol"]]}
+{"id": "A1-2:4", "en": "My teacher is very kind.", "p": [["S", "My teacher", "öğretmenim"], ["V", "is very kind", "çok nazik"]]}
+{"id": "A1-2:5", "en": "I don't have a pen.", "p": [["S", "I", "ben"], ["V", "don't have", "yok"], ["O", "a pen", "bir kalemim"]]}
+{"id": "A1-2:6", "en": "She doesn't like coffee.", "p": [["S", "She", "o"], ["V", "doesn't like", "sevmez"], ["O", "coffee", "kahve"]]}
+{"id": "A1-2:8", "en": "Does the cat drink milk?", "p": [["SORU", "Does", "(soru)"], ["S", "the cat", "kedi"], ["V", "drink", "içer mi"], ["O", "milk", "süt"]]}
+{"id": "A1-2:9", "en": "The lesson starts at nine.", "p": [["S", "The lesson", "ders"], ["V", "starts", "başlar"], ["T", "at nine", "saat dokuzda"]]}
+{"id": "A1-2:10", "en": "My aunt works in a hospital.", "p": [["S", "My aunt", "teyzem"], ["V", "works", "çalışır"], ["P", "in a hospital", "bir hastanede"]]}
+{"id": "A1-2:11", "en": "My uncle is a baker.", "p": [["S", "My uncle", "amcam"], ["V", "is a baker", "bir fırıncı"]]}
+{"id": "A1-2:12", "en": "Firefighters put out fires.", "p": [["S", "Firefighters", "itfaiyeciler"], ["V", "put out", "söndürür"], ["O", "fires", "yangın"]]}
+{"id": "A1-2:13", "en": "A farmer works in the field.", "p": [["S", "A farmer", "bir çiftçi"], ["V", "works", "çalışır"], ["P", "in the field", "tarlada"]]}
+{"id": "A1-2:14", "en": "Pilots fly planes.", "p": [["S", "Pilots", "pilotlar"], ["V", "fly", "uçurur"], ["O", "planes", "uçak"]]}
+{"id": "A1-2:15", "en": "The postman brings the letters.", "p": [["S", "The postman", "postacı"], ["V", "brings", "getirir"], ["O", "the letters", "mektupları"]]}
+{"id": "A1-2:16", "en": "Dentists check teeth.", "p": [["S", "Dentists", "dişçiler"], ["V", "check", "kontrol eder"], ["O", "teeth", "dişleri"]]}
+{"id": "A1-2:17", "en": "The cook works in a restaurant.", "p": [["S", "The cook", "aşçı"], ["V", "works", "çalışır"], ["P", "in a restaurant", "bir restoranda"]]}
+{"id": "A1-2:18", "en": "I borrow books from the library.", "p": [["S", "I", "ben"], ["V", "borrow", "ödünç alırım"], ["O", "books", "kitap"], ["P", "from the library", "kütüphaneden"]]}
+{"id": "A1-2:19", "en": "We have maths on Mondays.", "p": [["S", "We", "biz"], ["V", "have", "var"], ["O", "maths", "matematik dersimiz"], ["T", "on Mondays", "pazartesileri"]]}
+{"id": "A1-2:20", "en": "I go swimming on Tuesdays.", "p": [["S", "I", "ben"], ["V", "go swimming", "yüzmeye giderim"], ["T", "on Tuesdays", "salı günleri"]]}
+{"id": "A1-2:21", "en": "He plays the guitar.", "p": [["S", "He", "o"], ["V", "plays", "çalar"], ["O", "the guitar", "gitar"]]}
+{"id": "A1-2:22", "en": "Does your friend play the violin?", "p": [["SORU", "Does", "(soru)"], ["S", "your friend", "arkadaşın"], ["V", "play", "çalar mı"], ["O", "the violin", "keman"]]}
+{"id": "A1-2:23", "en": "I don't play the piano.", "p": [["S", "I", "ben"], ["V", "don't play", "çalmam"], ["O", "the piano", "piyano"]]}
+{"id": "A1-2:24", "en": "My neighbour plays the drums every evening.", "p": [["S", "My neighbour", "komşum"], ["V", "plays", "çalar"], ["O", "the drums", "davul"], ["T", "every evening", "her akşam"]]}
+{"id": "A1-2:25", "en": "I get up at seven every morning.", "p": [["S", "I", "ben"], ["V", "get up", "kalkarım"], ["T", "at seven", "saat yedide"], ["T", "every morning", "her sabah"]]}
+{"id": "A1-2:26", "en": "She takes a shower every day.", "p": [["S", "She", "o"], ["V", "takes", "alır"], ["O", "a shower", "bir duş"], ["T", "every day", "her gün"]]}
+{"id": "A1-2:27", "en": "School finishes at three.", "p": [["S", "School", "okul"], ["V", "finishes", "biter"], ["T", "at three", "saat üçte"]]}
+{"id": "A1-2:28", "en": "We go to school by bus.", "p": [["S", "We", "biz"], ["V", "go", "gideriz"], ["P", "to school", "okula"], ["NASIL", "by bus", "otobüsle"]]}
+{"id": "A1-2:29", "en": "Our teacher comes to work by bike.", "p": [["S", "Our teacher", "öğretmenimiz"], ["V", "comes", "gelir"], ["P", "to work", "işe"], ["NASIL", "by bike", "bisikletle"]]}
+{"id": "A1-2:30", "en": "We visit our grandparents on Sundays.", "p": [["S", "We", "biz"], ["V", "visit", "ziyaret ederiz"], ["O", "our grandparents", "büyükanne ve büyükbabamızı"], ["T", "on Sundays", "pazar günleri"]]}
+{"id": "A1-2:31", "en": "I ride my bicycle in the park on Saturdays.", "p": [["S", "I", "ben"], ["V", "ride", "binerim"], ["O", "my bicycle", "bisikletime"], ["P", "in the park", "parkta"], ["T", "on Saturdays", "cumartesileri"]]}
+{"id": "A1-2:32", "en": "He never eats breakfast.", "p": [["S", "He", "o"], ["V", "never eats", "hiç yapmaz"], ["O", "breakfast", "kahvaltı"]]}
+{"id": "A1-2:33", "en": "I usually have lunch at home.", "p": [["S", "I", "ben"], ["V", "usually have", "genellikle yerim"], ["O", "lunch", "öğle yemeği"], ["P", "at home", "evde"]]}
+{"id": "A1-2:34", "en": "We do our homework in the evening.", "p": [["S", "We", "biz"], ["V", "do", "yaparız"], ["O", "our homework", "ödevimizi"], ["T", "in the evening", "akşamları"]]}
+{"id": "A1-2:35", "en": "I like science.", "p": [["S", "I", "ben"], ["V", "like", "severim"], ["O", "science", "fen bilgisini"]]}
+{"id": "A1-2:36", "en": "Do you like history?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sen"], ["V", "like", "sever misin"], ["O", "history", "tarihi"]]}

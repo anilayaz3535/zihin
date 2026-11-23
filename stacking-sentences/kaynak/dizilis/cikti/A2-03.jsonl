@@ -1,0 +1,100 @@
+{"id": "A2-4:14", "en": "I need a spoon for my soup.", "p": [["S", "I", "benim"], ["V", "need", "ihtiyacım var"], ["O", "a spoon", "bir kaşığa"], ["EK", "for my soup", "çorbam için"]]}
+{"id": "A2-4:15", "en": "Wash your hands with soap and water.", "p": [["V", "Wash", "yıka"], ["O", "your hands", "ellerini"], ["NASIL", "with soap and water", "sabun ve suyla"]]}
+{"id": "A2-4:16", "en": "There is a clean towel in the bathroom.", "p": [["V", "There is", "var"], ["S", "a clean towel", "bir temiz havlu"], ["P", "in the bathroom", "banyoda"]]}
+{"id": "A2-4:17", "en": "Mum put a new sheet on the bed.", "p": [["S", "Mum", "annem"], ["V", "put", "serdi"], ["O", "a new sheet", "bir yeni çarşaf"], ["P", "on the bed", "yatağa"]]}
+{"id": "A2-4:18", "en": "Don't touch the hot oven!", "p": [["V", "Don't touch", "dokunma"], ["O", "the hot oven", "sıcak fırına"]]}
+{"id": "A2-4:19", "en": "Our new cooker was very expensive.", "p": [["S", "Our new cooker", "yeni ocağımız"], ["V", "was very expensive", "çok pahalıydı"]]}
+{"id": "A2-4:20", "en": "Could you pass me the sauce, please?", "p": [["SORU", "Could", "(soru)"], ["S", "you", "sen"], ["V", "pass", "uzatabilir misin"], ["O", "me", "bana"], ["O", "the sauce", "sosu"], ["KALIP", "please", "lütfen"]]}
+{"id": "A2-4:21", "en": "My grandmother gave me her secret recipe.", "p": [["S", "My grandmother", "büyükannem"], ["V", "gave", "verdi"], ["O", "me", "bana"], ["O", "her secret recipe", "gizli tarifini"]]}
+{"id": "A2-4:22", "en": "We ate beef with rice and beans.", "p": [["S", "We", "biz"], ["V", "ate", "yedik"], ["O", "beef", "sığır eti"], ["EK", "with rice and beans", "pilav ve fasulyeyle"]]}
+{"id": "A2-4:23", "en": "Put the rubbish in the bin, please.", "p": [["V", "Put", "at"], ["O", "the rubbish", "çöpü"], ["P", "in the bin", "çöp kutusuna"], ["KALIP", "please", "lütfen"]]}
+{"id": "A2-4:24", "en": "The kids are going to blow up balloons.", "p": [["S", "The kids", "çocuklar"], ["V", "are going to blow up", "şişirecekler"], ["O", "balloons", "balon"]]}
+{"id": "A2-4:25", "en": "Blow out the candles and make a wish!", "p": [["V", "Blow out", "üfle"], ["O", "the candles", "mumları"], ["BAG", "and", "ve"], ["V", "make", "tut"], ["O", "a wish", "bir dilek"]]}
+{"id": "A2-4:26", "en": "I put a chocolate bar in my pocket.", "p": [["S", "I", "ben"], ["V", "put", "koydum"], ["O", "a chocolate bar", "bir kalıp çikolata"], ["P", "in my pocket", "cebime"]]}
+{"id": "A2-4:27", "en": "Would you like some biscuits with your tea?", "p": [["SORU", "Would", "(soru)"], ["S", "you", "sen"], ["V", "like", "ister misin"], ["O", "some biscuits", "biraz bisküvi"], ["EK", "with your tea", "çayının yanında"]]}
+{"id": "A2-4:28", "en": "Is there any jam in the fridge?", "p": [["V", "Is there", "var mı"], ["S", "any jam", "hiç reçel"], ["P", "in the fridge", "buzdolabında"]]}
+{"id": "A2-4:29", "en": "I didn't buy any nuts for the party.", "p": [["S", "I", "ben"], ["V", "didn't buy", "almadım"], ["O", "any nuts", "hiç kuruyemiş"], ["EK", "for the party", "parti için"]]}
+{"id": "A2-4:30", "en": "She put the soup in a big bowl.", "p": [["S", "She", "o"], ["V", "put", "koydu"], ["O", "the soup", "çorbayı"], ["P", "in a big bowl", "bir büyük kaseye"]]}
+{"id": "A2-4:31", "en": "We are going to feed the pets.", "p": [["S", "We", "biz"], ["V", "are going to feed", "besleyeceğiz"], ["O", "the pets", "evcil hayvanları"]]}
+{"id": "A2-4:32", "en": "We heard laughter from the garden.", "p": [["S", "We", "biz"], ["V", "heard", "duyduk"], ["O", "laughter", "kahkaha sesleri"], ["P", "from the garden", "bahçeden"]]}
+{"id": "A2-4:33", "en": "Her smile was really lovely.", "p": [["S", "Her smile", "onun gülümsemesi"], ["V", "was really lovely", "gerçekten çok güzeldi"]]}
+{"id": "A2-4:34", "en": "The food at the wedding was awful.", "p": [["S", "The food", "yemek"], ["P", "at the wedding", "düğündeki"], ["V", "was awful", "berbattı"]]}
+{"id": "A2-4:35", "en": "Push the door, don't pull it.", "p": [["V", "Push", "it"], ["O", "the door", "kapıyı"], ["V", "don't pull", "çekme"], ["O", "it", "onu"]]}
+{"id": "A2-4:36", "en": "Can you shut the window, please?", "p": [["SORU", "Can", "(soru)"], ["S", "you", "sen"], ["V", "shut", "kapatabilir misin"], ["O", "the window", "pencereyi"], ["KALIP", "please", "lütfen"]]}
+{"id": "A2-4:37", "en": "The waiter shook my hand and smiled.", "p": [["S", "The waiter", "garson"], ["V", "shook", "sıktı"], ["O", "my hand", "elimi"], ["BAG", "and", "ve"], ["V", "smiled", "gülümsedi"]]}
+{"id": "A2-4:38", "en": "Shake the bottle before you open it.", "p": [["V", "Shake", "çalkala"], ["O", "the bottle", "şişeyi"], ["BAG", "before", "-madan önce"], ["S", "you", "sen"], ["V", "open", "açmadan"], ["O", "it", "onu"]]}
+{"id": "A2-4:39", "en": "Ayşe loves fashion and jewellery.", "p": [["S", "Ayşe", "Ayşe"], ["V", "loves", "çok sever"], ["O", "fashion and jewellery", "modayı ve takıyı"]]}
+{"id": "A2-4:40", "en": "They bought new furniture for the living room.", "p": [["S", "They", "onlar"], ["V", "bought", "aldılar"], ["O", "new furniture", "yeni mobilya"], ["EK", "for the living room", "oturma odası için"]]}
+{"id": "A2-4:41", "en": "The kid hid the toy under the sheet.", "p": [["S", "The kid", "çocuk"], ["V", "hid", "sakladı"], ["O", "the toy", "oyuncağı"], ["P", "under the sheet", "çarşafın altına"]]}
+{"id": "A2-4:42", "en": "My dad wore a tie to the reception.", "p": [["S", "My dad", "babam"], ["V", "wore", "taktı"], ["O", "a tie", "bir kravat"], ["P", "to the reception", "resepsiyona"]]}
+{"id": "A2-4:43", "en": "Don't forget your socks and pants!", "p": [["V", "Don't forget", "unutma"], ["O", "your socks and pants", "çoraplarını ve külotlarını"]]}
+{"id": "A2-4:44", "en": "How many guests will come to the party?", "p": [["SORU", "How many", "kaç"], ["S", "guests", "misafir"], ["V", "will come", "gelecek"], ["P", "to the party", "partiye"]]}
+{"id": "A2-4:45", "en": "My twin sister lives in Ankara.", "p": [["S", "My twin sister", "ikiz kız kardeşim"], ["V", "lives", "yaşıyor"], ["P", "in Ankara", "Ankara'da"]]}
+{"id": "A2-4:46", "en": "Mert didn't touch his food at the party.", "p": [["S", "Mert", "Mert"], ["V", "didn't touch", "dokunmadı"], ["O", "his food", "yemeğine"], ["P", "at the party", "partide"]]}
+{"id": "A2-4:47", "en": "Should we bring a gift for the couple?", "p": [["SORU", "Should", "(soru)"], ["S", "we", "biz"], ["V", "bring", "götürmeli miyiz"], ["O", "a gift", "bir hediye"], ["EK", "for the couple", "çift için"]]}
+{"id": "A2-4:48", "en": "I sent invitations to fifty guests.", "p": [["S", "I", "ben"], ["V", "sent", "gönderdim"], ["O", "invitations", "davetiye"], ["EK", "to fifty guests", "elli misafire"]]}
+{"id": "A2-4:49", "en": "Was the pub owner kind to you?", "p": [["SORU", "Was", "(soru)"], ["S", "the pub owner", "lokanta sahibi"], ["V", "kind", "nazik miydi"], ["EK", "to you", "sana karşı"]]}
+{"id": "A2-4:50", "en": "Zeynep made a lovely cake for the guests.", "p": [["S", "Zeynep", "Zeynep"], ["V", "made", "yaptı"], ["O", "a lovely cake", "bir güzel pasta"], ["EK", "for the guests", "misafirler için"]]}
+{"id": "A2-4:51", "en": "Where did you buy this furniture?", "p": [["SORU", "Where", "nereden"], ["SORU", "did", "(soru)"], ["S", "you", "sen"], ["V", "buy", "aldın"], ["O", "this furniture", "bu mobilyayı"]]}
+{"id": "A2-4:52", "en": "Ali's dog eats from a blue bowl.", "p": [["S", "Ali's dog", "Ali'nin köpeği"], ["V", "eats", "yer"], ["P", "from a blue bowl", "bir mavi kaseden"]]}
+{"id": "A2-4:53", "en": "Was the meat beef or chicken?", "p": [["SORU", "Was", "(soru)"], ["S", "the meat", "et"], ["V", "beef", "sığır eti miydi"], ["BAG", "or", "yoksa"], ["V", "chicken", "tavuk mu"]]}
+{"id": "A2-4:54", "en": "I'm going to make tomato sauce tonight.", "p": [["S", "I'm", "ben"], ["V", "going to make", "yapacağım"], ["O", "tomato sauce", "domates sosu"], ["T", "tonight", "bu akşam"]]}
+{"id": "A2-4:55", "en": "The towels were wet, so I washed them.", "p": [["S", "The towels", "havlular"], ["V", "were wet", "ıslaktı"], ["BAG", "so", "bu yüzden"], ["S", "I", "ben"], ["V", "washed", "yıkadım"], ["O", "them", "onları"]]}
+{"id": "A2-4:56", "en": "Why are you smiling, Elif?", "p": [["SORU", "Why", "neden"], ["SORU", "are", "(soru)"], ["S", "you", "sen"], ["V", "smiling", "gülümsüyorsun"], ["EK", "Elif", "Elif"]]}
+{"id": "A2-4:57", "en": "The old couple danced at the wedding.", "p": [["S", "The old couple", "yaşlı çift"], ["V", "danced", "dans etti"], ["P", "at the wedding", "düğünde"]]}
+{"id": "A2-4:58", "en": "Mum is going to bake bread in the oven.", "p": [["S", "Mum", "annem"], ["V", "is going to bake", "pişirecek"], ["O", "bread", "ekmek"], ["P", "in the oven", "fırında"]]}
+{"id": "A2-4:59", "en": "Thank you for the invitation, sir.", "p": [["KALIP", "Thank you", "teşekkürler"], ["EK", "for the invitation", "davetiniz için"], ["KALIP", "sir", "efendim"]]}
+{"id": "A2-5:0", "en": "We will watch the soccer match tonight.", "p": [["S", "We", "biz"], ["V", "will watch", "izleyeceğiz"], ["O", "the soccer match", "futbol maçını"], ["T", "tonight", "bu akşam"]]}
+{"id": "A2-5:1", "en": "Zeynep is going to play baseball.", "p": [["S", "Zeynep", "Zeynep"], ["V", "is going to play", "oynayacak"], ["O", "baseball", "beyzbol"]]}
+{"id": "A2-5:2", "en": "The coach was very angry yesterday.", "p": [["S", "The coach", "antrenör"], ["V", "was very angry", "çok kızgındı"], ["T", "yesterday", "dün"]]}
+{"id": "A2-5:3", "en": "Elif watched a funny cartoon after school.", "p": [["S", "Elif", "Elif"], ["V", "watched", "izledi"], ["O", "a funny cartoon", "bir komik çizgi film"], ["T", "after school", "okuldan sonra"]]}
+{"id": "A2-5:4", "en": "Did you see the celebrity at the airport?", "p": [["SORU", "Did", "(soru)"], ["S", "you", "sen"], ["V", "see", "gördün mü"], ["O", "the celebrity", "ünlüyü"], ["P", "at the airport", "havalimanında"]]}
+{"id": "A2-5:5", "en": "I chat with my friends every evening.", "p": [["S", "I", "ben"], ["V", "chat", "sohbet ederim"], ["EK", "with my friends", "arkadaşlarımla"], ["T", "every evening", "her akşam"]]}
+{"id": "A2-5:6", "en": "My grandfather loves classical music.", "p": [["S", "My grandfather", "dedem"], ["V", "loves", "çok sever"], ["O", "classical music", "klasik müziği"]]}
+{"id": "A2-5:7", "en": "Mert wrote the code for this game.", "p": [["S", "Mert", "Mert"], ["V", "wrote", "yazdı"], ["O", "the code", "kodu"], ["EK", "for this game", "bu oyun için"]]}
+{"id": "A2-5:8", "en": "We laughed a lot during the comedy.", "p": [["S", "We", "biz"], ["V", "laughed", "güldük"], ["NASIL", "a lot", "çok"], ["T", "during the comedy", "komedi boyunca"]]}
+{"id": "A2-5:9", "en": "She wrote a nice comment under my photo.", "p": [["S", "She", "o"], ["V", "wrote", "yazdı"], ["O", "a nice comment", "bir güzel yorum"], ["P", "under my photo", "fotoğrafımın altına"]]}
+{"id": "A2-5:10", "en": "Our team won the competition last year.", "p": [["S", "Our team", "takımımız"], ["V", "won", "kazandı"], ["O", "the competition", "yarışmayı"], ["T", "last year", "geçen yıl"]]}
+{"id": "A2-5:11", "en": "This device is too expensive for me.", "p": [["S", "This device", "bu cihaz"], ["V", "is too expensive", "fazla pahalı"], ["EK", "for me", "benim için"]]}
+{"id": "A2-5:12", "en": "My father bought a digital camera.", "p": [["S", "My father", "babam"], ["V", "bought", "aldı"], ["O", "a digital camera", "bir dijital fotoğraf makinesi"]]}
+{"id": "A2-5:13", "en": "We watched a sad drama on TV.", "p": [["S", "We", "biz"], ["V", "watched", "izledik"], ["O", "a sad drama", "bir hüzünlü dram"], ["P", "on TV", "televizyonda"]]}
+{"id": "A2-5:14", "en": "Ayşe's drawing was the best in the class.", "p": [["S", "Ayşe's drawing", "Ayşe'nin çizdiği resim"], ["V", "was the best", "en iyisiydi"], ["P", "in the class", "sınıfta"]]}
+{"id": "A2-5:15", "en": "Don't touch that electrical cable!", "p": [["V", "Don't touch", "dokunma"], ["O", "that electrical cable", "o elektrik kablosuna"]]}
+{"id": "A2-5:16", "en": "There was no electricity last night.", "p": [["V", "There was", "yoktu"], ["S", "no electricity", "hiç elektrik"], ["T", "last night", "dün gece"]]}
+{"id": "A2-5:17", "en": "He will buy a new electronic game.", "p": [["S", "He", "o"], ["V", "will buy", "alacak"], ["O", "a new electronic game", "bir yeni elektronik oyun"]]}
+{"id": "A2-5:18", "en": "I am a big fan of this singer.", "p": [["S", "I", "ben"], ["V", "am a big fan", "bir büyük hayranıyım"], ["EK", "of this singer", "bu şarkıcının"]]}
+{"id": "A2-5:19", "en": "Do you like science fiction films?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sen"], ["V", "like", "sever misin"], ["O", "science fiction films", "bilim kurgu filmlerini"]]}
+{"id": "A2-5:20", "en": "We visited an art gallery in Paris.", "p": [["S", "We", "biz"], ["V", "visited", "ziyaret ettik"], ["O", "an art gallery", "bir sanat galerisini"], ["P", "in Paris", "Paris'te"]]}
+{"id": "A2-5:21", "en": "Mert scored a great goal yesterday.", "p": [["S", "Mert", "Mert"], ["V", "scored", "attı"], ["O", "a great goal", "bir harika gol"], ["T", "yesterday", "dün"]]}
+{"id": "A2-5:22", "en": "My uncle plays golf every Sunday.", "p": [["S", "My uncle", "amcam"], ["V", "plays", "oynar"], ["O", "golf", "golf"], ["T", "every Sunday", "her pazar"]]}
+{"id": "A2-5:23", "en": "Superman was my hero when I was a child.", "p": [["S", "Superman", "Superman"], ["V", "was my hero", "benim kahramanımdı"], ["BAG", "when", "-ken"], ["S", "I", "ben"], ["V", "was a child", "çocukken"]]}
+{"id": "A2-5:24", "en": "People in Canada love ice hockey.", "p": [["S", "People", "insanlar"], ["P", "in Canada", "Kanada'daki"], ["V", "love", "çok sever"], ["O", "ice hockey", "buz hokeyini"]]}
+{"id": "A2-5:25", "en": "Our swimming instructor is very patient.", "p": [["S", "Our swimming instructor", "yüzme eğitmenimiz"], ["V", "is very patient", "çok sabırlıdır"]]}
+{"id": "A2-5:26", "en": "My mother listens to jazz in the car.", "p": [["S", "My mother", "annem"], ["V", "listens to", "dinler"], ["O", "jazz", "caz"], ["P", "in the car", "arabada"]]}
+{"id": "A2-5:27", "en": "Click this link to see the photos.", "p": [["V", "Click", "tıkla"], ["O", "this link", "bu bağlantıya"], ["EK", "to see the photos", "fotoğrafları görmek için"]]}
+{"id": "A2-5:28", "en": "The radio host thanked every listener.", "p": [["S", "The radio host", "radyo sunucusu"], ["V", "thanked", "teşekkür etti"], ["O", "every listener", "her dinleyiciye"]]}
+{"id": "A2-5:29", "en": "Did you check your mail this morning?", "p": [["SORU", "Did", "(soru)"], ["S", "you", "sen"], ["V", "check", "kontrol ettin mi"], ["O", "your mail", "postanı"], ["T", "this morning", "bu sabah"]]}
+{"id": "A2-5:30", "en": "Please turn off your mobile phone.", "p": [["KALIP", "Please", "lütfen"], ["V", "turn off", "kapat"], ["O", "your mobile phone", "cep telefonunu"]]}
+{"id": "A2-5:31", "en": "We went to a musical in London.", "p": [["S", "We", "biz"], ["V", "went", "gittik"], ["P", "to a musical", "bir müzikale"], ["P", "in London", "Londra'da"]]}
+{"id": "A2-5:32", "en": "The musician played the guitar for hours.", "p": [["S", "The musician", "müzisyen"], ["V", "played", "çaldı"], ["O", "the guitar", "gitar"], ["T", "for hours", "saatlerce"]]}
+{"id": "A2-5:33", "en": "This network is very slow today.", "p": [["S", "This network", "bu ağ"], ["V", "is very slow", "çok yavaş"], ["T", "today", "bugün"]]}
+{"id": "A2-5:34", "en": "The painter used bright colours.", "p": [["S", "The painter", "ressam"], ["V", "used", "kullandı"], ["O", "bright colours", "parlak renkler"]]}
+{"id": "A2-5:35", "en": "Elif listens to pop music every day.", "p": [["S", "Elif", "Elif"], ["V", "listens to", "dinler"], ["O", "pop music", "pop müzik"], ["T", "every day", "her gün"]]}
+{"id": "A2-5:36", "en": "I changed the photo on my profile.", "p": [["S", "I", "ben"], ["V", "changed", "değiştirdim"], ["O", "the photo", "fotoğrafı"], ["P", "on my profile", "profilimdeki"]]}
+{"id": "A2-5:37", "en": "My sister is writing a computer program.", "p": [["S", "My sister", "kız kardeşim"], ["V", "is writing", "yazıyor"], ["O", "a computer program", "bir bilgisayar programı"]]}
+{"id": "A2-5:38", "en": "I made a recording of my voice.", "p": [["S", "I", "ben"], ["V", "made", "yaptım"], ["O", "a recording of my voice", "sesimin bir kaydını"]]}
+{"id": "A2-5:39", "en": "The fastest runner will win a medal.", "p": [["S", "The fastest runner", "en hızlı koşucu"], ["V", "will win", "kazanacak"], ["O", "a medal", "bir madalya"]]}
+{"id": "A2-5:40", "en": "What was the final score?", "p": [["SORU", "What", "neydi"], ["V", "was", "(ek fiil)"], ["S", "the final score", "final skoru"]]}
+{"id": "A2-5:41", "en": "Ali watched a new series last night.", "p": [["S", "Ali", "Ali"], ["V", "watched", "izledi"], ["O", "a new series", "bir yeni dizi"], ["T", "last night", "dün gece"]]}
+{"id": "A2-5:42", "en": "This site has free English lessons.", "p": [["S", "This site", "bu sitede"], ["V", "has", "var"], ["O", "free English lessons", "ücretsiz İngilizce dersleri"]]}
+{"id": "A2-5:43", "en": "The speaker at the meeting was very funny.", "p": [["S", "The speaker", "konuşmacı"], ["P", "at the meeting", "toplantıdaki"], ["V", "was very funny", "çok komikti"]]}
+{"id": "A2-5:44", "en": "Technology changes our lives very quickly.", "p": [["S", "Technology", "teknoloji"], ["V", "changes", "değiştirir"], ["O", "our lives", "hayatımızı"], ["NASIL", "very quickly", "çok hızlı"]]}
+{"id": "A2-5:45", "en": "I found the answer on the web.", "p": [["S", "I", "ben"], ["V", "found", "buldum"], ["O", "the answer", "cevabı"], ["P", "on the web", "web'de"]]}
+{"id": "A2-5:46", "en": "The winner will get a big prize.", "p": [["S", "The winner", "kazanan"], ["V", "will get", "alacak"], ["O", "a big prize", "bir büyük ödül"]]}
+{"id": "A2-5:47", "en": "My cousin is going to study architecture.", "p": [["S", "My cousin", "kuzenim"], ["V", "is going to study", "okuyacak"], ["O", "architecture", "mimarlık"]]}
+{"id": "A2-5:48", "en": "Should I send you the link?", "p": [["SORU", "Should", "(soru)"], ["S", "I", "ben"], ["V", "send", "göndereyim mi"], ["O", "you", "sana"], ["O", "the link", "bağlantıyı"]]}
+{"id": "A2-5:49", "en": "They couldn't find the hockey stick.", "p": [["S", "They", "onlar"], ["V", "couldn't find", "bulamadılar"], ["O", "the hockey stick", "hokey sopasını"]]}
+{"id": "A2-5:50", "en": "The fans were very happy after the goal.", "p": [["S", "The fans", "taraftarlar"], ["V", "were very happy", "çok mutluydu"], ["T", "after the goal", "golden sonra"]]}
+{"id": "A2-5:51", "en": "Who was the winner of the competition?", "p": [["SORU", "Who", "kim"], ["V", "was", "(ek fiil)"], ["S", "the winner of the competition", "yarışmanın kazananı"]]}
+{"id": "A2-5:52", "en": "You should talk to your coach.", "p": [["S", "You", "sen"], ["V", "should talk", "konuşmalısın"], ["EK", "to your coach", "antrenörünle"]]}
+{"id": "A2-5:53", "en": "Will you come to the jazz concert?", "p": [["SORU", "Will", "(soru)"], ["S", "you", "sen"], ["V", "come", "gelecek misin"], ["P", "to the jazz concert", "caz konserine"]]}

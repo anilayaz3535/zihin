@@ -1,0 +1,288 @@
+{"id": "A1-7:0", "en": "I have a wooden shelf.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a wooden shelf", "bir ahşap raf"]]}
+{"id": "A1-7:1", "en": "I do not have a wooden shelf.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a wooden shelf", "bir ahşap raf"]]}
+{"id": "A1-7:2", "en": "Do you have a wooden shelf?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a wooden shelf", "bir ahşap raf"]]}
+{"id": "A1-7:3", "en": "There is a wooden shelf in the room.", "p": [["V", "There is", "var"], ["S", "a wooden shelf", "bir ahşap raf"], ["P", "in the room", "odada"]]}
+{"id": "A1-7:4", "en": "I need a wooden shelf.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a wooden shelf", "bir ahşap raf"]]}
+{"id": "A1-7:5", "en": "She wants a wooden shelf.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a wooden shelf", "bir ahşap raf"]]}
+{"id": "A1-7:6", "en": "Can I use a wooden shelf?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a wooden shelf", "bir ahşap raf"]]}
+{"id": "A1-7:7", "en": "We can see a wooden shelf.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a wooden shelf", "bir ahşap raf"]]}
+{"id": "A1-7:8", "en": "They buy a wooden shelf every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a wooden shelf", "bir ahşap raf"], ["T", "every year", "her yıl"]]}
+{"id": "A1-7:9", "en": "Look, there is a wooden shelf.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a wooden shelf", "bir ahşap raf"]]}
+{"id": "A1-7:10", "en": "Is this a wooden shelf?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a wooden shelf", "bir ahşap raf mı"]]}
+{"id": "A1-7:11", "en": "This is not a wooden shelf.", "p": [["S", "This", "bu"], ["V", "is not a wooden shelf", "bir ahşap raf değil"]]}
+{"id": "A1-7:12", "en": "I have a warm blanket.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a warm blanket", "bir sıcak tutan battaniye"]]}
+{"id": "A1-7:13", "en": "I do not have a warm blanket.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a warm blanket", "bir sıcak tutan battaniye"]]}
+{"id": "A1-7:14", "en": "Do you have a warm blanket?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a warm blanket", "bir sıcak tutan battaniye"]]}
+{"id": "A1-7:15", "en": "There is a warm blanket in the room.", "p": [["V", "There is", "var"], ["S", "a warm blanket", "bir sıcak tutan battaniye"], ["P", "in the room", "odada"]]}
+{"id": "A1-7:16", "en": "I need a warm blanket.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a warm blanket", "bir sıcak tutan battaniye"]]}
+{"id": "A1-7:17", "en": "She wants a warm blanket.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a warm blanket", "bir sıcak tutan battaniye"]]}
+{"id": "A1-7:18", "en": "Can I use a warm blanket?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a warm blanket", "bir sıcak tutan battaniye"]]}
+{"id": "A1-7:19", "en": "We can see a warm blanket.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a warm blanket", "bir sıcak tutan battaniye"]]}
+{"id": "A1-7:20", "en": "They buy a warm blanket every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a warm blanket", "bir sıcak tutan battaniye"], ["T", "every year", "her yıl"]]}
+{"id": "A1-7:21", "en": "Look, there is a warm blanket.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a warm blanket", "bir sıcak tutan battaniye"]]}
+{"id": "A1-7:22", "en": "Is this a warm blanket?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a warm blanket", "bir sıcak tutan battaniye mi"]]}
+{"id": "A1-7:23", "en": "This is not a warm blanket.", "p": [["S", "This", "bu"], ["V", "is not a warm blanket", "bir sıcak tutan battaniye değil"]]}
+{"id": "A1-8:0", "en": "I have a soft pillow.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a soft pillow", "bir yumuşak yastık"]]}
+{"id": "A1-8:1", "en": "I do not have a soft pillow.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a soft pillow", "bir yumuşak yastık"]]}
+{"id": "A1-8:2", "en": "Do you have a soft pillow?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a soft pillow", "bir yumuşak yastık"]]}
+{"id": "A1-8:3", "en": "There is a soft pillow in the room.", "p": [["V", "There is", "var"], ["S", "a soft pillow", "bir yumuşak yastık"], ["P", "in the room", "odada"]]}
+{"id": "A1-8:4", "en": "I need a soft pillow.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a soft pillow", "bir yumuşak yastık"]]}
+{"id": "A1-8:5", "en": "She wants a soft pillow.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a soft pillow", "bir yumuşak yastık"]]}
+{"id": "A1-8:6", "en": "Can I use a soft pillow?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a soft pillow", "bir yumuşak yastık"]]}
+{"id": "A1-8:7", "en": "We can see a soft pillow.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a soft pillow", "bir yumuşak yastık"]]}
+{"id": "A1-8:8", "en": "They buy a soft pillow every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a soft pillow", "bir yumuşak yastık"], ["T", "every year", "her yıl"]]}
+{"id": "A1-8:9", "en": "Look, there is a soft pillow.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a soft pillow", "bir yumuşak yastık"]]}
+{"id": "A1-8:10", "en": "Is this a soft pillow?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a soft pillow", "bir yumuşak yastık mi"]]}
+{"id": "A1-8:11", "en": "This is not a soft pillow.", "p": [["S", "This", "bu"], ["V", "is not a soft pillow", "bir yumuşak yastık değil"]]}
+{"id": "A1-8:12", "en": "I have a small mirror.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a small mirror", "bir küçük ayna"]]}
+{"id": "A1-8:13", "en": "I do not have a small mirror.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a small mirror", "bir küçük ayna"]]}
+{"id": "A1-8:14", "en": "Do you have a small mirror?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a small mirror", "bir küçük ayna"]]}
+{"id": "A1-8:15", "en": "There is a small mirror in the room.", "p": [["V", "There is", "var"], ["S", "a small mirror", "bir küçük ayna"], ["P", "in the room", "odada"]]}
+{"id": "A1-8:16", "en": "I need a small mirror.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a small mirror", "bir küçük ayna"]]}
+{"id": "A1-8:17", "en": "She wants a small mirror.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a small mirror", "bir küçük ayna"]]}
+{"id": "A1-8:18", "en": "Can I use a small mirror?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a small mirror", "bir küçük ayna"]]}
+{"id": "A1-8:19", "en": "We can see a small mirror.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a small mirror", "bir küçük ayna"]]}
+{"id": "A1-8:20", "en": "They buy a small mirror every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a small mirror", "bir küçük ayna"], ["T", "every year", "her yıl"]]}
+{"id": "A1-8:21", "en": "Look, there is a small mirror.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a small mirror", "bir küçük ayna"]]}
+{"id": "A1-8:22", "en": "Is this a small mirror?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a small mirror", "bir küçük ayna mi"]]}
+{"id": "A1-8:23", "en": "This is not a small mirror.", "p": [["S", "This", "bu"], ["V", "is not a small mirror", "bir küçük ayna değil"]]}
+{"id": "A1-9:0", "en": "I have a kitchen cupboard.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a kitchen cupboard", "bir mutfak dolabı"]]}
+{"id": "A1-9:1", "en": "I do not have a kitchen cupboard.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a kitchen cupboard", "bir mutfak dolabı"]]}
+{"id": "A1-9:2", "en": "Do you have a kitchen cupboard?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a kitchen cupboard", "bir mutfak dolabı"]]}
+{"id": "A1-9:3", "en": "There is a kitchen cupboard in the room.", "p": [["V", "There is", "var"], ["S", "a kitchen cupboard", "bir mutfak dolabı"], ["P", "in the room", "odada"]]}
+{"id": "A1-9:4", "en": "I need a kitchen cupboard.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a kitchen cupboard", "bir mutfak dolabı"]]}
+{"id": "A1-9:5", "en": "She wants a kitchen cupboard.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a kitchen cupboard", "bir mutfak dolabı"]]}
+{"id": "A1-9:6", "en": "Can I use a kitchen cupboard?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a kitchen cupboard", "bir mutfak dolabı"]]}
+{"id": "A1-9:7", "en": "We can see a kitchen cupboard.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a kitchen cupboard", "bir mutfak dolabı"]]}
+{"id": "A1-9:8", "en": "They buy a kitchen cupboard every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a kitchen cupboard", "bir mutfak dolabı"], ["T", "every year", "her yıl"]]}
+{"id": "A1-9:9", "en": "Look, there is a kitchen cupboard.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a kitchen cupboard", "bir mutfak dolabı"]]}
+{"id": "A1-9:10", "en": "Is this a kitchen cupboard?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a kitchen cupboard", "bir mutfak dolabı mi"]]}
+{"id": "A1-9:11", "en": "This is not a kitchen cupboard.", "p": [["S", "This", "bu"], ["V", "is not a kitchen cupboard", "bir mutfak dolabı değil"]]}
+{"id": "A1-9:12", "en": "I have a reading lamp.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a reading lamp", "bir okuma lambası"]]}
+{"id": "A1-9:13", "en": "I do not have a reading lamp.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a reading lamp", "bir okuma lambası"]]}
+{"id": "A1-9:14", "en": "Do you have a reading lamp?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a reading lamp", "bir okuma lambası"]]}
+{"id": "A1-9:15", "en": "There is a reading lamp in the room.", "p": [["V", "There is", "var"], ["S", "a reading lamp", "bir okuma lambası"], ["P", "in the room", "odada"]]}
+{"id": "A1-9:16", "en": "I need a reading lamp.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a reading lamp", "bir okuma lambası"]]}
+{"id": "A1-9:17", "en": "She wants a reading lamp.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a reading lamp", "bir okuma lambası"]]}
+{"id": "A1-9:18", "en": "Can I use a reading lamp?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a reading lamp", "bir okuma lambası"]]}
+{"id": "A1-9:19", "en": "We can see a reading lamp.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a reading lamp", "bir okuma lambası"]]}
+{"id": "A1-9:20", "en": "They buy a reading lamp every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a reading lamp", "bir okuma lambası"], ["T", "every year", "her yıl"]]}
+{"id": "A1-9:21", "en": "Look, there is a reading lamp.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a reading lamp", "bir okuma lambası"]]}
+{"id": "A1-9:22", "en": "Is this a reading lamp?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a reading lamp", "bir okuma lambası mi"]]}
+{"id": "A1-9:23", "en": "This is not a reading lamp.", "p": [["S", "This", "bu"], ["V", "is not a reading lamp", "bir okuma lambası değil"]]}
+{"id": "A1-10:0", "en": "I have a water bottle.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a water bottle", "bir su şişesi"]]}
+{"id": "A1-10:1", "en": "I do not have a water bottle.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a water bottle", "bir su şişesi"]]}
+{"id": "A1-10:2", "en": "Do you have a water bottle?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a water bottle", "bir su şişesi"]]}
+{"id": "A1-10:3", "en": "There is a water bottle in the room.", "p": [["V", "There is", "var"], ["S", "a water bottle", "bir su şişesi"], ["P", "in the room", "odada"]]}
+{"id": "A1-10:4", "en": "I need a water bottle.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a water bottle", "bir su şişesi"]]}
+{"id": "A1-10:5", "en": "She wants a water bottle.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a water bottle", "bir su şişesi"]]}
+{"id": "A1-10:6", "en": "Can I use a water bottle?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a water bottle", "bir su şişesi"]]}
+{"id": "A1-10:7", "en": "We can see a water bottle.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a water bottle", "bir su şişesi"]]}
+{"id": "A1-10:8", "en": "They buy a water bottle every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a water bottle", "bir su şişesi"], ["T", "every year", "her yıl"]]}
+{"id": "A1-10:9", "en": "Look, there is a water bottle.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a water bottle", "bir su şişesi"]]}
+{"id": "A1-10:10", "en": "Is this a water bottle?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a water bottle", "bir su şişesi mi"]]}
+{"id": "A1-10:11", "en": "This is not a water bottle.", "p": [["S", "This", "bu"], ["V", "is not a water bottle", "bir su şişesi değil"]]}
+{"id": "A1-10:12", "en": "I have a shopping basket.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a shopping basket", "bir alışveriş sepeti"]]}
+{"id": "A1-10:13", "en": "I do not have a shopping basket.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a shopping basket", "bir alışveriş sepeti"]]}
+{"id": "A1-10:14", "en": "Do you have a shopping basket?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a shopping basket", "bir alışveriş sepeti"]]}
+{"id": "A1-10:15", "en": "There is a shopping basket in the room.", "p": [["V", "There is", "var"], ["S", "a shopping basket", "bir alışveriş sepeti"], ["P", "in the room", "odada"]]}
+{"id": "A1-10:16", "en": "I need a shopping basket.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a shopping basket", "bir alışveriş sepeti"]]}
+{"id": "A1-10:17", "en": "She wants a shopping basket.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a shopping basket", "bir alışveriş sepeti"]]}
+{"id": "A1-10:18", "en": "Can I use a shopping basket?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a shopping basket", "bir alışveriş sepeti"]]}
+{"id": "A1-10:19", "en": "We can see a shopping basket.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a shopping basket", "bir alışveriş sepeti"]]}
+{"id": "A1-10:20", "en": "They buy a shopping basket every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a shopping basket", "bir alışveriş sepeti"], ["T", "every year", "her yıl"]]}
+{"id": "A1-10:21", "en": "Look, there is a shopping basket.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a shopping basket", "bir alışveriş sepeti"]]}
+{"id": "A1-10:22", "en": "Is this a shopping basket?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a shopping basket", "bir alışveriş sepeti mi"]]}
+{"id": "A1-10:23", "en": "This is not a shopping basket.", "p": [["S", "This", "bu"], ["V", "is not a shopping basket", "bir alışveriş sepeti değil"]]}
+{"id": "A1-11:0", "en": "I have a new notebook.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a new notebook", "bir yeni defter"]]}
+{"id": "A1-11:1", "en": "I do not have a new notebook.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a new notebook", "bir yeni defter"]]}
+{"id": "A1-11:2", "en": "Do you have a new notebook?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a new notebook", "bir yeni defter"]]}
+{"id": "A1-11:3", "en": "There is a new notebook in the room.", "p": [["V", "There is", "var"], ["S", "a new notebook", "bir yeni defter"], ["P", "in the room", "odada"]]}
+{"id": "A1-11:4", "en": "I need a new notebook.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a new notebook", "bir yeni defter"]]}
+{"id": "A1-11:5", "en": "She wants a new notebook.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a new notebook", "bir yeni defter"]]}
+{"id": "A1-11:6", "en": "Can I use a new notebook?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a new notebook", "bir yeni defter"]]}
+{"id": "A1-11:7", "en": "We can see a new notebook.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a new notebook", "bir yeni defter"]]}
+{"id": "A1-11:8", "en": "They buy a new notebook every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a new notebook", "bir yeni defter"], ["T", "every year", "her yıl"]]}
+{"id": "A1-11:9", "en": "Look, there is a new notebook.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a new notebook", "bir yeni defter"]]}
+{"id": "A1-11:10", "en": "Is this a new notebook?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a new notebook", "bir yeni defter mi"]]}
+{"id": "A1-11:11", "en": "This is not a new notebook.", "p": [["S", "This", "bu"], ["V", "is not a new notebook", "bir yeni defter değil"]]}
+{"id": "A1-11:12", "en": "I have a red pencil.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a red pencil", "bir kırmızı kurşun kalem"]]}
+{"id": "A1-11:13", "en": "I do not have a red pencil.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a red pencil", "bir kırmızı kurşun kalem"]]}
+{"id": "A1-11:14", "en": "Do you have a red pencil?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a red pencil", "bir kırmızı kurşun kalem"]]}
+{"id": "A1-11:15", "en": "There is a red pencil in the room.", "p": [["V", "There is", "var"], ["S", "a red pencil", "bir kırmızı kurşun kalem"], ["P", "in the room", "odada"]]}
+{"id": "A1-11:16", "en": "I need a red pencil.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a red pencil", "bir kırmızı kurşun kalem"]]}
+{"id": "A1-11:17", "en": "She wants a red pencil.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a red pencil", "bir kırmızı kurşun kalem"]]}
+{"id": "A1-11:18", "en": "Can I use a red pencil?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a red pencil", "bir kırmızı kurşun kalem"]]}
+{"id": "A1-11:19", "en": "We can see a red pencil.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a red pencil", "bir kırmızı kurşun kalem"]]}
+{"id": "A1-11:20", "en": "They buy a red pencil every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a red pencil", "bir kırmızı kurşun kalem"], ["T", "every year", "her yıl"]]}
+{"id": "A1-11:21", "en": "Look, there is a red pencil.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a red pencil", "bir kırmızı kurşun kalem"]]}
+{"id": "A1-11:22", "en": "Is this a red pencil?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a red pencil", "bir kırmızı kurşun kalem mi"]]}
+{"id": "A1-11:23", "en": "This is not a red pencil.", "p": [["S", "This", "bu"], ["V", "is not a red pencil", "bir kırmızı kurşun kalem değil"]]}
+{"id": "A1-12:0", "en": "I have an English dictionary.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "an English dictionary", "bir İngilizce sözlük"]]}
+{"id": "A1-12:1", "en": "I do not have an English dictionary.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "an English dictionary", "bir İngilizce sözlük"]]}
+{"id": "A1-12:2", "en": "Do you have an English dictionary?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "an English dictionary", "bir İngilizce sözlük"]]}
+{"id": "A1-12:3", "en": "There is an English dictionary in the room.", "p": [["V", "There is", "var"], ["S", "an English dictionary", "bir İngilizce sözlük"], ["P", "in the room", "odada"]]}
+{"id": "A1-12:4", "en": "I need an English dictionary.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "an English dictionary", "bir İngilizce sözlük"]]}
+{"id": "A1-12:5", "en": "She wants an English dictionary.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "an English dictionary", "bir İngilizce sözlük"]]}
+{"id": "A1-12:6", "en": "Can I use an English dictionary?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "an English dictionary", "bir İngilizce sözlük"]]}
+{"id": "A1-12:7", "en": "We can see an English dictionary.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "an English dictionary", "bir İngilizce sözlük"]]}
+{"id": "A1-12:8", "en": "They buy an English dictionary every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "an English dictionary", "bir İngilizce sözlük"], ["T", "every year", "her yıl"]]}
+{"id": "A1-12:9", "en": "Look, there is an English dictionary.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "an English dictionary", "bir İngilizce sözlük"]]}
+{"id": "A1-12:10", "en": "Is this an English dictionary?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "an English dictionary", "bir İngilizce sözlük mi"]]}
+{"id": "A1-12:11", "en": "This is not an English dictionary.", "p": [["S", "This", "bu"], ["V", "is not an English dictionary", "bir İngilizce sözlük değil"]]}
+{"id": "A1-12:12", "en": "I have a blue backpack.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a blue backpack", "bir mavi sırt çantası"]]}
+{"id": "A1-12:13", "en": "I do not have a blue backpack.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a blue backpack", "bir mavi sırt çantası"]]}
+{"id": "A1-12:14", "en": "Do you have a blue backpack?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a blue backpack", "bir mavi sırt çantası"]]}
+{"id": "A1-12:15", "en": "There is a blue backpack in the room.", "p": [["V", "There is", "var"], ["S", "a blue backpack", "bir mavi sırt çantası"], ["P", "in the room", "odada"]]}
+{"id": "A1-12:16", "en": "I need a blue backpack.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a blue backpack", "bir mavi sırt çantası"]]}
+{"id": "A1-12:17", "en": "She wants a blue backpack.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a blue backpack", "bir mavi sırt çantası"]]}
+{"id": "A1-12:18", "en": "Can I use a blue backpack?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a blue backpack", "bir mavi sırt çantası"]]}
+{"id": "A1-12:19", "en": "We can see a blue backpack.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a blue backpack", "bir mavi sırt çantası"]]}
+{"id": "A1-12:20", "en": "They buy a blue backpack every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a blue backpack", "bir mavi sırt çantası"], ["T", "every year", "her yıl"]]}
+{"id": "A1-12:21", "en": "Look, there is a blue backpack.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a blue backpack", "bir mavi sırt çantası"]]}
+{"id": "A1-12:22", "en": "Is this a blue backpack?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a blue backpack", "bir mavi sırt çantası mi"]]}
+{"id": "A1-12:23", "en": "This is not a blue backpack.", "p": [["S", "This", "bu"], ["V", "is not a blue backpack", "bir mavi sırt çantası değil"]]}
+{"id": "A1-13:0", "en": "I have a long ruler.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a long ruler", "bir uzun cetvel"]]}
+{"id": "A1-13:1", "en": "I do not have a long ruler.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a long ruler", "bir uzun cetvel"]]}
+{"id": "A1-13:2", "en": "Do you have a long ruler?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a long ruler", "bir uzun cetvel"]]}
+{"id": "A1-13:3", "en": "There is a long ruler in the room.", "p": [["V", "There is", "var"], ["S", "a long ruler", "bir uzun cetvel"], ["P", "in the room", "odada"]]}
+{"id": "A1-13:4", "en": "I need a long ruler.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a long ruler", "bir uzun cetvel"]]}
+{"id": "A1-13:5", "en": "She wants a long ruler.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a long ruler", "bir uzun cetvel"]]}
+{"id": "A1-13:6", "en": "Can I use a long ruler?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a long ruler", "bir uzun cetvel"]]}
+{"id": "A1-13:7", "en": "We can see a long ruler.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a long ruler", "bir uzun cetvel"]]}
+{"id": "A1-13:8", "en": "They buy a long ruler every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a long ruler", "bir uzun cetvel"], ["T", "every year", "her yıl"]]}
+{"id": "A1-13:9", "en": "Look, there is a long ruler.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a long ruler", "bir uzun cetvel"]]}
+{"id": "A1-13:10", "en": "Is this a long ruler?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a long ruler", "bir uzun cetvel mi"]]}
+{"id": "A1-13:11", "en": "This is not a long ruler.", "p": [["S", "This", "bu"], ["V", "is not a long ruler", "bir uzun cetvel değil"]]}
+{"id": "A1-13:12", "en": "I have a school uniform.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a school uniform", "bir okul üniforması"]]}
+{"id": "A1-13:13", "en": "I do not have a school uniform.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a school uniform", "bir okul üniforması"]]}
+{"id": "A1-13:14", "en": "Do you have a school uniform?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a school uniform", "bir okul üniforması"]]}
+{"id": "A1-13:15", "en": "There is a school uniform in the room.", "p": [["V", "There is", "var"], ["S", "a school uniform", "bir okul üniforması"], ["P", "in the room", "odada"]]}
+{"id": "A1-13:16", "en": "I need a school uniform.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a school uniform", "bir okul üniforması"]]}
+{"id": "A1-13:17", "en": "She wants a school uniform.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a school uniform", "bir okul üniforması"]]}
+{"id": "A1-13:18", "en": "Can I use a school uniform?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a school uniform", "bir okul üniforması"]]}
+{"id": "A1-13:19", "en": "We can see a school uniform.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a school uniform", "bir okul üniforması"]]}
+{"id": "A1-13:20", "en": "They buy a school uniform every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a school uniform", "bir okul üniforması"], ["T", "every year", "her yıl"]]}
+{"id": "A1-13:21", "en": "Look, there is a school uniform.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a school uniform", "bir okul üniforması"]]}
+{"id": "A1-13:22", "en": "Is this a school uniform?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a school uniform", "bir okul üniforması mi"]]}
+{"id": "A1-13:23", "en": "This is not a school uniform.", "p": [["S", "This", "bu"], ["V", "is not a school uniform", "bir okul üniforması değil"]]}
+{"id": "A1-14:0", "en": "I have a digital watch.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a digital watch", "bir dijital kol saati"]]}
+{"id": "A1-14:1", "en": "I do not have a digital watch.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a digital watch", "bir dijital kol saati"]]}
+{"id": "A1-14:2", "en": "Do you have a digital watch?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a digital watch", "bir dijital kol saati"]]}
+{"id": "A1-14:3", "en": "There is a digital watch in the room.", "p": [["V", "There is", "var"], ["S", "a digital watch", "bir dijital kol saati"], ["P", "in the room", "odada"]]}
+{"id": "A1-14:4", "en": "I need a digital watch.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a digital watch", "bir dijital kol saati"]]}
+{"id": "A1-14:5", "en": "She wants a digital watch.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a digital watch", "bir dijital kol saati"]]}
+{"id": "A1-14:6", "en": "Can I use a digital watch?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a digital watch", "bir dijital kol saati"]]}
+{"id": "A1-14:7", "en": "We can see a digital watch.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a digital watch", "bir dijital kol saati"]]}
+{"id": "A1-14:8", "en": "They buy a digital watch every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a digital watch", "bir dijital kol saati"], ["T", "every year", "her yıl"]]}
+{"id": "A1-14:9", "en": "Look, there is a digital watch.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a digital watch", "bir dijital kol saati"]]}
+{"id": "A1-14:10", "en": "Is this a digital watch?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a digital watch", "bir dijital kol saati mi"]]}
+{"id": "A1-14:11", "en": "This is not a digital watch.", "p": [["S", "This", "bu"], ["V", "is not a digital watch", "bir dijital kol saati değil"]]}
+{"id": "A1-14:12", "en": "I have a wall calendar.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a wall calendar", "bir duvar takvimi"]]}
+{"id": "A1-14:13", "en": "I do not have a wall calendar.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a wall calendar", "bir duvar takvimi"]]}
+{"id": "A1-14:14", "en": "Do you have a wall calendar?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a wall calendar", "bir duvar takvimi"]]}
+{"id": "A1-14:15", "en": "There is a wall calendar in the room.", "p": [["V", "There is", "var"], ["S", "a wall calendar", "bir duvar takvimi"], ["P", "in the room", "odada"]]}
+{"id": "A1-14:16", "en": "I need a wall calendar.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a wall calendar", "bir duvar takvimi"]]}
+{"id": "A1-14:17", "en": "She wants a wall calendar.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a wall calendar", "bir duvar takvimi"]]}
+{"id": "A1-14:18", "en": "Can I use a wall calendar?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a wall calendar", "bir duvar takvimi"]]}
+{"id": "A1-14:19", "en": "We can see a wall calendar.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a wall calendar", "bir duvar takvimi"]]}
+{"id": "A1-14:20", "en": "They buy a wall calendar every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a wall calendar", "bir duvar takvimi"], ["T", "every year", "her yıl"]]}
+{"id": "A1-14:21", "en": "Look, there is a wall calendar.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a wall calendar", "bir duvar takvimi"]]}
+{"id": "A1-14:22", "en": "Is this a wall calendar?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a wall calendar", "bir duvar takvimi mi"]]}
+{"id": "A1-14:23", "en": "This is not a wall calendar.", "p": [["S", "This", "bu"], ["V", "is not a wall calendar", "bir duvar takvimi değil"]]}
+{"id": "A1-15:0", "en": "I have a city bicycle.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a city bicycle", "bir şehir bisikleti"]]}
+{"id": "A1-15:1", "en": "I do not have a city bicycle.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a city bicycle", "bir şehir bisikleti"]]}
+{"id": "A1-15:2", "en": "Do you have a city bicycle?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a city bicycle", "bir şehir bisikleti"]]}
+{"id": "A1-15:3", "en": "There is a city bicycle in the room.", "p": [["V", "There is", "var"], ["S", "a city bicycle", "bir şehir bisikleti"], ["P", "in the room", "odada"]]}
+{"id": "A1-15:4", "en": "I need a city bicycle.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a city bicycle", "bir şehir bisikleti"]]}
+{"id": "A1-15:5", "en": "She wants a city bicycle.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a city bicycle", "bir şehir bisikleti"]]}
+{"id": "A1-15:6", "en": "Can I use a city bicycle?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a city bicycle", "bir şehir bisikleti"]]}
+{"id": "A1-15:7", "en": "We can see a city bicycle.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a city bicycle", "bir şehir bisikleti"]]}
+{"id": "A1-15:8", "en": "They buy a city bicycle every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a city bicycle", "bir şehir bisikleti"], ["T", "every year", "her yıl"]]}
+{"id": "A1-15:9", "en": "Look, there is a city bicycle.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a city bicycle", "bir şehir bisikleti"]]}
+{"id": "A1-15:10", "en": "Is this a city bicycle?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a city bicycle", "bir şehir bisikleti mi"]]}
+{"id": "A1-15:11", "en": "This is not a city bicycle.", "p": [["S", "This", "bu"], ["V", "is not a city bicycle", "bir şehir bisikleti değil"]]}
+{"id": "A1-15:12", "en": "I have a street map.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a street map", "bir sokak haritası"]]}
+{"id": "A1-15:13", "en": "I do not have a street map.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a street map", "bir sokak haritası"]]}
+{"id": "A1-15:14", "en": "Do you have a street map?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a street map", "bir sokak haritası"]]}
+{"id": "A1-15:15", "en": "There is a street map in the room.", "p": [["V", "There is", "var"], ["S", "a street map", "bir sokak haritası"], ["P", "in the room", "odada"]]}
+{"id": "A1-15:16", "en": "I need a street map.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a street map", "bir sokak haritası"]]}
+{"id": "A1-15:17", "en": "She wants a street map.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a street map", "bir sokak haritası"]]}
+{"id": "A1-15:18", "en": "Can I use a street map?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a street map", "bir sokak haritası"]]}
+{"id": "A1-15:19", "en": "We can see a street map.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a street map", "bir sokak haritası"]]}
+{"id": "A1-15:20", "en": "They buy a street map every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a street map", "bir sokak haritası"], ["T", "every year", "her yıl"]]}
+{"id": "A1-15:21", "en": "Look, there is a street map.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a street map", "bir sokak haritası"]]}
+{"id": "A1-15:22", "en": "Is this a street map?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a street map", "bir sokak haritası mi"]]}
+{"id": "A1-15:23", "en": "This is not a street map.", "p": [["S", "This", "bu"], ["V", "is not a street map", "bir sokak haritası değil"]]}
+{"id": "A1-16:0", "en": "I have a colorful postcard.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a colorful postcard", "bir renkli kartpostal"]]}
+{"id": "A1-16:1", "en": "I do not have a colorful postcard.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a colorful postcard", "bir renkli kartpostal"]]}
+{"id": "A1-16:2", "en": "Do you have a colorful postcard?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a colorful postcard", "bir renkli kartpostal"]]}
+{"id": "A1-16:3", "en": "There is a colorful postcard in the room.", "p": [["V", "There is", "var"], ["S", "a colorful postcard", "bir renkli kartpostal"], ["P", "in the room", "odada"]]}
+{"id": "A1-16:4", "en": "I need a colorful postcard.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a colorful postcard", "bir renkli kartpostal"]]}
+{"id": "A1-16:5", "en": "She wants a colorful postcard.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a colorful postcard", "bir renkli kartpostal"]]}
+{"id": "A1-16:6", "en": "Can I use a colorful postcard?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a colorful postcard", "bir renkli kartpostal"]]}
+{"id": "A1-16:7", "en": "We can see a colorful postcard.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a colorful postcard", "bir renkli kartpostal"]]}
+{"id": "A1-16:8", "en": "They buy a colorful postcard every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a colorful postcard", "bir renkli kartpostal"], ["T", "every year", "her yıl"]]}
+{"id": "A1-16:9", "en": "Look, there is a colorful postcard.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a colorful postcard", "bir renkli kartpostal"]]}
+{"id": "A1-16:10", "en": "Is this a colorful postcard?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a colorful postcard", "bir renkli kartpostal mi"]]}
+{"id": "A1-16:11", "en": "This is not a colorful postcard.", "p": [["S", "This", "bu"], ["V", "is not a colorful postcard", "bir renkli kartpostal değil"]]}
+{"id": "A1-16:12", "en": "I have a small camera.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a small camera", "bir küçük fotoğraf makinesi"]]}
+{"id": "A1-16:13", "en": "I do not have a small camera.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a small camera", "bir küçük fotoğraf makinesi"]]}
+{"id": "A1-16:14", "en": "Do you have a small camera?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a small camera", "bir küçük fotoğraf makinesi"]]}
+{"id": "A1-16:15", "en": "There is a small camera in the room.", "p": [["V", "There is", "var"], ["S", "a small camera", "bir küçük fotoğraf makinesi"], ["P", "in the room", "odada"]]}
+{"id": "A1-16:16", "en": "I need a small camera.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a small camera", "bir küçük fotoğraf makinesi"]]}
+{"id": "A1-16:17", "en": "She wants a small camera.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a small camera", "bir küçük fotoğraf makinesi"]]}
+{"id": "A1-16:18", "en": "Can I use a small camera?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a small camera", "bir küçük fotoğraf makinesi"]]}
+{"id": "A1-16:19", "en": "We can see a small camera.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a small camera", "bir küçük fotoğraf makinesi"]]}
+{"id": "A1-16:20", "en": "They buy a small camera every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a small camera", "bir küçük fotoğraf makinesi"], ["T", "every year", "her yıl"]]}
+{"id": "A1-16:21", "en": "Look, there is a small camera.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a small camera", "bir küçük fotoğraf makinesi"]]}
+{"id": "A1-16:22", "en": "Is this a small camera?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a small camera", "bir küçük fotoğraf makinesi mi"]]}
+{"id": "A1-16:23", "en": "This is not a small camera.", "p": [["S", "This", "bu"], ["V", "is not a small camera", "bir küçük fotoğraf makinesi değil"]]}
+{"id": "A1-17:0", "en": "I have a black wallet.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a black wallet", "bir siyah cüzdan"]]}
+{"id": "A1-17:1", "en": "I do not have a black wallet.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a black wallet", "bir siyah cüzdan"]]}
+{"id": "A1-17:2", "en": "Do you have a black wallet?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a black wallet", "bir siyah cüzdan"]]}
+{"id": "A1-17:3", "en": "There is a black wallet in the room.", "p": [["V", "There is", "var"], ["S", "a black wallet", "bir siyah cüzdan"], ["P", "in the room", "odada"]]}
+{"id": "A1-17:4", "en": "I need a black wallet.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a black wallet", "bir siyah cüzdan"]]}
+{"id": "A1-17:5", "en": "She wants a black wallet.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a black wallet", "bir siyah cüzdan"]]}
+{"id": "A1-17:6", "en": "Can I use a black wallet?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a black wallet", "bir siyah cüzdan"]]}
+{"id": "A1-17:7", "en": "We can see a black wallet.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a black wallet", "bir siyah cüzdan"]]}
+{"id": "A1-17:8", "en": "They buy a black wallet every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a black wallet", "bir siyah cüzdan"], ["T", "every year", "her yıl"]]}
+{"id": "A1-17:9", "en": "Look, there is a black wallet.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a black wallet", "bir siyah cüzdan"]]}
+{"id": "A1-17:10", "en": "Is this a black wallet?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a black wallet", "bir siyah cüzdan mi"]]}
+{"id": "A1-17:11", "en": "This is not a black wallet.", "p": [["S", "This", "bu"], ["V", "is not a black wallet", "bir siyah cüzdan değil"]]}
+{"id": "A1-17:12", "en": "I have a winter scarf.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a winter scarf", "bir kış atkısı"]]}
+{"id": "A1-17:13", "en": "I do not have a winter scarf.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a winter scarf", "bir kış atkısı"]]}
+{"id": "A1-17:14", "en": "Do you have a winter scarf?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a winter scarf", "bir kış atkısı"]]}
+{"id": "A1-17:15", "en": "There is a winter scarf in the room.", "p": [["V", "There is", "var"], ["S", "a winter scarf", "bir kış atkısı"], ["P", "in the room", "odada"]]}
+{"id": "A1-17:16", "en": "I need a winter scarf.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a winter scarf", "bir kış atkısı"]]}
+{"id": "A1-17:17", "en": "She wants a winter scarf.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a winter scarf", "bir kış atkısı"]]}
+{"id": "A1-17:18", "en": "Can I use a winter scarf?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a winter scarf", "bir kış atkısı"]]}
+{"id": "A1-17:19", "en": "We can see a winter scarf.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a winter scarf", "bir kış atkısı"]]}
+{"id": "A1-17:20", "en": "They buy a winter scarf every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a winter scarf", "bir kış atkısı"], ["T", "every year", "her yıl"]]}
+{"id": "A1-17:21", "en": "Look, there is a winter scarf.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a winter scarf", "bir kış atkısı"]]}
+{"id": "A1-17:22", "en": "Is this a winter scarf?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a winter scarf", "bir kış atkısı mi"]]}
+{"id": "A1-17:23", "en": "This is not a winter scarf.", "p": [["S", "This", "bu"], ["V", "is not a winter scarf", "bir kış atkısı değil"]]}
+{"id": "A1-18:0", "en": "I have a light jacket.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a light jacket", "bir hafif ceket"]]}
+{"id": "A1-18:1", "en": "I do not have a light jacket.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a light jacket", "bir hafif ceket"]]}
+{"id": "A1-18:2", "en": "Do you have a light jacket?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a light jacket", "bir hafif ceket"]]}
+{"id": "A1-18:3", "en": "There is a light jacket in the room.", "p": [["V", "There is", "var"], ["S", "a light jacket", "bir hafif ceket"], ["P", "in the room", "odada"]]}
+{"id": "A1-18:4", "en": "I need a light jacket.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a light jacket", "bir hafif ceket"]]}
+{"id": "A1-18:5", "en": "She wants a light jacket.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a light jacket", "bir hafif ceket"]]}
+{"id": "A1-18:6", "en": "Can I use a light jacket?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a light jacket", "bir hafif ceket"]]}
+{"id": "A1-18:7", "en": "We can see a light jacket.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a light jacket", "bir hafif ceket"]]}
+{"id": "A1-18:8", "en": "They buy a light jacket every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a light jacket", "bir hafif ceket"], ["T", "every year", "her yıl"]]}
+{"id": "A1-18:9", "en": "Look, there is a light jacket.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a light jacket", "bir hafif ceket"]]}
+{"id": "A1-18:10", "en": "Is this a light jacket?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a light jacket", "bir hafif ceket mi"]]}
+{"id": "A1-18:11", "en": "This is not a light jacket.", "p": [["S", "This", "bu"], ["V", "is not a light jacket", "bir hafif ceket değil"]]}
+{"id": "A1-18:12", "en": "I have a large suitcase.", "p": [["S", "I", "bende"], ["V", "have", "var"], ["O", "a large suitcase", "bir büyük bavul"]]}
+{"id": "A1-18:13", "en": "I do not have a large suitcase.", "p": [["S", "I", "bende"], ["V", "do not have", "yok"], ["O", "a large suitcase", "bir büyük bavul"]]}
+{"id": "A1-18:14", "en": "Do you have a large suitcase?", "p": [["SORU", "Do", "(soru)"], ["S", "you", "sende"], ["V", "have", "var mı"], ["O", "a large suitcase", "bir büyük bavul"]]}
+{"id": "A1-18:15", "en": "There is a large suitcase in the room.", "p": [["V", "There is", "var"], ["S", "a large suitcase", "bir büyük bavul"], ["P", "in the room", "odada"]]}
+{"id": "A1-18:16", "en": "I need a large suitcase.", "p": [["S", "I", "bana"], ["V", "need", "gerekiyor"], ["O", "a large suitcase", "bir büyük bavul"]]}
+{"id": "A1-18:17", "en": "She wants a large suitcase.", "p": [["S", "She", "o"], ["V", "wants", "istiyor"], ["O", "a large suitcase", "bir büyük bavul"]]}
+{"id": "A1-18:18", "en": "Can I use a large suitcase?", "p": [["SORU", "Can", "(soru)"], ["S", "I", "ben"], ["V", "use", "kullanabilir miyim"], ["O", "a large suitcase", "bir büyük bavul"]]}
+{"id": "A1-18:19", "en": "We can see a large suitcase.", "p": [["S", "We", "biz"], ["V", "can see", "görebiliriz"], ["O", "a large suitcase", "bir büyük bavul"]]}
+{"id": "A1-18:20", "en": "They buy a large suitcase every year.", "p": [["S", "They", "onlar"], ["V", "buy", "satın alırlar"], ["O", "a large suitcase", "bir büyük bavul"], ["T", "every year", "her yıl"]]}
+{"id": "A1-18:21", "en": "Look, there is a large suitcase.", "p": [["KALIP", "Look", "bak"], ["V", "there is", "burada var"], ["S", "a large suitcase", "bir büyük bavul"]]}
+{"id": "A1-18:22", "en": "Is this a large suitcase?", "p": [["SORU", "Is", "(soru)"], ["S", "this", "bu"], ["V", "a large suitcase", "bir büyük bavul mi"]]}
+{"id": "A1-18:23", "en": "This is not a large suitcase.", "p": [["S", "This", "bu"], ["V", "is not a large suitcase", "bir büyük bavul değil"]]}

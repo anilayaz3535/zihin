@@ -1,0 +1,80 @@
+STACKING SENTENCES (eski adı: Tetris English)
+=============================================
+
+index.html  →  OYUNUN TAMAMI TEK DOSYADA (4 MB)
+   Ad değişti: "Tetris" markası başkasına ait olduğu için oyunun adı artık Stacking Sentences.
+   İçerik: 20 seviye (A1–C2, Sınav Yolu, Hayat İngilizcesi), 9.031 cümle,
+   11.253 kelime, dersler, hata kuralları, Türkçe mantığıyla gör.
+   Müzik dosyanın içinde; başka dosyaya ihtiyaç yok. Erkek spiker sesi kaldırıldı.
+
+   OYNANIŞ (karo tahtası): Türkçe cümle okunur, sonra İngilizce kelime karoları tahtaya yağar.
+   Karoyu tut ve sürükle: bıraktığın yerdeki karoyla yer değiştirir (iki karoya sırayla dokunmak da olur).
+   Cümlenin kelimelerini bir satırda soldan sağa tek tek sırayla diz; dizi tamamlanınca patlar.
+   Kelime paketlerinde kelimenin harflerini aynı şekilde harf harf dizersin.
+   Aynı renkten 3+ karo yan yana / alt alta gelince toplu patlar, üsttekiler düşer, yenileri gelir
+   (ZİNCİRLEME KOMBO, 5'li ya da L/T biçiminde SÜPER PATLAMA). Dizinin sonuna yanlış karo koyarsan
+   karo geri seker, kural açıklaması çıkar, soldaki hata göstergesi dolar; her turun süresi var.
+   Gösterge dolarsa oyun biter. Sol altta CÜMLE BOMBASI, yanında 4 güç kutusu (kazanılan Joker ve
+   Yavaş burada durur, dokununca kullanılır) ve sarı bölüm ilerleme çubuğu. Görünüm: sıcak kafe teması.
+   Kariyer haritasında Cümleler ve Kelimeler için ayrı ayrı seçilir: İngilizce cümleyi / kelimeyi göster
+   (görerek ara; puan ve XP yarı) ya da gizle (tam puan). Seçim sekmelerin altındaki düğmeyle değişir.
+   Patlamalarda altın paralar üstteki puana uçar; puan kasa gibi tıngırdayarak yükselir.
+   Her turun başında yalnız kısa yönerge sesli okunur (ör. "Hatayı bul. Doğru yazılışı yanlışın üstüne kaydır.");
+   Türkçe cümleyi dinlemek için şeride dokunulur. Ayarlar'dan kapatılabilir.
+   Müzik: sakin lo-fi (Rhodes piyano, marimba, plak sıcaklığı, 75 BPM). Efektler yumuşak ve parlak;
+   kombo arttıkça oyun müziği biraz yükselir.
+   Oyun sırasında tahtayı kapatan bilgi kutuları ("Aynı renkten üç karo…" gibi) kaldırıldı.
+   Tahta her turda hedefe göre genişler: en uzun cümle ve en uzun kelime tek satıra sığar.
+
+   İlk açılış: önce yaklaşık yarım dakikalık rehberli bir cümle kurulur (isim sormadan),
+   sonra isim ve günlük hedef sorulur. "Rehberi geç" ile doğrudan profil açılabilir.
+   Açılış: isimle profil açılır (bu telefonda saklanır), sonra ONLINE KAPIŞMA ya da KARİYER.
+   Kariyer haritası: her seviye ünitelere ayrılır; yol üzerinde sıradaki bölüm parlar (BAŞLA),
+   ünitenin başındaki 📖 Ders o ünitenin kuralını gösterir. Ünite bitince kutlama gelir.
+   İngilizce dizilişi (SVOPT): her cümle tamamlanınca oyun durur; parçaların görevi (Özne, Fiil, Nesne,
+   Yer, Zaman) ve altında İngilizce sırayla Türkçesi (I │ am going │ to school → Ben │ gidiyorum │ okula).
+   Kart dokunana kadar kalır. Ayarlar'dan kapatılabilir. Online maçta ve seviye testinde çıkmaz.
+   Bütün cümleleri bir yapay zekâya hazırlatmak için: kaynak/dizilis/PROMPT.md
+   Kariyer'de yarım kalan bölüm "Kaldığın yerden" ile sürer. Profil ekranında "Oyunu kaydet" var.
+   Online kapışma için iki telefon da internete bağlı olmalı; oda koduyla eşleşilir.
+   Günlük hedef ve seri: her cümle, soru ve bölüm XP getirir. Günlük hedefe (Rahat 20 /
+   Normal 50 / Ciddi 100 XP, Ayarlar'dan) ulaştığın her gün 🔥 serin 1 artar. Her 7 günde
+   1 seri dondurma (❄) kazanırsın; kaçırdığın bir günü korur. Oynama hakkı hiç kısıtlanmaz.
+
+   - Bilgisayarda: index.html'e çift tıkla, tarayıcıda açılır.
+   - Telefonda: Chrome (Android) ya da Safari (iPhone) ile aç.
+   - Cloudflare Pages: Workers & Pages → Create → Pages → Upload assets →
+     bu zip'i (ya da sadece index.html'i) yükle → Deploy.
+
+Türkçe sesli okuma:
+   Her cümlenin Türkçesi karolar yağmadan önce okunur; okuma bitince karolar tahtaya yağar.
+   Okuma telefonun kendi metin okuma sesiyle yapılır. Okunmuyorsa:
+   Android: Ayarlar → Erişilebilirlik / Sistem → Metin okuma çıkışı → Google'ın
+   konuşma hizmetlerinde Türkçe ses verisini indir. iPhone: Ayarlar → Erişilebilirlik →
+   Seslendirilen İçerik → Sesler → Türkçe. Oyundaki Ayarlar → "Türkçe sesi dene" ile kontrol et.
+
+YENİ (23 Kasım 2026)
+   GÜNÜN GÖREVİ: açılış ekranındaki mavi düğme. Her gün yeni 5 cümle + 2 hatayı bul, günün ilk
+   tamamlanışında +10 XP bonus, ayrı görev serisi ve son 7 günün noktaları.
+   ROZETLER: 27 başarım (cümle, kelime, kombo, seri, seviye…). Yeni rozet bölüm sonunda kutlanır;
+   açılıştaki 🏅 düğmesinden ya da Profil'den bakılır.
+   TİTREŞİM: doğru / yanlış hamlede telefon hafifçe titrer (Ayarlar'dan kapanır).
+   Yazı tipi artık dosyanın içinde: internet olmadan da aynı görünür. Çentikli telefonlarda skor ve
+   alt panel çentiğin / ana ekran çubuğunun altına girmez.
+
+UYGULAMA MAĞAZALARI (App Store + Google Play)
+   uygulama/   →  iOS ve Android projesi (Capacitor). Telefonun kendi okuma sesi, titreşim, geri tuşu,
+                  günlük hatırlatma bildirimi, ikon ve açılış ekranı hazır.
+   MAGAZA/     →  YAYIN-REHBERI.md (adım adım yayınlama), magaza-metinleri.md (açıklamalar, anahtar
+                  kelimeler), gizlilik.html (gizlilik politikası), ekran görüntüleri, ikonlar.
+   GitHub Actions her güncellemede telefona kurulabilen deneme APK'sı üretir.
+
+kaynak/  →  Düzenlemek isteyenler için parçalı hali
+   kaynak/index.html + icerik.js + siralama.js + hatalar.js + ses/ (muzik.wav)
+   kaynak/parcalar/  oyunun kaynak kodu
+   build.sh       parçalardan kaynak/index.html üretir
+   build-tek.sh   her şeyi tek index.html'e gömer
+   testler/       kalıcı test seti: python3 testler/calistir.py (bkz. GELISTIRME-REHBERI.md)
+
+Arayüz dili: Ayarlar → Arayüz dili → Türkçe / English.
+   Menü ve düğmeler değişir; İngilizce öğretim içeriği ve Türkçe anlamlar aynı kalır.

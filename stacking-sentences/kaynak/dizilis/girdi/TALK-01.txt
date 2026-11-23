@@ -1,0 +1,72 @@
+TALK-1:0 | Nice to meet you, I am Deniz. | Tanıştığımıza memnun oldum, ben Deniz.
+TALK-1:1 | Where are you from originally? | Aslen nerelisin?
+TALK-1:2 | My hometown is a small city near the sea. | Memleketim denize yakın küçük bir şehir.
+TALK-1:3 | What do you do for a living? | Ne iş yapıyorsun?
+TALK-1:4 | How was your weekend? | Hafta sonun nasıl geçti?
+TALK-1:5 | It was great, I went hiking with friends. | Harikaydı, arkadaşlarla doğa yürüyüşüne gittim.
+TALK-1:6 | What do you usually do in your free time? | Boş zamanlarında genelde ne yaparsın?
+TALK-1:7 | My favourite hobby is photography. | En sevdiğim hobi fotoğrafçılık.
+TALK-1:8 | Have you been here before? | Daha önce burada bulundun mu?
+TALK-1:9 | Actually, this is my first time. | Aslında bu ilk gelişim.
+TALK-1:10 | I live in a quiet neighborhood. | Sakin bir mahallede yaşıyorum.
+TALK-1:11 | Have you seen any good movies recently? | Son zamanlarda güzel bir film izledin mi?
+TALK-1:12 | The weather is really nice today. | Bugün hava gerçekten güzel.
+TALK-1:13 | It was nice talking to you. | Seninle konuşmak güzeldi.
+TALK-1:14 | How long have you lived here? | Ne zamandır burada yaşıyorsun?
+TALK-1:15 | I recently started learning the guitar. | Kısa süre önce gitar öğrenmeye başladım.
+TALK-1:16 | Are you free this weekend? | Bu hafta sonu boş musun?
+TALK-1:17 | My neighborhood has a great coffee shop. | Mahallemde harika bir kahveci var.
+TALK-1:18 | Actually, I am more of a morning person. | Aslında ben daha çok sabah insanıyım.
+TALK-1:19 | What kind of music do you like? | Ne tür müzik seversin?
+TALK-1:20 | I grew up in my hometown and moved here for work. | Memleketimde büyüdüm, iş için buraya taşındım.
+TALK-1:21 | That sounds like a lot of fun. | Kulağa çok eğlenceli geliyor.
+TALK-1:22 | We should get coffee sometime. | Bir ara kahve içmeliyiz.
+TALK-1:23 | See you soon, have a good day. | Görüşürüz, iyi günler.
+TALK-2:0 | Do you have any plans for tonight? | Bu akşam için planın var mı?
+TALK-2:1 | Would you like to join us for dinner? | Akşam yemeğinde bize katılmak ister misin?
+TALK-2:2 | I would love to, thank you. | Çok isterim, teşekkürler.
+TALK-2:3 | Sorry, I am busy on Saturday. | Üzgünüm, cumartesi meşgulüm.
+TALK-2:4 | Maybe we can meet next week instead. | Belki onun yerine gelecek hafta buluşabiliriz.
+TALK-2:5 | What time works for you? | Senin için hangi saat uygun?
+TALK-2:6 | We can meet in front of the cinema. | Sinemanın önünde buluşabiliriz.
+TALK-2:7 | I am running a little late. | Biraz gecikiyorum.
+TALK-2:8 | I am sorry, but I have to cancel our plans. | Üzgünüm ama planlarımızı iptal etmem gerekiyor.
+TALK-2:9 | They invited us to their wedding. | Bizi düğünlerine davet ettiler.
+TALK-2:10 | How about going to the beach on Sunday? | Pazar günü sahile gitmeye ne dersin?
+TALK-2:11 | That sounds perfect. | Kulağa mükemmel geliyor.
+TALK-2:12 | Text me when you arrive. | Varınca bana mesaj at.
+TALK-2:13 | I will be there in ten minutes. | On dakikaya oradayım.
+TALK-2:14 | I cannot make it tonight, sorry. | Bu akşam gelemiyorum, kusura bakma.
+TALK-2:15 | Can I bring a friend? | Bir arkadaşımı getirebilir miyim?
+TALK-2:16 | We are planning a trip to the mountains. | Dağlara bir gezi planlıyoruz.
+TALK-2:17 | I am too busy with work this month. | Bu ay işten dolayı çok yoğunum.
+TALK-2:18 | Thanks for inviting me, I had a great time. | Davet ettiğin için teşekkürler, çok iyi vakit geçirdim.
+TALK-2:19 | Maybe another time. | Belki başka zaman.
+TALK-2:20 | Do you want to join our running group? | Koşu grubumuza katılmak ister misin?
+TALK-2:21 | The concert was cancelled because of the rain. | Konser yağmur yüzünden iptal edildi.
+TALK-2:22 | Sorry I am late, the traffic was terrible. | Geç kaldığım için özür dilerim, trafik berbattı.
+TALK-2:23 | Let me know if anything changes. | Bir şey değişirse bana haber ver.
+TALK-3:0 | In my opinion, the first movie was better. | Bence ilk film daha iyiydi.
+TALK-3:1 | I totally agree with you. | Sana tamamen katılıyorum.
+TALK-3:2 | I am not sure that is a good idea. | Bunun iyi bir fikir olduğundan emin değilim.
+TALK-3:3 | Honestly, I did not like the ending. | Açıkçası sonunu beğenmedim.
+TALK-3:4 | I am a bit worried about the exam. | Sınav konusunda biraz endişeliyim.
+TALK-3:5 | I am exhausted after this long week. | Bu uzun haftadan sonra bitkinim.
+TALK-3:6 | I was disappointed with the service. | Hizmetten hayal kırıklığına uğradım.
+TALK-3:7 | You look happy today, what happened? | Bugün mutlu görünüyorsun, ne oldu?
+TALK-3:8 | I am in a good mood this morning. | Bu sabah keyfim yerinde.
+TALK-3:9 | I am really proud of you. | Seninle gerçekten gurur duyuyorum.
+TALK-3:10 | What do you think about the new plan? | Yeni plan hakkında ne düşünüyorsun?
+TALK-3:11 | It depends on the price. | Fiyata bağlı.
+TALK-3:12 | I see what you mean. | Ne demek istediğini anlıyorum.
+TALK-3:13 | Try not to worry, everything will be fine. | Endişelenmemeye çalış, her şey yoluna girecek.
+TALK-3:14 | That is a good point. | Bu iyi bir nokta.
+TALK-3:15 | I do not agree, but I respect your opinion. | Katılmıyorum ama fikrine saygı duyuyorum.
+TALK-3:16 | Honestly, I prefer staying at home on weekends. | Açıkçası hafta sonları evde kalmayı tercih ederim.
+TALK-3:17 | My mother was worried because I did not call. | Aramadığım için annem endişelenmişti.
+TALK-3:18 | I feel much better now, thanks for asking. | Şimdi çok daha iyiyim, sorduğun için teşekkürler.
+TALK-3:19 | Why are you in such a bad mood? | Neden bu kadar keyifsizsin?
+TALK-3:20 | We are so proud of what you did. | Yaptığın şeyle çok gurur duyuyoruz.
+TALK-3:21 | I was so exhausted that I fell asleep on the sofa. | O kadar yorgundum ki koltukta uyuyakaldım.
+TALK-3:22 | It is not a big deal. | Önemli bir şey değil.
+TALK-3:23 | I am really happy for you. | Senin adına çok mutluyum.

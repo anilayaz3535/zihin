@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Stacking Sentences</string>
+    <string name="title_activity_main">Stacking Sentences</string>
+    <string name="package_name">com.stackingsentences.app</string>
+    <string name="custom_url_scheme">com.stackingsentences.app</string>
+</resources>
