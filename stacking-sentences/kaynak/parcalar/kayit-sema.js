@@ -115,6 +115,19 @@ const ALANLAR = {
     return b ? c.bozuk(o) : o;
   },
   strRehber: (x, v, c) => (typeof x === 'boolean' ? x : c.bozuk(v)),
+  envanter: (x, v, c) => {   // güçler: { hamle3, cekic, miknatis } (0–999)
+    if (!nesneMi(x)) return c.bozuk(Object.assign({}, v));
+    let b = false; const o = {};
+    for (const k of ['hamle3', 'cekic', 'miknatis']) { const y = x[k] === undefined ? v[k] : tamSayi(x[k], 0, 999); if (y === null || (x[k] !== undefined && y !== x[k])) b = true; o[k] = y === null ? 0 : y; }
+    return b ? c.bozuk(o) : o;
+  },
+  sandik: (x, v, c) => {     // { slot: [{ tur, t, acilis }] } en çok 4
+    if (!nesneMi(x) || !Array.isArray(x.slot)) return c.bozuk({ slot: [] });
+    let b = false; const slot = [];
+    x.slot.forEach(k => { if (nesneMi(k) && ['tahta', 'gumus', 'altin'].indexOf(k.tur) >= 0 && sayiMi(k.t) && (k.acilis === null || sayiMi(k.acilis)) && slot.length < 4) slot.push({ tur: k.tur, t: k.t, acilis: k.acilis }); else b = true; });
+    return b ? c.bozuk({ slot }) : { slot };
+  },
+  cark: (x, v, c) => (nesneMi(x) && (x.son === null || (typeof x.son === 'string' && GUN_ANAHTAR.test(x.son))) ? { son: x.son } : c.bozuk({ son: null })),
   yol: (x, v, c) => {      // Bölüm Yolu: { acik: açık son bölüm, yildiz: { no: 1..3 }, enIyi: { no: puan } }
     if (!nesneMi(x)) return c.bozuk({ acik: 1, yildiz: {}, enIyi: {} });
     let b = false; const o = { acik: 1, yildiz: {}, enIyi: {} };

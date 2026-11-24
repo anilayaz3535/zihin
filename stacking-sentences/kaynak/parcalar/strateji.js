@@ -322,11 +322,13 @@ function strEkranKur() {
     <div class="st-rakip" id="st-rakip"></div>
     <div class="st-tahta" id="st-tahta"></div>
     <div class="st-kutular" id="st-kutular"></div>
+    <div class="st-araclar" id="st-araclar"></div>
     <div class="st-alt"><button class="st-bomba" id="st-bomba" disabled>💣 ${tt('BOMBA')}</button></div>
     <div class="st-ipucu" id="st-ipucu"></div>
     <div class="st-panel" id="st-panel"></div>`;
   $('#st-x').onclick = strCikSor;
   $('#st-bomba').onclick = () => { sesAc(); strBomba(); };
+  $('#st-araclar').addEventListener('click', e => { const b = e.target.closest('.arac'); if (b) { sesAc(); aracSec(b.dataset.t); } });   // güçler (odul.js)
   $('#st-tr').onclick = () => { const R = STR && STR.R; if (R) { sesAc(); Konus.tr(R.s.tr, { zorla: true }); } };
   const tah = $('#st-tahta');
   tah.addEventListener('pointerdown', strBas);
@@ -425,7 +427,7 @@ function strBas(e) {
   try { strTahtaEl().setPointerCapture(e.pointerId); } catch (x) { }
 }
 function strSurukle(e) {
-  const d = strDok, R = STR && STR.R; if (!d || d.id !== e.pointerId || !R || !R.T.h[d.i]) return;
+  const d = strDok, R = STR && STR.R; if (!d || d.id !== e.pointerId || !R || !R.T.h[d.i] || R.arac) return;
   if (!d.surukle && Math.hypot(e.clientX - d.x0, e.clientY - d.y0) > 9) {
     d.surukle = true; Ses.cal('al', { ses: 0.4 });
     const kaynak = strKaroEl(R.T.h[d.i].id), c = kaynak.offsetWidth;
@@ -448,6 +450,7 @@ function strBirakIptal() {
 function strBirak(e) {
   const d = strDok, R = STR && STR.R; if (!d || d.id !== e.pointerId) return;
   strBirakIptal(); if (!R || R.bitti) return;
+  if (R.arac) { aracDokun(d.i); return; }   // güç seçili: çekiç / mıknatıs (odul.js)
   if (d.surukle) {
     const kb = strKutuNokta(e.clientX, e.clientY);
     if (kb !== -1) { strSec(d.i, kb >= 0 ? kb : null); return; }

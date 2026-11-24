@@ -964,6 +964,46 @@
   .st-k.kilit em{display:block!important;background:#5b3a24;color:#fff;font-size:12px}
   .st-k.kilit em::before{content:'🔒'}
   .st-k.kilit::before{outline:3px solid #5b3a24;outline-offset:-5px}
+
+  /* ---------- ödüller: güçler, sandıklar, çark (odul.js) ---------- */
+  .odul-satir{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  .odul-btn{display:flex;align-items:center;gap:8px;padding:9px 10px;border-radius:16px;border:2px solid #fff;background:linear-gradient(#fff7ea,#f0d9ba);color:#5b3a24;
+    font-family:Fredoka,Poppins,sans-serif;text-align:left;box-shadow:0 4px 0 #b38a62;cursor:pointer;min-width:0}
+  .odul-btn i{font-style:normal;font-size:28px}.odul-btn span{min-width:0}.odul-btn b{display:block;font-size:15px;white-space:nowrap}.odul-btn small{display:block;font-size:12px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .odul-btn.hazir{border-color:#ffd451;box-shadow:0 4px 0 #b38a62,0 0 0 3px #ffd451,0 0 18px rgba(255,212,81,.8);animation:rhNabiz 1.2s ease-in-out infinite}
+  .odul-btn.hazir i{animation:bombaSall 1.6s ease-in-out infinite}
+  .sandiklar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 8px}
+  .sandik{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:78px;border-radius:14px;border:2px solid rgba(255,255,255,.7);
+    background:linear-gradient(rgba(255,255,255,.18),rgba(0,0,0,.15));color:#fff;font-family:Fredoka,sans-serif;cursor:pointer;padding:2px}
+  .sandik i{font-style:normal;font-size:30px;line-height:1}.sandik small{font-size:11px;white-space:nowrap}
+  .sandik.bos{border-style:dashed;opacity:.5;cursor:default}.sandik.bos i{font-size:20px}
+  .sandik.tahta{background:linear-gradient(#b07a4a,#7a4f2a)}.sandik.gumus{background:linear-gradient(#cfd8e3,#8a99ad)}.sandik.altin{background:linear-gradient(#ffd451,#d18a10)}
+  .sandik.aciliyor small{font-weight:700}
+  .sandik.hazir{box-shadow:0 0 0 3px #fff,0 0 20px rgba(255,230,120,.95);animation:sandikSalla 1s ease-in-out infinite}
+  .sandik.hazir small{font-weight:700;font-size:13px}
+  @keyframes sandikSalla{0%,100%{transform:rotate(0)}20%{transform:rotate(-6deg) scale(1.05)}40%{transform:rotate(6deg) scale(1.05)}60%{transform:rotate(0)}}
+  .canta{display:flex;justify-content:center;gap:10px;margin:4px 0 8px}
+  .canta span{display:flex;align-items:center;gap:4px;padding:4px 10px;border-radius:14px;background:rgba(0,0,0,.25);font-size:18px}.canta b{font-size:15px;color:#ffd451}
+  .sandik-kazan{display:flex;flex-direction:column;align-items:center;margin:8px 0;padding:8px;border-radius:14px;background:linear-gradient(#fff3c8,#ffd77a);color:#5b3a24;border:2px solid #fff;animation:rozetGel .7s cubic-bezier(.2,1.6,.4,1) .6s both}
+  .sandik-kazan i{font-style:normal;font-size:40px;line-height:1.1}.sandik-kazan b{font-size:16px}.sandik-kazan small{font-size:12px}
+  .odul-pen{position:fixed;inset:0;z-index:45;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(20,8,16,.75)}
+  .odul-kart{width:100%;max-width:360px;padding:20px;border-radius:22px;text-align:center;background:linear-gradient(#fff7ea,#f0d9ba);color:#5b3a24;border:3px solid #fff;box-shadow:0 0 40px rgba(255,212,81,.7);animation:rozetGel .5s cubic-bezier(.2,1.6,.4,1)}
+  .odul-ikon{font-size:72px;line-height:1;animation:odulZipla 1s ease-out}
+  @keyframes odulZipla{0%{transform:scale(.3) rotate(-20deg)}50%{transform:scale(1.3) rotate(10deg)}100%{transform:none}}
+  .odul-kart h3{margin:6px 0 10px;font-size:22px}
+  .odul-liste{display:flex;flex-direction:column;gap:6px;margin-bottom:14px}
+  .odul-liste span{font-size:20px;font-weight:700;padding:6px;border-radius:12px;background:rgba(255,255,255,.7);animation:rozetGel .45s cubic-bezier(.2,1.6,.4,1) both}
+  .cark-kutu{position:relative;width:min(78vw,300px);aspect-ratio:1;margin:14px auto 10px}
+  .cark{position:absolute;inset:0;border-radius:50%;border:6px solid #fff;box-shadow:0 8px 24px rgba(0,0,0,.45),inset 0 0 0 4px rgba(0,0,0,.08)}
+  .cark span{position:absolute;left:50%;top:0;height:50%;transform-origin:50% 100%;display:flex;justify-content:center;padding-top:14px;margin-left:-30px;width:60px}
+  .cark span b{font-size:16px;font-weight:700;color:#3a1f2e;white-space:nowrap;text-shadow:0 1px 0 rgba(255,255,255,.6)}
+  .cark-ok{position:absolute;left:50%;top:-18px;transform:translateX(-50%);z-index:2;font-size:30px;color:#ffd451;text-shadow:0 3px 0 #5b2a3a}
+  .cark-orta{position:absolute;left:50%;top:50%;width:54px;height:54px;transform:translate(-50%,-50%);border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 3px 8px rgba(0,0,0,.35)}
+  .st-araclar{display:flex;justify-content:center;gap:8px;min-height:0}
+  .st-araclar:empty{display:none}
+  .arac{display:flex;align-items:center;gap:3px;padding:4px 10px;border-radius:14px;border:2px solid #fff;background:linear-gradient(#fff7ea,#f0d9ba);color:#5b3a24;font:700 14px Fredoka,sans-serif;box-shadow:0 3px 0 #b38a62;cursor:pointer}
+  .arac i{font-style:normal;font-size:20px}.arac.yok{opacity:.45;filter:grayscale(.7)}
+  .arac.secili{background:linear-gradient(#ffe27a,#ffb41f);box-shadow:0 3px 0 #a4600a,0 0 14px rgba(255,200,61,.9)}
 </style>
 </head>
 <body class="port">
@@ -1995,7 +2035,48 @@ DIL_SOZLUK.en = {
 "sarı": "yellow",
 "yeşil": "green",
 "mavi": "blue",
-"Hedef": "Goal"
+"Hedef": "Goal",
+// ödüller (odul.js)
+"sa": "h",
+"dk": "m",
+"sn": "s",
+"{s} sonra açılır.": "Opens in {s}.",
+"Aynı anda bir sandık açılır. Önce açılan sandığı bekle.": "Only one chest opens at a time. Wait for the one that is opening.",
+"{s} sonra açılacak.": "Will open in {s}.",
+"Bölüm kazan": "Win a level",
+"AÇ!": "OPEN!",
+"Aç: {s}": "Open: {s}",
+"{s} kazandın!": "You won a {s}!",
+"Bölüm Yolu haritasında aç": "Open it on the Level Path map",
+"GÜNLÜK ÇARK": "DAILY WHEEL",
+"Her gün bir bedava çevirme hakkın var!": "You get one free spin every day!",
+"Bugünkü çevirmeni yaptın. Yarın yeniden gel!": "You have spun today. Come back tomorrow!",
+"Güçlerin": "Your boosters",
+"Çark": "Wheel",
+"Sandıklar": "Chests",
+"Açmaya hazır!": "Ready to open!",
+"Açmayı başlat": "Start opening",
+"Bu güç sende yok. Günlük çarktan ve sandıklardan kazanırsın.": "You don't have this booster. Win it from the daily wheel and chests.",
+"+3 hamle!": "+3 moves!",
+"Cümlenin kelimelerine çekiç vurulmaz.": "You can't use the hammer on the sentence's words.",
+"BÜYÜK ÖDÜL!": "JACKPOT!",
+"Çarktan çıktı:": "The wheel gave you:",
+"Bedava çevir!": "Free spin!",
+"Yarın yeni": "New one tomorrow",
+"🔨 Yok etmek istediğin karoya dokun.": "🔨 Tap the tile you want to destroy.",
+"🧲 Yerini değiştirmek istediğin iki karoya sırayla dokun.": "🧲 Tap the two tiles you want to swap.",
+"✋ +3 HAMLE KULLAN": "✋ USE +3 MOVES",
+"Çantanda {n} tane var": "You have {n} in your bag",
+"🎁 Sandığın açıldı!": "🎁 Your chest is open!",
+"İçinde ne var? Gel ve aç.": "What's inside? Come and open it.",
+"+3 Hamle": "+3 Moves",
+"Çekiç": "Hammer",
+"Mıknatıs": "Magnet",
+"Tahta sandık": "Wooden chest",
+"Gümüş sandık": "Silver chest",
+"Altın sandık": "Gold chest",
+"ÇEVİR!": "SPIN!",
+"YARIN": "TOMORROW"
 };
 
 /* =====================================================================
@@ -2155,6 +2236,19 @@ const ALANLAR = {
     return b ? c.bozuk(o) : o;
   },
   strRehber: (x, v, c) => (typeof x === 'boolean' ? x : c.bozuk(v)),
+  envanter: (x, v, c) => {   // güçler: { hamle3, cekic, miknatis } (0–999)
+    if (!nesneMi(x)) return c.bozuk(Object.assign({}, v));
+    let b = false; const o = {};
+    for (const k of ['hamle3', 'cekic', 'miknatis']) { const y = x[k] === undefined ? v[k] : tamSayi(x[k], 0, 999); if (y === null || (x[k] !== undefined && y !== x[k])) b = true; o[k] = y === null ? 0 : y; }
+    return b ? c.bozuk(o) : o;
+  },
+  sandik: (x, v, c) => {     // { slot: [{ tur, t, acilis }] } en çok 4
+    if (!nesneMi(x) || !Array.isArray(x.slot)) return c.bozuk({ slot: [] });
+    let b = false; const slot = [];
+    x.slot.forEach(k => { if (nesneMi(k) && ['tahta', 'gumus', 'altin'].indexOf(k.tur) >= 0 && sayiMi(k.t) && (k.acilis === null || sayiMi(k.acilis)) && slot.length < 4) slot.push({ tur: k.tur, t: k.t, acilis: k.acilis }); else b = true; });
+    return b ? c.bozuk({ slot }) : { slot };
+  },
+  cark: (x, v, c) => (nesneMi(x) && (x.son === null || (typeof x.son === 'string' && GUN_ANAHTAR.test(x.son))) ? { son: x.son } : c.bozuk({ son: null })),
   yol: (x, v, c) => {      // Bölüm Yolu: { acik: açık son bölüm, yildiz: { no: 1..3 }, enIyi: { no: puan } }
     if (!nesneMi(x)) return c.bozuk({ acik: 1, yildiz: {}, enIyi: {} });
     let b = false; const o = { acik: 1, yildiz: {}, enIyi: {} };
@@ -3092,7 +3186,8 @@ function bosKayit() {
     istat: { dojo: 0, zafer: 0, online: 0, onlineGalibiyet: 0 }, sonKayit: 0,
     xp: 0, gunluk: { hedef: 50, gunler: {} }, seri: { gun: 0, enUzun: 0, sonGun: null, dondurma: 0, donan: [] },   // ilerleme.js
     gorev: { son: null, seri: 0, enUzun: 0, toplam: 0, gunler: {} },   // Günün Görevi (gorev.js)
-    rozet: {}, strRehber: false, yol: { acik: 1, yildiz: {}, enIyi: {} } };                                     // rozet.js · strRehber: strateji alıştırması görüldü (strateji.js)
+    rozet: {}, strRehber: false, yol: { acik: 1, yildiz: {}, enIyi: {} },
+    envanter: { hamle3: 1, cekic: 1, miknatis: 1 }, sandik: { slot: [] }, cark: { son: null } };   // odul.js (başlangıçta birer güç hediye)                                     // rozet.js · strRehber: strateji alıştırması görüldü (strateji.js)
 }
 /* ---------------- kayıt okuma: doğrula (kayit-sema.js), bozuksa yedekle, oyuncuya bir kez söyle ---------------- */
 const YEDEK_ON = 'te_yedek:';                     // te_yedek:<anahtar>:<zaman> → bozuk bulunan ham kayıt
@@ -7679,11 +7774,13 @@ function strEkranKur() {
     <div class="st-rakip" id="st-rakip"></div>
     <div class="st-tahta" id="st-tahta"></div>
     <div class="st-kutular" id="st-kutular"></div>
+    <div class="st-araclar" id="st-araclar"></div>
     <div class="st-alt"><button class="st-bomba" id="st-bomba" disabled>💣 ${tt('BOMBA')}</button></div>
     <div class="st-ipucu" id="st-ipucu"></div>
     <div class="st-panel" id="st-panel"></div>`;
   $('#st-x').onclick = strCikSor;
   $('#st-bomba').onclick = () => { sesAc(); strBomba(); };
+  $('#st-araclar').addEventListener('click', e => { const b = e.target.closest('.arac'); if (b) { sesAc(); aracSec(b.dataset.t); } });   // güçler (odul.js)
   $('#st-tr').onclick = () => { const R = STR && STR.R; if (R) { sesAc(); Konus.tr(R.s.tr, { zorla: true }); } };
   const tah = $('#st-tahta');
   tah.addEventListener('pointerdown', strBas);
@@ -7782,7 +7879,7 @@ function strBas(e) {
   try { strTahtaEl().setPointerCapture(e.pointerId); } catch (x) { }
 }
 function strSurukle(e) {
-  const d = strDok, R = STR && STR.R; if (!d || d.id !== e.pointerId || !R || !R.T.h[d.i]) return;
+  const d = strDok, R = STR && STR.R; if (!d || d.id !== e.pointerId || !R || !R.T.h[d.i] || R.arac) return;
   if (!d.surukle && Math.hypot(e.clientX - d.x0, e.clientY - d.y0) > 9) {
     d.surukle = true; Ses.cal('al', { ses: 0.4 });
     const kaynak = strKaroEl(R.T.h[d.i].id), c = kaynak.offsetWidth;
@@ -7805,6 +7902,7 @@ function strBirakIptal() {
 function strBirak(e) {
   const d = strDok, R = STR && STR.R; if (!d || d.id !== e.pointerId) return;
   strBirakIptal(); if (!R || R.bitti) return;
+  if (R.arac) { aracDokun(d.i); return; }   // güç seçili: çekiç / mıknatıs (odul.js)
   if (d.surukle) {
     const kb = strKutuNokta(e.clientX, e.clientY);
     if (kb !== -1) { strSec(d.i, kb >= 0 ? kb : null); return; }
@@ -8054,6 +8152,8 @@ function yolIstat(plan) {
   plan.adimlar.forEach(a => { a.karolar.forEach(k => { o.renk[k.ci]++; o.karo++; if (k.kilit) o.kilit++; }); o.buz += a.buz.length; });
   return o;
 }
+// çekiçle kırılan buz / açılan kilit de hedefe sayılır (odul.js: R.ekstra)
+function yolV(b, ist, R) { const e = (R && R.ekstra) || {}; return yolHedefSayi(b.hedef, ist) + (b.hedef.tur === 'buz' ? e.buz || 0 : b.hedef.tur === 'kilit' ? e.kilit || 0 : 0); }
 function yolHedefSayi(h, ist) { return h.tur === 'puan' ? ist.puan : h.tur === 'renk' ? ist.renk[h.renk] : ist[h.tur]; }
 // hamleler: verilirse uzmanın yaptığı taşımalar [a, b] eklenir (test ve ipucu için)
 function yolUzman(T0, hamle, tur, renk, hamleler) {
@@ -8094,7 +8194,7 @@ function yolHaritaAc() {
   D = null; Ses.muzik('menu'); Konus.sus();
   const Y = yolKayit(), acik = Math.min(YOL_TOPLAM, Y.acik);
   let ic = `<div class="ust-satir"><button class="geri" id="y-geri">${tt('← Geri')}</button><span class="y-toplam">⭐ ${yolYildizToplam()} / ${YOL_TOPLAM * 3}</span></div>
-    <div class="ana-baslik">🗺 ${tt('BÖLÜM YOLU')}</div><div class="y-yol">`;
+    <div class="ana-baslik">🗺 ${tt('BÖLÜM YOLU')}</div>${sandikHtml()}${aracHtml()}<div class="y-yol">`;
   YOL_BOLGE.forEach((B, bi) => {
     const ilk = bi * YOL_BOLUM_BOLGE + 1, kilitli = ilk > acik;
     ic += `<div class="y-bolge ${kilitli ? 'kilit' : ''}" style="--b:${B.renk}"><i>${B.i}</i><div><b>${tt(B.ad)}</b><small>${B.lvl} · ${tt('Bölüm {a}–{b}', { a: ilk, b: ilk + YOL_BOLUM_BOLGE - 1 })}${B.yeni ? ' · ' + tt('Yeni: ') + yolMekanikAd(B.yeni) : ''}</small></div></div>`;
@@ -8107,6 +8207,7 @@ function yolHaritaAc() {
   ic += '</div>';
   goster(ic, 'genis y-kart', 'yol');
   $('#y-geri').onclick = () => acilisAc();
+  sandikBagla();
   card.querySelectorAll('.y-durak').forEach(b => b.onclick = () => {
     const n = +b.dataset.n;
     if (n > acik) { Ses.cal('geri', { ses: 0.4 }); not(tt('Önce {n}. bölümü geç.', { n: acik })); return; }
@@ -8161,32 +8262,35 @@ function yolCiz() {
   const sec = R.secim.filter(Boolean);
   let on = '';
   if (sec.length && !R.bitti) {
-    const ist = yolIstat(strPatlamaPlani(R.T, sec.map(k => k.id))), v = yolHedefSayi(b.hedef, ist), tamam = v >= b.hedef.sayi;
+    const ist = yolIstat(strPatlamaPlani(R.T, sec.map(k => k.id))), v = yolV(b, ist, R), tamam = v >= b.hedef.sayi;
     on = `💣 ${tt('Önizleme')}: <b>${ist.karo}</b> ${tt('karo')} · <span class="${tamam ? 'ok' : ''}">${yolHedefYazi(b.hedef, true).split(' ')[0]} ${Math.min(v, 99999)}/${b.hedef.sayi}${tamam ? ' ✓' : ''}</span>`;
   }
   $('#st-rakip').innerHTML = on || `${tt('Hedef')}: ${yolHedefYazi(b.hedef)}`;
+  const ar = $('#st-araclar'); if (ar) ar.innerHTML = R.bitti ? '' : aracCubukHtml();   // güçler (odul.js)
+  if (R.arac) $('#st-ipucu').textContent = tt(R.arac === 'cekic' ? '🔨 Yok etmek istediğin karoya dokun.' : '🧲 Yerini değiştirmek istediğin iki karoya sırayla dokun.');
   if (!R.bitti && R.secili < 0 && !sec.length) $('#st-ipucu').textContent = tt('Aynı renkleri kelimelerin yanına topla, sonra kelimeleri sırayla kutulara çek.');
 }
 // hamle bitti: hedefe yetmiyorsa NEREDEYSE (+3 hamle, bir kez bedava)
 function yolHamleBitti() {
-  const M = STR, R = M && M.R; if (!M || !M.yol || !R || R.bitti || M.yol.devam) return;
+  const M = STR, R = M && M.R; if (!M || !M.yol || !R || R.bitti || M.yol.sorma || (M.yol.devam && !(kayit.envanter.hamle3 > 0))) return;
   const b = M.yol.b, ids = R.T.hedef.map((t, k) => R.T.h.find(x => x && x.k === k).id);
-  const v = yolHedefSayi(b.hedef, yolIstat(strPatlamaPlani(R.T, ids)));
+  const v = yolV(b, yolIstat(strPatlamaPlani(R.T, ids)), R);
   if (v >= b.hedef.sayi) return;
   const p = $('#st-panel');
   p.innerHTML = `<div class="st-kart y-neredeyse"><h3>😩 ${tt('NEREDEYSE!')}</h3>
     <p>${tt('Hamlen bitti ama hedefe biraz kaldı:')}</p><div class="y-hedef buyuk">${yolHedefYazi(b.hedef, true).split(' ')[0]} ${v} / ${b.hedef.sayi}</div>
-    <button class="big" id="y-ek">${tt('+3 HAMLE 🎁')}</button><small class="y-bedava">${tt('Bu bölümde 1 kez bedava')}</small>
+    ${M.yol.devam ? `<button class="big" id="y-ek">${tt('✋ +3 HAMLE KULLAN')}</button><small class="y-bedava">${tt('Çantanda {n} tane var', { n: kayit.envanter.hamle3 })}</small>`
+      : `<button class="big" id="y-ek">${tt('+3 HAMLE 🎁')}</button><small class="y-bedava">${tt('Bu bölümde 1 kez bedava')}</small>`}
     <div class="row"><button class="sec" id="y-boyle">${tt('Böyle devam et')}</button></div></div>`;
   p.classList.add('acik'); Ses.cal('yukselis', { ses: 0.4 });
-  $('#y-ek').onclick = () => { M.yol.devam = true; R.hamle += 3; p.classList.remove('acik'); Ses.cal('yukselis', { ses: 0.6 }); strCiz(); };
-  $('#y-boyle').onclick = () => { M.yol.devam = true; p.classList.remove('acik'); };
+  $('#y-ek').onclick = () => { if (M.yol.devam) { kayit.envanter.hamle3--; kaydet(); } M.yol.devam = true; R.hamle += 3; p.classList.remove('acik'); Ses.cal('yukselis', { ses: 0.6 }); strCiz(); };
+  $('#y-boyle').onclick = () => { M.yol.devam = true; M.yol.sorma = true; p.classList.remove('acik'); };
 }
 // bomba sonrası (strTurBitir çağırır)
 function yolBitti(dogru) {
   const M = STR, R = M.R, b = M.yol.b;
   if (!dogru) { yolSonuc({ kazandi: false, yanlis: true, puan: 0, v: 0 }); return; }
-  const ist = yolIstat(R.plan), v = yolHedefSayi(b.hedef, ist), kazandi = v >= b.hedef.sayi;
+  const ist = yolIstat(R.plan), v = yolV(b, ist, R), kazandi = v >= b.hedef.sayi;
   if (!kazandi) { yolSonuc({ kazandi, puan: ist.puan, v }); return; }
   // CÜMLE CRUSH: kalan her hamle rastgele bir karoyu patlatır
   const kalan = Math.min(10, R.hamle), karolar = R.T.h.map((k, i) => k ? i : -1).filter(i => i >= 0).sort(() => Math.random() - 0.5).slice(0, kalan);
@@ -8208,6 +8312,7 @@ function yolSonuc(o) {
     if (o.puan > (Y.enIyi[no] || 0)) { Y.enIyi[no] = o.puan; yeniEn = true; }
     Y.acik = Math.max(Y.acik, Math.min(YOL_TOPLAM, no + 1));
   }
+  const sandik = o.kazandi ? sandikKazan(yildiz === 3 || b.zor === 'boss' ? 'altin' : b.zor === 'zor' ? 'gumus' : 'tahta') : null;   // odul.js
   kaydet();
   Olay.yay('bolumBitti', { mod: 'yol', r: 'yol' + no, lvl: b.B.lvl, kazandi: o.kazandi, yildiz, skor: o.puan, istat: {}, enKombo: 0, rekor: yeniEn });
   const xp = kayit.xp - M.xp0, oran = Math.min(1, o.v / b.hedef.sayi), p = $('#st-panel');
@@ -8220,6 +8325,7 @@ function yolSonuc(o) {
     ${!o.kazandi && !o.yanlis ? `<div class="y-ilerle"><span>${yolHedefYazi(b.hedef, true).split(' ')[0]} ${o.v} / ${b.hedef.sayi}</span><u style="width:${Math.round(oran * 100)}%"></u></div><p>${tt(oran >= 0.6 ? 'Çok az kaldı! Renkleri kelimelerin yanına biraz daha topla.' : 'Kelimelerin yanına daha çok aynı renk getir.')}</p>` : ''}
     ${o.yanlis ? `<div class="st-dogru"><small>${tt('Doğru cümle')}</small>${dinleBtn(b.s.en)} <b>${esc(b.s.en)}</b><small>${esc(b.s.tr)}</small></div>` : ''}
     ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
+    ${sandik ? sandikKazanHtml(sandik) : ''}
     ${bolgeBitti ? `<div class="y-yeni"><b>${tt('YENİ BÖLGE AÇILDI!')}</b> ${YOL_BOLGE[b.bi + 1].i} ${tt(YOL_BOLGE[b.bi + 1].ad)}</div>` : ''}
     ${sonraki ? `<button class="big" id="y-sonraki">${tt('SONRAKİ BÖLÜM ▶')}</button>` : `<button class="big" id="y-tekrar">${tt('TEKRAR DENE')}</button>`}
     <div class="row">${sonraki ? `<button class="sec" id="y-tekrar">${tt('TEKRAR OYNA')}</button>` : ''}<button class="sec" id="y-harita">${tt('HARİTA')}</button></div></div>`;
@@ -8230,6 +8336,177 @@ function yolSonuc(o) {
   const s = $('#y-sonraki'); if (s) s.onclick = () => yolBaslangic(no + 1);
   $('#y-tekrar').onclick = () => yolOyna(no);
   $('#y-harita').onclick = yolHaritaAc;
+}
+
+/* =====================================================================
+   ÖDÜLLER: GÜÇLER, SANDIKLAR, GÜNLÜK ÇARK
+   · Güçler (Bölüm Yolu'nda kullanılır; kayit.envanter):
+       ✋ hamle3: anında +3 hamle · 🔨 cekic: bir karoyu yok eder (buzu kırar, kilitli karoyu patlatır; hedefe sayılır;
+       cümlenin kelimelerine dokunmaz) · 🧲 miknatis: iki karonun yerini kaydırmadan, hamle harcamadan değiştirir.
+   · Sandıklar (kayit.sandik.slot, 4 yuva): Bölüm Yolu'nda kazanılan her bölüm bir sandık verir (yer varsa).
+       🟫 tahta 15 dk · ⬜ gümüş 1 sa (zor bölüm) · 🟨 altın 3 sa (★★★ ya da 💀 bölüm). Aynı anda tek sandık açılır:
+       sandığa dokun → açılmaya başlar; süre dolunca dokun → içindekiler. Uygulamada süre dolunca bildirim gelir.
+   · Günlük çark (kayit.cark.son): her gün bir bedava çevirme; 8 dilim, ağırlıklı (CARK).
+   ===================================================================== */
+const ARAC = { hamle3: { i: '✋', ad: '+3 Hamle' }, cekic: { i: '🔨', ad: 'Çekiç' }, miknatis: { i: '🧲', ad: 'Mıknatıs' } };
+const SANDIK = {
+  tahta: { i: '🟫', ad: 'Tahta sandık', sure: 15 * 60e3, arac: 1, xp: [10, 20], don: 0 },
+  gumus: { i: '⬜', ad: 'Gümüş sandık', sure: 60 * 60e3, arac: 2, xp: [25, 40], don: 0.08 },
+  altin: { i: '🟨', ad: 'Altın sandık', sure: 3 * 60 * 60e3, arac: 3, xp: [50, 80], don: 0.25 },
+};
+const SANDIK_YUVA = 4;
+const CARK = [
+  { t: 'hamle3', n: 1, y: '✋ +3', a: 20, r: '#ff8aa3' }, { t: 'cekic', n: 1, y: '🔨', a: 18, r: '#ffd451' },
+  { t: 'miknatis', n: 1, y: '🧲', a: 18, r: '#7fd0ff' }, { t: 'xp', n: 20, y: '⭐ 20', a: 18, r: '#7be38a' },
+  { t: 'xp', n: 50, y: '⭐ 50', a: 10, r: '#b49bff' }, { t: 'sandik', n: 'gumus', y: '🎁', a: 8, r: '#ffb15c' },
+  { t: 'don', n: 1, y: '❄', a: 4, r: '#c9f0ff' }, { t: 'cekic', n: 3, y: '🔨×3', a: 4, r: '#ff6b6b', buyuk: true },
+];
+
+/* ---------------- envanter ---------------- */
+function aracEkle(t, n) { kayit.envanter[t] = (kayit.envanter[t] || 0) + n; }
+function odulVer(o) {   // { t, n } → açıklama
+  if (ARAC[o.t]) { aracEkle(o.t, o.n); return ARAC[o.t].i + ' ' + tt(ARAC[o.t].ad) + (o.n > 1 ? ' ×' + o.n : ''); }
+  if (o.t === 'xp') { xpEkle(o.n); return '⭐ ' + o.n + ' XP'; }
+  if (o.t === 'don') { if (kayit.seri.dondurma < SERI_DONDURMA_EN) { kayit.seri.dondurma++; return '❄ ' + tt('Seri dondurma'); } xpEkle(30); return '⭐ 30 XP'; }
+  if (o.t === 'sandik') { const s = sandikKazan(o.n); return s ? SANDIK[o.n].i + ' ' + tt(SANDIK[o.n].ad) : '⭐ 40 XP' + (xpEkle(40) || ''); }
+  return '';
+}
+
+/* ---------------- sandıklar ---------------- */
+// kazanılan sandık yuvaya girer; yer yoksa null
+function sandikKazan(tur) {
+  const s = kayit.sandik.slot; if (s.length >= SANDIK_YUVA) return null;
+  const k = { tur, t: Date.now(), acilis: null }; s.push(k); kaydet(); return k;
+}
+function sandikDurum(k) {
+  if (!k.acilis) return 'kapali';
+  return Date.now() >= k.acilis + SANDIK[k.tur].sure ? 'hazir' : 'aciliyor';
+}
+function sandikKalan(k) { return Math.max(0, k.acilis + SANDIK[k.tur].sure - Date.now()); }
+const sandikSure = ms => { const s = Math.ceil(ms / 1000), h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), sn = s % 60; return h ? h + tt('sa') + ' ' + m + tt('dk') : m ? m + ':' + String(sn).padStart(2, '0') : sn + tt('sn'); };
+function sandikAciliyor() { return kayit.sandik.slot.find(k => sandikDurum(k) === 'aciliyor') || null; }
+function sandikDokun(i) {
+  const k = kayit.sandik.slot[i]; if (!k) return;
+  const d = sandikDurum(k);
+  if (d === 'hazir') { sandikAc(i); return; }
+  if (d === 'aciliyor') { not(tt('{s} sonra açılır.', { s: sandikSure(sandikKalan(k)) })); return; }
+  if (sandikAciliyor()) { not(tt('Aynı anda bir sandık açılır. Önce açılan sandığı bekle.')); Ses.cal('geri', { ses: 0.4 }); return; }
+  k.acilis = Date.now(); kaydet(); Ses.cal('yukle', { ses: 0.6 });
+  if (Yerel.sandikHatirlat) Yerel.sandikHatirlat(k.acilis + SANDIK[k.tur].sure);
+  not(tt('{s} sonra açılacak.', { s: sandikSure(SANDIK[k.tur].sure) }));
+  sandikYenile();
+}
+function sandikIcerik(tur) {
+  const S = SANDIK[tur], o = [], turler = Object.keys(ARAC);
+  for (let i = 0; i < S.arac; i++) o.push({ t: turler[Math.floor(Math.random() * turler.length)], n: 1 });
+  o.push({ t: 'xp', n: S.xp[0] + Math.floor(Math.random() * (S.xp[1] - S.xp[0] + 1)) });
+  if (Math.random() < S.don) o.push({ t: 'don', n: 1 });
+  return o;
+}
+function sandikAc(i) {
+  const k = kayit.sandik.slot[i]; if (!k || sandikDurum(k) !== 'hazir') return;
+  kayit.sandik.slot.splice(i, 1);
+  const yazi = sandikIcerik(k.tur).map(odulVer); kaydet();
+  Ses.cal('patlama', { ses: 0.5 }); Ses.cal('zafer', { ses: 0.8 }); Yerel.titret('basari');
+  odulPenceresi(SANDIK[k.tur].i, tt(SANDIK[k.tur].ad), yazi, sandikYenile);
+}
+// sandık yuvaları (Bölüm Yolu haritasının üstü ve ödül ekranı)
+function sandikHtml() {
+  const s = kayit.sandik.slot; let o = '<div class="sandiklar" id="sandiklar">';
+  for (let i = 0; i < SANDIK_YUVA; i++) {
+    const k = s[i];
+    if (!k) { o += `<div class="sandik bos"><i>＋</i><small>${tt('Bölüm kazan')}</small></div>`; continue; }
+    const d = sandikDurum(k), S = SANDIK[k.tur];
+    o += `<button class="sandik ${k.tur} ${d}" data-i="${i}"><i>${S.i}</i><small>${d === 'hazir' ? tt('AÇ!') : d === 'aciliyor' ? '⏱ ' + sandikSure(sandikKalan(k)) : tt('Aç: {s}', { s: sandikSure(S.sure) })}</small></button>`;
+  }
+  return o + '</div>';
+}
+function sandikBagla(kok) { (kok || card).querySelectorAll('.sandik[data-i]').forEach(b => b.onclick = () => { sesAc(); sandikDokun(+b.dataset.i); }); }
+function sandikYenile() { const el = document.getElementById('sandiklar'); if (!el) return; el.outerHTML = sandikHtml(); sandikBagla(); }
+setInterval(() => { if (document.getElementById('sandiklar') && kayit.sandik.slot.some(k => k.acilis)) sandikYenile(); }, 1000);
+function sandikKazanHtml(k) { return `<div class="sandik-kazan"><i>${SANDIK[k.tur].i}</i><b>${tt('{s} kazandın!', { s: tt(SANDIK[k.tur].ad) })}</b><small>${tt('Bölüm Yolu haritasında aç')}</small></div>`; }
+function aracHtml() { return `<div class="canta">${Object.keys(ARAC).map(t => `<span title="${tt(ARAC[t].ad)}">${ARAC[t].i}<b>${kayit.envanter[t] || 0}</b></span>`).join('')}</div>`; }
+// ödül penceresi (sandık / çark): ödüller sırayla uçarak gelir
+function odulPenceresi(ikon, bas, yazilar, sonra) {
+  const p = document.createElement('div'); p.className = 'odul-pen';
+  p.innerHTML = `<div class="odul-kart"><div class="odul-ikon">${ikon}</div><h3>${esc(bas)}</h3><div class="odul-liste">${yazilar.map((y, i) => `<span style="animation-delay:${0.35 + i * 0.25}s">${esc(y)}</span>`).join('')}</div><button class="big" id="odul-tamam">${tt('HARİKA!')}</button></div>`;
+  document.body.appendChild(p);
+  p.querySelector('#odul-tamam').onclick = () => { p.remove(); if (sonra) sonra(); };
+}
+
+/* ---------------- günlük çark ---------------- */
+function carkHazir() { return kayit.cark.son !== bugunAnahtar(); }
+function carkAc() {
+  const n = CARK.length, dilim = 360 / n;
+  const grad = CARK.map((c, i) => `${c.r} ${i * dilim}deg ${(i + 1) * dilim}deg`).join(',');
+  goster(`<div class="ust-satir"><button class="geri" id="c-geri">${tt('← Geri')}</button></div>
+    <div class="ana-baslik">🎡 ${tt('GÜNLÜK ÇARK')}</div>
+    <div class="cark-kutu"><div class="cark-ok">▼</div><div class="cark" id="cark" style="background:conic-gradient(${grad})">
+      ${CARK.map((c, i) => `<span style="transform:rotate(${i * dilim + dilim / 2}deg)"><b>${c.y}</b></span>`).join('')}</div><div class="cark-orta">⭐</div></div>
+    <p class="aciklama" style="text-align:center">${carkHazir() ? tt('Her gün bir bedava çevirme hakkın var!') : tt('Bugünkü çevirmeni yaptın. Yarın yeniden gel!')}</p>
+    <button class="big" id="c-cevir" ${carkHazir() ? '' : 'disabled'}>${tt(carkHazir() ? 'ÇEVİR!' : 'YARIN')}</button>
+    <div class="bolum">${tt('Güçlerin')}</div>${aracHtml()}`, '', 'cark');
+  $('#c-geri').onclick = () => acilisAc();
+  $('#c-cevir').onclick = () => carkCevir();
+}
+function carkSec(r) { const top = CARK.reduce((a, c) => a + c.a, 0); let x = r * top; for (let i = 0; i < CARK.length; i++) { x -= CARK[i].a; if (x < 0) return i; } return 0; }
+function carkCevir() {
+  if (!carkHazir()) return;
+  sesAc();
+  kayit.cark.son = bugunAnahtar(); kaydet();   // önce kaydedilir: yarıda kapatılsa da ikinci çevirme olmaz
+  const i = carkSec(Math.random()), dilim = 360 / CARK.length, c = CARK[i];
+  const aci = 360 * 6 + (360 - (i * dilim + dilim / 2)) + (Math.random() - 0.5) * dilim * 0.6;
+  const el = $('#cark'), b = $('#c-cevir'); b.disabled = true;
+  el.style.transition = 'transform 4.2s cubic-bezier(.17,.67,.21,1)'; el.style.transform = `rotate(${aci}deg)`;
+  let tik = 0; const tikla = () => { if (tik++ > 26) return; Ses.cal('tik', { ses: 0.4, hiz: 1 + tik * 0.01 }); setTimeout(tikla, 40 + tik * tik * 0.35); }; tikla();
+  setTimeout(() => {
+    if (ekran !== 'cark') { odulVer(c); kaydet(); return; }
+    const yazi = odulVer(c); kaydet();
+    Ses.cal(c.buyuk ? 'zafer' : 'yukselis', { ses: 0.8 }); Yerel.titret('basari');
+    odulPenceresi(c.buyuk ? '🎉' : '🎡', tt(c.buyuk ? 'BÜYÜK ÖDÜL!' : 'Çarktan çıktı:'), [yazi], carkAc);
+  }, 4400);
+}
+function odulMenuHtml() {
+  const hazir = carkHazir(), s = kayit.sandik.slot, acilacak = s.some(k => sandikDurum(k) === 'hazir'), ac = sandikAciliyor();
+  return `<div class="odul-satir"><button class="odul-btn ${hazir ? 'hazir' : ''}" id="a-cark"><i>🎡</i><span><b>${tt('Çark')}</b><small>${tt(hazir ? 'Bedava çevir!' : 'Yarın yeni')}</small></span></button>
+    <button class="odul-btn ${acilacak ? 'hazir' : ''}" id="a-sandik"><i>🎁</i><span><b>${tt('Sandıklar')} ${s.length}/${SANDIK_YUVA}</b><small>${acilacak ? tt('Açmaya hazır!') : ac ? '⏱ ' + sandikSure(sandikKalan(ac)) : s.length ? tt('Açmayı başlat') : tt('Bölüm kazan')}</small></span></button></div>`;
+}
+
+/* ---------------- Bölüm Yolu'nda güç kullanımı (strateji ekranı) ---------------- */
+function aracCubukHtml() {
+  const R = STR && STR.R;
+  return Object.keys(ARAC).map(t => `<button class="arac ${R && R.arac === t ? 'secili' : ''} ${(kayit.envanter[t] || 0) ? '' : 'yok'}" data-t="${t}" aria-label="${tt(ARAC[t].ad)}"><i>${ARAC[t].i}</i><b>${kayit.envanter[t] || 0}</b></button>`).join('');
+}
+function aracSec(t) {
+  const R = STR && STR.R; if (!R || R.bitti) return;
+  if (!(kayit.envanter[t] > 0)) { not(tt('Bu güç sende yok. Günlük çarktan ve sandıklardan kazanırsın.')); Ses.cal('geri', { ses: 0.4 }); return; }
+  if (t === 'hamle3') { kayit.envanter.hamle3--; kaydet(); R.hamle += 3; Ses.cal('yukselis', { ses: 0.6 }); not(tt('+3 hamle!')); strCiz(); return; }
+  R.arac = R.arac === t ? null : t; R.aracIlk = -1; R.secili = -1; Ses.cal('tik', { ses: 0.5 });
+  if (R.arac) not(tt(t === 'cekic' ? '🔨 Yok etmek istediğin karoya dokun.' : '🧲 Yerini değiştirmek istediğin iki karoya sırayla dokun.'));
+  strCiz();
+}
+// güç seçiliyken tahtaya dokunma (strateji.js strBirak)
+function aracDokun(i) {
+  const R = STR.R, k = R.T.h[i];
+  if (R.arac === 'cekic') {
+    if (!k) return;
+    if (k.k >= 0) { not(tt('Cümlenin kelimelerine çekiç vurulmaz.')); Ses.cal('geri', { ses: 0.4 }); return; }
+    R.ekstra = R.ekstra || { buz: 0, kilit: 0 };
+    const el = strKaroEl(k.id);
+    if (k.buz) { k.buz = false; R.ekstra.buz++; if (el) el.classList.add('buz-kir'); }
+    else { if (k.kilit) R.ekstra.kilit++; R.T.h[i] = null; if (el) { el.classList.add('pat'); strKivilcim(el, k.ci); } }
+    kayit.envanter.cekic--; kaydet(); R.arac = null;
+    Ses.cal('darbe', { ses: 0.8 }); Ses.cal('pop', { ses: 0.6 }); Yerel.titret('orta');
+    setTimeout(strCiz, 350); return;
+  }
+  if (R.arac === 'miknatis') {
+    if (!k || strDonuk(k)) { not(tt('Buzlu ve kilitli karolar yerinden oynamaz.')); return; }
+    if (R.aracIlk < 0) { R.aracIlk = i; R.secili = i; Ses.cal('al', { ses: 0.5 }); strCiz(); return; }
+    if (R.aracIlk === i) { R.aracIlk = -1; R.secili = -1; strCiz(); return; }
+    const a = R.aracIlk; [R.T.h[a], R.T.h[i]] = [R.T.h[i], R.T.h[a]];
+    kayit.envanter.miknatis--; kaydet(); R.arac = null; R.aracIlk = -1; R.secili = -1;
+    Ses.cal('kay', { ses: 0.7 }); Yerel.titret('hafif'); strCiz();
+  }
 }
 
 /* =====================================================================
@@ -8383,7 +8660,7 @@ const Yerel = (() => {
       showPause(); return;
     }
     // menüler: ekrandaki geri düğmesi, yoksa açılışa; açılıştaysa uygulamayı arka plana al
-    const g = card && card.querySelector('.ust-satir .geri, #d-geri, #r-geri, #p-geri, #a-geri, #s-harita, #ss-cik, #os-cik, #es-iptal, #oda-cik, #y-harita');
+    const g = card && card.querySelector('.ust-satir .geri, #d-geri, #r-geri, #p-geri, #a-geri, #s-harita, #ss-cik, #os-cik, #es-iptal, #oda-cik, #y-harita, #c-geri');
     if (ekran === 'acilis' || ekran === 'ilkKarsila') { const A = ek('App'); if (A && A.minimizeApp) A.minimizeApp(); else if (A) A.exitApp(); return; }
     if (g) { g.click(); return; }
     if (aktifProfil()) acilisAc();
@@ -8433,6 +8710,15 @@ const Yerel = (() => {
     hatirlatAyarla();
   }
   Olay.dinle('hedefTamam', () => hatirlatAyarla());
+  // sandık açılınca bildirim (odul.js); hatırlatma ayarından bağımsız, izin varsa
+  async function sandikHatirlat(zaman) {
+    const N = ek('LocalNotifications'); if (!N) return;
+    try {
+      await N.cancel({ notifications: [{ id: 4300 }] });
+      const p = await N.checkPermissions(); if (p.display !== 'granted' || !zaman || zaman <= Date.now()) return;
+      await N.schedule({ notifications: [{ id: 4300, title: tt('🎁 Sandığın açıldı!'), body: tt('İçinde ne var? Gel ve aç.'), schedule: { at: new Date(zaman), allowWhileIdle: true } }] });
+    } catch (e) { }
+  }
   Olay.dinle('kayitYuklendi', () => hatirlatAyarla());
 
   /* ---- açılış ---- */
@@ -8451,7 +8737,7 @@ const Yerel = (() => {
     const bekle = () => { if (window.__acildi) { const SP = ek('SplashScreen'); if (SP) { try { SP.hide({ fadeOutDuration: 250 }); } catch (e) { } } hatirlatAyarla(); } else setTimeout(bekle, 100); };
     bekle();
   }
-  return { kur, yerliMi, platform, titret, geri, hatirlatAyarla, hatirlatDegisti, bildirimVar: () => !!ek('LocalNotifications') };
+  return { kur, yerliMi, platform, titret, geri, hatirlatAyarla, sandikHatirlat, hatirlatDegisti, bildirimVar: () => !!ek('LocalNotifications') };
 })();
 
 /* =====================================================================
@@ -8484,7 +8770,7 @@ function panelGeri() {
   if (ekran === 'oda' || ekran === 'onlineSonuc') { odadanCik(); onlineAc(); return; }
   if (ekran === 'strSonuc') { const c = $('#ss-cik'); if (c) c.click(); return; }
   if (ekran === 'eslesme') { eslesmeDur(); onlineAc(); return; }
-  if (ekran === 'yol') { acilisAc(); return; }
+  if (ekran === 'yol' || ekran === 'cark') { acilisAc(); return; }
   if (ekran === 'yolBas') { yolHaritaAc(); return; }
   if (ekran === 'online') { onlineSonMod = null; onlineAc(); return; }
   if (ekran === 'harita' || ekran === 'profil' || ekran === 'onlineSecim' || ekran === 'ilk' || ekran === 'ilkHedef') { acilisAc(); return; }
@@ -8564,12 +8850,15 @@ function acilisAc() {
     ${gunlukHtml()}
     ${gorevHtml()}
     <button class="yol-btn" id="a-yol"><i>🗺</i><span><b>${tt('BÖLÜM YOLU')}</b><small>${tt('Bölüm {n} · ⭐ {y}', { n: Math.min(YOL_TOPLAM, kayit.yol.acik), y: yolYildizToplam() })}</small></span><em>${tt('OYNA ▶')}</em></button>
+    ${odulMenuHtml()}
     <div class="ana-ikili"><button class="ana-btn online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE KAPIŞMA')}</b><small>${tt('⚡ Hız ya da 🧠 Strateji · arkadaşınla, rakiple, bilgisayarla')}</small></span></button>
     <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1’den C2’ye cümleler ve kelimeler')}</small></span></button></div>
     <div class="row uclu"><button class="sec" id="a-rozet">🏅 ${rozetSay()}/${ROZETLER.length}</button><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
   </div>`, '', 'acilis');
   $('#a-gorev').onclick = () => { Ses.cal('tik', { ses: 0.5 }); gorevBaslat(); };
   $('#a-yol').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
+  $('#a-cark').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); carkAc(); };
+  $('#a-sandik').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
   $('#a-rozet').onclick = () => { Ses.cal('tik', { ses: 0.4 }); rozetlerAc(acilisAc); };
   $('#a-prof').onclick = () => { Ses.cal('tik', { ses: 0.4 }); profilAc(); };
   $('#a-gunluk').onclick = () => { Ses.cal('tik', { ses: 0.4 }); profilAc(); };

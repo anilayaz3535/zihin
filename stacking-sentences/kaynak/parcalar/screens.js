@@ -28,7 +28,7 @@ function panelGeri() {
   if (ekran === 'oda' || ekran === 'onlineSonuc') { odadanCik(); onlineAc(); return; }
   if (ekran === 'strSonuc') { const c = $('#ss-cik'); if (c) c.click(); return; }
   if (ekran === 'eslesme') { eslesmeDur(); onlineAc(); return; }
-  if (ekran === 'yol') { acilisAc(); return; }
+  if (ekran === 'yol' || ekran === 'cark') { acilisAc(); return; }
   if (ekran === 'yolBas') { yolHaritaAc(); return; }
   if (ekran === 'online') { onlineSonMod = null; onlineAc(); return; }
   if (ekran === 'harita' || ekran === 'profil' || ekran === 'onlineSecim' || ekran === 'ilk' || ekran === 'ilkHedef') { acilisAc(); return; }
@@ -108,12 +108,15 @@ function acilisAc() {
     ${gunlukHtml()}
     ${gorevHtml()}
     <button class="yol-btn" id="a-yol"><i>🗺</i><span><b>${tt('BÖLÜM YOLU')}</b><small>${tt('Bölüm {n} · ⭐ {y}', { n: Math.min(YOL_TOPLAM, kayit.yol.acik), y: yolYildizToplam() })}</small></span><em>${tt('OYNA ▶')}</em></button>
+    ${odulMenuHtml()}
     <div class="ana-ikili"><button class="ana-btn online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE KAPIŞMA')}</b><small>${tt('⚡ Hız ya da 🧠 Strateji · arkadaşınla, rakiple, bilgisayarla')}</small></span></button>
     <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1’den C2’ye cümleler ve kelimeler')}</small></span></button></div>
     <div class="row uclu"><button class="sec" id="a-rozet">🏅 ${rozetSay()}/${ROZETLER.length}</button><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
   </div>`, '', 'acilis');
   $('#a-gorev').onclick = () => { Ses.cal('tik', { ses: 0.5 }); gorevBaslat(); };
   $('#a-yol').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
+  $('#a-cark').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); carkAc(); };
+  $('#a-sandik').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
   $('#a-rozet').onclick = () => { Ses.cal('tik', { ses: 0.4 }); rozetlerAc(acilisAc); };
   $('#a-prof').onclick = () => { Ses.cal('tik', { ses: 0.4 }); profilAc(); };
   $('#a-gunluk').onclick = () => { Ses.cal('tik', { ses: 0.4 }); profilAc(); };

@@ -65,6 +65,8 @@ function yolIstat(plan) {
   plan.adimlar.forEach(a => { a.karolar.forEach(k => { o.renk[k.ci]++; o.karo++; if (k.kilit) o.kilit++; }); o.buz += a.buz.length; });
   return o;
 }
+// çekiçle kırılan buz / açılan kilit de hedefe sayılır (odul.js: R.ekstra)
+function yolV(b, ist, R) { const e = (R && R.ekstra) || {}; return yolHedefSayi(b.hedef, ist) + (b.hedef.tur === 'buz' ? e.buz || 0 : b.hedef.tur === 'kilit' ? e.kilit || 0 : 0); }
 function yolHedefSayi(h, ist) { return h.tur === 'puan' ? ist.puan : h.tur === 'renk' ? ist.renk[h.renk] : ist[h.tur]; }
 // hamleler: verilirse uzmanın yaptığı taşımalar [a, b] eklenir (test ve ipucu için)
 function yolUzman(T0, hamle, tur, renk, hamleler) {
@@ -105,7 +107,7 @@ function yolHaritaAc() {
   D = null; Ses.muzik('menu'); Konus.sus();
   const Y = yolKayit(), acik = Math.min(YOL_TOPLAM, Y.acik);
   let ic = `<div class="ust-satir"><button class="geri" id="y-geri">${tt('← Geri')}</button><span class="y-toplam">⭐ ${yolYildizToplam()} / ${YOL_TOPLAM * 3}</span></div>
-    <div class="ana-baslik">🗺 ${tt('BÖLÜM YOLU')}</div><div class="y-yol">`;
+    <div class="ana-baslik">🗺 ${tt('BÖLÜM YOLU')}</div>${sandikHtml()}${aracHtml()}<div class="y-yol">`;
   YOL_BOLGE.forEach((B, bi) => {
     const ilk = bi * YOL_BOLUM_BOLGE + 1, kilitli = ilk > acik;
     ic += `<div class="y-bolge ${kilitli ? 'kilit' : ''}" style="--b:${B.renk}"><i>${B.i}</i><div><b>${tt(B.ad)}</b><small>${B.lvl} · ${tt('Bölüm {a}–{b}', { a: ilk, b: ilk + YOL_BOLUM_BOLGE - 1 })}${B.yeni ? ' · ' + tt('Yeni: ') + yolMekanikAd(B.yeni) : ''}</small></div></div>`;
@@ -118,6 +120,7 @@ function yolHaritaAc() {
   ic += '</div>';
   goster(ic, 'genis y-kart', 'yol');
   $('#y-geri').onclick = () => acilisAc();
+  sandikBagla();
   card.querySelectorAll('.y-durak').forEach(b => b.onclick = () => {
     const n = +b.dataset.n;
     if (n > acik) { Ses.cal('geri', { ses: 0.4 }); not(tt('Önce {n}. bölümü geç.', { n: acik })); return; }
@@ -172,32 +175,35 @@ function yolCiz() {
   const sec = R.secim.filter(Boolean);
   let on = '';
   if (sec.length && !R.bitti) {
-    const ist = yolIstat(strPatlamaPlani(R.T, sec.map(k => k.id))), v = yolHedefSayi(b.hedef, ist), tamam = v >= b.hedef.sayi;
+    const ist = yolIstat(strPatlamaPlani(R.T, sec.map(k => k.id))), v = yolV(b, ist, R), tamam = v >= b.hedef.sayi;
     on = `💣 ${tt('Önizleme')}: <b>${ist.karo}</b> ${tt('karo')} · <span class="${tamam ? 'ok' : ''}">${yolHedefYazi(b.hedef, true).split(' ')[0]} ${Math.min(v, 99999)}/${b.hedef.sayi}${tamam ? ' ✓' : ''}</span>`;
   }
   $('#st-rakip').innerHTML = on || `${tt('Hedef')}: ${yolHedefYazi(b.hedef)}`;
+  const ar = $('#st-araclar'); if (ar) ar.innerHTML = R.bitti ? '' : aracCubukHtml();   // güçler (odul.js)
+  if (R.arac) $('#st-ipucu').textContent = tt(R.arac === 'cekic' ? '🔨 Yok etmek istediğin karoya dokun.' : '🧲 Yerini değiştirmek istediğin iki karoya sırayla dokun.');
   if (!R.bitti && R.secili < 0 && !sec.length) $('#st-ipucu').textContent = tt('Aynı renkleri kelimelerin yanına topla, sonra kelimeleri sırayla kutulara çek.');
 }
 // hamle bitti: hedefe yetmiyorsa NEREDEYSE (+3 hamle, bir kez bedava)
 function yolHamleBitti() {
-  const M = STR, R = M && M.R; if (!M || !M.yol || !R || R.bitti || M.yol.devam) return;
+  const M = STR, R = M && M.R; if (!M || !M.yol || !R || R.bitti || M.yol.sorma || (M.yol.devam && !(kayit.envanter.hamle3 > 0))) return;
   const b = M.yol.b, ids = R.T.hedef.map((t, k) => R.T.h.find(x => x && x.k === k).id);
-  const v = yolHedefSayi(b.hedef, yolIstat(strPatlamaPlani(R.T, ids)));
+  const v = yolV(b, yolIstat(strPatlamaPlani(R.T, ids)), R);
   if (v >= b.hedef.sayi) return;
   const p = $('#st-panel');
   p.innerHTML = `<div class="st-kart y-neredeyse"><h3>😩 ${tt('NEREDEYSE!')}</h3>
     <p>${tt('Hamlen bitti ama hedefe biraz kaldı:')}</p><div class="y-hedef buyuk">${yolHedefYazi(b.hedef, true).split(' ')[0]} ${v} / ${b.hedef.sayi}</div>
-    <button class="big" id="y-ek">${tt('+3 HAMLE 🎁')}</button><small class="y-bedava">${tt('Bu bölümde 1 kez bedava')}</small>
+    ${M.yol.devam ? `<button class="big" id="y-ek">${tt('✋ +3 HAMLE KULLAN')}</button><small class="y-bedava">${tt('Çantanda {n} tane var', { n: kayit.envanter.hamle3 })}</small>`
+      : `<button class="big" id="y-ek">${tt('+3 HAMLE 🎁')}</button><small class="y-bedava">${tt('Bu bölümde 1 kez bedava')}</small>`}
     <div class="row"><button class="sec" id="y-boyle">${tt('Böyle devam et')}</button></div></div>`;
   p.classList.add('acik'); Ses.cal('yukselis', { ses: 0.4 });
-  $('#y-ek').onclick = () => { M.yol.devam = true; R.hamle += 3; p.classList.remove('acik'); Ses.cal('yukselis', { ses: 0.6 }); strCiz(); };
-  $('#y-boyle').onclick = () => { M.yol.devam = true; p.classList.remove('acik'); };
+  $('#y-ek').onclick = () => { if (M.yol.devam) { kayit.envanter.hamle3--; kaydet(); } M.yol.devam = true; R.hamle += 3; p.classList.remove('acik'); Ses.cal('yukselis', { ses: 0.6 }); strCiz(); };
+  $('#y-boyle').onclick = () => { M.yol.devam = true; M.yol.sorma = true; p.classList.remove('acik'); };
 }
 // bomba sonrası (strTurBitir çağırır)
 function yolBitti(dogru) {
   const M = STR, R = M.R, b = M.yol.b;
   if (!dogru) { yolSonuc({ kazandi: false, yanlis: true, puan: 0, v: 0 }); return; }
-  const ist = yolIstat(R.plan), v = yolHedefSayi(b.hedef, ist), kazandi = v >= b.hedef.sayi;
+  const ist = yolIstat(R.plan), v = yolV(b, ist, R), kazandi = v >= b.hedef.sayi;
   if (!kazandi) { yolSonuc({ kazandi, puan: ist.puan, v }); return; }
   // CÜMLE CRUSH: kalan her hamle rastgele bir karoyu patlatır
   const kalan = Math.min(10, R.hamle), karolar = R.T.h.map((k, i) => k ? i : -1).filter(i => i >= 0).sort(() => Math.random() - 0.5).slice(0, kalan);
@@ -219,6 +225,7 @@ function yolSonuc(o) {
     if (o.puan > (Y.enIyi[no] || 0)) { Y.enIyi[no] = o.puan; yeniEn = true; }
     Y.acik = Math.max(Y.acik, Math.min(YOL_TOPLAM, no + 1));
   }
+  const sandik = o.kazandi ? sandikKazan(yildiz === 3 || b.zor === 'boss' ? 'altin' : b.zor === 'zor' ? 'gumus' : 'tahta') : null;   // odul.js
   kaydet();
   Olay.yay('bolumBitti', { mod: 'yol', r: 'yol' + no, lvl: b.B.lvl, kazandi: o.kazandi, yildiz, skor: o.puan, istat: {}, enKombo: 0, rekor: yeniEn });
   const xp = kayit.xp - M.xp0, oran = Math.min(1, o.v / b.hedef.sayi), p = $('#st-panel');
@@ -231,6 +238,7 @@ function yolSonuc(o) {
     ${!o.kazandi && !o.yanlis ? `<div class="y-ilerle"><span>${yolHedefYazi(b.hedef, true).split(' ')[0]} ${o.v} / ${b.hedef.sayi}</span><u style="width:${Math.round(oran * 100)}%"></u></div><p>${tt(oran >= 0.6 ? 'Çok az kaldı! Renkleri kelimelerin yanına biraz daha topla.' : 'Kelimelerin yanına daha çok aynı renk getir.')}</p>` : ''}
     ${o.yanlis ? `<div class="st-dogru"><small>${tt('Doğru cümle')}</small>${dinleBtn(b.s.en)} <b>${esc(b.s.en)}</b><small>${esc(b.s.tr)}</small></div>` : ''}
     ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
+    ${sandik ? sandikKazanHtml(sandik) : ''}
     ${bolgeBitti ? `<div class="y-yeni"><b>${tt('YENİ BÖLGE AÇILDI!')}</b> ${YOL_BOLGE[b.bi + 1].i} ${tt(YOL_BOLGE[b.bi + 1].ad)}</div>` : ''}
     ${sonraki ? `<button class="big" id="y-sonraki">${tt('SONRAKİ BÖLÜM ▶')}</button>` : `<button class="big" id="y-tekrar">${tt('TEKRAR DENE')}</button>`}
     <div class="row">${sonraki ? `<button class="sec" id="y-tekrar">${tt('TEKRAR OYNA')}</button>` : ''}<button class="sec" id="y-harita">${tt('HARİTA')}</button></div></div>`;

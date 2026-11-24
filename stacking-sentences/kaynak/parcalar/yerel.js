@@ -50,7 +50,7 @@ const Yerel = (() => {
       showPause(); return;
     }
     // menüler: ekrandaki geri düğmesi, yoksa açılışa; açılıştaysa uygulamayı arka plana al
-    const g = card && card.querySelector('.ust-satir .geri, #d-geri, #r-geri, #p-geri, #a-geri, #s-harita, #ss-cik, #os-cik, #es-iptal, #oda-cik, #y-harita');
+    const g = card && card.querySelector('.ust-satir .geri, #d-geri, #r-geri, #p-geri, #a-geri, #s-harita, #ss-cik, #os-cik, #es-iptal, #oda-cik, #y-harita, #c-geri');
     if (ekran === 'acilis' || ekran === 'ilkKarsila') { const A = ek('App'); if (A && A.minimizeApp) A.minimizeApp(); else if (A) A.exitApp(); return; }
     if (g) { g.click(); return; }
     if (aktifProfil()) acilisAc();
@@ -100,6 +100,15 @@ const Yerel = (() => {
     hatirlatAyarla();
   }
   Olay.dinle('hedefTamam', () => hatirlatAyarla());
+  // sandık açılınca bildirim (odul.js); hatırlatma ayarından bağımsız, izin varsa
+  async function sandikHatirlat(zaman) {
+    const N = ek('LocalNotifications'); if (!N) return;
+    try {
+      await N.cancel({ notifications: [{ id: 4300 }] });
+      const p = await N.checkPermissions(); if (p.display !== 'granted' || !zaman || zaman <= Date.now()) return;
+      await N.schedule({ notifications: [{ id: 4300, title: tt('🎁 Sandığın açıldı!'), body: tt('İçinde ne var? Gel ve aç.'), schedule: { at: new Date(zaman), allowWhileIdle: true } }] });
+    } catch (e) { }
+  }
   Olay.dinle('kayitYuklendi', () => hatirlatAyarla());
 
   /* ---- açılış ---- */
@@ -118,5 +127,5 @@ const Yerel = (() => {
     const bekle = () => { if (window.__acildi) { const SP = ek('SplashScreen'); if (SP) { try { SP.hide({ fadeOutDuration: 250 }); } catch (e) { } } hatirlatAyarla(); } else setTimeout(bekle, 100); };
     bekle();
   }
-  return { kur, yerliMi, platform, titret, geri, hatirlatAyarla, hatirlatDegisti, bildirimVar: () => !!ek('LocalNotifications') };
+  return { kur, yerliMi, platform, titret, geri, hatirlatAyarla, sandikHatirlat, hatirlatDegisti, bildirimVar: () => !!ek('LocalNotifications') };
 })();

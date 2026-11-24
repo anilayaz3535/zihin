@@ -641,8 +641,12 @@ def yol(b):
     s.js("yolOyna(2); STR.yol.b = Object.assign({}, STR.yol.b, { hedef: { tur: 'puan', sayi: 99999 } }); STR.R.hamle = 1")
     s.js("(() => { const R = STR.R, a = R.T.h.findIndex(x => x && x.k < 0 && !strDonuk(x)), b = R.T.h.findIndex((x, i) => i !== a && x && !strDonuk(x)); strTasiOyuncu(a, b); })()")
     dogru(s.js("!!document.getElementById('y-ek')"), 'NEREDEYSE çıkmadı'); s.foto('yol_neredeyse'); s.pg.tap('#y-ek', force=True); esit(s.js('STR.R.hamle'), 3, '+3 hamle')
+    # bedava hak bitti: çantada +3 hamle varsa onu kullanmayı önerir; yoksa bir daha sormaz
+    s.js('kayit.envanter.hamle3 = 1; STR.R.hamle = 1'); s.js("(() => { const R = STR.R, a = R.T.h.findIndex(x => x && x.k < 0 && !strDonuk(x)), b = R.T.h.findIndex((x, i) => i !== a && x && !strDonuk(x)); strTasiOyuncu(a, b); })()")
+    dogru(s.js("document.getElementById('st-panel').classList.contains('acik') && /1/.test(document.querySelector('.y-bedava').textContent)"), 'çantadaki +3 hamle önerilmedi')
+    s.pg.tap('#y-ek', force=True); esit((s.js('STR.R.hamle'), s.js('kayit.envanter.hamle3')), (3, 0), 'çantadan +3 hamle')
     s.js('STR.R.hamle = 1'); s.js("(() => { const R = STR.R, a = R.T.h.findIndex(x => x && x.k < 0 && !strDonuk(x)), b = R.T.h.findIndex((x, i) => i !== a && x && !strDonuk(x)); strTasiOyuncu(a, b); })()")
-    dogru(not s.js("document.getElementById('st-panel').classList.contains('acik')"), 'NEREDEYSE ikinci kez çıktı')
+    dogru(not s.js("document.getElementById('st-panel').classList.contains('acik')"), 'güç yokken NEREDEYSE yeniden çıktı')
     # hedefe yetmeyen bomba: kaybeder, TEKRAR DENE aynı tahta
     s.js("(() => { const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()")
     s.pg.wait_for_function("!!document.getElementById('y-tekrar') && !document.getElementById('y-sonraki')", timeout=20000); esit(s.js('kayit.yol.acik'), 2, 'kaybedince bölüm açıldı')
@@ -659,6 +663,54 @@ def yol(b):
     s.js('yolBaslangic(21)'); tr = s.js("[...document.querySelectorAll('.y-bas, .y-hedef, .y-yeni, .y-bilgi')].map(e => e.textContent).filter(t => /[ğüşıöçİĞÜŞÖÇ]/.test(t))"); esit(tr, [], 'İngilizce başlangıç kartında Türkçe')
     esit(s.hatalar(), [], 'JS hataları'); s.kapat()
     return f"120 bölüm çözülebilir ({r['tur']}); donuk karo; haritadan oyna, uzmanla kazan; NEREDEYSE bir kez; kaybet / tekrar aynı tahta; yanlış cümle; kalıcı; onarım; İngilizce"
+
+@test
+def odul(b):
+    """Güçler, sandıklar, günlük çark: başlangıç hediyesi; çark günde bir (ertesi gün yeniden), ağırlıklar; bölüm kazanınca sandık, 4 yuva,
+    aynı anda tek sandık açılır, süre dolunca açılır ve ödül verir; +3 hamle, çekiç (kelimeye vurulmaz, buzu kırar ve hedefe sayılır,
+    karoyu yok eder), mıknatıs (hamle harcamadan değiştirir); güç yoksa uyarı; bozuk kayıt onarılır; İngilizce."""
+    s = Sayfa(b, init=[SAAT]); s.js('kayit.strRehber = true')
+    esit(s.js('JSON.stringify(kayit.envanter)'), '{"hamle3":1,"cekic":1,"miknatis":1}', 'başlangıç güçleri')
+    # çark
+    dogru(s.js("document.getElementById('a-cark').classList.contains('hazir')"), 'çark hazır görünmüyor')
+    s.pg.tap('#a-cark', force=True); esit(s.js('ekran'), 'cark', 'çark ekranı'); once = s.js('JSON.stringify([kayit.envanter, kayit.xp, kayit.sandik.slot.length, kayit.seri.dondurma])')
+    s.pg.tap('#c-cevir'); s.pg.wait_for_selector('.odul-pen', timeout=8000); s.foto('cark_odul')
+    dogru(s.js('JSON.stringify([kayit.envanter, kayit.xp, kayit.sandik.slot.length, kayit.seri.dondurma])') != once, 'çark ödül vermedi')
+    esit(s.js('kayit.cark.son'), s.js('bugunAnahtar()'), 'çark günü'); s.pg.tap('#odul-tamam'); dogru(s.js("document.getElementById('c-cevir').disabled"), 'aynı gün ikinci çevirme')
+    s.js('window.__ileri = 864e5'); s.pg.reload(); s.bekle(); dogru(s.js('carkHazir()'), 'ertesi gün çark hazır değil')
+    f = s.js("(() => { const n = Array(CARK.length).fill(0); for (let i = 0; i < 20000; i++) n[carkSec(Math.random())]++; return n.map(x => x / 200); })()")
+    top = s.js('CARK.reduce((a, c) => a + c.a, 0)'); bek = s.js('CARK.map(c => c.a)')
+    dogru(all(abs(f[i] - bek[i] * 100 / top) < 2 for i in range(len(f))), f'çark ağırlıkları: {f}')
+    # sandık: bölüm kazan → yuva; 4 dolunca yer yok
+    s.js("kayit.sandik.slot = []; for (let i = 0; i < 3; i++) sandikKazan('tahta')"); esit(s.js("!!sandikKazan('altin')"), True, '4. sandık'); esit(s.js("sandikKazan('tahta')"), None, 'yer yokken sandık')
+    s.js('yolHaritaAc()'); esit(s.js("document.querySelectorAll('#sandiklar .sandik[data-i]').length"), 4, 'haritada sandıklar')
+    s.pg.tap('#sandiklar .sandik[data-i="0"]'); dogru(s.js('kayit.sandik.slot[0].acilis > 0'), 'açılma başlamadı')
+    s.pg.tap('#sandiklar .sandik[data-i="1"]'); esit(s.js('kayit.sandik.slot[1].acilis'), None, 'aynı anda iki sandık açıldı')
+    xp0 = s.js('kayit.xp'); s.js('window.__ileri = window.__ileri + 16 * 60e3; sandikYenile()')
+    esit(s.js("sandikDurum(kayit.sandik.slot[0])"), 'hazir', 'süre dolunca hazır'); s.pg.tap('#sandiklar .sandik.hazir', force=True)
+    s.pg.wait_for_selector('.odul-pen'); dogru(s.js('kayit.xp') > xp0 and s.js('kayit.sandik.slot.length') == 3, 'sandık ödülü / yuva'); s.pg.tap('#odul-tamam')
+    # bölüm kazanınca sandık (yol uzman çözümü)
+    s.js("kayit.sandik.slot = []; yolOyna(1)")
+    s.js("""(() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, B.hedef.renk == null ? -1 : B.hedef.renk, h);
+      h.forEach(([a, b]) => strTasiOyuncu(a, b)); const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()""")
+    s.pg.wait_for_function("!!document.querySelector('.sandik-kazan')", timeout=20000); esit(s.js('kayit.sandik.slot.length'), 1, 'bölüm kazanınca sandık')
+    # güçler
+    s.js("kayit.envanter = { hamle3: 1, cekic: 3, miknatis: 1 }; yolOyna(21)")
+    h0 = s.js('STR.R.hamle'); s.pg.tap('.arac[data-t="hamle3"]'); esit((s.js('STR.R.hamle'), s.js('kayit.envanter.hamle3')), (h0 + 3, 0), '+3 hamle')
+    s.pg.tap('.arac[data-t="hamle3"]'); dogru('yok' in s.js("document.getElementById('not').textContent") or 'have' in s.js("document.getElementById('not').textContent"), 'güç yokken uyarı')
+    s.js("aracSec('cekic')"); hedefK = s.js('STR.R.T.h.findIndex(x => x && x.k === 0)'); s.js(f'aracDokun({hedefK})'); esit(s.js('kayit.envanter.cekic'), 3, 'kelimeye çekiç vuruldu')
+    buz = s.js('STR.R.T.h.findIndex(x => x && x.buz)'); s.js(f'aracDokun({buz})'); esit((s.js(f'STR.R.T.h[{buz}].buz'), s.js('STR.R.ekstra.buz'), s.js('kayit.envanter.cekic')), (False, 1, 2), 'çekiç buzu kırdı')
+    s.js("aracSec('cekic')"); nor = s.js('STR.R.T.h.findIndex(x => x && x.k < 0 && !x.buz && !x.kilit)'); s.js(f'aracDokun({nor})'); esit(s.js(f'STR.R.T.h[{nor}]'), None, 'çekiç karoyu yok etti')
+    s.js("aracSec('miknatis')"); h1 = s.js('STR.R.hamle'); a, c = s.js("(() => { const R = STR.R, l = R.T.h.map((x, i) => x && !strDonuk(x) ? i : -1).filter(i => i >= 0); return [l[0], l[5]]; })()")
+    ta, tc = s.js(f'STR.R.T.h[{a}].id'), s.js(f'STR.R.T.h[{c}].id'); s.js(f'aracDokun({a}); aracDokun({c})')
+    esit((s.js(f'STR.R.T.h[{a}].id'), s.js(f'STR.R.T.h[{c}].id'), s.js('STR.R.hamle'), s.js('kayit.envanter.miknatis')), (tc, ta, h1, 0), 'mıknatıs')
+    s.foto('odul_guc')
+    # onarım
+    s.js("kayit = kayitDuzelt(Object.assign({}, kayit, { envanter: { hamle3: -2, cekic: 'x' }, sandik: { slot: [{ tur: 'elmas', t: 1 }, { tur: 'tahta', t: 5, acilis: null }] }, cark: { son: 'dün' } }), bosKayit()).k")
+    esit(s.js('JSON.stringify([kayit.envanter, kayit.sandik, kayit.cark])'), json.dumps([{'hamle3': 0, 'cekic': 0, 'miknatis': 1}, {'slot': [{'tur': 'tahta', 't': 5, 'acilis': None}]}, {'son': None}], separators=(',', ':')), 'bozuk ödül kaydı onarımı')
+    s.js("strKapat(); dilSec('en'); carkAc()"); tr = s.js("document.getElementById('card').textContent"); dogru(not __import__('re').search('[ğüşıöçİĞÜŞÖÇ]', tr), 'İngilizce çark: ' + ' '.join(__import__('re').findall(r'\S*[ğüşıöçİĞÜŞÖÇ]\S*', tr)))
+    esit(s.hatalar(), [], 'JS hataları'); s.kapat()
+    return 'başlangıç güçleri; çark günde bir, ağırlıklar; 4 yuva, tek sandık açılır, süreyle açılır; bölüm kazanınca sandık; +3 hamle, çekiç, mıknatıs; onarım; İngilizce'
 
 @test
 def hiz_bot(b):
