@@ -887,6 +887,25 @@
     75%{transform:translate(calc(var(--x1) - 12px),calc(var(--y1) - 4px)) scale(.85);opacity:1}90%,100%{transform:translate(calc(var(--x1) - 12px),calc(var(--y1) - 4px)) scale(1);opacity:0}}
   @keyframes elDokun{0%,100%{transform:translate(calc(var(--x0) - 12px),calc(var(--y0) + 6px))}50%{transform:translate(calc(var(--x0) - 12px),calc(var(--y0) - 6px)) scale(.9)}}
   @media (prefers-reduced-motion:reduce){#st-el,.st-k.rh-kaynak,.st-kutu.rh-hedef,#st-bomba.rh-kaynak{animation:none}#st-el{transform:translate(calc(var(--x0) - 12px),var(--y0))}}
+
+  /* ---------- hazır emojiler (emoji.js) ---------- */
+  #emo-btn{position:fixed;z-index:21;width:40px;height:40px;border-radius:50%;border:2px solid #fff;background:linear-gradient(#fff7ea,#f0d9ba);font-size:22px;line-height:1;padding:0;
+    box-shadow:0 3px 0 #b38a62,0 6px 14px rgba(0,0,0,.35);cursor:pointer;touch-action:manipulation;transition:left .2s,top .2s}
+  #emo-btn.bekle{filter:grayscale(.7);opacity:.7}
+  #emo-btn:active{transform:translateY(2px)}
+  #emo-bar{position:fixed;z-index:22;display:none;gap:4px;padding:6px;border-radius:24px;background:linear-gradient(#fffaf0,#f3dfc2);border:2px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.4)}
+  #emo-bar.acik{display:flex;animation:kocGel .2s ease-out}
+  #emo-bar button{width:42px;height:42px;border-radius:50%;border:0;background:transparent;font-size:26px;line-height:1;padding:0;cursor:pointer;touch-action:manipulation}
+  #emo-bar button:active{transform:scale(1.25)}
+  #emo-bar .emo-sus{font-size:18px;opacity:.6;border-left:1px solid rgba(91,58,36,.2);border-radius:0 50% 50% 0}
+  #emo-bar .emo-sus.acik{opacity:1;background:rgba(232,59,92,.18)}
+  .emo-ucan{position:fixed;z-index:23;pointer-events:none;display:flex;flex-direction:column;align-items:center;transform:translate(-50%,-50%);animation:emoUc 2.2s ease-out forwards}
+  .emo-ucan b{font-size:44px;line-height:1;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4))}
+  .emo-ucan small{margin-top:2px;padding:1px 8px;border-radius:10px;background:rgba(52,30,58,.9);color:#fff;font:600 11px Fredoka,sans-serif;white-space:nowrap}
+  .emo-ucan.rakip b{animation:emoSalla .5s ease-in-out 2}
+  @keyframes emoUc{0%{transform:translate(-50%,-30%) scale(.3);opacity:0}15%{transform:translate(-50%,-60%) scale(1.25);opacity:1}30%{transform:translate(-50%,-70%) scale(1)}80%{opacity:1}100%{transform:translate(-50%,-180%) scale(.9);opacity:0}}
+  @keyframes emoSalla{25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}
+  @media (prefers-reduced-motion:reduce){.emo-ucan,.emo-ucan.rakip b{animation:none}}
 </style>
 </head>
 <body class="port">
@@ -1932,7 +1951,12 @@ DIL_SOZLUK.en = {
 "Geç": "Skip",
 "ALIŞTIRMA": "PRACTICE",
 "Koç": "Coach",
-"📘 Nasıl oynanır? (alıştırma)": "📘 How to play? (practice)"
+"📘 Nasıl oynanır? (alıştırma)": "📘 How to play? (practice)",
+// hazır emojiler
+"Emoji gönder": "Send emoji",
+"Rakibin emojilerini sustur": "Mute opponent's emojis",
+"Rakibin emojileri bu maçta gizlendi.": "Your opponent's emojis are hidden for this match.",
+"Rakibin emojileri açıldı.": "Your opponent's emojis are on."
 };
 
 /* =====================================================================
@@ -5546,6 +5570,7 @@ function drawDuz(t) {
 function drawStatus(t) {
   if (!(G.state === 'playing' || G.state === 'paused') || !L.promptAlan) return;
   const A = L.promptAlan, fs = Math.round(clamp(L.bh * 0.46, 11, 16));
+  window.__yarisKonum = null;   // emoji.js: emoji düğmesi ve balonları yarış çubuğuna göre
   // online: yarış çubuğu (Türkçe şeridin altında solda): sen ve rakip, avatarlar bitirilen cümle kadar ilerler; rakibin hata göstergesi ince çizgi
   if (D && D.online && D.online.rakip) {
     const o = D.online, r = o.rakip, top = o.liste.length, f2 = Math.round(clamp(fs * 0.78, 10, 13));
@@ -5569,6 +5594,7 @@ function drawStatus(t) {
     };
     const benAd = (aktifProfil() && aktifProfil().ad) || tt('Sen');
     satir(0, tt('Sen'), clamp((o.benim ? o.benim.cumle : D.istat.cumle) / top, 0, 1), '#ffc83d', String(benAd).charAt(0).toLocaleUpperCase('tr-TR'), o.benim && o.benim.sonuc, 0);
+    window.__yarisKonum = { ben: [ux + w * 0.18, uy + 4], rakip: [ux + w * 0.18, uy + h - 4], sag: [ux + w, uy + h / 2] };
     satir(1, r.ad, clamp((r.cumle || 0) / top, 0, 1), '#ff7a96', OD.bot ? '🤖' : String(r.ad).charAt(0).toLocaleUpperCase('tr-TR'), r.sonuc, r.yigin || 0);
     ctx.restore();
   }
@@ -5971,6 +5997,7 @@ function onlineMesaj(o) {
   // buradan sonrası yalnız eşleşilen rakipten
   const r = OD.rakip; if (!r || o.c !== r.cid) return;
   r.son = Date.now();
+  if (o.t === 'emo') { emoAl(o); return; }   // hazır emoji (emoji.js)
   if (o.t === 'nabiz') {
     if (OD.rol === 'misafir' && ((o.lvl && o.lvl !== OD.lvl && SEVIYELER.indexOf(o.lvl) >= 0) || (o.mod && o.mod !== OD.mod))) { if (SEVIYELER.indexOf(o.lvl) >= 0) OD.lvl = o.lvl; OD.mod = o.mod === 'strateji' ? 'strateji' : 'hiz'; if (ekran === 'oda') lobiGuncelle(); }
     return;
@@ -6083,7 +6110,7 @@ function botHizTik(o) {
     let top = 0; const sn = BOT_KELIME_SN[D.r.lvl] || 3.2;
     o.botPlan = o.liste.map(a => { const s = sAl(a); top += ((s ? s.w.length : 6) * sn + 9) * rnd(0.85, 1.2) * 1000; return top; });   // +9 sn: yönerge ve Türkçe cümle okunur
   }
-  while (r.cumle < o.botPlan.length && t >= o.botPlan[r.cumle]) { r.cumle++; r.skor += Math.round(rnd(300, 900)); if (Math.random() < 0.3) r.yigin = clamp(r.yigin + 0.1, 0, 0.6); }
+  while (r.cumle < o.botPlan.length && t >= o.botPlan[r.cumle]) { r.cumle++; r.skor += Math.round(rnd(300, 900)); if (Math.random() < 0.3) r.yigin = clamp(r.yigin + 0.1, 0, 0.6); if (Math.random() < 0.25) emoBotTepki([3, 0], 0.3); }
   if (r.cumle >= o.botPlan.length && !r.sonuc) { r.sonuc = 'tamam'; r.sure = o.botPlan[o.botPlan.length - 1]; onlineKarar(); }
   if (o.benim && !o.karar && o.benim.sonuc === 'tamam') onlineKarar(true);
 }
@@ -6119,6 +6146,7 @@ function onlineKararVer(k, neden) {
   }
   kaydet();
   if (G.state === 'playing' || G.state === 'paused') { G.state = 'over'; if (G.R) G.R.bitti = true; G.surukle = null; Konus.sus(); Ses.kis(false); }
+  if (OD.bot) emoBotTepki(k === 'kazandin' ? [4, 1, 0] : [3, 2], 1.5);
   if (k === 'kazandin') { Ses.kasetDur(0.8); sonra(0.4, () => { Ses.cal('zafer', { ses: 1 }); Ses.spiker(3, { oncelik: true }); }); const I = L.in; [0, 0.3, 0.6].forEach(t => sonra(t, () => firework(rnd(I.x + 30, I.x + I.w - 30), rnd(I.y + 40, I.y + I.h * 0.4), pick(['#ffd23d', '#19f0ff', '#ff3df2'])))); }
   else { Ses.kasetDur(0.8); sonra(0.3, () => Ses.cal('yenilgi', { ses: 0.8 })); }
   banner(tt(k === 'kazandin' ? 'KAZANDIN!' : 'KAYBETTİN'), neden.replace(/&[a-z]+;/g, ''), k === 'kazandin' ? '#ffd98a' : '#ff6b7d', 2);
@@ -7638,7 +7666,7 @@ function strTurPaneli() {
     ${r ? `<button class="big" id="st-devam">${tt(son ? 'MAÇ SONUCU' : 'SONRAKİ TUR')}</button>` : ''}</div>`;
   p.querySelectorAll('.dinle').forEach(x => x.onclick = e => { e.stopPropagation(); sesAc(); Konus.soyle(x.dataset.en, { hiz: 0.85 }); });
   p.classList.add('acik');
-  if (r && !R.panelSes) { R.panelSes = true; const k = strTurKazanan(b, r); Ses.cal(k > 0 ? 'yukselis' : k < 0 ? 'geri' : 'tik', { ses: 0.6 }); }
+  if (r && !R.panelSes) { R.panelSes = true; const k = strTurKazanan(b, r); Ses.cal(k > 0 ? 'yukselis' : k < 0 ? 'geri' : 'tik', { ses: 0.6 }); if (M.rakip.bot) emoBotTepki(k > 0 ? [4, 1] : k < 0 ? [3, 2] : [5, 0], 0.8); }
   const d = $('#st-devam'); if (d) d.onclick = () => { p.classList.remove('acik'); if (son) strMacSonu(); else strTurBaslat(); };
 }
 function strCikSor() {
@@ -7760,6 +7788,105 @@ function rehberCiz() {
   el.style.display = ''; el.className = h ? 'surukle' : 'dokun';
   el.style.setProperty('--x0', x0 + 'px'); el.style.setProperty('--y0', y0 + 'px'); el.style.setProperty('--x1', x1 + 'px'); el.style.setProperty('--y1', y1 + 'px');
 }
+
+/* =====================================================================
+   HAZIR EMOJİLER (online maçlar: HIZ, STRATEJİ ve sonuç ekranları; bilgisayara karşı da)
+   · Yalnız 6 hazır emoji (yazı yok: denetlenmesi gereken kullanıcı içeriği oluşmaz).
+   · 😊 düğmesi → emoji çubuğu → seçilen emoji kendi avatarının yanında uçar, rakibe gider (ağ mesajı 'emo').
+   · Gelen emoji rakibin avatarının yanında uçar. 🔇 bu maç için rakibin emojilerini susturur.
+   · Gönderme sınırı 1,5 sn; gelen emojiler en çok 0,8 sn'de bir gösterilir.
+   · Bilgisayar rakip ara sıra karşılık verir (oyuncunun emojisine, tur / maç sonuçlarına).
+   ===================================================================== */
+const EMO = ['👍', '😮', '😂', '🔥', '👏', '😅'];
+const EMO_ARALIK = 1500, EMO_AL_ARALIK = 800;
+const EM = { son: 0, alSon: 0, sessiz: null, acik: false };
+function emoMac() { return STR ? STR.mac : D && D.online ? D.online.mac : null; }
+function emoBotMu() { return STR ? !!STR.rakip.bot : !!OD.bot; }
+// emoji düğmesinin yeri: HIZ maçında yarış çubuğunun sağı, stratejide rakip satırı, sonuç ekranlarında VS'nin altı
+function emoBaglam() {
+  if (ekran === 'onlineSonuc' || ekran === 'strSonuc') { const v = card.querySelector('.vs-rozet'); if (v) { const b = v.getBoundingClientRect(); return { x: b.left + b.width / 2 - 20, y: b.bottom + 8 }; } }
+  if (ov.classList.contains('show')) return null;
+  if (STR && strEl && strEl.style.display !== 'none' && !STR.karar) {
+    if ($('#st-panel').classList.contains('acik') && !(STR.R && STR.R.sonuc)) return null;
+    const r = $('#st-rakip'); if (!r) return null; const b = r.getBoundingClientRect();
+    return { x: Math.min(innerWidth - 48, b.right + 8), y: b.top + b.height / 2 - 20, ust: true };
+  }
+  if (D && D.online && !D.online.karar && G.state === 'playing' && window.__yarisKonum) { const y = window.__yarisKonum; return { x: Math.min(innerWidth - 46, y.sag[0] + 6), y: y.sag[1] - 20 }; }
+  return null;
+}
+let emoBtn = null, emoBar = null;
+function emoKur() {
+  if (emoBtn) return;
+  emoBtn = document.createElement('button'); emoBtn.id = 'emo-btn'; emoBtn.type = 'button'; emoBtn.textContent = '😊'; emoBtn.setAttribute('aria-label', tt('Emoji gönder'));
+  emoBar = document.createElement('div'); emoBar.id = 'emo-bar'; emoBar.setAttribute('role', 'menu');
+  emoBar.innerHTML = EMO.map((e, i) => `<button type="button" data-e="${i}" role="menuitem">${e}</button>`).join('') + `<button type="button" data-e="sus" class="emo-sus" aria-label="${tt('Rakibin emojilerini sustur')}">🔇</button>`;
+  document.body.appendChild(emoBtn); document.body.appendChild(emoBar);
+  emoBtn.addEventListener('click', e => { e.stopPropagation(); sesAc(); EM.acik = !EM.acik; emoYerlestir(); Ses.cal('tik', { ses: 0.35 }); });
+  emoBar.addEventListener('click', e => {
+    e.stopPropagation();
+    const b = e.target.closest('button'); if (!b) return;
+    if (b.dataset.e === 'sus') { EM.sessiz = EM.sessiz === emoMac() ? null : emoMac(); b.classList.toggle('acik', EM.sessiz === emoMac()); not(tt(EM.sessiz ? 'Rakibin emojileri bu maçta gizlendi.' : 'Rakibin emojileri açıldı.')); return; }
+    emoGonder(+b.dataset.e); EM.acik = false; emoYerlestir();
+  });
+  ['pointerdown', 'touchstart'].forEach(ad => emoBtn.addEventListener(ad, e => e.stopPropagation(), { passive: true }));
+  document.addEventListener('pointerdown', e => { if (EM.acik && !emoBar.contains(e.target) && e.target !== emoBtn) { EM.acik = false; emoYerlestir(); } }, true);
+  setInterval(emoYerlestir, 250);
+}
+function emoYerlestir() {
+  if (!emoBtn) return;
+  const b = emoMac() ? emoBaglam() : null;
+  emoBtn.style.display = b ? '' : 'none';
+  if (b && emoBtn.dataset.dil !== arayuzDili) { emoBtn.dataset.dil = arayuzDili; emoBtn.setAttribute('aria-label', tt('Emoji gönder')); emoBar.querySelector('.emo-sus').setAttribute('aria-label', tt('Rakibin emojilerini sustur')); }
+  if (!b) { EM.acik = false; emoBar.classList.remove('acik'); return; }
+  emoBtn.style.left = b.x + 'px'; emoBtn.style.top = b.y + 'px';
+  emoBtn.classList.toggle('bekle', Date.now() - EM.son < EMO_ARALIK);
+  emoBar.classList.toggle('acik', EM.acik);
+  if (EM.acik) {
+    const w = emoBar.offsetWidth || 300, x = clamp(b.x + 20 - w / 2, 6, innerWidth - w - 6);
+    emoBar.style.left = x + 'px'; emoBar.style.top = (b.y + 48 + 52 > innerHeight ? b.y - 52 : b.y + 46) + 'px';
+    emoBar.querySelector('.emo-sus').classList.toggle('acik', EM.sessiz === emoMac());
+  }
+}
+function emoGonder(i) {
+  if (!(i >= 0 && i < EMO.length)) return false;
+  const mac = emoMac(); if (!mac) return false;
+  if (Date.now() - EM.son < EMO_ARALIK) { Ses.cal('geri', { ses: 0.3 }); return false; }
+  EM.son = Date.now();
+  emoGoster('ben', i); Yerel.titret('hafif');
+  if (emoBotMu()) emoBotCevap(i);
+  else if (OD.kod) Ag.gonder({ t: 'emo', mac, e: i });
+  return true;
+}
+// ağdan (online.js) ya da bilgisayardan
+function emoAl(o) {
+  const i = +o.e; if (!(i >= 0 && i < EMO.length) || o.mac !== emoMac()) return;
+  if (EM.sessiz === emoMac()) return;
+  if (Date.now() - EM.alSon < EMO_AL_ARALIK) return;
+  EM.alSon = Date.now();
+  emoGoster('rakip', i);
+}
+function emoCapa(kim) {
+  if (ekran === 'onlineSonuc' || ekran === 'strSonuc') { const a = card.querySelectorAll('.vs-oy .vs-av'); const e = a[kim === 'ben' ? 0 : 1]; if (e) { const b = e.getBoundingClientRect(); return [b.left + b.width / 2, b.top]; } }
+  if (STR && strEl && strEl.style.display !== 'none') { const a = strEl.querySelectorAll('#st-skor .vs-av'); const e = a[kim === 'ben' ? 0 : 1]; if (e) { const b = e.getBoundingClientRect(); return [b.left + b.width / 2, b.bottom + 4]; } }
+  const y = window.__yarisKonum; if (y) return y[kim];
+  return [kim === 'ben' ? innerWidth * 0.3 : innerWidth * 0.7, innerHeight * 0.3];
+}
+function emoGoster(kim, i) {
+  const [x, y] = emoCapa(kim), el = document.createElement('div');
+  el.className = 'emo-ucan ' + kim; el.innerHTML = `<b>${EMO[i]}</b>${kim === 'rakip' ? `<small>${esc((STR ? STR.rakip.ad : OD.rakip && OD.rakip.ad) || '')}</small>` : ''}`;
+  el.style.left = x + 'px'; el.style.top = y + 'px';
+  document.body.appendChild(el); setTimeout(() => el.remove(), 2300);
+  Ses.nota(kim === 'ben' ? 4 : 7, 0.35);
+}
+// bilgisayarın tepkileri
+const emoBotOlasilik = () => (window.__emoBotOlasilik != null ? window.__emoBotOlasilik : 0.45);
+function emoBotTepki(liste, gecikme) {
+  if (!emoBotMu() || Math.random() > emoBotOlasilik()) return;
+  const mac = emoMac();
+  setTimeout(() => { if (emoMac() === mac) emoAl({ mac, e: liste[Math.floor(Math.random() * liste.length)] }); }, (gecikme || 1) * 1000 + Math.random() * 1200);
+}
+function emoBotCevap(i) { emoBotTepki(i === 2 ? [2, 0] : i === 3 ? [3, 4] : i === 5 ? [2, 0] : [0, 4, 3], 1); }
+emoKur();
 
 /* =====================================================================
    UYGULAMA KATMANI (App Store / Google Play sürümü, Capacitor)

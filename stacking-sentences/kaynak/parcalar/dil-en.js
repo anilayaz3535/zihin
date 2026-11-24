@@ -801,5 +801,10 @@ DIL_SOZLUK.en = {
 "Geç": "Skip",
 "ALIŞTIRMA": "PRACTICE",
 "Koç": "Coach",
-"📘 Nasıl oynanır? (alıştırma)": "📘 How to play? (practice)"
+"📘 Nasıl oynanır? (alıştırma)": "📘 How to play? (practice)",
+// hazır emojiler
+"Emoji gönder": "Send emoji",
+"Rakibin emojilerini sustur": "Mute opponent's emojis",
+"Rakibin emojileri bu maçta gizlendi.": "Your opponent's emojis are hidden for this match.",
+"Rakibin emojileri açıldı.": "Your opponent's emojis are on."
 };

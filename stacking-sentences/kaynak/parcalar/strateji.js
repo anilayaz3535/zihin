@@ -485,7 +485,7 @@ function strTurPaneli() {
     ${r ? `<button class="big" id="st-devam">${tt(son ? 'MAÇ SONUCU' : 'SONRAKİ TUR')}</button>` : ''}</div>`;
   p.querySelectorAll('.dinle').forEach(x => x.onclick = e => { e.stopPropagation(); sesAc(); Konus.soyle(x.dataset.en, { hiz: 0.85 }); });
   p.classList.add('acik');
-  if (r && !R.panelSes) { R.panelSes = true; const k = strTurKazanan(b, r); Ses.cal(k > 0 ? 'yukselis' : k < 0 ? 'geri' : 'tik', { ses: 0.6 }); }
+  if (r && !R.panelSes) { R.panelSes = true; const k = strTurKazanan(b, r); Ses.cal(k > 0 ? 'yukselis' : k < 0 ? 'geri' : 'tik', { ses: 0.6 }); if (M.rakip.bot) emoBotTepki(k > 0 ? [4, 1] : k < 0 ? [3, 2] : [5, 0], 0.8); }
   const d = $('#st-devam'); if (d) d.onclick = () => { p.classList.remove('acik'); if (son) strMacSonu(); else strTurBaslat(); };
 }
 function strCikSor() {

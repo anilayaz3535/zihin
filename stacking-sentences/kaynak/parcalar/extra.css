@@ -761,3 +761,22 @@
     75%{transform:translate(calc(var(--x1) - 12px),calc(var(--y1) - 4px)) scale(.85);opacity:1}90%,100%{transform:translate(calc(var(--x1) - 12px),calc(var(--y1) - 4px)) scale(1);opacity:0}}
   @keyframes elDokun{0%,100%{transform:translate(calc(var(--x0) - 12px),calc(var(--y0) + 6px))}50%{transform:translate(calc(var(--x0) - 12px),calc(var(--y0) - 6px)) scale(.9)}}
   @media (prefers-reduced-motion:reduce){#st-el,.st-k.rh-kaynak,.st-kutu.rh-hedef,#st-bomba.rh-kaynak{animation:none}#st-el{transform:translate(calc(var(--x0) - 12px),var(--y0))}}
+
+  /* ---------- hazır emojiler (emoji.js) ---------- */
+  #emo-btn{position:fixed;z-index:21;width:40px;height:40px;border-radius:50%;border:2px solid #fff;background:linear-gradient(#fff7ea,#f0d9ba);font-size:22px;line-height:1;padding:0;
+    box-shadow:0 3px 0 #b38a62,0 6px 14px rgba(0,0,0,.35);cursor:pointer;touch-action:manipulation;transition:left .2s,top .2s}
+  #emo-btn.bekle{filter:grayscale(.7);opacity:.7}
+  #emo-btn:active{transform:translateY(2px)}
+  #emo-bar{position:fixed;z-index:22;display:none;gap:4px;padding:6px;border-radius:24px;background:linear-gradient(#fffaf0,#f3dfc2);border:2px solid #fff;box-shadow:0 8px 22px rgba(0,0,0,.4)}
+  #emo-bar.acik{display:flex;animation:kocGel .2s ease-out}
+  #emo-bar button{width:42px;height:42px;border-radius:50%;border:0;background:transparent;font-size:26px;line-height:1;padding:0;cursor:pointer;touch-action:manipulation}
+  #emo-bar button:active{transform:scale(1.25)}
+  #emo-bar .emo-sus{font-size:18px;opacity:.6;border-left:1px solid rgba(91,58,36,.2);border-radius:0 50% 50% 0}
+  #emo-bar .emo-sus.acik{opacity:1;background:rgba(232,59,92,.18)}
+  .emo-ucan{position:fixed;z-index:23;pointer-events:none;display:flex;flex-direction:column;align-items:center;transform:translate(-50%,-50%);animation:emoUc 2.2s ease-out forwards}
+  .emo-ucan b{font-size:44px;line-height:1;filter:drop-shadow(0 4px 6px rgba(0,0,0,.4))}
+  .emo-ucan small{margin-top:2px;padding:1px 8px;border-radius:10px;background:rgba(52,30,58,.9);color:#fff;font:600 11px Fredoka,sans-serif;white-space:nowrap}
+  .emo-ucan.rakip b{animation:emoSalla .5s ease-in-out 2}
+  @keyframes emoUc{0%{transform:translate(-50%,-30%) scale(.3);opacity:0}15%{transform:translate(-50%,-60%) scale(1.25);opacity:1}30%{transform:translate(-50%,-70%) scale(1)}80%{opacity:1}100%{transform:translate(-50%,-180%) scale(.9);opacity:0}}
+  @keyframes emoSalla{25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}
+  @media (prefers-reduced-motion:reduce){.emo-ucan,.emo-ucan.rakip b{animation:none}}

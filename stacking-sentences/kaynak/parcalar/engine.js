@@ -472,6 +472,7 @@ function drawDuz(t) {
 function drawStatus(t) {
   if (!(G.state === 'playing' || G.state === 'paused') || !L.promptAlan) return;
   const A = L.promptAlan, fs = Math.round(clamp(L.bh * 0.46, 11, 16));
+  window.__yarisKonum = null;   // emoji.js: emoji düğmesi ve balonları yarış çubuğuna göre
   // online: yarış çubuğu (Türkçe şeridin altında solda): sen ve rakip, avatarlar bitirilen cümle kadar ilerler; rakibin hata göstergesi ince çizgi
   if (D && D.online && D.online.rakip) {
     const o = D.online, r = o.rakip, top = o.liste.length, f2 = Math.round(clamp(fs * 0.78, 10, 13));
@@ -495,6 +496,7 @@ function drawStatus(t) {
     };
     const benAd = (aktifProfil() && aktifProfil().ad) || tt('Sen');
     satir(0, tt('Sen'), clamp((o.benim ? o.benim.cumle : D.istat.cumle) / top, 0, 1), '#ffc83d', String(benAd).charAt(0).toLocaleUpperCase('tr-TR'), o.benim && o.benim.sonuc, 0);
+    window.__yarisKonum = { ben: [ux + w * 0.18, uy + 4], rakip: [ux + w * 0.18, uy + h - 4], sag: [ux + w, uy + h / 2] };
     satir(1, r.ad, clamp((r.cumle || 0) / top, 0, 1), '#ff7a96', OD.bot ? '🤖' : String(r.ad).charAt(0).toLocaleUpperCase('tr-TR'), r.sonuc, r.yigin || 0);
     ctx.restore();
   }

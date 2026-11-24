@@ -279,6 +279,12 @@ Yüklenen "tetris-english-5" sürümündeki özellik; yalnız bu kısım alınd�
 - Sonuç ekranları (HIZ ve STRATEJİ): VS kartı ve taç, karşılaştırma çubukları (cümle / skor / süre; stratejide tur tur ve toplam). Stratejide üst çubukta avatarlı tur skoru, kurallar kartında VS.
 - Online ekranlarında ⚔ yerine 🏁.
 
+### Hazır emojiler (emoji.js, 24 Kasım 2026)
+- Yalnız 6 hazır emoji (`EMO`: 👍 😮 😂 🔥 👏 😅); yazı yok, denetlenecek kullanıcı içeriği oluşmaz. Ağ mesajı `emo` (`mac`, `e`: sıra), yalnız eşleşilen rakipten ve açık maçtan kabul edilir.
+- 😊 düğmesi (`#emo-btn`) bağlama göre yer alır (`emoBaglam`): HIZ maçında yarış çubuğunun sağı (engine.js `window.__yarisKonum`), stratejide rakip satırı (kurallar ve tur paneli açıkken yok), sonuç ekranlarında VS rozetinin altı; menüde görünmez. Çubuk (`#emo-bar`): 6 emoji + 🔇 (bu maçta rakibin emojilerini gizler).
+- Gönderilen emoji kendi avatarının, gelen emoji rakibin avatarının yanında uçar (`.emo-ucan`, rakipte adıyla). Gönderme 1,5 sn'de bir (`EMO_ARALIK`), gelenler en çok 0,8 sn'de bir gösterilir.
+- Bilgisayar rakip ara sıra karşılık verir (`emoBotTepki`, olasılık %45; testte `window.__emoBotOlasilik`): oyuncunun emojisine, tur / maç sonucuna, HIZ'da cümle bitirince.
+
 ### Strateji alıştırması (24 Kasım 2026)
 - İlk strateji maçından önce bir kez (`kayit.strRehber`, kayit-sema.js doğrular) ya da strateji ekranındaki **📘 Nasıl oynanır? (alıştırma)** ile (`strRehberTek`).
 - Elle hazırlanmış 6×4 tahta (`REHBER_TAHTA`), cümle "Ben mutluyum." → I am happy. Adımlar `REHBER`: bilgi → mavi karoyu I'nın yanına taşı (kayma görülür) → bilgi → yeşil karoyu happy'nin yanına → I, am (sarı "are" tuzağı uyarısı), happy kutulara → BOMBA → kapanış.
@@ -358,6 +364,7 @@ python3 testler/calistir.py modlar dil # yalnız seçilenler
 | `rozet` | Rozetler: sayaçlar olaylarla birebir; İlk Cümle açılır ve sonuçta kutlanır, ikinci kez kutlanmaz; rozet ekranı 320, 390, 844 px'te taşmaz; eski oyuncuda sessizce açılır; İngilizce arayüzde Türkçe yazı yok |
 | `strateji` | Kayma kuralı (sağa, satır sonunda alta, ilk boşluğa); 6 seviyede 18 tahta (aynı tohum aynı tahta, 3 boşluk, tuzak doğrusuyla aynı renk, kötü başlangıç yok); bomba ve doğruluk; bilgisayara karşı maç ekrandan: sürükleyerek taşıma, kutuya sürükleme (gölge, hamle harcamaz), dokun-dokun, kutudan geri alma, hamle sınırı, 3 ekranda taşma yok, 3 tur (biri yanlış) ve karar, tekrar oyna, çıkış, süre dolması, İngilizce |
 | `strateji_rehber` | Alıştırma: ilk maçta bir kez; bilgi adımında ve gösterilmeyen hamlede taşıma yok; sürükleyerek kayma; sırası gelmeyen kelime ve tuzak seçilmez, uyarı; bomba; kurallar kartı ve maç; kalıcı; Nasıl oynanır ve Geç; bütün koç yazılarının İngilizcesi |
+| `emoji` | Menüde düğme yok; HIZ maçında düğme, çubuk (6 emoji + sustur), uçan balon, 1,5 sn sınırı, bilgisayarın adıyla karşılığı; strateji: kurallar kartında yok, maçta var, gönderilir; çıkınca kalkar. (`online` testi: iki telefon arası emoji, susturma, geçersiz emoji) |
 | `hiz_bot` | HIZ: B1 seçilip bilgisayara karşı; cümleler B1'den, bilgisayar ilerliyor, karar, online istatistiğine yazılmaz, tekrar oyna, duraklatıp çıkış |
 | `uygulama` | Capacitor taklidiyle: yerel okuma (Türkçe dil kodu, kesilen okumanın bitişi, sus), titreşim ve kapatma, geri tuşu (oyun, duraklatma, profil, açılış), arka plana gidince duraklama, hatırlatma ayarı ve planlama, çentik payı |
 | `kayit` | Bozuk/eksik/yanlış türde/eski kayıtlar, profil listesi kurtarma, bozuk yarım bölüm, yer yok, uygulama modu, 3.000 rastgele bozuk kayıtla doğrulayıcı (hata yok, çıktı geçerli, ikinci geçişte değişmez) |

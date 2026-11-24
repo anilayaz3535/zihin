@@ -403,6 +403,13 @@ def online(b):
         A.foto('online_strateji_A')
         esit((sa[1], sa[2]), (sb[2], sb[1]), 'iki telefonda tur puanları: ' + json.dumps([A.js('STR.ben'), B.js('STR.ben')], ensure_ascii=False))
         esit({sa[0], sb[0]}, {'kazandin', 'kaybettin'}, 'strateji maç sonucu')
+        # hazır emoji: A gönderir, B'de rakip balonu çıkar; susturunca gelmez; geçersiz emoji yok sayılır
+        dogru(A.js("getComputedStyle(document.getElementById('emo-btn')).display !== 'none'"), 'sonuç ekranında emoji düğmesi yok')
+        A.js('EM.son = 0; emoGonder(3)'); B.pg.wait_for_function("!!document.querySelector('.emo-ucan.rakip')", timeout=8000)
+        esit(B.js("document.querySelector('.emo-ucan.rakip b').textContent"), '🔥', 'gelen emoji')
+        B.js('EM.sessiz = emoMac(); document.querySelectorAll(".emo-ucan").forEach(e => e.remove())'); A.js('EM.son = 0; emoGonder(1)'); B.pg.wait_for_timeout(1500)
+        esit(B.js("document.querySelectorAll('.emo-ucan.rakip').length"), 0, 'susturulmuş emoji geldi')
+        B.js('EM.sessiz = null; EM.alSon = 0; emoAl({ mac: emoMac(), e: 99 })'); esit(B.js("document.querySelectorAll('.emo-ucan.rakip').length"), 0, 'geçersiz emoji gösterildi')
         esit(A.hatalar(), [], 'JS hataları A (strateji)'); esit(B.hatalar(), [], 'JS hataları B (strateji)')
         # HIZLI EŞLEŞ: aynı mod ve seviyede bekleyen iki oyuncu eşleşir, maç kendiliğinden başlar
         for p in (A, B): p.js("strKapat(); odadanCik(); onlineModAc('hiz')"); p.pg.wait_for_timeout(200); p.pg.tap('#o-lvl button[data-l="A2"]'); p.pg.tap('#o-hizli')
@@ -550,6 +557,31 @@ def strateji_rehber(b):
     eksik = s.js("REHBER.filter(a => !(a.m in DIL_SOZLUK.en)).map(a => a.m)"); esit(eksik, [], 'çevirisi olmayan koç yazısı')
     esit(s.hatalar(), [], 'JS hataları'); s.kapat()
     return 'ilk maçta bir kez; yalnız gösterilen hamle; kayma, tuzak uyarısı, kutular, bomba; kurallar kartı ve maç; kalıcı; Nasıl oynanır ve Geç; İngilizce'
+
+@test
+def emoji(b):
+    """Hazır emojiler: HIZ maçında yarış çubuğunun yanında düğme, çubuk 6 emoji + sustur; gönderilen emoji uçar; 1,5 sn sınırı;
+    bilgisayar karşılık verir; strateji ekranında ve sonuçta düğme; menüde düğme yok; İngilizce."""
+    s = Sayfa(b, init=['window.__emoBotOlasilik = 1;'])
+    gorunur = "getComputedStyle(document.getElementById('emo-btn')).display !== 'none'"
+    s.pg.wait_for_timeout(300); dogru(not s.js(gorunur), 'menüde emoji düğmesi göründü')
+    s.js("botMacBaslat('hiz', 'A1')"); s.js('__ff(12, 0.02, () => false)'); s.pg.wait_for_timeout(400)
+    dogru(s.js(gorunur), 'HIZ maçında emoji düğmesi yok')
+    s.pg.tap('#emo-btn'); s.pg.wait_for_timeout(100)
+    esit(s.js("[...document.querySelectorAll('#emo-bar.acik button')].map(b => b.textContent)"), ['👍', '😮', '😂', '🔥', '👏', '😅', '🔇'], 'emoji çubuğu')
+    s.foto('emoji_cubuk'); s.pg.tap('#emo-bar [data-e="4"]'); s.pg.wait_for_timeout(100)
+    dogru(s.js("document.querySelector('.emo-ucan.ben b').textContent === '👏'"), 'gönderilen emoji uçmadı')
+    esit(s.js('emoGonder(0)'), False, '1,5 sn sınırı')
+    s.pg.wait_for_function("!!document.querySelector('.emo-ucan.rakip')", timeout=6000)
+    dogru(s.js("document.querySelector('.emo-ucan.rakip small').textContent") == s.js('OD.rakip.ad'), 'bilgisayarın emojisinde ad yok')
+    # strateji
+    s.js("kayit.strRehber = true; G.state = 'over'; botMacBaslat('strateji', 'A1')"); s.pg.wait_for_timeout(400)
+    dogru(not s.js(gorunur), 'kurallar kartı açıkken emoji düğmesi göründü')
+    s.pg.tap('#st-basla'); s.pg.wait_for_timeout(400); dogru(s.js(gorunur), 'strateji maçında emoji düğmesi yok'); s.foto('emoji_strateji')
+    s.js('EM.son = 0'); dogru(s.js('emoGonder(2)'), 'stratejide emoji gönderilemedi')
+    s.js('strKapat(); onlineSonMod = null; onlineAc()'); s.pg.wait_for_timeout(400); dogru(not s.js(gorunur), 'maçtan çıkınca emoji düğmesi kaldı')
+    esit(s.hatalar(), [], 'JS hataları'); s.kapat()
+    return 'HIZ ve stratejide düğme, 6 emoji + sustur, uçan balon, 1,5 sn sınırı, bilgisayarın karşılığı, menüde yok'
 
 @test
 def hiz_bot(b):

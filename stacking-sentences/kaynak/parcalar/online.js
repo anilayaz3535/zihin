@@ -169,6 +169,7 @@ function onlineMesaj(o) {
   // buradan sonrası yalnız eşleşilen rakipten
   const r = OD.rakip; if (!r || o.c !== r.cid) return;
   r.son = Date.now();
+  if (o.t === 'emo') { emoAl(o); return; }   // hazır emoji (emoji.js)
   if (o.t === 'nabiz') {
     if (OD.rol === 'misafir' && ((o.lvl && o.lvl !== OD.lvl && SEVIYELER.indexOf(o.lvl) >= 0) || (o.mod && o.mod !== OD.mod))) { if (SEVIYELER.indexOf(o.lvl) >= 0) OD.lvl = o.lvl; OD.mod = o.mod === 'strateji' ? 'strateji' : 'hiz'; if (ekran === 'oda') lobiGuncelle(); }
     return;
@@ -281,7 +282,7 @@ function botHizTik(o) {
     let top = 0; const sn = BOT_KELIME_SN[D.r.lvl] || 3.2;
     o.botPlan = o.liste.map(a => { const s = sAl(a); top += ((s ? s.w.length : 6) * sn + 9) * rnd(0.85, 1.2) * 1000; return top; });   // +9 sn: yönerge ve Türkçe cümle okunur
   }
-  while (r.cumle < o.botPlan.length && t >= o.botPlan[r.cumle]) { r.cumle++; r.skor += Math.round(rnd(300, 900)); if (Math.random() < 0.3) r.yigin = clamp(r.yigin + 0.1, 0, 0.6); }
+  while (r.cumle < o.botPlan.length && t >= o.botPlan[r.cumle]) { r.cumle++; r.skor += Math.round(rnd(300, 900)); if (Math.random() < 0.3) r.yigin = clamp(r.yigin + 0.1, 0, 0.6); if (Math.random() < 0.25) emoBotTepki([3, 0], 0.3); }
   if (r.cumle >= o.botPlan.length && !r.sonuc) { r.sonuc = 'tamam'; r.sure = o.botPlan[o.botPlan.length - 1]; onlineKarar(); }
   if (o.benim && !o.karar && o.benim.sonuc === 'tamam') onlineKarar(true);
 }
@@ -317,6 +318,7 @@ function onlineKararVer(k, neden) {
   }
   kaydet();
   if (G.state === 'playing' || G.state === 'paused') { G.state = 'over'; if (G.R) G.R.bitti = true; G.surukle = null; Konus.sus(); Ses.kis(false); }
+  if (OD.bot) emoBotTepki(k === 'kazandin' ? [4, 1, 0] : [3, 2], 1.5);
   if (k === 'kazandin') { Ses.kasetDur(0.8); sonra(0.4, () => { Ses.cal('zafer', { ses: 1 }); Ses.spiker(3, { oncelik: true }); }); const I = L.in; [0, 0.3, 0.6].forEach(t => sonra(t, () => firework(rnd(I.x + 30, I.x + I.w - 30), rnd(I.y + 40, I.y + I.h * 0.4), pick(['#ffd23d', '#19f0ff', '#ff3df2'])))); }
   else { Ses.kasetDur(0.8); sonra(0.3, () => Ses.cal('yenilgi', { ses: 0.8 })); }
   banner(tt(k === 'kazandin' ? 'KAZANDIN!' : 'KAYBETTİN'), neden.replace(/&[a-z]+;/g, ''), k === 'kazandin' ? '#ffd98a' : '#ff6b7d', 2);
