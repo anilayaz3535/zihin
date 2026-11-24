@@ -105,7 +105,7 @@ function acilisAc() {
     <button class="profil-btn" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span class="pb-ic"><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ★ ${oz.yildiz} · 📗 ${tt('{n} kelime', { n: oz.kelime })}</small></span><em>${tt('Profil ›')}</em></button>
     ${gunlukHtml()}
     ${gorevHtml()}
-    <div class="ana-ikili"><button class="ana-btn online" id="a-online"><i>⚔</i><span><b>${tt('ONLINE KAPIŞMA')}</b><small>${tt('⚡ Hız ya da 🧠 Strateji · arkadaşınla, rakiple, bilgisayarla')}</small></span></button>
+    <div class="ana-ikili"><button class="ana-btn online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE KAPIŞMA')}</b><small>${tt('⚡ Hız ya da 🧠 Strateji · arkadaşınla, rakiple, bilgisayarla')}</small></span></button>
     <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1’den C2’ye cümleler ve kelimeler')}</small></span></button></div>
     <div class="row uclu"><button class="sec" id="a-rozet">🏅 ${rozetSay()}/${ROZETLER.length}</button><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
   </div>`, '', 'acilis');

@@ -126,7 +126,7 @@ Bir cümle bölümü: 4–6 `kur` turu, aralarında `sav` turları. Kelime paket
 
 ## Yönergeler ve oyun içi konuşma (23 Kasım 2026)
 - Her tur türünün yönergesi `YONERGE` tablosunda (game.js): `e` etiket, `k` kısa yönerge; Türkçe şeridin üstünde "e · k" yazar (iki satıra kadar). Hatayı bul yönergeleri oyuncunun beğendiği "… kaydır" diliyle.
-- **Oyunda kendiliğinden yalnız kısa yönerge okunur** (oyuncu isteği: konuşma araya girmesin): her turun başında `otoOku` şeritteki yönergeyi okur ("Hatayı bul. Doğru yazılışı yanlışın üstüne kaydır."), karolar okuma bitince yağar. Türkçe cümle, kelime, tur sonundaki İngilizce cümle ve diziliş kartı kendiliğinden okunmaz; şeride (🔊) ya da kartın Dinle düğmesine dokununca okunur. Dinleme turlarında (`R.dinleSes`) yönergeden sonra duyulacak İngilizce çalar. Kelime paketindeki yazım / eşleşme turlarında şeride dokununca da genel soru değil yönerge okunur.
+- (24 Kasım 2026'dan beri yönergeden sonra Türkçe içerik de okunur; bkz. Online → Sesli okuma.) Eski kural: **oyunda kendiliğinden yalnız kısa yönerge okunur** (oyuncu isteği: konuşma araya girmesin): her turun başında `otoOku` şeritteki yönergeyi okur ("Hatayı bul. Doğru yazılışı yanlışın üstüne kaydır."), karolar okuma bitince yağar. Türkçe cümle, kelime, tur sonundaki İngilizce cümle ve diziliş kartı kendiliğinden okunmaz; şeride (🔊) ya da kartın Dinle düğmesine dokununca okunur. Dinleme turlarında (`R.dinleSes`) yönergeden sonra duyulacak İngilizce çalar. Kelime paketindeki yazım / eşleşme turlarında şeride dokununca da genel soru değil yönerge okunur.
 - Ayarlar'daki **Yönergeleri sesli oku** (`kayit.ayar.yonergeSes`, açık gelir) kapatır; yazılı yönerge yine görünür. Türkçe arayüzde Türkçe, İngilizce arayüzde İngilizce sesle (`yonergeSoyle`).
 - **Oyunda bilgi kutusu yok** (23 Kasım 2026, oyuncu isteği): "Aynı renkten üç karo…" gibi ilk kez açıklamaları (`ANLAT`, `anlat`) tahtayı kapattığı için kaldırıldı. Boş güç kutusuna ya da dolmamış bombaya dokununca yalnız kısa ses ve titreşim olur.
 - **Giriş**: Nasıl oynanır sayfaları sade dille yazıldı ve açılınca sesli okunur; göster / gizle penceresi açılınca ne yapılacağı okunur.
@@ -269,6 +269,19 @@ Yüklenen "tetris-english-5" sürümündeki özellik; yalnız bu kısım alınd�
 - **HIZ**: eski kapışma; cümleler seçilen seviyeden. Bilgisayar rakip (`botMacBaslat`, `botHizTik`) her cümleyi seviyesine göre bir sürede bitirir (`BOT_KELIME_SN`, kelime başına ~3–3,8 sn + cümle başına 6 sn, ±%20); süre oyun saatiyle ölçülür (duraklatınca bilgisayar da bekler).
 - **Hızlı eşleşme** (`eslesmeBaslat`): konu `…/lobi-<mod>-<seviye>`. Herkes 2 sn'de bir `bekle` yayınlar; kimliği küçük olan `teklif` (gizli oda kodu) gönderir, öbürü 3 kez `kabul` eder; ikisi o odaya geçer, ev sahibi (`OD.oto`) rakip gelince maçı kendiliğinden başlatır. 20 sn'de kimse yoksa bilgisayara karşı oynama önerilir.
 - Bilgisayara karşı maçlar `kayit.istat.online`'a sayılmaz (XP verir, `onlineBitti` olayında `bot: true`).
+
+### Görünüm (24 Kasım 2026)
+- Online giriş (`onlineAc`): iki büyük mod kartı, içlerinde küçük canlı görseller (HIZ: yarışan karolar ve kronometre; STRATEJİ: patlayan mini ızgara ve bomba); oyuncunun maç / galibiyet özeti.
+- Mod ekranı (`onlineModAc`): renkli bant, seviye karoları (`LVL_RENK`), büyük HIZLI EŞLEŞ, iki seçenek kartı (Bilgisayar · Oda kur), kodla katıl.
+- Ortak parçalar: `oyuncuHtml` (avatar, ad, alt yazı, kazanana taç), `vsHtml` (iki oyuncu ve VS rozeti), `kiyasSatir` (iki değeri ortadan dışa çubuklarla karşılaştırır).
+- Eşleşme: radar (dalgalar, yörüngede dönen kelime karoları, ortada oyuncunun avatarı). Lobi: VS kartı (rakip yoksa nabız gibi atan "?"), oda kodu ve **📤 Kodu paylaş** (telefonun paylaş menüsü; yoksa panoya kopyalar).
+- HIZ maçı içinde (engine.js `drawStatus`): **yarış çubuğu**: "Sen" ve rakip iki satır; avatarlar bitirilen cümle kadar ilerler, rakibin hata göstergesi ince çizgi.
+- Sonuç ekranları (HIZ ve STRATEJİ): VS kartı ve taç, karşılaştırma çubukları (cümle / skor / süre; stratejide tur tur ve toplam). Stratejide üst çubukta avatarlı tur skoru, kurallar kartında VS.
+- Online ekranlarında ⚔ yerine 🏁.
+
+### Sesli okuma (24 Kasım 2026, oyuncu isteği)
+- Her turun başında yönerge, **ardından Türkçe cümle / anlam / kelime** kendiliğinden okunur (`otoOku`); karolar okuma bitince yağar. Dinleme turunda İngilizce. İçeriği yönergenin kendisi olan turlarda (`R.otoIcerik = false`) tekrar okunmaz. Stratejide tur başında Türkçe cümle okunur.
+- Ayarlar: "Yönergeleri sesli oku" yalnız yönergeyi, "Türkçe sesli okuma" Türkçe içeriği kapatır.
 
 ### STRATEJİ (strateji.js)
 - Maç 3 tur (`STR_TUR`); her tur bir cümle (`strCumleler`: seviyeye göre `STR_ARALIK` kelime, 13 harften uzun kelime yok). Süre 180 sn (`STR_SURE`), hamle = kelime sayısı + 6.

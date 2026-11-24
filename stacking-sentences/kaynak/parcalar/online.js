@@ -247,7 +247,7 @@ function macBaslat(mac, lvl, cum) {
 // dojoBaslat çağırır: 3 · 2 · 1 · BAŞLA
 function onlineGeriSayim() {
   const o = D.online;
-  banner(tt('ONLINE KAPIŞMA'), tt('{lvl} · {ad} ile · {n} cümle', { lvl: D.r.lvl, ad: o.rakip.ad, n: o.liste.length }), '#ff6b9a', 1.6);
+  banner(tt('⚡ HIZ'), tt('{lvl} · {ad} ile · {n} cümle', { lvl: D.r.lvl, ad: o.rakip.ad, n: o.liste.length }), '#ff6b9a', 1.6);
   ['3', '2', '1'].forEach((t, i) => sonra(1.2 + i * 0.75, () => { banner(t, '', '#ffd23d', 0.7); Ses.cal('tik', { ses: 0.7, hiz: 1.3 }); }));
   sonra(3.45, () => { if (!D || D.online !== o) return; banner(tt('BAŞLA!'), '', '#3dff7a', 0.9); Ses.cal('yukselis', { ses: 0.6 }); o.t0 = performance.now(); sonrakiTur(); });
 }
@@ -279,7 +279,7 @@ function botHizTik(o) {
   const t = (G.t - o.botT0) * 1000;   // oyun saati: oyuncu duraklatınca bilgisayar da bekler
   if (!o.botPlan) {
     let top = 0; const sn = BOT_KELIME_SN[D.r.lvl] || 3.2;
-    o.botPlan = o.liste.map(a => { const s = sAl(a); top += ((s ? s.w.length : 6) * sn + 6) * rnd(0.85, 1.2) * 1000; return top; });
+    o.botPlan = o.liste.map(a => { const s = sAl(a); top += ((s ? s.w.length : 6) * sn + 9) * rnd(0.85, 1.2) * 1000; return top; });   // +9 sn: yönerge ve Türkçe cümle okunur
   }
   while (r.cumle < o.botPlan.length && t >= o.botPlan[r.cumle]) { r.cumle++; r.skor += Math.round(rnd(300, 900)); if (Math.random() < 0.3) r.yigin = clamp(r.yigin + 0.1, 0, 0.6); }
   if (r.cumle >= o.botPlan.length && !r.sonuc) { r.sonuc = 'tamam'; r.sure = o.botPlan[o.botPlan.length - 1]; onlineKarar(); }
@@ -333,14 +333,24 @@ function onlineAc(uyari) {
   if (onlineSonMod) { onlineModAc(onlineSonMod, uyari); return; }
   if (G.state !== 'menu') demo();
   Ses.muzik('menu'); Konus.sus();
+  const ben = aktifProfil() ? aktifProfil().ad : tt('Sen'), m = kayit.istat.online || 0, g = kayit.istat.onlineGalibiyet || 0;
+  const hizG = `<div class="mk-gorsel hizG"><div class="serit s1">${['I', 'am', 'fast'].map((t, i) => `<i style="--r:${STR_RENKLER[i]};--g:${i * 0.25}s">${t}</i>`).join('')}</div>
+    <div class="serit s2">${['You', 'are', 'too'].map((t, i) => `<i style="--r:${STR_RENKLER[(i + 2) % 4]};--g:${0.4 + i * 0.25}s">${t}</i>`).join('')}</div><span class="kronometre">⏱</span></div>`;
+  const izgara = [0, 0, 2, 3, 1, 0, 0, 3, 1, 2, 2, 1];
+  const strG = `<div class="mk-gorsel strG"><div class="mini-izgara">${izgara.map((c, i) => `<i class="${[0, 1, 5, 6].includes(i) ? 'pat' : ''}" style="--r:${STR_RENKLER[c]}"></i>`).join('')}</div><span class="mini-bomba">💣</span></div>`;
   goster(`<div class="ust-satir"><button class="geri" id="o-geri">${tt('← Geri')}</button></div>
-    <div class="ana-baslik">${tt('⚔ ONLINE KAPIŞMA')}</div>
-    <p class="aciklama">${tt('Bir mod seç. Seviyeni seçip arkadaşınla, rastgele bir rakiple ya da bilgisayarla oyna.')}</p>
-    <div class="mod-secim">${Object.keys(ONLINE_MOD).map(m => { const x = ONLINE_MOD[m]; return `<button class="mod-btn ${m}" id="o-${m}"><i>${x.i}</i><span><b>${tt(x.ad)}</b><small>${tt(x.alt)}</small></span></button>`; }).join('')}</div>
-    ${uyari ? `<p class="uyari">${esc(uyari)}</p>` : ''}`, '', 'onlineSecim');
+    <div class="ol-bas"><div class="ana-baslik">🏁 ${tt('ONLINE')}</div>
+      <div class="ol-ozet"><span class="vs-av kucuk" style="--a:#ffc83d">${harfi(ben)}</span><span>${tt('{m} maç · {g} galibiyet', { m, g })}</span></div></div>
+    <div class="mod-kartlar">
+      <button class="mod-kart hiz" id="o-hiz">${hizG}<span class="mk-yazi"><b>⚡ ${tt('HIZ')}</b><small>${tt(ONLINE_MOD.hiz.alt)}</small></span><em>${tt('OYNA ›')}</em></button>
+      <button class="mod-kart strateji" id="o-strateji">${strG}<span class="mk-yazi"><b>🧠 ${tt('STRATEJİ')}</b><small>${tt(ONLINE_MOD.strateji.alt)}</small></span><em>${tt('OYNA ›')}</em></button>
+    </div>
+    <p class="aciklama kucuk" style="text-align:center">${tt('Seviyeni seç; arkadaşınla, rastgele bir rakiple ya da bilgisayarla oyna.')}</p>
+    ${uyari ? `<p class="uyari">${esc(uyari)}</p>` : ''}`, 'genis', 'onlineSecim');
   $('#o-geri').onclick = () => acilisAc();
-  Object.keys(ONLINE_MOD).forEach(m => { $('#o-' + m).onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); onlineModAc(m); }; });
+  Object.keys(ONLINE_MOD).forEach(m2 => { $('#o-' + m2).onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); onlineModAc(m2); }; });
 }
+const LVL_RENK = { A1: '#3cbb4a', A2: '#2b91ea', B1: '#ffbc1f', B2: '#ff8a2a', C1: '#f2453d', C2: '#b04fd8' };
 function onlineModAc(mod, uyari) {
   mod = mod === 'strateji' ? 'strateji' : 'hiz'; onlineSonMod = mod;
   if (G.state !== 'menu') demo();
@@ -348,16 +358,16 @@ function onlineModAc(mod, uyari) {
   if (SEVIYELER.indexOf(onlineSecLvl) < 0) onlineSecLvl = sonAcikSeviye();
   const x = ONLINE_MOD[mod], lvl = onlineSecLvl;
   goster(`<div class="ust-satir"><button class="geri" id="o-geri">${tt('← Geri')}</button></div>
-    <div class="ana-baslik">${x.i} ${tt(x.ad)}</div>
-    <p class="aciklama">${tt(x.kural, { n: ONLINE_CUMLE })}</p>
+    <div class="mod-bant ${mod}"><i>${x.i}</i><div><b>${tt(x.ad)}</b><small>${tt(x.kural, { n: ONLINE_CUMLE })}</small></div></div>
     ${uyari ? `<p class="uyari">${esc(uyari)}</p>` : ''}
     <div class="bolum">${tt('Seviyen')}</div>
-    <div class="sekmeler kucuk lvl-sec" id="o-lvl">${SEVIYELER.map(l => `<button data-l="${l}" class="${l === lvl ? 'secili' : ''}">${l}</button>`).join('')}</div>
-    <p class="aciklama kucuk" style="text-align:center">${esc(seviyeAd(lvl))} · ${tt('rakibin de bu seviyeden olur')}</p>
-    <button class="big" id="o-hizli">${tt('🎲 HIZLI EŞLEŞ')}</button>
-    <button class="sec genis-btn" id="o-bot">${tt('🤖 BİLGİSAYARA KARŞI')}</button>
-    <div class="ayrac">${tt('ya da arkadaşınla oda koduyla')}</div>
-    <div class="row"><button class="sec" id="o-kur">${tt('ODA KUR')}</button></div>
+    <div class="lvl-karolar" id="o-lvl">${SEVIYELER.map(l => `<button data-l="${l}" class="${l === lvl ? 'secili' : ''}" style="--r:${LVL_RENK[l]}">${l}</button>`).join('')}</div>
+    <p class="lvl-ad">${esc(seviyeAd(lvl))} · ${tt('rakibin de bu seviyeden olur')}</p>
+    <button class="big hizli-btn" id="o-hizli">${tt('🎲 HIZLI EŞLEŞ')}<small>${tt('Bu seviyede bekleyen biriyle')}</small></button>
+    <div class="secenek-ikili">
+      <button class="secenek" id="o-bot"><i>🤖</i><b>${tt('Bilgisayar')}</b><small>${tt('Hemen oyna')}</small></button>
+      <button class="secenek" id="o-kur"><i>👥</i><b>${tt('Oda kur')}</b><small>${tt('Arkadaşına kod ver')}</small></button>
+    </div>
     <div class="kod-satir"><input id="o-kod" class="giris kod" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="${tt('Kod')}" autocomplete="off"><button class="sec" id="o-katil">${tt('KATIL')}</button></div>
     <p class="aciklama kucuk">${tt('İkiniz de internete bağlı olmalısınız. Bağlantı ücretsiz genel sunucular üzerinden kurulur; bazen bağlanmak birkaç saniye sürebilir.')}</p>`, '', 'online');
   $('#o-geri').onclick = () => { onlineSonMod = null; onlineAc(); };
@@ -371,7 +381,13 @@ function onlineModAc(mod, uyari) {
   kod.oninput = () => { kod.value = kod.value.replace(/\D/g, '').slice(0, 4); };
   kod.onkeydown = e => { if (e.key === 'Enter') katil(); };
 }
-
+// iki oyuncunun karşılıklı kartı: avatar (bilgisayarda 🤖, beklenirken ?), ad, alt yazı, kazanana taç
+function oyuncuHtml(ad, o) {
+  o = o || {};
+  return `<div class="vs-oy ${o.kaz ? 'kaz' : ''} ${o.bekle ? 'bekle' : ''}"><span class="vs-av" style="--a:${o.renk || '#ffc83d'}">${o.bot ? '🤖' : o.bekle ? '?' : harfi(ad)}${o.kaz ? '<i class="tac">👑</i>' : ''}</span><b>${esc(ad)}</b>${o.alt ? `<small>${o.alt}</small>` : ''}</div>`;
+}
+function vsHtml(sol, sag) { return `<div class="vs">${sol}<span class="vs-rozet">VS</span>${sag}</div>`; }
+const benimAd = () => OD.ad || (aktifProfil() ? aktifProfil().ad : tt('Sen'));
 /* ---------------- hızlı eşleşme ---------------- */
 const ES = { aktif: false, mod: 'hiz', lvl: 'A1', teklif: null, t0: 0, T: null };
 function eslesmeBaslat(mod, lvl) {
@@ -409,9 +425,12 @@ function eslesmeMesaj(o) {
   }
 }
 function eslesmeAc() {
-  const x = ONLINE_MOD[ES.mod];
-  goster(`<div class="ana-baslik">${x.i} ${tt(x.ad)} · ${ES.lvl}</div>
-    <div class="arama"><span class="arama-halka"></span><b>${tt('Rakip aranıyor…')}</b><small id="es-sure"></small></div>
+  const x = ONLINE_MOD[ES.mod], ben = aktifProfil() ? aktifProfil().ad : tt('Sen');
+  goster(`<div class="mod-bant ${ES.mod} kucuk"><i>${x.i}</i><div><b>${tt(x.ad)} · ${ES.lvl}</b><small>${tt('Hızlı eşleşme')}</small></div></div>
+    <div class="radar"><i class="dalga d1"></i><i class="dalga d2"></i><i class="dalga d3"></i>
+      ${['I', 'go', 'is', 'we', 'am', 'the'].map((t, i) => `<em class="yorunge" style="--n:${i};--r:${STR_RENKLER[i % 4]}">${t}</em>`).join('')}
+      <span class="vs-av buyuk" style="--a:#ffc83d">${harfi(ben)}</span></div>
+    <div class="arama"><b>${tt('Rakip aranıyor…')}</b><small id="es-sure"></small></div>
     <p class="aciklama" id="es-not" style="text-align:center"></p>
     <button class="big" id="es-bot">${tt('🤖 BİLGİSAYARA KARŞI OYNA')}</button>
     <div class="row"><button class="sec" id="es-iptal">${tt('İPTAL')}</button></div>`, '', 'eslesme');
@@ -428,23 +447,29 @@ function eslesmeCiz() {
 function lobiAc() {
   if (G.state !== 'menu') demo();
   Ses.muzik('menu');
-  const ev = OD.rol === 'ev';
-  const mx = ONLINE_MOD[OD.mod] || ONLINE_MOD.hiz;
-  goster(`<div class="ana-baslik">${mx.i} ${tt(mx.ad)}</div>
-    <div class="oda-kod-bas">${tt(ev ? 'ODA KODU' : 'ODA')}</div>
-    <div class="oda-kod">${OD.oto ? '🎲' : esc(OD.kod)}</div>
+  const ev = OD.rol === 'ev', mx = ONLINE_MOD[OD.mod] || ONLINE_MOD.hiz;
+  goster(`<div class="mod-bant ${OD.mod} kucuk"><i>${mx.i}</i><div><b>${tt(mx.ad)} · <span id="oda-lvl-bas">${OD.lvl}</span></b><small>${tt(OD.oto ? 'Hızlı eşleşme' : ev ? 'Senin odan' : 'Arkadaşının odası')}</small></div></div>
+    <div id="oda-vs"></div>
+    ${OD.oto ? '' : `<div class="oda-kod-kutu"><span class="oda-kod-bas">${tt('ODA KODU')}</span><div class="oda-kod">${esc(OD.kod)}</div>
+      ${ev ? `<button class="sec paylas" id="oda-paylas">${tt('📤 Kodu paylaş')}</button>` : ''}</div>`}
     ${ev && !OD.oto ? '<p class="aciklama" style="text-align:center">' + tt('Bu kodu arkadaşına söyle. Arkadaşın “Katıl”a basıp kodu yazınca maçı başlatabilirsin.') + '</p>' : ''}
     <div class="oda-bilgi">
       <div><span>${tt('Bağlantı')}</span><b id="oda-ag"></b></div>
-      <div><span>${tt('Rakip')}</span><b id="oda-rakip"></b></div>
       <div><span>${tt('Seviye')}</span>${ev && !OD.oto ? `<select id="oda-lvl" class="secici">${SEVIYELER.map(l => `<option value="${l}"${l === OD.lvl ? ' selected' : ''}>${l} · ${esc(seviyeAd(l))}</option>`).join('')}</select>` : '<b id="oda-lvl-yazi"></b>'}</div>
     </div>
+    <span id="oda-rakip" hidden></span>
     ${ev && !OD.oto ? '<button class="big" id="oda-basla">' + tt('MAÇI BAŞLAT') + '</button>' : '<p class="aciklama" id="oda-not" style="text-align:center"></p>'}
     <div class="row"><button class="sec" id="oda-cik">${tt('ODADAN ÇIK')}</button></div>`, '', 'oda');
   $('#oda-cik').onclick = () => { odadanCik(); onlineAc(); };
   if (OD.oto && OD.rol === 'misafir') setTimeout(() => { if (ekran === 'oda' && !OD.rakip) { odadanCik(true); onlineAc(tt('Rakiple bağlantı kurulamadı. Tekrar dene.')); } }, 16000);
+  const pay = $('#oda-paylas');
+  if (pay) pay.onclick = () => {
+    const metin = tt('Stacking Sentences’ta benimle oyna! Online → {mod} → Oda kodu: {kod}', { mod: tt(mx.ad), kod: OD.kod });
+    if (navigator.share) navigator.share({ text: metin }).catch(() => { });
+    else if (navigator.clipboard) navigator.clipboard.writeText(metin).then(() => not(tt('Kopyalandı: {k}', { k: OD.kod })), () => { });
+  };
   if (ev && !OD.oto) {
-    $('#oda-lvl').onchange = e => { OD.lvl = e.target.value; Ag.gonder({ t: 'nabiz', ad: OD.ad, lvl: OD.lvl }); };
+    $('#oda-lvl').onchange = e => { OD.lvl = e.target.value; Ag.gonder({ t: 'nabiz', ad: OD.ad, lvl: OD.lvl, mod: OD.mod }); lobiGuncelle(); };
     $('#oda-basla').onclick = () => { if (!OD.rakip) { not(tt('Önce arkadaşın odaya gelmeli.')); return; } sesAc(); macBaslatEv(); };
   }
   lobiGuncelle();
@@ -455,21 +480,32 @@ function lobiGuncelle() {
   if (ag) { ag.textContent = tt(d === 'acik' ? '● Bağlı' : d === 'baglaniyor' ? '… Bağlanıyor' : '✖ Bağlanamadı, tekrar deneniyor'); ag.className = 'ag-' + d; }
   const r = $('#oda-rakip');
   if (r) r.textContent = OD.rakip ? '✔ ' + OD.rakip.ad : tt(OD.rol === 'ev' ? 'Bekleniyor…' : 'Oda aranıyor…');
-  const b = $('#oda-basla'); if (b) b.disabled = !OD.rakip;
+  const vs = $('#oda-vs');
+  if (vs) vs.innerHTML = vsHtml(oyuncuHtml(benimAd(), { renk: '#ffc83d', alt: tt('Sen') }),
+    OD.rakip ? oyuncuHtml(OD.rakip.ad, { renk: '#ff7a96', alt: tt('✔ hazır') }) : oyuncuHtml(tt(OD.rol === 'ev' ? 'Bekleniyor…' : 'Oda aranıyor…'), { bekle: true, renk: '#8a7a94' }));
+  const b = $('#oda-basla'); if (b) { b.disabled = !OD.rakip; b.classList.toggle('hazir', !!OD.rakip); }
   const ly = $('#oda-lvl-yazi'); if (ly) ly.textContent = OD.lvl + ' · ' + seviyeAd(OD.lvl);
+  const lb = $('#oda-lvl-bas'); if (lb) lb.textContent = OD.lvl;
   const n = $('#oda-not'); if (n) n.textContent = OD.oto ? (OD.rakip ? tt('Rakip bulundu: {ad}. Maç başlıyor…', { ad: OD.rakip.ad }) : tt('Rakibe bağlanılıyor…')) : OD.rakip ? tt('{ad} maçı başlatınca oyun kendiliğinden açılır.', { ad: OD.rakip.ad }) : '';
+}
+// iki oyuncunun değerini karşılaştıran satır (çubuklar ortadan dışa doğru)
+function kiyasSatir(ad, a, b, ay, by, kucukIyi) {
+  const top = Math.max(1e-9, a + b), sa = a / top, sb = b / top, iyiA = kucukIyi ? a < b : a > b, iyiB = kucukIyi ? b < a : b > a;
+  return `<div class="kiyas"><b class="${iyiA ? 'iyi' : ''}">${ay}</b><span class="kc sol"><u style="width:${Math.round(sa * 100)}%"></u></span><em>${ad}</em><span class="kc sag"><u style="width:${Math.round(sb * 100)}%"></u></span><b class="${iyiB ? 'iyi' : ''}">${by}</b></div>`;
 }
 function onlineSonucGoster() {
   const o = D && D.online; if (!o || !o.karar) return;
   const b = o.benim || { cumle: D.istat.cumle, skor: G.score }, r = o.rakip, top = o.liste.length, kaz = o.karar.k === 'kazandin';
   const sure = x => x && x.sure && x.sure < 1e8 ? Math.floor(x.sure / 60000) + ':' + String(Math.floor(x.sure / 1000) % 60).padStart(2, '0') : '–';
-  const ad = OD.ad || tt('Sen');
+  const sn = x => x && x.sonuc === 'tamam' && x.sure < 1e8 ? x.sure : 0;
   goster(`<div class="go ${kaz ? 'zafer' : ''}" style="font-size:clamp(34px,10vw,54px)">${tt(kaz ? 'KAZANDIN!' : 'KAYBETTİN')}</div>
-    <div class="sonuc-alt">${o.karar.neden}</div>
-    <table class="mac-tablo"><tr><th></th><th>${esc(ad)}</th><th>${esc(r.ad)}</th></tr>
-      <tr><td>${tt('Cümle')}</td><td>${b.cumle} / ${top}</td><td>${r.cumle || 0} / ${top}</td></tr>
-      <tr><td>${tt('Skor')}</td><td>${b.skor}</td><td>${r.skor || 0}</td></tr>
-      <tr><td>${tt('Süre')}</td><td>${b.sonuc === 'tamam' ? sure(b) : '–'}</td><td>${r.sonuc === 'tamam' ? sure(r) : '–'}</td></tr></table>
+    <div class="sonuc-alt">⚡ ${tt('HIZ')} · ${D.r.lvl} · ${o.karar.neden}</div>
+    ${vsHtml(oyuncuHtml(benimAd(), { renk: '#ffc83d', kaz, alt: b.sonuc === 'tamam' ? '⏱ ' + sure(b) : '' }), oyuncuHtml(r.ad, { renk: '#ff7a96', bot: OD.bot, kaz: !kaz, alt: r.sonuc === 'tamam' ? '⏱ ' + sure(r) : '' }))}
+    <div class="kiyas-kutu">
+      ${kiyasSatir(tt('Cümle'), b.cumle || 0, r.cumle || 0, (b.cumle || 0) + '/' + top, (r.cumle || 0) + '/' + top)}
+      ${kiyasSatir(tt('Skor'), b.skor || 0, r.skor || 0, b.skor || 0, r.skor || 0)}
+      ${sn(b) && sn(r) ? kiyasSatir(tt('Süre'), sn(b), sn(r), sure(b), sure(r), true) : ''}
+    </div>
     ${D.ilerleme ? `<div class="sonuc-alt">+${D.ilerleme.xp} XP · 🔥 ${tt('{n} gün seri', { n: D.ilerleme.seri })}</div>` : ''}
     <div class="sonuc-alt kucuk">${OD.bot ? '🤖 ' + tt('Bilgisayara karşı · ') : ''}${tt('Online: {m} maç · {g} galibiyet', { m: kayit.istat.online || 0, g: kayit.istat.onlineGalibiyet || 0 })}${D.hatalar.length ? tt(' · hataların Defterim’e eklendi') : ''}</div>
     ${OD.bot ? '<button class="big" id="os-tekrar">' + tt('TEKRAR OYNA') + '</button>' : OD.rol === 'ev' && OD.rakip ? '<button class="big" id="os-tekrar">' + tt('TEKRAR KAPIŞ') + '</button>' : OD.rakip ? `<p class="aciklama" style="text-align:center">${tt('{ad} yeni maç başlatırsa oyun kendiliğinden açılır.', { ad: esc(OD.rakip.ad) })}</p>` : ''}

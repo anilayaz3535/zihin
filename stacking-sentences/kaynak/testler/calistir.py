@@ -584,7 +584,7 @@ def dil(b):
     s.pg.reload(); s.bekle(); esit(s.js('arayuzDili'), 'en', 'dil kalıcı değil'); s.kapat()
     m, h = ekranlari_topla(b, 'en')
     esit(h, [], 'JS hataları (İngilizce)')
-    beklenen = {'acilis': ['CAREER', 'ONLINE DUEL', '⚙ Settings'], 'profil': ['💾 SAVE GAME'], 'online': ['SPEED', 'STRATEGY'], 'online_hiz': ['CREATE ROOM', 'JOIN', '🎲 QUICK MATCH'], 'online_strateji': ['STRATEGY', '🤖 VS COMPUTER'],
+    beklenen = {'acilis': ['CAREER', 'ONLINE DUEL', '⚙ Settings'], 'profil': ['💾 SAVE GAME'], 'online': ['SPEED', 'STRATEGY', 'PLAY ›'], 'online_hiz': ['Create room', 'JOIN', '🎲 QUICK MATCH'], 'online_strateji': ['STRATEGY', 'Computer'],
                 'kariyer_duraklat': ['PAUSED', 'RESUME'], 'kariyer_sonuc': ['SCORE', 'CAREER'], 'nasil_1': ['HOW TO PLAY?', 'GOAL'],
                 'tuval': ['SCORE:', 'GOAL', 'Sentences', 'BUILD THE SENTENCE · Put the English'], 'ilk_karsila': ['BUILD YOUR FIRST SENTENCE'],
                 'ilk_sonuc': ['FIRST SENTENCE DONE!', 'SAVE AND CONTINUE'], 'ilk_hedef': ['YOUR DAILY GOAL', 'Casual · 20 XP']}
@@ -1310,25 +1310,27 @@ window.__soz = [];
 
 @test
 def yonerge(b):
-    """Yönergeler: her turun başında yalnız şeritteki kısa yönerge okunur (Türkçe cümle / kelime kendiliğinden okunmaz, karolar okuma
-    bitince yağar); dinleme turunda ardından İngilizce duyulur; şeride dokununca içerik okunur; yazım hatası turunda genel soru okunmaz;
-    oyunda tahtayı kapatan bilgi kutusu yok; anlatım ekranı sesli; Ayarlar'dan kapanır."""
+    """Yönergeler: her turun başında şeritteki kısa yönerge, ardından Türkçe cümle / anlam / kelime okunur (karolar okuma bitince yağar);
+    dinleme turunda ardından İngilizce duyulur; şeride dokununca içerik yeniden okunur; yazım hatası turunda genel soru okunmaz;
+    oyunda tahtayı kapatan bilgi kutusu yok; anlatım ekranı sesli; yönerge ve Türkçe okuma Ayarlar'dan ayrı ayrı kapanır."""
     s = Sayfa(b, init=[SAHTE_SES]); s.pg.mouse.click(5, 5)
     soz = lambda: s.js('__soz.slice()')
     bekle = lambda kos: s.pg.wait_for_function(kos, timeout=20000)
     kisa = lambda: s.js('yonergeKisa(G.R)')
     s.js("__soz.length = 0; dojoBaslat(rakipBul('A1-1'))"); bekle('G.R && G.R.tahtaHazir')
-    esit(soz(), [kisa()], 'ilk turda yalnız kısa yönerge okunmalı')
+    trc = lambda: s.js('G.R.s.tr.replace(/;/g, ",")')
+    esit(soz(), [kisa(), trc()], 'ilk turda yönerge, sonra Türkçe cümle')
+    dogru(s.js('G.R.tahtaHazir'), 'karolar yağmadı')
     dogru('İngilizce kelimeleri sırayla yan yana diz' in kisa(), 'kısa yönerge: ' + kisa())
     # aynı tür arka arkaya: yine yalnız kısa yönerge (her turda)
     s.js("__soz.length = 0; G.R.bitti = true; turBaslat(turKur(cumleSec()))"); bekle('G.R.tahtaHazir')
-    esit(soz(), [kisa()], 'ikinci turda kısa yönerge')
+    esit(soz(), [kisa(), trc()], 'ikinci turda yönerge ve Türkçe cümle')
     # şeride dokununca Türkçe cümle okunur
     s.js('__soz.length = 0; tekrarDinle()'); bekle('__soz.length >= 1')
     esit(soz()[0], s.js('G.R.s.tr.replace(/;/g, ",")'), 'şeride dokununca Türkçe cümle okunmadı')
     # hatayı bul: kısa yönerge
     s.js("__soz.length = 0; G.R.bitti = true; turBaslat(turSav(savunmaMaddesi()))"); bekle('G.R.tahtaHazir')
-    esit(soz(), [kisa()], 'hatayı bul yönergesi')
+    esit(soz(), [kisa(), s.js('G.R.prompt.ana')], 'hatayı bul: yönerge ve Türkçe anlam')
     # yazım hatası turu: "Yazımı yanlış olan kelimeyi bul" okunmaz, "Doğru yazılışı yanlışın üstüne kaydır" okunur
     s.js("__soz.length = 0; G.R.bitti = true; turBaslat(turSav({ tip: 'yazim', tokens: ['shelf', 'bsaket', 'lamp'], idx: 1, dogru: 'basket', tr: 'Yazımı yanlış olan kelimeyi bul', kural: 'Doğru yazım: basket' }))")
     bekle('G.R.tahtaHazir')
@@ -1342,7 +1344,7 @@ def yonerge(b):
     dogru(s.js("typeof anlat") == 'undefined' and not s.js("document.getElementById('not').classList.contains('show')"), 'oyunda bilgi kutusu açık')
     # kelime paketi: yeni kelime turunda yalnız kısa yönerge
     s.js("__soz.length = 0; dojoBaslat(paketBul('K-A1-1'), {kelime: paketBul('K-A1-1')})"); bekle('G.R && G.R.tahtaHazir')
-    esit(soz(), [kisa()], 'yeni kelime turu')
+    esit(soz()[:1], [kisa()], 'yeni kelime turu: yönerge'); dogru(len(soz()) == 2 and s.js('G.R.prompt.ana') in soz()[1], 'yeni kelime okunmadı: %r' % soz())
     # anlatım ekranı sesli (giriş)
     s.js("__soz.length = 0; showTutorial()"); bekle('__soz.length >= 1')
     dogru('oynayarak' in soz()[0], 'anlatım okunmadı: %r' % soz()[:1])
@@ -1351,9 +1353,11 @@ def yonerge(b):
     s.js("ayarAc(false, acilisAc)"); dogru('Yönergeleri sesli oku' in s.js('card.innerText'), "Ayarlar'da yönerge anahtarı yok")
     s.pg.tap('.anahtar[data-a="yonergeSes"]'); esit(s.js('kayit.ayar.yonergeSes'), False, 'anahtar kapanmadı')
     s.js("__soz.length = 0; dojoBaslat(rakipBul('A1-1'))"); bekle('G.R && G.R.tahtaHazir')
-    esit(soz(), [], 'ayar kapalıyken okundu'); dogru('CÜMLE KUR' in s.js('G.R.prompt.ust'), 'şeritte yönerge yazmıyor')
+    esit(soz(), [trc()], 'yönerge kapalıyken yalnız Türkçe cümle okunmalı'); dogru('CÜMLE KUR' in s.js('G.R.prompt.ust'), 'şeritte yönerge yazmıyor')
+    s.js("kayit.ayar.trSes = false; __soz.length = 0; dojoBaslat(rakipBul('A1-1'))"); bekle('G.R && G.R.tahtaHazir')
+    esit(soz(), [], 'ikisi de kapalıyken okundu')
     esit(s.errs, [], 'JS hataları'); s.kapat()
-    return 'her turda yalnız kısa yönerge; içerik dokununca; dinlemede İngilizce; yazım turunda "Doğru yazılışı yanlışın üstüne kaydır"; bilgi kutusu yok; anlatım sesli; ayardan kapanıyor'
+    return 'her turda yönerge + Türkçe cümle / anlam / kelime, karolar sonra; içerik dokununca yeniden; dinlemede İngilizce; yazım turunda "Doğru yazılışı yanlışın üstüne kaydır"; bilgi kutusu yok; anlatım sesli; ayardan kapanıyor'
 
 # ---------------------------------------------------------------- çalıştırıcı
 def main():

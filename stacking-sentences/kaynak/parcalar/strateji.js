@@ -180,6 +180,7 @@ function strTurBaslat() {
   strCiz(true);
   clearInterval(M.zaman); M.zaman = setInterval(strSaat, 250);
   Ses.cal('dus', { ses: 0.6 });
+  setTimeout(() => { if (STR === M && M.R && !M.R.bitti) Konus.tr(M.R.s.tr.replace(/;/g, ',')); }, 500);   // Türkçe cümle okunur
 }
 function strSaat() {
   const M = STR, R = M && M.R; if (!R || R.bitti) return;
@@ -340,7 +341,7 @@ function strCiz(yeni) {
   tah.style.width = c * T.cols + 'px'; tah.style.height = c * T.rows + 'px'; tah.style.setProperty('--c', c + 'px');
   $('#st-tur').textContent = tt('TUR {a}/{b}', { a: M.tur + 1, b: STR_TUR });
   $('#st-hak').textContent = '✋ ' + R.hamle; $('#st-hak').classList.toggle('az', R.hamle <= 2);
-  const s = strSkor(); $('#st-skor').innerHTML = `${tt('Sen')} <b>${s.b}</b> – <b>${s.r}</b> ${esc(M.rakip.ad)}`;
+  const s = strSkor(); $('#st-skor').innerHTML = `<span class="vs-av mini" style="--a:#ffc83d">${harfi(benimAd())}</span><b>${s.b}</b>–<b>${s.r}</b><span class="vs-av mini" style="--a:#ff7a96">${M.rakip.bot ? '🤖' : harfi(M.rakip.ad)}</span>`;
   $('#st-tr').innerHTML = `<small>${tt('Bu cümleyi kur')} 🔊</small>“${esc(R.s.tr)}”`;
   const rs = M.rakipS[M.tur];
   $('#st-rakip').innerHTML = `${M.rakip.bot ? '🤖' : '👤'} ${esc(M.rakip.ad)}: ${rs ? tt('💣 bombasını attı') : tt('düşünüyor…')}`;
@@ -449,7 +450,7 @@ function strPuanUc(t, z) {
 }
 function strKuralGoster() {
   const M = STR, p = $('#st-panel');
-  p.innerHTML = `<div class="st-kart"><h3>🧠 ${tt('STRATEJİ')} · ${M.lvl}</h3><div class="st-vs">${tt('Sen')} vs ${M.rakip.bot ? '🤖' : '👤'} ${esc(M.rakip.ad)}</div>
+  p.innerHTML = `<div class="st-kart"><h3>🧠 ${tt('STRATEJİ')} · ${M.lvl}</h3>${vsHtml(oyuncuHtml(benimAd(), { renk: '#ffc83d', alt: tt('Sen') }), oyuncuHtml(M.rakip.ad, { renk: '#ff7a96', bot: M.rakip.bot, alt: M.rakip.bot ? tt('Bilgisayar') : tt('Rakip') }))}
     <ol class="st-kural">
       <li>${tt('<b>Düzenle:</b> karoyu başka karonun üstüne bırak; oradakiler sağa kayar. Her taşıma 1 hamle.')}</li>
       <li>${tt('<b>Topla:</b> aynı renkleri cümlenin kelimelerinin yanına, alt alta ya da yan yana getir.')}</li>
@@ -497,18 +498,17 @@ function strCik() {
 }
 function strSonucGoster() {
   const M = STR; if (!M || !M.karar) return;
-  const k = M.karar.k, s = strSkor(), xp = kayit.xp - M.xp0;
-  let tablo = '';
+  const k = M.karar.k, s = strSkor(), xp = kayit.xp - M.xp0, bot = M.rakip.bot, ev = OD.rol === 'ev';
+  let turlar = '';
   for (let i = 0; i < STR_TUR; i++) {
-    const x = M.ben[i], y = M.rakipS[i], kk = x && y ? strTurKazanan(x, y) : 0;
-    tablo += `<tr><td>${i + 1}</td><td class="${x && x.dogru ? '' : 'yanlis'}">${x ? (x.dogru ? '✓ ' : '✗ ') + x.puan : '–'}${kk > 0 ? ' 🏆' : ''}</td><td class="${y && y.dogru ? '' : 'yanlis'}">${y ? (y.dogru ? '✓ ' : '✗ ') + y.puan : '–'}${kk < 0 ? ' 🏆' : ''}</td></tr>`;
+    const x = M.ben[i] || { dogru: false, puan: 0 }, y = M.rakipS[i] || { dogru: false, puan: 0 };
+    turlar += kiyasSatir(tt('Tur {n}', { n: i + 1 }), x.puan, y.puan, (x.dogru ? '✓ ' : '✗ ') + x.puan, (y.dogru ? '✓ ' : '✗ ') + y.puan);
   }
-  const bot = M.rakip.bot, ev = OD.rol === 'ev';
   strEl.style.display = 'none';
   goster(`<div class="go ${k === 'kazandin' ? 'zafer' : ''}" style="font-size:clamp(34px,10vw,54px)">${tt(k === 'kazandin' ? 'KAZANDIN!' : k === 'berabere' ? 'BERABERE' : 'KAYBETTİN')}</div>
     <div class="sonuc-alt">🧠 ${tt('Strateji')} · ${M.lvl} · ${M.karar.neden}</div>
-    <table class="mac-tablo"><tr><th>${tt('Tur')}</th><th>${esc(OD.ad || tt('Sen'))}</th><th>${bot ? '🤖 ' : ''}${esc(M.rakip.ad)}</th></tr>${tablo}
-      <tr><td>${tt('Toplam')}</td><td><b>${s.pb}</b></td><td><b>${s.pr}</b></td></tr></table>
+    ${vsHtml(oyuncuHtml(benimAd(), { renk: '#ffc83d', kaz: k === 'kazandin', alt: tt('{n} tur', { n: s.b }) }), oyuncuHtml(M.rakip.ad, { renk: '#ff7a96', bot, kaz: k === 'kaybettin', alt: tt('{n} tur', { n: s.r }) }))}
+    <div class="kiyas-kutu">${turlar}${kiyasSatir(tt('Toplam'), s.pb, s.pr, s.pb, s.pr)}</div>
     ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
     ${bot ? `<button class="big" id="ss-tekrar">${tt('TEKRAR OYNA')}</button>` : ev && OD.rakip ? `<button class="big" id="ss-tekrar">${tt('TEKRAR KAPIŞ')}</button>` : OD.rakip ? `<p class="aciklama" style="text-align:center">${tt('{ad} yeni maç başlatırsa oyun kendiliğinden açılır.', { ad: esc(OD.rakip.ad) })}</p>` : ''}
     <div class="row"><button class="sec" id="ss-cik">${tt(bot ? 'ÇIK' : 'ODADAN ÇIK')}</button></div>`, '', 'strSonuc');

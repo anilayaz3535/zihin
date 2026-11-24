@@ -472,19 +472,30 @@ function drawDuz(t) {
 function drawStatus(t) {
   if (!(G.state === 'playing' || G.state === 'paused') || !L.promptAlan) return;
   const A = L.promptAlan, fs = Math.round(clamp(L.bh * 0.46, 11, 16));
-  // online: rakibin durumu (Türkçe şeridin altında solda): isim, kaç cümle bitirdi, ilerleme ve hata göstergesi
+  // online: yarış çubuğu (Türkçe şeridin altında solda): sen ve rakip, avatarlar bitirilen cümle kadar ilerler; rakibin hata göstergesi ince çizgi
   if (D && D.online && D.online.rakip) {
-    const o = D.online, r = o.rakip, f2 = Math.round(fs * 0.85), top = o.liste.length;
-    const ad = r.ad.length > 10 ? r.ad.slice(0, 10) + '…' : r.ad;
-    const lab = '⚔ ' + ad + '  ' + (r.sonuc === 'tamam' ? tt('✔ BİTİRDİ') : r.sonuc === 'yenildi' ? tt('✖ DOLDU') : (r.cumle || 0) + '/' + top);
-    ctx.save(); ctx.font = `700 ${f2}px ${FONT}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-    const tw = Math.max(ctx.measureText(lab).width + 16, 90), h = f2 * 1.3 + 10, ux = A.x + 6, uy = A.y + A.h - h * 0.4;
-    rr(ctx, ux, uy, tw, h, 8); ctx.fillStyle = 'rgba(70,40,76,.94)'; ctx.fill(); ctx.strokeStyle = '#ff8fb1'; ctx.lineWidth = 1.5; ctx.stroke();
-    ctx.fillStyle = '#fff0f4'; ctx.fillText(lab, ux + 8, uy + f2 * 0.72 + 2);
-    const bw = tw - 16, by = uy + h - 7;
-    ctx.fillStyle = 'rgba(255,255,255,.18)'; ctx.fillRect(ux + 8, by, bw, 2.5); ctx.fillRect(ux + 8, by + 3.5, bw, 2);
-    ctx.fillStyle = '#ffc83d'; ctx.fillRect(ux + 8, by, bw * clamp((r.cumle || 0) / top, 0, 1), 2.5);
-    ctx.fillStyle = r.yigin > 0.7 ? '#ff2a3a' : '#ff8a2a'; ctx.fillRect(ux + 8, by + 3.5, bw * clamp(r.yigin || 0, 0, 1), 2);
+    const o = D.online, r = o.rakip, top = o.liste.length, f2 = Math.round(clamp(fs * 0.78, 10, 13));
+    const satH = f2 + 6, h = satH * 2 + 8, w = Math.min(A.w * 0.66, 260), ux = A.x + 6, uy = A.y + A.h - h * 0.35;
+    ctx.save();
+    rr(ctx, ux, uy, w, h, 10); ctx.fillStyle = 'rgba(52,30,58,.94)'; ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(255,236,212,.6)'; ctx.stroke();
+    const satir = (n, ad, ilerle, renk, harf, son, yigin) => {
+      const y = uy + 4 + satH * n + satH / 2, adW = Math.round(w * 0.3), tx = ux + 8 + adW, tw = w - adW - 44;
+      ctx.font = `700 ${f2}px ${FONT}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#fff6e8';
+      let a = ad; while (a.length > 2 && ctx.measureText(a).width > adW - 6) a = a.slice(0, -2) + '…';
+      ctx.fillText(a, ux + 8, y + 1);
+      rr(ctx, tx, y - 3, tw, 6, 3); ctx.fillStyle = 'rgba(255,255,255,.16)'; ctx.fill();
+      if (ilerle > 0) { rr(ctx, tx, y - 3, Math.max(6, tw * ilerle), 6, 3); ctx.fillStyle = renk; ctx.fill(); }
+      if (yigin > 0) { ctx.fillStyle = yigin > 0.7 ? '#ff2a3a' : '#ff8a2a'; ctx.fillRect(tx, y + 4, tw * clamp(yigin, 0, 1), 1.5); }
+      const ax = tx + tw * ilerle, ar = satH * 0.48;   // avatar çubukta ilerler
+      ctx.beginPath(); ctx.arc(ax, y, ar, 0, Math.PI * 2); ctx.fillStyle = renk; ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = '#fff'; ctx.stroke();
+      ctx.font = `700 ${Math.round(ar * 1.15)}px ${FONT}`; ctx.textAlign = 'center'; ctx.fillStyle = '#3a1f2e'; ctx.fillText(harf, ax, y + 1);
+      ctx.font = `700 ${f2}px ${FONT}`; ctx.textAlign = 'right'; ctx.fillStyle = son ? (son === 'tamam' ? '#7dff8e' : '#ff8a9a') : '#ffd451';
+      ctx.fillText(son === 'tamam' ? '✔' : son === 'yenildi' ? '✖' : '', ux + w - 30, y + 1);
+      ctx.fillStyle = '#ffd451'; ctx.fillText(Math.min(top, Math.round(ilerle * top)) + '/' + top, ux + w - 7, y + 1);
+    };
+    const benAd = (aktifProfil() && aktifProfil().ad) || tt('Sen');
+    satir(0, tt('Sen'), clamp((o.benim ? o.benim.cumle : D.istat.cumle) / top, 0, 1), '#ffc83d', String(benAd).charAt(0).toLocaleUpperCase('tr-TR'), o.benim && o.benim.sonuc, 0);
+    satir(1, r.ad, clamp((r.cumle || 0) / top, 0, 1), '#ff7a96', OD.bot ? '🤖' : String(r.ad).charAt(0).toLocaleUpperCase('tr-TR'), r.sonuc, r.yigin || 0);
     ctx.restore();
   }
   if (G.combo >= 2) {

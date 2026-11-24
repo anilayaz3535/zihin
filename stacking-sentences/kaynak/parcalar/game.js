@@ -26,8 +26,9 @@ const P = [], POP = [], BAN = [], PATLAYAN = [], DUSEN = [];
 // Karolar okuma bitince tahtaya yağar. Her okumanın bir numarası var: duraklatıp devam edince ya da
 // tekrar dinleyince yeni okuma başlar, eski okumanın zamanlayıcıları artık bekleyişi bitiremez.
 /* ---- YÖNERGELER: her tur türünde ne yapılacağı. e: etiket · k: kısa yönerge. Türkçe şeridin üstünde "e · k" yazar.
-   Oyunda kendiliğinden yalnız bu kısa yönerge okunur (her turun başında; oyuncu isteği: araya başka konuşma girmesin).
-   Türkçe cümle ve kelimeler kendiliğinden okunmaz, şeride dokununca okunur; dinleme turlarında yönergeden sonra İngilizce duyulur. ---- */
+   Her turun başında önce bu kısa yönerge, hemen ardından turun içeriği okunur (24 Kasım 2026, oyuncu isteği: oyuncu cümleyi
+   okumakla uğraşmasın): Türkçe cümle / anlam / kelime; dinleme turlarında İngilizce. Karolar okuma bitince yağar.
+   Ayarlar → "Türkçe sesli okuma" kapalıysa Türkçe içerik okunmaz; şeride dokunmak her zaman yeniden okur. ---- */
 const YONERGE = {
   kur: { e: 'CÜMLE KUR', k: 'İngilizce kelimeleri sırayla yan yana diz' },
   kurDinle: { e: 'DİNLE VE KUR', k: 'Duyduğun kelimeleri sırayla yan yana diz' },
@@ -58,15 +59,17 @@ function yonergeKisa(R) {
   const dil = arayuzDili === 'en' ? 'en' : 'tr-TR', e = tt(y.e).toLocaleLowerCase(dil);
   return e.charAt(0).toLocaleUpperCase(dil) + e.slice(1) + '. ' + tt(y.k) + '.';
 }
-// turun başında kendiliğinden okunan: kısa yönerge; dinleme turunda ardından duyulacak İngilizce. Karolar okuma bitince yağar.
+// turun başında kendiliğinden okunan: kısa yönerge, ardından turun içeriği (Türkçe cümle / anlam / kelime; dinleme turunda İngilizce).
+// Karolar okuma bitince yağar. R.otoIcerik === false: içerik yönergenin kendisi (tekrar okunmaz).
 function otoOku(R, maxS) {
-  const kisa = yonergeAcik() ? yonergeKisa(R) : '', dinleme = !!R.dinleSes, icerik = R.prompt && R.prompt.ses;
+  const kisa = yonergeAcik() ? yonergeKisa(R) : '', dinleme = !!R.dinleSes, icerik = R.prompt && R.prompt.ses && R.otoIcerik !== false ? R.prompt.ses : null;
   const f = (birak, bs) => {
-    const sonra_ = () => { if (G.R !== R) return; if (!(dinleme && icerik && icerik(birak, () => { }))) birak(); };
+    const sonra_ = () => { if (G.R !== R) return; if (!(icerik && icerik(birak, () => { }))) birak(); };
     if (kisa && yonergeSoyle(kisa, { ham: true, basladi: bs, bitti: sonra_ })) return true;
-    return dinleme && icerik ? icerik(birak, bs) : false;
+    return icerik ? icerik(birak, bs) : false;
   };
-  okuBekle(R, f, (dinleme ? (maxS || 6) : 0) + (kisa ? yonergeSuresi(kisa) : 0.5));
+  const icerikS = !icerik ? 0 : dinleme ? (maxS || 6) : 1.5 + String(R.prompt.ana || '').length * 0.085;
+  okuBekle(R, f, icerikS + (kisa ? yonergeSuresi(kisa) : 0.5));
 }
 function okuBekle(R, f, maxS) {
   maxS = maxS || 6;
@@ -381,7 +384,7 @@ function turSav(m) {
   R.prompt = { ust: turYonergesi(R, yk, m.tekrar ? tt('TEKRAR · ') : ''), ana: m.tr, tr: true, ses: (b, bs) => Konus.tr(m.tr, { bitti: b, basladi: bs }) };
   if (m.tip === 'yazim' || m.tip === 'eslesme') {   // Türkçe şeritteki yazı genel bir soru ("Yazımı yanlış olan kelimeyi bul"): okunmaz; şeride dokununca da yönerge okunur
     R.prompt.tr = false;   // tırnaksız: çevrilecek cümle değil
-    R.prompt.ses = (b, bs) => yonergeSoyle(yonergeKisa(R), { ham: true, zorla: true, bitti: b, basladi: bs });
+    R.prompt.ses = (b, bs) => yonergeSoyle(yonergeKisa(R), { ham: true, zorla: true, bitti: b, basladi: bs }); R.otoIcerik = false;
   }
   R.giris = () => { Ses.cal('yukle', { ses: 0.7 }); otoOku(R); banner(tt('HATAYI BUL!'), tt(m.tip === 'eslesme' ? 'Bir eşleşme yanlış' : m.tip === 'yazim' ? 'Bir kelime yanlış yazılmış' : m.tekrar ? 'Tekrar: daha önce kaçırdığın hata' : m.klasik ? 'Türklerin sık yaptığı hata' : 'Cümlede bir kelime yanlış'), '#ff6b7d', 1.3); };
   R.ilkBekle = 1.0;

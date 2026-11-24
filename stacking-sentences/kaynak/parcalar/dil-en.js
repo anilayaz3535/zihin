@@ -763,5 +763,26 @@ DIL_SOZLUK.en = {
 "TURU KAYBETTİN": "YOU LOST THE ROUND",
 "Bu maç kaydedilmez.": "This match is not recorded.",
 "Çıkarsan maçı kaybedersin.": "If you leave, you lose the match.",
-"Oyuncu": "Player"
+"Oyuncu": "Player",
+// online yeni görünüm
+"Bilgisayar": "Computer",
+"Tur {n}": "Round {n}",
+"{n} tur": "{n} rounds",
+"⚡ HIZ": "⚡ SPEED",
+"ONLINE": "ONLINE",
+"{m} maç · {g} galibiyet": "{m} matches · {g} wins",
+"OYNA ›": "PLAY ›",
+"Seviyeni seç; arkadaşınla, rastgele bir rakiple ya da bilgisayarla oyna.": "Pick your level; play a friend, a random opponent or the computer.",
+"Bu seviyede bekleyen biriyle": "With someone waiting at this level",
+"Hemen oyna": "Play now",
+"Oda kur": "Create room",
+"Arkadaşına kod ver": "Give a code to a friend",
+"Hızlı eşleşme": "Quick match",
+"📤 Kodu paylaş": "📤 Share code",
+"Stacking Sentences’ta benimle oyna! Online → {mod} → Oda kodu: {kod}": "Play with me in Stacking Sentences! Online → {mod} → Room code: {kod}",
+"Kopyalandı: {k}": "Copied: {k}",
+"✔ hazır": "✔ ready",
+"Senin odan": "Your room",
+"Arkadaşının odası": "Your friend's room",
+"Rakip": "Opponent"
 };

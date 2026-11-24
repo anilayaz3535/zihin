@@ -780,6 +780,89 @@
   #str.yatay .st-tr{font-size:16px;padding:6px 10px}
   #str.yatay .st-kutu{height:38px}
   #str.yatay .st-bomba{padding:9px 26px;font-size:20px}
+
+  /* ---------- online yeni görünüm (24 Kasım 2026): mod kartları, seviye karoları, VS kartı, radar, karşılaştırma ---------- */
+  .ol-bas{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:2px 0 10px}
+  .ol-bas .ana-baslik{margin:0}
+  .ol-ozet{display:flex;align-items:center;gap:8px;padding:5px 12px 5px 5px;border-radius:20px;background:rgba(0,0,0,.25);font-size:13px;color:#f3dcc0;white-space:nowrap}
+  .mod-kartlar{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:6px 0 10px}
+  .mod-kart{display:flex;flex-direction:column;align-items:stretch;gap:8px;padding:10px 10px 12px;border-radius:22px;border:3px solid;cursor:pointer;text-align:left;
+    font-family:Fredoka,Poppins,sans-serif;color:#fff;box-shadow:0 6px 0 var(--d),0 14px 26px rgba(30,10,10,.4),inset 0 3px 0 rgba(255,255,255,.35)}
+  .mod-kart:active{transform:translateY(3px);box-shadow:0 3px 0 var(--d),0 8px 16px rgba(30,10,10,.4)}
+  .mod-kart.hiz{--d:#a3233c;border-color:#ffc4d0;background:linear-gradient(160deg,#ff8aa3,#e83b5c 60%,#c22a4c)}
+  .mod-kart.strateji{--d:#4a2a8a;border-color:#e2d4ff;background:linear-gradient(160deg,#b49bff,#6b45d8 60%,#5634b8)}
+  .mk-yazi b{display:block;font-size:clamp(19px,5.6vw,26px);letter-spacing:1px;line-height:1.05;text-shadow:0 2px 0 rgba(40,10,30,.45)}
+  .mk-yazi small{display:block;font-size:12.5px;line-height:1.2;margin-top:4px;opacity:.95}
+  .mod-kart em{align-self:flex-start;font-style:normal;font-weight:700;font-size:14px;padding:5px 12px;border-radius:12px;background:rgba(255,255,255,.95);color:#5b2a3a;box-shadow:0 3px 0 rgba(0,0,0,.2)}
+  .mk-gorsel{position:relative;height:96px;border-radius:14px;background:rgba(20,8,30,.28);overflow:hidden}
+  .hizG .serit{position:absolute;left:0;right:0;display:flex;gap:4px;padding:0 8px}
+  .hizG .s1{top:16px}.hizG .s2{top:54px}
+  .hizG .serit i,.strG i{font-style:normal}
+  .hizG .serit i{padding:5px 7px;border-radius:7px;background:var(--r);font-weight:700;font-size:12px;box-shadow:0 3px 0 rgba(0,0,0,.25);animation:yaris 2.4s var(--g) ease-in-out infinite}
+  @keyframes yaris{0%{transform:translateX(-140%);opacity:0}25%,75%{transform:none;opacity:1}100%{transform:translateX(160%);opacity:0}}
+  .kronometre{position:absolute;right:6px;top:4px;font-size:22px;animation:tikla 1s steps(2) infinite}
+  @keyframes tikla{50%{transform:rotate(12deg)}}
+  .mini-izgara{position:absolute;left:10px;top:12px;display:grid;grid-template-columns:repeat(4,20px);gap:4px}
+  .mini-izgara i{width:20px;height:20px;border-radius:6px;background:var(--r);box-shadow:0 2px 0 rgba(0,0,0,.25)}
+  .mini-izgara i.pat{animation:miniPat 2.6s ease-in-out infinite}
+  @keyframes miniPat{0%,55%{transform:none;opacity:1}70%{transform:scale(1.5);opacity:0;filter:brightness(2)}90%{transform:scale(.5);opacity:0}100%{transform:none;opacity:1}}
+  .mini-bomba{position:absolute;right:8px;bottom:6px;font-size:34px;animation:bombaSall 2.6s ease-in-out infinite}
+  @keyframes bombaSall{0%,45%{transform:rotate(-8deg)}50%{transform:scale(1.25) rotate(8deg)}60%,100%{transform:rotate(-8deg)}}
+  .mod-bant{display:flex;align-items:center;gap:12px;padding:12px 14px;border-radius:18px;margin:2px 0 10px;color:#fff;border:2px solid rgba(255,255,255,.6);text-align:left}
+  .mod-bant.hiz{background:linear-gradient(135deg,#ff8aa3,#e83b5c)}.mod-bant.strateji{background:linear-gradient(135deg,#b49bff,#6b45d8)}
+  .mod-bant>i{font-style:normal;font-size:38px;line-height:1}
+  .mod-bant b{display:block;font-size:24px;letter-spacing:1px}.mod-bant small{display:block;font-size:13px;line-height:1.3;opacity:.95}
+  .mod-bant.kucuk b{font-size:20px}.mod-bant.kucuk>i{font-size:30px}
+  .lvl-karolar{display:grid;grid-template-columns:repeat(6,1fr);gap:6px}
+  .lvl-karolar button{height:48px;border-radius:12px;border:2px solid rgba(255,255,255,.75);background:linear-gradient(rgba(255,255,255,.28),rgba(255,255,255,0)) ,var(--r);color:#fff;
+    font:700 17px Fredoka,sans-serif;box-shadow:0 4px 0 rgba(0,0,0,.3);cursor:pointer;opacity:.6;text-shadow:0 2px 0 rgba(0,0,0,.3)}
+  .lvl-karolar button.secili{opacity:1;transform:translateY(-3px) scale(1.08);box-shadow:0 6px 0 rgba(0,0,0,.3),0 0 0 3px #fff,0 0 16px var(--r)}
+  .lvl-ad{text-align:center;font-size:13px;color:#f3dcc0;margin:8px 0 10px}
+  .hizli-btn{display:flex;flex-direction:column;align-items:center;width:100%}.hizli-btn small{font-size:13px;letter-spacing:0;font-weight:600;opacity:.85;margin-top:3px}
+  .secenek-ikili{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin:12px 0 8px}
+  .secenek{display:flex;flex-direction:column;align-items:center;gap:2px;padding:10px 6px;border-radius:16px;border:2px solid #fff;background:linear-gradient(#fff7ea,#f0d9ba);color:#5b3a24;
+    font-family:Fredoka,Poppins,sans-serif;box-shadow:0 4px 0 #b38a62;cursor:pointer}
+  .secenek:active{transform:translateY(2px)}
+  .secenek i{font-style:normal;font-size:28px}.secenek b{font-size:16px}.secenek small{font-size:12px;opacity:.8}
+  /* VS kartı */
+  .vs{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:6px;margin:12px 0}
+  .vs-oy{display:flex;flex-direction:column;align-items:center;gap:4px;min-width:0}
+  .vs-oy b{font-size:16px;max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .vs-oy small{font-size:12.5px;color:#f3dcc0}
+  .vs-av{position:relative;display:inline-flex;align-items:center;justify-content:center;width:64px;height:64px;border-radius:50%;flex:none;
+    background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.55),rgba(255,255,255,0) 45%),var(--a);border:3px solid #fff;color:#3a1f2e;font:700 30px Fredoka,sans-serif;box-shadow:0 5px 0 rgba(0,0,0,.25)}
+  .vs-av.kucuk{width:30px;height:30px;font-size:15px;border-width:2px;box-shadow:none}
+  .vs-av.mini{width:22px;height:22px;font-size:12px;border-width:2px;box-shadow:none}
+  .vs-av.buyuk{width:78px;height:78px;font-size:36px}
+  .vs-oy.bekle .vs-av{animation:bekleNabiz 1.2s ease-in-out infinite;color:#fff}
+  @keyframes bekleNabiz{50%{transform:scale(.9);opacity:.6}}
+  .vs-oy.kaz .vs-av{box-shadow:0 5px 0 rgba(0,0,0,.25),0 0 0 4px #ffd451,0 0 26px rgba(255,212,81,.9)}
+  .vs-av .tac{position:absolute;top:-24px;left:50%;transform:translateX(-50%) rotate(-10deg);font-style:normal;font-size:28px;animation:tacZipla 1.4s ease-in-out infinite}
+  @keyframes tacZipla{50%{transform:translateX(-50%) translateY(-4px) rotate(8deg)}}
+  .vs-rozet{font:700 26px Fredoka,sans-serif;color:#ffd451;-webkit-text-stroke:5px #5b2a3a;paint-order:stroke fill;transform:rotate(-8deg);animation:vsNabiz 1.6s ease-in-out infinite}
+  @keyframes vsNabiz{50%{transform:rotate(-8deg) scale(1.15)}}
+  .oda-kod-kutu{display:flex;flex-direction:column;align-items:center;gap:4px;margin:4px 0 8px}
+  .paylas{padding:7px 14px;font-size:14px}
+  /* radar */
+  .radar{position:relative;width:200px;height:200px;margin:14px auto 4px;display:flex;align-items:center;justify-content:center}
+  .radar .dalga{position:absolute;inset:0;border-radius:50%;border:3px solid rgba(255,200,61,.6);animation:dalga 2.4s ease-out infinite;opacity:0}
+  .radar .d2{animation-delay:.8s}.radar .d3{animation-delay:1.6s}
+  @keyframes dalga{0%{transform:scale(.35);opacity:.9}100%{transform:scale(1.05);opacity:0}}
+  .radar .yorunge{position:absolute;left:50%;top:50%;font-style:normal;font:700 12px Fredoka,sans-serif;color:#fff;padding:4px 7px;border-radius:7px;background:var(--r);box-shadow:0 3px 0 rgba(0,0,0,.25);
+    animation:yorunge 9s linear infinite;animation-delay:calc(var(--n) * -1.5s)}
+  @keyframes yorunge{from{transform:translate(-50%,-50%) rotate(0deg) translateX(88px) rotate(0deg)}to{transform:translate(-50%,-50%) rotate(360deg) translateX(88px) rotate(-360deg)}}
+  .arama{margin:6px 0}
+  /* karşılaştırma çubukları */
+  .kiyas-kutu{display:flex;flex-direction:column;gap:7px;margin:6px 0 10px;padding:10px;border-radius:14px;background:rgba(0,0,0,.2)}
+  .kiyas{display:grid;grid-template-columns:62px 1fr auto 1fr 62px;align-items:center;gap:6px;font-size:14px}
+  .kiyas b{font-weight:700;color:#fde7c7;text-align:center;white-space:nowrap}.kiyas b.iyi{color:#ffd451}
+  .kiyas em{font-style:normal;font-size:12px;color:#f3dcc0;min-width:44px;text-align:center}
+  .kc{height:9px;border-radius:5px;background:rgba(255,255,255,.12);display:flex;overflow:hidden}
+  .kc.sol{justify-content:flex-end}.kc u{display:block;height:100%;border-radius:5px}
+  .kc.sol u{background:linear-gradient(90deg,#ffe08a,#ffc83d)}.kc.sag u{background:linear-gradient(90deg,#ff7a96,#ffb0c0)}
+  .st-skor{display:flex;align-items:center;gap:5px}
+  @media (max-width:360px){.mod-kartlar{grid-template-columns:1fr}.mk-gorsel{height:78px}.vs-av{width:54px;height:54px;font-size:26px}.kiyas{grid-template-columns:52px 1fr auto 1fr 52px;font-size:13px}}
+  @media (prefers-reduced-motion:reduce){.hizG .serit i,.mini-izgara i.pat,.mini-bomba,.radar .dalga,.radar .yorunge,.vs-rozet,.vs-av .tac,.vs-oy.bekle .vs-av,.kronometre{animation:none}.radar .dalga{opacity:.3}}
 </style>
 </head>
 <body class="port">
@@ -1709,7 +1792,28 @@ DIL_SOZLUK.en = {
 "TURU KAYBETTİN": "YOU LOST THE ROUND",
 "Bu maç kaydedilmez.": "This match is not recorded.",
 "Çıkarsan maçı kaybedersin.": "If you leave, you lose the match.",
-"Oyuncu": "Player"
+"Oyuncu": "Player",
+// online yeni görünüm
+"Bilgisayar": "Computer",
+"Tur {n}": "Round {n}",
+"{n} tur": "{n} rounds",
+"⚡ HIZ": "⚡ SPEED",
+"ONLINE": "ONLINE",
+"{m} maç · {g} galibiyet": "{m} matches · {g} wins",
+"OYNA ›": "PLAY ›",
+"Seviyeni seç; arkadaşınla, rastgele bir rakiple ya da bilgisayarla oyna.": "Pick your level; play a friend, a random opponent or the computer.",
+"Bu seviyede bekleyen biriyle": "With someone waiting at this level",
+"Hemen oyna": "Play now",
+"Oda kur": "Create room",
+"Arkadaşına kod ver": "Give a code to a friend",
+"Hızlı eşleşme": "Quick match",
+"📤 Kodu paylaş": "📤 Share code",
+"Stacking Sentences’ta benimle oyna! Online → {mod} → Oda kodu: {kod}": "Play with me in Stacking Sentences! Online → {mod} → Room code: {kod}",
+"Kopyalandı: {k}": "Copied: {k}",
+"✔ hazır": "✔ ready",
+"Senin odan": "Your room",
+"Arkadaşının odası": "Your friend's room",
+"Rakip": "Opponent"
 };
 
 /* =====================================================================
@@ -3525,8 +3629,9 @@ const P = [], POP = [], BAN = [], PATLAYAN = [], DUSEN = [];
 // Karolar okuma bitince tahtaya yağar. Her okumanın bir numarası var: duraklatıp devam edince ya da
 // tekrar dinleyince yeni okuma başlar, eski okumanın zamanlayıcıları artık bekleyişi bitiremez.
 /* ---- YÖNERGELER: her tur türünde ne yapılacağı. e: etiket · k: kısa yönerge. Türkçe şeridin üstünde "e · k" yazar.
-   Oyunda kendiliğinden yalnız bu kısa yönerge okunur (her turun başında; oyuncu isteği: araya başka konuşma girmesin).
-   Türkçe cümle ve kelimeler kendiliğinden okunmaz, şeride dokununca okunur; dinleme turlarında yönergeden sonra İngilizce duyulur. ---- */
+   Her turun başında önce bu kısa yönerge, hemen ardından turun içeriği okunur (24 Kasım 2026, oyuncu isteği: oyuncu cümleyi
+   okumakla uğraşmasın): Türkçe cümle / anlam / kelime; dinleme turlarında İngilizce. Karolar okuma bitince yağar.
+   Ayarlar → "Türkçe sesli okuma" kapalıysa Türkçe içerik okunmaz; şeride dokunmak her zaman yeniden okur. ---- */
 const YONERGE = {
   kur: { e: 'CÜMLE KUR', k: 'İngilizce kelimeleri sırayla yan yana diz' },
   kurDinle: { e: 'DİNLE VE KUR', k: 'Duyduğun kelimeleri sırayla yan yana diz' },
@@ -3557,15 +3662,17 @@ function yonergeKisa(R) {
   const dil = arayuzDili === 'en' ? 'en' : 'tr-TR', e = tt(y.e).toLocaleLowerCase(dil);
   return e.charAt(0).toLocaleUpperCase(dil) + e.slice(1) + '. ' + tt(y.k) + '.';
 }
-// turun başında kendiliğinden okunan: kısa yönerge; dinleme turunda ardından duyulacak İngilizce. Karolar okuma bitince yağar.
+// turun başında kendiliğinden okunan: kısa yönerge, ardından turun içeriği (Türkçe cümle / anlam / kelime; dinleme turunda İngilizce).
+// Karolar okuma bitince yağar. R.otoIcerik === false: içerik yönergenin kendisi (tekrar okunmaz).
 function otoOku(R, maxS) {
-  const kisa = yonergeAcik() ? yonergeKisa(R) : '', dinleme = !!R.dinleSes, icerik = R.prompt && R.prompt.ses;
+  const kisa = yonergeAcik() ? yonergeKisa(R) : '', dinleme = !!R.dinleSes, icerik = R.prompt && R.prompt.ses && R.otoIcerik !== false ? R.prompt.ses : null;
   const f = (birak, bs) => {
-    const sonra_ = () => { if (G.R !== R) return; if (!(dinleme && icerik && icerik(birak, () => { }))) birak(); };
+    const sonra_ = () => { if (G.R !== R) return; if (!(icerik && icerik(birak, () => { }))) birak(); };
     if (kisa && yonergeSoyle(kisa, { ham: true, basladi: bs, bitti: sonra_ })) return true;
-    return dinleme && icerik ? icerik(birak, bs) : false;
+    return icerik ? icerik(birak, bs) : false;
   };
-  okuBekle(R, f, (dinleme ? (maxS || 6) : 0) + (kisa ? yonergeSuresi(kisa) : 0.5));
+  const icerikS = !icerik ? 0 : dinleme ? (maxS || 6) : 1.5 + String(R.prompt.ana || '').length * 0.085;
+  okuBekle(R, f, icerikS + (kisa ? yonergeSuresi(kisa) : 0.5));
 }
 function okuBekle(R, f, maxS) {
   maxS = maxS || 6;
@@ -3880,7 +3987,7 @@ function turSav(m) {
   R.prompt = { ust: turYonergesi(R, yk, m.tekrar ? tt('TEKRAR · ') : ''), ana: m.tr, tr: true, ses: (b, bs) => Konus.tr(m.tr, { bitti: b, basladi: bs }) };
   if (m.tip === 'yazim' || m.tip === 'eslesme') {   // Türkçe şeritteki yazı genel bir soru ("Yazımı yanlış olan kelimeyi bul"): okunmaz; şeride dokununca da yönerge okunur
     R.prompt.tr = false;   // tırnaksız: çevrilecek cümle değil
-    R.prompt.ses = (b, bs) => yonergeSoyle(yonergeKisa(R), { ham: true, zorla: true, bitti: b, basladi: bs });
+    R.prompt.ses = (b, bs) => yonergeSoyle(yonergeKisa(R), { ham: true, zorla: true, bitti: b, basladi: bs }); R.otoIcerik = false;
   }
   R.giris = () => { Ses.cal('yukle', { ses: 0.7 }); otoOku(R); banner(tt('HATAYI BUL!'), tt(m.tip === 'eslesme' ? 'Bir eşleşme yanlış' : m.tip === 'yazim' ? 'Bir kelime yanlış yazılmış' : m.tekrar ? 'Tekrar: daha önce kaçırdığın hata' : m.klasik ? 'Türklerin sık yaptığı hata' : 'Cümlede bir kelime yanlış'), '#ff6b7d', 1.3); };
   R.ilkBekle = 1.0;
@@ -5319,19 +5426,30 @@ function drawDuz(t) {
 function drawStatus(t) {
   if (!(G.state === 'playing' || G.state === 'paused') || !L.promptAlan) return;
   const A = L.promptAlan, fs = Math.round(clamp(L.bh * 0.46, 11, 16));
-  // online: rakibin durumu (Türkçe şeridin altında solda): isim, kaç cümle bitirdi, ilerleme ve hata göstergesi
+  // online: yarış çubuğu (Türkçe şeridin altında solda): sen ve rakip, avatarlar bitirilen cümle kadar ilerler; rakibin hata göstergesi ince çizgi
   if (D && D.online && D.online.rakip) {
-    const o = D.online, r = o.rakip, f2 = Math.round(fs * 0.85), top = o.liste.length;
-    const ad = r.ad.length > 10 ? r.ad.slice(0, 10) + '…' : r.ad;
-    const lab = '⚔ ' + ad + '  ' + (r.sonuc === 'tamam' ? tt('✔ BİTİRDİ') : r.sonuc === 'yenildi' ? tt('✖ DOLDU') : (r.cumle || 0) + '/' + top);
-    ctx.save(); ctx.font = `700 ${f2}px ${FONT}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle';
-    const tw = Math.max(ctx.measureText(lab).width + 16, 90), h = f2 * 1.3 + 10, ux = A.x + 6, uy = A.y + A.h - h * 0.4;
-    rr(ctx, ux, uy, tw, h, 8); ctx.fillStyle = 'rgba(70,40,76,.94)'; ctx.fill(); ctx.strokeStyle = '#ff8fb1'; ctx.lineWidth = 1.5; ctx.stroke();
-    ctx.fillStyle = '#fff0f4'; ctx.fillText(lab, ux + 8, uy + f2 * 0.72 + 2);
-    const bw = tw - 16, by = uy + h - 7;
-    ctx.fillStyle = 'rgba(255,255,255,.18)'; ctx.fillRect(ux + 8, by, bw, 2.5); ctx.fillRect(ux + 8, by + 3.5, bw, 2);
-    ctx.fillStyle = '#ffc83d'; ctx.fillRect(ux + 8, by, bw * clamp((r.cumle || 0) / top, 0, 1), 2.5);
-    ctx.fillStyle = r.yigin > 0.7 ? '#ff2a3a' : '#ff8a2a'; ctx.fillRect(ux + 8, by + 3.5, bw * clamp(r.yigin || 0, 0, 1), 2);
+    const o = D.online, r = o.rakip, top = o.liste.length, f2 = Math.round(clamp(fs * 0.78, 10, 13));
+    const satH = f2 + 6, h = satH * 2 + 8, w = Math.min(A.w * 0.66, 260), ux = A.x + 6, uy = A.y + A.h - h * 0.35;
+    ctx.save();
+    rr(ctx, ux, uy, w, h, 10); ctx.fillStyle = 'rgba(52,30,58,.94)'; ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = 'rgba(255,236,212,.6)'; ctx.stroke();
+    const satir = (n, ad, ilerle, renk, harf, son, yigin) => {
+      const y = uy + 4 + satH * n + satH / 2, adW = Math.round(w * 0.3), tx = ux + 8 + adW, tw = w - adW - 44;
+      ctx.font = `700 ${f2}px ${FONT}`; ctx.textAlign = 'left'; ctx.textBaseline = 'middle'; ctx.fillStyle = '#fff6e8';
+      let a = ad; while (a.length > 2 && ctx.measureText(a).width > adW - 6) a = a.slice(0, -2) + '…';
+      ctx.fillText(a, ux + 8, y + 1);
+      rr(ctx, tx, y - 3, tw, 6, 3); ctx.fillStyle = 'rgba(255,255,255,.16)'; ctx.fill();
+      if (ilerle > 0) { rr(ctx, tx, y - 3, Math.max(6, tw * ilerle), 6, 3); ctx.fillStyle = renk; ctx.fill(); }
+      if (yigin > 0) { ctx.fillStyle = yigin > 0.7 ? '#ff2a3a' : '#ff8a2a'; ctx.fillRect(tx, y + 4, tw * clamp(yigin, 0, 1), 1.5); }
+      const ax = tx + tw * ilerle, ar = satH * 0.48;   // avatar çubukta ilerler
+      ctx.beginPath(); ctx.arc(ax, y, ar, 0, Math.PI * 2); ctx.fillStyle = renk; ctx.fill(); ctx.lineWidth = 1.5; ctx.strokeStyle = '#fff'; ctx.stroke();
+      ctx.font = `700 ${Math.round(ar * 1.15)}px ${FONT}`; ctx.textAlign = 'center'; ctx.fillStyle = '#3a1f2e'; ctx.fillText(harf, ax, y + 1);
+      ctx.font = `700 ${f2}px ${FONT}`; ctx.textAlign = 'right'; ctx.fillStyle = son ? (son === 'tamam' ? '#7dff8e' : '#ff8a9a') : '#ffd451';
+      ctx.fillText(son === 'tamam' ? '✔' : son === 'yenildi' ? '✖' : '', ux + w - 30, y + 1);
+      ctx.fillStyle = '#ffd451'; ctx.fillText(Math.min(top, Math.round(ilerle * top)) + '/' + top, ux + w - 7, y + 1);
+    };
+    const benAd = (aktifProfil() && aktifProfil().ad) || tt('Sen');
+    satir(0, tt('Sen'), clamp((o.benim ? o.benim.cumle : D.istat.cumle) / top, 0, 1), '#ffc83d', String(benAd).charAt(0).toLocaleUpperCase('tr-TR'), o.benim && o.benim.sonuc, 0);
+    satir(1, r.ad, clamp((r.cumle || 0) / top, 0, 1), '#ff7a96', OD.bot ? '🤖' : String(r.ad).charAt(0).toLocaleUpperCase('tr-TR'), r.sonuc, r.yigin || 0);
     ctx.restore();
   }
   if (G.combo >= 2) {
@@ -5811,7 +5929,7 @@ function macBaslat(mac, lvl, cum) {
 // dojoBaslat çağırır: 3 · 2 · 1 · BAŞLA
 function onlineGeriSayim() {
   const o = D.online;
-  banner(tt('ONLINE KAPIŞMA'), tt('{lvl} · {ad} ile · {n} cümle', { lvl: D.r.lvl, ad: o.rakip.ad, n: o.liste.length }), '#ff6b9a', 1.6);
+  banner(tt('⚡ HIZ'), tt('{lvl} · {ad} ile · {n} cümle', { lvl: D.r.lvl, ad: o.rakip.ad, n: o.liste.length }), '#ff6b9a', 1.6);
   ['3', '2', '1'].forEach((t, i) => sonra(1.2 + i * 0.75, () => { banner(t, '', '#ffd23d', 0.7); Ses.cal('tik', { ses: 0.7, hiz: 1.3 }); }));
   sonra(3.45, () => { if (!D || D.online !== o) return; banner(tt('BAŞLA!'), '', '#3dff7a', 0.9); Ses.cal('yukselis', { ses: 0.6 }); o.t0 = performance.now(); sonrakiTur(); });
 }
@@ -5843,7 +5961,7 @@ function botHizTik(o) {
   const t = (G.t - o.botT0) * 1000;   // oyun saati: oyuncu duraklatınca bilgisayar da bekler
   if (!o.botPlan) {
     let top = 0; const sn = BOT_KELIME_SN[D.r.lvl] || 3.2;
-    o.botPlan = o.liste.map(a => { const s = sAl(a); top += ((s ? s.w.length : 6) * sn + 6) * rnd(0.85, 1.2) * 1000; return top; });
+    o.botPlan = o.liste.map(a => { const s = sAl(a); top += ((s ? s.w.length : 6) * sn + 9) * rnd(0.85, 1.2) * 1000; return top; });   // +9 sn: yönerge ve Türkçe cümle okunur
   }
   while (r.cumle < o.botPlan.length && t >= o.botPlan[r.cumle]) { r.cumle++; r.skor += Math.round(rnd(300, 900)); if (Math.random() < 0.3) r.yigin = clamp(r.yigin + 0.1, 0, 0.6); }
   if (r.cumle >= o.botPlan.length && !r.sonuc) { r.sonuc = 'tamam'; r.sure = o.botPlan[o.botPlan.length - 1]; onlineKarar(); }
@@ -5897,14 +6015,24 @@ function onlineAc(uyari) {
   if (onlineSonMod) { onlineModAc(onlineSonMod, uyari); return; }
   if (G.state !== 'menu') demo();
   Ses.muzik('menu'); Konus.sus();
+  const ben = aktifProfil() ? aktifProfil().ad : tt('Sen'), m = kayit.istat.online || 0, g = kayit.istat.onlineGalibiyet || 0;
+  const hizG = `<div class="mk-gorsel hizG"><div class="serit s1">${['I', 'am', 'fast'].map((t, i) => `<i style="--r:${STR_RENKLER[i]};--g:${i * 0.25}s">${t}</i>`).join('')}</div>
+    <div class="serit s2">${['You', 'are', 'too'].map((t, i) => `<i style="--r:${STR_RENKLER[(i + 2) % 4]};--g:${0.4 + i * 0.25}s">${t}</i>`).join('')}</div><span class="kronometre">⏱</span></div>`;
+  const izgara = [0, 0, 2, 3, 1, 0, 0, 3, 1, 2, 2, 1];
+  const strG = `<div class="mk-gorsel strG"><div class="mini-izgara">${izgara.map((c, i) => `<i class="${[0, 1, 5, 6].includes(i) ? 'pat' : ''}" style="--r:${STR_RENKLER[c]}"></i>`).join('')}</div><span class="mini-bomba">💣</span></div>`;
   goster(`<div class="ust-satir"><button class="geri" id="o-geri">${tt('← Geri')}</button></div>
-    <div class="ana-baslik">${tt('⚔ ONLINE KAPIŞMA')}</div>
-    <p class="aciklama">${tt('Bir mod seç. Seviyeni seçip arkadaşınla, rastgele bir rakiple ya da bilgisayarla oyna.')}</p>
-    <div class="mod-secim">${Object.keys(ONLINE_MOD).map(m => { const x = ONLINE_MOD[m]; return `<button class="mod-btn ${m}" id="o-${m}"><i>${x.i}</i><span><b>${tt(x.ad)}</b><small>${tt(x.alt)}</small></span></button>`; }).join('')}</div>
-    ${uyari ? `<p class="uyari">${esc(uyari)}</p>` : ''}`, '', 'onlineSecim');
+    <div class="ol-bas"><div class="ana-baslik">🏁 ${tt('ONLINE')}</div>
+      <div class="ol-ozet"><span class="vs-av kucuk" style="--a:#ffc83d">${harfi(ben)}</span><span>${tt('{m} maç · {g} galibiyet', { m, g })}</span></div></div>
+    <div class="mod-kartlar">
+      <button class="mod-kart hiz" id="o-hiz">${hizG}<span class="mk-yazi"><b>⚡ ${tt('HIZ')}</b><small>${tt(ONLINE_MOD.hiz.alt)}</small></span><em>${tt('OYNA ›')}</em></button>
+      <button class="mod-kart strateji" id="o-strateji">${strG}<span class="mk-yazi"><b>🧠 ${tt('STRATEJİ')}</b><small>${tt(ONLINE_MOD.strateji.alt)}</small></span><em>${tt('OYNA ›')}</em></button>
+    </div>
+    <p class="aciklama kucuk" style="text-align:center">${tt('Seviyeni seç; arkadaşınla, rastgele bir rakiple ya da bilgisayarla oyna.')}</p>
+    ${uyari ? `<p class="uyari">${esc(uyari)}</p>` : ''}`, 'genis', 'onlineSecim');
   $('#o-geri').onclick = () => acilisAc();
-  Object.keys(ONLINE_MOD).forEach(m => { $('#o-' + m).onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); onlineModAc(m); }; });
+  Object.keys(ONLINE_MOD).forEach(m2 => { $('#o-' + m2).onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); onlineModAc(m2); }; });
 }
+const LVL_RENK = { A1: '#3cbb4a', A2: '#2b91ea', B1: '#ffbc1f', B2: '#ff8a2a', C1: '#f2453d', C2: '#b04fd8' };
 function onlineModAc(mod, uyari) {
   mod = mod === 'strateji' ? 'strateji' : 'hiz'; onlineSonMod = mod;
   if (G.state !== 'menu') demo();
@@ -5912,16 +6040,16 @@ function onlineModAc(mod, uyari) {
   if (SEVIYELER.indexOf(onlineSecLvl) < 0) onlineSecLvl = sonAcikSeviye();
   const x = ONLINE_MOD[mod], lvl = onlineSecLvl;
   goster(`<div class="ust-satir"><button class="geri" id="o-geri">${tt('← Geri')}</button></div>
-    <div class="ana-baslik">${x.i} ${tt(x.ad)}</div>
-    <p class="aciklama">${tt(x.kural, { n: ONLINE_CUMLE })}</p>
+    <div class="mod-bant ${mod}"><i>${x.i}</i><div><b>${tt(x.ad)}</b><small>${tt(x.kural, { n: ONLINE_CUMLE })}</small></div></div>
     ${uyari ? `<p class="uyari">${esc(uyari)}</p>` : ''}
     <div class="bolum">${tt('Seviyen')}</div>
-    <div class="sekmeler kucuk lvl-sec" id="o-lvl">${SEVIYELER.map(l => `<button data-l="${l}" class="${l === lvl ? 'secili' : ''}">${l}</button>`).join('')}</div>
-    <p class="aciklama kucuk" style="text-align:center">${esc(seviyeAd(lvl))} · ${tt('rakibin de bu seviyeden olur')}</p>
-    <button class="big" id="o-hizli">${tt('🎲 HIZLI EŞLEŞ')}</button>
-    <button class="sec genis-btn" id="o-bot">${tt('🤖 BİLGİSAYARA KARŞI')}</button>
-    <div class="ayrac">${tt('ya da arkadaşınla oda koduyla')}</div>
-    <div class="row"><button class="sec" id="o-kur">${tt('ODA KUR')}</button></div>
+    <div class="lvl-karolar" id="o-lvl">${SEVIYELER.map(l => `<button data-l="${l}" class="${l === lvl ? 'secili' : ''}" style="--r:${LVL_RENK[l]}">${l}</button>`).join('')}</div>
+    <p class="lvl-ad">${esc(seviyeAd(lvl))} · ${tt('rakibin de bu seviyeden olur')}</p>
+    <button class="big hizli-btn" id="o-hizli">${tt('🎲 HIZLI EŞLEŞ')}<small>${tt('Bu seviyede bekleyen biriyle')}</small></button>
+    <div class="secenek-ikili">
+      <button class="secenek" id="o-bot"><i>🤖</i><b>${tt('Bilgisayar')}</b><small>${tt('Hemen oyna')}</small></button>
+      <button class="secenek" id="o-kur"><i>👥</i><b>${tt('Oda kur')}</b><small>${tt('Arkadaşına kod ver')}</small></button>
+    </div>
     <div class="kod-satir"><input id="o-kod" class="giris kod" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="${tt('Kod')}" autocomplete="off"><button class="sec" id="o-katil">${tt('KATIL')}</button></div>
     <p class="aciklama kucuk">${tt('İkiniz de internete bağlı olmalısınız. Bağlantı ücretsiz genel sunucular üzerinden kurulur; bazen bağlanmak birkaç saniye sürebilir.')}</p>`, '', 'online');
   $('#o-geri').onclick = () => { onlineSonMod = null; onlineAc(); };
@@ -5935,7 +6063,13 @@ function onlineModAc(mod, uyari) {
   kod.oninput = () => { kod.value = kod.value.replace(/\D/g, '').slice(0, 4); };
   kod.onkeydown = e => { if (e.key === 'Enter') katil(); };
 }
-
+// iki oyuncunun karşılıklı kartı: avatar (bilgisayarda 🤖, beklenirken ?), ad, alt yazı, kazanana taç
+function oyuncuHtml(ad, o) {
+  o = o || {};
+  return `<div class="vs-oy ${o.kaz ? 'kaz' : ''} ${o.bekle ? 'bekle' : ''}"><span class="vs-av" style="--a:${o.renk || '#ffc83d'}">${o.bot ? '🤖' : o.bekle ? '?' : harfi(ad)}${o.kaz ? '<i class="tac">👑</i>' : ''}</span><b>${esc(ad)}</b>${o.alt ? `<small>${o.alt}</small>` : ''}</div>`;
+}
+function vsHtml(sol, sag) { return `<div class="vs">${sol}<span class="vs-rozet">VS</span>${sag}</div>`; }
+const benimAd = () => OD.ad || (aktifProfil() ? aktifProfil().ad : tt('Sen'));
 /* ---------------- hızlı eşleşme ---------------- */
 const ES = { aktif: false, mod: 'hiz', lvl: 'A1', teklif: null, t0: 0, T: null };
 function eslesmeBaslat(mod, lvl) {
@@ -5973,9 +6107,12 @@ function eslesmeMesaj(o) {
   }
 }
 function eslesmeAc() {
-  const x = ONLINE_MOD[ES.mod];
-  goster(`<div class="ana-baslik">${x.i} ${tt(x.ad)} · ${ES.lvl}</div>
-    <div class="arama"><span class="arama-halka"></span><b>${tt('Rakip aranıyor…')}</b><small id="es-sure"></small></div>
+  const x = ONLINE_MOD[ES.mod], ben = aktifProfil() ? aktifProfil().ad : tt('Sen');
+  goster(`<div class="mod-bant ${ES.mod} kucuk"><i>${x.i}</i><div><b>${tt(x.ad)} · ${ES.lvl}</b><small>${tt('Hızlı eşleşme')}</small></div></div>
+    <div class="radar"><i class="dalga d1"></i><i class="dalga d2"></i><i class="dalga d3"></i>
+      ${['I', 'go', 'is', 'we', 'am', 'the'].map((t, i) => `<em class="yorunge" style="--n:${i};--r:${STR_RENKLER[i % 4]}">${t}</em>`).join('')}
+      <span class="vs-av buyuk" style="--a:#ffc83d">${harfi(ben)}</span></div>
+    <div class="arama"><b>${tt('Rakip aranıyor…')}</b><small id="es-sure"></small></div>
     <p class="aciklama" id="es-not" style="text-align:center"></p>
     <button class="big" id="es-bot">${tt('🤖 BİLGİSAYARA KARŞI OYNA')}</button>
     <div class="row"><button class="sec" id="es-iptal">${tt('İPTAL')}</button></div>`, '', 'eslesme');
@@ -5992,23 +6129,29 @@ function eslesmeCiz() {
 function lobiAc() {
   if (G.state !== 'menu') demo();
   Ses.muzik('menu');
-  const ev = OD.rol === 'ev';
-  const mx = ONLINE_MOD[OD.mod] || ONLINE_MOD.hiz;
-  goster(`<div class="ana-baslik">${mx.i} ${tt(mx.ad)}</div>
-    <div class="oda-kod-bas">${tt(ev ? 'ODA KODU' : 'ODA')}</div>
-    <div class="oda-kod">${OD.oto ? '🎲' : esc(OD.kod)}</div>
+  const ev = OD.rol === 'ev', mx = ONLINE_MOD[OD.mod] || ONLINE_MOD.hiz;
+  goster(`<div class="mod-bant ${OD.mod} kucuk"><i>${mx.i}</i><div><b>${tt(mx.ad)} · <span id="oda-lvl-bas">${OD.lvl}</span></b><small>${tt(OD.oto ? 'Hızlı eşleşme' : ev ? 'Senin odan' : 'Arkadaşının odası')}</small></div></div>
+    <div id="oda-vs"></div>
+    ${OD.oto ? '' : `<div class="oda-kod-kutu"><span class="oda-kod-bas">${tt('ODA KODU')}</span><div class="oda-kod">${esc(OD.kod)}</div>
+      ${ev ? `<button class="sec paylas" id="oda-paylas">${tt('📤 Kodu paylaş')}</button>` : ''}</div>`}
     ${ev && !OD.oto ? '<p class="aciklama" style="text-align:center">' + tt('Bu kodu arkadaşına söyle. Arkadaşın “Katıl”a basıp kodu yazınca maçı başlatabilirsin.') + '</p>' : ''}
     <div class="oda-bilgi">
       <div><span>${tt('Bağlantı')}</span><b id="oda-ag"></b></div>
-      <div><span>${tt('Rakip')}</span><b id="oda-rakip"></b></div>
       <div><span>${tt('Seviye')}</span>${ev && !OD.oto ? `<select id="oda-lvl" class="secici">${SEVIYELER.map(l => `<option value="${l}"${l === OD.lvl ? ' selected' : ''}>${l} · ${esc(seviyeAd(l))}</option>`).join('')}</select>` : '<b id="oda-lvl-yazi"></b>'}</div>
     </div>
+    <span id="oda-rakip" hidden></span>
     ${ev && !OD.oto ? '<button class="big" id="oda-basla">' + tt('MAÇI BAŞLAT') + '</button>' : '<p class="aciklama" id="oda-not" style="text-align:center"></p>'}
     <div class="row"><button class="sec" id="oda-cik">${tt('ODADAN ÇIK')}</button></div>`, '', 'oda');
   $('#oda-cik').onclick = () => { odadanCik(); onlineAc(); };
   if (OD.oto && OD.rol === 'misafir') setTimeout(() => { if (ekran === 'oda' && !OD.rakip) { odadanCik(true); onlineAc(tt('Rakiple bağlantı kurulamadı. Tekrar dene.')); } }, 16000);
+  const pay = $('#oda-paylas');
+  if (pay) pay.onclick = () => {
+    const metin = tt('Stacking Sentences’ta benimle oyna! Online → {mod} → Oda kodu: {kod}', { mod: tt(mx.ad), kod: OD.kod });
+    if (navigator.share) navigator.share({ text: metin }).catch(() => { });
+    else if (navigator.clipboard) navigator.clipboard.writeText(metin).then(() => not(tt('Kopyalandı: {k}', { k: OD.kod })), () => { });
+  };
   if (ev && !OD.oto) {
-    $('#oda-lvl').onchange = e => { OD.lvl = e.target.value; Ag.gonder({ t: 'nabiz', ad: OD.ad, lvl: OD.lvl }); };
+    $('#oda-lvl').onchange = e => { OD.lvl = e.target.value; Ag.gonder({ t: 'nabiz', ad: OD.ad, lvl: OD.lvl, mod: OD.mod }); lobiGuncelle(); };
     $('#oda-basla').onclick = () => { if (!OD.rakip) { not(tt('Önce arkadaşın odaya gelmeli.')); return; } sesAc(); macBaslatEv(); };
   }
   lobiGuncelle();
@@ -6019,21 +6162,32 @@ function lobiGuncelle() {
   if (ag) { ag.textContent = tt(d === 'acik' ? '● Bağlı' : d === 'baglaniyor' ? '… Bağlanıyor' : '✖ Bağlanamadı, tekrar deneniyor'); ag.className = 'ag-' + d; }
   const r = $('#oda-rakip');
   if (r) r.textContent = OD.rakip ? '✔ ' + OD.rakip.ad : tt(OD.rol === 'ev' ? 'Bekleniyor…' : 'Oda aranıyor…');
-  const b = $('#oda-basla'); if (b) b.disabled = !OD.rakip;
+  const vs = $('#oda-vs');
+  if (vs) vs.innerHTML = vsHtml(oyuncuHtml(benimAd(), { renk: '#ffc83d', alt: tt('Sen') }),
+    OD.rakip ? oyuncuHtml(OD.rakip.ad, { renk: '#ff7a96', alt: tt('✔ hazır') }) : oyuncuHtml(tt(OD.rol === 'ev' ? 'Bekleniyor…' : 'Oda aranıyor…'), { bekle: true, renk: '#8a7a94' }));
+  const b = $('#oda-basla'); if (b) { b.disabled = !OD.rakip; b.classList.toggle('hazir', !!OD.rakip); }
   const ly = $('#oda-lvl-yazi'); if (ly) ly.textContent = OD.lvl + ' · ' + seviyeAd(OD.lvl);
+  const lb = $('#oda-lvl-bas'); if (lb) lb.textContent = OD.lvl;
   const n = $('#oda-not'); if (n) n.textContent = OD.oto ? (OD.rakip ? tt('Rakip bulundu: {ad}. Maç başlıyor…', { ad: OD.rakip.ad }) : tt('Rakibe bağlanılıyor…')) : OD.rakip ? tt('{ad} maçı başlatınca oyun kendiliğinden açılır.', { ad: OD.rakip.ad }) : '';
+}
+// iki oyuncunun değerini karşılaştıran satır (çubuklar ortadan dışa doğru)
+function kiyasSatir(ad, a, b, ay, by, kucukIyi) {
+  const top = Math.max(1e-9, a + b), sa = a / top, sb = b / top, iyiA = kucukIyi ? a < b : a > b, iyiB = kucukIyi ? b < a : b > a;
+  return `<div class="kiyas"><b class="${iyiA ? 'iyi' : ''}">${ay}</b><span class="kc sol"><u style="width:${Math.round(sa * 100)}%"></u></span><em>${ad}</em><span class="kc sag"><u style="width:${Math.round(sb * 100)}%"></u></span><b class="${iyiB ? 'iyi' : ''}">${by}</b></div>`;
 }
 function onlineSonucGoster() {
   const o = D && D.online; if (!o || !o.karar) return;
   const b = o.benim || { cumle: D.istat.cumle, skor: G.score }, r = o.rakip, top = o.liste.length, kaz = o.karar.k === 'kazandin';
   const sure = x => x && x.sure && x.sure < 1e8 ? Math.floor(x.sure / 60000) + ':' + String(Math.floor(x.sure / 1000) % 60).padStart(2, '0') : '–';
-  const ad = OD.ad || tt('Sen');
+  const sn = x => x && x.sonuc === 'tamam' && x.sure < 1e8 ? x.sure : 0;
   goster(`<div class="go ${kaz ? 'zafer' : ''}" style="font-size:clamp(34px,10vw,54px)">${tt(kaz ? 'KAZANDIN!' : 'KAYBETTİN')}</div>
-    <div class="sonuc-alt">${o.karar.neden}</div>
-    <table class="mac-tablo"><tr><th></th><th>${esc(ad)}</th><th>${esc(r.ad)}</th></tr>
-      <tr><td>${tt('Cümle')}</td><td>${b.cumle} / ${top}</td><td>${r.cumle || 0} / ${top}</td></tr>
-      <tr><td>${tt('Skor')}</td><td>${b.skor}</td><td>${r.skor || 0}</td></tr>
-      <tr><td>${tt('Süre')}</td><td>${b.sonuc === 'tamam' ? sure(b) : '–'}</td><td>${r.sonuc === 'tamam' ? sure(r) : '–'}</td></tr></table>
+    <div class="sonuc-alt">⚡ ${tt('HIZ')} · ${D.r.lvl} · ${o.karar.neden}</div>
+    ${vsHtml(oyuncuHtml(benimAd(), { renk: '#ffc83d', kaz, alt: b.sonuc === 'tamam' ? '⏱ ' + sure(b) : '' }), oyuncuHtml(r.ad, { renk: '#ff7a96', bot: OD.bot, kaz: !kaz, alt: r.sonuc === 'tamam' ? '⏱ ' + sure(r) : '' }))}
+    <div class="kiyas-kutu">
+      ${kiyasSatir(tt('Cümle'), b.cumle || 0, r.cumle || 0, (b.cumle || 0) + '/' + top, (r.cumle || 0) + '/' + top)}
+      ${kiyasSatir(tt('Skor'), b.skor || 0, r.skor || 0, b.skor || 0, r.skor || 0)}
+      ${sn(b) && sn(r) ? kiyasSatir(tt('Süre'), sn(b), sn(r), sure(b), sure(r), true) : ''}
+    </div>
     ${D.ilerleme ? `<div class="sonuc-alt">+${D.ilerleme.xp} XP · 🔥 ${tt('{n} gün seri', { n: D.ilerleme.seri })}</div>` : ''}
     <div class="sonuc-alt kucuk">${OD.bot ? '🤖 ' + tt('Bilgisayara karşı · ') : ''}${tt('Online: {m} maç · {g} galibiyet', { m: kayit.istat.online || 0, g: kayit.istat.onlineGalibiyet || 0 })}${D.hatalar.length ? tt(' · hataların Defterim’e eklendi') : ''}</div>
     ${OD.bot ? '<button class="big" id="os-tekrar">' + tt('TEKRAR OYNA') + '</button>' : OD.rol === 'ev' && OD.rakip ? '<button class="big" id="os-tekrar">' + tt('TEKRAR KAPIŞ') + '</button>' : OD.rakip ? `<p class="aciklama" style="text-align:center">${tt('{ad} yeni maç başlatırsa oyun kendiliğinden açılır.', { ad: esc(OD.rakip.ad) })}</p>` : ''}
@@ -7057,6 +7211,7 @@ function strTurBaslat() {
   strCiz(true);
   clearInterval(M.zaman); M.zaman = setInterval(strSaat, 250);
   Ses.cal('dus', { ses: 0.6 });
+  setTimeout(() => { if (STR === M && M.R && !M.R.bitti) Konus.tr(M.R.s.tr.replace(/;/g, ',')); }, 500);   // Türkçe cümle okunur
 }
 function strSaat() {
   const M = STR, R = M && M.R; if (!R || R.bitti) return;
@@ -7217,7 +7372,7 @@ function strCiz(yeni) {
   tah.style.width = c * T.cols + 'px'; tah.style.height = c * T.rows + 'px'; tah.style.setProperty('--c', c + 'px');
   $('#st-tur').textContent = tt('TUR {a}/{b}', { a: M.tur + 1, b: STR_TUR });
   $('#st-hak').textContent = '✋ ' + R.hamle; $('#st-hak').classList.toggle('az', R.hamle <= 2);
-  const s = strSkor(); $('#st-skor').innerHTML = `${tt('Sen')} <b>${s.b}</b> – <b>${s.r}</b> ${esc(M.rakip.ad)}`;
+  const s = strSkor(); $('#st-skor').innerHTML = `<span class="vs-av mini" style="--a:#ffc83d">${harfi(benimAd())}</span><b>${s.b}</b>–<b>${s.r}</b><span class="vs-av mini" style="--a:#ff7a96">${M.rakip.bot ? '🤖' : harfi(M.rakip.ad)}</span>`;
   $('#st-tr').innerHTML = `<small>${tt('Bu cümleyi kur')} 🔊</small>“${esc(R.s.tr)}”`;
   const rs = M.rakipS[M.tur];
   $('#st-rakip').innerHTML = `${M.rakip.bot ? '🤖' : '👤'} ${esc(M.rakip.ad)}: ${rs ? tt('💣 bombasını attı') : tt('düşünüyor…')}`;
@@ -7326,7 +7481,7 @@ function strPuanUc(t, z) {
 }
 function strKuralGoster() {
   const M = STR, p = $('#st-panel');
-  p.innerHTML = `<div class="st-kart"><h3>🧠 ${tt('STRATEJİ')} · ${M.lvl}</h3><div class="st-vs">${tt('Sen')} vs ${M.rakip.bot ? '🤖' : '👤'} ${esc(M.rakip.ad)}</div>
+  p.innerHTML = `<div class="st-kart"><h3>🧠 ${tt('STRATEJİ')} · ${M.lvl}</h3>${vsHtml(oyuncuHtml(benimAd(), { renk: '#ffc83d', alt: tt('Sen') }), oyuncuHtml(M.rakip.ad, { renk: '#ff7a96', bot: M.rakip.bot, alt: M.rakip.bot ? tt('Bilgisayar') : tt('Rakip') }))}
     <ol class="st-kural">
       <li>${tt('<b>Düzenle:</b> karoyu başka karonun üstüne bırak; oradakiler sağa kayar. Her taşıma 1 hamle.')}</li>
       <li>${tt('<b>Topla:</b> aynı renkleri cümlenin kelimelerinin yanına, alt alta ya da yan yana getir.')}</li>
@@ -7374,18 +7529,17 @@ function strCik() {
 }
 function strSonucGoster() {
   const M = STR; if (!M || !M.karar) return;
-  const k = M.karar.k, s = strSkor(), xp = kayit.xp - M.xp0;
-  let tablo = '';
+  const k = M.karar.k, s = strSkor(), xp = kayit.xp - M.xp0, bot = M.rakip.bot, ev = OD.rol === 'ev';
+  let turlar = '';
   for (let i = 0; i < STR_TUR; i++) {
-    const x = M.ben[i], y = M.rakipS[i], kk = x && y ? strTurKazanan(x, y) : 0;
-    tablo += `<tr><td>${i + 1}</td><td class="${x && x.dogru ? '' : 'yanlis'}">${x ? (x.dogru ? '✓ ' : '✗ ') + x.puan : '–'}${kk > 0 ? ' 🏆' : ''}</td><td class="${y && y.dogru ? '' : 'yanlis'}">${y ? (y.dogru ? '✓ ' : '✗ ') + y.puan : '–'}${kk < 0 ? ' 🏆' : ''}</td></tr>`;
+    const x = M.ben[i] || { dogru: false, puan: 0 }, y = M.rakipS[i] || { dogru: false, puan: 0 };
+    turlar += kiyasSatir(tt('Tur {n}', { n: i + 1 }), x.puan, y.puan, (x.dogru ? '✓ ' : '✗ ') + x.puan, (y.dogru ? '✓ ' : '✗ ') + y.puan);
   }
-  const bot = M.rakip.bot, ev = OD.rol === 'ev';
   strEl.style.display = 'none';
   goster(`<div class="go ${k === 'kazandin' ? 'zafer' : ''}" style="font-size:clamp(34px,10vw,54px)">${tt(k === 'kazandin' ? 'KAZANDIN!' : k === 'berabere' ? 'BERABERE' : 'KAYBETTİN')}</div>
     <div class="sonuc-alt">🧠 ${tt('Strateji')} · ${M.lvl} · ${M.karar.neden}</div>
-    <table class="mac-tablo"><tr><th>${tt('Tur')}</th><th>${esc(OD.ad || tt('Sen'))}</th><th>${bot ? '🤖 ' : ''}${esc(M.rakip.ad)}</th></tr>${tablo}
-      <tr><td>${tt('Toplam')}</td><td><b>${s.pb}</b></td><td><b>${s.pr}</b></td></tr></table>
+    ${vsHtml(oyuncuHtml(benimAd(), { renk: '#ffc83d', kaz: k === 'kazandin', alt: tt('{n} tur', { n: s.b }) }), oyuncuHtml(M.rakip.ad, { renk: '#ff7a96', bot, kaz: k === 'kaybettin', alt: tt('{n} tur', { n: s.r }) }))}
+    <div class="kiyas-kutu">${turlar}${kiyasSatir(tt('Toplam'), s.pb, s.pr, s.pb, s.pr)}</div>
     ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
     ${bot ? `<button class="big" id="ss-tekrar">${tt('TEKRAR OYNA')}</button>` : ev && OD.rakip ? `<button class="big" id="ss-tekrar">${tt('TEKRAR KAPIŞ')}</button>` : OD.rakip ? `<p class="aciklama" style="text-align:center">${tt('{ad} yeni maç başlatırsa oyun kendiliğinden açılır.', { ad: esc(OD.rakip.ad) })}</p>` : ''}
     <div class="row"><button class="sec" id="ss-cik">${tt(bot ? 'ÇIK' : 'ODADAN ÇIK')}</button></div>`, '', 'strSonuc');
@@ -7626,7 +7780,7 @@ function acilisAc() {
     <button class="profil-btn" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span class="pb-ic"><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ★ ${oz.yildiz} · 📗 ${tt('{n} kelime', { n: oz.kelime })}</small></span><em>${tt('Profil ›')}</em></button>
     ${gunlukHtml()}
     ${gorevHtml()}
-    <div class="ana-ikili"><button class="ana-btn online" id="a-online"><i>⚔</i><span><b>${tt('ONLINE KAPIŞMA')}</b><small>${tt('⚡ Hız ya da 🧠 Strateji · arkadaşınla, rakiple, bilgisayarla')}</small></span></button>
+    <div class="ana-ikili"><button class="ana-btn online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE KAPIŞMA')}</b><small>${tt('⚡ Hız ya da 🧠 Strateji · arkadaşınla, rakiple, bilgisayarla')}</small></span></button>
     <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1’den C2’ye cümleler ve kelimeler')}</small></span></button></div>
     <div class="row uclu"><button class="sec" id="a-rozet">🏅 ${rozetSay()}/${ROZETLER.length}</button><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
   </div>`, '', 'acilis');
