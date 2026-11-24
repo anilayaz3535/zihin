@@ -517,6 +517,7 @@ function onlineSonucGoster() {
     <div class="sonuc-alt kucuk">${OD.bot ? '🤖 ' + tt('Bilgisayara karşı · ') : ''}${tt('Online: {m} maç · {g} galibiyet', { m: kayit.istat.online || 0, g: kayit.istat.onlineGalibiyet || 0 })}${D.hatalar.length ? tt(' · hataların Defterim’e eklendi') : ''}</div>
     ${OD.bot ? '<button class="big" id="os-tekrar">' + tt('TEKRAR OYNA') + '</button>' : OD.rol === 'ev' && OD.rakip ? '<button class="big" id="os-tekrar">' + tt('TEKRAR KAPIŞ') + '</button>' : OD.rakip ? `<p class="aciklama" style="text-align:center">${tt('{ad} yeni maç başlatırsa oyun kendiliğinden açılır.', { ad: esc(OD.rakip.ad) })}</p>` : ''}
     <div class="row"><button class="sec" id="os-cik">${tt(OD.bot ? 'ÇIK' : 'ODADAN ÇIK')}</button></div>`, '', 'onlineSonuc');
+  if (typeof emoYerlestir === 'function') emoYerlestir();   // emoji düğmesi hemen yerine
   const t = $('#os-tekrar'); if (t) t.onclick = () => { if (OD.bot) { botMacBaslat('hiz', D.r.lvl); return; } D = null; lobiAc(); };
   $('#os-cik').onclick = () => { odadanCik(); onlineAc(); };
 }

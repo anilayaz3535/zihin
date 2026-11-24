@@ -404,7 +404,7 @@ def online(b):
         esit((sa[1], sa[2]), (sb[2], sb[1]), 'iki telefonda tur puanları: ' + json.dumps([A.js('STR.ben'), B.js('STR.ben')], ensure_ascii=False))
         esit({sa[0], sb[0]}, {'kazandin', 'kaybettin'}, 'strateji maç sonucu')
         # hazır emoji: A gönderir, B'de rakip balonu çıkar; susturunca gelmez; geçersiz emoji yok sayılır
-        dogru(A.js("getComputedStyle(document.getElementById('emo-btn')).display !== 'none'"), 'sonuç ekranında emoji düğmesi yok')
+        A.pg.wait_for_function("getComputedStyle(document.getElementById('emo-btn')).display !== 'none'", timeout=3000)   # sonuç ekranında emoji düğmesi
         A.js('EM.son = 0; emoGonder(3)'); B.pg.wait_for_function("!!document.querySelector('.emo-ucan.rakip')", timeout=8000)
         esit(B.js("document.querySelector('.emo-ucan.rakip b').textContent"), '🔥', 'gelen emoji')
         B.js('EM.sessiz = emoMac(); document.querySelectorAll(".emo-ucan").forEach(e => e.remove())'); A.js('EM.son = 0; emoGonder(1)'); B.pg.wait_for_timeout(1500)
