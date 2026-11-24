@@ -36,18 +36,20 @@ function strCumleler(lvl, r) {
   return out;
 }
 // tahta: { cols, rows, h: [karo | null], hedef: [metin], n } · karo: { id, txt, ci, k (hedefteki sıra, yoksa -1), cel (tuzak) }
-function strTahta(s, lvl, tohum) {
+// o: { rows, bos, tuzak } (Bölüm Yolu küçük tahta kullanır; verilmezse strateji maçının ölçüleri)
+function strTahta(s, lvl, tohum, o) {
+  o = o || {};
   const r = tohumluRastgele(tohum), al = a => a[Math.floor(r() * a.length)];
   const karistir_ = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
   const hedef = s.w.map(w => w[0]), n = hedef.length, li = Math.max(0, SEVIYELER.indexOf(lvl));
-  const cols = STR_SUTUN, rows = n >= 8 ? 7 : 6, hucre = cols * rows, karoN = hucre - STR_BOS;
+  const BOS = o.bos || STR_BOS, cols = STR_SUTUN, rows = o.rows || (n >= 8 ? 7 : 6), hucre = cols * rows, karoN = hucre - BOS;
   const kul = new Set(hedef.map(strKucuk)), karolar_ = [];
   let id = 0;
   // hedef kelimeler: renkler dengeli (bir renkte en çok yarısı)
   const hr = karistir_([...Array(Math.ceil(n / STR_RENK_N) + 1)].flatMap(() => [0, 1, 2, 3])).slice(0, n);
   hedef.forEach((t, k) => karolar_.push({ id: ++id, txt: t, ci: hr[k], k, cel: false }));
   // tuzaklar: doğrusuyla aynı renk (bilgi testi); seviye yükseldikçe çoğalır
-  const tuzakN = Math.min(n, 2 + li), adaylar = [];
+  const tuzakN = o.tuzak != null ? o.tuzak : Math.min(n, 2 + li), adaylar = [];
   s.w.forEach((w, k) => [w[1], w[2]].forEach(c => { if (c && !kul.has(strKucuk(c))) adaylar.push({ c, k }); }));
   karistir_(adaylar).forEach(a => { if (karolar_.length - n >= tuzakN || kul.has(strKucuk(a.c))) return; kul.add(strKucuk(a.c)); karolar_.push({ id: ++id, txt: a.c, ci: hr[a.k], k: -1, cel: true, of: a.k }); });
   // dolgu kelimeler: aynı seviyenin başka cümlelerinden; renkler toplamı dengeler
@@ -59,7 +61,7 @@ function strTahta(s, lvl, tohum) {
     say[ci]++; karolar_.push({ id: ++id, txt: havuz.length ? havuz.pop() : '…', ci, k: -1, cel: false });
   }
   // yerleştir, sonra stratejiye uygun hale getir: hazır üçlü yok, hedef karonun yanında kendi rengi yok
-  const T = { cols, rows, n, hedef, h: karistir_(karolar_.concat(Array(STR_BOS).fill(null))) };
+  const T = { cols, rows, n, hedef, h: karistir_(karolar_.concat(Array(BOS).fill(null))) };
   for (let d = 0; d < 4000; d++) {
     const kotu = strKotuHucreler(T); if (!kotu.length) break;
     const a = al(kotu), b = Math.floor(r() * hucre); [T.h[a], T.h[b]] = [T.h[b], T.h[a]];
@@ -83,12 +85,15 @@ function strKotuHucreler(T) {
   return [...o];
 }
 // taşı: karo 'a' hücresinden 'b' hücresine; b doluysa b ve arkasındakiler sağa (satır sonunda alta) kayar, ilk boşluğu doldurur
+// buzlu / kilitli karo (Bölüm Yolu) yerinden oynamaz: taşınamaz, üstüne bırakılamaz, kayan sıra onu atlar
+const strDonuk = k => !!(k && (k.buz || k.kilit));
 function strTasi(T, a, b) {
-  if (a === b || !T.h[a]) return false;
+  if (a === b || !T.h[a] || strDonuk(T.h[a]) || strDonuk(T.h[b])) return false;
   const N = T.h.length, karo = T.h[a]; T.h[a] = null;
   if (T.h[b]) {
-    let e = (b + 1) % N; while (T.h[e]) e = (e + 1) % N;          // ilk boşluk (karonun boşalttığı yer kesin var)
-    for (let p = e; p !== b; p = (p - 1 + N) % N) T.h[p] = T.h[(p - 1 + N) % N];
+    const sira = [b];   // b'den ileri, donuk hücreleri atlayarak ilk boşluğa kadar
+    for (let p = b, g = 0; g < N; g++) { p = (p + 1) % N; if (strDonuk(T.h[p])) continue; sira.push(p); if (!T.h[p]) break; }   // ilk boşluk (karonun boşalttığı yer kesin var)
+    for (let i = sira.length - 1; i > 0; i--) T.h[sira[i]] = T.h[sira[i - 1]];
   }
   T.h[b] = karo;
   return true;
@@ -111,14 +116,16 @@ function strKaskadBul(T) { const o = new Set(); T.h.forEach((k, i) => { if (k &&
 function strPatlamaPlani(T, idler) {
   const t = { cols: T.cols, rows: T.rows, h: T.h.slice() }, adimlar = [];
   let hs = strBombaHucreleri(t, idler), z = 0;
+  const kirik = new Set();   // kırılan buzlar (patlayan karonun kendisi ya da yanındaki)
   while (hs.length) {
-    adimlar.push({ hucreler: hs.slice(), puan: Math.round(hs.length * 10 * (1 + z * 0.5)), zincir: z, idler: hs.map(i => t.h[i].id) });
+    const buz = []; hs.forEach(i => [i].concat(strKomsu(t, i)).forEach(j => { const k = t.h[j]; if (k && k.buz && !kirik.has(k.id)) { kirik.add(k.id); buz.push(k.id); } }));
+    adimlar.push({ hucreler: hs.slice(), puan: Math.round(hs.length * 10 * (1 + z * 0.5)), zincir: z, idler: hs.map(i => t.h[i].id), karolar: hs.map(i => t.h[i]), buz });
     hs.forEach(i => { t.h[i] = null; }); strDus(t); z++;
     adimlar[adimlar.length - 1].sonra = t.h.slice();
     hs = strKaskadBul(t);
   }
   const kalan = t.h.filter(Boolean).length;
-  return { adimlar, puan: adimlar.reduce((a, x) => a + x.puan, 0) + (kalan === 0 ? 300 : 0), temiz: kalan === 0, kalan };
+  return { son: t.h, adimlar, puan: adimlar.reduce((a, x) => a + x.puan, 0) + (kalan === 0 ? 300 : 0), temiz: kalan === 0, kalan };
 }
 function strDogruMu(T, secim) { return secim.length === T.hedef.length && secim.every((k, i) => k && strKucuk(k.txt) === strKucuk(T.hedef[i])); }
 
@@ -199,10 +206,12 @@ function strTasiOyuncu(a, b) {
   const R = STR && STR.R; if (!R || R.bitti || a === b || !R.T.h[a]) return false;
   if (R.rehber && !rehberIzin('tasi', a, b)) return false;
   if (R.hamle <= 0) { not(tt('Hamle hakkın bitti. Kelimeleri kutulara çek ve bombaya bas.')); Ses.cal('geri', { ses: 0.5 }); return false; }
-  strTasi(R.T, a, b); R.hamle--; R.secili = -1;
+  if (!strTasi(R.T, a, b)) { not(tt('Buzlu ve kilitli karolar yerinden oynamaz.')); Ses.cal('geri', { ses: 0.5 }); R.secili = -1; strCiz(); return false; }
+  R.hamle--; R.secili = -1;
   Ses.cal('kay', { ses: 0.6 }); Yerel.titret('hafif');
   strCiz();
   if (R.rehber) rehberIlerle();
+  if (STR.yol && R.hamle === 0) yolHamleBitti();
   return true;
 }
 function strSec(i, kutu) {   // hücre i'deki karonun gölgesi kutuya
@@ -230,7 +239,7 @@ function strBomba() {
     setTimeout(() => strTurBitir(false, 0, tt('Cümle yanlış: bomba patlamadı.')), 900);
     return;
   }
-  const plan = strPatlamaPlani(R.T, R.secim.map(k => k.id));
+  const plan = strPatlamaPlani(R.T, R.secim.map(k => k.id)); R.plan = plan;
   Ses.cal('emme', { ses: 0.9 }); Ses.kis(true); Yerel.titret('orta');   // önce içine çekme, müzik kısılır
   strTahtaEl().classList.add('topla');
   let toplam = 0;
@@ -238,6 +247,7 @@ function strBomba() {
     if (STR !== M) return;
     if (n === 0) { strTahtaEl().classList.remove('topla'); strFlas(); Yerel.titret('basari'); }
     a.hucreler.forEach(i => { const el = strKaroEl(R.T.h[i] && R.T.h[i].id); if (el) { el.classList.add('pat'); strKivilcim(el, R.T.h[i].ci); } });
+    if (a.buz.length) { R.T.h.forEach(k => { if (k && a.buz.indexOf(k.id) >= 0) { k.buz = false; const el = strKaroEl(k.id); if (el) el.classList.add('buz-kir'); } }); Ses.cal('kes', { ses: 0.6 }); }
     toplam += a.puan; strPuanUc('+' + a.puan, a.zincir);
     // büyük patlama: patlayan karo arttıkça daha güçlü; zincirlerde yükselen ikinci patlamalar
     if (a.zincir) { Ses.cal('zincirBum', { ses: 0.85, hiz: 1 + a.zincir * 0.15 }); Ses.cal('zincir', { ses: 0.8, hiz: 1 + a.zincir * 0.12 }); }
@@ -252,6 +262,7 @@ function strBomba() {
 function strTurBitir(dogru, puan, not_) {
   const M = STR, R = M && M.R; if (!R || R.sonuc) return;
   R.bitti = true; R.sonuc = { dogru, puan, not: not_ || '' };
+  if (M.yol) { yolBitti(dogru); return; }   // Bölüm Yolu (yol.js)
   if (R.rehber) { R.rehber.adim = REHBER.findIndex(x => x.t === 'son'); rehberAdimGoster(); return; }
   const tur = M.tur;
   M.ben[tur] = { dogru, puan, secim: R.secim.map(k => k ? k.txt : '…').join(' ') };
@@ -373,6 +384,7 @@ function strCiz(yeni) {
     const sp = el.firstChild; if (sp.textContent !== k.txt) sp.textContent = k.txt; sp.style.fontSize = strYaziBoy(k.txt, c) + 'px';
     const sn = secimSira.get(k.id); el.classList.toggle('secildi', !!sn); el.lastChild.textContent = sn || '';
     el.classList.toggle('secili', R.secili === i);
+    el.classList.toggle('buz', !!k.buz); el.classList.toggle('kilit', !!k.kilit);
     el.dataset.i = i;
   });
   var_.forEach((e, id) => { if (!durdu.has(id) && !e.classList.contains('pat')) e.remove(); else if (!durdu.has(id)) setTimeout(() => e.remove(), 600); });
@@ -386,6 +398,7 @@ function strCiz(yeni) {
     : R.secim.every(Boolean) ? tt('Hazırsan 💣 BOMBA! Hâlâ taşıyabilir ya da kutudaki kelimeyi değiştirebilirsin.')
       : tt('Aynı renkleri kelimelerin yanına topla, sonra kelimeleri sırayla kutulara çek.');
   if (R.rehber) rehberCiz();
+  if (M.yol) yolCiz();
 }
 const STR_RENKLER = ['#f2453d', '#ffbc1f', '#3cbb4a', '#2b91ea'];
 // renk tonları (CSS color-mix eski iOS'ta yok): açık, koyu, yarı saydam
@@ -497,7 +510,7 @@ function strTurPaneli() {
 }
 function strCikSor() {
   const M = STR; if (!M) return;
-  if (M.karar || M.mac === 'rehber') { strCik(); return; }
+  if (M.karar || M.mac === 'rehber' || M.yol) { strCik(); return; }
   const p = $('#st-panel');
   p.innerHTML = `<div class="st-kart"><h3>${tt('Maçtan çıkılsın mı?')}</h3><p>${tt(M.rakip.bot ? 'Bu maç kaydedilmez.' : 'Çıkarsan maçı kaybedersin.')}</p>
     <button class="big" id="st-kal">${tt('DEVAM ET')}</button><div class="row"><button class="sec" id="st-cik">${tt('ÇIK')}</button></div></div>`;
@@ -507,6 +520,7 @@ function strCikSor() {
 }
 function strCik() {
   const M = STR; if (!M) return;
+  if (M.yol) { strKapat(); yolHaritaAc(); return; }
   const online = M.online, mod = 'strateji';
   if (online && !M.karar) { kayit.istat.online = (kayit.istat.online || 0) + 1; kaydet(); }
   strKapat();

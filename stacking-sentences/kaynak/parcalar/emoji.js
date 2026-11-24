@@ -9,7 +9,7 @@
 const EMO = ['👍', '😮', '😂', '🔥', '👏', '😅'];
 const EMO_ARALIK = 1500, EMO_AL_ARALIK = 800;
 const EM = { son: 0, alSon: 0, sessiz: null, acik: false };
-function emoMac() { return STR ? STR.mac : D && D.online ? D.online.mac : null; }
+function emoMac() { return STR ? (STR.yol || STR.mac === 'rehber' ? null : STR.mac) : D && D.online ? D.online.mac : null; }   // tek kişilik (Bölüm Yolu, alıştırma) değil
 function emoBotMu() { return STR ? !!STR.rakip.bot : !!OD.bot; }
 // emoji düğmesinin yeri: HIZ maçında yarış çubuğunun sağı, stratejide rakip satırı, sonuç ekranlarında VS'nin altı
 function emoBaglam() {

@@ -606,6 +606,61 @@ def muzik(b):
     return 'HIZ / strateji müziği, gerilim, içine çekme, maç sonunda ve menüde susar; ' + ', '.join(f"{k} tepe {v[0]:.2f} rms {v[1]:.3f}" for k, v in olc.items())
 
 @test
+def yol(b):
+    """BÖLÜM YOLU: 120 bölüm üretilir, aynı no aynı bölüm, hepsi uzman çözümüyle çözülebilir, engeller hedef kelimede yok; donuk karo taşınmaz ve
+    kayan sıra onu atlar; haritadan oynanır; uzman hamleleriyle kazanılır (yıldız, sonraki bölüm açılır, kalıcı, XP); NEREDEYSE +3 hamle bir kez;
+    yanlış cümle ve hedefe yetmeyen bomba kaybettirir, TEKRAR DENE aynı tahta; bozuk kayıt onarılır; tek kişilik bölümde emoji yok; İngilizce."""
+    s = Sayfa(b); s.js('kayit.strRehber = true')
+    r = s.js("""(() => { const o = { n: 0, cozulur: 0, ayni: 0, hedefteEngel: 0, tur: {} };
+      for (let n = 1; n <= YOL_TOPLAM; n++) { const B = yolBolum(n); o.n++; o.tur[B.hedef.tur] = (o.tur[B.hedef.tur] || 0) + 1;
+        if (yolHedefSayi(B.hedef, B.uzman) >= B.hedef.sayi) o.cozulur++;
+        if (B.T.h.some(k => k && k.k >= 0 && (k.buz || k.kilit))) o.hedefteEngel++; }
+      yolOnbellek.clear(); const a = JSON.stringify(yolBolum(37).T.h); yolOnbellek.clear(); o.ayni = a === JSON.stringify(yolBolum(37).T.h) ? 1 : 0; return o; })()""")
+    esit((r['n'], r['cozulur'], r['ayni'], r['hedefteEngel']), (120, 120, 1, 0), 'bölüm üretimi')
+    dogru(all(r['tur'].get(k, 0) >= 10 for k in ('puan', 'buz', 'renk', 'kilit')), f"hedef türleri: {r['tur']}")
+    # donuk karo
+    k = s.js("""(() => { const K = (t, o) => Object.assign({ id: t, txt: t, ci: 0, k: -1 }, o || {}); const T = { cols: 3, rows: 2, h: [K('a'), K('b', { buz: true }), K('c'), K('d'), K('e'), null] };
+      const y = () => T.h.map(x => x ? x.txt : '_').join(''); return [strTasi(T, 1, 0), strTasi(T, 4, 1), strTasi(T, 4, 0), y()]; })()""")
+    esit(k[:3], [False, False, True], 'donuk karo taşınmaz / üstüne bırakılmaz')
+    esit(s.js("""(() => { const K = (t, o) => Object.assign({ id: t, txt: t, ci: 0, k: -1 }, o || {}); const T = { cols: 3, rows: 2, h: [K('a'), K('b', { buz: true }), K('c'), K('d'), K('e'), null] };
+      strTasi(T, 4, 0); return T.h.map(x => x ? x.txt : '_').join(''); })()"""), 'ebacd_', 'kayan sıra buzu atlar')
+    # haritadan oyna, uzman hamleleriyle kazan
+    s.js('acilisAc()'); s.pg.tap('#a-yol', force=True); esit(s.js('ekran'), 'yol', 'harita'); esit(s.js("document.querySelector('.y-durak.simdi').dataset.n"), '1', 'sıradaki bölüm')
+    s.js("document.querySelector('.y-durak[data-n=\"5\"]').click()"); dogru('1' in s.js("document.getElementById('not').textContent"), 'kilitli bölüm uyarısı yok')
+    s.pg.tap('.y-durak[data-n="1"]', force=True); esit(s.js('ekran'), 'yolBas', 'başlangıç kartı'); s.pg.tap('#y-oyna', force=True)
+    dogru(s.js('!!(STR && STR.yol && STR.yol.no === 1)'), 'bölüm açılmadı'); s.pg.wait_for_timeout(300)
+    dogru(s.js("getComputedStyle(document.getElementById('emo-btn')).display === 'none'"), 'tek kişilik bölümde emoji düğmesi var')
+    xp0 = s.js('kayit.xp')
+    s.js("""(() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, B.hedef.renk == null ? -1 : B.hedef.renk, h);
+      h.forEach(([a, b]) => strTasiOyuncu(a, b)); const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); })()""")
+    dogru(s.js("document.getElementById('st-rakip').textContent.indexOf('✓') >= 0"), 'önizleme hedefin tamam olduğunu göstermiyor')
+    s.js('strBomba()'); s.pg.wait_for_function("!!document.getElementById('y-sonraki')", timeout=20000); s.foto('yol_kazandi')
+    dogru(s.js('kayit.yol.yildiz[1]') >= 2, f"uzman çözümüyle yıldız: {s.js('kayit.yol.yildiz[1]')}"); esit(s.js('kayit.yol.acik'), 2, 'sonraki bölüm açılmadı'); dogru(s.js('kayit.xp') > xp0, 'XP yok')
+    s.pg.tap('#y-sonraki', force=True); esit(s.js('ekran'), 'yolBas', 'sonraki bölüm kartı')
+    # NEREDEYSE: hedef ulaşılmazken hamle biter → +3 hamle bir kez
+    s.js("yolOyna(2); STR.yol.b = Object.assign({}, STR.yol.b, { hedef: { tur: 'puan', sayi: 99999 } }); STR.R.hamle = 1")
+    s.js("(() => { const R = STR.R, a = R.T.h.findIndex(x => x && x.k < 0 && !strDonuk(x)), b = R.T.h.findIndex((x, i) => i !== a && x && !strDonuk(x)); strTasiOyuncu(a, b); })()")
+    dogru(s.js("!!document.getElementById('y-ek')"), 'NEREDEYSE çıkmadı'); s.foto('yol_neredeyse'); s.pg.tap('#y-ek', force=True); esit(s.js('STR.R.hamle'), 3, '+3 hamle')
+    s.js('STR.R.hamle = 1'); s.js("(() => { const R = STR.R, a = R.T.h.findIndex(x => x && x.k < 0 && !strDonuk(x)), b = R.T.h.findIndex((x, i) => i !== a && x && !strDonuk(x)); strTasiOyuncu(a, b); })()")
+    dogru(not s.js("document.getElementById('st-panel').classList.contains('acik')"), 'NEREDEYSE ikinci kez çıktı')
+    # hedefe yetmeyen bomba: kaybeder, TEKRAR DENE aynı tahta
+    s.js("(() => { const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()")
+    s.pg.wait_for_function("!!document.getElementById('y-tekrar') && !document.getElementById('y-sonraki')", timeout=20000); esit(s.js('kayit.yol.acik'), 2, 'kaybedince bölüm açıldı')
+    ilk = s.js('JSON.stringify(yolBolum(2).T.h.map(k => k && k.txt))'); s.pg.tap('#y-tekrar', force=True); esit(s.js('JSON.stringify(STR.R.T.h.map(k => k && k.txt))'), ilk, 'TEKRAR DENE aynı tahta')
+    # yanlış cümle
+    s.js("(() => { const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); const z = R.secim[0]; R.secim[0] = R.secim[1]; R.secim[1] = z; strBomba(); })()")
+    s.pg.wait_for_function("!!document.querySelector('.y-sonuc .st-dogru')", timeout=10000)
+    # kalıcılık ve onarım
+    s.js('strKapat()'); s.pg.reload(); s.bekle(); esit((s.js('kayit.yol.acik'), s.js('kayit.yol.yildiz[1]') >= 2), (2, True), 'kalıcı değil')
+    s.js("kayit = kayitDuzelt(Object.assign({}, kayit, { yol: { acik: 'x', yildiz: { 3: 9, a: 1, 2: 2 }, enIyi: [] } }), bosKayit()).k")
+    esit(s.js('JSON.stringify(kayit.yol)'), json.dumps({'acik': 1, 'yildiz': {'2': 2}, 'enIyi': {}}, separators=(',', ':')), 'bozuk yol kaydı onarımı')
+    # İngilizce
+    s.js("dilSec('en'); yolHaritaAc()"); tr = s.js("[...document.querySelectorAll('.y-bolge b, .y-bolge small, .ana-baslik')].map(e => e.textContent).filter(t => /[ğüşıöçİĞÜŞÖÇ]/.test(t))"); esit(tr, [], 'İngilizce haritada Türkçe')
+    s.js('yolBaslangic(21)'); tr = s.js("[...document.querySelectorAll('.y-bas, .y-hedef, .y-yeni, .y-bilgi')].map(e => e.textContent).filter(t => /[ğüşıöçİĞÜŞÖÇ]/.test(t))"); esit(tr, [], 'İngilizce başlangıç kartında Türkçe')
+    esit(s.hatalar(), [], 'JS hataları'); s.kapat()
+    return f"120 bölüm çözülebilir ({r['tur']}); donuk karo; haritadan oyna, uzmanla kazan; NEREDEYSE bir kez; kaybet / tekrar aynı tahta; yanlış cümle; kalıcı; onarım; İngilizce"
+
+@test
 def hiz_bot(b):
     """HIZ: seviye seçimi ve bilgisayara karşı maç: seçilen seviyenin cümleleri, bilgisayar cümleleri zamanla bitirir, karar ve sonuç ekranı."""
     s = Sayfa(b)

@@ -19,7 +19,7 @@ function bosKayit() {
     istat: { dojo: 0, zafer: 0, online: 0, onlineGalibiyet: 0 }, sonKayit: 0,
     xp: 0, gunluk: { hedef: 50, gunler: {} }, seri: { gun: 0, enUzun: 0, sonGun: null, dondurma: 0, donan: [] },   // ilerleme.js
     gorev: { son: null, seri: 0, enUzun: 0, toplam: 0, gunler: {} },   // Günün Görevi (gorev.js)
-    rozet: {}, strRehber: false };                                     // rozet.js · strRehber: strateji alıştırması görüldü (strateji.js)
+    rozet: {}, strRehber: false, yol: { acik: 1, yildiz: {}, enIyi: {} } };                                     // rozet.js · strRehber: strateji alıştırması görüldü (strateji.js)
 }
 /* ---------------- kayıt okuma: doğrula (kayit-sema.js), bozuksa yedekle, oyuncuya bir kez söyle ---------------- */
 const YEDEK_ON = 'te_yedek:';                     // te_yedek:<anahtar>:<zaman> → bozuk bulunan ham kayıt

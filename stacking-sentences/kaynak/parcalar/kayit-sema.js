@@ -115,6 +115,14 @@ const ALANLAR = {
     return b ? c.bozuk(o) : o;
   },
   strRehber: (x, v, c) => (typeof x === 'boolean' ? x : c.bozuk(v)),
+  yol: (x, v, c) => {      // Bölüm Yolu: { acik: açık son bölüm, yildiz: { no: 1..3 }, enIyi: { no: puan } }
+    if (!nesneMi(x)) return c.bozuk({ acik: 1, yildiz: {}, enIyi: {} });
+    let b = false; const o = { acik: 1, yildiz: {}, enIyi: {} };
+    const a = tamSayi(x.acik, 1, 100000); if (a === null || a !== x.acik) b = true; o.acik = a || 1;
+    if (nesneMi(x.yildiz)) { for (const k in x.yildiz) { const y = tamSayi(x.yildiz[k], 1, 3); if (/^\d+$/.test(k) && y !== null && y === x.yildiz[k]) o.yildiz[k] = y; else b = true; } } else b = true;
+    if (nesneMi(x.enIyi)) { for (const k in x.enIyi) { const y = tamSayi(x.enIyi[k], 0, 1e7); if (/^\d+$/.test(k) && y !== null) o.enIyi[k] = y; else b = true; } } else b = true;
+    return b ? c.bozuk(o) : o;
+  },
   rozet: (x, v, c) => {    // açılan rozetler: { id: zaman }
     if (!nesneMi(x)) return c.bozuk({});
     const o = {}; let b = false;
