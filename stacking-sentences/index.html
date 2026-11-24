@@ -720,7 +720,7 @@
   .st-k::before{content:'';position:absolute;inset:3px;border-radius:12px;background:linear-gradient(var(--ra),var(--r));
     box-shadow:0 4px 0 var(--rd),inset 0 2px 0 rgba(255,255,255,.5)}
   .st-k span{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:2px;text-align:center;color:#fff;font-weight:700;line-height:1.02;
-    overflow-wrap:anywhere;-webkit-text-stroke:3px rgba(60,20,30,.45);paint-order:stroke fill;pointer-events:none}
+    -webkit-hyphens:auto;hyphens:auto;overflow-wrap:anywhere;-webkit-text-stroke:3px rgba(60,20,30,.45);paint-order:stroke fill;pointer-events:none}
   .st-k em{position:absolute;right:0;top:0;min-width:20px;height:20px;border-radius:10px;background:#fff;color:#5b3a24;font:700 12px/20px Fredoka,sans-serif;font-style:normal;text-align:center;display:none;box-shadow:0 2px 4px rgba(0,0,0,.35)}
   .st-k.secildi em{display:block}
   .st-k.secildi::before{box-shadow:0 4px 0 var(--rd),0 0 0 3px #fff,0 0 14px 4px rgba(255,255,255,.7)}
@@ -1786,7 +1786,8 @@ DIL_SOZLUK.en = {
 "TURU KAZANDIN!": "YOU WON THE ROUND!",
 "TURU KAYBETTİN": "YOU LOST THE ROUND",
 "Bu maç kaydedilmez.": "This match is not recorded.",
-"Çıkarsan maçı kaybedersin.": "If you leave, you lose the match."
+"Çıkarsan maçı kaybedersin.": "If you leave, you lose the match.",
+"Oyuncu": "Player"
 };
 
 /* =====================================================================
@@ -5747,9 +5748,12 @@ const Ag = (function () {
 const OD = { rol: null, kod: '', ad: '', lvl: 'A1', mod: 'hiz', oto: false, bot: false, rakip: null, mac: null, hazirMac: null, araT: null, araBitis: 0, nabizT: null, baslaT: null };
 let onlineSonMod = null, onlineSecLvl = null;
 const temizAd = s => String(s || 'Rakip').replace(/[<>&"\u0000-\u001f]/g, '').trim().slice(0, 16) || 'Rakip';
+// hızlı eşleşmede yabancılar birbirinin yazdığı ismi görmez (mağaza kuralı: denetlenmeyen kullanıcı içeriği yok); bağlantı kimliğinden sabit takma ad
+const takmaAd = cid => { let h = 7; for (const ch of String(cid)) h = (h * 31 + ch.charCodeAt(0)) % 9000; return tt('Oyuncu') + ' #' + (1000 + h); };
+const rakipAdi = (ad, cid) => OD.oto || OD.eslesme ? takmaAd(cid) : temizAd(ad);
 function odaSifirla() {
   clearInterval(OD.araT); clearInterval(OD.nabizT); clearInterval(OD.baslaT);
-  Object.assign(OD, { rol: null, kod: '', rakip: null, mac: null, hazirMac: null, araT: null, nabizT: null, baslaT: null, oto: false, bot: false });
+  Object.assign(OD, { rol: null, kod: '', rakip: null, mac: null, hazirMac: null, araT: null, nabizT: null, baslaT: null, oto: false, eslesme: false, bot: false });
 }
 function onlineSeviye() { const l = kayit.sonLvl; return SEVIYELER.indexOf(l) >= 0 ? l : 'A1'; }
 // o: { mod: 'hiz' | 'strateji', lvl, oto: rakip gelince maç kendiliğinden başlasın (hızlı eşleşme) }
@@ -5757,7 +5761,7 @@ function odaBaglan(kod, rol, o) {
   o = o || {};
   odaSifirla();
   OD.rol = rol; OD.kod = kod; OD.ad = temizAd(aktifProfil() ? aktifProfil().ad : 'Oyuncu');
-  OD.mod = o.mod === 'strateji' ? 'strateji' : 'hiz'; OD.oto = !!o.oto;
+  OD.mod = o.mod === 'strateji' ? 'strateji' : 'hiz'; OD.oto = !!o.oto; OD.eslesme = !!o.eslesme;
   if (rol === 'ev') OD.lvl = SEVIYELER.indexOf(o.lvl) >= 0 ? o.lvl : onlineSeviye();
   Ag.baslat(kod, onlineMesaj, agDurumu);
   OD.nabizT = setInterval(nabiz, 3000);
@@ -5787,7 +5791,7 @@ function onlineMesaj(o) {
     const r = OD.rakip;
     if (r && r.cid !== o.c && Date.now() - r.son < 15000) { Ag.gonder({ t: 'dolu', hedef: o.c }); return; }
     const yeni = !r || r.cid !== o.c;
-    OD.rakip = { cid: o.c, ad: temizAd(o.ad), son: Date.now() };
+    OD.rakip = { cid: o.c, ad: rakipAdi(o.ad, o.c), son: Date.now() };
     Ag.gonder({ t: 'oda', hedef: o.c, ad: OD.ad, lvl: OD.lvl, mod: OD.mod });
     if (yeni) {
       Ses.cal('yukselis', { ses: 0.5 }); if (ekran === 'oda') lobiGuncelle();
@@ -5798,7 +5802,7 @@ function onlineMesaj(o) {
   if (o.t === 'oda') {
     if (OD.rol !== 'misafir' || OD.rakip) return;
     clearInterval(OD.araT); OD.araT = null;
-    OD.rakip = { cid: o.c, ad: temizAd(o.ad), son: Date.now() }; OD.lvl = SEVIYELER.indexOf(o.lvl) >= 0 ? o.lvl : 'A1'; OD.mod = o.mod === 'strateji' ? 'strateji' : 'hiz';
+    OD.rakip = { cid: o.c, ad: rakipAdi(o.ad, o.c), son: Date.now() }; OD.lvl = SEVIYELER.indexOf(o.lvl) >= 0 ? o.lvl : 'A1'; OD.mod = o.mod === 'strateji' ? 'strateji' : 'hiz';
     Ses.cal('yukselis', { ses: 0.5 });
     if (ekran === 'oda') lobiGuncelle();
     return;
@@ -6036,7 +6040,7 @@ function eslesmeMesaj(o) {
     const { mod, lvl } = ES, kod = o.kod.replace(/[^a-z0-9]/gi, '').slice(0, 12);
     clearInterval(ES.T); ES.T = null; ES.aktif = false;
     [0, 350, 800].forEach(ms => setTimeout(() => Ag.gonder({ t: 'kabul', hedef: o.c, kod }), ms));
-    setTimeout(() => { odaBaglan(kod, 'misafir', { mod, lvl }); lobiAc(); }, 1200);
+    setTimeout(() => { odaBaglan(kod, 'misafir', { mod, lvl, eslesme: true }); lobiAc(); }, 1200);
     return;
   }
   if (o.t === 'kabul') {
@@ -7003,7 +7007,7 @@ function strTahta(s, lvl, tohum) {
   karistir_(adaylar).forEach(a => { if (karolar_.length - n >= tuzakN || kul.has(strKucuk(a.c))) return; kul.add(strKucuk(a.c)); karolar_.push({ id: ++id, txt: a.c, ci: hr[a.k], k: -1, cel: true, of: a.k }); });
   // dolgu kelimeler: aynı seviyenin başka cümlelerinden; renkler toplamı dengeler
   const havuz = [], rl = seviyeRakipleri(lvl).filter(cumleliMi);
-  for (let d = 0; d < 80 && havuz.length < 160; d++) { const h = cumleler(al(rl).id); const c = h.length && al(h); if (c) c.w.forEach(w => { const t = w[0], kk = strKucuk(t); if (kk && !kul.has(kk) && [...t].length <= 11 && !/[.,!?]/.test(t)) { kul.add(kk); havuz.push(t === 'I' ? t : t.toLowerCase()); } }); }
+  for (let d = 0; d < 80 && havuz.length < 160; d++) { const h = cumleler(al(rl).id); const c = h.length && al(h); if (c) c.w.forEach(w => { const t = w[0], kk = strKucuk(t); if (kk && !kul.has(kk) && [...t].length <= 8 && !/[.,!?]/.test(t)) { kul.add(kk); havuz.push(t === 'I' ? t : t.toLowerCase()); } }); }
   const say = [0, 0, 0, 0]; karolar_.forEach(k => say[k.ci]++);
   while (karolar_.length < karoN) {
     let ci = 0; for (let c = 1; c < STR_RENK_N; c++) if (say[c] < say[ci] || (say[c] === say[ci] && r() < 0.5)) ci = c;
@@ -7134,6 +7138,7 @@ function strTurBaslat() {
 }
 function strSaat() {
   const M = STR, R = M && M.R; if (!R || R.bitti) return;
+  if (document.hidden && M.rakip.bot) { R.t0 += 250; return; }   // bilgisayara karşı: telefon kilitliyken / uygulama alttayken süre durur
   const kalan = Math.max(0, R.sure - (Date.now() - R.t0) / 1000);
   const el = $('#st-sure'); if (el) { el.textContent = '⏱ ' + Math.floor(kalan / 60) + ':' + String(Math.floor(kalan % 60)).padStart(2, '0'); el.classList.toggle('az', kalan <= 20); }
   if (kalan <= 10 && Math.ceil(kalan) !== R.sonTik) { R.sonTik = Math.ceil(kalan); if (kalan > 0) Ses.cal('saat', { ses: 0.4 }); }
@@ -7282,7 +7287,7 @@ const strOlcCtx = document.createElement('canvas').getContext('2d');
 function strYaziBoy(t, c) {
   strOlcCtx.font = `700 100px ${FONT}`;
   const w100 = Math.max(1, strOlcCtx.measureText(t).width) / 100, sig = (c - 12) / w100;
-  return Math.round(Math.max(Math.min(c * 0.34, sig), 9));
+  return Math.round(Math.max(Math.min(c * 0.34, sig), Math.min(13, c * 0.24)));   // daha küçülmez: sığmayan kelime heceden ikiye bölünür
 }
 function strCiz(yeni) {
   const M = STR, R = M && M.R; if (!R || !strEl) return;
@@ -7301,7 +7306,7 @@ function strCiz(yeni) {
   T.h.forEach((k, i) => {
     if (!k) return;
     let el = var_.get(k.id);
-    if (!el) { el = document.createElement('div'); el.className = 'st-k'; el.dataset.id = k.id; el.innerHTML = '<span></span><em></em>'; el.style.cssText = strRenkStil(k.ci); tah.appendChild(el); if (yeni) el.style.animationDelay = (i * 18) + 'ms'; if (yeni) el.classList.add('gel'); }
+    if (!el) { el = document.createElement('div'); el.className = 'st-k'; el.dataset.id = k.id; el.innerHTML = '<span lang="en"></span><em></em>'; el.style.cssText = strRenkStil(k.ci); tah.appendChild(el); if (yeni) el.style.animationDelay = (i * 18) + 'ms'; if (yeni) el.classList.add('gel'); }
     durdu.add(k.id);
     el.style.left = (i % T.cols) * c + 'px'; el.style.top = Math.floor(i / T.cols) * c + 'px';
     el.style.width = el.style.height = c + 'px';

@@ -106,9 +106,12 @@ const Ag = (function () {
 const OD = { rol: null, kod: '', ad: '', lvl: 'A1', mod: 'hiz', oto: false, bot: false, rakip: null, mac: null, hazirMac: null, araT: null, araBitis: 0, nabizT: null, baslaT: null };
 let onlineSonMod = null, onlineSecLvl = null;
 const temizAd = s => String(s || 'Rakip').replace(/[<>&"\u0000-\u001f]/g, '').trim().slice(0, 16) || 'Rakip';
+// hızlı eşleşmede yabancılar birbirinin yazdığı ismi görmez (mağaza kuralı: denetlenmeyen kullanıcı içeriği yok); bağlantı kimliğinden sabit takma ad
+const takmaAd = cid => { let h = 7; for (const ch of String(cid)) h = (h * 31 + ch.charCodeAt(0)) % 9000; return tt('Oyuncu') + ' #' + (1000 + h); };
+const rakipAdi = (ad, cid) => OD.oto || OD.eslesme ? takmaAd(cid) : temizAd(ad);
 function odaSifirla() {
   clearInterval(OD.araT); clearInterval(OD.nabizT); clearInterval(OD.baslaT);
-  Object.assign(OD, { rol: null, kod: '', rakip: null, mac: null, hazirMac: null, araT: null, nabizT: null, baslaT: null, oto: false, bot: false });
+  Object.assign(OD, { rol: null, kod: '', rakip: null, mac: null, hazirMac: null, araT: null, nabizT: null, baslaT: null, oto: false, eslesme: false, bot: false });
 }
 function onlineSeviye() { const l = kayit.sonLvl; return SEVIYELER.indexOf(l) >= 0 ? l : 'A1'; }
 // o: { mod: 'hiz' | 'strateji', lvl, oto: rakip gelince maç kendiliğinden başlasın (hızlı eşleşme) }
@@ -116,7 +119,7 @@ function odaBaglan(kod, rol, o) {
   o = o || {};
   odaSifirla();
   OD.rol = rol; OD.kod = kod; OD.ad = temizAd(aktifProfil() ? aktifProfil().ad : 'Oyuncu');
-  OD.mod = o.mod === 'strateji' ? 'strateji' : 'hiz'; OD.oto = !!o.oto;
+  OD.mod = o.mod === 'strateji' ? 'strateji' : 'hiz'; OD.oto = !!o.oto; OD.eslesme = !!o.eslesme;
   if (rol === 'ev') OD.lvl = SEVIYELER.indexOf(o.lvl) >= 0 ? o.lvl : onlineSeviye();
   Ag.baslat(kod, onlineMesaj, agDurumu);
   OD.nabizT = setInterval(nabiz, 3000);
@@ -146,7 +149,7 @@ function onlineMesaj(o) {
     const r = OD.rakip;
     if (r && r.cid !== o.c && Date.now() - r.son < 15000) { Ag.gonder({ t: 'dolu', hedef: o.c }); return; }
     const yeni = !r || r.cid !== o.c;
-    OD.rakip = { cid: o.c, ad: temizAd(o.ad), son: Date.now() };
+    OD.rakip = { cid: o.c, ad: rakipAdi(o.ad, o.c), son: Date.now() };
     Ag.gonder({ t: 'oda', hedef: o.c, ad: OD.ad, lvl: OD.lvl, mod: OD.mod });
     if (yeni) {
       Ses.cal('yukselis', { ses: 0.5 }); if (ekran === 'oda') lobiGuncelle();
@@ -157,7 +160,7 @@ function onlineMesaj(o) {
   if (o.t === 'oda') {
     if (OD.rol !== 'misafir' || OD.rakip) return;
     clearInterval(OD.araT); OD.araT = null;
-    OD.rakip = { cid: o.c, ad: temizAd(o.ad), son: Date.now() }; OD.lvl = SEVIYELER.indexOf(o.lvl) >= 0 ? o.lvl : 'A1'; OD.mod = o.mod === 'strateji' ? 'strateji' : 'hiz';
+    OD.rakip = { cid: o.c, ad: rakipAdi(o.ad, o.c), son: Date.now() }; OD.lvl = SEVIYELER.indexOf(o.lvl) >= 0 ? o.lvl : 'A1'; OD.mod = o.mod === 'strateji' ? 'strateji' : 'hiz';
     Ses.cal('yukselis', { ses: 0.5 });
     if (ekran === 'oda') lobiGuncelle();
     return;
@@ -395,7 +398,7 @@ function eslesmeMesaj(o) {
     const { mod, lvl } = ES, kod = o.kod.replace(/[^a-z0-9]/gi, '').slice(0, 12);
     clearInterval(ES.T); ES.T = null; ES.aktif = false;
     [0, 350, 800].forEach(ms => setTimeout(() => Ag.gonder({ t: 'kabul', hedef: o.c, kod }), ms));
-    setTimeout(() => { odaBaglan(kod, 'misafir', { mod, lvl }); lobiAc(); }, 1200);
+    setTimeout(() => { odaBaglan(kod, 'misafir', { mod, lvl, eslesme: true }); lobiAc(); }, 1200);
     return;
   }
   if (o.t === 'kabul') {

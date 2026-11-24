@@ -408,7 +408,8 @@ def online(b):
         for p in (A, B): p.js("strKapat(); odadanCik(); onlineModAc('hiz')"); p.pg.wait_for_timeout(200); p.pg.tap('#o-lvl button[data-l="A2"]'); p.pg.tap('#o-hizli')
         for p in (A, B): p.pg.wait_for_function("D && D.online && G.state === 'playing'", timeout=30000)
         esit(A.js('JSON.stringify(D.online.liste)'), B.js('JSON.stringify(D.online.liste)'), 'hızlı eşleşmede cümle listesi')
-        esit((A.js('D.r.lvl'), B.js('OD.rakip.ad')), ('A2', 'Ayşe'), 'hızlı eşleşme seviye / rakip')
+        esit(A.js('D.r.lvl'), 'A2', 'hızlı eşleşme seviyesi')
+        dogru(B.js('OD.rakip.ad').startswith('Oyuncu #') and A.js('OD.rakip.ad').startswith('Oyuncu #'), 'hızlı eşleşmede gerçek isim göründü: ' + B.js('OD.rakip.ad'))
         esit(A.hatalar(), [], 'JS hataları A (eşleşme)'); esit(B.hatalar(), [], 'JS hataları B (eşleşme)')
         A.kapat(); B.kapat()
         return f'oda {kod}: A {ka}, B {kb}; yanlış kod uyarısı; strateji odası {kod2}: {sa[0]} / {sb[0]}, puanlar {sa[1]} – {sa[2]}; hızlı eşleşme A2 tamam'

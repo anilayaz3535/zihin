@@ -52,7 +52,7 @@ function strTahta(s, lvl, tohum) {
   karistir_(adaylar).forEach(a => { if (karolar_.length - n >= tuzakN || kul.has(strKucuk(a.c))) return; kul.add(strKucuk(a.c)); karolar_.push({ id: ++id, txt: a.c, ci: hr[a.k], k: -1, cel: true, of: a.k }); });
   // dolgu kelimeler: aynı seviyenin başka cümlelerinden; renkler toplamı dengeler
   const havuz = [], rl = seviyeRakipleri(lvl).filter(cumleliMi);
-  for (let d = 0; d < 80 && havuz.length < 160; d++) { const h = cumleler(al(rl).id); const c = h.length && al(h); if (c) c.w.forEach(w => { const t = w[0], kk = strKucuk(t); if (kk && !kul.has(kk) && [...t].length <= 11 && !/[.,!?]/.test(t)) { kul.add(kk); havuz.push(t === 'I' ? t : t.toLowerCase()); } }); }
+  for (let d = 0; d < 80 && havuz.length < 160; d++) { const h = cumleler(al(rl).id); const c = h.length && al(h); if (c) c.w.forEach(w => { const t = w[0], kk = strKucuk(t); if (kk && !kul.has(kk) && [...t].length <= 8 && !/[.,!?]/.test(t)) { kul.add(kk); havuz.push(t === 'I' ? t : t.toLowerCase()); } }); }
   const say = [0, 0, 0, 0]; karolar_.forEach(k => say[k.ci]++);
   while (karolar_.length < karoN) {
     let ci = 0; for (let c = 1; c < STR_RENK_N; c++) if (say[c] < say[ci] || (say[c] === say[ci] && r() < 0.5)) ci = c;
@@ -183,6 +183,7 @@ function strTurBaslat() {
 }
 function strSaat() {
   const M = STR, R = M && M.R; if (!R || R.bitti) return;
+  if (document.hidden && M.rakip.bot) { R.t0 += 250; return; }   // bilgisayara karşı: telefon kilitliyken / uygulama alttayken süre durur
   const kalan = Math.max(0, R.sure - (Date.now() - R.t0) / 1000);
   const el = $('#st-sure'); if (el) { el.textContent = '⏱ ' + Math.floor(kalan / 60) + ':' + String(Math.floor(kalan % 60)).padStart(2, '0'); el.classList.toggle('az', kalan <= 20); }
   if (kalan <= 10 && Math.ceil(kalan) !== R.sonTik) { R.sonTik = Math.ceil(kalan); if (kalan > 0) Ses.cal('saat', { ses: 0.4 }); }
@@ -331,7 +332,7 @@ const strOlcCtx = document.createElement('canvas').getContext('2d');
 function strYaziBoy(t, c) {
   strOlcCtx.font = `700 100px ${FONT}`;
   const w100 = Math.max(1, strOlcCtx.measureText(t).width) / 100, sig = (c - 12) / w100;
-  return Math.round(Math.max(Math.min(c * 0.34, sig), 9));
+  return Math.round(Math.max(Math.min(c * 0.34, sig), Math.min(13, c * 0.24)));   // daha küçülmez: sığmayan kelime heceden ikiye bölünür
 }
 function strCiz(yeni) {
   const M = STR, R = M && M.R; if (!R || !strEl) return;
@@ -350,7 +351,7 @@ function strCiz(yeni) {
   T.h.forEach((k, i) => {
     if (!k) return;
     let el = var_.get(k.id);
-    if (!el) { el = document.createElement('div'); el.className = 'st-k'; el.dataset.id = k.id; el.innerHTML = '<span></span><em></em>'; el.style.cssText = strRenkStil(k.ci); tah.appendChild(el); if (yeni) el.style.animationDelay = (i * 18) + 'ms'; if (yeni) el.classList.add('gel'); }
+    if (!el) { el = document.createElement('div'); el.className = 'st-k'; el.dataset.id = k.id; el.innerHTML = '<span lang="en"></span><em></em>'; el.style.cssText = strRenkStil(k.ci); tah.appendChild(el); if (yeni) el.style.animationDelay = (i * 18) + 'ms'; if (yeni) el.classList.add('gel'); }
     durdu.add(k.id);
     el.style.left = (i % T.cols) * c + 'px'; el.style.top = Math.floor(i / T.cols) * c + 'px';
     el.style.width = el.style.height = c + 'px';

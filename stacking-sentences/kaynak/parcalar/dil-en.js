@@ -762,5 +762,6 @@ DIL_SOZLUK.en = {
 "TURU KAZANDIN!": "YOU WON THE ROUND!",
 "TURU KAYBETTİN": "YOU LOST THE ROUND",
 "Bu maç kaydedilmez.": "This match is not recorded.",
-"Çıkarsan maçı kaybedersin.": "If you leave, you lose the match."
+"Çıkarsan maçı kaybedersin.": "If you leave, you lose the match.",
+"Oyuncu": "Player"
 };

@@ -594,7 +594,7 @@
   .st-k::before{content:'';position:absolute;inset:3px;border-radius:12px;background:linear-gradient(var(--ra),var(--r));
     box-shadow:0 4px 0 var(--rd),inset 0 2px 0 rgba(255,255,255,.5)}
   .st-k span{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:2px;text-align:center;color:#fff;font-weight:700;line-height:1.02;
-    overflow-wrap:anywhere;-webkit-text-stroke:3px rgba(60,20,30,.45);paint-order:stroke fill;pointer-events:none}
+    -webkit-hyphens:auto;hyphens:auto;overflow-wrap:anywhere;-webkit-text-stroke:3px rgba(60,20,30,.45);paint-order:stroke fill;pointer-events:none}
   .st-k em{position:absolute;right:0;top:0;min-width:20px;height:20px;border-radius:10px;background:#fff;color:#5b3a24;font:700 12px/20px Fredoka,sans-serif;font-style:normal;text-align:center;display:none;box-shadow:0 2px 4px rgba(0,0,0,.35)}
   .st-k.secildi em{display:block}
   .st-k.secildi::before{box-shadow:0 4px 0 var(--rd),0 0 0 3px #fff,0 0 14px 4px rgba(255,255,255,.7)}
