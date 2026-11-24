@@ -386,7 +386,7 @@ def online(b):
         B.pg.wait_for_function("ekran === 'online' && !!document.querySelector('.uyari')", timeout=30000)
         esit(A.hatalar(), [], 'JS hataları A'); esit(B.hatalar(), [], 'JS hataları B')
         # STRATEJİ: oda, aynı tahta, tur sonuçları karşıya gider, maç sonucu iki telefonda tutarlı
-        A.js('odadanCik(); onlineModAc("strateji")'); B.js('odadanCik(); onlineModAc("strateji")'); A.pg.wait_for_timeout(300)
+        A.js('kayit.strRehber = true; odadanCik(); onlineModAc("strateji")'); B.js('kayit.strRehber = true; odadanCik(); onlineModAc("strateji")'); A.pg.wait_for_timeout(300)
         A.pg.tap('#o-lvl button[data-l="B1"]'); A.pg.tap('#o-kur'); A.pg.wait_for_function("Ag.durum() === 'acik'", timeout=15000)
         kod2 = A.js('OD.kod'); B.pg.fill('#o-kod', kod2); B.pg.tap('#o-katil')
         B.pg.wait_for_function('!!OD.rakip && OD.mod === "strateji"', timeout=20000); A.pg.wait_for_function('!!OD.rakip', timeout=5000)
@@ -428,7 +428,7 @@ def strateji(b):
     """STRATEJİ kuralları ve bilgisayara karşı maç: kayma (sağa, satır sonunda alta, ilk boşluğa), tahta üretimi (aynı tohum aynı tahta,
     tuzak doğrusuyla aynı renk, başlangıçta hazır üçlü ve hedefin yanında kendi rengi yok), bomba (seçilenler + değen aynı renk, düşme, zincir),
     doğru / yanlış, tur ve maç kararı, bilgisayar rakip, sürükle-bırak ve dokun-dokun, kutudan geri alma, hamle sınırı, süre, çıkış, 3 ekran, İngilizce."""
-    s = Sayfa(b)
+    s = Sayfa(b); s.js('kayit.strRehber = true')   # alıştırma ayrı testte (strateji_rehber)
     # kayma kuralı: 2x3 tahta, son hücre boş
     k = s.js("""(() => { const K = t => ({ id: t, txt: t, ci: 0, k: -1 }); const T = { cols: 3, rows: 2, h: ['a','b','c','d','e',null].map(x => x && K(x)) };
       const y = () => T.h.map(x => x ? x.txt : '_').join('');
@@ -507,6 +507,49 @@ def strateji(b):
     s.js("strKapat(); onlineSonMod = null; onlineAc()"); tr = s.js("document.getElementById('card').textContent"); dogru(not __import__('re').search('[ğüşıöçİĞÜŞÖÇ]', tr), 'İngilizce online ekranı: ' + tr[:80])
     esit(s.hatalar(), [], 'JS hataları'); s.kapat()
     return f"kayma, {rap['n']} tahta (tuzak {rap['tuzak']}, kötü başlangıç {rap['kotu']}), bomba ve zincir; bilgisayara karşı 3 tur → {kr}; sürükle / dokun / geri al, hamle, süre, çıkış, 3 ekran, İngilizce"
+
+@test
+def strateji_rehber(b):
+    """Rehberli ilk strateji maçı: ilk maçtan önce bir kez açılır; koç balonu ve el işareti; yalnız gösterilen hamle yapılabilir;
+    kayma, tuzak uyarısı, kutular, bomba; bitince kurallar kartı ve maç; bir daha açılmaz (kalıcı); strateji ekranından yeniden açılır, Geç ile döner; İngilizce."""
+    s = Sayfa(b)
+    esit(s.js('kayit.strRehber'), False, 'yeni oyuncuda alıştırma görülmüş')
+    s.pg.tap('#a-online'); s.pg.tap('#o-strateji'); s.pg.tap('#o-bot'); s.pg.wait_for_timeout(300)
+    dogru(s.js('!!(STR && STR.R && STR.R.rehber)') and s.js("!!document.querySelector('.st-koc')"), 'ilk maçta alıştırma açılmadı'); s.foto('rehber_1')
+    esit(s.js('strTasiOyuncu(23, 2)'), False, 'bilgi adımında taşıma yapıldı')
+    s.pg.tap('#rh-ileri'); s.pg.wait_for_timeout(450)
+    once = s.js('STR.R.T.h.map(x => x && x.txt).join()')
+    esit(s.js('strTasiOyuncu(0, 1)'), False, 'gösterilmeyen hamle yapıldı'); esit(s.js('STR.R.T.h.map(x => x && x.txt).join()'), once, 'yanlış hamle tahtayı değiştirdi')
+    dogru(s.js("document.querySelector('.st-k.rh-kaynak') && document.querySelector('#st-el').className === 'surukle'"), 'vurgu / el işareti yok')
+    # sürükleyerek: mavi karoyu I'nın yanına
+    def merkez(i): return s.js(f"(() => {{ const b = strTahtaEl().getBoundingClientRect(), c = b.width / STR.R.T.cols; return [b.left + ({i} % STR.R.T.cols + .5) * c, b.top + (Math.floor({i} / STR.R.T.cols) + .5) * c]; }})()")
+    x0, y0 = merkez(23); x1, y1 = merkez(2)
+    s.pg.mouse.move(x0, y0); s.pg.mouse.down(); s.pg.mouse.move(x1, y1, steps=8); s.pg.mouse.up(); s.pg.wait_for_timeout(450)
+    esit(s.js('STR.R.T.h.slice(0, 6).map(x => x && x.txt)'), ['the', 'I', 'dog', 'cat', 'go', 'big'], 'kayma (sağa, boşluğa kadar)')
+    esit(s.js('STR.R.rehber.adim'), 2, 'taşımadan sonra adım')
+    s.pg.tap('#rh-ileri'); s.pg.wait_for_timeout(450); esit(s.js('strTasiOyuncu(18, 16)'), True, 'yeşil karo'); s.pg.wait_for_timeout(450)
+    # kelimeler: tuzak 'are' seçilemez, sırayla I, am, happy
+    hucre = lambda t: s.js(f'STR.R.T.h.findIndex(x => x && x.txt === "{t}")')
+    s.js(f'strSec({hucre("am")})'); esit(s.js('STR.R.secim.filter(Boolean).length'), 0, 'sırası gelmeyen kelime seçildi')
+    s.js(f'strSec({hucre("I")})'); s.pg.wait_for_timeout(450)
+    s.js(f'strSec({hucre("are")})'); esit(s.js('STR.R.secim[1]'), None, 'tuzak seçildi'); dogru('are' in s.js("document.querySelector('.st-koc').textContent"), 'tuzak uyarısı yok')
+    s.js(f'strSec({hucre("am")})'); s.pg.wait_for_timeout(450); s.js(f'strSec({hucre("happy")})'); s.pg.wait_for_timeout(450)
+    dogru(s.js("document.getElementById('st-bomba').classList.contains('rh-kaynak')"), 'bomba vurgulanmadı'); s.foto('rehber_bomba')
+    s.pg.tap('#st-bomba', force=True); s.pg.wait_for_function("!!document.getElementById('rh-bitti')", timeout=10000); s.foto('rehber_son')
+    s.pg.tap('#rh-bitti'); s.pg.wait_for_timeout(200)
+    dogru(s.js("!!document.getElementById('st-basla') && !document.querySelector('.st-koc') && STR.R === null"), 'alıştırmadan sonra kurallar kartı açılmadı')
+    esit(s.js('kayit.strRehber'), True, 'alıştırma kaydedilmedi')
+    s.pg.tap('#st-basla'); dogru(s.js('STR.tur === 0 && !STR.R.rehber'), 'maç başlamadı')
+    s.js('strKapat()'); s.pg.reload(); s.bekle()
+    esit(s.js('kayit.strRehber'), True, 'alıştırma kalıcı değil')
+    s.js("botMacBaslat('strateji', 'A2')"); dogru(s.js("!!document.getElementById('st-basla') && !document.querySelector('.st-koc')"), 'alıştırma ikinci kez açıldı')
+    # strateji ekranından yeniden; Geç ile geri
+    s.js("strKapat(); onlineModAc('strateji')"); s.pg.tap('#o-rehber'); dogru(s.js("!!document.querySelector('.st-koc')"), 'Nasıl oynanır alıştırmayı açmadı')
+    s.pg.tap('#rh-gec'); s.pg.wait_for_timeout(200); esit((s.js('STR'), s.js('ekran')), (None, 'online'), 'Geç ile strateji ekranına dönüş')
+    # İngilizce: bütün koç yazılarının çevirisi var
+    eksik = s.js("REHBER.filter(a => !(a.m in DIL_SOZLUK.en)).map(a => a.m)"); esit(eksik, [], 'çevirisi olmayan koç yazısı')
+    esit(s.hatalar(), [], 'JS hataları'); s.kapat()
+    return 'ilk maçta bir kez; yalnız gösterilen hamle; kayma, tuzak uyarısı, kutular, bomba; kurallar kartı ve maç; kalıcı; Nasıl oynanır ve Geç; İngilizce'
 
 @test
 def hiz_bot(b):

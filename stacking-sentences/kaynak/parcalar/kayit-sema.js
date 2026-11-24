@@ -114,6 +114,7 @@ const ALANLAR = {
     if (o.seri && !o.son) { o.seri = 0; b = true; }
     return b ? c.bozuk(o) : o;
   },
+  strRehber: (x, v, c) => (typeof x === 'boolean' ? x : c.bozuk(v)),
   rozet: (x, v, c) => {    // açılan rozetler: { id: zaman }
     if (!nesneMi(x)) return c.bozuk({});
     const o = {}; let b = false;

@@ -369,11 +369,13 @@ function onlineModAc(mod, uyari) {
       <button class="secenek" id="o-kur"><i>👥</i><b>${tt('Oda kur')}</b><small>${tt('Arkadaşına kod ver')}</small></button>
     </div>
     <div class="kod-satir"><input id="o-kod" class="giris kod" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="${tt('Kod')}" autocomplete="off"><button class="sec" id="o-katil">${tt('KATIL')}</button></div>
+    ${mod === 'strateji' ? `<button class="sec genis-btn" id="o-rehber">${tt('📘 Nasıl oynanır? (alıştırma)')}</button>` : ''}
     <p class="aciklama kucuk">${tt('İkiniz de internete bağlı olmalısınız. Bağlantı ücretsiz genel sunucular üzerinden kurulur; bazen bağlanmak birkaç saniye sürebilir.')}</p>`, '', 'online');
   $('#o-geri').onclick = () => { onlineSonMod = null; onlineAc(); };
   card.querySelectorAll('#o-lvl button').forEach(b => b.onclick = () => { onlineSecLvl = b.dataset.l; Ses.cal('tik', { ses: 0.4 }); onlineModAc(mod); });
   $('#o-hizli').onclick = () => { sesAc(); eslesmeBaslat(mod, lvl); };
   $('#o-bot').onclick = () => { sesAc(); botMacBaslat(mod, lvl); };
+  const rh = $('#o-rehber'); if (rh) rh.onclick = () => { sesAc(); strRehberTek(); };
   $('#o-kur').onclick = () => { sesAc(); odaBaglan(String(1000 + Math.floor(Math.random() * 9000)), 'ev', { mod, lvl }); lobiAc(); };
   const kod = $('#o-kod');
   const katil = () => { const k = kod.value.replace(/\D/g, ''); if (k.length !== 4) { not(tt('4 haneli oda kodunu yaz.')); kod.focus(); return; } sesAc(); odaBaglan(k, 'misafir', { mod }); lobiAc(); };

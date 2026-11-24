@@ -279,6 +279,12 @@ Yüklenen "tetris-english-5" sürümündeki özellik; yalnız bu kısım alınd�
 - Sonuç ekranları (HIZ ve STRATEJİ): VS kartı ve taç, karşılaştırma çubukları (cümle / skor / süre; stratejide tur tur ve toplam). Stratejide üst çubukta avatarlı tur skoru, kurallar kartında VS.
 - Online ekranlarında ⚔ yerine 🏁.
 
+### Strateji alıştırması (24 Kasım 2026)
+- İlk strateji maçından önce bir kez (`kayit.strRehber`, kayit-sema.js doğrular) ya da strateji ekranındaki **📘 Nasıl oynanır? (alıştırma)** ile (`strRehberTek`).
+- Elle hazırlanmış 6×4 tahta (`REHBER_TAHTA`), cümle "Ben mutluyum." → I am happy. Adımlar `REHBER`: bilgi → mavi karoyu I'nın yanına taşı (kayma görülür) → bilgi → yeşil karoyu happy'nin yanına → I, am (sarı "are" tuzağı uyarısı), happy kutulara → BOMBA → kapanış.
+- Koç balonu (`.st-koc`, yazı sesli okunur) üstte durur, içerik balonun altına iner; parlayan kaynak (`.rh-kaynak`), kesik çizgili hedef (`.rh-hedef`), el işareti (`#st-el`, sürükleme / dokunma animasyonu). Her adımda yalnız gösterilen hamle yapılabilir (`rehberIzin`); yanlışta balon sallanır.
+- "Geç" ya da bitirince alıştırma görülmüş sayılır; maçtan önceyse kurallar kartı açılır.
+
 ### Sesli okuma (24 Kasım 2026, oyuncu isteği)
 - Her turun başında yönerge, **ardından Türkçe cümle / anlam / kelime** kendiliğinden okunur (`otoOku`); karolar okuma bitince yağar. Dinleme turunda İngilizce. İçeriği yönergenin kendisi olan turlarda (`R.otoIcerik = false`) tekrar okunmaz. Stratejide tur başında Türkçe cümle okunur.
 - Ayarlar: "Yönergeleri sesli oku" yalnız yönergeyi, "Türkçe sesli okuma" Türkçe içeriği kapatır.
@@ -351,6 +357,7 @@ python3 testler/calistir.py modlar dil # yalnız seçilenler
 | `gorev` | Günün Görevi: açılış düğmesi; aynı gün aynı görev, ertesi gün farklı; A1/B2/C2'de 5 cümle; 5 cümle + 2 hatayı bul; bonus XP yalnız günün ilk tamamlanışında; görev serisi (ertesi gün 2, kaçan gün 1); kariyer yıldızı / kilidi ve yarım kayıt değişmez; ANA MENÜ ve duraklatmadan çıkış; bozuk görev / rozet kaydının onarımı |
 | `rozet` | Rozetler: sayaçlar olaylarla birebir; İlk Cümle açılır ve sonuçta kutlanır, ikinci kez kutlanmaz; rozet ekranı 320, 390, 844 px'te taşmaz; eski oyuncuda sessizce açılır; İngilizce arayüzde Türkçe yazı yok |
 | `strateji` | Kayma kuralı (sağa, satır sonunda alta, ilk boşluğa); 6 seviyede 18 tahta (aynı tohum aynı tahta, 3 boşluk, tuzak doğrusuyla aynı renk, kötü başlangıç yok); bomba ve doğruluk; bilgisayara karşı maç ekrandan: sürükleyerek taşıma, kutuya sürükleme (gölge, hamle harcamaz), dokun-dokun, kutudan geri alma, hamle sınırı, 3 ekranda taşma yok, 3 tur (biri yanlış) ve karar, tekrar oyna, çıkış, süre dolması, İngilizce |
+| `strateji_rehber` | Alıştırma: ilk maçta bir kez; bilgi adımında ve gösterilmeyen hamlede taşıma yok; sürükleyerek kayma; sırası gelmeyen kelime ve tuzak seçilmez, uyarı; bomba; kurallar kartı ve maç; kalıcı; Nasıl oynanır ve Geç; bütün koç yazılarının İngilizcesi |
 | `hiz_bot` | HIZ: B1 seçilip bilgisayara karşı; cümleler B1'den, bilgisayar ilerliyor, karar, online istatistiğine yazılmaz, tekrar oyna, duraklatıp çıkış |
 | `uygulama` | Capacitor taklidiyle: yerel okuma (Türkçe dil kodu, kesilen okumanın bitişi, sus), titreşim ve kapatma, geri tuşu (oyun, duraklatma, profil, açılış), arka plana gidince duraklama, hatırlatma ayarı ve planlama, çentik payı |
 | `kayit` | Bozuk/eksik/yanlış türde/eski kayıtlar, profil listesi kurtarma, bozuk yarım bölüm, yer yok, uygulama modu, 3.000 rastgele bozuk kayıtla doğrulayıcı (hata yok, çıktı geçerli, ikinci geçişte değişmez) |

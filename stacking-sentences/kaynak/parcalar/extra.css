@@ -737,3 +737,27 @@
   .st-skor{display:flex;align-items:center;gap:5px}
   @media (max-width:360px){.mod-kartlar{grid-template-columns:1fr}.mk-gorsel{height:78px}.vs-av{width:54px;height:54px;font-size:26px}.kiyas{grid-template-columns:52px 1fr auto 1fr 52px;font-size:13px}}
   @media (prefers-reduced-motion:reduce){.hizG .serit i,.mini-izgara i.pat,.mini-bomba,.radar .dalga,.radar .yorunge,.vs-rozet,.vs-av .tac,.vs-oy.bekle .vs-av,.kronometre{animation:none}.radar .dalga{opacity:.3}}
+
+  /* ---------- strateji alıştırması: koç balonu, vurgular, el işareti ---------- */
+  .st-koc{position:absolute;z-index:11;left:10px;right:10px;top:calc(6px + env(safe-area-inset-top,0px));max-width:540px;margin:0 auto;display:flex;gap:10px;align-items:flex-start;
+    padding:10px 12px;border-radius:18px;background:linear-gradient(#fffaf0,#f3dfc2);color:#5b3a24;border:3px solid #3cbb4a;box-shadow:0 8px 22px rgba(0,0,0,.4);animation:kocGel .35s cubic-bezier(.3,1.4,.5,1)}
+  @keyframes kocGel{from{transform:translateY(-20px);opacity:0}}
+  .st-koc.salla{animation:sars .45s}
+  .koc-yuz{font-size:34px;line-height:1;flex:none}
+  .koc-ic{flex:1;min-width:0}.koc-ic p{margin:0 0 6px;font-size:15px;line-height:1.35;font-weight:600;color:#5b3a24}
+  .koc-dug{display:flex;align-items:center;gap:10px;justify-content:flex-end}
+  .kucuk-big{font-size:17px!important;padding:8px 18px!important;letter-spacing:1px}
+  .koc-gec{background:none;border:0;color:#9a6e4c;font:600 13px Fredoka,sans-serif;text-decoration:underline;cursor:pointer}
+  .st-k.rh-kaynak{z-index:4;animation:rhNabiz 1s ease-in-out infinite}
+  .st-k.rh-kaynak::before{box-shadow:0 4px 0 var(--rd),0 0 0 3px #fff,0 0 18px 6px rgba(255,230,120,.95)}
+  .rh-hedef::before{outline:3px dashed #ffd451!important;outline-offset:1px}
+  .st-kutu.rh-hedef{border:3px dashed #ffd451;background:rgba(255,212,81,.25);animation:rhNabiz 1s ease-in-out infinite}
+  #st-bomba.rh-kaynak{animation:rhNabiz .9s ease-in-out infinite;filter:none}
+  @keyframes rhNabiz{50%{transform:scale(1.08)}}
+  #st-el{position:absolute;z-index:13;left:0;top:0;font-size:38px;pointer-events:none;filter:drop-shadow(0 4px 6px rgba(0,0,0,.45))}
+  #st-el.surukle{animation:elSurukle 2s ease-in-out infinite}
+  #st-el.dokun{animation:elDokun 1s ease-in-out infinite}
+  @keyframes elSurukle{0%,10%{transform:translate(calc(var(--x0) - 12px),calc(var(--y0) - 4px)) scale(1)}20%{transform:translate(calc(var(--x0) - 12px),calc(var(--y0) - 4px)) scale(.85)}
+    75%{transform:translate(calc(var(--x1) - 12px),calc(var(--y1) - 4px)) scale(.85);opacity:1}90%,100%{transform:translate(calc(var(--x1) - 12px),calc(var(--y1) - 4px)) scale(1);opacity:0}}
+  @keyframes elDokun{0%,100%{transform:translate(calc(var(--x0) - 12px),calc(var(--y0) + 6px))}50%{transform:translate(calc(var(--x0) - 12px),calc(var(--y0) - 6px)) scale(.9)}}
+  @media (prefers-reduced-motion:reduce){#st-el,.st-k.rh-kaynak,.st-kutu.rh-hedef,#st-bomba.rh-kaynak{animation:none}#st-el{transform:translate(calc(var(--x0) - 12px),var(--y0))}}

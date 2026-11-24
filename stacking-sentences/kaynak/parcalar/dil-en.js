@@ -784,5 +784,22 @@ DIL_SOZLUK.en = {
 "✔ hazır": "✔ ready",
 "Senin odan": "Your room",
 "Arkadaşının odası": "Your friend's room",
-"Rakip": "Opponent"
+"Rakip": "Opponent",
+// strateji alıştırması
+"Alıştırma: “Ben mutluyum.” cümlesini kuracaksın. Önce karoları düzenle, sonra kelimeleri seç, en sonda bombala.": "Practice: you will build “Ben mutluyum.” (I am happy). First arrange the tiles, then pick the words, and bomb at the end.",
+"Aynı renkler birlikte patlar. Parlayan mavi karoyu “I”nın yanına sürükle.": "Same colors pop together. Drag the glowing blue tile next to “I”.",
+"Gördün mü? Bıraktığın yerdeki karolar sağa kaydı ve boşluğu doldurdu. Şimdi “I” yanındaki ve altındaki mavilerle bir grup oldu.": "See? The tiles where you dropped it slid right and filled the gap. Now “I” forms a group with the blue tiles next to and below it.",
+"Şimdi parlayan yeşil karoyu “happy”nin yanına getir.": "Now bring the glowing green tile next to “happy”.",
+"Tahta hazır! Şimdi cümlenin kelimelerini sırayla kutulara çek. Önce “I”.": "The board is ready! Now drag the sentence's words into the boxes in order. First “I”.",
+"Dikkat: sarı “are” bir tuzak! “Ben mutluyum” = “I am happy”. “am”i çek.": "Careful: the yellow “are” is a trap! “Ben mutluyum” = “I am happy”. Drag “am”.",
+"Son kelime: “happy”.": "Last word: “happy”.",
+"Hepsi hazır. 💣 BOMBA’ya bas!": "All set. Press 💣 BOMB!",
+"Süper! Seçtiğin kelimeler ve onlara değen aynı renkler birlikte patladı. Ne kadar çok aynı renk toplarsan o kadar çok puan. Ama önce cümle doğru olmalı: doğru cümle her zaman kazanır!": "Super! Your words and the same colors touching them popped together. The more same colors you gather, the more points. But the sentence must be right first: a right sentence always wins!",
+"İLERİ ›": "NEXT ›",
+"TAMAM": "OK",
+"MAÇA BAŞLA ›": "START THE MATCH ›",
+"Geç": "Skip",
+"ALIŞTIRMA": "PRACTICE",
+"Koç": "Coach",
+"📘 Nasıl oynanır? (alıştırma)": "📘 How to play? (practice)"
 };

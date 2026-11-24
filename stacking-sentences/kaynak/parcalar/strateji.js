@@ -164,7 +164,8 @@ function strMacBaslat(o) {
   D = null; Konus.sus(); Ses.muzik('duello'); Ses.yogunluk(0, true);
   STR = { mac: o.mac, lvl: o.lvl, tohum: o.tohum, cum: liste, tur: -1, ben: [], rakipS: [], rakip: o.rakip, online: !!o.online, karar: null, xp0: kayit.xp, R: null, zaman: null };
   ekranlariKapat(); strEkranKur();
-  strKuralGoster();
+  if (!kayit.strRehber) strRehberKur(() => { STR.R = null; strTahtaEl().innerHTML = ''; $('#st-kutular').innerHTML = ''; strKuralGoster(); });   // ilk strateji maçı: önce rehberli alıştırma
+  else strKuralGoster();
 }
 function strAktif() { return !!STR; }
 function strTurBaslat() {
@@ -195,25 +196,30 @@ function strKutuDolu() { return STR && STR.R && STR.R.secim.every(Boolean); }
 /* ---------------- oyuncu eylemleri ---------------- */
 function strTasiOyuncu(a, b) {
   const R = STR && STR.R; if (!R || R.bitti || a === b || !R.T.h[a]) return false;
+  if (R.rehber && !rehberIzin('tasi', a, b)) return false;
   if (R.hamle <= 0) { not(tt('Hamle hakkın bitti. Kelimeleri kutulara çek ve bombaya bas.')); Ses.cal('geri', { ses: 0.5 }); return false; }
   strTasi(R.T, a, b); R.hamle--; R.secili = -1;
   Ses.cal('kay', { ses: 0.6 }); Yerel.titret('hafif');
   strCiz();
+  if (R.rehber) rehberIlerle();
   return true;
 }
 function strSec(i, kutu) {   // hücre i'deki karonun gölgesi kutuya
   const R = STR && STR.R; if (!R || R.bitti || !R.T.h[i]) return;
   const k = R.T.h[i];
+  if (R.rehber) { if (!rehberIzin('sec', k.txt)) return; kutu = rehberAdim().kutu; }
   if (kutu == null || kutu < 0) kutu = R.secim.findIndex(x => !x);
   if (kutu < 0) { not(tt('Kutular dolu. Değiştirmek için bir kutuya dokun.')); return; }
   const eski = R.secim.findIndex(x => x && x.id === k.id); if (eski >= 0) R.secim[eski] = null;
   R.secim[kutu] = k; R.secili = -1;
   Ses.cal('al', { ses: 0.5 }); Yerel.titret('hafif');
   strCiz();
+  if (R.rehber) rehberIlerle();
 }
-function strKutuBosalt(kutu) { const R = STR && STR.R; if (!R || R.bitti || !R.secim[kutu]) return; R.secim[kutu] = null; Ses.cal('geri', { ses: 0.35 }); strCiz(); }
+function strKutuBosalt(kutu) { const R = STR && STR.R; if (!R || R.bitti || !R.secim[kutu] || R.rehber) return; R.secim[kutu] = null; Ses.cal('geri', { ses: 0.35 }); strCiz(); }
 function strBomba() {
   const M = STR, R = M && M.R; if (!R || R.bitti || !R.secim.every(Boolean)) return;
+  if (R.rehber && rehberAdim().t !== 'bomba') return;
   R.bitti = true; R.secili = -1;
   const dogru = strDogruMu(R.T, R.secim);
   if (!dogru) {
@@ -240,6 +246,7 @@ function strBomba() {
 function strTurBitir(dogru, puan, not_) {
   const M = STR, R = M && M.R; if (!R || R.sonuc) return;
   R.bitti = true; R.sonuc = { dogru, puan, not: not_ || '' };
+  if (R.rehber) { R.rehber.adim = REHBER.findIndex(x => x.t === 'son'); rehberAdimGoster(); return; }
   const tur = M.tur;
   M.ben[tur] = { dogru, puan, secim: R.secim.map(k => k ? k.txt : '…').join(' ') };
   if (M.online) [0, 900, 2200].forEach(ms => setTimeout(() => { if (OD.kod && STR === M) Ag.gonder({ t: 'stur', mac: M.mac, tur, dogru, puan }); }, ms));
@@ -339,12 +346,13 @@ function strCiz(yeni) {
   const M = STR, R = M && M.R; if (!R || !strEl) return;
   const T = R.T, c = strOlcu(), tah = strTahtaEl();
   tah.style.width = c * T.cols + 'px'; tah.style.height = c * T.rows + 'px'; tah.style.setProperty('--c', c + 'px');
-  $('#st-tur').textContent = tt('TUR {a}/{b}', { a: M.tur + 1, b: STR_TUR });
+  $('#st-tur').textContent = R.rehber ? tt('ALIŞTIRMA') : tt('TUR {a}/{b}', { a: M.tur + 1, b: STR_TUR });
+  if (R.rehber) $('#st-sure').textContent = '⏱ –';
   $('#st-hak').textContent = '✋ ' + R.hamle; $('#st-hak').classList.toggle('az', R.hamle <= 2);
   const s = strSkor(); $('#st-skor').innerHTML = `<span class="vs-av mini" style="--a:#ffc83d">${harfi(benimAd())}</span><b>${s.b}</b>–<b>${s.r}</b><span class="vs-av mini" style="--a:#ff7a96">${M.rakip.bot ? '🤖' : harfi(M.rakip.ad)}</span>`;
   $('#st-tr').innerHTML = `<small>${tt('Bu cümleyi kur')} 🔊</small>“${esc(R.s.tr)}”`;
   const rs = M.rakipS[M.tur];
-  $('#st-rakip').innerHTML = `${M.rakip.bot ? '🤖' : '👤'} ${esc(M.rakip.ad)}: ${rs ? tt('💣 bombasını attı') : tt('düşünüyor…')}`;
+  $('#st-rakip').innerHTML = R.rehber ? '' : `${M.rakip.bot ? '🤖' : '👤'} ${esc(M.rakip.ad)}: ${rs ? tt('💣 bombasını attı') : tt('düşünüyor…')}`;
   // karolar: kimlikle eşlenir, yeri değişince CSS geçişiyle kayar
   const var_ = new Map(); tah.querySelectorAll('.st-k').forEach(e => var_.set(+e.dataset.id, e));
   const secimSira = new Map(); R.secim.forEach((k, i) => { if (k) secimSira.set(k.id, i + 1); });
@@ -368,9 +376,10 @@ function strCiz(yeni) {
   // kutular: seçilen karonun gölgesi
   $('#st-kutular').innerHTML = R.secim.map((k, i) => `<button class="st-kutu ${k ? 'dolu' : ''}" data-i="${i}" style="${k ? strRenkStil(k.ci) : ''}"><i>${i + 1}</i>${k ? `<span>${esc(k.txt)}</span>` : ''}</button>`).join('');
   const bom = $('#st-bomba'); bom.disabled = R.bitti || !R.secim.every(Boolean); bom.classList.toggle('hazir', !bom.disabled);
-  $('#st-ipucu').textContent = R.bitti ? '' : R.secili >= 0 ? tt('Bir hücreye dokun: taşı (1 hamle) · bir kutuya dokun: kelimeyi seç')
+  $('#st-ipucu').textContent = R.bitti || R.rehber ? '' : R.secili >= 0 ? tt('Bir hücreye dokun: taşı (1 hamle) · bir kutuya dokun: kelimeyi seç')
     : R.secim.every(Boolean) ? tt('Hazırsan 💣 BOMBA! Hâlâ taşıyabilir ya da kutudaki kelimeyi değiştirebilirsin.')
       : tt('Aynı renkleri kelimelerin yanına topla, sonra kelimeleri sırayla kutulara çek.');
+  if (R.rehber) rehberCiz();
 }
 const STR_RENKLER = ['#f2453d', '#ffbc1f', '#3cbb4a', '#2b91ea'];
 // renk tonları (CSS color-mix eski iOS'ta yok): açık, koyu, yarı saydam
@@ -481,7 +490,7 @@ function strTurPaneli() {
 }
 function strCikSor() {
   const M = STR; if (!M) return;
-  if (M.karar) { strCik(); return; }
+  if (M.karar || M.mac === 'rehber') { strCik(); return; }
   const p = $('#st-panel');
   p.innerHTML = `<div class="st-kart"><h3>${tt('Maçtan çıkılsın mı?')}</h3><p>${tt(M.rakip.bot ? 'Bu maç kaydedilmez.' : 'Çıkarsan maçı kaybedersin.')}</p>
     <button class="big" id="st-kal">${tt('DEVAM ET')}</button><div class="row"><button class="sec" id="st-cik">${tt('ÇIK')}</button></div></div>`;
@@ -518,3 +527,83 @@ function strSonucGoster() {
 }
 window.addEventListener('resize', () => { if (STR && STR.R) strCiz(); });
 window.addEventListener('keydown', e => { if (STR && e.key === 'Escape' && !ov.classList.contains('show')) { e.preventDefault(); strCikSor(); } });
+
+/* ---------------- rehberli ilk strateji maçı (alıştırma) ----------------
+   İlk strateji maçından önce bir kez (kayit.strRehber), ya da strateji ekranındaki "Nasıl oynanır" ile.
+   Elle hazırlanmış küçük tahta: "Ben mutluyum." → I am happy. Koç balonu ne yapılacağını söyler (sesli),
+   el işareti neyin nereye gideceğini gösterir; her adımda yalnız gösterilen hamle yapılabilir. */
+const REHBER_TAHTA = [
+  ['the', 0], ['I', 3, 0], ['cat', 1], ['go', 2], ['big', 0], null,
+  ['you', 2], ['car', 0], ['run', 3], ['bed', 0], ['am', 1, 1], ['top', 2],
+  ['are', 1, -1, 1], ['hot', 0], ['pen', 1], ['happy', 2, 2], ['sit', 1], ['box', 0],
+  ['tree', 2], ['cup', 1], ['hat', 0], ['leg', 2], ['egg', 0], ['dog', 3]];
+const REHBER = [
+  { t: 'bilgi', m: 'Alıştırma: “Ben mutluyum.” cümlesini kuracaksın. Önce karoları düzenle, sonra kelimeleri seç, en sonda bombala.' },
+  { t: 'tasi', a: 23, b: 2, m: 'Aynı renkler birlikte patlar. Parlayan mavi karoyu “I”nın yanına sürükle.' },
+  { t: 'bilgi', m: 'Gördün mü? Bıraktığın yerdeki karolar sağa kaydı ve boşluğu doldurdu. Şimdi “I” yanındaki ve altındaki mavilerle bir grup oldu.' },
+  { t: 'tasi', a: 18, b: 16, m: 'Şimdi parlayan yeşil karoyu “happy”nin yanına getir.' },
+  { t: 'sec', id: 'I', kutu: 0, m: 'Tahta hazır! Şimdi cümlenin kelimelerini sırayla kutulara çek. Önce “I”.' },
+  { t: 'sec', id: 'am', kutu: 1, m: 'Dikkat: sarı “are” bir tuzak! “Ben mutluyum” = “I am happy”. “am”i çek.' },
+  { t: 'sec', id: 'happy', kutu: 2, m: 'Son kelime: “happy”.' },
+  { t: 'bomba', m: 'Hepsi hazır. 💣 BOMBA’ya bas!' },
+  { t: 'son', m: 'Süper! Seçtiğin kelimeler ve onlara değen aynı renkler birlikte patladı. Ne kadar çok aynı renk toplarsan o kadar çok puan. Ama önce cümle doğru olmalı: doğru cümle her zaman kazanır!' },
+];
+function rehberAdim() { const R = STR && STR.R; return R && R.rehber ? REHBER[R.rehber.adim] : null; }
+function strRehberKur(sonra) {
+  const M = STR; if (!M) return;
+  const T = { cols: 6, rows: 4, n: 3, hedef: ['I', 'am', 'happy'], h: REHBER_TAHTA.map((x, i) => x && { id: i + 1, txt: x[0], ci: x[1], k: x[2] == null ? -1 : x[2], cel: x[3] != null, of: x[3] }) };
+  M.R = { s: { tr: 'Ben mutluyum.', en: 'I am happy.' }, T, hamle: 2, secim: [null, null, null], secili: -1, sure: Infinity, t0: Date.now(), bitti: false, sonuc: null, rehber: { adim: 0, sonra } };
+  $('#st-panel').classList.remove('acik');
+  strCiz(true); rehberAdimGoster();
+}
+// ayrı açılış: strateji ekranındaki "Nasıl oynanır"
+function strRehberTek() {
+  strKapat(); if (G.state !== 'menu') demo();
+  D = null; Konus.sus();
+  STR = { mac: 'rehber', lvl: 'A1', tohum: 'rehber', cum: [], tur: -1, ben: [], rakipS: [], rakip: { ad: tt('Koç'), bot: true }, online: false, karar: null, xp0: kayit.xp, R: null, zaman: null };
+  ekranlariKapat(); strEkranKur();
+  strRehberKur(() => { strKapat(); onlineModAc('strateji'); });
+}
+function rehberIzin(tur, x, y) {
+  const a = rehberAdim(), ok = a && a.t === tur && (tur === 'tasi' ? x === a.a && y === a.b : x === a.id);
+  if (!ok) { Ses.cal('geri', { ses: 0.5 }); const k = strEl && strEl.querySelector('.st-koc'); if (k) { k.classList.remove('salla'); void k.offsetWidth; k.classList.add('salla'); } strCiz(); }
+  return ok;
+}
+function rehberIlerle() {
+  const R = STR && STR.R; if (!R || !R.rehber) return;
+  R.rehber.adim++; Ses.cal('yukselis', { ses: 0.35 });
+  setTimeout(rehberAdimGoster, 350);
+}
+function rehberAdimGoster() {
+  const R = STR && STR.R; if (!R || !R.rehber || !strEl) return;
+  const a = REHBER[R.rehber.adim]; if (!a) return;
+  let k = strEl.querySelector('.st-koc'); if (!k) { k = document.createElement('div'); k.className = 'st-koc'; strEl.appendChild(k); }
+  const son = a.t === 'son', tek = STR.mac === 'rehber';
+  k.innerHTML = `<span class="koc-yuz">🧑‍🏫</span><div class="koc-ic"><p>${tt(a.m)}</p>
+    <div class="koc-dug">${a.t === 'bilgi' ? `<button class="big kucuk-big" id="rh-ileri">${tt('İLERİ ›')}</button>` : son ? `<button class="big kucuk-big" id="rh-bitti">${tt(tek ? 'TAMAM' : 'MAÇA BAŞLA ›')}</button>` : ''}
+    ${son ? '' : `<button class="koc-gec" id="rh-gec">${tt('Geç')}</button>`}</div></div>`;
+  const ileri = $('#rh-ileri'); if (ileri) ileri.onclick = () => { sesAc(); rehberIlerle(); };
+  const bitir = () => { Konus.sus(); kayit.strRehber = true; kaydet(); const f = R.rehber.sonra; k.remove(); strEl.style.paddingTop = ''; const el = strEl && strEl.querySelector('#st-el'); if (el) el.remove(); R.rehber = null; R.bitti = true; if (f) f(); };
+  const b = $('#rh-bitti'); if (b) b.onclick = () => { sesAc(); bitir(); };
+  const g = $('#rh-gec'); if (g) g.onclick = () => { sesAc(); bitir(); };
+  yonergeSoyle(tt(a.m), { ham: true });
+  strEl.style.paddingTop = (k.offsetHeight + 14) + 'px';   // tahta balonun altında kalsın
+  strCiz();
+}
+// vurgular ve el işareti
+function rehberCiz() {
+  const R = STR && STR.R, a = rehberAdim(); if (!R || !a || !strEl) return;
+  strEl.querySelectorAll('.rh-kaynak,.rh-hedef').forEach(e => e.classList.remove('rh-kaynak', 'rh-hedef'));
+  let el = strEl.querySelector('#st-el'); if (!el) { el = document.createElement('div'); el.id = 'st-el'; el.textContent = '👆'; strEl.appendChild(el); }
+  const tah = strTahtaEl(), merkez = e => { const b = e.getBoundingClientRect(), s = strEl.getBoundingClientRect(); return [b.left - s.left + b.width / 2, b.top - s.top + b.height / 2]; };
+  const hucre = i => R.T.h[i] ? strKaroEl(R.T.h[i].id) : tah.querySelector(`.st-bos[data-i="${i}"]`);
+  let k = null, h = null;
+  if (a.t === 'tasi') { k = hucre(a.a); h = hucre(a.b); }
+  else if (a.t === 'sec') { const i = R.T.h.findIndex(x => x && x.txt === a.id); k = hucre(i); h = strEl.querySelector(`.st-kutu[data-i="${a.kutu}"]`); }
+  else if (a.t === 'bomba') { k = $('#st-bomba'); }
+  if (!k) { el.style.display = 'none'; return; }
+  k.classList.add('rh-kaynak'); if (h) h.classList.add('rh-hedef');
+  const [x0, y0] = merkez(k), [x1, y1] = h ? merkez(h) : [x0, y0];
+  el.style.display = ''; el.className = h ? 'surukle' : 'dokun';
+  el.style.setProperty('--x0', x0 + 'px'); el.style.setProperty('--y0', y0 + 'px'); el.style.setProperty('--x1', x1 + 'px'); el.style.setProperty('--y1', y1 + 'px');
+}
