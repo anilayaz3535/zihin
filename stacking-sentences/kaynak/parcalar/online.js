@@ -244,6 +244,7 @@ function macBaslat(mac, lvl, cum) {
   Konus.sus();
   dojoBaslat({ id: 'online', lvl, ad: 'Online', world: tt('Online kapışma'), n: 0 },
     { online: { mac, liste, i: 0, t0: 0, benim: null, karar: null, sonDurum: '', durumT: 0, rakip: { ad: OD.rakip ? OD.rakip.ad : 'Rakip', cumle: 0, skor: 0, yigin: 0, sonuc: null } } });
+  Ses.muzik('hiz'); Ses.gerilim(0);   // HIZ'ın kendi canlı müziği
 }
 // dojoBaslat çağırır: 3 · 2 · 1 · BAŞLA
 function onlineGeriSayim() {
@@ -255,6 +256,8 @@ function onlineGeriSayim() {
 // engine.update her karede çağırır: durum değiştiyse rakibe gönderilir (en çok saniyede ~2 kez)
 function onlineTik() {
   const o = D.online; if (!o || o.karar || !o.t0) return;
+  // müzik gerilimi: son cümle 2, başa baş (en çok 1 cümle fark) 1
+  { const top = o.liste.length, ben = D.istat.cumle, rk = o.rakip.cumle || 0; Ses.gerilim(top - Math.max(ben, rk) <= 1 ? 2 : (ben || rk) && Math.abs(ben - rk) <= 1 ? 1 : 0); }
   if (OD.bot) { botHizTik(o); return; }
   const t = performance.now(); if (t - o.durumT < 500) return;
   const yazi = D.istat.cumle + '|' + G.score + '|' + Math.round(G.gauge * 20);

@@ -161,7 +161,7 @@ function strMacBaslat(o) {
   if (!liste.length) { not(tt('Maç başlatılamadı.')); return; }
   strKapat();
   if (G.state !== 'menu') demo();
-  D = null; Konus.sus(); Ses.muzik('duello'); Ses.yogunluk(0, true);
+  D = null; Konus.sus(); Ses.muzik('strateji'); Ses.gerilim(0);
   STR = { mac: o.mac, lvl: o.lvl, tohum: o.tohum, cum: liste, tur: -1, ben: [], rakipS: [], rakip: o.rakip, online: !!o.online, karar: null, xp0: kayit.xp, R: null, zaman: null };
   ekranlariKapat(); strEkranKur();
   if (!kayit.strRehber) strRehberKur(() => { STR.R = null; strTahtaEl().innerHTML = ''; $('#st-kutular').innerHTML = ''; strKuralGoster(); });   // ilk strateji maçı: önce rehberli alıştırma
@@ -187,6 +187,7 @@ function strSaat() {
   const M = STR, R = M && M.R; if (!R || R.bitti) return;
   if (document.hidden && M.rakip.bot) { R.t0 += 250; return; }   // bilgisayara karşı: telefon kilitliyken / uygulama alttayken süre durur
   const kalan = Math.max(0, R.sure - (Date.now() - R.t0) / 1000);
+  Ses.gerilim(kalan <= 10 ? 2 : kalan <= 30 ? 1 : 0);   // son saniyelerde müzik gerilir
   const el = $('#st-sure'); if (el) { el.textContent = '⏱ ' + Math.floor(kalan / 60) + ':' + String(Math.floor(kalan % 60)).padStart(2, '0'); el.classList.toggle('az', kalan <= 20); }
   if (kalan <= 10 && Math.ceil(kalan) !== R.sonTik) { R.sonTik = Math.ceil(kalan); if (kalan > 0) Ses.cal('saat', { ses: 0.4 }); }
   if (kalan <= 0) { if (R.secim.every(Boolean)) strBomba(); else strTurBitir(false, 0, tt('Süre doldu, kutular dolmadı.')); }
@@ -230,18 +231,23 @@ function strBomba() {
     return;
   }
   const plan = strPatlamaPlani(R.T, R.secim.map(k => k.id));
-  Ses.cal('bomba', { ses: 1 }); Yerel.titret('basari');
-  strFlas();
+  Ses.cal('emme', { ses: 0.9 }); Ses.kis(true); Yerel.titret('orta');   // önce içine çekme, müzik kısılır
+  strTahtaEl().classList.add('topla');
   let toplam = 0;
   plan.adimlar.forEach((a, n) => setTimeout(() => {
     if (STR !== M) return;
+    if (n === 0) { strTahtaEl().classList.remove('topla'); strFlas(); Yerel.titret('basari'); }
     a.hucreler.forEach(i => { const el = strKaroEl(R.T.h[i] && R.T.h[i].id); if (el) { el.classList.add('pat'); strKivilcim(el, R.T.h[i].ci); } });
     toplam += a.puan; strPuanUc('+' + a.puan, a.zincir);
-    Ses.cal(a.zincir ? 'zincir' : 'super', { ses: 0.9, hiz: 1 + a.zincir * 0.12 });
+    // büyük patlama: patlayan karo arttıkça daha güçlü; zincirlerde yükselen ikinci patlamalar
+    if (a.zincir) { Ses.cal('zincirBum', { ses: 0.85, hiz: 1 + a.zincir * 0.15 }); Ses.cal('zincir', { ses: 0.8, hiz: 1 + a.zincir * 0.12 }); }
+    else Ses.cal('megaBomba', { ses: Math.min(1.4, 0.7 + a.hucreler.length / 18) });
     if (a.zincir) Yerel.titret('orta');
     setTimeout(() => { if (STR !== M) return; R.T.h = a.sonra; strCiz(); Ses.cal('dus', { ses: 0.4 }); }, 520);
   }, 600 + n * 1100));
-  setTimeout(() => strTurBitir(true, plan.puan, plan.temiz ? tt('TAHTA TEMİZLENDİ! +300') : ''), 600 + plan.adimlar.length * 1100 + 500);
+  const son = 600 + plan.adimlar.length * 1100;
+  setTimeout(() => { if (STR !== M) return; Ses.kis(false); if (plan.temiz) Ses.cal('zafer', { ses: 1 }); }, son);
+  setTimeout(() => strTurBitir(true, plan.puan, plan.temiz ? tt('TAHTA TEMİZLENDİ! +300') : ''), son + 500);
 }
 function strTurBitir(dogru, puan, not_) {
   const M = STR, R = M && M.R; if (!R || R.sonuc) return;
@@ -286,7 +292,7 @@ function strKararVer(k, neden) {
   clearInterval(M.zaman); clearTimeout(M.botT);
   if (M.online) { kayit.istat.online = (kayit.istat.online || 0) + 1; if (k === 'kazandin') kayit.istat.onlineGalibiyet = (kayit.istat.onlineGalibiyet || 0) + 1; }
   Olay.yay('onlineBitti', { kazandi: k === 'kazandin', neden, mod: 'strateji', bot: !!M.rakip.bot });
-  kaydet();
+  kaydet(); Ses.kasetDur(0.8);
   Ses.cal(k === 'kazandin' ? 'zafer' : k === 'berabere' ? 'yukselis' : 'yenilgi', { ses: 0.9 });
   setTimeout(strSonucGoster, 700);
 }
@@ -473,6 +479,7 @@ function strKuralGoster() {
 }
 function strTurPaneli() {
   const M = STR, R = M && M.R; if (!R || !R.sonuc) return;
+  Ses.gerilim(0);
   const b = M.ben[M.tur], r = M.rakipS[M.tur], son = M.tur >= STR_TUR - 1, p = $('#st-panel');
   const satir = (ad, x) => x ? `<div class="st-sat ${x.dogru ? 'ok' : 'no'}"><b>${ad}</b><span>${x.dogru ? tt('✓ doğru') : tt('✗ yanlış')}</span><em>${x.puan}</em></div>`
     : `<div class="st-sat bekle"><b>${ad}</b><span>${tt('düşünüyor…')}</span><em>…</em></div>`;
@@ -560,6 +567,7 @@ function strRehberKur(sonra) {
 function strRehberTek() {
   strKapat(); if (G.state !== 'menu') demo();
   D = null; Konus.sus();
+  Ses.muzik('strateji'); Ses.gerilim(0);
   STR = { mac: 'rehber', lvl: 'A1', tohum: 'rehber', cum: [], tur: -1, ben: [], rakipS: [], rakip: { ad: tt('Koç'), bot: true }, online: false, karar: null, xp0: kayit.xp, R: null, zaman: null };
   ekranlariKapat(); strEkranKur();
   strRehberKur(() => { strKapat(); onlineModAc('strateji'); });

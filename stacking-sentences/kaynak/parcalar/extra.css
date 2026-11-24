@@ -780,3 +780,6 @@
   @keyframes emoUc{0%{transform:translate(-50%,-30%) scale(.3);opacity:0}15%{transform:translate(-50%,-60%) scale(1.25);opacity:1}30%{transform:translate(-50%,-70%) scale(1)}80%{opacity:1}100%{transform:translate(-50%,-180%) scale(.9);opacity:0}}
   @keyframes emoSalla{25%{transform:rotate(-14deg)}75%{transform:rotate(14deg)}}
   @media (prefers-reduced-motion:reduce){.emo-ucan,.emo-ucan.rakip b{animation:none}}
+  /* strateji bombası: patlamadan önce tahta içine çekilir */
+  .st-tahta.topla{animation:stTopla .6s ease-in forwards}
+  @keyframes stTopla{0%{transform:scale(1)}70%{transform:scale(.95);filter:brightness(1.15)}100%{transform:scale(.93);filter:brightness(1.5)}}

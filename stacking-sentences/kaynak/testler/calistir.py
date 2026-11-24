@@ -584,6 +584,28 @@ def emoji(b):
     return 'HIZ ve stratejide düğme, 6 emoji + sustur, uçan balon, 1,5 sn sınırı, bilgisayarın karşılığı, menüde yok'
 
 @test
+def muzik(b):
+    """Canlı müzik ve patlama sesleri: HIZ maçında 'hiz', stratejide 'strateji' çalar, menüde lo-fi'ye döner; gerilim yarışa / süreye göre;
+    maç bitince susar; çevrimdışı kayıtta hata yok, ses kırpılmıyor (tepe < 1) ve duyulur (RMS); patlama efektleri tanımlı."""
+    s = Sayfa(b); s.pg.mouse.click(5, 5); s.js('kayit.strRehber = true')
+    s.js("botMacBaslat('hiz', 'A1')"); s.pg.wait_for_timeout(300); esit(s.js('Ses.parca()'), 'hiz', 'HIZ müziği')
+    s.js("D.online.t0 = D.online.t0 || performance.now(); D.istat.cumle = 4; D.online.rakip.cumle = 3; onlineTik()"); esit(s.js('(() => { let g; const e = Ses.gerilim; Ses.gerilim = x => { g = x; e(x); }; onlineTik(); Ses.gerilim = e; return g; })()'), 2, 'son cümlede gerilim')
+    s.js("G.state = 'over'; botMacBaslat('strateji', 'A1')"); s.pg.tap('#st-basla'); s.pg.wait_for_timeout(300); esit(s.js('Ses.parca()'), 'strateji', 'strateji müziği')
+    s.js('STR.R.t0 -= (STR_SURE - 8) * 1000'); s.pg.wait_for_timeout(400)
+    esit(s.js('(() => { let g; const e = Ses.gerilim; Ses.gerilim = x => { g = x; e(x); }; strSaat(); Ses.gerilim = e; return g; })()'), 2, 'son 10 saniyede gerilim')
+    s.js('STR.R.t0 = Date.now()'); s.js(f"STR.R.secim = STR.R.secim.map(() => null); {STR_OYNA % 'true'}"); s.pg.wait_for_timeout(200)
+    dogru(s.js("strTahtaEl().classList.contains('topla')"), 'bombadan önce içine çekilme yok')
+    s.js('for (let i = 0; i < 3; i++) { STR.ben[i] = { dogru: true, puan: 100, secim: "x" }; STR.rakipS[i] = { dogru: true, puan: 50 }; } STR.tur = 2; strMacSonu()')
+    s.pg.wait_for_timeout(1200); esit(s.js('Ses.parca()'), None, 'maç bitince canlı müzik susmadı')
+    s.js('strKapat(); acilisAc()'); s.pg.wait_for_timeout(200); esit(s.js('Ses.parca()'), None, 'menüde canlı müzik çalıyor')
+    for ad in ('emme', 'megaBomba', 'zincirBum'): dogru(s.js(f"typeof Ses.onizle === 'function'"), 'önizleme yok')
+    olc = s.js("""(async () => { const o = {}; for (const [ad, p, sn, ef] of [['hiz', 'hiz', 12, []], ['strateji', 'strateji', 12, []], ['bomba', null, 3, [[0.1, 'emme', 0.9], [0.7, 'megaBomba', 1.4], [1.8, 'zincirBum', 0.9]]]]) {
+        const d = await Ses.onizle(p, sn, [[0, 0], [6, 2]], ef); let t = 0, q = 0; for (const x of d) { const a = Math.abs(x); if (a > t) t = a; q += x * x; } o[ad] = [t, Math.sqrt(q / d.length)]; } return o; })()""")
+    for ad, (tepe, rms) in olc.items(): dogru(tepe < 1 and rms > 0.02, f'{ad}: tepe {tepe:.2f}, rms {rms:.3f}')
+    esit(s.hatalar(), [], 'JS hataları'); s.kapat()
+    return 'HIZ / strateji müziği, gerilim, içine çekme, maç sonunda ve menüde susar; ' + ', '.join(f"{k} tepe {v[0]:.2f} rms {v[1]:.3f}" for k, v in olc.items())
+
+@test
 def hiz_bot(b):
     """HIZ: seviye seçimi ve bilgisayara karşı maç: seçilen seviyenin cümleleri, bilgisayar cümleleri zamanla bitirir, karar ve sonuç ekranı."""
     s = Sayfa(b)

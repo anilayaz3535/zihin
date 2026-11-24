@@ -279,6 +279,15 @@ Yüklenen "tetris-english-5" sürümündeki özellik; yalnız bu kısım alınd�
 - Sonuç ekranları (HIZ ve STRATEJİ): VS kartı ve taç, karşılaştırma çubukları (cümle / skor / süre; stratejide tur tur ve toplam). Stratejide üst çubukta avatarlı tur skoru, kurallar kartında VS.
 - Online ekranlarında ⚔ yerine 🏁.
 
+### Canlı müzik ve patlama sesleri (audio.js, 24 Kasım 2026)
+- Online HIZ ve STRATEJİ'nin kendi müziği dosyasız, tarayıcıda çalınırken üretilir (`PARCA`, 16'lık adımlı sıralayıcı, 25 ms'de bir 150 ms ileriye planlar). Müzik ses ayarına bağlıdır; konuşma / bomba sırasında kısılır.
+  - `hiz`: 128 BPM, Am–F–C–G; dört vuruş davul, el çırpma, sekizlik bas, arpej, pad. Gerilim 1: 16'lık zil, arpej yükselir; 2: üst oktav ve melodi.
+  - `strateji`: 96 BPM, Dm7–B♭maj7–Gm7–A7; marimba ostinatosu, sıcak pad, bas, yumuşak ritim (`kazanc` 1,7). Gerilim 1: saat tiki ve zil; 2: pad açılır, marimba oktavlanır.
+- Gerilim (`Ses.gerilim(0–2)`): HIZ'da son cümle 2, başa baş (en çok 1 cümle fark) 1 (`onlineTik`); stratejide son 30 sn 1, son 10 sn 2 (`strSaat`); tur paneli 0.
+- `Ses.muzik('hiz' | 'strateji')` canlı müziği başlatır (lo-fi döngü susar); `'menu'` / `'duello'` lo-fi'ye döner; `kasetDur` ikisini de durdurur. `Ses.parca()` çalan parçayı verir.
+- Strateji bombası: basınca `emme` (içine çekme) + tahta küçülüp parlar (`.topla`) + müzik kısılır; patlamada `megaBomba` (alt bas, gürültü, çıtırtı, parıltı; patlayan karo arttıkça daha güçlü), zincirlerde `zincirBum` + `zincir` (yükselen); tahta temizlenince `zafer`. Normal oyundaki `super` ve `bomba`ya da daha güçlü alt bas eklendi.
+- Denetim / dinleme: `Ses.onizle(parça, saniye, gerilimPlanı, efektler)` çevrimdışı kayıt (Float32Array). Dinleme dosyaları bu yolla üretildi.
+
 ### Hazır emojiler (emoji.js, 24 Kasım 2026)
 - Yalnız 6 hazır emoji (`EMO`: 👍 😮 😂 🔥 👏 😅); yazı yok, denetlenecek kullanıcı içeriği oluşmaz. Ağ mesajı `emo` (`mac`, `e`: sıra), yalnız eşleşilen rakipten ve açık maçtan kabul edilir.
 - 😊 düğmesi (`#emo-btn`) bağlama göre yer alır (`emoBaglam`): HIZ maçında yarış çubuğunun sağı (engine.js `window.__yarisKonum`), stratejide rakip satırı (kurallar ve tur paneli açıkken yok), sonuç ekranlarında VS rozetinin altı; menüde görünmez. Çubuk (`#emo-bar`): 6 emoji + 🔇 (bu maçta rakibin emojilerini gizler).
@@ -364,6 +373,7 @@ python3 testler/calistir.py modlar dil # yalnız seçilenler
 | `rozet` | Rozetler: sayaçlar olaylarla birebir; İlk Cümle açılır ve sonuçta kutlanır, ikinci kez kutlanmaz; rozet ekranı 320, 390, 844 px'te taşmaz; eski oyuncuda sessizce açılır; İngilizce arayüzde Türkçe yazı yok |
 | `strateji` | Kayma kuralı (sağa, satır sonunda alta, ilk boşluğa); 6 seviyede 18 tahta (aynı tohum aynı tahta, 3 boşluk, tuzak doğrusuyla aynı renk, kötü başlangıç yok); bomba ve doğruluk; bilgisayara karşı maç ekrandan: sürükleyerek taşıma, kutuya sürükleme (gölge, hamle harcamaz), dokun-dokun, kutudan geri alma, hamle sınırı, 3 ekranda taşma yok, 3 tur (biri yanlış) ve karar, tekrar oyna, çıkış, süre dolması, İngilizce |
 | `strateji_rehber` | Alıştırma: ilk maçta bir kez; bilgi adımında ve gösterilmeyen hamlede taşıma yok; sürükleyerek kayma; sırası gelmeyen kelime ve tuzak seçilmez, uyarı; bomba; kurallar kartı ve maç; kalıcı; Nasıl oynanır ve Geç; bütün koç yazılarının İngilizcesi |
+| `muzik` | HIZ'da `hiz`, stratejide `strateji` çalar; son cümlede / son 10 sn'de gerilim 2; bombadan önce içine çekilme; maç bitince ve menüde canlı müzik susar; çevrimdışı kayıtta tepe < 1, RMS > 0,02 (hız, strateji, bomba) |
 | `emoji` | Menüde düğme yok; HIZ maçında düğme, çubuk (6 emoji + sustur), uçan balon, 1,5 sn sınırı, bilgisayarın adıyla karşılığı; strateji: kurallar kartında yok, maçta var, gönderilir; çıkınca kalkar. (`online` testi: iki telefon arası emoji, susturma, geçersiz emoji) |
 | `hiz_bot` | HIZ: B1 seçilip bilgisayara karşı; cümleler B1'den, bilgisayar ilerliyor, karar, online istatistiğine yazılmaz, tekrar oyna, duraklatıp çıkış |
 | `uygulama` | Capacitor taklidiyle: yerel okuma (Türkçe dil kodu, kesilen okumanın bitişi, sus), titreşim ve kapatma, geri tuşu (oyun, duraklatma, profil, açılış), arka plana gidince duraklama, hatırlatma ayarı ve planlama, çentik payı |

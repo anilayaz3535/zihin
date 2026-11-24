@@ -48,8 +48,9 @@ const Ses = (function () {
     } catch (e) { }
 
     ['muzik'].forEach(ad => yukle(ad, () => {
-      if (ad === 'muzik' && istenen) muzik(istenen);
+      if (ad === 'muzik' && istenen && !PARCA[istenen]) muzik(istenen);
     }));
+    if (PARCA[istenen]) muzik(istenen);   // canlı müzik dosya beklemez
   }
 
   function yukle(ad, bitti) {
@@ -76,10 +77,109 @@ const Ses = (function () {
     try { x.send(); } catch (e) { bitti(); }
   }
 
-  // tur: 'menu' (kısık, boğuk) · 'duello' (oyun, tam) · null (sus)
+  /* ---- canlı müzik (online HIZ ve STRATEJİ): dosyasız, tarayıcıda çalınırken üretilir; oyunun gerilimine göre katman ekler ----
+     gerilim 0: temel · 1: başa baş / son 30 sn · 2: son cümle / son 10 sn. Müzik ses ayarı ve kısmalar (konuşma, bomba) geçerlidir. */
+  const mid = n => 440 * Math.pow(2, (n - 69) / 12);
+  let sira = null;
+  function mNota(t, f, d, v, tip, lp, atak) {
+    const o = ctx.createOscillator(), gn = ctx.createGain(); o.type = tip || 'triangle'; o.frequency.setValueAtTime(f, t);
+    gn.gain.setValueAtTime(0.0001, t); gn.gain.exponentialRampToValueAtTime(Math.max(0.0002, v), t + (atak || 0.006)); gn.gain.exponentialRampToValueAtTime(0.0001, t + d);
+    if (lp) { const fl = ctx.createBiquadFilter(); fl.type = 'lowpass'; fl.frequency.value = lp; o.connect(fl); fl.connect(gn); } else o.connect(gn);
+    gn.connect(sira.g); o.start(t); o.stop(t + d + 0.05);
+  }
+  function mGurultu(t, d, v, fc, tip, q) {
+    const sr = ctx.createBufferSource(), fl = ctx.createBiquadFilter(), gn = ctx.createGain();
+    sr.buffer = gurultuTampon(); fl.type = tip || 'highpass'; fl.frequency.value = fc; if (q) fl.Q.value = q;
+    gn.gain.setValueAtTime(Math.max(0.0002, v), t); gn.gain.exponentialRampToValueAtTime(0.0001, t + d);
+    sr.connect(fl); fl.connect(gn); gn.connect(sira.g); sr.start(t, Math.random() * 0.5); sr.stop(t + d + 0.03);
+  }
+  function mKick(t, v) {
+    const o = ctx.createOscillator(), gn = ctx.createGain(); o.type = 'sine';
+    o.frequency.setValueAtTime(150, t); o.frequency.exponentialRampToValueAtTime(44, t + 0.12);
+    gn.gain.setValueAtTime(0.0001, t); gn.gain.exponentialRampToValueAtTime(v, t + 0.004); gn.gain.exponentialRampToValueAtTime(0.0001, t + 0.3);
+    o.connect(gn); gn.connect(sira.g); o.start(t); o.stop(t + 0.35);
+  }
+  const PARCA = {
+    // ⚡ HIZ: 128 BPM, Am – F – C – G; dört vuruş davul, el çırpma, sekizlik bas, arpej; gerilimle 16'lık zil ve melodi
+    hiz: { bpm: 128, akor: [[57, 60, 64], [53, 57, 60], [48, 52, 55], [55, 59, 62]], cal(s, n, t) {
+      const st = n % 16, ak = this.akor[Math.floor(n / 16) % 4], g = s.gerilim;
+      if (st % 4 === 0) mKick(t, 0.55);
+      if (st === 4 || st === 12) { mGurultu(t, 0.14, 0.16, 1500, 'bandpass', 0.8); mNota(t, 210, 0.08, 0.06, 'triangle'); }
+      if (st % 2 === 1) mGurultu(t, 0.045, 0.05, 7500);
+      else if (g >= 1) mGurultu(t, 0.03, 0.03, 9000);
+      if (st % 2 === 0) mNota(t, mid(ak[0] - 24 + (st === 6 || st === 14 ? 12 : 0)), 0.16, 0.16, 'sawtooth', 420);
+      const arp = [0, 1, 2, 1][st % 4]; mNota(t, mid(ak[arp] + 12 + (g >= 2 && st % 8 >= 4 ? 12 : 0)), 0.11, g >= 1 ? 0.055 : 0.035, 'square', 2600);
+      if (st === 0) ak.forEach(m => mNota(t, mid(m), 1.7, 0.022, 'sawtooth', 900, 0.25));
+      if (g >= 2 && [0, 3, 6, 10, 12].indexOf(st) >= 0) mNota(t, mid(ak[[2, 1, 2, 0, 1][[0, 3, 6, 10, 12].indexOf(st)]] + 24), 0.18, 0.05, 'triangle');
+    } },
+    // 🧠 STRATEJİ: 96 BPM, Dm7 – B♭maj7 – Gm7 – A7; marimba ostinatosu, sıcak pad, yumuşak ritim; gerilimle saat tiki ve 16'lık zil
+    strateji: { bpm: 96, kazanc: 1.7, akor: [[62, 65, 69, 72], [58, 62, 65, 69], [55, 58, 62, 65], [57, 61, 64, 67]], cal(s, n, t) {
+      const st = n % 16, ak = this.akor[Math.floor(n / 16) % 4], g = s.gerilim;
+      if (st === 0 || st === 10) mKick(t, 0.32);
+      if (st === 4 || st === 12) mGurultu(t, 0.05, 0.07, 3200, 'bandpass', 3);
+      if (st % 2 === 0) { const m = ak[[0, 2, 1, 3, 0, 2, 1, 2][st / 2]] + 12; mNota(t, mid(m), 0.32, 0.075, 'sine'); mNota(t, mid(m) * 4, 0.06, 0.012, 'sine'); if (g >= 2) mNota(t, mid(m + 12), 0.2, 0.03, 'sine'); }
+      if (st === 0) { ak.forEach(m => mNota(t, mid(m - 12), 2.4, 0.018, 'sawtooth', g >= 2 ? 1800 : 800, 0.5)); mNota(t, mid(ak[0] - 24), 0.9, 0.18, 'triangle', 500); }
+      if (st === 8) mNota(t, mid(ak[2] - 24), 0.6, 0.13, 'triangle', 500);
+      if (g >= 1) { mGurultu(t, 0.025, st % 4 === 2 ? 0.035 : 0.018, 8000); if (st % 4 === 0) mNota(t, 1760, 0.03, 0.03, 'sine'); }
+    } },
+  };
+  function siraTik() {
+    const s = sira; if (!s || !ctx) return;
+    if (ctx.state !== 'running') { s.t = ctx.currentTime + 0.05; return; }
+    if (s.t < ctx.currentTime - 0.2) s.t = ctx.currentTime + 0.05;   // sekme arka plandaydıysa birikeni çalma
+    const dt = 60 / s.P.bpm / 4;
+    while (s.t < ctx.currentTime + 0.15) { try { s.P.cal(s, s.n, s.t); } catch (e) { } s.n++; s.t += dt; }
+  }
+  function siraBaslat(ad) {
+    if (sira && sira.ad === ad) return;
+    siraDur(0.4);
+    const g = ctx.createGain(); g.gain.value = 0.0001; g.connect(muzikG);
+    sira = { ad, P: PARCA[ad], n: 0, t: ctx.currentTime + 0.12, g, gerilim: 0 };
+    rampa(g.gain, 0.9 * (PARCA[ad].kazanc || 1), 1.2);
+    sira.T = setInterval(siraTik, 25);
+  }
+  function siraDur(sure) {
+    const s = sira; if (!s) return;
+    sira = null; clearInterval(s.T); rampa(s.g.gain, 0, sure || 0.5);
+    setTimeout(() => { try { s.g.disconnect(); } catch (e) { } }, (sure || 0.5) * 1000 + 400);
+  }
+  function gerilim(n) { if (sira) sira.gerilim = Math.max(0, Math.min(2, n | 0)); }
+
+  // dinleme / denetim için: canlı müziği ve efektleri çevrimdışı ses bağlamında kaydeder (oyun kullanmaz; test ve önizleme)
+  // plan: [[saniye, gerilim], …] · efektler: [[saniye, efekt, ses], …] → mono Float32Array (44.1 kHz)
+  async function onizle(ad, sn, plan, efektler) {
+    const eski = { ctx, muzikG, efektG, sira, gurultu };
+    const oc = new OfflineAudioContext(1, Math.round(44100 * sn), 44100);
+    try {
+      ctx = oc; gurultu = null;
+      const sk = oc.createDynamicsCompressor(); sk.threshold.value = -13; sk.knee.value = 10; sk.ratio.value = 6; sk.attack.value = 0.004; sk.release.value = 0.22; sk.connect(oc.destination);
+      muzikG = oc.createGain(); muzikG.gain.value = 0.76; muzikG.connect(sk);
+      efektG = oc.createGain(); efektG.gain.value = 0.8; efektG.connect(sk);
+      if (ad) {
+        const g = oc.createGain(); g.gain.value = 0.9 * (PARCA[ad].kazanc || 1); g.connect(muzikG);
+        sira = { ad, P: PARCA[ad], n: 0, t: 0.05, g, gerilim: 0 };
+        const dt = 60 / sira.P.bpm / 4;
+        while (sira.t < sn - 0.3) { (plan || []).forEach(([z, gr]) => { if (sira.t >= z) sira.gerilim = gr; }); sira.P.cal(sira, sira.n, sira.t); sira.n++; sira.t += dt; }
+      }
+      (efektler || []).forEach(([z, e, v]) => EF[e]((v == null ? 1 : v) * 1.2, z, 1));
+      const buf = await oc.startRendering();
+      return buf.getChannelData(0);
+    } finally { ctx = eski.ctx; muzikG = eski.muzikG; efektG = eski.efektG; sira = eski.sira; gurultu = eski.gurultu; }
+  }
+
+  // tur: 'menu' (kısık, boğuk) · 'duello' (oyun, tam) · 'hiz' / 'strateji' (canlı müzik) · null (sus)
   function muzik(tur) {
     istenen = tur;
     if (!ctx) return;
+    if (PARCA[tur]) {
+      if (muzikK) rampa(muzikKG.gain, 0, 0.8);   // lo-fi döngü susar (çalmaya devam eder, menüde geri gelir)
+      if (kaset) { kaset = false; if (muzikK) { try { muzikK.stop(); } catch (e) { } muzikK = null; } }
+      const p = filtre.frequency, t = ctx.currentTime;
+      try { p.cancelScheduledValues(t); p.setValueAtTime(Math.max(60, p.value), t); p.exponentialRampToValueAtTime(18500, t + 0.5); } catch (e) { }
+      siraBaslat(tur);
+      return;
+    }
+    siraDur(0.8);
     if (!tur) {
       if (muzikK) {
         const k = muzikK, g = muzikKG; muzikK = null;
@@ -124,6 +224,7 @@ const Ses = (function () {
 
   // oyun sonu: müzik yavaşlayıp susar
   function kasetDur(sure) {
+    if (sira) siraDur(sure || 0.7);
     if (!ctx || !muzikK || kaset) return;
     kaset = true; sure = sure || 0.7;
     const t = ctx.currentTime;
@@ -232,6 +333,7 @@ const Ses = (function () {
     },
     super: (v, g) => {
       ton(98, 0.38, 'sine', 0.21 * v, 42, g);
+      ton(58, 0.5, 'sine', 0.18 * v, 26, g + 0.01);   // daha güçlü alt bas
       hisir(0.68, 0.15 * v, 1250, g);
       [0, 4, 7, 12, 16, 19, 24].forEach((y, i) => {
         const freq = 523.25 * Math.pow(2, y / 12);
@@ -241,8 +343,32 @@ const Ses = (function () {
     },
     bomba: (v, g) => {
       ton(80, 0.48, 'sine', 0.24 * v, 32, g);
+      ton(52, 0.6, 'sine', 0.2 * v, 24, g + 0.01);   // daha güçlü alt bas
       hisir(0.82, 0.17 * v, 980, g);
       [523.25, 783.99, 1046.5, 1567.98].forEach((f, i) => ton(f, 0.18, 'triangle', 0.07 * v, null, g + 0.16 + i * 0.05));
+    },
+    // strateji bombası: önce içine çekme, sonra alt bası güçlü büyük patlama (patlayan karo arttıkça ses büyür)
+    emme: (v, g) => {
+      const t0 = ctx.currentTime + g, s = ctx.createBufferSource(), f = ctx.createBiquadFilter(), gg = ctx.createGain();
+      s.buffer = gurultuTampon(); f.type = 'bandpass'; f.Q.value = 2.5;
+      f.frequency.setValueAtTime(260, t0); f.frequency.exponentialRampToValueAtTime(4200, t0 + 0.5);
+      gg.gain.setValueAtTime(0.0001, t0); gg.gain.exponentialRampToValueAtTime(0.26 * v, t0 + 0.47); gg.gain.exponentialRampToValueAtTime(0.0001, t0 + 0.56);
+      s.connect(f); f.connect(gg); gg.connect(efektG); s.start(t0, Math.random() * 0.3); s.stop(t0 + 0.6);
+      ton(110, 0.52, 'sawtooth', 0.035 * v, 880, g);
+    },
+    megaBomba: (v, g) => {
+      ton(120, 0.95, 'sine', 0.4 * v, 26, g);
+      ton(64, 1.2, 'sine', 0.3 * v, 22, g + 0.02);
+      ton(240, 0.25, 'square', 0.06 * v, 60, g);
+      hisir(1.4, 0.3 * v, 1700, g);
+      hisir(0.4, 0.2 * v, 5200, g, 'highpass');
+      hisir(0.9, 0.12 * v, 420, g + 0.05);
+      [0, 7, 12, 16, 19, 24, 28, 31].forEach((y, i) => { const f = 392 * Math.pow(2, y / 12); ton(f, 0.32, 'triangle', 0.07 * v, null, g + 0.14 + i * 0.045); ton(f * 2, 0.16, 'sine', 0.035 * v, null, g + 0.16 + i * 0.045); });
+    },
+    zincirBum: (v, g, h) => {
+      ton(90 * h, 0.5, 'sine', 0.3 * v, 30, g);
+      hisir(0.6, 0.18 * v, 2200, g);
+      [0, 4, 7, 12, 16].forEach((y, i) => ton(659.25 * h * Math.pow(2, y / 12), 0.2, 'square', 0.035 * v, null, g + 0.05 + i * 0.04));
     },
     saat: (v, g, h) => { ton(1200 * h, 0.035, 'sine', 0.06 * v, null, g); ton(600 * h, 0.05, 'triangle', 0.06 * v, null, g + 0.01); },
     altin: (v, g, h) => {
@@ -313,7 +439,7 @@ const Ses = (function () {
   function uyan() { if (ctx && ctx.state !== 'running' && ctx.state !== 'closed' && ctx.resume) { try { const p = ctx.resume(); if (p && p.catch) p.catch(() => { }); } catch (e) { } } }
   function uyu() { if (ctx && ctx.state === 'running' && ctx.suspend) { try { ctx.suspend(); } catch (e) { } } }
 
-  return { baslat, muzik, yogunluk, cal, ayarla, kis, uyan, uyu, sentez, bogul, kasetDur, nota, spiker, hazir: ad => !!tampon[ad], acik: () => !!ctx, durum: () => ctx ? ctx.state : 'yok' };
+  return { onizle, baslat, muzik, gerilim, parca: () => (sira ? sira.ad : null), yogunluk, cal, ayarla, kis, uyan, uyu, sentez, bogul, kasetDur, nota, spiker, hazir: ad => !!tampon[ad], acik: () => !!ctx, durum: () => ctx ? ctx.state : 'yok' };
 })();
 
 /* =====================================================================
