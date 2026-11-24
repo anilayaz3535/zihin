@@ -28,7 +28,7 @@ function panelGeri() {
   if (ekran === 'oda' || ekran === 'onlineSonuc') { odadanCik(); onlineAc(); return; }
   if (ekran === 'strSonuc') { const c = $('#ss-cik'); if (c) c.click(); return; }
   if (ekran === 'eslesme') { eslesmeDur(); onlineAc(); return; }
-  if (ekran === 'yol' || ekran === 'cark') { acilisAc(); return; }
+  if (ekran === 'yol' || ekran === 'cark' || ekran === 'etkinlik') { acilisAc(); return; }
   if (ekran === 'yolBas') { yolHaritaAc(); return; }
   if (ekran === 'online') { onlineSonMod = null; onlineAc(); return; }
   if (ekran === 'harita' || ekran === 'profil' || ekran === 'onlineSecim' || ekran === 'ilk' || ekran === 'ilkHedef') { acilisAc(); return; }
@@ -106,6 +106,7 @@ function acilisAc() {
     ${logoHtml('')}
     <button class="profil-btn" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span class="pb-ic"><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ★ ${oz.yildiz} · 📗 ${tt('{n} kelime', { n: oz.kelime })}</small></span><em>${tt('Profil ›')}</em></button>
     ${gunlukHtml()}
+    ${etkMenuHtml()}
     ${gorevHtml()}
     <button class="yol-btn" id="a-yol"><i>🗺</i><span><b>${tt('BÖLÜM YOLU')}</b><small>${tt('Bölüm {n} · ⭐ {y}', { n: Math.min(YOL_TOPLAM, kayit.yol.acik), y: yolYildizToplam() })}</small></span><em>${tt('OYNA ▶')}</em></button>
     ${odulMenuHtml()}
@@ -115,6 +116,7 @@ function acilisAc() {
   </div>`, '', 'acilis');
   $('#a-gorev').onclick = () => { Ses.cal('tik', { ses: 0.5 }); gorevBaslat(); };
   $('#a-yol').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
+  $('#a-etk').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); etkAc(); };
   $('#a-cark').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); carkAc(); };
   $('#a-sandik').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
   $('#a-rozet').onclick = () => { Ses.cal('tik', { ses: 0.4 }); rozetlerAc(acilisAc); };
@@ -345,6 +347,7 @@ function sonucGoster() {
   if (d.yeniDojo && d.kazandi) ic += `<div class="sonuc-alt sari">${d.yeniDojo.lvl !== d.r.lvl ? tt('{l} seviyesi açıldı!', { l: d.yeniDojo.lvl }) : tt('Yeni bölüm açıldı: ') + esc(d.yeniDojo.world)}</div>`;
   const top = d.istat.dogru + d.istat.yanlis;
   ic += sonucXpHtml(d.ilerleme);
+  if (d.etkinlik) ic += `<div class="sonuc-alt etk-kazanc">${etkTema().i} ${tt(etkTema().ad)}: +${d.etkinlik} ${etkTema().jeton}</div>`;
   ic += `<div class="stats">
     <div><span>${tt('SKOR')}${d.rekor ? tt(' · YENİ REKOR!') : ''}</span><b>${G.score}</b></div>
     <div><span>${tt('DOĞRU HAMLE')}</span><b>${top ? Math.round(d.istat.dogru / top * 100) : 0}%</b></div>

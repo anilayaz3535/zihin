@@ -902,3 +902,22 @@
   .y-ozel{display:flex;align-items:center;gap:8px;margin:6px 0;padding:8px 10px;border-radius:12px;background:rgba(255,255,255,.1);font-size:14px;text-align:left}
   .y-ozel i{font-style:normal;font-size:24px;width:34px;height:34px;flex:none;display:flex;align-items:center;justify-content:center;border-radius:10px;background:linear-gradient(#ffd451,#ff9f1c)}
   @media (prefers-reduced-motion:reduce){.st-k.ozel[data-ozel="gokkusagi"] span,.st-isin,.st-halka{animation:none}}
+
+  /* ---------- haftalık etkinlik (etkinlik.js) ---------- */
+  .etk-serit{display:flex;align-items:center;gap:10px;width:100%;padding:8px 12px;border-radius:16px;border:2px solid rgba(255,255,255,.85);cursor:pointer;text-align:left;
+    font-family:Fredoka,Poppins,sans-serif;color:#fff;background:linear-gradient(135deg,var(--e1),var(--e2));box-shadow:0 4px 0 rgba(0,0,0,.25)}
+  .etk-serit>i{font-style:normal;font-size:30px;line-height:1}.etk-serit span{flex:1;min-width:0}
+  .etk-serit b{display:block;font-size:16px;text-shadow:0 2px 0 rgba(0,0,0,.25)}.etk-serit small{display:block;font-size:12.5px}
+  .etk-serit u{display:block;height:6px;margin-top:4px;border-radius:3px;background:rgba(0,0,0,.25);overflow:hidden}.etk-serit u s{display:block;height:100%;background:#fff6e8;border-radius:3px}
+  .etk-serit.hazir{box-shadow:0 4px 0 rgba(0,0,0,.25),0 0 0 3px #ffd451,0 0 18px rgba(255,212,81,.8);animation:rhNabiz 1.2s ease-in-out infinite}
+  .etk-bas{display:flex;flex-direction:column;align-items:center;padding:14px;border-radius:18px;color:#fff;background:linear-gradient(135deg,var(--e1),var(--e2));border:2px solid rgba(255,255,255,.7);margin-bottom:10px}
+  .etk-bas i{font-style:normal;font-size:46px;line-height:1.1}.etk-bas b{font-size:24px;letter-spacing:1px}.etk-bas small{font-size:14px}
+  .etk-nasil{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;font-size:12.5px;color:#f3dcc0;margin-bottom:10px}
+  .etk-nasil span{padding:3px 8px;border-radius:10px;background:rgba(0,0,0,.25)}
+  .etk-yol{display:flex;flex-direction:column;gap:6px}
+  .etk-basamak{display:grid;grid-template-columns:70px 1fr auto;align-items:center;gap:8px;padding:8px 10px;border-radius:14px;background:rgba(255,255,255,.08);border:2px solid transparent;text-align:left}
+  .etk-basamak .etk-p{font-weight:700;color:#ffd451}.etk-basamak .etk-o{font-size:14.5px}.etk-basamak em{font-style:normal;font-size:18px}
+  .etk-basamak.hazir{border-color:#ffd451;background:rgba(255,212,81,.15)}.etk-basamak.alindi{opacity:.55}
+  .etk-basamak.son{background:linear-gradient(90deg,rgba(255,212,81,.25),rgba(255,255,255,.05))}
+  .etk-al{padding:6px 14px;font-size:15px}
+  .etk-kazanc{color:#ffd451;font-weight:700}

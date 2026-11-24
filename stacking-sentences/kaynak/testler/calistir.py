@@ -728,6 +728,32 @@ def odul(b):
     return 'başlangıç güçleri; çark günde bir, ağırlıklar; 4 yuva, tek sandık açılır, süreyle açılır; bölüm kazanınca sandık; +3 hamle, çekiç, mıknatıs; onarım; İngilizce'
 
 @test
+def etkinlik(b):
+    """Haftalık etkinlik: ISO hafta ve dönen tema; puanlar (Bölüm Yolu 3+yıldız, Günün Görevi 6, bölüm 4, online 4/2); ödül basamakları
+    yalnız ulaşılınca ve bir kez alınır; yuva doluyken sandık ödülü bekler; son basamak şampiyonluk ve rozet; yeni haftada sıfırlanır; onarım; İngilizce."""
+    s = Sayfa(b, init=[SAAT]); s.js('kayit.strRehber = true')
+    esit(s.js("[etkHafta(new Date(2026, 0, 1).getTime()).anahtar, etkHafta(new Date(2026, 11, 28).getTime()).anahtar, etkHafta(new Date(2027, 0, 4).getTime()).anahtar]"), ['2026-W01', '2026-W53', '2027-W01'], 'ISO hafta')
+    dogru(s.js('etkKalan()') > 0 and s.js('etkKalan()') <= 7 * 864e5, 'kalan süre')
+    dogru(s.js("!!document.getElementById('a-etk')"), 'ana menüde etkinlik şeridi yok')
+    p0 = s.js('etkGuncelle().puan')
+    s.js("Olay.yay('bolumBitti', { mod: 'yol', kazandi: true, yildiz: 3 }); Olay.yay('bolumBitti', { mod: 'gunluk', kazandi: true }); Olay.yay('bolumBitti', { mod: 'bolum', kazandi: true }); Olay.yay('bolumBitti', { mod: 'bolum', kazandi: false }); Olay.yay('onlineBitti', { kazandi: false })")
+    esit(s.js('kayit.etkinlik.puan') - p0, 6 + 6 + 4 + 2, 'etkinlik puanları')
+    s.js('etkAc()'); n_al = s.js("document.querySelectorAll('.etk-al').length"); esit(n_al, 2, 'ulaşılan basamaklar (5, 12)')
+    s.js('etkAl(2)'); esit(s.js('kayit.etkinlik.alinan'), [], 'ulaşılmayan basamak alındı')
+    h0 = s.js('kayit.envanter.hamle3'); s.pg.tap('.etk-al[data-i="0"]'); s.pg.wait_for_selector('.odul-pen'); s.pg.tap('#odul-tamam')
+    esit((s.js('kayit.envanter.hamle3'), s.js('kayit.etkinlik.alinan')), (h0 + 1, [0]), 'ödül alındı'); s.js('etkAl(0)'); esit(s.js('kayit.envanter.hamle3'), h0 + 1, 'aynı ödül iki kez')
+    s.js("kayit.sandik.slot = [1, 2, 3, 4].map(() => ({ tur: 'tahta', t: 1, acilis: null })); etkPuanEkle(200); etkAl(3)"); esit(3 in s.js('kayit.etkinlik.alinan'), False, 'yuva doluyken sandık ödülü alındı')
+    s.js("kayit.sandik.slot = []; etkAl(9)"); esit((s.js('kayit.etkinlik.tamam'), s.js('kayit.sandik.slot[0].tur')), (1, 'altin'), 'son basamak'); s.js("document.querySelector('#odul-tamam') && document.querySelector('#odul-tamam').click()")
+    dogru(s.js("(rozetKontrol(), rozetAcikMi('etkinlik1'))"), 'etkinlik rozeti açılmadı')
+    t1 = s.js('etkTema().ad'); s.js('window.__ileri = 7 * 864e5'); s.pg.reload(); s.bekle()
+    esit((s.js('etkGuncelle().puan'), s.js('kayit.etkinlik.alinan'), s.js('kayit.etkinlik.tamam')), (0, [], 1), 'yeni haftada sıfırlama'); dogru(s.js('etkTema().ad') != t1, 'tema değişmedi')
+    s.js("kayit = kayitDuzelt(Object.assign({}, kayit, { etkinlik: { hafta: 'x', puan: -1, alinan: [0, 'a', 99] } }), bosKayit()).k")
+    esit(s.js('JSON.stringify(kayit.etkinlik)'), json.dumps({'hafta': '', 'puan': 0, 'alinan': [0], 'tamam': 0}, separators=(',', ':')), 'bozuk etkinlik kaydı onarımı')
+    s.js("dilSec('en'); etkAc()"); tr = s.js("document.getElementById('card').textContent"); dogru(not __import__('re').search('[ğüşıöçİĞÜŞÖÇ]', tr), 'İngilizce etkinlik: ' + ' '.join(__import__('re').findall(r'\S*[ğüşıöçİĞÜŞÖÇ]\S*', tr)))
+    esit(s.hatalar(), [], 'JS hataları'); s.kapat()
+    return 'ISO hafta ve tema; puanlar; basamaklar bir kez ve ulaşılınca; dolu yuva; şampiyonluk ve rozet; yeni haftada sıfırlama; onarım; İngilizce'
+
+@test
 def hiz_bot(b):
     """HIZ: seviye seçimi ve bilgisayara karşı maç: seçilen seviyenin cümleleri, bilgisayar cümleleri zamanla bitirir, karar ve sonuç ekranı."""
     s = Sayfa(b)

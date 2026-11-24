@@ -67,6 +67,11 @@ BÖLÜM YOLU (24 Kasım 2026) — ana menüdeki yeşil düğme
    Her bölüm: 1 cümle, sınırlı hamle, bir hedef (puan / renk / 🧊 buz kır / 🔒 kilit patlat), 1–3 yıldız.
    Dalgalı zorluk ve 💀 zor bölümler; hamle bitince NEREDEYSE! +3 hamle; kazanınca CÜMLE CRUSH!
 
+ÖDÜLLER VE ETKİNLİK (24 Kasım 2026)
+   🎡 Günlük çark (her gün bedava), 🎁 zamanla açılan sandıklar (Bölüm Yolu'nda her kazanılan bölüm),
+   güçler: ✋ +3 hamle, 🔨 çekiç, 🧲 mıknatıs. Özel karolar: ⇆⇅ çizgili, 💣 paket, 🌈 gökkuşağı, SÜPER KOMBO.
+   🗓 Haftalık etkinlik: her hafta yeni tema, her moddan puan, 10 basamaklı ödül yolu, pazar gece biter.
+
 ONLINE: İKİ MOD (23 Kasım 2026)
    ⚡ HIZ: seviyeni (A1–C2) seç; aynı seviyedekiyle aynı cümleleri kur, önce bitiren kazanır.
    🧠 STRATEJİ: yeni oyun. Aynı tahta, aynı cümle, sınırlı hamle. Karoyu başka karonun üstüne bırakınca

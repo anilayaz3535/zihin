@@ -29,6 +29,7 @@ const ROZETLER = [
   { id: 'yildiz10', i: '⭐', ad: 'Üç Yıldız', ac: '10 bölümde 3 yıldız al', d: () => [Object.keys(kayit.yildiz).filter(k => kayit.yildiz[k] >= 3).length, 10] },
   { id: 'xp1000', i: '🎓', ad: '1.000 XP', ac: 'Toplam 1.000 XP topla', d: () => [kayit.xp, 1000] },
   { id: 'xp10000', i: '🏅', ad: '10.000 XP', ac: 'Toplam 10.000 XP topla', d: () => [kayit.xp, 10000] },
+  { id: 'etkinlik1', i: '🏆', ad: 'Etkinlik Şampiyonu', ac: 'Bir haftalık etkinliği bitir', d: () => [(kayit.etkinlik && kayit.etkinlik.tamam) || 0, 1] },
   { id: 'online1', i: '🤝', ad: 'İlk Maç', ac: 'Bir online maç kazan', d: () => [ist('onlineGalibiyet'), 1] },
   ...['A2', 'B1', 'B2', 'C1', 'C2'].map((l, n) => ({ id: 'sev' + l, i: ['🚲', '🚗', '🚆', '✈️', '🚀'][n], ad: '{l} Seviyesi', ac: '{l} seviyesini aç', l, d: () => [seviyeAcikMi(l) ? 1 : 0, 1] })),
 ];

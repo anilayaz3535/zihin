@@ -50,7 +50,7 @@ const Yerel = (() => {
       showPause(); return;
     }
     // menüler: ekrandaki geri düğmesi, yoksa açılışa; açılıştaysa uygulamayı arka plana al
-    const g = card && card.querySelector('.ust-satir .geri, #d-geri, #r-geri, #p-geri, #a-geri, #s-harita, #ss-cik, #os-cik, #es-iptal, #oda-cik, #y-harita, #c-geri');
+    const g = card && card.querySelector('.ust-satir .geri, #d-geri, #r-geri, #p-geri, #a-geri, #s-harita, #ss-cik, #os-cik, #es-iptal, #oda-cik, #y-harita, #c-geri, #e-geri');
     if (ekran === 'acilis' || ekran === 'ilkKarsila') { const A = ek('App'); if (A && A.minimizeApp) A.minimizeApp(); else if (A) A.exitApp(); return; }
     if (g) { g.click(); return; }
     if (aktifProfil()) acilisAc();

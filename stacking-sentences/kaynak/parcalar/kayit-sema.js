@@ -127,6 +127,14 @@ const ALANLAR = {
     x.slot.forEach(k => { if (nesneMi(k) && ['tahta', 'gumus', 'altin'].indexOf(k.tur) >= 0 && sayiMi(k.t) && (k.acilis === null || sayiMi(k.acilis)) && slot.length < 4) slot.push({ tur: k.tur, t: k.t, acilis: k.acilis }); else b = true; });
     return b ? c.bozuk({ slot }) : { slot };
   },
+  etkinlik: (x, v, c) => {   // { hafta: 'YYYY-Wnn', puan, alinan: [basamak], tamam }
+    if (!nesneMi(x)) return c.bozuk({ hafta: '', puan: 0, alinan: [], tamam: 0 });
+    let b = false; const say = y => { const z = tamSayi(y, 0, 1e6); if (z === null || z !== y) b = true; return z || 0; };
+    const o = { hafta: typeof x.hafta === 'string' && (x.hafta === '' || /^\d{4}-W\d{2}$/.test(x.hafta)) ? x.hafta : (b = true, ''), puan: say(x.puan), alinan: [], tamam: say(x.tamam || 0) };
+    if (Array.isArray(x.alinan)) o.alinan = x.alinan.filter(i => Number.isInteger(i) && i >= 0 && i < 20); else b = true;
+    if (o.alinan.length !== (x.alinan || []).length) b = true;
+    return b ? c.bozuk(o) : o;
+  },
   cark: (x, v, c) => (nesneMi(x) && (x.son === null || (typeof x.son === 'string' && GUN_ANAHTAR.test(x.son))) ? { son: x.son } : c.bozuk({ son: null })),
   yol: (x, v, c) => {      // Bölüm Yolu: { acik: açık son bölüm, yildiz: { no: 1..3 }, enIyi: { no: puan } }
     if (!nesneMi(x)) return c.bozuk({ acik: 1, yildiz: {}, enIyi: {} });
