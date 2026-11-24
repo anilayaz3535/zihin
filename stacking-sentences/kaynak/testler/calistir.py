@@ -624,6 +624,21 @@ def yol(b):
     esit(k[:3], [False, False, True], 'donuk karo taşınmaz / üstüne bırakılmaz')
     esit(s.js("""(() => { const K = (t, o) => Object.assign({ id: t, txt: t, ci: 0, k: -1 }, o || {}); const T = { cols: 3, rows: 2, h: [K('a'), K('b', { buz: true }), K('c'), K('d'), K('e'), null] };
       strTasi(T, 4, 0); return T.h.map(x => x ? x.txt : '_').join(''); })()"""), 'ebacd_', 'kayan sıra buzu atlar')
+    # özel karolar: etkiler, SÜPER KOMBO, zincir, gökkuşağı; 11. bölümden önce yok
+    oz = s.js("""(() => { const K = (id, ci, o) => Object.assign({ id, txt: 'w' + id, ci, k: -1 }, o || {});
+      // 4x3 tahta: 0 kırmızı (hedef) satır başında; 1 yatay kırmızı; 2. satırda dikey mavi, 3. satırda paket
+      const T = { cols: 4, rows: 3, hedef: ['w0'], h: [K(0, 0, { k: 0 }), K(1, 0, { ozel: 'yatay' }), K(2, 2), K(3, 3), K(4, 1), K(5, 2), K(6, 3, { ozel: 'dikey' }), K(7, 1), K(8, 2), K(9, 1), K(10, 3), K(11, 2)] };
+      const p = strPatlamaPlani(T, [0]), a = p.adimlar[0];
+      const U = { cols: 4, rows: 3, h: [K(0, 0), K(1, 1, { ozel: 'gokkusagi', ci: -1 }), K(2, 2), K(3, 2), K(4, 2), K(5, 1), K(6, 2), K(7, 1), K(8, 1), K(9, 3), K(10, 1), K(11, 0)] };
+      const g = strOzelGenislet(U, [0]);
+      const V = { cols: 4, rows: 3, h: [K(0, 0, { ozel: 'yatay' }), K(1, 0, { ozel: 'dikey' }), K(2, 2), K(3, 3), K(4, 1), K(5, 2), K(6, 3), K(7, 1), K(8, 2), K(9, 1), K(10, 3), K(11, 2)] };
+      const k = strOzelGenislet(V, [0, 1]);
+      return { satir: a.hucreler.slice().sort((x, y) => x - y), tetik: a.ozel.map(o => o.tur).sort(), gok: g.hs.slice().sort((x, y) => x - y), kombo: [k.kombo, k.hs.length],
+        once: (() => { for (let n = 1; n < 11; n++) if (yolBolum(n).T.h.some(x => x && x.ozel)) return n; return 0; })(), sonra: yolBolum(15).T.h.some(x => x && x.ozel) }; })()""")
+    esit(oz['satir'], [0, 1, 2, 3], 'yatay çizgili satırı patlatır'); esit(oz['tetik'], ['yatay'], 'tetiklenen özel karo')
+    esit(oz['gok'], [0, 1, 11], 'gökkuşağı: yanındaki patlayan karonun rengindeki (kırmızı) bütün karolar')
+    esit(oz['kombo'][0], True, 'iki özel karo SÜPER KOMBO'); dogru(oz['kombo'][1] >= 6, 'SÜPER KOMBO artı şekli')
+    esit((oz['once'], oz['sonra']), (0, True), '11. bölümden önce özel karo yok / sonra var')
     # haritadan oyna, uzman hamleleriyle kazan
     s.js('acilisAc()'); s.pg.tap('#a-yol', force=True); esit(s.js('ekran'), 'yol', 'harita'); esit(s.js("document.querySelector('.y-durak.simdi').dataset.n"), '1', 'sıradaki bölüm')
     s.js("document.querySelector('.y-durak[data-n=\"5\"]').click()"); dogru('1' in s.js("document.getElementById('not').textContent"), 'kilitli bölüm uyarısı yok')

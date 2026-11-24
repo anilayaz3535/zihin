@@ -906,5 +906,13 @@ DIL_SOZLUK.en = {
 "Gümüş sandık": "Silver chest",
 "Altın sandık": "Gold chest",
 "ÇEVİR!": "SPIN!",
-"YARIN": "TOMORROW"
+"YARIN": "TOMORROW",
+// özel karolar
+"SÜPER KOMBO!": "SUPER COMBO!",
+"Kalan özel karolar: +{n}": "Leftover special tiles: +{n}",
+"Özel karo bir kelime değil; onu patlamanın içine sok.": "A special tile is not a word; get it into the explosion.",
+"Çizgili karo: aynı renk grubuyla patlayınca bütün satırı patlatır.": "Striped tile: when it pops with its color group, it pops the whole row.",
+"Çizgili karo: aynı renk grubuyla patlayınca bütün sütunu patlatır.": "Striped tile: when it pops with its color group, it pops the whole column.",
+"Paket karo: aynı renk grubuyla patlayınca çevresindeki 3×3 alanı patlatır.": "Wrapped tile: when it pops with its color group, it pops the 3×3 area around it.",
+"Gökkuşağı: yanındaki karo patlayınca o renkteki bütün karoları patlatır.": "Rainbow: when a tile next to it pops, it pops every tile of that color."
 };

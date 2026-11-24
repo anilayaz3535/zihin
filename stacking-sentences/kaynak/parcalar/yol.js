@@ -44,6 +44,13 @@ function yolBolum(no) {
   const karisik = adaylar.sort(() => r() - 0.5), buzN = tur === 'buz' ? 4 + Math.floor(bi / 2) : bi >= 4 && r() < 0.5 ? 2 : 0, kilitN = tur === 'kilit' ? 3 + Math.floor(bi / 2) : bi >= 4 && r() < 0.4 ? 2 : 0;
   karisik.slice(0, buzN).forEach(i => { T.h[i].buz = true; });
   karisik.slice(buzN, buzN + kilitN).forEach(i => { T.h[i].kilit = true; });
+  // özel karolar (11. bölümden): bölgeyle çeşit ve sayı artar; dolgu karoların yerine gelir (yazısız)
+  const ozelTur = ['yatay', 'dikey'].concat(bi >= 1 ? ['paket'] : [], bi >= 2 ? ['gokkusagi'] : []);
+  const ozelN = no < 11 ? 0 : bi === 0 ? 1 : Math.min(3, 1 + (r() < 0.5 ? 1 : 0) + (zor === 'boss' ? 1 : 0));
+  karisik.slice(buzN + kilitN).filter(i => !T.h[i].cel).slice(0, ozelN).forEach((i, j) => {
+    const tur = ozelTur[Math.floor(r() * ozelTur.length)], k = T.h[i];
+    k.ozel = tur; k.txt = ''; if (tur === 'gokkusagi') k.ci = -1;
+  });
   const hamle = T.n + YOL_EK_HAMLE[zor];
   const hk = Math.floor(r() * T.n), renk = tur === 'renk' ? T.h.find(k => k && k.k === hk).ci : -1;
   // uzman çözüm: açgözlü, hedefe göre ağırlıklı; hedef ve yıldız eşikleri bundan
@@ -72,7 +79,7 @@ function yolHedefSayi(h, ist) { return h.tur === 'puan' ? ist.puan : h.tur === '
 function yolUzman(T0, hamle, tur, renk, hamleler) {
   const T = yolKopya(T0), ids = T.hedef.map((t, k) => T.h.find(x => x && x.k === k).id);
   const deger = t => {
-    const hs = strBombaHucreleri(t, ids); let v = hs.length;
+    const hs = strOzelGenislet(t, strBombaHucreleri(t, ids)).hs; let v = hs.length;   // özel karoların etkisi de hesaba katılır
     if (tur === 'renk') hs.forEach(i => { if (t.h[i].ci === renk) v += 2; });
     if (tur === 'kilit') hs.forEach(i => { if (t.h[i].kilit) v += 3; });
     if (tur === 'buz') { const g = new Set(); hs.forEach(i => [i].concat(strKomsu(t, i)).forEach(j => { if (t.h[j] && t.h[j].buz) g.add(j); })); v += g.size * 3; }
@@ -134,6 +141,12 @@ const YOL_ACIKLAMA = {
   kilit: '🔒 Kilitli karo yerinden oynamaz. Onu patlatmak için aynı renk bir grubu ona değdir.',
   renk: '🎨 Hedef bir renk: o renkten istenen kadar karoyu patlat. O renkteki kelimelerin yanına aynı rengi topla.',
 };
+const YOL_OZEL_ACIKLAMA = {
+  yatay: 'Çizgili karo: aynı renk grubuyla patlayınca bütün satırı patlatır.',
+  dikey: 'Çizgili karo: aynı renk grubuyla patlayınca bütün sütunu patlatır.',
+  paket: 'Paket karo: aynı renk grubuyla patlayınca çevresindeki 3×3 alanı patlatır.',
+  gokkusagi: 'Gökkuşağı: yanındaki karo patlayınca o renkteki bütün karoları patlatır.',
+};
 // bölüm başlangıç kartı
 function yolBaslangic(no) {
   const b = yolBolum(no), y = kayit.yol.yildiz[no] || 0, en = kayit.yol.enIyi[no] || 0;
@@ -143,6 +156,7 @@ function yolBaslangic(no) {
     <div class="y-hedef">${yolHedefYazi(b.hedef)}</div>
     <div class="y-bilgi"><span>✋ ${tt('{n} hamle', { n: b.hamle })}</span><span>📝 ${tt('{n} kelime', { n: b.T.n })}</span></div>
     ${yeniMek ? `<div class="y-yeni"><b>${tt('YENİ!')}</b> ${tt(YOL_ACIKLAMA[yeniMek])}</div>` : ''}
+    ${[...new Set(b.T.h.filter(k => k && k.ozel).map(k => k.ozel))].map(o => `<div class="y-ozel"><i>${OZEL_I[o]}</i> ${tt(YOL_OZEL_ACIKLAMA[o])}</div>`).join('')}
     <div class="y-yildizlar">${[0, 1, 2].map(i => `<i class="${i < y ? 'on' : ''}">★</i>`).join('')}</div>
     ${en ? `<p class="aciklama kucuk" style="text-align:center">${tt('En iyi skorun: {n}', { n: en })}</p>` : ''}
     <button class="big" id="y-oyna">${tt('OYNA ▶')}</button>
@@ -205,16 +219,35 @@ function yolBitti(dogru) {
   if (!dogru) { yolSonuc({ kazandi: false, yanlis: true, puan: 0, v: 0 }); return; }
   const ist = yolIstat(R.plan), v = yolV(b, ist, R), kazandi = v >= b.hedef.sayi;
   if (!kazandi) { yolSonuc({ kazandi, puan: ist.puan, v }); return; }
-  // CÜMLE CRUSH: kalan her hamle rastgele bir karoyu patlatır
-  const kalan = Math.min(10, R.hamle), karolar = R.T.h.map((k, i) => k ? i : -1).filter(i => i >= 0).sort(() => Math.random() - 0.5).slice(0, kalan);
-  let puan = ist.puan;
-  if (karolar.length) { strPuanUc(tt('CÜMLE CRUSH!'), 0); Ses.cal('zincir', { ses: 0.8 }); }
-  karolar.forEach((i, n) => setTimeout(() => {
+  // CÜMLE CRUSH: önce tahtada kalan özel karolar patlar, sonra kalan her hamle rastgele bir karoyu patlatır
+  let puan = ist.puan, ozelBonus = 0, gec = 0;
+  const kalanOzel = R.T.h.filter(k => k && k.ozel && k.ozel !== 'gokkusagi');
+  if (kalanOzel.length) {
+    const p = strPatlamaPlani(R.T, kalanOzel.map(k => k.id)); ozelBonus = p.puan - (p.temiz ? 300 : 0);
+    strPuanUc(tt('CÜMLE CRUSH!'), 0); Ses.cal('zincir', { ses: 0.8 }); gec = 700;
+    p.adimlar.forEach((a, n) => setTimeout(() => {
+      if (STR !== M) return;
+      if (a.ozel && a.ozel.length) strOzelEfekt(R.T, a);
+      a.hucreler.forEach(i => { const k = R.T.h[i], el = k && strKaroEl(k.id); if (el) { el.classList.add('pat'); strKivilcim(el, k.ci); } });
+      Ses.cal('pop', { ses: 0.7 }); setTimeout(() => { if (STR === M) { R.T.h = a.sonra; strCiz(); } }, 450);
+    }, 500 + n * 800));
+    gec = 500 + p.adimlar.length * 800;
+    puan += ozelBonus;
+  }
+  const kalan = Math.min(10, R.hamle);
+  let karolar = [];
+  setTimeout(() => {
     if (STR !== M) return;
-    const k = R.T.h[i], el = k && strKaroEl(k.id); if (el) { el.classList.add('pat'); strKivilcim(el, k.ci); }
-    puan += 15; Ses.cal('pop', { ses: 0.6, hiz: 1 + n * 0.06 });
-  }, 600 + n * 220));
-  setTimeout(() => { if (STR === M) yolSonuc({ kazandi: true, puan, v, crush: karolar.length }); }, 600 + karolar.length * 220 + (karolar.length ? 500 : 0));
+    karolar = R.T.h.map((k, i) => k ? i : -1).filter(i => i >= 0).sort(() => Math.random() - 0.5).slice(0, kalan);
+    if (karolar.length && !kalanOzel.length) { strPuanUc(tt('CÜMLE CRUSH!'), 0); Ses.cal('zincir', { ses: 0.8 }); }
+    karolar.forEach((i, n) => setTimeout(() => {
+      if (STR !== M) return;
+      const k = R.T.h[i], el = k && strKaroEl(k.id); if (el) { el.classList.add('pat'); strKivilcim(el, k.ci); }
+      puan += 15; Ses.cal('pop', { ses: 0.6, hiz: 1 + n * 0.06 });
+    }, 600 + n * 220));
+    setTimeout(() => { if (STR === M) yolSonuc({ kazandi: true, puan, v, crush: karolar.length, ozelBonus }); }, 600 + karolar.length * 220 + (karolar.length ? 500 : 0));
+  }, gec);
+  return;
 }
 function yolSonuc(o) {
   const M = STR, b = M.yol.b, Y = kayit.yol, no = b.no;
@@ -235,6 +268,7 @@ function yolSonuc(o) {
     ${o.kazandi ? `<div class="y-yildizlar buyuk">${[0, 1, 2].map(i => `<i class="${i < yildiz ? 'on' : ''}" style="animation-delay:${0.2 + i * 0.35}s">★</i>`).join('')}</div>` : ''}
     <div class="y-puan">${o.puan}${yeniEn ? ` <small>${tt('YENİ REKOR!')}</small>` : ''}</div>
     ${o.crush ? `<div class="st-not">💥 ${tt('CÜMLE CRUSH! Kalan {n} hamle patladı', { n: o.crush })}</div>` : ''}
+    ${o.ozelBonus ? `<div class="st-not">🌟 ${tt('Kalan özel karolar: +{n}', { n: o.ozelBonus })}</div>` : ''}
     ${!o.kazandi && !o.yanlis ? `<div class="y-ilerle"><span>${yolHedefYazi(b.hedef, true).split(' ')[0]} ${o.v} / ${b.hedef.sayi}</span><u style="width:${Math.round(oran * 100)}%"></u></div><p>${tt(oran >= 0.6 ? 'Çok az kaldı! Renkleri kelimelerin yanına biraz daha topla.' : 'Kelimelerin yanına daha çok aynı renk getir.')}</p>` : ''}
     ${o.yanlis ? `<div class="st-dogru"><small>${tt('Doğru cümle')}</small>${dinleBtn(b.s.en)} <b>${esc(b.s.en)}</b><small>${esc(b.s.tr)}</small></div>` : ''}
     ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
