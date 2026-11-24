@@ -41,6 +41,7 @@ const Yerel = (() => {
 
   /* ---- geri tuşu (Android) ---- */
   function geri() {
+    if (typeof STR !== 'undefined' && STR && !ov.classList.contains('show')) { strCikSor(); return; }   // strateji maçı
     if (typeof dzAcik !== 'undefined' && dzAcik && G.state === 'playing') { dzAcik.kapat(); return; }   // İngilizce dizilişi kartı
     if (G.state === 'playing') { togglePause(); return; }
     if (G.state === 'paused') {
@@ -49,7 +50,7 @@ const Yerel = (() => {
       showPause(); return;
     }
     // menüler: ekrandaki geri düğmesi, yoksa açılışa; açılıştaysa uygulamayı arka plana al
-    const g = card && card.querySelector('.ust-satir .geri, #d-geri, #r-geri, #p-geri, #a-geri, #s-harita');
+    const g = card && card.querySelector('.ust-satir .geri, #d-geri, #r-geri, #p-geri, #a-geri, #s-harita, #ss-cik, #os-cik, #es-iptal, #oda-cik');
     if (ekran === 'acilis' || ekran === 'ilkKarsila') { const A = ek('App'); if (A && A.minimizeApp) A.minimizeApp(); else if (A) A.exitApp(); return; }
     if (g) { g.click(); return; }
     if (aktifProfil()) acilisAc();

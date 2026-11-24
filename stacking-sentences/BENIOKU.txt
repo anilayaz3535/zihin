@@ -62,6 +62,15 @@ YENİ (23 Kasım 2026)
    Yazı tipi artık dosyanın içinde: internet olmadan da aynı görünür. Çentikli telefonlarda skor ve
    alt panel çentiğin / ana ekran çubuğunun altına girmez.
 
+ONLINE: İKİ MOD (23 Kasım 2026)
+   ⚡ HIZ: seviyeni (A1–C2) seç; aynı seviyedekiyle aynı cümleleri kur, önce bitiren kazanır.
+   🧠 STRATEJİ: yeni oyun. Aynı tahta, aynı cümle, sınırlı hamle. Karoyu başka karonun üstüne bırakınca
+      oradakiler sağa kayar (satır bitince alta iner). Aynı renkleri cümlenin kelimelerinin yanına topla,
+      doğru kelimeleri sırayla alttaki kutulara çek (kutuya gölgesi gider, karo yerinde kalır), 💣 BOMBA'ya bas:
+      cümle doğruysa kelimeler ve onlara değen aynı renkler birlikte patlar, sonra zincirleme patlamalar.
+      Doğru cümle her zaman kazanır; ikisi de doğruysa çok patlatan, ikisi de yanlışsa berabere. 3 tur.
+   Rakip: 🎲 hızlı eşleşme (aynı mod ve seviyede bekleyen biri), oda koduyla arkadaş ya da 🤖 bilgisayar.
+
 UYGULAMA MAĞAZALARI (App Store + Google Play)
    uygulama/   →  iOS ve Android projesi (Capacitor). Telefonun kendi okuma sesi, titreşim, geri tuşu,
                   günlük hatırlatma bildirimi, ikon ve açılış ekranı hazır.

@@ -367,9 +367,9 @@ def online(b):
         S = json.dumps(['ws://127.0.0.1:18931/mqtt', 'ws://127.0.0.1:18932/mqtt'])
         A = Sayfa(b, pid='pa', ad='Ayşe', init=[f'window.TE_SUNUCULAR = {S};'])
         B = Sayfa(b, pid='pb', ad='Ali', init=[f'window.TE_SUNUCULAR = {S};'])
-        A.pg.tap('#a-online'); A.pg.tap('#o-kur'); A.pg.wait_for_function("Ag.durum() === 'acik'", timeout=15000)
+        A.pg.tap('#a-online'); A.pg.tap('#o-hiz'); A.pg.tap('#o-kur'); A.pg.wait_for_function("Ag.durum() === 'acik'", timeout=15000)
         kod = A.js('OD.kod')
-        B.pg.tap('#a-online'); B.pg.fill('#o-kod', kod); B.pg.tap('#o-katil')
+        B.pg.tap('#a-online'); B.pg.tap('#o-hiz'); B.pg.fill('#o-kod', kod); B.pg.tap('#o-katil')
         B.pg.wait_for_function('!!OD.rakip', timeout=20000); A.pg.wait_for_function('!!OD.rakip', timeout=5000)
         esit(A.js('OD.rakip.ad'), 'Ali', 'ev sahibi rakibi'); esit(B.js('OD.rakip.ad'), 'Ayşe', 'misafir rakibi')
         for p, e in ((A, 0.05), (B, 0.3)): p.js(f"window.__bt = setInterval(() => __botStep({e}), 40); 0")
@@ -385,10 +385,143 @@ def online(b):
         B.pg.tap('#os-cik'); B.pg.wait_for_timeout(200); B.pg.fill('#o-kod', '0000'); B.pg.tap('#o-katil')
         B.pg.wait_for_function("ekran === 'online' && !!document.querySelector('.uyari')", timeout=30000)
         esit(A.hatalar(), [], 'JS hataları A'); esit(B.hatalar(), [], 'JS hataları B')
+        # STRATEJİ: oda, aynı tahta, tur sonuçları karşıya gider, maç sonucu iki telefonda tutarlı
+        A.js('odadanCik(); onlineModAc("strateji")'); B.js('odadanCik(); onlineModAc("strateji")'); A.pg.wait_for_timeout(300)
+        A.pg.tap('#o-lvl button[data-l="B1"]'); A.pg.tap('#o-kur'); A.pg.wait_for_function("Ag.durum() === 'acik'", timeout=15000)
+        kod2 = A.js('OD.kod'); B.pg.fill('#o-kod', kod2); B.pg.tap('#o-katil')
+        B.pg.wait_for_function('!!OD.rakip && OD.mod === "strateji"', timeout=20000); A.pg.wait_for_function('!!OD.rakip', timeout=5000)
+        A.pg.tap('#oda-basla'); B.pg.wait_for_function('!!STR', timeout=10000)
+        esit(A.js('[STR.lvl, STR.tohum, JSON.stringify(STR.cum)]'), B.js('[STR.lvl, STR.tohum, JSON.stringify(STR.cum)]'), 'strateji maç bilgisi')
+        for p in (A, B): p.pg.tap('#st-basla')
+        esit(A.js('JSON.stringify(STR.R.T.h.map(k => k && k.txt + k.ci))'), B.js('JSON.stringify(STR.R.T.h.map(k => k && k.txt + k.ci))'), 'iki telefonda aynı tahta')
+        for tur in range(3):
+            A.js(STR_OYNA % 'true'); B.js(STR_OYNA % ('false' if tur == 1 else 'true'))
+            for p in (A, B): p.pg.wait_for_function(f'STR.tur === {tur} && STR.rakipS[{tur}] && STR.ben[{tur}] && document.getElementById("st-panel").classList.contains("acik") && !!document.getElementById("st-devam")', timeout=20000)
+            for p in (A, B): p.pg.tap('#st-devam')
+        for p in (A, B): p.pg.wait_for_function("ekran === 'strSonuc'", timeout=10000)
+        sa, sb = A.js('[STR.karar.k, STR.ben.map(x => x.puan), STR.rakipS.map(x => x.puan)]'), B.js('[STR.karar.k, STR.ben.map(x => x.puan), STR.rakipS.map(x => x.puan)]')
+        A.foto('online_strateji_A')
+        esit((sa[1], sa[2]), (sb[2], sb[1]), 'iki telefonda tur puanları: ' + json.dumps([A.js('STR.ben'), B.js('STR.ben')], ensure_ascii=False))
+        esit({sa[0], sb[0]}, {'kazandin', 'kaybettin'}, 'strateji maç sonucu')
+        esit(A.hatalar(), [], 'JS hataları A (strateji)'); esit(B.hatalar(), [], 'JS hataları B (strateji)')
+        # HIZLI EŞLEŞ: aynı mod ve seviyede bekleyen iki oyuncu eşleşir, maç kendiliğinden başlar
+        for p in (A, B): p.js("strKapat(); odadanCik(); onlineModAc('hiz')"); p.pg.wait_for_timeout(200); p.pg.tap('#o-lvl button[data-l="A2"]'); p.pg.tap('#o-hizli')
+        for p in (A, B): p.pg.wait_for_function("D && D.online && G.state === 'playing'", timeout=30000)
+        esit(A.js('JSON.stringify(D.online.liste)'), B.js('JSON.stringify(D.online.liste)'), 'hızlı eşleşmede cümle listesi')
+        esit((A.js('D.r.lvl'), B.js('OD.rakip.ad')), ('A2', 'Ayşe'), 'hızlı eşleşme seviye / rakip')
+        esit(A.hatalar(), [], 'JS hataları A (eşleşme)'); esit(B.hatalar(), [], 'JS hataları B (eşleşme)')
         A.kapat(); B.kapat()
-        return f'oda {kod}: A {ka}, B {kb}; yanlış kod uyarısı tamam'
+        return f'oda {kod}: A {ka}, B {kb}; yanlış kod uyarısı; strateji odası {kod2}: {sa[0]} / {sb[0]}, puanlar {sa[1]} – {sa[2]}; hızlı eşleşme A2 tamam'
     finally:
         br.kill()
+
+# strateji turunu oyuncu gibi oynar: dogru ise doğru kelimeleri (değilse ilk kelime yerine tuzak / sıra hatası) seçip bombalar
+STR_OYNA = """(dogru => { const R = STR.R, T = R.T;
+  for (let n = 0; n < 3 && R.hamle > 0; n++) { const a = T.h.findIndex(x => x && x.k < 0 && !x.cel && x.ci === T.h.find(y => y && y.k === n).ci); if (a >= 0) strTasiOyuncu(a, T.h.findIndex(y => y && y.k === n)); }
+  T.hedef.forEach((t, k) => strSec(T.h.findIndex(x => x && x.k === k), k));
+  if (!dogru) { const z = T.h.find(x => x && x.cel); if (z) R.secim[z.of] = z; else { const t = R.secim[0]; R.secim[0] = R.secim[1]; R.secim[1] = t; } }
+  strBomba(); })(%s)"""
+
+@test
+def strateji(b):
+    """STRATEJİ kuralları ve bilgisayara karşı maç: kayma (sağa, satır sonunda alta, ilk boşluğa), tahta üretimi (aynı tohum aynı tahta,
+    tuzak doğrusuyla aynı renk, başlangıçta hazır üçlü ve hedefin yanında kendi rengi yok), bomba (seçilenler + değen aynı renk, düşme, zincir),
+    doğru / yanlış, tur ve maç kararı, bilgisayar rakip, sürükle-bırak ve dokun-dokun, kutudan geri alma, hamle sınırı, süre, çıkış, 3 ekran, İngilizce."""
+    s = Sayfa(b)
+    # kayma kuralı: 2x3 tahta, son hücre boş
+    k = s.js("""(() => { const K = t => ({ id: t, txt: t, ci: 0, k: -1 }); const T = { cols: 3, rows: 2, h: ['a','b','c','d','e',null].map(x => x && K(x)) };
+      const y = () => T.h.map(x => x ? x.txt : '_').join('');
+      const o = []; strTasi(T, 0, 2); o.push(y()); strTasi(T, 4, 0); o.push(y()); strTasi(T, 1, 5); o.push(y());
+      const U = { cols: 3, rows: 2, h: ['a','b','c',null,'d','e'].map(x => x && K(x)) }; strTasi(U, 4, 1); o.push(U.h.map(x => x ? x.txt : '_').join(''));
+      return o; })()""")
+    esit(k, ['_bacde', 'dbac_e', 'edac_b', 'adbc_e'], 'kayma kuralı (sağa, satır sonunda alta, ilk boşluğa)')
+    # tahta üretimi
+    rap = s.js("""(() => { const o = { ayni: 0, kotu: 0, tuzakRenk: 0, tuzak: 0, bos: 0, n: 0, hedefTam: 0 };
+      SEVIYELER.forEach(l => { const r = tohumluRastgele('t' + l); strCumleler(l, r).forEach((ref, i) => {
+        const s = sAl(ref), T1 = strTahta(s, l, 'x' + i), T2 = strTahta(s, l, 'x' + i); o.n++;
+        if (JSON.stringify(T1.h) === JSON.stringify(T2.h)) o.ayni++;
+        o.kotu += strKotuHucreler(T1).length; o.bos += T1.h.filter(x => !x).length === STR_BOS ? 1 : 0;
+        if (T1.hedef.every((t, k) => T1.h.filter(x => x && x.k === k).length === 1)) o.hedefTam++;
+        T1.h.forEach(x => { if (x && x.cel) { o.tuzak++; if (x.ci === T1.h.find(y => y && y.k === x.of).ci) o.tuzakRenk++; } });
+      }); }); return o; })()""")
+    esit((rap['ayni'], rap['bos'], rap['hedefTam']), (rap['n'],) * 3, 'aynı tohum aynı tahta / boşluk / hedef karolar')
+    dogru(rap['n'] == 18, f"6 seviyede 3'er cümle: {rap['n']}")
+    esit(rap['tuzakRenk'], rap['tuzak'], 'tuzak doğrusuyla aynı renk'); dogru(rap['tuzak'] >= 18, 'tuzak az')
+    dogru(rap['kotu'] <= 2, f"başlangıçta hazır üçlü / hedefin yanında kendi rengi: {rap['kotu']} hücre")
+    # bomba: seçilen + değen aynı renk; düşme; zincir puanı
+    bp = s.js("""(() => { const K = (t, ci, k) => ({ id: t, txt: t, ci, k: k == null ? -1 : k });
+      const T = { cols: 3, rows: 3, hedef: ['A'], h: [K('x',1), K('y',2), K('z',3), K('p',0), K('q',1), K('r',2), K('A',0,0), K('B',0), K('C',3)] };
+      const p = strPatlamaPlani(T, ['A']); return [p.adimlar[0].hucreler.sort(), p.adimlar[0].puan, strDogruMu(T, [T.h[6]]), strDogruMu(T, [T.h[7]])]; })()""")
+    esit(bp, [[3, 6, 7], 30, True, False], 'bomba patlaması ve doğruluk')
+    # bilgisayara karşı maç (ekrandan)
+    s.js('acilisAc()'); s.pg.tap('#a-online'); s.pg.tap('#o-strateji'); s.pg.tap('#o-lvl button[data-l="A1"]'); s.pg.tap('#o-bot')
+    dogru(s.js('!!STR && STR.rakip.bot'), 'bilgisayar maçı açılmadı'); s.foto('strateji_kural'); s.pg.tap('#st-basla')
+    esit(s.js('STR.R.hamle'), s.js('STR.R.T.n + 6'), 'hamle hakkı')
+    # sürükle: karoyu boş olmayan bir hücreye
+    def merkez(i): return s.js(f"(() => {{ const b = strTahtaEl().getBoundingClientRect(), c = b.width / STR.R.T.cols; return [b.left + ({i} % STR.R.T.cols + .5) * c, b.top + (Math.floor({i} / STR.R.T.cols) + .5) * c]; }})()")
+    a, bb = s.js('STR.R.T.h.findIndex(x => x && x.k < 0)'), s.js('STR.R.T.h.findIndex(x => x && x.k === 0)')
+    ida = s.js(f'STR.R.T.h[{a}].id'); x0, y0 = merkez(a); x1, y1 = merkez(bb)
+    s.pg.mouse.move(x0, y0); s.pg.mouse.down(); s.pg.mouse.move(x1, y1, steps=8); s.pg.mouse.up(); s.pg.wait_for_timeout(100)
+    esit((s.js(f'STR.R.T.h[{bb}].id'), s.js('STR.R.hamle')), (ida, s.js('STR.R.T.n + 5')), 'sürükleyerek taşıma')
+    # sürükle: karoyu kutuya (gölge), dokun-dokun seçim, kutudan geri al
+    h0 = s.js('STR.R.T.h.findIndex(x => x && x.k === 0)'); x0, y0 = merkez(h0)
+    kb = s.js("(() => { const b = document.querySelector('.st-kutu').getBoundingClientRect(); return [b.left + b.width / 2, b.top + b.height / 2]; })()")
+    s.pg.mouse.move(x0, y0); s.pg.mouse.down(); s.pg.mouse.move(kb[0], kb[1], steps=8); s.pg.mouse.up(); s.pg.wait_for_timeout(100)
+    esit(s.js('STR.R.secim[0] && STR.R.secim[0].k'), 0, 'kutuya sürükleme'); esit(s.js('strHucreBul(STR.R.T, STR.R.secim[0].id)'), h0, 'karo tahtada kaldı (gölge)')
+    esit(s.js('STR.R.hamle'), s.js('STR.R.T.n + 5'), 'seçim hamle harcadı')
+    h1 = s.js('STR.R.T.h.findIndex(x => x && x.k === 1)'); x1, y1 = merkez(h1); s.pg.mouse.click(x1, y1); s.pg.tap('.st-kutu[data-i="1"]')
+    esit(s.js('STR.R.secim[1] && STR.R.secim[1].k'), 1, 'dokun-dokun seçim')
+    s.pg.tap('.st-kutu[data-i="1"]'); esit(s.js('STR.R.secim[1]'), None, 'kutudan geri alma')
+    dogru(s.js('document.getElementById("st-bomba").disabled'), 'kutular dolmadan bomba açık')
+    # hamle sınırı
+    s.js('STR.R.hamle = 0'); esit(s.js('strTasiOyuncu(0, 1)'), False, 'hamle bitince taşıma'); s.js('STR.R.hamle = 3; strCiz()')
+    for w, h in ((320, 568), (390, 844), (844, 390)):
+        s.pg.set_viewport_size({'width': w, 'height': h}); s.pg.wait_for_timeout(250)
+        tas = s.js("""(() => { const v = [innerWidth, innerHeight], o = [];
+          document.querySelectorAll('#str .st-tahta, #str .st-kutu, #st-bomba, #st-x').forEach(e => { const b = e.getBoundingClientRect(); if (b.left < -1 || b.top < -1 || b.right > v[0] + 1 || b.bottom > v[1] + 1) o.push(e.className || e.id); });
+          return o; })()""")
+        esit(tas, [], f'{w}x{h} ekrandan taşan'); s.foto(f'strateji_{w}x{h}')
+    s.pg.set_viewport_size({'width': 390, 'height': 844})
+    # 3 tur: doğru, yanlış, doğru → bilgisayarın sonucu beklenir, karar verilir
+    for tur, d in enumerate(('true', 'false', 'true')):
+        s.js(f"STR.R.secim = STR.R.secim.map(() => null); {STR_OYNA % d}")
+        s.js('clearTimeout(STR.botT); STR.botT = null'); s.pg.wait_for_timeout(200)
+        s.js(f"(() => {{ const r = tohumluRastgele(STR.tohum + ':bot:' + STR.tur), x = strBotOyna(STR.R.T, STR.lvl, r); strRakipSonuc({{ tur: STR.tur, dogru: x.dogru, puan: x.puan }}); }})()")
+        s.pg.wait_for_function('STR.ben[STR.tur] && STR.rakipS[STR.tur] && document.getElementById("st-panel").classList.contains("acik") && !!document.getElementById("st-devam")', timeout=15000)
+        if tur == 1: esit(s.js('STR.ben[1].puan'), 0, 'yanlış cümle puanı'); s.foto('strateji_tur_yanlis')
+        s.pg.tap('#st-devam')
+    s.pg.wait_for_function("ekran === 'strSonuc'", timeout=5000); s.foto('strateji_sonuc')
+    sk = s.js('strSkor()'); kr = s.js('STR.karar.k')
+    bek = 'kazandin' if sk['b'] > sk['r'] or (sk['b'] == sk['r'] and sk['pb'] > sk['pr']) else 'kaybettin' if sk['b'] < sk['r'] or sk['pb'] < sk['pr'] else 'berabere'
+    esit(kr, bek, 'maç kararı'); esit(s.js('kayit.istat.online || 0'), 0, 'bilgisayar maçı online istatistiğine yazıldı')
+    s.pg.tap('#ss-tekrar'); dogru(s.js('!!STR && STR.tur === -1'), 'tekrar oyna'); s.pg.tap('#st-basla')
+    s.pg.tap('#st-x'); s.pg.tap('#st-cik'); s.pg.wait_for_timeout(200)
+    esit((s.js('STR'), s.js('ekran'), s.js("!!document.getElementById('str')")), (None, 'online', False), 'maçtan çıkış')
+    # süre: kutular boşken süre biterse tur yanlış sayılır
+    s.js("botMacBaslat('strateji', 'C2')"); s.pg.tap('#st-basla'); s.js('STR.R.t0 -= (STR_SURE + 1) * 1000; strSaat()')
+    esit(s.js('[STR.ben[0].dogru, STR.ben[0].puan]'), [False, 0], 'süre doldu')
+    # İngilizce arayüz
+    s.js("strKapat(); dilSec('en'); botMacBaslat('strateji', 'B2')"); s.pg.wait_for_timeout(100)
+    tr = s.js("[...document.querySelectorAll('#str .st-kart, #str .st-ust')].map(e => e.textContent).filter(t => /[ğüşıöçİĞÜŞÖÇ]/.test(t))"); esit(tr, [], 'İngilizce arayüzde Türkçe yazı')
+    s.js("strKapat(); onlineSonMod = null; onlineAc()"); tr = s.js("document.getElementById('card').textContent"); dogru(not __import__('re').search('[ğüşıöçİĞÜŞÖÇ]', tr), 'İngilizce online ekranı: ' + tr[:80])
+    esit(s.hatalar(), [], 'JS hataları'); s.kapat()
+    return f"kayma, {rap['n']} tahta (tuzak {rap['tuzak']}, kötü başlangıç {rap['kotu']}), bomba ve zincir; bilgisayara karşı 3 tur → {kr}; sürükle / dokun / geri al, hamle, süre, çıkış, 3 ekran, İngilizce"
+
+@test
+def hiz_bot(b):
+    """HIZ: seviye seçimi ve bilgisayara karşı maç: seçilen seviyenin cümleleri, bilgisayar cümleleri zamanla bitirir, karar ve sonuç ekranı."""
+    s = Sayfa(b)
+    s.pg.tap('#a-online'); s.pg.tap('#o-hiz'); s.pg.tap('#o-lvl button[data-l="B1"]'); s.pg.tap('#o-bot')
+    esit((s.js('D.online && D.r.lvl'), s.js('OD.bot')), ('B1', True), 'B1 bilgisayar maçı')
+    dogru(all(s.js('D.online.liste.map(a => sAl(a).kaynak.indexOf("B1") === 0)')), 'cümleler B1 değil')
+    r = s.js('__ff(900, 0.05, () => !!(D.online.benim || D.online.karar))'); dogru(r['done'], 'maç bitmedi')
+    s.pg.wait_for_function('ekran === "onlineSonuc"', timeout=15000); s.foto('hiz_bot_sonuc')
+    dogru(s.js('D.online.rakip.cumle') > 0, 'bilgisayar hiç cümle bitirmedi')
+    esit(s.js('kayit.istat.online || 0'), 0, 'bilgisayar maçı online istatistiğine yazıldı')
+    s.pg.tap('#os-tekrar'); esit(s.js('OD.bot && D && D.online && D.r.lvl'), 'B1', 'tekrar oyna')
+    s.pg.tap('#pauseBtn'); s.pg.tap('#p-cik'); s.pg.wait_for_timeout(200); esit(s.js('ekran'), 'online', 'duraklatıp çıkış')
+    esit(s.hatalar(), [], 'JS hataları'); s.kapat()
+    return "B1 bilgisayar maçı: seviye, bilgisayarın ilerlemesi, karar, tekrar ve çıkış tamam"
 
 def ekranlari_topla(b, dil='tr'):
     """Bütün ekranları sırayla açar, bot birkaç mod oynar; ekran yazıları, tuvale çizilen yazılar ve bildirimler toplanır."""
@@ -401,7 +534,7 @@ def ekranlari_topla(b, dil='tr'):
     al('acilis', 'acilisAc()'); al('profil', 'profilAc()'); al('profil_yeni', 'profilYeniAc()')
     al('harita', "acilisAc(); haritaAc('A1')"); al('harita_kelime', tik='#yol-sec button[data-y="kelime"]')
     al('defter', 'defterAc()'); al('defter_kelime', "defterAc('kelime')")
-    al('ayar', 'ayarAc(false, acilisAc)'); al('online', 'onlineAc()')
+    al('ayar', 'ayarAc(false, acilisAc)'); al('online', 'onlineSonMod = null; onlineAc()'); al('online_hiz', "onlineModAc('hiz')"); al('online_strateji', "onlineModAc('strateji')"); s.js('onlineSonMod = null')
     al('ders', "dersAc(rakipBul('A1-1'), null, acilisAc)")
     s.js('showTutorial()')
     for i in range(s.js('SLIDES.length')): al(f'nasil_{i + 1}', 'tutStep(1)' if i else None)
@@ -448,7 +581,7 @@ def dil(b):
     s.pg.reload(); s.bekle(); esit(s.js('arayuzDili'), 'en', 'dil kalıcı değil'); s.kapat()
     m, h = ekranlari_topla(b, 'en')
     esit(h, [], 'JS hataları (İngilizce)')
-    beklenen = {'acilis': ['CAREER', 'ONLINE DUEL', '⚙ Settings'], 'profil': ['💾 SAVE GAME'], 'online': ['CREATE ROOM', 'JOIN'],
+    beklenen = {'acilis': ['CAREER', 'ONLINE DUEL', '⚙ Settings'], 'profil': ['💾 SAVE GAME'], 'online': ['SPEED', 'STRATEGY'], 'online_hiz': ['CREATE ROOM', 'JOIN', '🎲 QUICK MATCH'], 'online_strateji': ['STRATEGY', '🤖 VS COMPUTER'],
                 'kariyer_duraklat': ['PAUSED', 'RESUME'], 'kariyer_sonuc': ['SCORE', 'CAREER'], 'nasil_1': ['HOW TO PLAY?', 'GOAL'],
                 'tuval': ['SCORE:', 'GOAL', 'Sentences', 'BUILD THE SENTENCE · Put the English'], 'ilk_karsila': ['BUILD YOUR FIRST SENTENCE'],
                 'ilk_sonuc': ['FIRST SENTENCE DONE!', 'SAVE AND CONTINUE'], 'ilk_hedef': ['YOUR DAILY GOAL', 'Casual · 20 XP']}

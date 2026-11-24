@@ -549,3 +549,108 @@
   .rozet-yeni .ry b{font-size:14.5px}.rozet-yeni .ry small{font-size:12px;opacity:.85}
   @keyframes rozetGel{from{transform:scale(.6);opacity:0}to{transform:none;opacity:1}}
   @media (prefers-reduced-motion:reduce){.rozet-yeni{animation:none}}
+
+  /* ---------- online: mod seçimi, seviye, eşleşme ---------- */
+  .mod-secim{display:flex;flex-direction:column;gap:14px;margin:12px 0}
+  .mod-btn{display:flex;align-items:center;gap:14px;width:100%;padding:16px;border-radius:20px;cursor:pointer;text-align:left;font-family:Fredoka,Poppins,sans-serif;color:#fff;border:3px solid;
+    box-shadow:0 6px 0 var(--d),0 12px 22px rgba(30,10,10,.35),inset 0 3px 0 rgba(255,255,255,.4)}
+  .mod-btn:active{transform:translateY(2px)}
+  .mod-btn i{font-style:normal;font-size:40px;line-height:1;filter:drop-shadow(0 2px 0 rgba(0,0,0,.25))}
+  .mod-btn span{flex:1;min-width:0}
+  .mod-btn b{display:block;font-size:clamp(24px,7vw,30px);letter-spacing:2px;line-height:1;text-shadow:0 2px 0 rgba(60,20,10,.45)}
+  .mod-btn small{display:block;font-size:14.5px;margin-top:5px;line-height:1.25}
+  .mod-btn.hiz{--d:#a3233c;border-color:#ffc4d0;background:linear-gradient(#ff7a96,#e83b5c)}
+  .mod-btn.strateji{--d:#4a2a8a;border-color:#e2d4ff;background:linear-gradient(#a685ff,#6b45d8)}
+  .lvl-sec{justify-content:center}.lvl-sec button{min-width:44px;font-weight:700}
+  .genis-btn{display:block;width:100%;margin:10px 0 2px;font-size:17px;padding:12px}
+  .arama{display:flex;flex-direction:column;align-items:center;gap:8px;margin:22px 0 10px}
+  .arama b{font-size:22px;color:#fff6e8}.arama small{color:#f3dcc0;font-size:14px}
+  .arama-halka{width:64px;height:64px;border-radius:50%;border:6px solid rgba(255,236,212,.25);border-top-color:#ffc83d;animation:don 1s linear infinite}
+  @keyframes don{to{transform:rotate(360deg)}}
+  body.strde #sys,body.strde #pow{visibility:hidden}
+
+  /* ---------- STRATEJİ ekranı (strateji.js) ---------- */
+  #str{position:fixed;inset:0;z-index:15;display:flex;flex-direction:column;align-items:center;gap:6px;
+    padding:calc(8px + env(safe-area-inset-top,0px)) 12px calc(8px + env(safe-area-inset-bottom,0px));
+    background:linear-gradient(rgba(42,22,34,.78),rgba(42,22,34,.9)),var(--kafe) center/cover;color:#fff6e8;font-family:Fredoka,Poppins,sans-serif;touch-action:none;overflow:hidden}
+  .st-ust{display:flex;align-items:center;gap:8px;width:100%;max-width:540px;font-weight:700;font-size:15px}
+  .st-x{width:34px;height:34px;border-radius:50%;border:2px solid #fff6e8;background:rgba(255,255,255,.12);color:#fff;font:700 16px Fredoka,sans-serif;cursor:pointer;flex:none}
+  .st-tur{color:#ffc83d;letter-spacing:1px}
+  .st-sure,.st-hak{padding:3px 9px;border-radius:12px;background:rgba(0,0,0,.28)}
+  .st-sure.az,.st-hak.az{background:#e83b5c;animation:nabizK .8s ease-in-out infinite}
+  @keyframes nabizK{50%{transform:scale(1.08)}}
+  .st-skor{margin-left:auto;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:40%}
+  .st-skor b{color:#ffc83d;font-size:16px}
+  .st-tr{width:100%;max-width:540px;padding:8px 12px;border-radius:14px;background:linear-gradient(#fffaf0,#f3dfc2);color:#5b3a24;border:2px solid #c99a6b;
+    text-align:center;font-weight:700;font-size:clamp(16px,4.6vw,20px);line-height:1.2;cursor:pointer}
+  .st-tr small{display:block;font-size:12px;font-weight:600;color:#9a6e4c;letter-spacing:.5px}
+  .st-rakip{font-size:13px;color:#f3dcc0;min-height:18px}
+  .st-tahta{position:relative;flex:none;border-radius:14px;background:rgba(70,62,92,.85);box-shadow:inset 0 0 0 3px rgba(255,255,255,.18),0 8px 22px rgba(0,0,0,.35)}
+  .st-tahta.sars{animation:sars .45s}
+  .st-tahta.bum{animation:bum .6s}
+  @keyframes sars{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
+  @keyframes bum{15%{transform:scale(1.04) rotate(-1deg)}35%{transform:scale(.98) rotate(1deg)}60%{transform:scale(1.01)}}
+  .st-k,.st-bos{position:absolute;padding:3px;transition:left .28s cubic-bezier(.3,1.3,.5,1),top .28s cubic-bezier(.3,1.3,.5,1)}
+  .st-k::before{content:'';position:absolute;inset:3px;border-radius:12px;background:linear-gradient(var(--ra),var(--r));
+    box-shadow:0 4px 0 var(--rd),inset 0 2px 0 rgba(255,255,255,.5)}
+  .st-k span{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:2px;text-align:center;color:#fff;font-weight:700;line-height:1.02;
+    overflow-wrap:anywhere;-webkit-text-stroke:3px rgba(60,20,30,.45);paint-order:stroke fill;pointer-events:none}
+  .st-k em{position:absolute;right:0;top:0;min-width:20px;height:20px;border-radius:10px;background:#fff;color:#5b3a24;font:700 12px/20px Fredoka,sans-serif;font-style:normal;text-align:center;display:none;box-shadow:0 2px 4px rgba(0,0,0,.35)}
+  .st-k.secildi em{display:block}
+  .st-k.secildi::before{box-shadow:0 4px 0 var(--rd),0 0 0 3px #fff,0 0 14px 4px rgba(255,255,255,.7)}
+  .st-k.secili{z-index:3;transform:scale(1.08)}.st-k.secili::before{outline:3px dashed #fff;outline-offset:2px}
+  .st-k.kalkti{opacity:.3}
+  .st-k.hedef::before,.st-bos.hedef::before{outline:3px solid #ffc83d;outline-offset:1px}
+  .st-k.gel{animation:stGel .4s cubic-bezier(.3,1.4,.5,1) both}
+  @keyframes stGel{from{transform:translateY(-40px);opacity:0}}
+  .st-k.pat{animation:stPat .55s ease-in forwards;z-index:4}
+  @keyframes stPat{30%{transform:scale(1.35) rotate(-6deg);filter:brightness(1.8)}100%{transform:scale(.1) rotate(25deg);opacity:0}}
+  .st-bos::before{content:'';position:absolute;inset:6px;border-radius:12px;border:2px dashed rgba(255,255,255,.35)}
+  .st-tut{position:fixed;z-index:30;pointer-events:none;transform:scale(1.12) rotate(-3deg);transition:none;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45))}
+  .st-kv{position:absolute;width:9px;height:9px;border-radius:50%;pointer-events:none;z-index:5;animation:stKv .65s ease-out forwards}
+  @keyframes stKv{to{transform:translate(var(--dx),var(--dy)) scale(.2);opacity:0}}
+  .st-flas{position:absolute;inset:0;pointer-events:none;z-index:9;background:radial-gradient(circle,rgba(255,255,230,.95),rgba(255,200,61,.5) 40%,rgba(255,120,40,0) 75%);animation:stFlas .7s ease-out forwards}
+  @keyframes stFlas{from{opacity:1}to{opacity:0}}
+  .st-puan{position:absolute;left:50%;top:42%;transform:translate(-50%,-50%);z-index:10;pointer-events:none;font-size:clamp(38px,12vw,64px);font-weight:700;color:#ffd451;
+    -webkit-text-stroke:8px #5b2a3a;paint-order:stroke fill;white-space:nowrap;animation:stPuan 1.3s ease-out forwards}
+  @keyframes stPuan{0%{transform:translate(-50%,-30%) scale(.5);opacity:0}20%{transform:translate(-50%,-50%) scale(1.15);opacity:1}100%{transform:translate(-50%,-140%) scale(1);opacity:0}}
+  .st-kutular{display:flex;flex-wrap:wrap;justify-content:center;gap:5px;width:100%;max-width:540px}
+  .st-kutu{position:relative;flex:0 0 calc(20% - 5px);min-width:0;height:44px;border-radius:10px;border:2px dashed rgba(255,236,212,.55);background:rgba(255,255,255,.06);
+    color:#fff;font:700 14px/1 Fredoka,sans-serif;cursor:pointer;padding:0 3px;overflow:hidden}
+  .st-kutu i{position:absolute;left:4px;top:2px;font-style:normal;font-size:10px;opacity:.6}
+  .st-kutu.dolu{border-style:solid;border-color:rgba(255,255,255,.75);background:var(--rs)}
+  .st-kutu.dolu span{opacity:.85;display:block;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;font-size:14px}
+  .st-kutu.hedef{border-color:#ffc83d;background:rgba(255,200,61,.25)}
+  .st-alt{width:100%;max-width:540px;display:flex;justify-content:center}
+  .st-bomba{font:700 24px/1 Fredoka,sans-serif;letter-spacing:2px;padding:12px 34px;border-radius:16px;border:3px solid #ffe9a8;color:#fff;cursor:pointer;
+    background:linear-gradient(#ff8a4a,#e8452c);box-shadow:0 6px 0 #8f2412,0 10px 20px rgba(0,0,0,.35);text-shadow:0 2px 0 rgba(90,20,10,.5)}
+  .st-bomba:disabled{filter:grayscale(.8) brightness(.75);cursor:default;box-shadow:0 4px 0 #5a3a30}
+  .st-bomba.hazir{animation:bombaNabiz 1s ease-in-out infinite}
+  @keyframes bombaNabiz{50%{transform:scale(1.07);box-shadow:0 6px 0 #8f2412,0 0 28px rgba(255,150,60,.9)}}
+  .st-ipucu{font-size:12.5px;color:#f3dcc0;text-align:center;max-width:540px;min-height:16px}
+  .st-panel{position:absolute;inset:0;z-index:12;display:none;align-items:center;justify-content:center;padding:16px;background:rgba(30,14,24,.72)}
+  .st-panel.acik{display:flex}
+  .st-kart{width:100%;max-width:440px;max-height:100%;overflow:auto;padding:18px 16px;border-radius:20px;background:linear-gradient(rgba(87,58,96,.97),rgba(56,36,64,.97));
+    border:2px solid rgba(255,236,212,.6);box-shadow:0 10px 30px rgba(0,0,0,.5);text-align:center}
+  .st-kart h3{margin:0 0 8px;font-size:26px;letter-spacing:1px;color:#ffd451}
+  .st-kart h3.kaz{color:#7dff8e}.st-kart h3.kay{color:#ff8a9a}
+  .st-kart p{font-size:14.5px;line-height:1.35;color:#fde7c7}
+  .st-vs{font-size:15px;color:#f3dcc0;margin-bottom:6px}
+  .st-kural{text-align:left;padding-left:22px;margin:8px 0;font-size:14.5px;line-height:1.35}.st-kural li{margin:6px 0}.st-kural b{color:#ffc83d}
+  .st-sat{display:flex;align-items:center;gap:10px;padding:8px 12px;margin:6px 0;border-radius:12px;background:rgba(255,255,255,.08)}
+  .st-sat b{flex:1;text-align:left;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.st-sat em{font-style:normal;font-weight:700;font-size:20px;color:#ffd451;min-width:52px;text-align:right}
+  .st-sat.ok span{color:#7dff8e}.st-sat.no span{color:#ff8a9a}.st-sat.bekle{opacity:.7}
+  .st-not{font-weight:700;color:#ffc83d;margin-bottom:4px}
+  .st-dogru{margin:10px 0;padding:10px;border-radius:12px;background:rgba(0,0,0,.2);display:flex;flex-direction:column;gap:3px;align-items:center}
+  .st-dogru small{color:#f3dcc0}.st-dogru b{font-size:17px}.st-dogru .st-sen{color:#ff8a9a}
+  .mac-tablo td.yanlis{color:#ff8a9a}
+  @media (prefers-reduced-motion:reduce){.st-k,.st-bos{transition:none}.st-bomba.hazir,.st-sure.az,.st-hak.az,.arama-halka{animation:none}}
+
+  /* strateji: yatay ekran — tahta solda, kontroller sağda */
+  #str.yatay{display:grid;grid-template-columns:auto minmax(0,1fr);grid-template-rows:auto auto auto auto auto 1fr;column-gap:14px;row-gap:6px;align-items:start;justify-items:center;
+    padding-left:calc(12px + env(safe-area-inset-left,0px));padding-right:calc(12px + env(safe-area-inset-right,0px))}
+  #str.yatay .st-tahta{grid-column:1;grid-row:1 / span 6;align-self:center}
+  #str.yatay>:not(.st-tahta):not(.st-panel){grid-column:2}
+  #str.yatay .st-tr{font-size:16px;padding:6px 10px}
+  #str.yatay .st-kutu{height:38px}
+  #str.yatay .st-bomba{padding:9px 26px;font-size:20px}

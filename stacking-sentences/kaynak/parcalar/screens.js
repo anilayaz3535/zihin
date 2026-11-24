@@ -26,7 +26,10 @@ function panelGeri() {
   if (ekran === 'profilYeni') { if (aktifProfil()) profilAc(); else if (ilkGosterilsinMi()) ilkKarsila(); return; }
   if (ekran === 'ayar') { (ayarDonus || acilisAc)(); return; }
   if (ekran === 'oda' || ekran === 'onlineSonuc') { odadanCik(); onlineAc(); return; }
-  if (ekran === 'harita' || ekran === 'profil' || ekran === 'online' || ekran === 'ilk' || ekran === 'ilkHedef') { acilisAc(); return; }
+  if (ekran === 'strSonuc') { const c = $('#ss-cik'); if (c) c.click(); return; }
+  if (ekran === 'eslesme') { eslesmeDur(); onlineAc(); return; }
+  if (ekran === 'online') { onlineSonMod = null; onlineAc(); return; }
+  if (ekran === 'harita' || ekran === 'profil' || ekran === 'onlineSecim' || ekran === 'ilk' || ekran === 'ilkHedef') { acilisAc(); return; }
   haritaAc();
 }
 function not(m, sure) {
@@ -102,7 +105,7 @@ function acilisAc() {
     <button class="profil-btn" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span class="pb-ic"><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ★ ${oz.yildiz} · 📗 ${tt('{n} kelime', { n: oz.kelime })}</small></span><em>${tt('Profil ›')}</em></button>
     ${gunlukHtml()}
     ${gorevHtml()}
-    <div class="ana-ikili"><button class="ana-btn online" id="a-online"><i>⚔</i><span><b>${tt('ONLINE KAPIŞMA')}</b><small>${tt('Oda koduyla arkadaşınla yarış')}</small></span></button>
+    <div class="ana-ikili"><button class="ana-btn online" id="a-online"><i>⚔</i><span><b>${tt('ONLINE KAPIŞMA')}</b><small>${tt('⚡ Hız ya da 🧠 Strateji · arkadaşınla, rakiple, bilgisayarla')}</small></span></button>
     <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1’den C2’ye cümleler ve kelimeler')}</small></span></button></div>
     <div class="row uclu"><button class="sec" id="a-rozet">🏅 ${rozetSay()}/${ROZETLER.length}</button><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
   </div>`, '', 'acilis');
@@ -110,7 +113,7 @@ function acilisAc() {
   $('#a-rozet').onclick = () => { Ses.cal('tik', { ses: 0.4 }); rozetlerAc(acilisAc); };
   $('#a-prof').onclick = () => { Ses.cal('tik', { ses: 0.4 }); profilAc(); };
   $('#a-gunluk').onclick = () => { Ses.cal('tik', { ses: 0.4 }); profilAc(); };
-  $('#a-online').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); onlineAc(); };
+  $('#a-online').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); onlineSonMod = null; onlineAc(); };
   $('#a-kariyer').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); haritaAc(); };
   $('#a-ayar').onclick = () => ayarAc(false, acilisAc);
   $('#a-nas').onclick = () => showTutorial(acilisAc);

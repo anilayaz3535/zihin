@@ -52,6 +52,7 @@ Düzenledikten sonra: `cd kaynak && sh build-tek.sh` → çıkan `kaynak/tek/ind
 | 15 | `dizilis.js` | Öğretim + Ekranlar | İngilizce dizilişi (SVOPT) kartı: cümle tamamlanınca İngilizce parçalar, görevleri ve altında İngilizce sırayla Türkçeleri. `dizilisCoz` saf eşleştiricidir |
 | 16 | `gorev.js` | Oyunlaştırma | **Günün Görevi**: tarihten üretilen günlük 5 cümle + 2 hatayı bul, bonus XP, görev serisi, açılış düğmesi ve sonuç paneli |
 | 17 | `rozet.js` | Oyunlaştırma | **Rozetler**: 27 başarım; olayları dinler, sayaçları `kayit.istat`'a yazar, sonuç ekranında kutlar, rozet ekranı |
+| 18a | `strateji.js` | Oyun + Ağ | **STRATEJİ maçı** (online'ın ikinci modu, bilgisayara karşı da): tahta üretimi, kayma, bomba ve zincir, bilgisayar rakip, tur/maç kararı, kendi DOM ekranı (`#str`) |
 | 18 | `yerel.js` | Uygulama | **App Store / Google Play katmanı** (Capacitor): titreşim, Android geri tuşu, arka plana gidince duraklatma, durum çubuğu, açılış resmi, günlük hatırlatma bildirimi. Tarayıcıda yalnız titreşim çalışır |
 | 19 | `screens.js` | Ekranlar | Bütün menü ekranları ve oyunun açılışı (`boot`) |
 
@@ -263,6 +264,23 @@ Yüklenen "tetris-english-5" sürümündeki özellik; yalnız bu kısım alınd�
 
 ## Online kapışma
 
+### İki mod (23 Kasım 2026)
+- Online giriş: önce mod seçimi (`onlineAc` → ekran `onlineSecim`): **⚡ HIZ** ve **🧠 STRATEJİ**. Mod ekranında (`onlineModAc`, ekran `online`) seviye (A1–C2) seçilir ve rakip yolu: **🎲 HIZLI EŞLEŞ**, **🤖 BİLGİSAYARA KARŞI**, **ODA KUR** / kodla **KATIL**.
+- **HIZ**: eski kapışma; cümleler seçilen seviyeden. Bilgisayar rakip (`botMacBaslat`, `botHizTik`) her cümleyi seviyesine göre bir sürede bitirir (`BOT_KELIME_SN`, kelime başına ~3–3,8 sn + cümle başına 6 sn, ±%20); süre oyun saatiyle ölçülür (duraklatınca bilgisayar da bekler).
+- **Hızlı eşleşme** (`eslesmeBaslat`): konu `…/lobi-<mod>-<seviye>`. Herkes 2 sn'de bir `bekle` yayınlar; kimliği küçük olan `teklif` (gizli oda kodu) gönderir, öbürü 3 kez `kabul` eder; ikisi o odaya geçer, ev sahibi (`OD.oto`) rakip gelince maçı kendiliğinden başlatır. 20 sn'de kimse yoksa bilgisayara karşı oynama önerilir.
+- Bilgisayara karşı maçlar `kayit.istat.online`'a sayılmaz (XP verir, `onlineBitti` olayında `bot: true`).
+
+### STRATEJİ (strateji.js)
+- Maç 3 tur (`STR_TUR`); her tur bir cümle (`strCumleler`: seviyeye göre `STR_ARALIK` kelime, 13 harften uzun kelime yok). Süre 180 sn (`STR_SURE`), hamle = kelime sayısı + 6.
+- **Tahta** (`strTahta(cümle, seviye, tohum)`): 6 sütun, 6 satır (8+ kelimede 7), 3 boş hücre; 4 renk. Hedef kelimeler + tuzaklar (`2 + seviye sırası` kadar; içerikteki çeldiriciler, **doğrusuyla aynı renk**) + aynı seviyenin başka cümlelerinden dolgu kelimeler (renkler dengelenir). Yerleştirmeden sonra onarılır: hazır 3'lü aynı renk yok, hedef karonun yanında kendi rengi yok (`strKotuHucreler`). Aynı tohum → aynı tahta (iki telefon aynı tahtayı kendisi üretir).
+- **Kayma** (`strTasi`): karo hedef hücreye oturur; oradaki ve arkasındakiler okuma sırasıyla sağa (satır sonunda alt satıra, tahta sonunda başa) kayar ve ilk boşluğu doldurur; karonun eski yeri boşalır. Boş hücreye bırakmak kaydırmaz.
+- **Seçim**: kutulara karonun gölgesi gider (`R.secim`, karo kimliği), karo tahtada kalır; seçim hamle harcamaz. Sürükle-bırak (hücreye: taşı, kutuya: seç) ya da dokun-dokun. Kutuya dokununca gölge geri alınır.
+- **Bomba** (`strPatlamaPlani`): cümle doğruysa (`strDogruMu`, büyük/küçük harf ve noktalama farkı yok) seçilen karolar + bağlı aynı renk patlar (10 puan/karo); düşme (`strDus`), sonra 4+ aynı renk bağlı grup zincirleme patlar (her zincir ×1,5, ×2…); tahta tamamen temizlenirse +300. Yanlışsa 0.
+- **Karar**: tur → ikisi doğruysa puan, biri doğruysa doğru olan, ikisi yanlışsa berabere (`strTurKazanan`). Maç → tur sayısı, eşitse toplam puan, yine eşitse berabere.
+- **Bilgisayar** (`strBotOyna`): doğru seçme olasılığı seviyeye göre (`STR_BOT_DOGRU`, %86 → %72; yanlışta bir kelimenin yerine onun tuzağını seçer); hamle hakkının %40–70'ini açgözlü kullanır (her adımda bombayı en çok büyüten taşımalardan biri). Ölçüm: hiç taşımayan oyuncu tur başına ~80–150, bilgisayar ~190–265, iyi oyuncu ~400–570 puan.
+- **Ağ**: ev sahibi `basla` mesajına `mod: 'strateji'`, `tohum` ve 3 cümle koyar; her tur sonunda `stur` (tur, doğru, puan) 3 kez gönderilir. Turlar iki telefonda bağımsız ilerler; tur sonucu iki taraf da bitirince görünür.
+- Ekran `#str` (DOM, tuvalin üstünde): karolar kimlikle eşlenir ve CSS geçişiyle kayar; patlama: parlama, sarsıntı, kıvılcım, uçan puan, ses ve titreşim. Yatay ekranda tahta solda (`#str.yatay`). Geri tuşu / Escape / ✕ → çıkış onayı.
+
 - Ev sahibi **ODA KUR** der, 4 haneli kod çıkar; arkadaşı kodu yazıp **KATIL**ır. Ev sahibi seviyeyi seçip **MAÇI BAŞLAT**ır.
 - İkisi aynı 5 cümleyi kendi tahtasında kurar (yalnız CÜMLEYİ KUR turları). Rakibin adı, bitirdiği cümle sayısı ve hata göstergesi Türkçe kutusunun sol altında görünür.
 - Önce bitiren kazanır (süre bitirdiği cümlenin tamamlandığı an ölçülür); hata göstergesi dolan kaybeder; maçtan çıkan ya da 15 sn sesi gelmeyen kaybeder.
@@ -309,7 +327,7 @@ python3 testler/calistir.py modlar dil # yalnız seçilenler
 | `profil` | Yarım bölüm (skor ve hata göstergesi), kapatıp açınca kaldığı yerden devam, OYUNU KAYDET, ikinci profil, silme, eski kayıt aktarımı |
 | `yarim_kelime` | Kelime paketinde hata göstergesi doluyken çıkıp aynı durumdan devam |
 | `dokunma` | Güç ve sistem düğmeleri 3 ekran boyutunda ekranda ve basılabilir; tahta ekranda ve düğmelerin altında değil; sürükleme ve dokun-dokun hamle yapar |
-| `online` | Yerel test sunucusuyla iki telefon: oda, aynı cümleler, sonuç, yanlış kod |
+| `online` | Yerel test sunucusuyla iki telefon: HIZ odası (aynı cümleler, sonuç, yanlış kod); STRATEJİ odası (aynı maç bilgisi ve tahta, 3 tur, iki telefonda tur puanları birebir, tutarlı karar); hızlı eşleşme (A2'de iki bekleyen eşleşir, maç kendiliğinden başlar) |
 | `metin` | Türkçe arayüzdeki 34 ekran, koç yazıları ve tuvaldeki yazılar `metin_taban.json` ile birebir aynı |
 | `dil` | İngilizce arayüz seçilir, kalıcıdır, Türkçe arayüz yazısı kalmaz (rehberli ilk cümle ve koç dahil) |
 | `depo` | Uygulama modu (Capacitor taklidi): eski kayıt taşınır, tarayıcı hafızası silinse de profil ve yarım bölüm kalır |
@@ -319,6 +337,8 @@ python3 testler/calistir.py modlar dil # yalnız seçilenler
 | `ilerleme` | Seri kuralları tablosu (dün, bugün, kaçan gün, dondurma, 7. gün, saat geri, artık yıl); sahte saatle gün atlama, gece yarısı, yeniden açılış; bölüm/paket/seviye testinde XP olaylarla birebir; hedef değiştirme; ses kapalıyken kutlama; bozuk ilerleme kaydının onarımı |
 | `gorev` | Günün Görevi: açılış düğmesi; aynı gün aynı görev, ertesi gün farklı; A1/B2/C2'de 5 cümle; 5 cümle + 2 hatayı bul; bonus XP yalnız günün ilk tamamlanışında; görev serisi (ertesi gün 2, kaçan gün 1); kariyer yıldızı / kilidi ve yarım kayıt değişmez; ANA MENÜ ve duraklatmadan çıkış; bozuk görev / rozet kaydının onarımı |
 | `rozet` | Rozetler: sayaçlar olaylarla birebir; İlk Cümle açılır ve sonuçta kutlanır, ikinci kez kutlanmaz; rozet ekranı 320, 390, 844 px'te taşmaz; eski oyuncuda sessizce açılır; İngilizce arayüzde Türkçe yazı yok |
+| `strateji` | Kayma kuralı (sağa, satır sonunda alta, ilk boşluğa); 6 seviyede 18 tahta (aynı tohum aynı tahta, 3 boşluk, tuzak doğrusuyla aynı renk, kötü başlangıç yok); bomba ve doğruluk; bilgisayara karşı maç ekrandan: sürükleyerek taşıma, kutuya sürükleme (gölge, hamle harcamaz), dokun-dokun, kutudan geri alma, hamle sınırı, 3 ekranda taşma yok, 3 tur (biri yanlış) ve karar, tekrar oyna, çıkış, süre dolması, İngilizce |
+| `hiz_bot` | HIZ: B1 seçilip bilgisayara karşı; cümleler B1'den, bilgisayar ilerliyor, karar, online istatistiğine yazılmaz, tekrar oyna, duraklatıp çıkış |
 | `uygulama` | Capacitor taklidiyle: yerel okuma (Türkçe dil kodu, kesilen okumanın bitişi, sus), titreşim ve kapatma, geri tuşu (oyun, duraklatma, profil, açılış), arka plana gidince duraklama, hatırlatma ayarı ve planlama, çentik payı |
 | `kayit` | Bozuk/eksik/yanlış türde/eski kayıtlar, profil listesi kurtarma, bozuk yarım bölüm, yer yok, uygulama modu, 3.000 rastgele bozuk kayıtla doğrulayıcı (hata yok, çıktı geçerli, ikinci geçişte değişmez) |
 
