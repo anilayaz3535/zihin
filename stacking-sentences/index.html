@@ -1047,6 +1047,32 @@
   .etk-basamak.son{background:linear-gradient(90deg,rgba(255,212,81,.25),rgba(255,255,255,.05))}
   .etk-al{padding:6px 14px;font-size:15px}
   .etk-kazanc{color:#ffd451;font-weight:700}
+
+  /* ---------- sade ana menü (25 Kasım 2026) ---------- */
+  .acilis.sade{display:flex;flex-direction:column;gap:10px}
+  .ac-ust{display:flex;align-items:center;justify-content:space-between;gap:8px}
+  .ac-ust .logo{font-size:clamp(26px,8vw,36px);text-align:left;margin:0}
+  .profil-mini{display:flex;align-items:center;gap:8px;padding:4px 10px 4px 4px;border-radius:22px;border:2px solid rgba(255,255,255,.5);background:rgba(0,0,0,.25);color:#fff;font-family:Fredoka,sans-serif;cursor:pointer;text-align:left;min-width:0}
+  .profil-mini .avatar{width:34px;height:34px;font-size:17px}.profil-mini b{display:block;font-size:14px;max-width:90px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.profil-mini small{font-size:11.5px;color:#f3dcc0}
+  .kisayollar{display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+  .kisayol{position:relative;display:flex;flex-direction:column;align-items:center;gap:1px;padding:7px 2px 6px;border-radius:14px;border:2px solid #fff;background:linear-gradient(#fff7ea,#f0d9ba);
+    color:#5b3a24;font-family:Fredoka,sans-serif;box-shadow:0 3px 0 #b38a62;cursor:pointer;min-width:0}
+  .kisayol:active{transform:translateY(2px)}
+  .kisayol i{font-style:normal;font-size:26px;line-height:1}.kisayol b{font-size:12.5px}.kisayol small{font-size:10.5px;opacity:.8;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+  .kisayol em{position:absolute;top:-6px;right:-4px;min-width:18px;height:18px;padding:0 4px;border-radius:9px;background:#e83b5c;color:#fff;font:700 11px/18px Fredoka,sans-serif;font-style:normal;border:2px solid #fff}
+  .kisayol.hazir{border-color:#ffd451;box-shadow:0 3px 0 #b38a62,0 0 12px rgba(255,212,81,.8)}
+  .kisayol.hazir i{animation:bombaSall 1.8s ease-in-out infinite}
+  .kisayol.tamam{opacity:.75}
+  .oyna-btn{position:relative;display:flex;flex-direction:column;align-items:center;width:100%;padding:16px 12px 14px;border-radius:26px;border:4px solid #fff3c8;cursor:pointer;color:#fff;font-family:Fredoka,sans-serif;
+    background:radial-gradient(circle at 30% 20%,rgba(255,255,255,.35),rgba(255,255,255,0) 45%),linear-gradient(#5fd98a,#22a35a 55%,#178a48);box-shadow:0 8px 0 #106b37,0 16px 30px rgba(20,60,30,.45),inset 0 4px 0 rgba(255,255,255,.45);animation:oynaNabiz 1.8s ease-in-out infinite}
+  .oyna-btn:active{transform:translateY(4px);box-shadow:0 4px 0 #106b37}
+  .oyna-btn b{font-size:clamp(40px,13vw,56px);letter-spacing:3px;line-height:1;text-shadow:0 4px 0 rgba(10,60,30,.5)}
+  .oyna-btn small{font-size:17px;font-weight:700;letter-spacing:2px;margin-top:2px}
+  .ob-bolge{font-size:13px;padding:3px 10px;border-radius:12px;background:rgba(0,0,0,.2);margin-bottom:6px}
+  @keyframes oynaNabiz{50%{transform:scale(1.03);box-shadow:0 8px 0 #106b37,0 0 34px rgba(120,255,170,.75),inset 0 4px 0 rgba(255,255,255,.45)}}
+  .harita-link{align-self:center;background:none;border:0;color:#fde7c7;font:600 14px Fredoka,sans-serif;text-decoration:underline;cursor:pointer;margin-top:-2px}
+  .ana-ikili.kucuk{gap:8px}.ana-ikili.kucuk .ana-btn{padding:10px}.ana-ikili.kucuk .ana-btn i{font-size:26px}.ana-ikili.kucuk .ana-btn b{font-size:18px}.ana-ikili.kucuk .ana-btn small{font-size:12px}
+  @media (prefers-reduced-motion:reduce){.oyna-btn,.kisayol.hazir i{animation:none}}
 </style>
 </head>
 <body class="port">
@@ -2228,7 +2254,19 @@ DIL_SOZLUK.en = {
 "ETKİNLİK ŞAMPİYONU!": "EVENT CHAMPION!",
 "Etkinlik ödülü": "Event reward",
 "Etkinlik Şampiyonu": "Event Champion",
-"Bir haftalık etkinliği bitir": "Finish a weekly event"
+"Bir haftalık etkinliği bitir": "Finish a weekly event",
+// sade ana menü
+"Bedava!": "Free!",
+"Yarın": "Tomorrow",
+"Sandık": "Chests",
+"Etkinlik": "Event",
+"Görev": "Daily",
+"Rozet": "Badges",
+"+{x} XP": "+{x} XP",
+"OYNA": "PLAY",
+"Bölüm Yolu haritası": "Level Path map",
+"⚡ Hız · 🧠 Strateji": "⚡ Speed · 🧠 Strategy",
+"A1 → C2 dersler": "A1 → C2 lessons"
 };
 
 /* =====================================================================
@@ -2397,7 +2435,7 @@ const ALANLAR = {
   sandik: (x, v, c) => {     // { slot: [{ tur, t, acilis }] } en çok 4
     if (!nesneMi(x) || !Array.isArray(x.slot)) return c.bozuk({ slot: [] });
     let b = false; const slot = [];
-    x.slot.forEach(k => { if (nesneMi(k) && ['tahta', 'gumus', 'altin'].indexOf(k.tur) >= 0 && sayiMi(k.t) && (k.acilis === null || sayiMi(k.acilis)) && slot.length < 4) slot.push({ tur: k.tur, t: k.t, acilis: k.acilis }); else b = true; });
+    x.slot.forEach(k => { if (nesneMi(k) && ['tahta', 'gumus', 'altin'].indexOf(k.tur) >= 0 && sayiMi(k.t) && (k.acilis === null || sayiMi(k.acilis)) && slot.length < 4) slot.push(Object.assign({ tur: k.tur, t: k.t, acilis: k.acilis }, sayiMi(k.sure) && k.sure > 0 ? { sure: k.sure } : {})); else b = true; });
     return b ? c.bozuk({ slot }) : { slot };
   },
   etkinlik: (x, v, c) => {   // { hafta: 'YYYY-Wnn', puan, alinan: [basamak], tamam }
@@ -8329,7 +8367,7 @@ const YOL_BOLGE = [
 ];
 const YOL_BOLUM_BOLGE = 20, YOL_TOPLAM = YOL_BOLGE.length * YOL_BOLUM_BOLGE;
 const YOL_DALGA = ['kolay', 'kolay', 'orta', 'orta', 'zor', 'kolay', 'orta', 'orta', 'zor', 'kolay', 'orta', 'orta', 'orta', 'zor', 'kolay', 'orta', 'orta', 'zor', 'kolay', 'boss'];
-const YOL_EK_HAMLE = { kolay: 5, orta: 4, zor: 3, boss: 2 }, YOL_ORAN = { kolay: 0.55, orta: 0.72, zor: 0.85, boss: 0.92 };
+const YOL_EK_HAMLE = { ilk: 6, kolay: 5, orta: 4, zor: 3, boss: 2 }, YOL_ORAN = { ilk: 0.22, kolay: 0.55, orta: 0.72, zor: 0.85, boss: 0.92 };
 const YOL_RENK_AD = ['kırmızı', 'sarı', 'yeşil', 'mavi'], YOL_RENK_I = ['🔴', '🟡', '🟢', '🔵'];
 const yolOnluk = x => Math.max(10, Math.round(x / 10) * 10);
 
@@ -8338,9 +8376,9 @@ const yolOnbellek = new Map();
 function yolBolum(no) {
   if (yolOnbellek.has(no)) return yolOnbellek.get(no);
   const bi = Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE)), B = YOL_BOLGE[bi], sira = (no - 1) % YOL_BOLUM_BOLGE;
-  const r = tohumluRastgele('yol:' + no), zor = YOL_DALGA[sira];
+  const r = tohumluRastgele('yol:' + no), zor = no <= 5 ? 'ilk' : YOL_DALGA[sira];   // ilk 5 bölüm: çok kolay ve gösterişli (yeni oyuncu hemen kazanır)
   // cümle: bölgenin seviyesinden kısa bir cümle (3–6 kelime; B1'de 4–7)
-  const [en, ek] = B.lvl === 'B1' ? [4, 7] : [3, 6], rl = seviyeRakipleri(B.lvl).filter(cumleliMi);
+  const [en, ek] = no <= 5 ? [3, 4] : B.lvl === 'B1' ? [4, 7] : [3, 6], rl = seviyeRakipleri(B.lvl).filter(cumleliMi);
   let s = null;
   for (let d = 0; d < 400 && !s; d++) { const h = cumleler(rl[Math.floor(r() * rl.length)].id); const c = h[Math.floor(r() * h.length)]; if (c && c.w.length >= en && c.w.length <= ek && !c.w.some(w => [...w[0]].length > 11)) s = c; }
   // hedef türü: bölgenin ilk bölümü yeni mekaniği tanıtır, sonra bölgenin hedef döngüsü
@@ -8353,7 +8391,7 @@ function yolBolum(no) {
   karisik.slice(buzN, buzN + kilitN).forEach(i => { T.h[i].kilit = true; });
   // özel karolar (11. bölümden): bölgeyle çeşit ve sayı artar; dolgu karoların yerine gelir (yazısız)
   const ozelTur = ['yatay', 'dikey'].concat(bi >= 1 ? ['paket'] : [], bi >= 2 ? ['gokkusagi'] : []);
-  const ozelN = no < 11 ? 0 : bi === 0 ? 1 : Math.min(3, 1 + (r() < 0.5 ? 1 : 0) + (zor === 'boss' ? 1 : 0));
+  const ozelN = no < 3 ? 0 : no <= 5 ? 1 : no < 11 ? 0 : bi === 0 ? 1 : Math.min(3, 1 + (r() < 0.5 ? 1 : 0) + (zor === 'boss' ? 1 : 0));   // 3–5. bölümde birer özel karo: ilk büyük patlama
   karisik.slice(buzN + kilitN).filter(i => !T.h[i].cel).slice(0, ozelN).forEach((i, j) => {
     const tur = ozelTur[Math.floor(r() * ozelTur.length)], k = T.h[i];
     k.ozel = tur; k.txt = ''; if (tur === 'gokkusagi') k.ci = -1;
@@ -8631,13 +8669,16 @@ function odulVer(o) {   // { t, n } → açıklama
 // kazanılan sandık yuvaya girer; yer yoksa null
 function sandikKazan(tur) {
   const s = kayit.sandik.slot; if (s.length >= SANDIK_YUVA) return null;
-  const k = { tur, t: Date.now(), acilis: null }; s.push(k); kaydet(); return k;
+  const k = { tur, t: Date.now(), acilis: null };
+  if (kayit.yol.acik <= 4) k.sure = 30e3;   // ilk bölümlerin sandığı 30 sn'de açılır: yeni oyuncu sandık keyfini hemen yaşar
+  s.push(k); kaydet(); return k;
 }
+function sandikSuresi(k) { return k.sure || SANDIK[k.tur].sure; }
 function sandikDurum(k) {
   if (!k.acilis) return 'kapali';
-  return Date.now() >= k.acilis + SANDIK[k.tur].sure ? 'hazir' : 'aciliyor';
+  return Date.now() >= k.acilis + sandikSuresi(k) ? 'hazir' : 'aciliyor';
 }
-function sandikKalan(k) { return Math.max(0, k.acilis + SANDIK[k.tur].sure - Date.now()); }
+function sandikKalan(k) { return Math.max(0, k.acilis + sandikSuresi(k) - Date.now()); }
 const sandikSure = ms => { const s = Math.ceil(ms / 1000), h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), sn = s % 60; return h ? h + tt('sa') + ' ' + m + tt('dk') : m ? m + ':' + String(sn).padStart(2, '0') : sn + tt('sn'); };
 function sandikAciliyor() { return kayit.sandik.slot.find(k => sandikDurum(k) === 'aciliyor') || null; }
 function sandikDokun(i) {
@@ -8647,8 +8688,8 @@ function sandikDokun(i) {
   if (d === 'aciliyor') { not(tt('{s} sonra açılır.', { s: sandikSure(sandikKalan(k)) })); return; }
   if (sandikAciliyor()) { not(tt('Aynı anda bir sandık açılır. Önce açılan sandığı bekle.')); Ses.cal('geri', { ses: 0.4 }); return; }
   k.acilis = Date.now(); kaydet(); Ses.cal('yukle', { ses: 0.6 });
-  if (Yerel.sandikHatirlat) Yerel.sandikHatirlat(k.acilis + SANDIK[k.tur].sure);
-  not(tt('{s} sonra açılacak.', { s: sandikSure(SANDIK[k.tur].sure) }));
+  if (Yerel.sandikHatirlat) Yerel.sandikHatirlat(k.acilis + sandikSuresi(k));
+  not(tt('{s} sonra açılacak.', { s: sandikSure(sandikSuresi(k)) }));
   sandikYenile();
 }
 function sandikIcerik(tur) {
@@ -8672,7 +8713,7 @@ function sandikHtml() {
     const k = s[i];
     if (!k) { o += `<div class="sandik bos"><i>＋</i><small>${tt('Bölüm kazan')}</small></div>`; continue; }
     const d = sandikDurum(k), S = SANDIK[k.tur];
-    o += `<button class="sandik ${k.tur} ${d}" data-i="${i}"><i>${S.i}</i><small>${d === 'hazir' ? tt('AÇ!') : d === 'aciliyor' ? '⏱ ' + sandikSure(sandikKalan(k)) : tt('Aç: {s}', { s: sandikSure(S.sure) })}</small></button>`;
+    o += `<button class="sandik ${k.tur} ${d}" data-i="${i}"><i>${S.i}</i><small>${d === 'hazir' ? tt('AÇ!') : d === 'aciliyor' ? '⏱ ' + sandikSure(sandikKalan(k)) : tt('Aç: {s}', { s: sandikSure(sandikSuresi(k)) })}</small></button>`;
   }
   return o + '</div>';
 }
@@ -9194,18 +9235,29 @@ function acilisAc() {
   Ses.muzik('menu'); Konus.sus();
   const p = aktifProfil(); if (!p) { profilsizAc(); return; }
   const oz = profilOzet(p.id), y = yarimOku();
-  goster(`<div class="acilis">
-    ${logoHtml('')}
-    <button class="profil-btn" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span class="pb-ic"><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ★ ${oz.yildiz} · 📗 ${tt('{n} kelime', { n: oz.kelime })}</small></span><em>${tt('Profil ›')}</em></button>
+  // sade ana menü (25 Kasım 2026): üstte profil ve günlük halka, bir sıra kısayol (hazır olanda nokta), ortada büyük ▶ OYNA
+  const no = Math.min(YOL_TOPLAM, kayit.yol.acik), B = YOL_BOLGE[Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE))];
+  const ilk = (Math.floor((no - 1) / YOL_BOLUM_BOLGE)) * YOL_BOLUM_BOLGE + 1, bolgeY = Array.from({ length: YOL_BOLUM_BOLGE }, (_, k) => kayit.yol.yildiz[ilk + k] || 0).reduce((a, b) => a + b, 0);
+  const T = etkTema(), etkHazir = etkHazirSay(), sHazir = kayit.sandik.slot.filter(k => sandikDurum(k) === 'hazir').length, sAc = sandikAciliyor(), gTamam = gorevBugunTamam();
+  const kis = (id, i, ad, alt, nokta, cls) => `<button class="kisayol ${cls || ''}" id="${id}"><i>${i}</i><b>${ad}</b><small>${alt}</small>${nokta ? `<em>${nokta === true ? '' : nokta}</em>` : ''}</button>`;
+  goster(`<div class="acilis sade">
+    <div class="ac-ust">${logoHtml('sm')}<button class="profil-mini" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ⭐ ${kayit.xp}</small></span></button></div>
     ${gunlukHtml()}
-    ${etkMenuHtml()}
-    ${gorevHtml()}
-    <button class="yol-btn" id="a-yol"><i>🗺</i><span><b>${tt('BÖLÜM YOLU')}</b><small>${tt('Bölüm {n} · ⭐ {y}', { n: Math.min(YOL_TOPLAM, kayit.yol.acik), y: yolYildizToplam() })}</small></span><em>${tt('OYNA ▶')}</em></button>
-    ${odulMenuHtml()}
-    <div class="ana-ikili"><button class="ana-btn online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE KAPIŞMA')}</b><small>${tt('⚡ Hız ya da 🧠 Strateji · arkadaşınla, rakiple, bilgisayarla')}</small></span></button>
-    <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1’den C2’ye cümleler ve kelimeler')}</small></span></button></div>
-    <div class="row uclu"><button class="sec" id="a-rozet">🏅 ${rozetSay()}/${ROZETLER.length}</button><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
+    <div class="kisayollar">
+      ${kis('a-cark', '🎡', tt('Çark'), tt(carkHazir() ? 'Bedava!' : 'Yarın'), carkHazir(), carkHazir() ? 'hazir' : '')}
+      ${kis('a-sandik', '🎁', tt('Sandık'), sHazir ? tt('AÇ!') : sAc ? sandikSure(sandikKalan(sAc)) : kayit.sandik.slot.length + '/' + SANDIK_YUVA, sHazir || false, sHazir ? 'hazir' : '')}
+      ${kis('a-etk', T.i, tt('Etkinlik'), etkKalanYaz(), etkHazir || false, etkHazir ? 'hazir' : '')}
+      ${kis('a-gorev', '📅', tt('Görev'), gTamam ? '✓' : tt('+{x} XP', { x: XP_KURAL.gorev }), !gTamam, gTamam ? 'tamam' : 'hazir')}
+      ${kis('a-rozet', '🏅', tt('Rozet'), rozetSay() + '/' + ROZETLER.length, false, '')}
+    </div>
+    <button class="oyna-btn" id="a-oyna" style="--b:${B.renk}"><span class="ob-bolge">${B.i} ${tt(B.ad)} · ⭐ ${bolgeY}/${YOL_BOLUM_BOLGE * 3}</span>
+      <b>▶ ${tt('OYNA')}</b><small>${tt('BÖLÜM {n}', { n: no })}</small></button>
+    <button class="harita-link" id="a-yol">🗺 ${tt('Bölüm Yolu haritası')} · ⭐ ${yolYildizToplam()}</button>
+    <div class="ana-ikili kucuk"><button class="ana-btn online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE')}</b><small>${tt('⚡ Hız · 🧠 Strateji')}</small></span></button>
+    <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1 → C2 dersler')}</small></span></button></div>
+    <div class="row"><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
   </div>`, '', 'acilis');
+  $('#a-oyna').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.6 }); yolBaslangic(no); };
   $('#a-gorev').onclick = () => { Ses.cal('tik', { ses: 0.5 }); gorevBaslat(); };
   $('#a-yol').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
   $('#a-etk').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); etkAc(); };

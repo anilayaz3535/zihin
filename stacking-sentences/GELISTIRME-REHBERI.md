@@ -289,6 +289,11 @@ Candy Crush tarzı tek kişilik bulmaca haritası; oyuncuyu "bir bölüm daha" i
 - **Sonuç** (`yolBitti`, `yolSonuc`): kazanınca **CÜMLE CRUSH!** (kalan her hamle rastgele bir karoyu patlatır, +15), yıldızlar, rekor, sonraki bölüm açılır, bölge bitince yeni bölge duyurusu. Kaybedince hedef çubuğu ("7/10, az kaldı") ve TEKRAR DENE (aynı tahta); yanlış cümlede doğrusu gösterilir.
 - Kayıt: `kayit.yol = { acik, yildiz: { no: 1–3 }, enIyi: { no: puan } }` (kayit-sema.js doğrular). XP ve rozet: `bolumBitti` olayı `mod: 'yol'`. İlk kez oynayan önce strateji alıştırmasını görür.
 
+### İlk 5 dakika ve sade ana menü (25 Kasım 2026)
+- **Ana menü** (`acilisAc`): üstte küçük logo ve profil (`#a-prof`), günlük halka (`#a-gunluk`), bir sıra kısayol: 🎡 Çark (`#a-cark`), 🎁 Sandık (`#a-sandik`), etkinlik (`#a-etk`), 📅 Görev (`#a-gorev`), 🏅 Rozet (`#a-rozet`); hazır olanın köşesinde kırmızı nokta / sayı ve hafif sallanma. Ortada büyük **▶ OYNA** (`#a-oyna`): Bölüm Yolu'nun sıradaki bölümünün başlangıç kartını açar (bölge ve bölge yıldızları üstünde). Altında harita bağlantısı (`#a-yol`), Online ve Kariyer küçük düğmeler, Ayarlar ve Nasıl.
+- **İlk 5 bölüm** (`zor = 'ilk'`): 3–4 kelimelik cümle, +6 hamle, hedef uzmanın %22'si; 3–5. bölümde birer özel karo (ilk büyük patlama). Hiç taşımayan oyuncu çoğunu, az düşünen hepsini geçer (`yol` testi).
+- **İlk sandıklar** (`kayit.yol.acik <= 4` iken kazanılan): 30 sn'de açılır (`k.sure`), yeni oyuncu sandık açmayı hemen yaşar.
+
 ### Haftalık etkinlik (etkinlik.js, 24 Kasım 2026)
 - Her ISO hafta (pazartesi–pazar, yerel saat; `etkHafta`) bir tema (`ETK_TEMA`, hafta numarasıyla döner): 🍓 Çilek Festivali · 🚀 Uzay Haftası · 🏖 Yaz Kampı · ❄ Kış Masalı.
 - Etkinlik puanı olaylardan (`bolumBitti`, `onlineBitti`): Bölüm Yolu 3 + yıldız, Günün Görevi 6, kariyer bölümü / kelime paketi 4, online / bilgisayar maçı kazanınca 4, kaybedince 2.

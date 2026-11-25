@@ -937,5 +937,17 @@ DIL_SOZLUK.en = {
 "ETKİNLİK ŞAMPİYONU!": "EVENT CHAMPION!",
 "Etkinlik ödülü": "Event reward",
 "Etkinlik Şampiyonu": "Event Champion",
-"Bir haftalık etkinliği bitir": "Finish a weekly event"
+"Bir haftalık etkinliği bitir": "Finish a weekly event",
+// sade ana menü
+"Bedava!": "Free!",
+"Yarın": "Tomorrow",
+"Sandık": "Chests",
+"Etkinlik": "Event",
+"Görev": "Daily",
+"Rozet": "Badges",
+"+{x} XP": "+{x} XP",
+"OYNA": "PLAY",
+"Bölüm Yolu haritası": "Level Path map",
+"⚡ Hız · 🧠 Strateji": "⚡ Speed · 🧠 Strategy",
+"A1 → C2 dersler": "A1 → C2 lessons"
 };

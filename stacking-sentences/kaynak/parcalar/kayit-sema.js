@@ -124,7 +124,7 @@ const ALANLAR = {
   sandik: (x, v, c) => {     // { slot: [{ tur, t, acilis }] } en çok 4
     if (!nesneMi(x) || !Array.isArray(x.slot)) return c.bozuk({ slot: [] });
     let b = false; const slot = [];
-    x.slot.forEach(k => { if (nesneMi(k) && ['tahta', 'gumus', 'altin'].indexOf(k.tur) >= 0 && sayiMi(k.t) && (k.acilis === null || sayiMi(k.acilis)) && slot.length < 4) slot.push({ tur: k.tur, t: k.t, acilis: k.acilis }); else b = true; });
+    x.slot.forEach(k => { if (nesneMi(k) && ['tahta', 'gumus', 'altin'].indexOf(k.tur) >= 0 && sayiMi(k.t) && (k.acilis === null || sayiMi(k.acilis)) && slot.length < 4) slot.push(Object.assign({ tur: k.tur, t: k.t, acilis: k.acilis }, sayiMi(k.sure) && k.sure > 0 ? { sure: k.sure } : {})); else b = true; });
     return b ? c.bozuk({ slot }) : { slot };
   },
   etkinlik: (x, v, c) => {   // { hafta: 'YYYY-Wnn', puan, alinan: [basamak], tamam }

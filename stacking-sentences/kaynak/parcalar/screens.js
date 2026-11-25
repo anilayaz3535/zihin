@@ -102,18 +102,29 @@ function acilisAc() {
   Ses.muzik('menu'); Konus.sus();
   const p = aktifProfil(); if (!p) { profilsizAc(); return; }
   const oz = profilOzet(p.id), y = yarimOku();
-  goster(`<div class="acilis">
-    ${logoHtml('')}
-    <button class="profil-btn" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span class="pb-ic"><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ★ ${oz.yildiz} · 📗 ${tt('{n} kelime', { n: oz.kelime })}</small></span><em>${tt('Profil ›')}</em></button>
+  // sade ana menü (25 Kasım 2026): üstte profil ve günlük halka, bir sıra kısayol (hazır olanda nokta), ortada büyük ▶ OYNA
+  const no = Math.min(YOL_TOPLAM, kayit.yol.acik), B = YOL_BOLGE[Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE))];
+  const ilk = (Math.floor((no - 1) / YOL_BOLUM_BOLGE)) * YOL_BOLUM_BOLGE + 1, bolgeY = Array.from({ length: YOL_BOLUM_BOLGE }, (_, k) => kayit.yol.yildiz[ilk + k] || 0).reduce((a, b) => a + b, 0);
+  const T = etkTema(), etkHazir = etkHazirSay(), sHazir = kayit.sandik.slot.filter(k => sandikDurum(k) === 'hazir').length, sAc = sandikAciliyor(), gTamam = gorevBugunTamam();
+  const kis = (id, i, ad, alt, nokta, cls) => `<button class="kisayol ${cls || ''}" id="${id}"><i>${i}</i><b>${ad}</b><small>${alt}</small>${nokta ? `<em>${nokta === true ? '' : nokta}</em>` : ''}</button>`;
+  goster(`<div class="acilis sade">
+    <div class="ac-ust">${logoHtml('sm')}<button class="profil-mini" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ⭐ ${kayit.xp}</small></span></button></div>
     ${gunlukHtml()}
-    ${etkMenuHtml()}
-    ${gorevHtml()}
-    <button class="yol-btn" id="a-yol"><i>🗺</i><span><b>${tt('BÖLÜM YOLU')}</b><small>${tt('Bölüm {n} · ⭐ {y}', { n: Math.min(YOL_TOPLAM, kayit.yol.acik), y: yolYildizToplam() })}</small></span><em>${tt('OYNA ▶')}</em></button>
-    ${odulMenuHtml()}
-    <div class="ana-ikili"><button class="ana-btn online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE KAPIŞMA')}</b><small>${tt('⚡ Hız ya da 🧠 Strateji · arkadaşınla, rakiple, bilgisayarla')}</small></span></button>
-    <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1’den C2’ye cümleler ve kelimeler')}</small></span></button></div>
-    <div class="row uclu"><button class="sec" id="a-rozet">🏅 ${rozetSay()}/${ROZETLER.length}</button><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
+    <div class="kisayollar">
+      ${kis('a-cark', '🎡', tt('Çark'), tt(carkHazir() ? 'Bedava!' : 'Yarın'), carkHazir(), carkHazir() ? 'hazir' : '')}
+      ${kis('a-sandik', '🎁', tt('Sandık'), sHazir ? tt('AÇ!') : sAc ? sandikSure(sandikKalan(sAc)) : kayit.sandik.slot.length + '/' + SANDIK_YUVA, sHazir || false, sHazir ? 'hazir' : '')}
+      ${kis('a-etk', T.i, tt('Etkinlik'), etkKalanYaz(), etkHazir || false, etkHazir ? 'hazir' : '')}
+      ${kis('a-gorev', '📅', tt('Görev'), gTamam ? '✓' : tt('+{x} XP', { x: XP_KURAL.gorev }), !gTamam, gTamam ? 'tamam' : 'hazir')}
+      ${kis('a-rozet', '🏅', tt('Rozet'), rozetSay() + '/' + ROZETLER.length, false, '')}
+    </div>
+    <button class="oyna-btn" id="a-oyna" style="--b:${B.renk}"><span class="ob-bolge">${B.i} ${tt(B.ad)} · ⭐ ${bolgeY}/${YOL_BOLUM_BOLGE * 3}</span>
+      <b>▶ ${tt('OYNA')}</b><small>${tt('BÖLÜM {n}', { n: no })}</small></button>
+    <button class="harita-link" id="a-yol">🗺 ${tt('Bölüm Yolu haritası')} · ⭐ ${yolYildizToplam()}</button>
+    <div class="ana-ikili kucuk"><button class="ana-btn online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE')}</b><small>${tt('⚡ Hız · 🧠 Strateji')}</small></span></button>
+    <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1 → C2 dersler')}</small></span></button></div>
+    <div class="row"><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
   </div>`, '', 'acilis');
+  $('#a-oyna').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.6 }); yolBaslangic(no); };
   $('#a-gorev').onclick = () => { Ses.cal('tik', { ses: 0.5 }); gorevBaslat(); };
   $('#a-yol').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
   $('#a-etk').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); etkAc(); };

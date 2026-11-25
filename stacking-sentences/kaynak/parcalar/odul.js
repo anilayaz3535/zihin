@@ -36,13 +36,16 @@ function odulVer(o) {   // { t, n } → açıklama
 // kazanılan sandık yuvaya girer; yer yoksa null
 function sandikKazan(tur) {
   const s = kayit.sandik.slot; if (s.length >= SANDIK_YUVA) return null;
-  const k = { tur, t: Date.now(), acilis: null }; s.push(k); kaydet(); return k;
+  const k = { tur, t: Date.now(), acilis: null };
+  if (kayit.yol.acik <= 4) k.sure = 30e3;   // ilk bölümlerin sandığı 30 sn'de açılır: yeni oyuncu sandık keyfini hemen yaşar
+  s.push(k); kaydet(); return k;
 }
+function sandikSuresi(k) { return k.sure || SANDIK[k.tur].sure; }
 function sandikDurum(k) {
   if (!k.acilis) return 'kapali';
-  return Date.now() >= k.acilis + SANDIK[k.tur].sure ? 'hazir' : 'aciliyor';
+  return Date.now() >= k.acilis + sandikSuresi(k) ? 'hazir' : 'aciliyor';
 }
-function sandikKalan(k) { return Math.max(0, k.acilis + SANDIK[k.tur].sure - Date.now()); }
+function sandikKalan(k) { return Math.max(0, k.acilis + sandikSuresi(k) - Date.now()); }
 const sandikSure = ms => { const s = Math.ceil(ms / 1000), h = Math.floor(s / 3600), m = Math.floor(s % 3600 / 60), sn = s % 60; return h ? h + tt('sa') + ' ' + m + tt('dk') : m ? m + ':' + String(sn).padStart(2, '0') : sn + tt('sn'); };
 function sandikAciliyor() { return kayit.sandik.slot.find(k => sandikDurum(k) === 'aciliyor') || null; }
 function sandikDokun(i) {
@@ -52,8 +55,8 @@ function sandikDokun(i) {
   if (d === 'aciliyor') { not(tt('{s} sonra açılır.', { s: sandikSure(sandikKalan(k)) })); return; }
   if (sandikAciliyor()) { not(tt('Aynı anda bir sandık açılır. Önce açılan sandığı bekle.')); Ses.cal('geri', { ses: 0.4 }); return; }
   k.acilis = Date.now(); kaydet(); Ses.cal('yukle', { ses: 0.6 });
-  if (Yerel.sandikHatirlat) Yerel.sandikHatirlat(k.acilis + SANDIK[k.tur].sure);
-  not(tt('{s} sonra açılacak.', { s: sandikSure(SANDIK[k.tur].sure) }));
+  if (Yerel.sandikHatirlat) Yerel.sandikHatirlat(k.acilis + sandikSuresi(k));
+  not(tt('{s} sonra açılacak.', { s: sandikSure(sandikSuresi(k)) }));
   sandikYenile();
 }
 function sandikIcerik(tur) {
@@ -77,7 +80,7 @@ function sandikHtml() {
     const k = s[i];
     if (!k) { o += `<div class="sandik bos"><i>＋</i><small>${tt('Bölüm kazan')}</small></div>`; continue; }
     const d = sandikDurum(k), S = SANDIK[k.tur];
-    o += `<button class="sandik ${k.tur} ${d}" data-i="${i}"><i>${S.i}</i><small>${d === 'hazir' ? tt('AÇ!') : d === 'aciliyor' ? '⏱ ' + sandikSure(sandikKalan(k)) : tt('Aç: {s}', { s: sandikSure(S.sure) })}</small></button>`;
+    o += `<button class="sandik ${k.tur} ${d}" data-i="${i}"><i>${S.i}</i><small>${d === 'hazir' ? tt('AÇ!') : d === 'aciliyor' ? '⏱ ' + sandikSure(sandikKalan(k)) : tt('Aç: {s}', { s: sandikSure(sandikSuresi(k)) })}</small></button>`;
   }
   return o + '</div>';
 }

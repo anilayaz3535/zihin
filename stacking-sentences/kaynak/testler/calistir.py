@@ -634,11 +634,16 @@ def yol(b):
       const V = { cols: 4, rows: 3, h: [K(0, 0, { ozel: 'yatay' }), K(1, 0, { ozel: 'dikey' }), K(2, 2), K(3, 3), K(4, 1), K(5, 2), K(6, 3), K(7, 1), K(8, 2), K(9, 1), K(10, 3), K(11, 2)] };
       const k = strOzelGenislet(V, [0, 1]);
       return { satir: a.hucreler.slice().sort((x, y) => x - y), tetik: a.ozel.map(o => o.tur).sort(), gok: g.hs.slice().sort((x, y) => x - y), kombo: [k.kombo, k.hs.length],
-        once: (() => { for (let n = 1; n < 11; n++) if (yolBolum(n).T.h.some(x => x && x.ozel)) return n; return 0; })(), sonra: yolBolum(15).T.h.some(x => x && x.ozel) }; })()""")
+        once: [1, 2, 6, 7, 8, 9, 10].filter(n => yolBolum(n).T.h.some(x => x && x.ozel)).length, ilk: [3, 4, 5].every(n => yolBolum(n).T.h.filter(x => x && x.ozel).length === 1), sonra: yolBolum(15).T.h.some(x => x && x.ozel) }; })()""")
     esit(oz['satir'], [0, 1, 2, 3], 'yatay çizgili satırı patlatır'); esit(oz['tetik'], ['yatay'], 'tetiklenen özel karo')
     esit(oz['gok'], [0, 1, 11], 'gökkuşağı: yanındaki patlayan karonun rengindeki (kırmızı) bütün karolar')
     esit(oz['kombo'][0], True, 'iki özel karo SÜPER KOMBO'); dogru(oz['kombo'][1] >= 6, 'SÜPER KOMBO artı şekli')
-    esit((oz['once'], oz['sonra']), (0, True), '11. bölümden önce özel karo yok / sonra var')
+    esit((oz['once'], oz['ilk'], oz['sonra']), (0, True, True), 'özel karo: 3–5. bölümde birer, 6–10 ve 1–2 yok, 11+ var')
+    # ilk 5 bölüm yeni oyuncu için: hiç taşımayan çoğunu, az düşünen hepsini geçer
+    kolay = s.js("""(() => { let hamlesiz = 0, az = 0; for (let n = 1; n <= 5; n++) { const B = yolBolum(n), T = yolKopya(B.T);
+        if (yolHedefSayi(B.hedef, yolIstat(strPatlamaPlani(T, T.hedef.map((t, k) => T.h.find(x => x && x.k === k).id)))) >= B.hedef.sayi) hamlesiz++;
+        if (yolHedefSayi(B.hedef, yolUzman(B.T, Math.round(B.hamle / 3), B.hedef.tur, -1)) >= B.hedef.sayi) az++; } return [hamlesiz, az]; })()""")
+    dogru(kolay[0] >= 3 and kolay[1] == 5, f'ilk 5 bölüm kolay değil (hamlesiz {kolay[0]}/5, az düşünen {kolay[1]}/5)')
     # haritadan oyna, uzman hamleleriyle kazan
     s.js('acilisAc()'); s.pg.tap('#a-yol', force=True); esit(s.js('ekran'), 'yol', 'harita'); esit(s.js("document.querySelector('.y-durak.simdi').dataset.n"), '1', 'sıradaki bölüm')
     s.js("document.querySelector('.y-durak[data-n=\"5\"]').click()"); dogru('1' in s.js("document.getElementById('not').textContent"), 'kilitli bölüm uyarısı yok')
@@ -697,6 +702,8 @@ def odul(b):
     top = s.js('CARK.reduce((a, c) => a + c.a, 0)'); bek = s.js('CARK.map(c => c.a)')
     dogru(all(abs(f[i] - bek[i] * 100 / top) < 2 for i in range(len(f))), f'çark ağırlıkları: {f}')
     # sandık: bölüm kazan → yuva; 4 dolunca yer yok
+    s.js("kayit.sandik.slot = []; kayit.yol.acik = 2; sandikKazan('altin')"); esit(s.js('sandikSuresi(kayit.sandik.slot[0])'), 30000, 'ilk bölümlerin sandığı 30 sn')
+    s.js("kayit.sandik.slot = []; kayit.yol.acik = 9; sandikKazan('altin')"); esit(s.js('sandikSuresi(kayit.sandik.slot[0])'), 3 * 3600e3, 'sonraki altın sandık 3 sa')
     s.js("kayit.sandik.slot = []; for (let i = 0; i < 3; i++) sandikKazan('tahta')"); esit(s.js("!!sandikKazan('altin')"), True, '4. sandık'); esit(s.js("sandikKazan('tahta')"), None, 'yer yokken sandık')
     s.js('yolHaritaAc()'); esit(s.js("document.querySelectorAll('#sandiklar .sandik[data-i]').length"), 4, 'haritada sandıklar')
     s.pg.tap('#sandiklar .sandik[data-i="0"]'); dogru(s.js('kayit.sandik.slot[0].acilis > 0'), 'açılma başlamadı')
@@ -829,7 +836,7 @@ def dil(b):
     s.pg.reload(); s.bekle(); esit(s.js('arayuzDili'), 'en', 'dil kalıcı değil'); s.kapat()
     m, h = ekranlari_topla(b, 'en')
     esit(h, [], 'JS hataları (İngilizce)')
-    beklenen = {'acilis': ['CAREER', 'ONLINE DUEL', '⚙ Settings'], 'profil': ['💾 SAVE GAME'], 'online': ['SPEED', 'STRATEGY', 'PLAY ›'], 'online_hiz': ['Create room', 'JOIN', '🎲 QUICK MATCH'], 'online_strateji': ['STRATEGY', 'Computer'],
+    beklenen = {'acilis': ['CAREER', 'ONLINE', '⚙ Settings', 'PLAY', 'LEVEL 1'], 'profil': ['💾 SAVE GAME'], 'online': ['SPEED', 'STRATEGY', 'PLAY ›'], 'online_hiz': ['Create room', 'JOIN', '🎲 QUICK MATCH'], 'online_strateji': ['STRATEGY', 'Computer'],
                 'kariyer_duraklat': ['PAUSED', 'RESUME'], 'kariyer_sonuc': ['SCORE', 'CAREER'], 'nasil_1': ['HOW TO PLAY?', 'GOAL'],
                 'tuval': ['SCORE:', 'GOAL', 'Sentences', 'BUILD THE SENTENCE · Put the English'], 'ilk_karsila': ['BUILD YOUR FIRST SENTENCE'],
                 'ilk_sonuc': ['FIRST SENTENCE DONE!', 'SAVE AND CONTINUE'], 'ilk_hedef': ['YOUR DAILY GOAL', 'Casual · 20 XP']}

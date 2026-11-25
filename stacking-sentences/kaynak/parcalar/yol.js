@@ -22,7 +22,7 @@ const YOL_BOLGE = [
 ];
 const YOL_BOLUM_BOLGE = 20, YOL_TOPLAM = YOL_BOLGE.length * YOL_BOLUM_BOLGE;
 const YOL_DALGA = ['kolay', 'kolay', 'orta', 'orta', 'zor', 'kolay', 'orta', 'orta', 'zor', 'kolay', 'orta', 'orta', 'orta', 'zor', 'kolay', 'orta', 'orta', 'zor', 'kolay', 'boss'];
-const YOL_EK_HAMLE = { kolay: 5, orta: 4, zor: 3, boss: 2 }, YOL_ORAN = { kolay: 0.55, orta: 0.72, zor: 0.85, boss: 0.92 };
+const YOL_EK_HAMLE = { ilk: 6, kolay: 5, orta: 4, zor: 3, boss: 2 }, YOL_ORAN = { ilk: 0.22, kolay: 0.55, orta: 0.72, zor: 0.85, boss: 0.92 };
 const YOL_RENK_AD = ['kırmızı', 'sarı', 'yeşil', 'mavi'], YOL_RENK_I = ['🔴', '🟡', '🟢', '🔵'];
 const yolOnluk = x => Math.max(10, Math.round(x / 10) * 10);
 
@@ -31,9 +31,9 @@ const yolOnbellek = new Map();
 function yolBolum(no) {
   if (yolOnbellek.has(no)) return yolOnbellek.get(no);
   const bi = Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE)), B = YOL_BOLGE[bi], sira = (no - 1) % YOL_BOLUM_BOLGE;
-  const r = tohumluRastgele('yol:' + no), zor = YOL_DALGA[sira];
+  const r = tohumluRastgele('yol:' + no), zor = no <= 5 ? 'ilk' : YOL_DALGA[sira];   // ilk 5 bölüm: çok kolay ve gösterişli (yeni oyuncu hemen kazanır)
   // cümle: bölgenin seviyesinden kısa bir cümle (3–6 kelime; B1'de 4–7)
-  const [en, ek] = B.lvl === 'B1' ? [4, 7] : [3, 6], rl = seviyeRakipleri(B.lvl).filter(cumleliMi);
+  const [en, ek] = no <= 5 ? [3, 4] : B.lvl === 'B1' ? [4, 7] : [3, 6], rl = seviyeRakipleri(B.lvl).filter(cumleliMi);
   let s = null;
   for (let d = 0; d < 400 && !s; d++) { const h = cumleler(rl[Math.floor(r() * rl.length)].id); const c = h[Math.floor(r() * h.length)]; if (c && c.w.length >= en && c.w.length <= ek && !c.w.some(w => [...w[0]].length > 11)) s = c; }
   // hedef türü: bölgenin ilk bölümü yeni mekaniği tanıtır, sonra bölgenin hedef döngüsü
@@ -46,7 +46,7 @@ function yolBolum(no) {
   karisik.slice(buzN, buzN + kilitN).forEach(i => { T.h[i].kilit = true; });
   // özel karolar (11. bölümden): bölgeyle çeşit ve sayı artar; dolgu karoların yerine gelir (yazısız)
   const ozelTur = ['yatay', 'dikey'].concat(bi >= 1 ? ['paket'] : [], bi >= 2 ? ['gokkusagi'] : []);
-  const ozelN = no < 11 ? 0 : bi === 0 ? 1 : Math.min(3, 1 + (r() < 0.5 ? 1 : 0) + (zor === 'boss' ? 1 : 0));
+  const ozelN = no < 3 ? 0 : no <= 5 ? 1 : no < 11 ? 0 : bi === 0 ? 1 : Math.min(3, 1 + (r() < 0.5 ? 1 : 0) + (zor === 'boss' ? 1 : 0));   // 3–5. bölümde birer özel karo: ilk büyük patlama
   karisik.slice(buzN + kilitN).filter(i => !T.h[i].cel).slice(0, ozelN).forEach((i, j) => {
     const tur = ozelTur[Math.floor(r() * ozelTur.length)], k = T.h[i];
     k.ozel = tur; k.txt = ''; if (tur === 'gokkusagi') k.ci = -1;
