@@ -968,5 +968,7 @@ DIL_SOZLUK.en = {
 "{ad} {a} – ben {b}": "{ad} {a} – me {b}",
 "Online maçı kazandım!": "I won an online match!",
 "Sen de bana karşı oyna:": "Play against me:",
-"KENDİ YOLUNA DÖN · BÖLÜM {n}": "BACK TO YOUR PATH · LEVEL {n}"
+"KENDİ YOLUNA DÖN · BÖLÜM {n}": "BACK TO YOUR PATH · LEVEL {n}",
+"Anonim kullanım verisi": "Anonymous usage data",
+"Oyunu iyileştirmek için isimsiz oyun verisi gönderilir (isim ve yazı gönderilmez)": "Sends anonymous game data to improve the game (no names or text)"
 };

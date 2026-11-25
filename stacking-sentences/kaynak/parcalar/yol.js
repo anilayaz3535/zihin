@@ -210,6 +210,7 @@ function yolHamleBitti() {
       : `<button class="big" id="y-ek">${tt('+3 HAMLE 🎁')}</button><small class="y-bedava">${tt('Bu bölümde 1 kez bedava')}</small>`}
     <div class="row"><button class="sec" id="y-boyle">${tt('Böyle devam et')}</button></div></div>`;
   p.classList.add('acik'); Ses.cal('yukselis', { ses: 0.4 });
+  Olcum.olay('neredeyse', { yol_no: b.no, v, hedef: b.hedef.sayi });
   $('#y-ek').onclick = () => { if (M.yol.devam) { kayit.envanter.hamle3--; kaydet(); } M.yol.devam = true; R.hamle += 3; p.classList.remove('acik'); Ses.cal('yukselis', { ses: 0.6 }); strCiz(); };
   $('#y-boyle').onclick = () => { M.yol.devam = true; M.yol.sorma = true; p.classList.remove('acik'); };
 }

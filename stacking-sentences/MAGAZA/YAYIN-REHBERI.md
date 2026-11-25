@@ -58,9 +58,12 @@ Android Studio'yla kendin derlemek istersen: `uygulama/android/keystore.properti
    - **Uygulama erişimi**: Tüm işlevler kısıtlama olmadan kullanılabilir.
    - **İçerik derecelendirmesi** (IARC anketi): kategori "Referans, Haberler veya Eğitim" ya da "Oyun → Bulmaca/Kelime". Şiddet, cinsellik, kumar, uyuşturucu: hepsi **Hayır**. Kullanıcılar etkileşimde bulunabilir mi: **Evet** (online kapışmada takma ad görünür), konum paylaşımı yok, dijital satın alma yok. Sonuç genelde **3+ / PEGI 3** çıkar.
    - **Hedef kitle**: **13 ve üzeri** seç (ör. 13-15, 16-17, 18+). 13 yaş altını seçersen "Aileler için tasarlandı" politikası devreye girer; online kapışmanın açık MQTT sunucusu kullanması bunu zorlaştırır.
-   - **Veri güvenliği**: Online kapışmada takma ad ve maç ilerlemesi rakibe iletildiği için önerilen cevap:
-     - Veri toplanıyor mu: **Evet** → *Kişisel bilgiler → Ad* (isteğe bağlı, yalnız online kapışmada; amaç: Uygulama işlevi; geçici olarak işleniyor: Evet; paylaşılıyor mu: Hayır).
-     - Aktarım sırasında şifreleniyor: **Evet** (wss). Veri silme isteği: veriler telefonda; uygulamayı silmek yeterli.
+   - **Veri güvenliği**: önerilen cevap:
+     - Veri toplanıyor mu: **Evet**.
+       - *Kişisel bilgiler → Ad*: isteğe bağlı, yalnız arkadaşla oda kodlu online kapışmada; amaç Uygulama işlevi; geçici olarak işleniyor: Evet; paylaşılıyor: Hayır.
+       - *Uygulama etkinliği → Uygulama etkileşimleri* (isimsiz oyun verisi, ölçüm): amaç **Analiz**; kullanıcı kapatabilir (isteğe bağlı): Evet; paylaşılıyor: Hayır (PostHog hizmet sağlayıcı sayılır).
+       - *Cihaz veya diğer kimlikler*: uygulamanın ürettiği rastgele kimlik; amaç Analiz.
+     - Aktarım sırasında şifreleniyor: **Evet**. Veri silme isteği: oyun verisi telefonda; isimsiz ölçüm verisi kimliğe bağlı değildir (Ayarlar'dan kapatılır).
    - **Haber uygulaması / COVID / Devlet**: Hayır.
 3. **Ana mağaza girişi**: metinler `magaza-metinleri.md`, görseller bu klasörde.
 
@@ -103,7 +106,7 @@ npm run ios          # web dosyalarını hazırlar, Xcode'u açar
 Xcode'da: **App** hedefi → Signing & Capabilities → Team'ini seç → üstte cihaz olarak "Any iOS Device" → **Product → Archive** → **Distribute App → App Store Connect → Upload**.
 
 ### 3.3 Mağaza bilgileri ve incelemeye gönder
-1. **Uygulama Gizliliği**: Gizlilik politikası adresi. Veri toplama: **"Veri toplamıyoruz"** (Data Not Collected) — online kapışmadaki takma ad sunucuda saklanmadan anlık iletilir; Apple'ın tanımına göre bu "toplama" sayılmaz. Uygulamadaki `PrivacyInfo.xcprivacy` de bunu söyler.
+1. **Uygulama Gizliliği**: Gizlilik politikası adresi. Veri toplama: **Kullanım Verisi → Ürün Etkileşimi**: *Seni izlemek için kullanılmaz*, *Kimliğine bağlı değil*, amaç **Analiz**. Başka veri yok (online kapışmadaki takma ad saklanmadan anlık iletilir). Uygulamadaki `PrivacyInfo.xcprivacy` de bunu söyler. Ölçüm anahtarı girilmemişse "Veri toplamıyoruz" seçilebilir.
 2. **Yaş derecelendirmesi**: anketteki bütün içerik sorularına **Yok**. "Kullanıcılar arası iletişim / kullanıcı içeriği" sorusu varsa: online kapışmada yalnız takma ad görünür, sohbet yok. Sonuç **4+** (ya da 9+) çıkar. **Çocuklar kategorisini (Kids) seçme.**
 3. **Sürüm bilgileri**: metinler ve ekran görüntüleri (`iphone-6.9` ve `ipad-13`), TestFlight'taki derlemeyi seç.
 4. **İnceleme notu** (App Review Information → Notes) — kopyala:

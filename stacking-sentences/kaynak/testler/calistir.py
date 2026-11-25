@@ -792,6 +792,37 @@ def paylas(b):
     return 'görev kareleri ve metni; bölüm davet linki; davet çözümleme; linkle açılış, kart, oynama, karşılaştırma, ilerleme korunur'
 
 @test
+def olcum(b):
+    """Ölçüm: olaylar (açılış, bölüm başla / bitti, Bölüm Yolu ayrıntıları, çark, sandık, paylaş) kaydedilir; kişisel veri (isim, cümle) yok;
+    kimlik rastgele ve kalıcı; ayardan kapanınca olay yok; anahtar verilince olaylar toplu olarak servise gider; anahtar yokken ağ isteği yok."""
+    giden = []
+    s = Sayfa(b, ad='Zeynep', init=["window.TE_OLCUM_ANAHTAR = 'phc_test'; window.TE_OLCUM_ADRES = 'https://olcum.test/batch/';"])
+    s.ctx.route('https://olcum.test/**', lambda r: (giden.append(r.request.post_data), r.fulfill(status=200, body='{}')))
+    s.js('kayit.strRehber = true; yolOyna(1)')
+    s.js("""(() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, -1, h);
+      h.forEach(([a, b]) => strTasiOyuncu(a, b)); const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()""")
+    s.pg.wait_for_selector('#y-paylas', timeout=20000); s.pg.tap('#y-paylas')
+    s.js('strKapat(); acilisAc(); carkCevir && (kayit.cark.son = null); carkAc(); carkCevir()'); s.pg.wait_for_timeout(300)
+    ev = s.js('__olcum.map(e => e.event)')
+    for ad in ('oyun_acildi', 'bolum_basladi', 'bolum_bitti', 'paylasti', 'cark', 'ekran'): dogru(ad in ev, f'olay yok: {ad} ({ev})')
+    yb = s.js("__olcum.find(e => e.event === 'bolum_bitti' && e.properties.mod === 'yol').properties")
+    for k in ('yol_no', 'deneme', 'kalan_hamle', 'zorluk', 'hedef', 'kazandi', 'yildiz'): dogru(k in yb, f'Bölüm Yolu olayında {k} yok')
+    hepsi = s.js('JSON.stringify(__olcum)'); cumle = s.js('yolBolum(1).s.en')
+    dogru('Zeynep' not in hepsi and cumle not in hepsi, 'ölçümde kişisel veri / cümle var')
+    kim = s.js('olcumKimlik()'); dogru(len(kim) >= 12 and all(e == kim for e in s.js('__olcum.map(e => e.properties.distinct_id)')), 'kimlik')
+    s.js('Olcum.gonder()'); s.pg.wait_for_timeout(500)
+    dogru(giden and '"api_key":"phc_test"' in giden[-1] and '"batch"' in giden[-1] and 'Zeynep' not in ''.join(giden), f'servise gitmedi ya da kişisel veri var: {giden[:1]}')
+    s.pg.reload(); s.bekle(); esit(s.js('olcumKimlik()'), kim, 'kimlik kalıcı değil')
+    s.js("ayarAc(false, acilisAc)"); s.pg.tap('.anahtar[data-a="olcum"]'); esit(s.js('olcumIzinli()'), False, 'ölçüm kapanmadı')
+    n = s.js('__olcum.length'); s.js("Olay.yay('bolumBasladi', { mod: 'bolum', r: 'x', lvl: 'A1' })"); esit(s.js('__olcum.length'), n, 'kapalıyken olay kaydedildi')
+    esit(s.hatalar(), [], 'JS hataları'); s.kapat()
+    # anahtar yokken ağ isteği yok
+    istek = []
+    s = Sayfa(b); s.pg.on('request', lambda r: istek.append(r.url) if 'posthog' in r.url or 'olcum' in r.url else None)
+    s.js('Olcum.olay("deneme"); Olcum.gonder()'); s.pg.wait_for_timeout(300); esit(istek, [], 'anahtar yokken istek gitti'); s.kapat()
+    return f'{len(set(ev))} olay türü; kişisel veri yok; kimlik kalıcı; kapatma; toplu gönderim; anahtarsız istek yok'
+
+@test
 def hiz_bot(b):
     """HIZ: seviye seçimi ve bilgisayara karşı maç: seçilen seviyenin cümleleri, bilgisayar cümleleri zamanla bitirir, karar ve sonuç ekranı."""
     s = Sayfa(b)

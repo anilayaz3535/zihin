@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
-<!-- Apple gizlilik bildirimi: uygulama izleme yapmaz, veri toplamaz.
-     Kayıtlar yalnız telefonda tutulur (Preferences eklentisi UserDefaults kullanır → neden kodu CA92.1). -->
+<!-- Apple gizlilik bildirimi: uygulama izleme yapmaz. Yalnız isimsiz oyun etkileşimi (analiz, kimliğe bağlı değil) toplanır.
+     Kayıtlar telefonda tutulur (Preferences eklentisi UserDefaults kullanır → neden kodu CA92.1). -->
 <plist version="1.0">
 <dict>
 	<key>NSPrivacyTracking</key>
@@ -9,7 +9,20 @@
 	<key>NSPrivacyTrackingDomains</key>
 	<array/>
 	<key>NSPrivacyCollectedDataTypes</key>
-	<array/>
+	<array>
+		<dict>
+			<key>NSPrivacyCollectedDataType</key>
+			<string>NSPrivacyCollectedDataTypeProductInteraction</string>
+			<key>NSPrivacyCollectedDataTypeLinked</key>
+			<false/>
+			<key>NSPrivacyCollectedDataTypeTracking</key>
+			<false/>
+			<key>NSPrivacyCollectedDataTypePurposes</key>
+			<array>
+				<string>NSPrivacyCollectedDataTypePurposeAnalytics</string>
+			</array>
+		</dict>
+	</array>
 	<key>NSPrivacyAccessedAPITypes</key>
 	<array>
 		<dict>

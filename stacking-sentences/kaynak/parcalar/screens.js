@@ -10,6 +10,7 @@ const dinleBtn = en => `<button class="dinle" data-en="${esc(en)}" aria-label="$
 
 function goster(html, sinif, ad) {
   ekran = ad || null; tutOpen = ad === 'tut';
+  if (typeof olcumEkranAcildi === 'function') olcumEkranAcildi(ad);   // ölçüm: ekran (olcum.js)
   card.className = 'card ' + (sinif || '');
   card.innerHTML = html;
   card.querySelectorAll('.dinle').forEach(b => b.onclick = e => { e.stopPropagation(); sesAc(); Konus.soyle(b.dataset.en, { hiz: 0.85 }); });
@@ -471,16 +472,19 @@ let ayarDonus = null;
 function ayarAc(oyunda, donus) {
   ayarDonus = oyunda ? showPause : (donus || ayarDonus || acilisAc);
   const A = [['muzik', 'Müzik', 'Oyun ve menü müziği'], ['efekt', 'Efektler', 'Yerleştirme, kombo ve patlama sesleri'], ['titresim', 'Titreşim', 'Doğru ve yanlış hamlede telefon hafifçe titrer'], ['ses', 'İngilizce sesli okuma', 'Cümleler ve kelimeler okunur'], ['trSes', 'Türkçe sesli okuma', 'Kurulacak cümlenin Türkçesi okunur'], ['dizilis', 'İngilizce dizilişi', 'Her cümle tamamlanınca İngilizce sırası ve altında Türkçesi gösterilir'], ['yonergeSes', 'Yönergeleri sesli oku', 'Her turun başında ne yapacağını kısaca sesli söyler']];
+  A.push(['olcum', 'Anonim kullanım verisi', 'Oyunu iyileştirmek için isimsiz oyun verisi gönderilir (isim ve yazı gönderilmez)']);
   if (Yerel.bildirimVar()) A.push(['hatirlat', 'Günlük hatırlatma', 'Hedefini tamamlamadığın günler akşam 19:00’da bir bildirim gelir']);
   let ic = '<div class="pen-ust"><h2>' + tt('Ayarlar') + '</h2></div><div class="ayarlar">';
-  A.forEach(a => { ic += `<div class="ayar"><span>${tt(a[1])}<small>${tt(a[2])}</small></span><button class="anahtar${kayit.ayar[a[0]] !== false ? ' acik' : ''}" data-a="${a[0]}"></button></div>`; });
+  A.forEach(a => { const acik = a[0] === 'olcum' ? olcumIzinli() : kayit.ayar[a[0]] !== false; ic += `<div class="ayar"><span>${tt(a[1])}<small>${tt(a[2])}</small></span><button class="anahtar${acik ? ' acik' : ''}" data-a="${a[0]}"></button></div>`; });
   ic += `</div>${hedefSecimHtml()}${dilSecimHtml()}<div class="row"><button class="sec" id="a-en">${tt('🔊 İngilizce sesi dene')}</button><button class="sec" id="a-tr">${tt('🔊 Türkçe sesi dene')}</button></div>`;
   const kb = Konus.bilgi();
   ic += `<p class="aciklama kucuk">${tt('Sesli okuma cihazın kendi okuma sesiyle yapılır.')} ${!kb.var ? tt('<b class="red">Bu tarayıcıda sesli okuma yok.</b> Chrome (Android) ya da Safari (iPhone) ile aç.') : tt('Bulunan sesler: {n} · Türkçe: {tr} · İngilizce: {en}', { n: kb.say, tr: kb.tr ? esc(kb.tr) : tt('listede yok, cihazın varsayılan Türkçe sesi denenecek'), en: kb.en ? esc(kb.en) : tt('varsayılan') })}${tt('. Türkçe okunmuyorsa telefonun ayarlarında "Metin okuma" bölümünden Türkçe ses verisini indir. Ayarlar profile kaydedilir.')}</p>`;
   ic += `<div class="pen-dip"><button class="big" id="a-geri">${tt(oyunda ? 'GERİ' : 'TAMAM')}</button></div>`;
   goster(ic, '', 'ayar');
   card.querySelectorAll('.anahtar').forEach(b => b.onclick = () => {
-    const k = b.dataset.a; kayit.ayar[k] = kayit.ayar[k] === false ? true : !kayit.ayar[k]; kaydet();
+    const k = b.dataset.a;
+    if (k === 'olcum') { olcumIzinYaz(!olcumIzinli()); b.classList.toggle('acik', olcumIzinli()); return; }   // cihaz ayarı (profilden bağımsız)
+    kayit.ayar[k] = kayit.ayar[k] === false ? true : !kayit.ayar[k]; kaydet();
     b.classList.toggle('acik', kayit.ayar[k] !== false); Ses.ayarla(); musicBtnYaz(); if (!kayit.ayar.ses && !kayit.ayar.trSes) Konus.sus();
     if (k === 'hatirlat') Yerel.hatirlatDegisti(); if (k === 'titresim' && kayit.ayar.titresim) Yerel.titret('orta');
   });
@@ -632,6 +636,7 @@ async function boot() {
   if (aktifProfil()) acilisAc(); else profilsizAc();      // hiç profil yoksa rehberli ilk cümle (ilk.js)
   kayitUyarilariGoster();                             // bozuk kayıt onarıldıysa oyuncuya bir kez söylenir
   window.__acildi = true;
+  Olcum.olay('oyun_acildi', { profil: !!aktifProfil(), davet: !!DAVET });
   requestAnimationFrame(frame);
 }
 let resizeT = null;

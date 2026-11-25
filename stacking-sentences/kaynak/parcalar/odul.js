@@ -68,7 +68,7 @@ function sandikIcerik(tur) {
 }
 function sandikAc(i) {
   const k = kayit.sandik.slot[i]; if (!k || sandikDurum(k) !== 'hazir') return;
-  kayit.sandik.slot.splice(i, 1);
+  kayit.sandik.slot.splice(i, 1); Olcum.olay('sandik_acildi', { tur: k.tur });
   const yazi = sandikIcerik(k.tur).map(odulVer); kaydet();
   Ses.cal('patlama', { ses: 0.5 }); Ses.cal('zafer', { ses: 0.8 }); Yerel.titret('basari');
   odulPenceresi(SANDIK[k.tur].i, tt(SANDIK[k.tur].ad), yazi, sandikYenile);
@@ -116,7 +116,7 @@ function carkSec(r) { const top = CARK.reduce((a, c) => a + c.a, 0); let x = r *
 function carkCevir() {
   if (!carkHazir()) return;
   sesAc();
-  kayit.cark.son = bugunAnahtar(); kaydet();   // önce kaydedilir: yarıda kapatılsa da ikinci çevirme olmaz
+  kayit.cark.son = bugunAnahtar(); kaydet(); Olcum.olay('cark');   // önce kaydedilir: yarıda kapatılsa da ikinci çevirme olmaz
   const i = carkSec(Math.random()), dilim = 360 / CARK.length, c = CARK[i];
   const aci = 360 * 6 + (360 - (i * dilim + dilim / 2)) + (Math.random() - 0.5) * dilim * 0.6;
   const el = $('#cark'), b = $('#c-cevir'); b.disabled = true;

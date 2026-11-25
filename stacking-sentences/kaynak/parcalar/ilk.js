@@ -112,6 +112,7 @@ function ilkSonuc() {
 /* ---------------- günlük hedef seçimi (sonra seviye seçimi) ---------------- */
 const ILK_HEDEF_ACIK = { 20: 'Yarım bölüm kadar · kısa bir mola', 50: 'Günde 1–2 bölüm · önerilen', 100: 'Günde 2–3 bölüm · hızlı ilerle' };
 function ilkHedefAc(ad) {
+  Olcum.olay('ilk_profil');
   if (G.state !== 'menu') demo();
   D = null;
   goster(`<div class="sub">${tt('Hoş geldin, {ad}!', { ad: esc(ad || '') })}</div>

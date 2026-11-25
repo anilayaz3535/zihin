@@ -155,3 +155,14 @@ function yarimSil() { const k = yarimAnahtar(); if (k) Depo.sil(k); }
 
 // kayıtlar öğretim katmanı (SEVIYE) hazır olunca okunur; uygulamada boot() kalıcı hafıza açılınca okur
 if (!Depo.uygulamaMi()) profilleriYukle();
+
+/* ---------------- ölçüm kimliği ve izni (olcum.js) ----------------
+   Cihaz başına rastgele, isimsiz bir kimlik (kişiyle bağı yok) ve "anonim kullanım verisi" izni (profilden bağımsız). */
+const OLCUM_KIMLIK = 'te_olcum_kimlik', OLCUM_IZIN = 'te_olcum_izin';
+function olcumKimlik() {
+  let k = Depo.al(OLCUM_KIMLIK);
+  if (!k || !/^[a-z0-9]{12,32}$/.test(k)) { k = (Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)).slice(0, 20).replace(/[^a-z0-9]/g, 'x'); Depo.yaz(OLCUM_KIMLIK, k); }
+  return k;
+}
+function olcumIzinli() { return Depo.al(OLCUM_IZIN) !== '0'; }
+function olcumIzinYaz(acik) { Depo.yaz(OLCUM_IZIN, acik ? '1' : '0'); }

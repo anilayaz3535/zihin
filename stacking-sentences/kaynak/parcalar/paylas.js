@@ -22,7 +22,7 @@ function davetLink(no, puan) {
   return OYUN_URL + '#davet=y.' + no + '.' + puan + '.' + ad;
 }
 async function paylas(metin) {
-  sesAc(); window.__paylasilan.push(metin);
+  sesAc(); window.__paylasilan.push(metin); Olcum.olay('paylasti', { tur: /davet=/.test(metin) ? 'davet' : /Günün|Daily/.test(metin) ? 'gorev' : 'diger' });
   const c = window.Capacitor, S = c && c.isNativePlatform && c.isNativePlatform() && c.Plugins && c.Plugins.Share;
   try {
     if (S) { await S.share({ text: metin, dialogTitle: tt('Paylaş') }); return 'uygulama'; }
@@ -57,7 +57,7 @@ function yolPaylasMetni(no, yildiz, puan, davetSonuc) {
 /* ---- davet kartı (açılışta, linkle gelindiyse bir kez) ---- */
 function davetGoster() {
   const d = DAVET; if (!d || !aktifProfil()) return false;
-  DAVET = null;
+  DAVET = null; Olcum.olay('davet_acildi', { bolum: d.no });
   const b = yolBolum(d.no);
   goster(`<div class="davet-kart"><div class="davet-ikon">🎯</div>
     <h3>${tt('{ad} seni çağırıyor!', { ad: esc(d.ad) })}</h3>

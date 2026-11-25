@@ -2217,7 +2217,9 @@ DIL_SOZLUK.en = {
 "{ad} {a} – ben {b}": "{ad} {a} – me {b}",
 "Online maçı kazandım!": "I won an online match!",
 "Sen de bana karşı oyna:": "Play against me:",
-"KENDİ YOLUNA DÖN · BÖLÜM {n}": "BACK TO YOUR PATH · LEVEL {n}"
+"KENDİ YOLUNA DÖN · BÖLÜM {n}": "BACK TO YOUR PATH · LEVEL {n}",
+"Anonim kullanım verisi": "Anonymous usage data",
+"Oyunu iyileştirmek için isimsiz oyun verisi gönderilir (isim ve yazı gönderilmez)": "Sends anonymous game data to improve the game (no names or text)"
 };
 
 /* =====================================================================
@@ -3471,6 +3473,17 @@ function yarimSil() { const k = yarimAnahtar(); if (k) Depo.sil(k); }
 
 // kayıtlar öğretim katmanı (SEVIYE) hazır olunca okunur; uygulamada boot() kalıcı hafıza açılınca okur
 if (!Depo.uygulamaMi()) profilleriYukle();
+
+/* ---------------- ölçüm kimliği ve izni (olcum.js) ----------------
+   Cihaz başına rastgele, isimsiz bir kimlik (kişiyle bağı yok) ve "anonim kullanım verisi" izni (profilden bağımsız). */
+const OLCUM_KIMLIK = 'te_olcum_kimlik', OLCUM_IZIN = 'te_olcum_izin';
+function olcumKimlik() {
+  let k = Depo.al(OLCUM_KIMLIK);
+  if (!k || !/^[a-z0-9]{12,32}$/.test(k)) { k = (Math.random().toString(36).slice(2) + Math.random().toString(36).slice(2)).slice(0, 20).replace(/[^a-z0-9]/g, 'x'); Depo.yaz(OLCUM_KIMLIK, k); }
+  return k;
+}
+function olcumIzinli() { return Depo.al(OLCUM_IZIN) !== '0'; }
+function olcumIzinYaz(acik) { Depo.yaz(OLCUM_IZIN, acik ? '1' : '0'); }
 
 /* =====================================================================
    İLERLEME: XP, GÜNLÜK HEDEF VE SERİ
@@ -6891,6 +6904,7 @@ function ilkSonuc() {
 /* ---------------- günlük hedef seçimi (sonra seviye seçimi) ---------------- */
 const ILK_HEDEF_ACIK = { 20: 'Yarım bölüm kadar · kısa bir mola', 50: 'Günde 1–2 bölüm · önerilen', 100: 'Günde 2–3 bölüm · hızlı ilerle' };
 function ilkHedefAc(ad) {
+  Olcum.olay('ilk_profil');
   if (G.state !== 'menu') demo();
   D = null;
   goster(`<div class="sub">${tt('Hoş geldin, {ad}!', { ad: esc(ad || '') })}</div>
@@ -8510,6 +8524,7 @@ function yolHamleBitti() {
       : `<button class="big" id="y-ek">${tt('+3 HAMLE 🎁')}</button><small class="y-bedava">${tt('Bu bölümde 1 kez bedava')}</small>`}
     <div class="row"><button class="sec" id="y-boyle">${tt('Böyle devam et')}</button></div></div>`;
   p.classList.add('acik'); Ses.cal('yukselis', { ses: 0.4 });
+  Olcum.olay('neredeyse', { yol_no: b.no, v, hedef: b.hedef.sayi });
   $('#y-ek').onclick = () => { if (M.yol.devam) { kayit.envanter.hamle3--; kaydet(); } M.yol.devam = true; R.hamle += 3; p.classList.remove('acik'); Ses.cal('yukselis', { ses: 0.6 }); strCiz(); };
   $('#y-boyle').onclick = () => { M.yol.devam = true; M.yol.sorma = true; p.classList.remove('acik'); };
 }
@@ -8663,7 +8678,7 @@ function sandikIcerik(tur) {
 }
 function sandikAc(i) {
   const k = kayit.sandik.slot[i]; if (!k || sandikDurum(k) !== 'hazir') return;
-  kayit.sandik.slot.splice(i, 1);
+  kayit.sandik.slot.splice(i, 1); Olcum.olay('sandik_acildi', { tur: k.tur });
   const yazi = sandikIcerik(k.tur).map(odulVer); kaydet();
   Ses.cal('patlama', { ses: 0.5 }); Ses.cal('zafer', { ses: 0.8 }); Yerel.titret('basari');
   odulPenceresi(SANDIK[k.tur].i, tt(SANDIK[k.tur].ad), yazi, sandikYenile);
@@ -8711,7 +8726,7 @@ function carkSec(r) { const top = CARK.reduce((a, c) => a + c.a, 0); let x = r *
 function carkCevir() {
   if (!carkHazir()) return;
   sesAc();
-  kayit.cark.son = bugunAnahtar(); kaydet();   // önce kaydedilir: yarıda kapatılsa da ikinci çevirme olmaz
+  kayit.cark.son = bugunAnahtar(); kaydet(); Olcum.olay('cark');   // önce kaydedilir: yarıda kapatılsa da ikinci çevirme olmaz
   const i = carkSec(Math.random()), dilim = 360 / CARK.length, c = CARK[i];
   const aci = 360 * 6 + (360 - (i * dilim + dilim / 2)) + (Math.random() - 0.5) * dilim * 0.6;
   const el = $('#cark'), b = $('#c-cevir'); b.disabled = true;
@@ -8886,7 +8901,7 @@ function davetLink(no, puan) {
   return OYUN_URL + '#davet=y.' + no + '.' + puan + '.' + ad;
 }
 async function paylas(metin) {
-  sesAc(); window.__paylasilan.push(metin);
+  sesAc(); window.__paylasilan.push(metin); Olcum.olay('paylasti', { tur: /davet=/.test(metin) ? 'davet' : /Günün|Daily/.test(metin) ? 'gorev' : 'diger' });
   const c = window.Capacitor, S = c && c.isNativePlatform && c.isNativePlatform() && c.Plugins && c.Plugins.Share;
   try {
     if (S) { await S.share({ text: metin, dialogTitle: tt('Paylaş') }); return 'uygulama'; }
@@ -8921,7 +8936,7 @@ function yolPaylasMetni(no, yildiz, puan, davetSonuc) {
 /* ---- davet kartı (açılışta, linkle gelindiyse bir kez) ---- */
 function davetGoster() {
   const d = DAVET; if (!d || !aktifProfil()) return false;
-  DAVET = null;
+  DAVET = null; Olcum.olay('davet_acildi', { bolum: d.no });
   const b = yolBolum(d.no);
   goster(`<div class="davet-kart"><div class="davet-ikon">🎯</div>
     <h3>${tt('{ad} seni çağırıyor!', { ad: esc(d.ad) })}</h3>
@@ -8932,6 +8947,70 @@ function davetGoster() {
   $('#dv-sonra').onclick = () => acilisAc();
   return true;
 }
+
+/* =====================================================================
+   ÖLÇÜM (isimsiz oyun verisi): hangi bölüm kaç denemede geçiliyor, oyuncular ertesi gün geri geliyor mu, nerede bırakılıyor.
+   · Kişisel veri gönderilmez: isim, cümle, yazı yok. Cihaz başına rastgele bir kimlik (olcumKimlik, kayit.js) ve oyun olayları.
+   · Servis: PostHog (Avrupa sunucusu). OLCUM_ANAHTAR boşsa hiçbir şey gönderilmez (yalnız bellekte tutulur: window.__olcum).
+   · Ayarlar → "Anonim kullanım verisi" kapatılırsa gönderilmez.
+   · Olaylar 20 sn'de bir ya da 20 olay birikince toplu gönderilir; uygulama arka plana giderken de (sendBeacon).
+   Olay listesi ve önerilen grafikler: MAGAZA/OLCUM-REHBERI.md
+   ===================================================================== */
+const OLCUM_ANAHTAR = window.TE_OLCUM_ANAHTAR || '';            // PostHog proje anahtarı (phc_…); herkese açık anahtardır
+const OLCUM_ADRES = window.TE_OLCUM_ADRES || 'https://eu.i.posthog.com/batch/';
+const Olcum = (() => {
+  const kuyruk = [], oturum = Math.random().toString(36).slice(2, 12);
+  window.__olcum = [];
+  let t0 = Date.now(), sonGonder = 0;
+  function ortak() {
+    const c = window.Capacitor, p = c && c.getPlatform ? c.getPlatform() : 'web';
+    return { platform: p, dil: arayuzDili, surum: OYUN_SURUM, oturum, $lib: 'stacking-sentences' };
+  }
+  function olay(ad, o) {
+    if (!olcumIzinli()) return;
+    const e = { event: ad, timestamp: new Date().toISOString(), properties: Object.assign({ distinct_id: olcumKimlik() }, ortak(), o || {}) };
+    window.__olcum.push(e); if (window.__olcum.length > 300) window.__olcum.shift();
+    if (!OLCUM_ANAHTAR) return;
+    kuyruk.push(e);
+    if (kuyruk.length >= 20) gonder();
+  }
+  function gonder(beacon) {
+    if (!OLCUM_ANAHTAR || !kuyruk.length || !olcumIzinli()) return;
+    const paket = JSON.stringify({ api_key: OLCUM_ANAHTAR, batch: kuyruk.splice(0, 50) });
+    sonGonder = Date.now();
+    try {
+      if (beacon && navigator.sendBeacon) { navigator.sendBeacon(OLCUM_ADRES, new Blob([paket], { type: 'application/json' })); return; }
+      fetch(OLCUM_ADRES, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: paket, keepalive: true }).catch(() => { });
+    } catch (e) { }
+  }
+  setInterval(() => gonder(), 20000);
+  document.addEventListener('visibilitychange', () => {
+    if (document.hidden) { olay('oturum_ara', { sure_sn: Math.round((Date.now() - t0) / 1000) }); gonder(true); } else t0 = Date.now();
+  });
+  return { olay, gonder, kuyruk: () => kuyruk.length };
+})();
+const OYUN_SURUM = '1.0';
+
+/* ---- olaylar (oyunun kendi olay yolundan; motor değişmez) ---- */
+Olay.dinle('kayitYuklendi', () => Olcum.olay('profil_acildi', { xp: kayit.xp, seri: kayit.seri.gun, yol_acik: kayit.yol.acik }));
+Olay.dinle('bolumBasladi', v => Olcum.olay('bolum_basladi', { mod: v.mod, bolum: v.r, seviye: v.lvl, devam: !!v.devam }));
+Olay.dinle('bolumBitti', v => {
+  const o = { mod: v.mod, bolum: v.r, seviye: v.lvl, kazandi: !!v.kazandi, yildiz: v.yildiz || 0, skor: v.skor || 0 };
+  if (v.mod === 'yol' && STR && STR.yol) {
+    const y = STR.yol, R = STR.R || {}, no = y.no;
+    y.olcumDeneme = (yolDeneme[no] = (yolDeneme[no] || 0) + 1);
+    Object.assign(o, { yol_no: no, deneme: y.olcumDeneme, kalan_hamle: R.hamle || 0, neredeyse: !!y.devam, davet: !!y.davet, zorluk: y.b.zor, hedef: y.b.hedef.tur,
+      sure_sn: R.t0 ? Math.round((Date.now() - R.t0) / 1000) : 0 });
+  }
+  Olcum.olay('bolum_bitti', o);
+});
+const yolDeneme = {};   // bu oturumda bölüm başına deneme sayısı
+Olay.dinle('onlineBitti', v => Olcum.olay('online_bitti', { mod: v.mod || 'hiz', kazandi: !!v.kazandi, bot: !!v.bot }));
+Olay.dinle('hedefTamam', v => Olcum.olay('gunluk_hedef', { seri: v.seri }));
+Olay.dinle('uniteTamam', v => Olcum.olay('unite_tamam', { seviye: v.lvl, unite: v.unite }));
+// ekranlar: hangi ekranda bırakılıyor (screens.js goster çağırır)
+let olcumEkran = null;
+function olcumEkranAcildi(ad) { if (ad && ad !== olcumEkran) { olcumEkran = ad; Olcum.olay('ekran', { ad }); } }
 
 /* =====================================================================
    HAZIR EMOJİLER (online maçlar: HIZ, STRATEJİ ve sonuç ekranları; bilgisayara karşı da)
@@ -9176,6 +9255,7 @@ const dinleBtn = en => `<button class="dinle" data-en="${esc(en)}" aria-label="$
 
 function goster(html, sinif, ad) {
   ekran = ad || null; tutOpen = ad === 'tut';
+  if (typeof olcumEkranAcildi === 'function') olcumEkranAcildi(ad);   // ölçüm: ekran (olcum.js)
   card.className = 'card ' + (sinif || '');
   card.innerHTML = html;
   card.querySelectorAll('.dinle').forEach(b => b.onclick = e => { e.stopPropagation(); sesAc(); Konus.soyle(b.dataset.en, { hiz: 0.85 }); });
@@ -9637,16 +9717,19 @@ let ayarDonus = null;
 function ayarAc(oyunda, donus) {
   ayarDonus = oyunda ? showPause : (donus || ayarDonus || acilisAc);
   const A = [['muzik', 'Müzik', 'Oyun ve menü müziği'], ['efekt', 'Efektler', 'Yerleştirme, kombo ve patlama sesleri'], ['titresim', 'Titreşim', 'Doğru ve yanlış hamlede telefon hafifçe titrer'], ['ses', 'İngilizce sesli okuma', 'Cümleler ve kelimeler okunur'], ['trSes', 'Türkçe sesli okuma', 'Kurulacak cümlenin Türkçesi okunur'], ['dizilis', 'İngilizce dizilişi', 'Her cümle tamamlanınca İngilizce sırası ve altında Türkçesi gösterilir'], ['yonergeSes', 'Yönergeleri sesli oku', 'Her turun başında ne yapacağını kısaca sesli söyler']];
+  A.push(['olcum', 'Anonim kullanım verisi', 'Oyunu iyileştirmek için isimsiz oyun verisi gönderilir (isim ve yazı gönderilmez)']);
   if (Yerel.bildirimVar()) A.push(['hatirlat', 'Günlük hatırlatma', 'Hedefini tamamlamadığın günler akşam 19:00’da bir bildirim gelir']);
   let ic = '<div class="pen-ust"><h2>' + tt('Ayarlar') + '</h2></div><div class="ayarlar">';
-  A.forEach(a => { ic += `<div class="ayar"><span>${tt(a[1])}<small>${tt(a[2])}</small></span><button class="anahtar${kayit.ayar[a[0]] !== false ? ' acik' : ''}" data-a="${a[0]}"></button></div>`; });
+  A.forEach(a => { const acik = a[0] === 'olcum' ? olcumIzinli() : kayit.ayar[a[0]] !== false; ic += `<div class="ayar"><span>${tt(a[1])}<small>${tt(a[2])}</small></span><button class="anahtar${acik ? ' acik' : ''}" data-a="${a[0]}"></button></div>`; });
   ic += `</div>${hedefSecimHtml()}${dilSecimHtml()}<div class="row"><button class="sec" id="a-en">${tt('🔊 İngilizce sesi dene')}</button><button class="sec" id="a-tr">${tt('🔊 Türkçe sesi dene')}</button></div>`;
   const kb = Konus.bilgi();
   ic += `<p class="aciklama kucuk">${tt('Sesli okuma cihazın kendi okuma sesiyle yapılır.')} ${!kb.var ? tt('<b class="red">Bu tarayıcıda sesli okuma yok.</b> Chrome (Android) ya da Safari (iPhone) ile aç.') : tt('Bulunan sesler: {n} · Türkçe: {tr} · İngilizce: {en}', { n: kb.say, tr: kb.tr ? esc(kb.tr) : tt('listede yok, cihazın varsayılan Türkçe sesi denenecek'), en: kb.en ? esc(kb.en) : tt('varsayılan') })}${tt('. Türkçe okunmuyorsa telefonun ayarlarında "Metin okuma" bölümünden Türkçe ses verisini indir. Ayarlar profile kaydedilir.')}</p>`;
   ic += `<div class="pen-dip"><button class="big" id="a-geri">${tt(oyunda ? 'GERİ' : 'TAMAM')}</button></div>`;
   goster(ic, '', 'ayar');
   card.querySelectorAll('.anahtar').forEach(b => b.onclick = () => {
-    const k = b.dataset.a; kayit.ayar[k] = kayit.ayar[k] === false ? true : !kayit.ayar[k]; kaydet();
+    const k = b.dataset.a;
+    if (k === 'olcum') { olcumIzinYaz(!olcumIzinli()); b.classList.toggle('acik', olcumIzinli()); return; }   // cihaz ayarı (profilden bağımsız)
+    kayit.ayar[k] = kayit.ayar[k] === false ? true : !kayit.ayar[k]; kaydet();
     b.classList.toggle('acik', kayit.ayar[k] !== false); Ses.ayarla(); musicBtnYaz(); if (!kayit.ayar.ses && !kayit.ayar.trSes) Konus.sus();
     if (k === 'hatirlat') Yerel.hatirlatDegisti(); if (k === 'titresim' && kayit.ayar.titresim) Yerel.titret('orta');
   });
@@ -9798,6 +9881,7 @@ async function boot() {
   if (aktifProfil()) acilisAc(); else profilsizAc();      // hiç profil yoksa rehberli ilk cümle (ilk.js)
   kayitUyarilariGoster();                             // bozuk kayıt onarıldıysa oyuncuya bir kez söylenir
   window.__acildi = true;
+  Olcum.olay('oyun_acildi', { profil: !!aktifProfil(), davet: !!DAVET });
   requestAnimationFrame(frame);
 }
 let resizeT = null;
