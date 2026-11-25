@@ -101,6 +101,7 @@ function acilisAc() {
   D = null;
   Ses.muzik('menu'); Konus.sus();
   const p = aktifProfil(); if (!p) { profilsizAc(); return; }
+  if (DAVET && davetGoster()) return;   // linkle gelen "Beni geç" daveti (paylas.js)
   const oz = profilOzet(p.id), y = yarimOku();
   // sade ana menü (25 Kasım 2026): üstte profil ve günlük halka, bir sıra kısayol (hazır olanda nokta), ortada büyük ▶ OYNA
   const no = Math.min(YOL_TOPLAM, kayit.yol.acik), B = YOL_BOLGE[Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE))];
@@ -349,6 +350,7 @@ function sonucGoster() {
   if (d.kazandi && !d.antrenman) ic += `<div class="buyuk-yildiz">${yildizHtml(d.yildiz)}</div><div class="sonuc-alt kucuk">${tt('★ kazandın · ★★ en çok 3 hata · ★★★ en çok 1 hata')}</div>`;
   ic += uniteTamamHtml(d.uniteTamam);                 // ünite ilk kez tamamlandı (harita.js)
   ic += gorevSonucHtml(d.gorevSonuc);                 // Günün Görevi (gorev.js)
+  if (d.gunluk && d.kazandi) ic += `<div class="paylas-satir"><span class="kareler">${(d.kareler || []).join('')}</span>${paylasDugme('s-paylas')}</div>`;
   ic += rozetSonucHtml(d.yeniRozet);                  // yeni açılan rozetler (rozet.js)
   if (d.kelime) {
     const pi = paketIlerleme(paketBul(d.r.id));
@@ -391,6 +393,7 @@ function sonucGoster() {
   if (d.yeniRozet && d.yeniRozet.length) sonra(1.3, () => Ses.cal('yukselis', { ses: 0.6 }));
   const r = d.r, kel = d.kelime;
   if (sonraki) $('#s-sonra').onclick = () => kel ? dojoBaslat(sonraki, { kelime: sonraki }) : cumleDojo(sonraki);
+  const ps = $('#s-paylas'); if (ps) ps.onclick = () => paylas(gorevPaylasMetni(d));
   const t = $('#s-tekrar'); if (t) t.onclick = () => d.gunluk ? gorevBaslat() : kel ? dojoBaslat(r, { kelime: r }) : dojoBaslat(r);
   $('#s-harita').onclick = () => d.gunluk ? acilisAc() : haritaAc(r.lvl && SEVIYE[r.lvl] ? r.lvl : null);
 }

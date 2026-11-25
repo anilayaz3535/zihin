@@ -949,5 +949,24 @@ DIL_SOZLUK.en = {
 "OYNA": "PLAY",
 "Bölüm Yolu haritası": "Level Path map",
 "⚡ Hız · 🧠 Strateji": "⚡ Speed · 🧠 Strategy",
-"A1 → C2 dersler": "A1 → C2 lessons"
+"A1 → C2 dersler": "A1 → C2 lessons",
+// paylaş ve davet
+"Arkadaşın": "Your friend",
+"Paylaş": "Share",
+"Kopyalandı! İstediğin yere yapıştır.": "Copied! Paste it anywhere.",
+"Paylaşılamadı.": "Could not share.",
+"PAYLAŞ": "SHARE",
+"Ben bugünkü İngilizce cümleleri kurdum. Sen de dene!": "I built today's English sentences. Your turn!",
+"puan": "pts",
+"Beni geçebilir misin? 👉": "Can you beat me? 👉",
+"{ad} seni çağırıyor!": "{ad} is calling you!",
+"{ad}, Bölüm {n}’de {p} puan yaptı. Onu geçebilir misin?": "{ad} scored {p} points on Level {n}. Can you beat that?",
+"Sonra": "Later",
+"GEÇTİN! 🎉": "YOU BEAT IT! 🎉",
+"BERABERE!": "TIE!",
+"Az kaldı, tekrar dene!": "So close, try again!",
+"{ad} {a} – ben {b}": "{ad} {a} – me {b}",
+"Online maçı kazandım!": "I won an online match!",
+"Sen de bana karşı oyna:": "Play against me:",
+"KENDİ YOLUNA DÖN · BÖLÜM {n}": "BACK TO YOUR PATH · LEVEL {n}"
 };

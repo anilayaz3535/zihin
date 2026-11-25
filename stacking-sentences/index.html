@@ -1073,6 +1073,16 @@
   .harita-link{align-self:center;background:none;border:0;color:#fde7c7;font:600 14px Fredoka,sans-serif;text-decoration:underline;cursor:pointer;margin-top:-2px}
   .ana-ikili.kucuk{gap:8px}.ana-ikili.kucuk .ana-btn{padding:10px}.ana-ikili.kucuk .ana-btn i{font-size:26px}.ana-ikili.kucuk .ana-btn b{font-size:18px}.ana-ikili.kucuk .ana-btn small{font-size:12px}
   @media (prefers-reduced-motion:reduce){.oyna-btn,.kisayol.hazir i{animation:none}}
+
+  /* ---------- paylaş ve davet (paylas.js) ---------- */
+  .paylas-btn{display:block;margin:10px auto 4px;padding:10px 22px;font-size:17px;background:linear-gradient(#7fd0ff,#2f86e0)!important;color:#fff!important;border-color:#c9f0ff!important;box-shadow:0 4px 0 #1d5b9e!important}
+  .paylas-satir{display:flex;flex-direction:column;align-items:center;margin:6px 0}
+  .paylas-satir .kareler{font-size:26px;letter-spacing:2px}
+  .davet-kart{text-align:center;padding:16px;border-radius:20px;background:linear-gradient(135deg,#ffd451,#ff8a2a);color:#4a1f10;border:3px solid #fff;margin-bottom:12px}
+  .davet-ikon{font-size:60px;line-height:1}.davet-kart h3{margin:6px 0;font-size:24px}.davet-kart p{font-size:16px;margin:6px 0}.davet-kart .y-hedef{color:#4a1f10;text-shadow:none;font-size:20px}
+  .davet-sonuc{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin:8px 0;padding:10px;border-radius:14px;background:rgba(0,0,0,.25);font-size:17px}
+  .davet-sonuc b{color:#ffd451;font-size:22px}.davet-sonuc strong{flex-basis:100%;font-size:20px;color:#ff9fb0}
+  .davet-sonuc.gecti strong{color:#7dff8e}
 </style>
 </head>
 <body class="port">
@@ -2266,7 +2276,26 @@ DIL_SOZLUK.en = {
 "OYNA": "PLAY",
 "Bölüm Yolu haritası": "Level Path map",
 "⚡ Hız · 🧠 Strateji": "⚡ Speed · 🧠 Strategy",
-"A1 → C2 dersler": "A1 → C2 lessons"
+"A1 → C2 dersler": "A1 → C2 lessons",
+// paylaş ve davet
+"Arkadaşın": "Your friend",
+"Paylaş": "Share",
+"Kopyalandı! İstediğin yere yapıştır.": "Copied! Paste it anywhere.",
+"Paylaşılamadı.": "Could not share.",
+"PAYLAŞ": "SHARE",
+"Ben bugünkü İngilizce cümleleri kurdum. Sen de dene!": "I built today's English sentences. Your turn!",
+"puan": "pts",
+"Beni geçebilir misin? 👉": "Can you beat me? 👉",
+"{ad} seni çağırıyor!": "{ad} is calling you!",
+"{ad}, Bölüm {n}’de {p} puan yaptı. Onu geçebilir misin?": "{ad} scored {p} points on Level {n}. Can you beat that?",
+"Sonra": "Later",
+"GEÇTİN! 🎉": "YOU BEAT IT! 🎉",
+"BERABERE!": "TIE!",
+"Az kaldı, tekrar dene!": "So close, try again!",
+"{ad} {a} – ben {b}": "{ad} {a} – me {b}",
+"Online maçı kazandım!": "I won an online match!",
+"Sen de bana karşı oyna:": "Play against me:",
+"KENDİ YOLUNA DÖN · BÖLÜM {n}": "BACK TO YOUR PATH · LEVEL {n}"
 };
 
 /* =====================================================================
@@ -6811,8 +6840,10 @@ function onlineSonucGoster() {
     ${D.ilerleme ? `<div class="sonuc-alt">+${D.ilerleme.xp} XP · 🔥 ${tt('{n} gün seri', { n: D.ilerleme.seri })}</div>` : ''}
     <div class="sonuc-alt kucuk">${OD.bot ? '🤖 ' + tt('Bilgisayara karşı · ') : ''}${tt('Online: {m} maç · {g} galibiyet', { m: kayit.istat.online || 0, g: kayit.istat.onlineGalibiyet || 0 })}${D.hatalar.length ? tt(' · hataların Defterim’e eklendi') : ''}</div>
     ${OD.bot ? '<button class="big" id="os-tekrar">' + tt('TEKRAR OYNA') + '</button>' : OD.rol === 'ev' && OD.rakip ? '<button class="big" id="os-tekrar">' + tt('TEKRAR KAPIŞ') + '</button>' : OD.rakip ? `<p class="aciklama" style="text-align:center">${tt('{ad} yeni maç başlatırsa oyun kendiliğinden açılır.', { ad: esc(OD.rakip.ad) })}</p>` : ''}
+    ${kaz ? paylasDugme('os-paylas') : ''}
     <div class="row"><button class="sec" id="os-cik">${tt(OD.bot ? 'ÇIK' : 'ODADAN ÇIK')}</button></div>`, '', 'onlineSonuc');
   if (typeof emoYerlestir === 'function') emoYerlestir();   // emoji düğmesi hemen yerine
+  const op = $('#os-paylas'); if (op) op.onclick = () => paylas(`Stacking Sentences · 🏁 ⚡ ${tt('HIZ')} · ${D.r.lvl}\n🏆 ${tt('Online maçı kazandım!')} ${(b.cumle || 0)}/${top} · ⭐ ${b.skor || 0}\n${tt('Sen de bana karşı oyna:')} ${OYUN_URL}`);
   const t = $('#os-tekrar'); if (t) t.onclick = () => { if (OD.bot) { botMacBaslat('hiz', D.r.lvl); return; } D = null; lobiAc(); };
   $('#os-cik').onclick = () => { odadanCik(); onlineAc(); };
 }
@@ -8237,8 +8268,10 @@ function strSonucGoster() {
     <div class="kiyas-kutu">${turlar}${kiyasSatir(tt('Toplam'), s.pb, s.pr, s.pb, s.pr)}</div>
     ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
     ${bot ? `<button class="big" id="ss-tekrar">${tt('TEKRAR OYNA')}</button>` : ev && OD.rakip ? `<button class="big" id="ss-tekrar">${tt('TEKRAR KAPIŞ')}</button>` : OD.rakip ? `<p class="aciklama" style="text-align:center">${tt('{ad} yeni maç başlatırsa oyun kendiliğinden açılır.', { ad: esc(OD.rakip.ad) })}</p>` : ''}
+    ${k === 'kazandin' ? paylasDugme('ss-paylas') : ''}
     <div class="row"><button class="sec" id="ss-cik">${tt(bot ? 'ÇIK' : 'ODADAN ÇIK')}</button></div>`, '', 'strSonuc');
   if (typeof emoYerlestir === 'function') emoYerlestir();   // emoji düğmesi hemen yerine
+  const sp = $('#ss-paylas'); if (sp) sp.onclick = () => paylas(`Stacking Sentences · 🧠 ${tt('Strateji')} · ${M.lvl}\n🏆 ${s.b}–${s.r} · 💥 ${s.pb} ${tt('puan')}\n${tt('Sen de bana karşı oyna:')} ${OYUN_URL}`);
   const t = $('#ss-tekrar');
   if (t) t.onclick = () => { const lvl = M.lvl; strKapat(); if (bot) botMacBaslat('strateji', lvl); else { lobiAc(); } };
   $('#ss-cik').onclick = () => { strKapat(); if (bot) onlineModAc('strateji'); else { odadanCik(); onlineModAc('strateji'); } };
@@ -8509,14 +8542,14 @@ function yolBaslangic(no) {
   $('#y-oyna').onclick = () => { sesAc(); yolOyna(no); };
   $('#y-harita').onclick = yolHaritaAc;
 }
-function yolOyna(no) {
+function yolOyna(no, o) {
   if (!kayit.strRehber) {   // daha önce strateji alıştırması yapılmadıysa önce o
-    strRehberTek(); STR.R.rehber.sonra = () => { strKapat(); yolOyna(no); }; return;
+    strRehberTek(); STR.R.rehber.sonra = () => { strKapat(); yolOyna(no, o); }; return;
   }
   const b = yolBolum(no);
   strKapat(); if (G.state !== 'menu') demo();
   D = null; Konus.sus(); Ses.muzik('strateji'); Ses.gerilim(0);
-  STR = { mac: 'yol', yol: { no, b, devam: false }, lvl: b.B.lvl, tohum: 'yol:' + no, cum: [], tur: 0, ben: [], rakipS: [], rakip: { ad: '', bot: true }, online: false, karar: null, xp0: kayit.xp, R: null, zaman: null };
+  STR = { mac: 'yol', yol: { no, b, devam: false, davet: (o && o.davet) || null }, lvl: b.B.lvl, tohum: 'yol:' + no, cum: [], tur: 0, ben: [], rakipS: [], rakip: { ad: '', bot: true }, online: false, karar: null, xp0: kayit.xp, R: null, zaman: null };
   ekranlariKapat(); strEkranKur();
   STR.R = { s: b.s, T: yolKopya(b.T), hamle: b.hamle, secim: Array(b.T.n).fill(null), secili: -1, sure: Infinity, t0: Date.now(), bitti: false, sonuc: null };
   strCiz(true);
@@ -8597,17 +8630,19 @@ function yolBitti(dogru) {
 function yolSonuc(o) {
   const M = STR, b = M.yol.b, Y = kayit.yol, no = b.no;
   let yildiz = 0, yeniEn = false;
-  if (o.kazandi) {
+  const dv = M.yol.davet, ileride = dv && no > Y.acik;   // davetle oynanan, henüz açılmamış bölüm: ilerleme değişmez
+  if (o.kazandi && ileride) yildiz = 1 + (o.puan >= b.esik[0] ? 1 : 0) + (o.puan >= b.esik[1] ? 1 : 0);
+  if (o.kazandi && !ileride) {
     yildiz = 1 + (o.puan >= b.esik[0] ? 1 : 0) + (o.puan >= b.esik[1] ? 1 : 0);
     Y.yildiz[no] = Math.max(Y.yildiz[no] || 0, yildiz);
     if (o.puan > (Y.enIyi[no] || 0)) { Y.enIyi[no] = o.puan; yeniEn = true; }
     Y.acik = Math.max(Y.acik, Math.min(YOL_TOPLAM, no + 1));
   }
-  const sandik = o.kazandi ? sandikKazan(yildiz === 3 || b.zor === 'boss' ? 'altin' : b.zor === 'zor' ? 'gumus' : 'tahta') : null;   // odul.js
+  const sandik = o.kazandi && !ileride ? sandikKazan(yildiz === 3 || b.zor === 'boss' ? 'altin' : b.zor === 'zor' ? 'gumus' : 'tahta') : null;   // odul.js
   kaydet();
   Olay.yay('bolumBitti', { mod: 'yol', r: 'yol' + no, lvl: b.B.lvl, kazandi: o.kazandi, yildiz, skor: o.puan, istat: {}, enKombo: 0, rekor: yeniEn });
   const xp = kayit.xp - M.xp0, oran = Math.min(1, o.v / b.hedef.sayi), p = $('#st-panel');
-  const sonraki = o.kazandi && no < YOL_TOPLAM, bolgeBitti = o.kazandi && no % YOL_BOLUM_BOLGE === 0 && no < YOL_TOPLAM;
+  const sonraki = o.kazandi && no < YOL_TOPLAM && !ileride, bolgeBitti = o.kazandi && no % YOL_BOLUM_BOLGE === 0 && no < YOL_TOPLAM;
   const bas = o.kazandi ? (yildiz === 3 ? tt('MÜKEMMEL!') : yildiz === 2 ? tt('HARİKA!') : tt('BÖLÜM GEÇİLDİ!')) : o.yanlis ? tt('CÜMLE YANLIŞ') : oran >= 0.6 ? tt('NEREDEYSE!') : tt('OLMADI');
   p.innerHTML = `<div class="st-kart y-sonuc"><h3 class="${o.kazandi ? 'kaz' : 'kay'}">${bas}</h3>
     ${o.kazandi ? `<div class="y-yildizlar buyuk">${[0, 1, 2].map(i => `<i class="${i < yildiz ? 'on' : ''}" style="animation-delay:${0.2 + i * 0.35}s">★</i>`).join('')}</div>` : ''}
@@ -8615,19 +8650,24 @@ function yolSonuc(o) {
     ${o.crush ? `<div class="st-not">💥 ${tt('CÜMLE CRUSH! Kalan {n} hamle patladı', { n: o.crush })}</div>` : ''}
     ${o.ozelBonus ? `<div class="st-not">🌟 ${tt('Kalan özel karolar: +{n}', { n: o.ozelBonus })}</div>` : ''}
     ${!o.kazandi && !o.yanlis ? `<div class="y-ilerle"><span>${yolHedefYazi(b.hedef, true).split(' ')[0]} ${o.v} / ${b.hedef.sayi}</span><u style="width:${Math.round(oran * 100)}%"></u></div><p>${tt(oran >= 0.6 ? 'Çok az kaldı! Renkleri kelimelerin yanına biraz daha topla.' : 'Kelimelerin yanına daha çok aynı renk getir.')}</p>` : ''}
+    ${dv ? `<div class="davet-sonuc ${o.puan > dv.puan ? 'gecti' : ''}"><span>${esc(dv.ad)} <b>${dv.puan}</b></span><span>–</span><span>${tt('Sen')} <b>${o.puan}</b></span>
+      <strong>${o.puan > dv.puan ? tt('GEÇTİN! 🎉') : o.puan === dv.puan ? tt('BERABERE!') : tt('Az kaldı, tekrar dene!')}</strong></div>` : ''}
+    ${o.kazandi ? paylasDugme('y-paylas') : ''}
     ${o.yanlis ? `<div class="st-dogru"><small>${tt('Doğru cümle')}</small>${dinleBtn(b.s.en)} <b>${esc(b.s.en)}</b><small>${esc(b.s.tr)}</small></div>` : ''}
     ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
     ${sandik ? sandikKazanHtml(sandik) : ''}
     ${M.yol.etkinlik ? `<div class="sonuc-alt etk-kazanc">${etkTema().i} ${tt(etkTema().ad)}: +${M.yol.etkinlik} ${etkTema().jeton}</div>` : ''}
     ${bolgeBitti ? `<div class="y-yeni"><b>${tt('YENİ BÖLGE AÇILDI!')}</b> ${YOL_BOLGE[b.bi + 1].i} ${tt(YOL_BOLGE[b.bi + 1].ad)}</div>` : ''}
-    ${sonraki ? `<button class="big" id="y-sonraki">${tt('SONRAKİ BÖLÜM ▶')}</button>` : `<button class="big" id="y-tekrar">${tt('TEKRAR DENE')}</button>`}
-    <div class="row">${sonraki ? `<button class="sec" id="y-tekrar">${tt('TEKRAR OYNA')}</button>` : ''}<button class="sec" id="y-harita">${tt('HARİTA')}</button></div></div>`;
+    ${sonraki ? `<button class="big" id="y-sonraki">${tt('SONRAKİ BÖLÜM ▶')}</button>` : ileride && o.kazandi ? `<button class="big" id="y-kendi">${tt('KENDİ YOLUNA DÖN · BÖLÜM {n}', { n: Y.acik })}</button>` : `<button class="big" id="y-tekrar">${tt('TEKRAR DENE')}</button>`}
+    <div class="row">${sonraki || (ileride && o.kazandi) ? `<button class="sec" id="y-tekrar">${tt('TEKRAR OYNA')}</button>` : ''}<button class="sec" id="y-harita">${tt('HARİTA')}</button></div></div>`;
   p.querySelectorAll('.dinle').forEach(x => x.onclick = e => { e.stopPropagation(); sesAc(); Konus.soyle(x.dataset.en, { hiz: 0.85 }); });
   p.classList.add('acik');
   Ses.cal(o.kazandi ? 'zafer' : 'yenilgi', { ses: o.kazandi ? 0.9 : 0.6 });
   if (o.kazandi) Yerel.titret('basari');
   const s = $('#y-sonraki'); if (s) s.onclick = () => yolBaslangic(no + 1);
-  $('#y-tekrar').onclick = () => yolOyna(no);
+  const kd = $('#y-kendi'); if (kd) kd.onclick = () => yolBaslangic(Y.acik);
+  const pb = $('#y-paylas'); if (pb) pb.onclick = () => paylas(yolPaylasMetni(no, yildiz, o.puan, dv ? '\n' + tt('{ad} {a} – ben {b}', { ad: dv.ad, a: dv.puan, b: o.puan }) : ''));
+  $('#y-tekrar').onclick = () => yolOyna(no, dv ? { davet: dv } : null);
   $('#y-harita').onclick = yolHaritaAc;
 }
 
@@ -8901,6 +8941,77 @@ function etkAl(i) {
 }
 
 /* =====================================================================
+   PAYLAŞ VE DAVET ("Beni geç")
+   · Sonuç ekranlarında 📤 Paylaş: Wordle gibi emojili sonuç metni + oyunun linki. Uygulamada telefonun paylaş menüsü
+     (Capacitor Share), tarayıcıda navigator.share, o da yoksa panoya kopyalama.
+   · Günün Görevi: her tur bir kare (🟩 hatasız cümle · 🟨 hatalı cümle · 🟦 bulunan hata · 🟥 kaçırılan hata), yıldızlar, süre.
+   · Bölüm Yolu: yıldızlar, puan; link "#davet=y.<bölüm>.<puan>.<ad>" taşır. Linki açan oyuncu o bölümü oynar (kilitli olsa da,
+     ilerlemesi değişmez), sonunda iki puan karşılaştırılır ve kendi sonucunu geri paylaşabilir.
+   · OYUN_URL: oyunun herkese açık adresi (mağaza linkleri hazır olunca buraya yazılır).
+   ===================================================================== */
+const OYUN_URL = 'https://anilayaz3535.github.io/zihin/stacking-sentences/';
+let DAVET = null;   // { tur: 'y', no, puan, ad } — linkle gelen davet (bir kez gösterilir)
+function davetOku(h) {
+  const m = /davet=y\.(\d{1,3})\.(\d{1,6})\.([^&]{1,60})/.exec(String(h || ''));
+  if (!m) return null;
+  const no = +m[1], puan = +m[2]; let ad = 'Arkadaşın';
+  try { ad = temizAd(decodeURIComponent(m[3])); } catch (e) { }
+  return no >= 1 && no <= YOL_TOPLAM ? { tur: 'y', no, puan, ad } : null;
+}
+try { DAVET = davetOku(location.hash); if (DAVET && history.replaceState) history.replaceState(null, '', location.pathname + location.search); } catch (e) { }
+function davetLink(no, puan) {
+  const ad = encodeURIComponent((aktifProfil() && aktifProfil().ad) || tt('Arkadaşın'));
+  return OYUN_URL + '#davet=y.' + no + '.' + puan + '.' + ad;
+}
+async function paylas(metin) {
+  sesAc(); window.__paylasilan.push(metin);
+  const c = window.Capacitor, S = c && c.isNativePlatform && c.isNativePlatform() && c.Plugins && c.Plugins.Share;
+  try {
+    if (S) { await S.share({ text: metin, dialogTitle: tt('Paylaş') }); return 'uygulama'; }
+    if (navigator.share) { await navigator.share({ text: metin }); return 'paylas'; }
+  } catch (e) { if (e && (e.name === 'AbortError' || /cancel/i.test(e.message || ''))) return 'iptal'; }
+  try { await navigator.clipboard.writeText(metin); not(tt('Kopyalandı! İstediğin yere yapıştır.')); return 'pano'; } catch (e) { }
+  not(tt('Paylaşılamadı.')); return 'yok';
+}
+window.__paylasilan = [];   // test: son paylaşılan metinler
+function paylasDugme(id) { return `<button class="sec paylas-btn" id="${id}">📤 ${tt('PAYLAŞ')}</button>`; }
+const yildizEmoji = n => '⭐'.repeat(n) + '☆'.repeat(Math.max(0, 3 - n));
+const sureMetin = sn => Math.floor(sn / 60) + ':' + String(Math.floor(sn % 60)).padStart(2, '0');
+
+/* ---- Günün Görevi: tur kareleri ---- */
+Olay.dinle('bolumBasladi', v => { if (v.mod === 'gunluk' && D) { D.kareler = []; D.gorevT0 = G.t; D.kareBekle = false; } });
+// kaçırılan "hatayı bul" turu 🟥: bir sonraki tur başlarken ya da görev biterken hâlâ bulunmamışsa
+const kareKapat = () => { if (D && D.gunluk && D.kareler && D.kareBekle) { D.kareler.push('🟥'); D.kareBekle = false; } };
+Olay.dinle('turBasladi', v => { if (!(D && D.gunluk && D.kareler)) return; kareKapat(); D.kareBekle = v.tip === 'sav'; });
+Olay.dinle('bolumBitti', v => { if (v.mod === 'gunluk') kareKapat(); });
+Olay.dinle('cumleTamam', v => { if (D && D.gunluk && D.kareler) D.kareler.push(v.kusursuz ? '🟩' : '🟨'); });
+Olay.dinle('hataBulundu', () => { if (D && D.gunluk && D.kareler) { D.kareler.push('🟦'); D.kareBekle = false; } });
+function gorevPaylasMetni(d) {
+  const sn = Math.max(0, G.t - (d.gorevT0 || 0));
+  return `Stacking Sentences · ${tt('Günün Görevi')} ${bugunAnahtar()} · ${d.r.lvl}\n${(d.kareler || []).join('')}  ${yildizEmoji(d.yildiz || 0)}  ⏱ ${sureMetin(sn)}\n` +
+    tt('Ben bugünkü İngilizce cümleleri kurdum. Sen de dene!') + '\n' + OYUN_URL;
+}
+/* ---- Bölüm Yolu ---- */
+function yolPaylasMetni(no, yildiz, puan, davetSonuc) {
+  return `Stacking Sentences · 🗺 ${tt('Bölüm {n}', { n: no })}\n${yildizEmoji(yildiz)}  ${puan} ${tt('puan')}${davetSonuc || ''}\n` +
+    tt('Beni geçebilir misin? 👉') + ' ' + davetLink(no, puan);
+}
+/* ---- davet kartı (açılışta, linkle gelindiyse bir kez) ---- */
+function davetGoster() {
+  const d = DAVET; if (!d || !aktifProfil()) return false;
+  DAVET = null;
+  const b = yolBolum(d.no);
+  goster(`<div class="davet-kart"><div class="davet-ikon">🎯</div>
+    <h3>${tt('{ad} seni çağırıyor!', { ad: esc(d.ad) })}</h3>
+    <p>${tt('{ad}, Bölüm {n}’de {p} puan yaptı. Onu geçebilir misin?', { ad: esc(d.ad), n: d.no, p: d.puan })}</p>
+    <div class="y-hedef">${yolHedefYazi(b.hedef)}</div></div>
+    <button class="big" id="dv-oyna">${tt('OYNA ▶')}</button><div class="row"><button class="sec" id="dv-sonra">${tt('Sonra')}</button></div>`, '', 'davet');
+  $('#dv-oyna').onclick = () => { sesAc(); yolOyna(d.no, { davet: d }); };
+  $('#dv-sonra').onclick = () => acilisAc();
+  return true;
+}
+
+/* =====================================================================
    HAZIR EMOJİLER (online maçlar: HIZ, STRATEJİ ve sonuç ekranları; bilgisayara karşı da)
    · Yalnız 6 hazır emoji (yazı yok: denetlenmesi gereken kullanıcı içeriği oluşmaz).
    · 😊 düğmesi → emoji çubuğu → seçilen emoji kendi avatarının yanında uçar, rakibe gider (ağ mesajı 'emo').
@@ -8928,7 +9039,7 @@ function emoBaglam() {
 let emoBtn = null, emoBar = null;
 function emoKur() {
   if (emoBtn) return;
-  emoBtn = document.createElement('button'); emoBtn.id = 'emo-btn'; emoBtn.type = 'button'; emoBtn.textContent = '😊'; emoBtn.setAttribute('aria-label', tt('Emoji gönder'));
+  emoBtn = document.createElement('button'); emoBtn.id = 'emo-btn'; emoBtn.style.display = 'none'; emoBtn.type = 'button'; emoBtn.textContent = '😊'; emoBtn.setAttribute('aria-label', tt('Emoji gönder'));
   emoBar = document.createElement('div'); emoBar.id = 'emo-bar'; emoBar.setAttribute('role', 'menu');
   emoBar.innerHTML = EMO.map((e, i) => `<button type="button" data-e="${i}" role="menuitem">${e}</button>`).join('') + `<button type="button" data-e="sus" class="emo-sus" aria-label="${tt('Rakibin emojilerini sustur')}">🔇</button>`;
   document.body.appendChild(emoBtn); document.body.appendChild(emoBar);
@@ -9234,6 +9345,7 @@ function acilisAc() {
   D = null;
   Ses.muzik('menu'); Konus.sus();
   const p = aktifProfil(); if (!p) { profilsizAc(); return; }
+  if (DAVET && davetGoster()) return;   // linkle gelen "Beni geç" daveti (paylas.js)
   const oz = profilOzet(p.id), y = yarimOku();
   // sade ana menü (25 Kasım 2026): üstte profil ve günlük halka, bir sıra kısayol (hazır olanda nokta), ortada büyük ▶ OYNA
   const no = Math.min(YOL_TOPLAM, kayit.yol.acik), B = YOL_BOLGE[Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE))];
@@ -9482,6 +9594,7 @@ function sonucGoster() {
   if (d.kazandi && !d.antrenman) ic += `<div class="buyuk-yildiz">${yildizHtml(d.yildiz)}</div><div class="sonuc-alt kucuk">${tt('★ kazandın · ★★ en çok 3 hata · ★★★ en çok 1 hata')}</div>`;
   ic += uniteTamamHtml(d.uniteTamam);                 // ünite ilk kez tamamlandı (harita.js)
   ic += gorevSonucHtml(d.gorevSonuc);                 // Günün Görevi (gorev.js)
+  if (d.gunluk && d.kazandi) ic += `<div class="paylas-satir"><span class="kareler">${(d.kareler || []).join('')}</span>${paylasDugme('s-paylas')}</div>`;
   ic += rozetSonucHtml(d.yeniRozet);                  // yeni açılan rozetler (rozet.js)
   if (d.kelime) {
     const pi = paketIlerleme(paketBul(d.r.id));
@@ -9524,6 +9637,7 @@ function sonucGoster() {
   if (d.yeniRozet && d.yeniRozet.length) sonra(1.3, () => Ses.cal('yukselis', { ses: 0.6 }));
   const r = d.r, kel = d.kelime;
   if (sonraki) $('#s-sonra').onclick = () => kel ? dojoBaslat(sonraki, { kelime: sonraki }) : cumleDojo(sonraki);
+  const ps = $('#s-paylas'); if (ps) ps.onclick = () => paylas(gorevPaylasMetni(d));
   const t = $('#s-tekrar'); if (t) t.onclick = () => d.gunluk ? gorevBaslat() : kel ? dojoBaslat(r, { kelime: r }) : dojoBaslat(r);
   $('#s-harita').onclick = () => d.gunluk ? acilisAc() : haritaAc(r.lvl && SEVIYE[r.lvl] ? r.lvl : null);
 }

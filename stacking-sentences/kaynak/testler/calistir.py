@@ -761,6 +761,37 @@ def etkinlik(b):
     return 'ISO hafta ve tema; puanlar; basamaklar bir kez ve ulaşılınca; dolu yuva; şampiyonluk ve rozet; yeni haftada sıfırlama; onarım; İngilizce'
 
 @test
+def paylas(b):
+    """Paylaş ve davet: Günün Görevi kareleri (5 cümle + 2 hata) ve metin; Bölüm Yolu metninde davet linki; linkle açılınca davet kartı,
+    o bölüm oynanır (kilitli olsa da), sonuçta karşılaştırma, ilerleme değişmez; adres satırından davet silinir; bozuk davet yok sayılır."""
+    s = Sayfa(b); s.js('kayit.strRehber = true')
+    s.pg.tap('#a-gorev', force=True); r = s.js('__ff(900, 0.03, () => G.state !== "playing" && ekran === "sonuc")'); dogru(r['done'], 'görev bitmedi')
+    kare = s.js("document.querySelector('.paylas-satir .kareler').textContent")
+    dogru(len([c for c in kare if c in '🟩🟨🟦🟥']) == 7 and kare.count('🟦') + kare.count('🟥') == 2, f'görev kareleri: {kare}')
+    s.pg.tap('#s-paylas'); m = s.js('__paylasilan[__paylasilan.length - 1]')
+    dogru(kare in m and s.js('OYUN_URL') in m and s.js('bugunAnahtar()') in m, 'görev paylaşım metni: ' + m)
+    s.js("yolOyna(1)"); s.js("""(() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, -1, h);
+      h.forEach(([a, b]) => strTasiOyuncu(a, b)); const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()""")
+    s.pg.wait_for_selector('#y-paylas', timeout=20000); s.pg.tap('#y-paylas'); m = s.js('__paylasilan[__paylasilan.length - 1]')
+    dogru('#davet=y.1.' in m and '.Test' in m and '⭐' in m, 'bölüm paylaşım metni: ' + m)
+    esit(s.js("[davetOku('#davet=y.0.5.a'), davetOku('#davet=y.999.5.a'), davetOku('#x'), davetOku('#davet=y.12.300.Mert').no]"), [None, None, None, 12], 'davet çözümleme')
+    s.kapat()
+    # linkle açılış
+    s = Sayfa(b, init=["if (!sessionStorage.getItem('dv')) { sessionStorage.setItem('dv', 1); history.replaceState(null, '', location.pathname + '#davet=y.30.100.Mert%20Can'); }", 'localStorage.setItem("x", 1)'])
+    s.js('kayit.strRehber = true'); s.js('acilisAc()') if s.js('ekran') != 'davet' else None
+    esit(s.js('ekran'), 'davet', 'davet kartı'); dogru('Mert Can' in s.js('card.innerText') and '100' in s.js('card.innerText'), 'davet kartı yazısı')
+    dogru('davet' not in s.js('location.href'), 'adres satırında davet kaldı'); s.foto('davet_kart')
+    s.pg.tap('#dv-oyna'); esit((s.js('STR.yol.no'), s.js('STR.yol.davet.ad')), (30, 'Mert Can'), 'davetle bölüm 30')
+    s.js("""(() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, B.hedef.renk == null ? -1 : B.hedef.renk, h);
+      h.forEach(([a, b]) => strTasiOyuncu(a, b)); const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()""")
+    s.pg.wait_for_selector('.davet-sonuc', timeout=20000); dogru('GEÇTİN' in s.js("document.querySelector('.davet-sonuc').innerText"), 'uzman 100 puanı geçemedi'); s.foto('davet_sonuc')
+    esit((s.js('kayit.yol.acik'), s.js('kayit.yol.yildiz[30] || 0'), s.js('kayit.sandik.slot.length')), (1, 0, 0), 'davetle oynanan kilitli bölüm ilerlemeyi değiştirdi')
+    s.pg.tap('#y-paylas'); dogru('Mert Can 100' in s.js('__paylasilan[__paylasilan.length - 1]'), 'karşılaştırma paylaşılmadı')
+    dogru(s.js("!document.getElementById('y-sonraki') && !!document.getElementById('y-kendi')"), 'kilitli davet bölümünden sonra SONRAKİ BÖLÜM çıktı')
+    esit(s.hatalar(), [], 'JS hataları'); s.kapat()
+    return 'görev kareleri ve metni; bölüm davet linki; davet çözümleme; linkle açılış, kart, oynama, karşılaştırma, ilerleme korunur'
+
+@test
 def hiz_bot(b):
     """HIZ: seviye seçimi ve bilgisayara karşı maç: seçilen seviyenin cümleleri, bilgisayar cümleleri zamanla bitirir, karar ve sonuç ekranı."""
     s = Sayfa(b)

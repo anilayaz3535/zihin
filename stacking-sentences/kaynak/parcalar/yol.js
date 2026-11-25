@@ -164,14 +164,14 @@ function yolBaslangic(no) {
   $('#y-oyna').onclick = () => { sesAc(); yolOyna(no); };
   $('#y-harita').onclick = yolHaritaAc;
 }
-function yolOyna(no) {
+function yolOyna(no, o) {
   if (!kayit.strRehber) {   // daha önce strateji alıştırması yapılmadıysa önce o
-    strRehberTek(); STR.R.rehber.sonra = () => { strKapat(); yolOyna(no); }; return;
+    strRehberTek(); STR.R.rehber.sonra = () => { strKapat(); yolOyna(no, o); }; return;
   }
   const b = yolBolum(no);
   strKapat(); if (G.state !== 'menu') demo();
   D = null; Konus.sus(); Ses.muzik('strateji'); Ses.gerilim(0);
-  STR = { mac: 'yol', yol: { no, b, devam: false }, lvl: b.B.lvl, tohum: 'yol:' + no, cum: [], tur: 0, ben: [], rakipS: [], rakip: { ad: '', bot: true }, online: false, karar: null, xp0: kayit.xp, R: null, zaman: null };
+  STR = { mac: 'yol', yol: { no, b, devam: false, davet: (o && o.davet) || null }, lvl: b.B.lvl, tohum: 'yol:' + no, cum: [], tur: 0, ben: [], rakipS: [], rakip: { ad: '', bot: true }, online: false, karar: null, xp0: kayit.xp, R: null, zaman: null };
   ekranlariKapat(); strEkranKur();
   STR.R = { s: b.s, T: yolKopya(b.T), hamle: b.hamle, secim: Array(b.T.n).fill(null), secili: -1, sure: Infinity, t0: Date.now(), bitti: false, sonuc: null };
   strCiz(true);
@@ -252,17 +252,19 @@ function yolBitti(dogru) {
 function yolSonuc(o) {
   const M = STR, b = M.yol.b, Y = kayit.yol, no = b.no;
   let yildiz = 0, yeniEn = false;
-  if (o.kazandi) {
+  const dv = M.yol.davet, ileride = dv && no > Y.acik;   // davetle oynanan, henüz açılmamış bölüm: ilerleme değişmez
+  if (o.kazandi && ileride) yildiz = 1 + (o.puan >= b.esik[0] ? 1 : 0) + (o.puan >= b.esik[1] ? 1 : 0);
+  if (o.kazandi && !ileride) {
     yildiz = 1 + (o.puan >= b.esik[0] ? 1 : 0) + (o.puan >= b.esik[1] ? 1 : 0);
     Y.yildiz[no] = Math.max(Y.yildiz[no] || 0, yildiz);
     if (o.puan > (Y.enIyi[no] || 0)) { Y.enIyi[no] = o.puan; yeniEn = true; }
     Y.acik = Math.max(Y.acik, Math.min(YOL_TOPLAM, no + 1));
   }
-  const sandik = o.kazandi ? sandikKazan(yildiz === 3 || b.zor === 'boss' ? 'altin' : b.zor === 'zor' ? 'gumus' : 'tahta') : null;   // odul.js
+  const sandik = o.kazandi && !ileride ? sandikKazan(yildiz === 3 || b.zor === 'boss' ? 'altin' : b.zor === 'zor' ? 'gumus' : 'tahta') : null;   // odul.js
   kaydet();
   Olay.yay('bolumBitti', { mod: 'yol', r: 'yol' + no, lvl: b.B.lvl, kazandi: o.kazandi, yildiz, skor: o.puan, istat: {}, enKombo: 0, rekor: yeniEn });
   const xp = kayit.xp - M.xp0, oran = Math.min(1, o.v / b.hedef.sayi), p = $('#st-panel');
-  const sonraki = o.kazandi && no < YOL_TOPLAM, bolgeBitti = o.kazandi && no % YOL_BOLUM_BOLGE === 0 && no < YOL_TOPLAM;
+  const sonraki = o.kazandi && no < YOL_TOPLAM && !ileride, bolgeBitti = o.kazandi && no % YOL_BOLUM_BOLGE === 0 && no < YOL_TOPLAM;
   const bas = o.kazandi ? (yildiz === 3 ? tt('MÜKEMMEL!') : yildiz === 2 ? tt('HARİKA!') : tt('BÖLÜM GEÇİLDİ!')) : o.yanlis ? tt('CÜMLE YANLIŞ') : oran >= 0.6 ? tt('NEREDEYSE!') : tt('OLMADI');
   p.innerHTML = `<div class="st-kart y-sonuc"><h3 class="${o.kazandi ? 'kaz' : 'kay'}">${bas}</h3>
     ${o.kazandi ? `<div class="y-yildizlar buyuk">${[0, 1, 2].map(i => `<i class="${i < yildiz ? 'on' : ''}" style="animation-delay:${0.2 + i * 0.35}s">★</i>`).join('')}</div>` : ''}
@@ -270,18 +272,23 @@ function yolSonuc(o) {
     ${o.crush ? `<div class="st-not">💥 ${tt('CÜMLE CRUSH! Kalan {n} hamle patladı', { n: o.crush })}</div>` : ''}
     ${o.ozelBonus ? `<div class="st-not">🌟 ${tt('Kalan özel karolar: +{n}', { n: o.ozelBonus })}</div>` : ''}
     ${!o.kazandi && !o.yanlis ? `<div class="y-ilerle"><span>${yolHedefYazi(b.hedef, true).split(' ')[0]} ${o.v} / ${b.hedef.sayi}</span><u style="width:${Math.round(oran * 100)}%"></u></div><p>${tt(oran >= 0.6 ? 'Çok az kaldı! Renkleri kelimelerin yanına biraz daha topla.' : 'Kelimelerin yanına daha çok aynı renk getir.')}</p>` : ''}
+    ${dv ? `<div class="davet-sonuc ${o.puan > dv.puan ? 'gecti' : ''}"><span>${esc(dv.ad)} <b>${dv.puan}</b></span><span>–</span><span>${tt('Sen')} <b>${o.puan}</b></span>
+      <strong>${o.puan > dv.puan ? tt('GEÇTİN! 🎉') : o.puan === dv.puan ? tt('BERABERE!') : tt('Az kaldı, tekrar dene!')}</strong></div>` : ''}
+    ${o.kazandi ? paylasDugme('y-paylas') : ''}
     ${o.yanlis ? `<div class="st-dogru"><small>${tt('Doğru cümle')}</small>${dinleBtn(b.s.en)} <b>${esc(b.s.en)}</b><small>${esc(b.s.tr)}</small></div>` : ''}
     ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
     ${sandik ? sandikKazanHtml(sandik) : ''}
     ${M.yol.etkinlik ? `<div class="sonuc-alt etk-kazanc">${etkTema().i} ${tt(etkTema().ad)}: +${M.yol.etkinlik} ${etkTema().jeton}</div>` : ''}
     ${bolgeBitti ? `<div class="y-yeni"><b>${tt('YENİ BÖLGE AÇILDI!')}</b> ${YOL_BOLGE[b.bi + 1].i} ${tt(YOL_BOLGE[b.bi + 1].ad)}</div>` : ''}
-    ${sonraki ? `<button class="big" id="y-sonraki">${tt('SONRAKİ BÖLÜM ▶')}</button>` : `<button class="big" id="y-tekrar">${tt('TEKRAR DENE')}</button>`}
-    <div class="row">${sonraki ? `<button class="sec" id="y-tekrar">${tt('TEKRAR OYNA')}</button>` : ''}<button class="sec" id="y-harita">${tt('HARİTA')}</button></div></div>`;
+    ${sonraki ? `<button class="big" id="y-sonraki">${tt('SONRAKİ BÖLÜM ▶')}</button>` : ileride && o.kazandi ? `<button class="big" id="y-kendi">${tt('KENDİ YOLUNA DÖN · BÖLÜM {n}', { n: Y.acik })}</button>` : `<button class="big" id="y-tekrar">${tt('TEKRAR DENE')}</button>`}
+    <div class="row">${sonraki || (ileride && o.kazandi) ? `<button class="sec" id="y-tekrar">${tt('TEKRAR OYNA')}</button>` : ''}<button class="sec" id="y-harita">${tt('HARİTA')}</button></div></div>`;
   p.querySelectorAll('.dinle').forEach(x => x.onclick = e => { e.stopPropagation(); sesAc(); Konus.soyle(x.dataset.en, { hiz: 0.85 }); });
   p.classList.add('acik');
   Ses.cal(o.kazandi ? 'zafer' : 'yenilgi', { ses: o.kazandi ? 0.9 : 0.6 });
   if (o.kazandi) Yerel.titret('basari');
   const s = $('#y-sonraki'); if (s) s.onclick = () => yolBaslangic(no + 1);
-  $('#y-tekrar').onclick = () => yolOyna(no);
+  const kd = $('#y-kendi'); if (kd) kd.onclick = () => yolBaslangic(Y.acik);
+  const pb = $('#y-paylas'); if (pb) pb.onclick = () => paylas(yolPaylasMetni(no, yildiz, o.puan, dv ? '\n' + tt('{ad} {a} – ben {b}', { ad: dv.ad, a: dv.puan, b: o.puan }) : ''));
+  $('#y-tekrar').onclick = () => yolOyna(no, dv ? { davet: dv } : null);
   $('#y-harita').onclick = yolHaritaAc;
 }

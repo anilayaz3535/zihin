@@ -516,8 +516,10 @@ function onlineSonucGoster() {
     ${D.ilerleme ? `<div class="sonuc-alt">+${D.ilerleme.xp} XP · 🔥 ${tt('{n} gün seri', { n: D.ilerleme.seri })}</div>` : ''}
     <div class="sonuc-alt kucuk">${OD.bot ? '🤖 ' + tt('Bilgisayara karşı · ') : ''}${tt('Online: {m} maç · {g} galibiyet', { m: kayit.istat.online || 0, g: kayit.istat.onlineGalibiyet || 0 })}${D.hatalar.length ? tt(' · hataların Defterim’e eklendi') : ''}</div>
     ${OD.bot ? '<button class="big" id="os-tekrar">' + tt('TEKRAR OYNA') + '</button>' : OD.rol === 'ev' && OD.rakip ? '<button class="big" id="os-tekrar">' + tt('TEKRAR KAPIŞ') + '</button>' : OD.rakip ? `<p class="aciklama" style="text-align:center">${tt('{ad} yeni maç başlatırsa oyun kendiliğinden açılır.', { ad: esc(OD.rakip.ad) })}</p>` : ''}
+    ${kaz ? paylasDugme('os-paylas') : ''}
     <div class="row"><button class="sec" id="os-cik">${tt(OD.bot ? 'ÇIK' : 'ODADAN ÇIK')}</button></div>`, '', 'onlineSonuc');
   if (typeof emoYerlestir === 'function') emoYerlestir();   // emoji düğmesi hemen yerine
+  const op = $('#os-paylas'); if (op) op.onclick = () => paylas(`Stacking Sentences · 🏁 ⚡ ${tt('HIZ')} · ${D.r.lvl}\n🏆 ${tt('Online maçı kazandım!')} ${(b.cumle || 0)}/${top} · ⭐ ${b.skor || 0}\n${tt('Sen de bana karşı oyna:')} ${OYUN_URL}`);
   const t = $('#os-tekrar'); if (t) t.onclick = () => { if (OD.bot) { botMacBaslat('hiz', D.r.lvl); return; } D = null; lobiAc(); };
   $('#os-cik').onclick = () => { odadanCik(); onlineAc(); };
 }

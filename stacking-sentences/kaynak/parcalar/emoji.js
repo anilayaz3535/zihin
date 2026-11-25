@@ -26,7 +26,7 @@ function emoBaglam() {
 let emoBtn = null, emoBar = null;
 function emoKur() {
   if (emoBtn) return;
-  emoBtn = document.createElement('button'); emoBtn.id = 'emo-btn'; emoBtn.type = 'button'; emoBtn.textContent = '😊'; emoBtn.setAttribute('aria-label', tt('Emoji gönder'));
+  emoBtn = document.createElement('button'); emoBtn.id = 'emo-btn'; emoBtn.style.display = 'none'; emoBtn.type = 'button'; emoBtn.textContent = '😊'; emoBtn.setAttribute('aria-label', tt('Emoji gönder'));
   emoBar = document.createElement('div'); emoBar.id = 'emo-bar'; emoBar.setAttribute('role', 'menu');
   emoBar.innerHTML = EMO.map((e, i) => `<button type="button" data-e="${i}" role="menuitem">${e}</button>`).join('') + `<button type="button" data-e="sus" class="emo-sus" aria-label="${tt('Rakibin emojilerini sustur')}">🔇</button>`;
   document.body.appendChild(emoBtn); document.body.appendChild(emoBar);

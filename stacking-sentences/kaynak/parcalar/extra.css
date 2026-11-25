@@ -947,3 +947,13 @@
   .harita-link{align-self:center;background:none;border:0;color:#fde7c7;font:600 14px Fredoka,sans-serif;text-decoration:underline;cursor:pointer;margin-top:-2px}
   .ana-ikili.kucuk{gap:8px}.ana-ikili.kucuk .ana-btn{padding:10px}.ana-ikili.kucuk .ana-btn i{font-size:26px}.ana-ikili.kucuk .ana-btn b{font-size:18px}.ana-ikili.kucuk .ana-btn small{font-size:12px}
   @media (prefers-reduced-motion:reduce){.oyna-btn,.kisayol.hazir i{animation:none}}
+
+  /* ---------- paylaş ve davet (paylas.js) ---------- */
+  .paylas-btn{display:block;margin:10px auto 4px;padding:10px 22px;font-size:17px;background:linear-gradient(#7fd0ff,#2f86e0)!important;color:#fff!important;border-color:#c9f0ff!important;box-shadow:0 4px 0 #1d5b9e!important}
+  .paylas-satir{display:flex;flex-direction:column;align-items:center;margin:6px 0}
+  .paylas-satir .kareler{font-size:26px;letter-spacing:2px}
+  .davet-kart{text-align:center;padding:16px;border-radius:20px;background:linear-gradient(135deg,#ffd451,#ff8a2a);color:#4a1f10;border:3px solid #fff;margin-bottom:12px}
+  .davet-ikon{font-size:60px;line-height:1}.davet-kart h3{margin:6px 0;font-size:24px}.davet-kart p{font-size:16px;margin:6px 0}.davet-kart .y-hedef{color:#4a1f10;text-shadow:none;font-size:20px}
+  .davet-sonuc{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin:8px 0;padding:10px;border-radius:14px;background:rgba(0,0,0,.25);font-size:17px}
+  .davet-sonuc b{color:#ffd451;font-size:22px}.davet-sonuc strong{flex-basis:100%;font-size:20px;color:#ff9fb0}
+  .davet-sonuc.gecti strong{color:#7dff8e}

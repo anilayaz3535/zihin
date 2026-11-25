@@ -584,8 +584,10 @@ function strSonucGoster() {
     <div class="kiyas-kutu">${turlar}${kiyasSatir(tt('Toplam'), s.pb, s.pr, s.pb, s.pr)}</div>
     ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
     ${bot ? `<button class="big" id="ss-tekrar">${tt('TEKRAR OYNA')}</button>` : ev && OD.rakip ? `<button class="big" id="ss-tekrar">${tt('TEKRAR KAPIŞ')}</button>` : OD.rakip ? `<p class="aciklama" style="text-align:center">${tt('{ad} yeni maç başlatırsa oyun kendiliğinden açılır.', { ad: esc(OD.rakip.ad) })}</p>` : ''}
+    ${k === 'kazandin' ? paylasDugme('ss-paylas') : ''}
     <div class="row"><button class="sec" id="ss-cik">${tt(bot ? 'ÇIK' : 'ODADAN ÇIK')}</button></div>`, '', 'strSonuc');
   if (typeof emoYerlestir === 'function') emoYerlestir();   // emoji düğmesi hemen yerine
+  const sp = $('#ss-paylas'); if (sp) sp.onclick = () => paylas(`Stacking Sentences · 🧠 ${tt('Strateji')} · ${M.lvl}\n🏆 ${s.b}–${s.r} · 💥 ${s.pb} ${tt('puan')}\n${tt('Sen de bana karşı oyna:')} ${OYUN_URL}`);
   const t = $('#ss-tekrar');
   if (t) t.onclick = () => { const lvl = M.lvl; strKapat(); if (bot) botMacBaslat('strateji', lvl); else { lobiAc(); } };
   $('#ss-cik').onclick = () => { strKapat(); if (bot) onlineModAc('strateji'); else { odadanCik(); onlineModAc('strateji'); } };
