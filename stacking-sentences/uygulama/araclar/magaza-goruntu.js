@@ -16,19 +16,30 @@ const PROFIL = { tutGor: true, baslangic: 'A1', rehber: true, kelRehber: true, s
   xp: 1240, gunluk: { hedef: 50, gunler: { [gun(0)]: 35, [gun(1)]: 60, [gun(2)]: 55 } }, seri: { gun: 12, enUzun: 12, sonGun: gun(1), dondurma: 1, donan: [] },
   gorev: { son: gun(1), seri: 3, enUzun: 3, toplam: 5, gunler: gorevG }, istat: { dojo: 20, zafer: 18, online: 2, onlineGalibiyet: 1, cumle: 96, kusursuz: 61, hataBul: 27, enKombo: 14 }, best: 18650 };
 const kel = {}; ['apple','book','water','house','happy','school','friend','mother','coffee','table'].forEach((w, i) => kel[w] = [2, 1e9, 0]); PROFIL.kel = kel;
+const yy = {}; for (let i = 1; i <= 13; i++) yy[i] = i % 5 ? 3 : 2;
+Object.assign(PROFIL, { strRehber: true, yol: { acik: 14, yildiz: yy, enIyi: {} }, envanter: { hamle3: 2, cekic: 3, miknatis: 1 },
+  sandik: { slot: [{ tur: 'altin', t: Date.now() - 6e5, acilis: Date.now() - 6e5 }, { tur: 'gumus', t: Date.now(), acilis: null }, { tur: 'tahta', t: Date.now(), acilis: null }] },
+  cark: { son: null } });
 const INIT = `localStorage.setItem('te_profiller_v1', JSON.stringify({aktif:'p', liste:[{id:'p', ad:'Elif'}], eskiAktarildi:true}));
   localStorage.setItem('te_profil_p', ${JSON.stringify(JSON.stringify(PROFIL))}); localStorage.setItem('te_dil', '__DIL__');`;
+// Bölüm Yolu: uzmanın hamlelerinin bir kısmı yapılmış, iki gölge kelime kutuda
+const YOL_ARA = no => `yolOyna(${no}); (() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, B.hedef.renk == null ? -1 : B.hedef.renk, h);
+  h.slice(0, Math.ceil(h.length / 2)).forEach(([a, b]) => strTasiOyuncu(a, b)); const R = STR.R; [0, 1].forEach(k => strSec(R.T.h.findIndex(x => x && x.k === k), k)); })()`;
 const SAHNE = {
-  oyun: `dojoBaslat(rakipBul('A1-2')); __ff(8, 0, () => G.R && G.R.tahtaHazir && G.R.tip === 'kur'); for (let i = 0; i < 40 && !(G.R.zincir && G.R.zincir.k >= 3); i++) { const h = ipucuHamle(G.R); if (h) { if (h.dokun) dokun(h.dokun); else hamle(h.a, h.b); } __ff(0.6, 0, () => false); } __ff(0.4, 0, () => false);`,
+  yol: YOL_ARA(12),
+  harita: `yolHaritaAc(); setTimeout(() => { const s = document.querySelector('.y-durak.simdi'); let e = s && s.parentElement; while (e && !(e.scrollHeight > e.clientHeight + 4 && /auto|scroll/.test(getComputedStyle(e).overflowY))) e = e.parentElement; if (e) { const r = s.getBoundingClientRect(), q = e.getBoundingClientRect(); e.scrollTop += r.bottom - q.bottom + 40; } }, 150)`,
+  oyun: `dojoBaslat(rakipBul('A1-2')); __ff(8, 0, () => G.R && G.R.tahtaHazir && G.R.tip === 'kur'); window.__botStep = () => {}; __ff(1.5, 0, () => false);`,
+  online: `onlineAc()`,
+  sonuc: `yolOyna(13); (() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, B.hedef.renk == null ? -1 : B.hedef.renk, h);
+    h.forEach(([a, b]) => strTasiOyuncu(a, b)); const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()`,
   menu: `acilisAc()`,
-  harita: `haritaAc('A1')`,
   dizilis: `window.__dzElle = true; dojoBaslat(rakipBul('A1-3')); __ff(60, 0, () => typeof dzAcik !== 'undefined' && dzAcik); __ff(0.9, 0, () => false);`,
-  rozet: `kayit.rozet = {}; rozetKontrol(); rozetlerAc()`,
-  sonuc: `rozetKontrol(false); delete kayit.rozet.cumle50; kayit.istat.cumle = 46; dojoBaslat(rakipBul('A1-4')); __ff(900, 0.02, () => G.state !== 'playing' && ekran === 'sonuc'); __ff(1.5, 0, () => false);`,
+  cark: `carkAc()`,
 };
+const BEKLE = { sonuc: `!!document.getElementById('y-sonraki')` };
 const CIZ = {
-  tr: { oyun: 'Türkçesini oku,\nİngilizce cümleyi kur', menu: 'Her gün yeni görev,\nserini koru', harita: 'A1’den C2’ye\n9.000 cümle', dizilis: 'İngilizce dizilişi\nadım adım öğren', rozet: 'Rozetleri topla,\nilerlemeni gör', sonuc: 'Hatalarından öğren,\nyıldızları topla' },
-  en: { oyun: 'Read the Turkish,\nbuild the English', menu: 'A new challenge\nevery day', harita: 'A1 to C2:\n9,000 sentences', dizilis: 'Learn English\nword order', rozet: 'Collect badges,\ntrack progress', sonuc: 'Learn from mistakes,\nearn stars' } };
+  tr: { yol: 'Kelimeleri diz,\nbombayla patlat!', harita: '120 bölümlük yol,\nher bölüm yeni bulmaca', oyun: 'Türkçesini oku,\nİngilizce cümleyi kur', online: 'Online kapış:\nHız ya da Strateji', sonuc: 'Yıldızları topla,\nsandıkları aç', menu: 'Her gün yeni görev,\nserini koru', dizilis: 'İngilizce dizilişi\nadım adım öğren', cark: 'Günlük çark,\nhaftalık etkinlik' },
+  en: { yol: 'Line up the words,\nset off the bomb!', harita: '120 levels,\na new puzzle each time', oyun: 'Read the Turkish,\nbuild the English', online: 'Play online:\nSpeed or Strategy', sonuc: 'Earn stars,\nopen chests', menu: 'A new challenge\nevery day', dizilis: 'Learn English\nword order', cark: 'Daily spin,\nweekly event' } };
 const CIHAZ = [ ['iphone-6.9', 430, 932, 3], ['ipad-13', 1032, 1376, 2], ['android', 360, 720, 3] ];
 (async () => {
   const b = await chromium.launch();
@@ -43,7 +54,7 @@ const CIHAZ = [ ['iphone-6.9', 430, 932, 3], ['ipad-13', 1032, 1376, 2], ['andro
       const pg = await ctx.newPage(); pg.on('pageerror', e => console.log('HATA', ad, e.message));
       await pg.goto('http://127.0.0.1:18992/index.html'); await pg.waitForFunction('window.__acildi === true', null, { timeout: 30000 });
       await pg.evaluate('__botInstall(); Math.random = (() => { let s = 7; return () => (s = (s * 16807) % 2147483647) / 2147483647; })();');
-      await pg.evaluate(js); await pg.waitForTimeout(900);
+      await pg.evaluate(js); if (BEKLE[ad]) await pg.waitForFunction(BEKLE[ad], null, { timeout: 30000 }); await pg.waitForTimeout(ad === 'sonuc' ? 2500 : 900);
       const ham = path.join(out, 'ham', `${dil}-${cad}-${ad}.png`); fs.mkdirSync(path.dirname(ham), { recursive: true });
       await pg.screenshot({ path: ham }); await pg.close();
       // kompozisyon

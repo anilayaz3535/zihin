@@ -9,7 +9,7 @@ Kopyala-yapıştır için hazır. Karakter sınırları kontrol edildi. Görsell
 | Ad (30) | Stacking Sentences: İngilizce | Stacking Sentences: English |
 | Alt başlık (30) | Oynayarak cümle kur, öğren | Learn English for Turkish |
 | Anahtar kelimeler (100) | kelime,cümle,gramer,dilbilgisi,yds,lgs,yökdil,ydt,yks,a1,b1,c1,öğren,oyun,sözlük,english | english,turkish,grammar,vocabulary,sentence,word game,yds,lgs,learn,language,quiz,puzzle |
-| Tanıtım metni (170) | Her gün yeni Günün Görevi, 27 rozet ve seri sistemi! Renkli karoları sürükle, İngilizce cümleyi kur, A1’den C2’ye ilerle. | A new Daily Challenge every day, 27 badges and streaks! Drag colorful tiles, build English sentences and climb from A1 to C2. |
+| Tanıtım metni (170) | Yeni: 120 bölümlük Bölüm Yolu, sandıklar, günlük çark ve online Strateji maçları! Renkli kelimeleri diz, İngilizce cümleyi kur, patlat. | New: a 120-level Level Path, chests, a daily spin and online Strategy matches! Line up colorful words, build the English sentence, pop! |
 | Birincil kategori | Eğitim (Education) | |
 | İkincil kategori | Oyunlar → Kelime (Games → Word) | |
 | Yaş sınırı | 4+ (anketteki bütün sorulara "Yok / Hayır"; bkz. YAYIN-REHBERI.md) | |
@@ -22,9 +22,22 @@ Kopyala-yapıştır için hazır. Karakter sınırları kontrol edildi. Görsell
 ```
 İngilizceyi ezberleyerek değil, oynayarak öğren!
 
-Stacking Sentences, Türkçe konuşanlar için hazırlanmış bir İngilizce cümle kurma oyunudur. Türkçe cümleyi okursun, tahtaya düşen renkli İngilizce kelime karolarını sürükleyip doğru sırayla dizersin. Cümle tamamlanınca karolar patlar, kombo yaparsın, puan toplarsın.
+Stacking Sentences, Türkçe konuşanlar için hazırlanmış bir İngilizce cümle kurma oyunudur. Türkçe cümleyi okursun (oyun senin için sesli de okur), renkli İngilizce kelime karolarını doğru sırayla dizersin. Cümle tamamlanınca karolar patlar, kombo yaparsın, puan toplarsın.
 
-NELER VAR?
+BÖLÜM YOLU – 120 BULMACA
+• Kafe’den Gece Şehri’ne 6 bölge, 120 bölüm
+• Aynı renkleri yan yana getir, doğru kelimeleri kutulara çek, bombaya bas: hepsi birden patlasın!
+• Buzlu ve kilitli karolar, satır, sütun ve gökkuşağı özel karoları, SÜPER KOMBO
+• Sınırlı hamle: her bölüm bir bilgi ve strateji bulmacası
+• Yıldızları topla, sandıkları aç, Çekiç, Mıknatıs ve +3 Hamle kazan
+
+ONLINE: HIZ YA DA STRATEJİ
+• HIZ: kendi seviyende (A1–C2) aynı cümleleri rakibinden hızlı kur
+• STRATEJİ: aynı tahtada en iyi hamleleri yap; ama önce cümlen doğru olmalı!
+• Hızlı eşleşme, oda koduyla arkadaşınla oynama ya da bilgisayara karşı
+• Hazır emojilerle tepki ver (yazışma yok, güvenli)
+
+ÖĞRENMEK İÇİN
 • A1’den C2’ye 6 seviye, 9.000’den fazla cümle ve 11.000’den fazla kelime
 • Sınav Yolu: YDS, YÖKDİL, LGS, YKS-YDT ve uluslararası sınavlara hazırlık cümleleri
 • Hayat İngilizcesi: iş, iş görüşmesi, seyahat ve günlük konuşma
@@ -34,18 +47,15 @@ NELER VAR?
 • Kelime paketleri: yeni kelimeyle tanış, harf harf diz, aralıklı tekrarla kalıcı öğren
 
 HER GÜN BİRAZ
-• Günün Görevi: her gün yeni 5 cümle ve bonus XP
+• Günün Görevi: her gün yeni cümleler; sonucunu arkadaşlarınla paylaş
+• Günlük çark ve haftalık etkinlik: her hafta yeni tema ve ödüller
 • Günlük hedef ve seri: hedefini tamamladığın her gün serin büyür
-• 27 rozet: cümle, kelime, kombo, seri ve seviye rozetlerini topla
+• 28 rozet: cümle, kelime, kombo, seri ve seviye rozetleri
+• Arkadaşına meydan oku: “Beni geçebilir misin?” linkiyle aynı bölümü oynasın
 • İstersen akşam hatırlatması
 
-OYUN GİBİ
-• Aynı renkten 3 karo yan yana gelince patlar, zincirleme kombo yapar
-• Cümle Bombası, Joker ve Yavaş güçleri
-• Online kapışma: oda koduyla arkadaşınla aynı cümleleri yarışarak kur
-
 SANA ÖZEL
-• Hesap gerekmez, reklam yok, internet olmadan da oynanır (online kapışma hariç)
+• Hesap gerekmez, reklam yok, internet olmadan da oynanır (online maçlar hariç)
 • İlerlemen yalnız telefonunda saklanır
 • Cümleler telefonunun sesiyle Türkçe ve İngilizce okunur
 • Arayüz Türkçe ya da İngilizce
@@ -58,9 +68,22 @@ Hemen ilk cümleni kur!
 ```
 Learn English by playing, not by memorizing!
 
-Stacking Sentences is an English sentence-building game made for Turkish speakers. Read the Turkish sentence, then drag the colorful English word tiles on the board into the right order. Finish the sentence and the tiles pop — build combos and collect points.
+Stacking Sentences is an English sentence-building game made for Turkish speakers. Read the Turkish sentence (the game reads it aloud too), then put the colorful English word tiles in the right order. Finish the sentence and the tiles pop: build combos and collect points.
 
-WHAT’S INSIDE
+LEVEL PATH – 120 PUZZLES
+• 6 areas from the Café to the Night City, 120 levels
+• Line up matching colors, drag the right words into the boxes, hit the bomb and watch them all pop!
+• Ice and locked tiles, row, column and rainbow special tiles, SUPER COMBO
+• Limited moves: every level is a puzzle of knowledge and strategy
+• Earn stars, open chests, win Hammers, Magnets and +3 Moves
+
+ONLINE: SPEED OR STRATEGY
+• SPEED: build the same sentences faster than your opponent at your own level (A1–C2)
+• STRATEGY: make the best moves on the same board, but your sentence must be right first!
+• Quick match, play a friend with a room code, or play the computer
+• React with ready-made emojis (no chat, safe)
+
+LEARN AS YOU PLAY
 • 6 levels from A1 to C2, 9,000+ sentences and 11,000+ words
 • Exam Path: sentences for YDS, YÖKDİL, LGS, YKS-YDT and international exams
 • Life English: work, job interviews, travel and everyday talk
@@ -70,15 +93,12 @@ WHAT’S INSIDE
 • Word packs: meet new words, spell them tile by tile, keep them with spaced repetition
 
 A LITTLE EVERY DAY
-• Daily Challenge: 5 new sentences and bonus XP every day
+• Daily Challenge: new sentences every day, share your result with friends
+• Daily spin and weekly event: a new theme and rewards every week
 • Daily goal and streak
-• 27 badges to collect
+• 28 badges to collect
+• Challenge a friend: send a “Can you beat me?” link to the same level
 • Optional evening reminder
-
-PLAYS LIKE A GAME
-• Match 3 tiles of the same color for chain combos
-• Sentence Bomb, Joker and Slow power-ups
-• Online match: race a friend with a room code
 
 MADE FOR YOU
 • No account, no ads, plays offline (except online matches)
@@ -92,14 +112,14 @@ MADE FOR YOU
 | Alan | Türkçe | English |
 |---|---|---|
 | Uygulama adı (30) | Stacking Sentences: İngilizce | Stacking Sentences: English |
-| Kısa açıklama (80) | Türkçesini oku, İngilizce cümleyi kur! A1’den C2’ye 9.000 cümle, oyun gibi. | Read the Turkish, build the English sentence. 9,000 sentences from A1 to C2. |
+| Kısa açıklama (80) | İngilizce cümle kur, patlat! 120 bölüm, online maç, A1–C2 arası 9.000 cümle. | Build English sentences and pop them! 120 levels, online matches, A1–C2. |
 | Tam açıklama (4000) | Yukarıdaki App Store açıklamasının aynısı | Same as the App Store description |
 | Uygulama / Oyun | Uygulama | |
 | Kategori | Eğitim | |
 | Etiketler | Dil öğrenme, Kelime, Eğitici oyun | |
 | Uygulama simgesi | `play-ikon-512.png` | |
 | Öne çıkan grafik | `play-tanitim-1024x500.png` | |
-| Telefon ekran görüntüleri | `ekran-goruntuleri/tr/android/*.jpg` (1080×2160) | `ekran-goruntuleri/en/android/*.jpg` |
+| Telefon ekran görüntüleri | `ekran-goruntuleri/tr/android/*.jpg` (1080×2160, 8 adet) | `ekran-goruntuleri/en/android/*.jpg` |
 | 10 inç tablet | `ekran-goruntuleri/tr/ipad-13/*.jpg` (isteğe bağlı) | |
 
 ## Ekran görüntüsü ölçüleri

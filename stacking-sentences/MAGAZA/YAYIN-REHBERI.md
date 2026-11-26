@@ -125,7 +125,7 @@ Xcode'da: **App** hedefi → Signing & Capabilities → Team'ini seç → üstte
 2. Web sürümü (tek dosya) için: `sh build-tek.sh && cp tek/index.html ../index.html`.
 3. Sürüm numarası: `uygulama/android/app/build.gradle` → `versionName "1.1"` ve Xcode / `ios/App/App.xcodeproj` → `MARKETING_VERSION = 1.1`. Derleme numaraları GitHub'da otomatik artar.
 4. GitHub'a gönder → Actions yeni APK/AAB'yi üretir; iOS için iş akışını "TestFlight'a yükle" ile çalıştır.
-5. Ekran görüntüleri değiştiyse: `cd uygulama && node araclar/magaza-goruntu.js`.
+5. Ekran görüntüleri değiştiyse: `cd uygulama && node araclar/magaza-goruntu.js` (8 sahne × 3 cihaz × 2 dil, PNG olarak `MAGAZA/ekran-goruntuleri-yeni/`e yazar). Boyut küçülsün diye JPG’ye çevirip (kalite 90) `MAGAZA/ekran-goruntuleri/` altındakilerin yerine koy; eski adlı dosyaları sil.
 6. İkon değişecekse: `uygulama/kaynak-gorsel/*.html` → PNG'ler `uygulama/assets/` → `npm run ikonlar`.
 
 ## 5. İnceleme riskleri ve önlemler
