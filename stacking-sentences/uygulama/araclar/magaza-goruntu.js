@@ -26,20 +26,20 @@ const INIT = `localStorage.setItem('te_profiller_v1', JSON.stringify({aktif:'p',
 const YOL_ARA = no => `yolOyna(${no}); (() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, B.hedef.renk == null ? -1 : B.hedef.renk, h);
   h.slice(0, Math.ceil(h.length / 2)).forEach(([a, b]) => strTasiOyuncu(a, b)); const R = STR.R; [0, 1].forEach(k => strSec(R.T.h.findIndex(x => x && x.k === k), k)); })()`;
 const SAHNE = {
-  yol: YOL_ARA(12),
-  harita: `yolHaritaAc(); setTimeout(() => { const s = document.querySelector('.y-durak.simdi'); let e = s && s.parentElement; while (e && !(e.scrollHeight > e.clientHeight + 4 && /auto|scroll/.test(getComputedStyle(e).overflowY))) e = e.parentElement; if (e) { const r = s.getBoundingClientRect(), q = e.getBoundingClientRect(); e.scrollTop += r.bottom - q.bottom + 40; } }, 150)`,
   oyun: `dojoBaslat(rakipBul('A1-2')); __ff(8, 0, () => G.R && G.R.tahtaHazir && G.R.tip === 'kur'); window.__botStep = () => {}; __ff(1.5, 0, () => false);`,
+  menu: `acilisAc()`,
   online: `onlineAc()`,
+  yol: YOL_ARA(12),
+  dizilis: `window.__dzElle = true; dojoBaslat(rakipBul('A1-3')); __ff(60, 0, () => typeof dzAcik !== 'undefined' && dzAcik); __ff(0.9, 0, () => false);`,
+  harita: `yolHaritaAc(); setTimeout(() => { const s = document.querySelector('.y-durak.simdi'); let e = s && s.parentElement; while (e && !(e.scrollHeight > e.clientHeight + 4 && /auto|scroll/.test(getComputedStyle(e).overflowY))) e = e.parentElement; if (e) { const r = s.getBoundingClientRect(), q = e.getBoundingClientRect(); e.scrollTop += r.bottom - q.bottom + 40; } }, 150)`,
   sonuc: `yolOyna(13); (() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, B.hedef.renk == null ? -1 : B.hedef.renk, h);
     h.forEach(([a, b]) => strTasiOyuncu(a, b)); const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()`,
-  menu: `acilisAc()`,
-  dizilis: `window.__dzElle = true; dojoBaslat(rakipBul('A1-3')); __ff(60, 0, () => typeof dzAcik !== 'undefined' && dzAcik); __ff(0.9, 0, () => false);`,
   cark: `carkAc()`,
 };
 const BEKLE = { sonuc: `!!document.getElementById('y-sonraki')` };
 const CIZ = {
-  tr: { yol: 'Kelimeleri diz,\nbombayla patlat!', harita: '180 bölümlük yol,\nher bölüm yeni bulmaca', oyun: 'Türkçesini oku,\nİngilizce cümleyi kur', online: 'Online kapış:\nHız ya da Strateji', sonuc: 'Yıldızları topla,\nsandıkları aç', menu: 'Her gün yeni görev,\nserini koru', dizilis: 'İngilizce dizilişi\nadım adım öğren', cark: 'Günlük çark,\nhaftalık etkinlik' },
-  en: { yol: 'Line up the words,\nset off the bomb!', harita: '180 levels,\na new puzzle each time', oyun: 'Read the Turkish,\nbuild the English', online: 'Play online:\nSpeed or Strategy', sonuc: 'Earn stars,\nopen chests', menu: 'A new challenge\nevery day', dizilis: 'Learn English\nword order', cark: 'Daily spin,\nweekly event' } };
+  tr: { oyun: 'Türkçesini oku,\nİngilizce cümleyi kur', menu: 'Kariyer: A1’den C2’ye\nadım adım ilerle', online: 'Online kapış:\nHız ya da Strateji', yol: 'Strateji: renkleri diz,\nbombayla patlat!', dizilis: 'İngilizce dizilişi\nadım adım öğren', harita: '180 strateji bulmacası,\nher biri yeni', sonuc: 'Yıldızları topla,\nsandıkları aç', cark: 'Günlük çark,\nhaftalık etkinlik' },
+  en: { oyun: 'Read the Turkish,\nbuild the English', menu: 'Career: from A1 to C2,\nstep by step', online: 'Play online:\nSpeed or Strategy', yol: 'Strategy: line up colors,\nset off the bomb!', dizilis: 'Learn English\nword order', harita: '180 strategy puzzles,\neach one new', sonuc: 'Earn stars,\nopen chests', cark: 'Daily spin,\nweekly event' } };
 const CIHAZ = [ ['iphone-6.9', 430, 932, 3], ['ipad-13', 1032, 1376, 2], ['android', 360, 720, 3] ];
 (async () => {
   const b = await chromium.launch();
