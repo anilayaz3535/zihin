@@ -825,6 +825,8 @@ DIL_SOZLUK.en = {
 "OYNA ▶": "PLAY ▶",
 "HARİTA": "MAP",
 "Önizleme": "Preview",
+"Harika!": "Great!",
+"Muhteşem!": "Amazing!",
 "karo": "tiles",
 "NEREDEYSE!": "SO CLOSE!",
 "Hamlen bitti ama hedefe biraz kaldı:": "You are out of moves, but the goal is just a bit away:",

@@ -957,3 +957,16 @@
   .davet-sonuc{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px;margin:8px 0;padding:10px;border-radius:14px;background:rgba(0,0,0,.25);font-size:17px}
   .davet-sonuc b{color:#ffd451;font-size:22px}.davet-sonuc strong{flex-basis:100%;font-size:20px;color:#ff9fb0}
   .davet-sonuc.gecti strong{color:#7dff8e}
+
+  /* ---------- Strateji: hamle anında ödül (hazır gruplar parlar, "+puan" uçar) ---------- */
+  .st-k.grup:not(.secildi):not(.ozel)::before{box-shadow:0 4px 0 var(--rd),inset 0 2px 0 rgba(255,255,255,.45),0 0 0 2px rgba(255,255,255,.8),0 0 calc(var(--gg,3) * 2.5px) calc(var(--gg,3) * .7px) var(--r)}
+  .st-k.grup:not(.secildi):not(.ozel):not(.secili) span{animation:stGrupNabiz 1.8s ease-in-out infinite}
+  @keyframes stGrupNabiz{50%{filter:brightness(1.18)}}
+  .st-k.buyu{animation:stBuyu .6s cubic-bezier(.3,1.6,.5,1) var(--bg,0ms) both;z-index:2}
+  @keyframes stBuyu{0%{transform:scale(1)}35%{transform:scale(1.2)}100%{transform:scale(1)}}
+  .st-anlik{position:absolute;z-index:8;pointer-events:none;transform:translate(-50%,-30%);font-weight:700;font-size:32px;line-height:1;color:#fff6c8;text-align:center;
+    -webkit-text-stroke:5px #5b2a3a;paint-order:stroke fill;white-space:nowrap;animation:stAnlik 1.2s ease-out forwards}
+  .st-anlik small{display:block;font-size:17px;color:#7dff8e}
+  .st-anlik.iri{font-size:42px}
+  @keyframes stAnlik{0%{transform:translate(-50%,-10%) scale(.4);opacity:0}25%{transform:translate(-50%,-60%) scale(1.15);opacity:1}100%{transform:translate(-50%,-150%) scale(1);opacity:0}}
+  @media (prefers-reduced-motion:reduce){.st-k.buyu,.st-k.grup span{animation:none}.st-anlik{animation-duration:.01s;animation-delay:.9s}}

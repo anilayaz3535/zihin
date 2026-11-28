@@ -339,6 +339,13 @@ Candy Crush tarzı tek kişilik bulmaca haritası; oyuncuyu "bir bölüm daha" i
 - Gönderilen emoji kendi avatarının, gelen emoji rakibin avatarının yanında uçar (`.emo-ucan`, rakipte adıyla). Gönderme 1,5 sn'de bir (`EMO_ARALIK`), gelenler en çok 0,8 sn'de bir gösterilir.
 - Bilgisayar rakip ara sıra karşılık verir (`emoBotTepki`, olasılık %45; testte `window.__emoBotOlasilik`): oyuncunun emojisine, tur / maç sonucuna, HIZ'da cümle bitirince.
 
+### Hamle anında ödül (strateji.js, 28 Kasım 2026)
+- Sorun: Bölüm Yolu ve STRATEJİ'de tatmin yalnız bombada geliyordu; 5–6 hamle boyunca hiçbir şey olmuyordu.
+- Her taşımadan sonra `strAnlikOdul`: 3+ aynı renk grupların değeri (`strGrupDeger` = gruptaki karo × 10, bombanın taban puanı) arttıysa büyüyen karolar zıplar (`.buyu`), taşınan karodan "+puan" uçar (5+ grupta "Harika!", 7+ "Muhteşem!"), grup boyu kadar yükselen notalar, 5+ grupta titreşim.
+- Hazır gruplar (3+) sürekli hafif parlar ve nabız atar (`.st-k.grup`, `--gg` = boy).
+- Değer doğru kelimeden bağımsızdır (tuzak kelimenin grubu da aynı ödülü alır): ödül cevabı sızdırmaz. Gökkuşağı (renksiz) karolar grup sayılmaz.
+- Kural ve denge değişmedi (bot, uzman, eşikler aynı). Test: `anlik`.
+
 ### Strateji alıştırması (24 Kasım 2026)
 - İlk strateji maçından önce bir kez (`kayit.strRehber`, kayit-sema.js doğrular) ya da strateji ekranındaki **📘 Nasıl oynanır? (alıştırma)** ile (`strRehberTek`).
 - Elle hazırlanmış 6×4 tahta (`REHBER_TAHTA`), cümle "Ben mutluyum." → I am happy. Adımlar `REHBER`: bilgi → mavi karoyu I'nın yanına taşı (kayma görülür) → bilgi → yeşil karoyu happy'nin yanına → I, am (sarı "are" tuzağı uyarısı), happy kutulara → BOMBA → kapanış.

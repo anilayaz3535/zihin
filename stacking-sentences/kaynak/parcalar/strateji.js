@@ -111,6 +111,9 @@ function strDus(T) {   // her sütunda karolar aşağı iner
     for (let r = T.rows - 1, j = 0; r >= 0; r--, j++) T.h[r * T.cols + c] = col[j] || null;
   }
 }
+// hamle anındaki ödül için: 3+ aynı renk gruplarının boyu (hücre → boy) ve tahtanın "hazır grup" değeri (doğru/yanlış kelimeden bağımsız: bilgi sızdırmaz)
+function strGruplar(T) { const m = new Map(); T.h.forEach((k, i) => { if (k && k.ci >= 0 && !m.has(i)) { const g = strGrup(T, i); g.forEach(x => m.set(x, g.length)); } }); m.forEach((v, i) => { if (v < 3) m.delete(i); }); return m; }
+const strGrupDeger = m => m.size * 10;
 function strKaskadBul(T) { const o = new Set(); T.h.forEach((k, i) => { if (k && !o.has(i)) { const g = strGrup(T, i); if (g.length >= STR_KASKAD) g.forEach(x => o.add(x)); } }); return [...o]; }
 // bütün patlamayı hesaplar (animasyon için adımlarıyla): [{ hucreler, puan, zincir }]
 /* özel karolar (Bölüm Yolu): ⇆ yatay (satır) · ⇅ dikey (sütun) · 💣 paket (3×3) · 🌈 gökkuşağı (renksiz; yanındaki karo patlayınca o rengin hepsi).
@@ -243,13 +246,36 @@ function strTasiOyuncu(a, b) {
   const R = STR && STR.R; if (!R || R.bitti || a === b || !R.T.h[a]) return false;
   if (R.rehber && !rehberIzin('tasi', a, b)) return false;
   if (R.hamle <= 0) { not(tt('Hamle hakkın bitti. Kelimeleri kutulara çek ve bombaya bas.')); Ses.cal('geri', { ses: 0.5 }); return false; }
+  const once = strGruplar(R.T), idOnce = new Map(); once.forEach((v, i) => idOnce.set(R.T.h[i].id, v));
   if (!strTasi(R.T, a, b)) { not(tt('Buzlu ve kilitli karolar yerinden oynamaz.')); Ses.cal('geri', { ses: 0.5 }); R.secili = -1; strCiz(); return false; }
   R.hamle--; R.secili = -1;
   Ses.cal('kay', { ses: 0.6 }); Yerel.titret('hafif');
   strCiz();
+  strAnlikOdul(R, once, idOnce, b);
   if (R.rehber) rehberIlerle();
   if (STR.yol && R.hamle === 0) yolHamleBitti();
   return true;
+}
+/* HAMLE ANINDA ÖDÜL: taşıma bir grubu büyüttüyse (3+ aynı renk) grup parlar, "+puan" karodan uçar, grup büyüdükçe yükselen notalar.
+   Değer bombanın bu karolar için vereceği taban puandır (karo başı 10); doğru kelimeyi bilmeden hesaplanır. */
+function strAnlikOdul(R, once, idOnce, b) {
+  const sonra = strGruplar(R.T), fark = strGrupDeger(sonra) - strGrupDeger(once);
+  window.__anlik = { fark, enBuyuk: 0 };
+  if (fark <= 0) return;
+  let enBuyuk = 0; const buyuyen = [];
+  sonra.forEach((v, i) => { const id = R.T.h[i].id; if (v > (idOnce.get(id) || 0)) { buyuyen.push(id); if (v > enBuyuk) enBuyuk = v; } });
+  window.__anlik.enBuyuk = enBuyuk;
+  buyuyen.forEach((id, n) => { const el = strKaroEl(id); if (!el) return; el.classList.remove('buyu'); void el.offsetWidth; el.style.setProperty('--bg', (n * 35) + 'ms'); el.classList.add('buyu'); setTimeout(() => el.classList.remove('buyu'), 900); });
+  const tah = strTahtaEl(), c = strOlcu(), k = R.T.h[b], kaynak = k && sonra.has(b) ? b : [...sonra.keys()].find(i => buyuyen.indexOf(R.T.h[i].id) >= 0);
+  if (tah && kaynak != null) {
+    const u = document.createElement('div'); u.className = 'st-anlik' + (enBuyuk >= 5 ? ' iri' : '');
+    u.innerHTML = `+${fark}${enBuyuk >= 7 ? `<small>${tt('Muhteşem!')}</small>` : enBuyuk >= 5 ? `<small>${tt('Harika!')}</small>` : ''}`;
+    u.style.left = ((kaynak % R.T.cols) + 0.5) * c + 'px'; u.style.top = (Math.floor(kaynak / R.T.cols) + 0.5) * c + "px";
+    tah.appendChild(u); setTimeout(() => u.remove(), 1100);
+  }
+  const ust = Math.min(6, enBuyuk - 2);   // 3'lü: 1 nota … 8+: 6 nota
+  for (let n = 0; n < ust; n++) Ses.nota(2 + n, 0.32, n * 0.06);
+  if (enBuyuk >= 5) Yerel.titret('orta');
 }
 function strSec(i, kutu) {   // hücre i'deki karonun gölgesi kutuya
   const R = STR && STR.R; if (!R || R.bitti || !R.T.h[i]) return;
@@ -414,7 +440,7 @@ function strCiz(yeni) {
   // karolar: kimlikle eşlenir, yeri değişince CSS geçişiyle kayar
   const var_ = new Map(); tah.querySelectorAll('.st-k').forEach(e => var_.set(+e.dataset.id, e));
   const secimSira = new Map(); R.secim.forEach((k, i) => { if (k) secimSira.set(k.id, i + 1); });
-  const durdu = new Set();
+  const durdu = new Set(), gruplar = R.bitti ? new Map() : strGruplar(T);
   T.h.forEach((k, i) => {
     if (!k) return;
     let el = var_.get(k.id);
@@ -427,6 +453,7 @@ function strCiz(yeni) {
     const sn = secimSira.get(k.id); el.classList.toggle('secildi', !!sn); el.lastChild.textContent = sn || '';
     el.classList.toggle('secili', R.secili === i);
     el.classList.toggle('buz', !!k.buz); el.classList.toggle('kilit', !!k.kilit);
+    const g = gruplar.get(i) || 0; el.classList.toggle('grup', g >= 3); if (g >= 3) el.style.setProperty('--gg', Math.min(g, 8));
     el.dataset.i = i;
   });
   var_.forEach((e, id) => { if (!durdu.has(id) && !e.classList.contains('pat')) e.remove(); else if (!durdu.has(id)) setTimeout(() => e.remove(), 600); });

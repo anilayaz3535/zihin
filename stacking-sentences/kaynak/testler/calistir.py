@@ -606,6 +606,31 @@ def muzik(b):
     return 'HIZ / strateji müziği, gerilim, içine çekme, maç sonunda ve menüde susar; ' + ', '.join(f"{k} tepe {v[0]:.2f} rms {v[1]:.3f}" for k, v in olc.items())
 
 @test
+def anlik(b):
+    """HAMLE ANINDA ÖDÜL: grubu büyüten taşıma "+puan" uçurur, grup parlar (3+ aynı renk, gökkuşağı hariç); büyütmeyen taşıma ödül vermez;
+    değer doğru kelimeden bağımsız (tuzak kelimenin grubu da aynı ödülü alır); İngilizce yazı."""
+    s = Sayfa(b); s.js('kayit.strRehber = true'); s.js('yolOyna(12)'); s.pg.wait_for_timeout(300)
+    esit(s.js("document.querySelectorAll('#str .st-k.grup').length"), s.js('strGruplar(STR.R.T).size'), 'başlangıçta parlayan karo sayısı')
+    bul = """(iyi) => { const T = STR.R.T; for (let a = 0; a < T.h.length; a++) for (let b = 0; b < T.h.length; b++) { if (a === b || !T.h[a] || strDonuk(T.h[a]) || strDonuk(T.h[b])) continue;
+      const K = { cols: T.cols, rows: T.rows, h: T.h.slice() }; strTasi(K, a, b); const f = strGrupDeger(strGruplar(K)) - strGrupDeger(strGruplar(T)); if (iyi ? f > 0 : f === 0) return [a, b, f]; } return null; }"""
+    h = s.js(f'({bul})(true)'); dogru(h, 'grubu büyüten hamle bulunamadı')
+    s.js(f'strTasiOyuncu({h[0]}, {h[1]})')
+    esit(s.js('__anlik.fark'), h[2], 'anlık ödül değeri')
+    dogru(s.js("!!document.querySelector('#str .st-anlik')"), '+puan uçmadı'); s.foto('anlik_odul')
+    dogru(s.js("document.querySelectorAll('#str .st-k.grup').length") >= 3, 'grup parlamıyor')
+    esit(s.js("document.querySelectorAll('#str .st-k.grup').length"), s.js('strGruplar(STR.R.T).size'), 'parlayan karo sayısı')
+    s.pg.wait_for_timeout(1200); dogru(not s.js("!!document.querySelector('#str .st-anlik')"), '+puan ekrandan kalkmadı')
+    h2 = s.js(f'({bul})(false)')
+    if h2: s.js(f'strTasiOyuncu({h2[0]}, {h2[1]})'); esit(s.js('__anlik.fark'), 0, 'boş hamleye ödül'); dogru(not s.js("!!document.querySelector('#str .st-anlik')"), 'boş hamlede +puan')
+    # gökkuşağı (renksiz) karolar grup sayılmaz; değer kelimeden bağımsız
+    esit(s.js("strGruplar({ cols: 3, rows: 1, h: [{ id: 1, ci: -1 }, { id: 2, ci: -1 }, { id: 3, ci: -1 }] }).size"), 0, 'gökkuşağı grubu')
+    esit(s.js("strGrupDeger(strGruplar({ cols: 3, rows: 1, h: [{ id: 1, ci: 2, k: 0 }, { id: 2, ci: 2, k: -1 }, { id: 3, ci: 2, k: -1 }] }))"),
+         s.js("strGrupDeger(strGruplar({ cols: 3, rows: 1, h: [{ id: 1, ci: 2, k: -1 }, { id: 2, ci: 2, k: -1 }, { id: 3, ci: 2, k: -1 }] }))"), 'değer kelimeye bağlı')
+    esit(s.js("dilSec('en'); tt('Harika!') + tt('Muhteşem!')"), 'Great!Amazing!', 'İngilizce')
+    esit(s.hatalar(), [], 'JS hatası'); s.kapat()
+    return f'grubu büyüten hamle +{h[2]}, parlayan gruplar, boş hamleye ödül yok, gökkuşağı hariç, kelimeden bağımsız, İngilizce'
+
+@test
 def yol(b):
     """BÖLÜM YOLU: 120 bölüm üretilir, aynı no aynı bölüm, hepsi uzman çözümüyle çözülebilir, engeller hedef kelimede yok; donuk karo taşınmaz ve
     kayan sıra onu atlar; haritadan oynanır; uzman hamleleriyle kazanılır (yıldız, sonraki bölüm açılır, kalıcı, XP); NEREDEYSE +3 hamle bir kez;
