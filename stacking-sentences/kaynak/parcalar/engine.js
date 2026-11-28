@@ -74,6 +74,7 @@ function update(dt) {
     if (G.dieT > 1.7) { G.state = 'over'; dojoBitti(false); }
   }
   if (G.state !== 'paused') {
+    jelSurukleTik(dt);
     tahtaTik(dt);
     if (G.ipucu) { G.ipucu.t -= dt; if (G.ipucu.t <= 0 || G.ipucu.R !== G.R) G.ipucu = null; }
     if (G.duz) { G.duz.t -= dt; if (G.duz.t <= 0) G.duz = null; }
@@ -107,14 +108,15 @@ function tahtaTik(dt) {
       if (g.t > 0.42) { k.geri = null; k.x = p.x; k.y = p.y; }
     } else if (k.dus) {
       k.vy += 2600 * dt; k.y += k.vy * dt; k.x += (p.x - k.x) * Math.min(1, dt * 18);
-      if (k.y >= p.y) { k.y = p.y; k.vy = 0; k.dus = false; k.ez = 1; }
+      if (k.y >= p.y) { const vI = k.vy; k.y = p.y; k.vy = 0; k.dus = false; jelDarbe(k, Math.min(8, 2 + vI * 0.004)); }   // jöle: yere değince yassılıp seker
       else hareket = true;
     } else {
       const dx = p.x - k.x, dy = p.y - k.y;
       if (Math.abs(dx) + Math.abs(dy) > 0.6) { k.x += dx * Math.min(1, dt * 16); k.y += dy * Math.min(1, dt * 16); } else { k.x = p.x; k.y = p.y; }
     }
     if (k.buyu) { k.olcek = Math.min(1, k.olcek + dt * 5); if (k.olcek >= 1) k.buyu = false; else hareket = true; }
-    k.ez = Math.max(0, (k.ez || 0) - dt * 5); k.parla = Math.max(0, k.parla - dt); k.err = Math.max(0, k.err - dt * 1.2); k.hint = Math.max(0, k.hint - dt);
+    jelKaro(k, dt);   // jöle.js: hareket yönünde uzama, titreyerek oturma
+    k.parla = Math.max(0, k.parla - dt); k.err = Math.max(0, k.err - dt * 1.2); k.hint = Math.max(0, k.hint - dt);
     if (k.anlamT > 0) k.anlamT -= dt;
   }
   T.hareket = hareket;
@@ -167,15 +169,20 @@ function drawTahta(t) {
   const bosluk = Math.max(1.5, Math.min(T.cw, T.ch) * 0.05), kr = Math.min(T.cw, T.ch) * 0.2, cp = Math.max(4, Math.min(8, Math.min(T.cw, T.ch) * 0.12));
   ctx.save(); ctx.shadowColor = 'rgba(30,12,20,.5)'; ctx.shadowBlur = 18; ctx.shadowOffsetY = 6;
   rr(ctx, T.x - cp, T.y - cp, bw + 2 * cp, bh + 2 * cp, kr + cp);
-  const fg = ctx.createLinearGradient(0, T.y - cp, 0, T.y + bh + cp); fg.addColorStop(0, '#6d7387'); fg.addColorStop(1, '#565c6f');
+  // jöle tahtası (28 Kasım 2026): koyu mor cam, üstte parıltı, açık kenar
+  const fg = ctx.createLinearGradient(0, T.y - cp, 0, T.y + bh + cp); fg.addColorStop(0, '#5b3f8c'); fg.addColorStop(1, '#33235a');
   ctx.fillStyle = fg; ctx.fill(); ctx.restore();
-  rr(ctx, T.x - cp, T.y - cp, bw + 2 * cp, bh + 2 * cp, kr + cp); ctx.lineWidth = 2.5; ctx.strokeStyle = '#9097aa'; ctx.stroke();
-  rr(ctx, T.x - cp + 3, T.y - cp + 3, bw + 2 * cp - 6, bh + 2 * cp - 6, kr + cp - 3); ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(30,32,46,.45)'; ctx.stroke();
+  ctx.save(); rr(ctx, T.x - cp, T.y - cp, bw + 2 * cp, bh + 2 * cp, kr + cp); ctx.clip();
+  const ust = ctx.createLinearGradient(0, T.y - cp, 0, T.y + bh * 0.25); ust.addColorStop(0, 'rgba(255,255,255,.16)'); ust.addColorStop(1, 'rgba(255,255,255,0)');
+  ctx.fillStyle = ust; ctx.fillRect(T.x - cp, T.y - cp, bw + 2 * cp, bh * 0.3); ctx.restore();
+  rr(ctx, T.x - cp, T.y - cp, bw + 2 * cp, bh + 2 * cp, kr + cp); ctx.lineWidth = 2.5; ctx.strokeStyle = '#c3a6ff'; ctx.stroke();
+  rr(ctx, T.x - cp + 3, T.y - cp + 3, bw + 2 * cp - 6, bh + 2 * cp - 6, kr + cp - 3); ctx.lineWidth = 1; ctx.strokeStyle = 'rgba(20,8,40,.5)'; ctx.stroke();
   for (let r = 0; r < T.rows; r++) for (let c = 0; c < T.cols; c++) {
     if (T.kilitli[r][c]) continue;
     const hx = T.x + c * T.cw + bosluk, hy = T.y + r * T.ch + bosluk, hw = T.cw - 2 * bosluk, hh = T.ch - 2 * bosluk;
-    rr(ctx, hx, hy, hw, hh, kr * 0.8); ctx.fillStyle = '#464b5c'; ctx.fill();
-    rr(ctx, hx, hy, hw, hh * 0.35, kr * 0.8); ctx.fillStyle = 'rgba(20,22,32,.22)'; ctx.fill();
+    rr(ctx, hx, hy, hw, hh, kr * 0.9); ctx.fillStyle = '#2b1d4a'; ctx.fill();
+    rr(ctx, hx, hy, hw, hh * 0.4, kr * 0.9); ctx.fillStyle = 'rgba(10,4,24,.3)'; ctx.fill();
+    rr(ctx, hx, hy + hh * 0.72, hw, hh * 0.28, kr * 0.9); ctx.fillStyle = 'rgba(190,160,255,.07)'; ctx.fill();
   }
   // etkin dizi: arkasında altın şerit, sonundaki boş yer kesik çizgili (sıradaki karo buraya)
   const z = R && !R.bitti && R.tahtaHazir ? R.zincir : null;
@@ -209,8 +216,12 @@ function drawTahta(t) {
     const kb = karoBoyut(T, p.k), sp = karoSprite(p.k.txt, Math.max(0, p.k.ci), kb.w, kb.h, karoStil(p.k));
     if (p.t < 0) { karoCiz(sp, p.x, p.y); continue; }
     const k = p.t / 0.32; if (k > 1) continue;
-    const sc = p.stil === 'kucuk' ? 1 - k * 0.6 : 1 + k * (p.stil === 'altin' ? 0.55 : 0.35);
-    karoCiz(sp, p.x, p.y, 1 - k, sc, sc);
+    const renk = p.stil === 'altin' ? '#ffd23d' : KARO_RENK[Math.max(0, p.k.ci) % KARO_RENK.length];
+    if (!p.sicradi) { p.sicradi = true; if (p.stil !== 'kucuk') jelSicrat(p.x, p.y, renk, Math.max(p.w, p.h)); }
+    // jöle patlaması: önce ezilir (0–0,25), sonra kabarcık gibi şişip söner
+    const ez = k < 0.25 ? k / 0.25 : 1, sis = k < 0.25 ? 0 : (k - 0.25) / 0.75;
+    const sc = p.stil === 'kucuk' ? 1 - k * 0.6 : 1 + sis * (p.stil === 'altin' ? 0.6 : 0.4);
+    karoCiz(sp, p.x, p.y, 1 - sis, p.stil === 'kucuk' ? sc : sc * (1 + 0.18 * ez * (1 - sis)), p.stil === 'kucuk' ? sc : sc * (1 - 0.2 * ez * (1 - sis)));
     ctx.save(); ctx.globalCompositeOperation = 'lighter'; ctx.globalAlpha = (1 - k) * 0.9;
     const col = p.stil === 'altin' ? '#ffd23d' : KARO_RENK[Math.max(0, p.k.ci) % KARO_RENK.length];
     const g = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, Math.max(p.w, p.h) * (0.5 + k));
@@ -227,9 +238,8 @@ function drawTahta(t) {
 }
 function karoCizTahta(T, k, t) {
   const s = karoBoyut(T, k), sp = karoSprite(k.txt, Math.max(0, k.ci), s.w, s.h, karoStil(k));
-  const ez = k.ez || 0, sx = k.olcek * (1 + ez * 0.12), sy = k.olcek * (1 - ez * 0.12);
   const a = k.sil ? 0.3 : 1;
-  karoCiz(sp, k.x, k.y, a, sx, sy);
+  karoCizJel(sp, k.x, k.y, a, k.olcek, k.jel);
   const kr = Math.min(s.w, s.h) * 0.22, x0 = k.x - s.w / 2, y0 = k.y - s.h / 2;
   const kenar = (col, kal, alfa) => { ctx.save(); ctx.globalAlpha = alfa; ctx.lineWidth = kal; ctx.strokeStyle = col; ctx.shadowColor = col; ctx.shadowBlur = 12; rr(ctx, x0, y0, s.w, s.h, kr); ctx.stroke(); ctx.restore(); };
   if (k.zincir) {
@@ -242,7 +252,7 @@ function karoCizTahta(T, k, t) {
   if (k.sil) { ctx.save(); ctx.strokeStyle = '#ff6b7d'; ctx.lineWidth = 2; ctx.beginPath(); ctx.moveTo(x0 + 4, k.y); ctx.lineTo(x0 + s.w - 4, k.y); ctx.stroke(); ctx.restore(); }
   if (k.err > 0) kenar('#ff3048', 3, Math.min(1, k.err));
   if (k.hint > 0) kenar('#3dff7a', 3, Math.min(1, k.hint) * (0.6 + 0.4 * Math.sin(t * 12)));
-  if (k.parla > 0) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; karoCiz(sp, k.x, k.y, Math.min(0.8, k.parla), sx, sy); ctx.restore(); }
+  if (k.parla > 0) { ctx.save(); ctx.globalCompositeOperation = 'lighter'; karoCizJel(sp, k.x, k.y, Math.min(0.8, k.parla), k.olcek, k.jel); ctx.restore(); }
   if (k.anlamT > 0 && k.anlam) {
     // joker: karonun Türkçesi
     const f = Math.round(clamp(L.bh * 0.5, 11, 16));
@@ -253,12 +263,13 @@ function karoCizTahta(T, k, t) {
     ctx.fillStyle = '#5b3a24'; ctx.textAlign = 'center'; ctx.textBaseline = 'middle'; ctx.fillText(k.anlam, bx + tw / 2, by + h / 2 + 1); ctx.restore();
   }
 }
-// sürüklenen karo parmağın altında, biraz büyük ve gölgeli
+// sürüklenen karo parmağın altında, biraz büyük ve gölgeli; jöle gibi geriden izler, uzar ve eğilir (jole.js)
 function drawSurukle() {
   const s = G.surukle, T = G.T; if (!s || !T) return;
   const k = s.k, b = karoBoyut(T, k), sp = karoSprite(k.txt, Math.max(0, k.ci), b.w, b.h, karoStil(k));
-  ctx.save(); ctx.shadowColor = 'rgba(0,0,0,.6)'; ctx.shadowBlur = 18; ctx.shadowOffsetY = 8;
-  karoCiz(sp, s.x, s.y - Math.min(18, T.ch * 0.25), 0.96, 1.14, 1.14); ctx.restore();
+  const x = s.rx == null ? s.x : s.rx, y = s.ry == null ? s.y : s.ry, egim = jelAz ? 0 : clamp((s.x - x) * 0.006, -0.28, 0.28);
+  ctx.save(); ctx.shadowColor = 'rgba(0,0,0,.55)'; ctx.shadowBlur = 20; ctx.shadowOffsetY = 10;
+  karoCizJel(sp, x, y - Math.min(18, T.ch * 0.25), 0.97, 1.14, s.jel, egim); ctx.restore();
 }
 // ipucu: parlayan karodan hedef yere kayan el
 function drawIpucu(t) {
@@ -716,7 +727,8 @@ function birak(e, iptal) {
       const r = a.r + (Math.abs(dy) > Math.abs(dx) ? Math.sign(dy) : 0), c = a.c + (Math.abs(dx) >= Math.abs(dy) ? Math.sign(dx) : 0);
       b = r >= 0 && r < T.rows && c >= 0 && c < T.cols ? hucreBul(T.x + (c + 0.5) * T.cw, T.y + (r + 0.5) * T.ch) : null;
     }
-    k.x = x; k.y = y - Math.min(18, T.ch * 0.25);   // bırakılan yerden kayarak oturur
+    k.x = s.rx == null ? x : s.rx; k.y = (s.ry == null ? y : s.ry) - Math.min(18, T.ch * 0.25);   // bırakılan yerden kayarak oturur
+    if (s.jel) { k.jel = s.jel; k.jel.px = k.x; k.jel.py = k.y; jelDarbe(k, 4); }   // jöle: bırakınca hafifçe yassılır, akarak yerine gider
     if (b && (b.r !== a.r || b.c !== a.c) && !hamle(a, b)) Ses.cal('geri', { ses: 0.35 });
     return;
   }

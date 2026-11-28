@@ -591,9 +591,10 @@
   @keyframes sars{20%,60%{transform:translateX(-8px)}40%,80%{transform:translateX(8px)}}
   @keyframes bum{15%{transform:scale(1.04) rotate(-1deg)}35%{transform:scale(.98) rotate(1deg)}60%{transform:scale(1.01)}}
   .st-k,.st-bos{position:absolute;padding:3px;transition:left .28s cubic-bezier(.3,1.3,.5,1),top .28s cubic-bezier(.3,1.3,.5,1)}
-  .st-k::before{content:'';position:absolute;inset:3px;border-radius:12px;background:linear-gradient(var(--ra),var(--r));
-    box-shadow:0 4px 0 var(--rd),inset 0 2px 0 rgba(255,255,255,.5)}
-  .st-k span{position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:2px;text-align:center;color:#fff;font-weight:700;line-height:1.02;
+  /* jöle karo (28 Kasım 2026): içten aydınlanan gövde, iç kenar ışıltısı, altta ışık hilali; parıltı ve kabarcık span'in arka planında */
+  .st-k::before{content:'';position:absolute;inset:3px;border-radius:32%;background:radial-gradient(120% 105% at 40% 26%,var(--rl,var(--ra)) 0%,var(--r) 52%,var(--rk,var(--r)) 100%);
+    box-shadow:0 4px 0 var(--rd),0 6px 10px rgba(0,0,0,.22),inset 0 0 0 3px rgba(255,255,255,.22),inset 0 -7px 10px -2px rgba(255,255,255,.28)}
+  .st-k span{border-radius:32%;background:radial-gradient(ellipse 15% 10% at 24% 20%,rgba(255,255,255,.95),rgba(255,255,255,0) 100%),linear-gradient(rgba(255,255,255,.55),rgba(255,255,255,.12) 60%,rgba(255,255,255,0)) 50% 9% / 80% 40% no-repeat;position:relative;display:flex;align-items:center;justify-content:center;width:100%;height:100%;padding:2px;text-align:center;color:#fff;font-weight:700;line-height:1.02;
     -webkit-hyphens:auto;hyphens:auto;overflow-wrap:anywhere;-webkit-text-stroke:3px rgba(60,20,30,.45);paint-order:stroke fill;pointer-events:none}
   .st-k em{position:absolute;right:0;top:0;min-width:20px;height:20px;border-radius:10px;background:#fff;color:#5b3a24;font:700 12px/20px Fredoka,sans-serif;font-style:normal;text-align:center;display:none;box-shadow:0 2px 4px rgba(0,0,0,.35)}
   .st-k.secildi em{display:block}
@@ -604,7 +605,6 @@
   .st-k.gel{animation:stGel .4s cubic-bezier(.3,1.4,.5,1) both}
   @keyframes stGel{from{transform:translateY(-40px);opacity:0}}
   .st-k.pat{animation:stPat .55s ease-in forwards;z-index:4}
-  @keyframes stPat{30%{transform:scale(1.35) rotate(-6deg);filter:brightness(1.8)}100%{transform:scale(.1) rotate(25deg);opacity:0}}
   .st-bos::before{content:'';position:absolute;inset:6px;border-radius:12px;border:2px dashed rgba(255,255,255,.35)}
   .st-tut{position:fixed;z-index:30;pointer-events:none;transform:scale(1.12) rotate(-3deg);transition:none;filter:drop-shadow(0 10px 14px rgba(0,0,0,.45))}
   .st-kv{position:absolute;width:9px;height:9px;border-radius:50%;pointer-events:none;z-index:5;animation:stKv .65s ease-out forwards}
@@ -1044,3 +1044,13 @@
   .ana-buyuk:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.28)}
   .ana-buyuk em.yeni{position:static;font-size:10px}
   @media (max-width:340px){.ana-buyuk{padding:12px 14px}.ana-buyuk b{font-size:23px}.ana-buyuk>i{font-size:32px}}
+
+  /* jöle hareketi (strateji): kayan karo yönüne göre esner ve sallanarak oturur; patlarken ezilip şişer */
+  .st-k.jel-yatay{animation:jelYatay .62s cubic-bezier(.3,1.2,.5,1)}
+  .st-k.jel-dikey{animation:jelDikey .62s cubic-bezier(.3,1.2,.5,1)}
+  @keyframes jelYatay{0%{transform:scale(1)}22%{transform:scale(1.18,.86)}45%{transform:scale(.92,1.08)}65%{transform:scale(1.05,.96)}82%{transform:scale(.98,1.02)}100%{transform:scale(1)}}
+  @keyframes jelDikey{0%{transform:scale(1)}22%{transform:scale(.86,1.18)}45%{transform:scale(1.1,.9)}65%{transform:scale(.96,1.04)}82%{transform:scale(1.02,.98)}100%{transform:scale(1)}}
+  @keyframes stPat{0%{transform:scale(1)}18%{transform:scale(1.22,.8)}40%{transform:scale(1.32);filter:brightness(1.6)}100%{transform:scale(1.6);opacity:0;filter:brightness(2) blur(2px)}}
+  .st-tahta{background:linear-gradient(#5b3f8c,#33235a);box-shadow:inset 0 0 0 2.5px #c3a6ff,inset 0 30px 30px -20px rgba(255,255,255,.14),0 8px 22px rgba(0,0,0,.35)}
+  .st-tut{transform-origin:50% 60%}
+  @media (prefers-reduced-motion:reduce){.st-k.jel-yatay,.st-k.jel-dikey{animation:none}}

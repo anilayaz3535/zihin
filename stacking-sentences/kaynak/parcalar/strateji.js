@@ -466,7 +466,12 @@ function strCiz(yeni) {
     let el = var_.get(k.id);
     if (!el) { el = document.createElement('div'); el.className = 'st-k'; el.dataset.id = k.id; el.innerHTML = '<span lang="en"></span><em></em>'; el.style.cssText = strRenkStil(k.ci); tah.appendChild(el); if (yeni) { el.style.animationDelay = (i * 18) + 'ms'; el.classList.add('gel'); el.addEventListener('animationend', e => { if (e.animationName === 'stGel') { el.classList.remove('gel'); el.style.animationDelay = ''; } }); } }
     durdu.add(k.id);
-    el.style.left = (i % T.cols) * c + 'px'; el.style.top = Math.floor(i / T.cols) * c + 'px';
+    const yl = (i % T.cols) * c, yt = Math.floor(i / T.cols) * c, ol = parseFloat(el.style.left), ot = parseFloat(el.style.top);
+    if (!yeni && !isNaN(ol) && (Math.abs(ol - yl) > 1 || Math.abs(ot - yt) > 1)) {   // jöle: kayan karo yönüne göre esneyip sallanarak oturur
+      const sinif = Math.abs(ol - yl) >= Math.abs(ot - yt) ? 'jel-yatay' : 'jel-dikey';
+      el.classList.remove('jel-yatay', 'jel-dikey'); void el.offsetWidth; el.classList.add(sinif); setTimeout(() => el.classList.remove(sinif), 700);
+    }
+    el.style.left = yl + 'px'; el.style.top = yt + 'px';
     el.style.width = el.style.height = c + 'px';
     const yazi = k.ozel ? OZEL_I[k.ozel] : k.sis ? '?' : k.kar || k.txt, sp = el.firstChild; if (sp.textContent !== yazi) sp.textContent = yazi; sp.style.fontSize = (k.ozel ? Math.round(c * 0.46) : strYaziBoy(k.txt, c)) + 'px';
     el.classList.toggle('ozel', !!k.ozel); if (k.ozel) el.dataset.ozel = k.ozel;
@@ -493,7 +498,7 @@ function strCiz(yeni) {
 const STR_RENKLER = ['#f2453d', '#ffbc1f', '#3cbb4a', '#2b91ea'];
 // renk tonları (CSS color-mix eski iOS'ta yok): açık, koyu, yarı saydam
 function strTon(hex, k) { const n = parseInt(hex.slice(1), 16), c = [n >> 16, (n >> 8) & 255, n & 255].map(v => Math.round(k > 0 ? v + (255 - v) * k : v * (1 + k))); return '#' + c.map(v => v.toString(16).padStart(2, '0')).join(''); }
-const strRenkStil = ci => { const h = STR_RENKLER[ci] || '#888888'; return `--r:${h};--ra:${strTon(h, 0.3)};--rd:${strTon(h, -0.4)};--rs:${h}73`; };
+const strRenkStil = ci => { const h = STR_RENKLER[ci] || '#888888'; return `--r:${h};--ra:${strTon(h, 0.3)};--rd:${strTon(h, -0.4)};--rs:${h}73;--rl:${strTon(h, 0.55)};--rk:${strTon(h, -0.18)}`; };
 // sürükle-bırak ve dokun-dokun
 function strHucreNokta(x, y) {
   const R = STR && STR.R, tah = strTahtaEl(); if (!R || !tah) return -1;
@@ -514,6 +519,21 @@ function strBas(e) {
   strDok = { id: e.pointerId, i, x0: e.clientX, y0: e.clientY, surukle: false, el: null };
   try { strTahtaEl().setPointerCapture(e.pointerId); } catch (x) { }
 }
+// jöle sürükleme: tutulan karo parmağı yayla izler, hızına göre uzayıp eğilir (jole.js'deki yayla aynı)
+function strJelBaslat(d) {
+  d.rx = d.tx; d.ry = d.ty; d.jel = { s: 0, v: 0, a: 0, q: 0, qv: -7, px: null, py: null }; let son = performance.now();
+  const adim = sim => {
+    if (!d.el || !d.el.isConnected) return;
+    const dt = Math.min(0.05, (sim - son) / 1000); son = sim;
+    const f = jelAz ? 1 : Math.min(1, dt * 20); d.rx += (d.tx - d.rx) * f; d.ry += (d.ty - d.ry) * f;
+    jelAdim(d.jel, d.rx, d.ry, dt);
+    const j = d.jel, eg = jelAz ? 0 : clamp((d.tx - d.rx) * 0.006, -0.28, 0.28);
+    d.el.style.left = d.rx + 'px'; d.el.style.top = d.ry + 'px';
+    d.el.style.transform = `rotate(${eg}rad) rotate(${j.a}rad) scale(${1 + j.s},${1 - j.s * 0.7}) rotate(${-j.a}rad) scale(${1.12 * (1 + j.q * 0.85)},${1.12 * (1 - j.q)})`;
+    requestAnimationFrame(adim);
+  };
+  requestAnimationFrame(adim);
+}
 function strSurukle(e) {
   const d = strDok, R = STR && STR.R; if (!d || d.id !== e.pointerId || !R || !R.T.h[d.i] || R.arac) return;
   if (!d.surukle && Math.hypot(e.clientX - d.x0, e.clientY - d.y0) > 9) {
@@ -521,9 +541,10 @@ function strSurukle(e) {
     const kaynak = strKaroEl(R.T.h[d.i].id), c = kaynak.offsetWidth;
     d.el = kaynak.cloneNode(true); d.el.classList.add('st-tut'); d.el.style.width = d.el.style.height = c + 'px'; document.body.appendChild(d.el);
     kaynak.classList.add('kalkti');
+    d.tx = e.clientX - c / 2; d.ty = e.clientY - c * 0.9; strJelBaslat(d);
   }
   if (d.surukle) {
-    const c = d.el.offsetWidth; d.el.style.left = (e.clientX - c / 2) + 'px'; d.el.style.top = (e.clientY - c * 0.9) + 'px';
+    const c = d.el.offsetWidth; d.tx = e.clientX - c / 2; d.ty = e.clientY - c * 0.9;
     const h = strHucreNokta(e.clientX, e.clientY);
     strTahtaEl().querySelectorAll('.hedef').forEach(x => x.classList.remove('hedef'));
     if (h >= 0 && h !== d.i) { const t = R.T.h[h] ? strKaroEl(R.T.h[h].id) : strTahtaEl().querySelector(`.st-bos[data-i="${h}"]`); if (t) t.classList.add('hedef'); }

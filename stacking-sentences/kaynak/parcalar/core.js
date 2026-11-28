@@ -141,24 +141,33 @@ function karoSprite(text, ci, w, h, stil) {
   const c = document.createElement('canvas');
   c.width = Math.ceil((w + 2 * g) * DPR); c.height = Math.ceil((h + depth + 2 * g) * DPR);
   const x = c.getContext('2d'); x.scale(DPR, DPR);
-  const r = Math.min(w, h) * .26;
+  const m = Math.min(w, h), r = m * .34;
   const kilit = stil === 'kilit', dogru = stil === 'dogru';
   const col = kilit ? '#8a7488' : dogru ? '#2fae57' : KARO_RENK[ci % KARO_RENK.length];
-  // gölge ve alt kalınlık (şeker karo)
-  x.save(); x.shadowColor = 'rgba(30,12,20,.35)'; x.shadowBlur = Math.max(2, h * .08); x.shadowOffsetY = depth * .6;
-  rr(x, g, g + depth, w, h, r); x.fillStyle = renkKat(col, .55); x.fill(); x.restore();
-  // yüz: üstte açık, altta koyu
-  rr(x, g, g, w, h, r);
-  const gr = x.createLinearGradient(0, g, 0, g + h);
-  gr.addColorStop(0, renkKat(col, 1.32)); gr.addColorStop(.48, renkKat(col, 1.06)); gr.addColorStop(1, renkKat(col, .86));
-  x.fillStyle = gr; x.fill();
-  x.save(); x.lineWidth = Math.max(1, Math.min(w, h) * .035); x.strokeStyle = kilit ? '#ff8a96' : renkKat(col, .7); x.stroke(); x.restore();
-  // parlak üst (jöle parıltısı) ve sol üstte küçük ışık noktası
-  x.save(); rr(x, g + w * .08, g + h * .06, w * .84, h * .42, r * .8);
-  const pg = x.createLinearGradient(0, g + h * .06, 0, g + h * .48); pg.addColorStop(0, 'rgba(255,255,255,' + (kilit ? .18 : .55) + ')'); pg.addColorStop(1, 'rgba(255,255,255,0)');
+  /* JÖLE KARO (28 Kasım 2026): yumuşak gölge ve alt kalınlık, içten aydınlanan gövde, iç kenar ışıltısı,
+     üstte geniş parlak yansıma, altta ışığın geçtiği açık hilal, iki kabarcık ışık noktası */
+  x.save(); x.shadowColor = 'rgba(30,12,20,.38)'; x.shadowBlur = Math.max(3, h * .12); x.shadowOffsetY = depth * .8;
+  rr(x, g, g + depth, w, h, r); x.fillStyle = renkKat(col, .5); x.fill(); x.restore();
+  rr(x, g, g, w, h, r); x.save(); x.clip();
+  const gv = x.createRadialGradient(g + w * .38, g + h * .3, m * .05, g + w * .5, g + h * .55, Math.max(w, h) * .75);
+  gv.addColorStop(0, renkKat(col, 1.45)); gv.addColorStop(.45, renkKat(col, 1.08)); gv.addColorStop(1, renkKat(col, .78));
+  x.fillStyle = gv; x.fillRect(g, g, w, h);
+  // alt hilal: ışık jöleden geçip altta parlar
+  const ah = x.createRadialGradient(g + w * .5, g + h * 1.05, 0, g + w * .5, g + h * 1.05, h * .55);
+  ah.addColorStop(0, hexA(renkKat(col, 1.6), kilit ? .15 : .55)); ah.addColorStop(1, hexA(col, 0));
+  x.fillStyle = ah; x.fillRect(g, g, w, h);
+  // iç kenar ışıltısı
+  x.lineWidth = Math.max(2, m * .12); x.strokeStyle = hexA(renkKat(col, 1.5), kilit ? .2 : .45); rr(x, g, g, w, h, r); x.stroke();
+  x.restore();
+  x.save(); x.lineWidth = Math.max(1, m * .03); x.strokeStyle = kilit ? '#ff8a96' : renkKat(col, .62); rr(x, g, g, w, h, r); x.stroke(); x.restore();
+  // üst yansıma: kenarlara yakın, yukarıda yoğun, aşağı doğru sönen geniş parıltı
+  x.save(); rr(x, g + w * .1, g + h * .07, w * .8, h * .4, r * .85);
+  const pg = x.createLinearGradient(0, g + h * .07, 0, g + h * .47); pg.addColorStop(0, 'rgba(255,255,255,' + (kilit ? .2 : .7) + ')'); pg.addColorStop(.6, 'rgba(255,255,255,' + (kilit ? .06 : .18) + ')'); pg.addColorStop(1, 'rgba(255,255,255,0)');
   x.fillStyle = pg; x.fill(); x.restore();
-  x.save(); x.globalAlpha = kilit ? .35 : .85; x.fillStyle = '#ffffff';
-  x.beginPath(); x.ellipse(g + Math.max(r * .7, w * .14), g + Math.max(r * .55, h * .17), Math.max(1.5, Math.min(w, h) * .055), Math.max(1.2, Math.min(w, h) * .04), -.5, 0, 7); x.fill(); x.restore();
+  // kabarcık ışıkları
+  x.save(); x.globalAlpha = kilit ? .35 : .95; x.fillStyle = '#ffffff';
+  x.beginPath(); x.ellipse(g + Math.max(r * .62, w * .15), g + Math.max(r * .5, h * .2), Math.max(1.8, m * .075), Math.max(1.4, m * .05), -.6, 0, 7); x.fill();
+  x.globalAlpha *= .8; x.beginPath(); x.arc(g + Math.max(r * .62, w * .15) + m * .13, g + Math.max(r * .5, h * .2) - m * .02, Math.max(1, m * .028), 0, 7); x.fill(); x.restore();
   // yazı: beyaz, karonun koyu tonunda kalın kenar
   const o = karoYaziOlc(text, w, h);
   x.save(); x.translate(g + w / 2, g + h / 2 + 1);
@@ -271,6 +280,15 @@ function drawParticles() {
     g.addColorStop(0, 'rgba(170,178,196,1)'); g.addColorStop(1, 'rgba(120,128,150,0)');
     ctx.fillStyle = g; ctx.beginPath(); ctx.arc(p.x, p.y, r, 0, 7); ctx.fill();
   }
+  // jöle damlacıkları (jole.js): normal karışım, parlak nokta
+  for (const p of P) if (p.type === 'damla') {
+    const k = p.life / p.max, r = Math.max(1, p.s * (0.6 + 0.4 * k)), uz = Math.min(1.8, 1 + Math.hypot(p.vx, p.vy) / 900);
+    ctx.globalAlpha = Math.min(1, k * 1.8);
+    ctx.save(); ctx.translate(p.x, p.y); ctx.rotate(Math.atan2(p.vy, p.vx)); ctx.scale(uz, 1 / Math.sqrt(uz));
+    ctx.fillStyle = p.col; ctx.beginPath(); ctx.arc(0, 0, r, 0, 7); ctx.fill();
+    ctx.fillStyle = 'rgba(255,255,255,.75)'; ctx.beginPath(); ctx.arc(-r * 0.3, -r * 0.35, r * 0.32, 0, 7); ctx.fill(); ctx.restore();
+  }
+  ctx.globalAlpha = 1;
   ctx.globalCompositeOperation = 'lighter';
   for (const p of P) {
     const k = p.life / p.max;
