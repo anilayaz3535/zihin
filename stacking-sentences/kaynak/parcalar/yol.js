@@ -1,8 +1,10 @@
 /* =====================================================================
    BÖLÜM YOLU (Candy Crush tarzı tek kişilik bulmaca haritası)
    Strateji tahtasının (strateji.js) kısa bölümleri: 1 cümle, süre yok, sınırlı hamle, her bölümün bir hedefi.
-   · 6 bölge × 20 bölüm = 120 bölüm (YOL_BOLGE). Seviye A1 → B1; her bölge yeni bir mekanik getirir:
+   · 9 bölge × 20 bölüm = 180 bölüm (YOL_BOLGE). Seviye A1 → C2; bölgeler yeni mekanik getirir:
      ☕ Kafe (puan) · 🧺 Pazar (🧊 buz) · 🌳 Park (🔴 renk) · 🚉 İstasyon (🔒 kilit) · 📚 Kütüphane (karışık) · 🌃 Gece Şehri (zor karışık)
+     · 💼 Ofis B2 (🌫 sis: kelime gizli) · ✈️ Havalimanı C1 (🖋 mürekkep: yayılır) · 🔭 Rasathane C2 (🔀 harfleri karışık kelimeler)
+   · 121–180. bölümler 1–120'yi değiştirmez: yeni rastgele sayılar yalnız 7. bölgeden sonra çekilir.
    · Hedefler: puan yap / bir renkten N karo patlat / N buz kır / N kilitli karo patlat. Cümle her zaman doğru olmalı.
    · 🧊 Buz: karo yerinden oynamaz; kendisi ya da yanındaki patlayınca kırılır. 🔒 Kilit: karo oynamaz, patlatılmalı.
    · Dalgalı zorluk (YOL_DALGA): kolay, orta, zor, 💀 zor bölüm; hamle = kelime + 5/4/3/2.
@@ -19,7 +21,11 @@ const YOL_BOLGE = [
   { ad: 'İstasyon', i: '🚉', lvl: 'A2', renk: '#4a8fd8', hedefler: ['kilit', 'renk', 'kilit', 'buz'], yeni: 'kilit' },
   { ad: 'Kütüphane', i: '📚', lvl: 'B1', renk: '#8a62d0', hedefler: ['renk', 'kilit', 'buz', 'puan'], yeni: null },
   { ad: 'Gece Şehri', i: '🌃', lvl: 'B1', renk: '#3b4a8a', hedefler: ['kilit', 'buz', 'renk', 'renk', 'puan'], yeni: null },
+  { ad: 'Ofis', i: '💼', lvl: 'B2', renk: '#c8573f', hedefler: ['puan', 'renk', 'kilit', 'buz', 'renk'], yeni: 'sis' },
+  { ad: 'Havalimanı', i: '✈️', lvl: 'C1', renk: '#2a9d98', hedefler: ['murekkep', 'renk', 'murekkep', 'kilit', 'puan'], yeni: 'murekkep' },
+  { ad: 'Rasathane', i: '🔭', lvl: 'C2', renk: '#4b3384', hedefler: ['renk', 'murekkep', 'kilit', 'buz', 'puan'], yeni: 'karisik' },
 ];
+const YOL_HEDEF_TUR = ['puan', 'renk', 'buz', 'kilit', 'murekkep'];
 const YOL_BOLUM_BOLGE = 20, YOL_TOPLAM = YOL_BOLGE.length * YOL_BOLUM_BOLGE;
 const YOL_DALGA = ['kolay', 'kolay', 'orta', 'orta', 'zor', 'kolay', 'orta', 'orta', 'zor', 'kolay', 'orta', 'orta', 'orta', 'zor', 'kolay', 'orta', 'orta', 'zor', 'kolay', 'boss'];
 const YOL_EK_HAMLE = { ilk: 6, kolay: 5, orta: 4, zor: 3, boss: 2 }, YOL_ORAN = { ilk: 0.22, kolay: 0.55, orta: 0.72, zor: 0.85, boss: 0.92 };
@@ -33,11 +39,11 @@ function yolBolum(no) {
   const bi = Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE)), B = YOL_BOLGE[bi], sira = (no - 1) % YOL_BOLUM_BOLGE;
   const r = tohumluRastgele('yol:' + no), zor = no <= 5 ? 'ilk' : YOL_DALGA[sira];   // ilk 5 bölüm: çok kolay ve gösterişli (yeni oyuncu hemen kazanır)
   // cümle: bölgenin seviyesinden kısa bir cümle (3–6 kelime; B1'de 4–7)
-  const [en, ek] = no <= 5 ? [3, 4] : B.lvl === 'B1' ? [4, 7] : [3, 6], rl = seviyeRakipleri(B.lvl).filter(cumleliMi);
+  const [en, ek] = no <= 5 ? [3, 4] : bi >= 4 ? [4, 7] : [3, 6], rl = seviyeRakipleri(B.lvl).filter(cumleliMi);
   let s = null;
-  for (let d = 0; d < 400 && !s; d++) { const h = cumleler(rl[Math.floor(r() * rl.length)].id); const c = h[Math.floor(r() * h.length)]; if (c && c.w.length >= en && c.w.length <= ek && !c.w.some(w => [...w[0]].length > 11)) s = c; }
+  for (let d = 0; d < 400 && !s; d++) { const h = cumleler(rl[Math.floor(r() * rl.length)].id); const c = h[Math.floor(r() * h.length)]; if (c && c.w.length >= en && c.w.length <= ek && !c.w.some(w => [...w[0]].length > 11) && !(bi >= 6 && yolCumleKullanildi(no, c.en))) s = c; }
   // hedef türü: bölgenin ilk bölümü yeni mekaniği tanıtır, sonra bölgenin hedef döngüsü
-  const tur = sira === 0 && B.yeni ? B.yeni : B.hedefler[sira % B.hedefler.length];
+  const tur = sira === 0 && YOL_HEDEF_TUR.indexOf(B.yeni) >= 0 ? B.yeni : B.hedefler[sira % B.hedefler.length];   // sis ve karışık harf hedef değil, engeldir
   const T = strTahta(s, B.lvl, 'yolT:' + no, { rows: 5, bos: 2, tuzak: Math.min(s.w.length, 1 + Math.floor(bi / 2) + (zor === 'boss' ? 1 : 0)) });
   // engeller: bölgeye göre buz ve kilit (hedef kelimelerde yok)
   const adaylar = T.h.map((k, i) => (k && k.k < 0 ? i : -1)).filter(i => i >= 0);
@@ -51,13 +57,17 @@ function yolBolum(no) {
     const tur = ozelTur[Math.floor(r() * ozelTur.length)], k = T.h[i];
     k.ozel = tur; k.txt = ''; if (tur === 'gokkusagi') k.ci = -1;
   });
-  const hamle = T.n + YOL_EK_HAMLE[zor];
+  let hamle = T.n + YOL_EK_HAMLE[zor];
   const hk = Math.floor(r() * T.n), renk = tur === 'renk' ? T.h.find(k => k && k.k === hk).ci : -1;
+  // 7. bölgeden (121) sonra: 🌫 sis, 🖋 mürekkep, 🔀 karışık harfler (rastgele sayılar burada çekilir: önceki bölümler değişmez)
+  if (bi >= 6) yolYeniEngel(T, bi, sira, tur, zor, r);
+  if (T.h.some(k => k && k.sis)) hamle += 1;   // sisi açmak bir hamle ister
   // uzman çözüm: açgözlü, hedefe göre ağırlıklı; hedef ve yıldız eşikleri bundan
   const u = yolUzman(T, hamle, tur, renk), oran = YOL_ORAN[zor];
   const hedef = tur === 'puan' ? { tur, sayi: yolOnluk(u.ham * oran) }
     : tur === 'renk' ? { tur, renk, sayi: Math.max(3, Math.floor(u.renk[renk] * oran)) }
       : tur === 'buz' ? { tur, sayi: Math.max(1, Math.min(buzN, Math.floor(u.buz * oran + 0.5))) }
+        : tur === 'murekkep' ? { tur, sayi: Math.max(1, Math.floor(u.murekkep * oran + 0.5)) }
         : { tur, sayi: Math.max(1, Math.min(kilitN, Math.floor(u.kilit * oran + 0.5))) };
   // güvence: uzman çözümü hedefe ulaşamıyorsa (ör. hiç buz kıramadıysa) hedef puana döner — her bölüm çözülebilir
   if (yolHedefSayi(hedef, u) < hedef.sayi) Object.assign(hedef, { tur: 'puan', sayi: yolOnluk(u.ham * oran) });
@@ -65,15 +75,46 @@ function yolBolum(no) {
   yolOnbellek.set(no, b);
   return b;
 }
+// 121+: aynı bölgede aynı cümle ya da aynı kalıp (ilk 3 kelime) tekrar etmesin (önceki bölümler değişmesin diye yalnız orada)
+const yolKalip = en => en.toLowerCase().split(/\s+/).slice(0, 3).join(' ');
+function yolCumleKullanildi(no, en) { const k = yolKalip(en); for (let m = Math.max(121, no - 19); m < no; m++) if (yolKalip(yolBolum(m).s.en) === k) return true; return false; }
+function yolYeniEngel(T, bi, sira, tur, zor, r) {
+  const serbest = () => T.h.map((k, i) => (k && !k.ozel && !strDonuk(k) && !k.sis && !k.kar ? i : -1)).filter(i => i >= 0);
+  const karistir = a => { for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; };
+  // 🖋 mürekkep tohumları (dolgu karolarda; yayılarak büyür)
+  const murN = tur === 'murekkep' ? 2 + (bi >= 8 ? 1 : 0) + (zor === 'boss' ? 1 : 0) : bi >= 7 && r() < 0.45 ? 1 : 0;
+  karistir(serbest().filter(i => T.h[i].k < 0)).slice(0, murN).forEach(i => { T.h[i].mur = true; });
+  // 🔀 karışık harfler (C2): biri cümlenin kelimesi olmak üzere 3–4 kelime
+  if (bi >= 8) {
+    const uygun = i => /^[A-Za-z]{3,}$/.test(T.h[i].txt) && yolKaristir(T.h[i].txt, tohumluRastgele('kd:' + T.h[i].txt)) !== null;
+    const hedefK = karistir(serbest().filter(i => T.h[i].k >= 0 && uygun(i))), dolgu = karistir(serbest().filter(i => T.h[i].k < 0 && uygun(i)));
+    hedefK.slice(0, sira === 0 ? 1 : 1 + (r() < 0.5 ? 1 : 0)).concat(dolgu.slice(0, 2)).forEach(i => { T.h[i].kar = yolKaristir(T.h[i].txt, r); });
+  }
+  // 🌫 sis (B2'den): en az biri cümlenin kelimesi
+  const sisN = bi === 6 ? 4 + (sira >= 10 ? 1 : 0) : bi === 7 ? 3 : 2 + (r() < 0.5 ? 1 : 0);
+  const sh = karistir(serbest().filter(i => T.h[i].k >= 0)), sd = karistir(serbest().filter(i => T.h[i].k < 0));
+  sh.slice(0, 1 + (bi === 6 && sira >= 5 ? 1 : 0)).concat(sd).slice(0, sisN).forEach(i => { T.h[i].sis = true; });
+}
+// harfleri karıştırır (ilk harf büyükse karışıkta da ilk harf büyük); kelimenin kendisi ya da sözlükte bir kelime çıkmaz. Olmuyorsa null.
+function yolKaristir(w, r) {
+  const h = [...w]; if (h.length < 3 || new Set(h.map(c => c.toLowerCase())).size < 2) return null;
+  const buyuk = h[0] !== h[0].toLowerCase(), k = h.map(c => c.toLowerCase());
+  for (let d = 0; d < 40; d++) {
+    for (let i = k.length - 1; i > 0; i--) { const j = Math.floor(r() * (i + 1)); [k[i], k[j]] = [k[j], k[i]]; }
+    const o = k.join(''), yer = k.filter((c, i) => c !== w[i].toLowerCase()).length;   // harflerin en az yarısı yer değiştirmeli; gerçek bir kelime çıkmamalı (team → meat olmaz)
+    if (o !== w.toLowerCase() && yer * 2 >= k.length && !sozluk()[o]) return buyuk ? o[0].toUpperCase() + o.slice(1) : o;
+  }
+  return null;
+}
 function yolKopya(T) { return { cols: T.cols, rows: T.rows, n: T.n, hedef: T.hedef, h: T.h.map(k => k && Object.assign({}, k)) }; }
 // bir patlama planının hedef sayıları
 function yolIstat(plan) {
-  const o = { puan: plan.puan, ham: plan.puan - (plan.temiz ? 300 : 0), temiz: plan.temiz, renk: [0, 0, 0, 0], buz: 0, kilit: 0, karo: 0 };
-  plan.adimlar.forEach(a => { a.karolar.forEach(k => { o.renk[k.ci]++; o.karo++; if (k.kilit) o.kilit++; }); o.buz += a.buz.length; });
+  const o = { puan: plan.puan, ham: plan.puan - (plan.temiz ? 300 : 0), temiz: plan.temiz, renk: [0, 0, 0, 0], buz: 0, kilit: 0, murekkep: 0, karo: 0 };
+  plan.adimlar.forEach(a => { a.karolar.forEach(k => { if (k.ci >= 0) o.renk[k.ci]++; o.karo++; if (k.kilit) o.kilit++; }); o.buz += a.buz.length; o.murekkep += (a.mur || []).length; });
   return o;
 }
 // çekiçle kırılan buz / açılan kilit de hedefe sayılır (odul.js: R.ekstra)
-function yolV(b, ist, R) { const e = (R && R.ekstra) || {}; return yolHedefSayi(b.hedef, ist) + (b.hedef.tur === 'buz' ? e.buz || 0 : b.hedef.tur === 'kilit' ? e.kilit || 0 : 0); }
+function yolV(b, ist, R) { const e = (R && R.ekstra) || {}; return yolHedefSayi(b.hedef, ist) + (b.hedef.tur === 'buz' || b.hedef.tur === 'kilit' || b.hedef.tur === 'murekkep' ? e[b.hedef.tur] || 0 : 0); }
 function yolHedefSayi(h, ist) { return h.tur === 'puan' ? ist.puan : h.tur === 'renk' ? ist.renk[h.renk] : ist[h.tur]; }
 // hamleler: verilirse uzmanın yaptığı taşımalar [a, b] eklenir (test ve ipucu için)
 function yolUzman(T0, hamle, tur, renk, hamleler) {
@@ -82,7 +123,7 @@ function yolUzman(T0, hamle, tur, renk, hamleler) {
     const hs = strOzelGenislet(t, strBombaHucreleri(t, ids)).hs; let v = hs.length;   // özel karoların etkisi de hesaba katılır
     if (tur === 'renk') hs.forEach(i => { if (t.h[i].ci === renk) v += 2; });
     if (tur === 'kilit') hs.forEach(i => { if (t.h[i].kilit) v += 3; });
-    if (tur === 'buz') { const g = new Set(); hs.forEach(i => [i].concat(strKomsu(t, i)).forEach(j => { if (t.h[j] && t.h[j].buz) g.add(j); })); v += g.size * 3; }
+    if (tur === 'buz' || tur === 'murekkep') { const f = tur === 'buz' ? 'buz' : 'mur', g = new Set(); hs.forEach(i => [i].concat(strKomsu(t, i)).forEach(j => { if (t.h[j] && t.h[j][f]) g.add(j); })); v += g.size * 3; }
     return v;
   };
   for (let h = 0; h < hamle; h++) {
@@ -93,6 +134,7 @@ function yolUzman(T0, hamle, tur, renk, hamleler) {
     }
     if (!best) break;
     strTasi(T, best[0], best[1]); if (hamleler) hamleler.push(best);
+    if ((h + 1) % STR_MUR_ARALIK === 0 && T.h.some(k => k && k.mur)) strMurekkepYay(T, h + 1);   // oyuncudaki gibi yayılır
   }
   return yolIstat(strPatlamaPlani(T, ids));
 }
@@ -100,6 +142,7 @@ function yolHedefYazi(h, kisa) {
   if (h.tur === 'puan') return tt(kisa ? '🎯 {n} puan' : '🎯 {n} puan yap', { n: h.sayi });
   if (h.tur === 'renk') return tt(kisa ? '{i} {n} {r}' : '{i} {n} {r} karo patlat', { i: YOL_RENK_I[h.renk], n: h.sayi, r: tt(YOL_RENK_AD[h.renk]) });
   if (h.tur === 'buz') return tt(kisa ? '🧊 {n} buz' : '🧊 {n} buz kır', { n: h.sayi });
+  if (h.tur === 'murekkep') return tt(kisa ? '🖋 {n} mürekkep' : '🖋 {n} mürekkep temizle', { n: h.sayi });
   return tt(kisa ? '🔒 {n} kilit' : '🔒 {n} kilitli karo patlat', { n: h.sayi });
 }
 
@@ -135,11 +178,14 @@ function yolHaritaAc() {
   });
   setTimeout(() => { const s = card.querySelector('.y-durak.simdi'); if (s) s.scrollIntoView({ block: 'center' }); }, 30);
 }
-function yolMekanikAd(m) { return m === 'buz' ? tt('🧊 Buz') : m === 'kilit' ? tt('🔒 Kilit') : m === 'renk' ? tt('🎨 Renk hedefi') : ''; }
+function yolMekanikAd(m) { return { buz: tt('🧊 Buz'), kilit: tt('🔒 Kilit'), renk: tt('🎨 Renk hedefi'), sis: tt('🌫 Sis'), murekkep: tt('🖋 Mürekkep'), karisik: tt('🔀 Karışık harfler') }[m] || ''; }
 const YOL_ACIKLAMA = {
   buz: '🧊 Buzlu karo yerinden oynamaz. Kendisi ya da yanındaki karo patlayınca buz kırılır.',
   kilit: '🔒 Kilitli karo yerinden oynamaz. Onu patlatmak için aynı renk bir grubu ona değdir.',
   renk: '🎨 Hedef bir renk: o renkten istenen kadar karoyu patlat. O renkteki kelimelerin yanına aynı rengi topla.',
+  sis: '🌫 Sisli karonun kelimesi görünmez ve kutuya çekilemez. Onu ya da yanındaki bir karoyu taşıyınca sis açılır.',
+  murekkep: '🖋 Mürekkep her 2 hamlede yanındaki karoya yayılır ve lekeli karo yerinden oynamaz. Kendisi ya da yanındaki patlayınca temizlenir.',
+  karisik: '🔀 Bazı kelimelerin harfleri karışık. Hangi kelime olduğunu bul ve doğru sıraya koy.',
 };
 const YOL_OZEL_ACIKLAMA = {
   yatay: 'Çizgili karo: aynı renk grubuyla patlayınca bütün satırı patlatır.',
@@ -156,6 +202,7 @@ function yolBaslangic(no) {
     <div class="y-hedef">${yolHedefYazi(b.hedef)}</div>
     <div class="y-bilgi"><span>✋ ${tt('{n} hamle', { n: b.hamle })}</span><span>📝 ${tt('{n} kelime', { n: b.T.n })}</span></div>
     ${yeniMek ? `<div class="y-yeni"><b>${tt('YENİ!')}</b> ${tt(YOL_ACIKLAMA[yeniMek])}</div>` : ''}
+    ${['sis', 'murekkep', 'karisik'].filter(m => m !== yeniMek && b.T.h.some(k => k && (m === 'sis' ? k.sis : m === 'murekkep' ? k.mur : k.kar))).map(m => `<div class="y-ozel">${tt(YOL_ACIKLAMA[m])}</div>`).join('')}
     ${[...new Set(b.T.h.filter(k => k && k.ozel).map(k => k.ozel))].map(o => `<div class="y-ozel"><i>${OZEL_I[o]}</i> ${tt(YOL_OZEL_ACIKLAMA[o])}</div>`).join('')}
     <div class="y-yildizlar">${[0, 1, 2].map(i => `<i class="${i < y ? 'on' : ''}">★</i>`).join('')}</div>
     ${en ? `<p class="aciklama kucuk" style="text-align:center">${tt('En iyi skorun: {n}', { n: en })}</p>` : ''}

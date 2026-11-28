@@ -86,7 +86,7 @@ function strKotuHucreler(T) {
 }
 // taşı: karo 'a' hücresinden 'b' hücresine; b doluysa b ve arkasındakiler sağa (satır sonunda alta) kayar, ilk boşluğu doldurur
 // buzlu / kilitli karo (Bölüm Yolu) yerinden oynamaz: taşınamaz, üstüne bırakılamaz, kayan sıra onu atlar
-const strDonuk = k => !!(k && (k.buz || k.kilit));
+const strDonuk = k => !!(k && (k.buz || k.kilit || k.mur));
 function strTasi(T, a, b) {
   if (a === b || !T.h[a] || strDonuk(T.h[a]) || strDonuk(T.h[b])) return false;
   const N = T.h.length, karo = T.h[a]; T.h[a] = null;
@@ -98,6 +98,17 @@ function strTasi(T, a, b) {
   T.h[b] = karo;
   return true;
 }
+/* 🖋 MÜREKKEP (Bölüm Yolu, C1'den): lekeli karo yerinden oynamaz; kendisi ya da yanındaki patlayınca temizlenir.
+   Her 2 hamlede bir leke, lekeli bir karonun yanındaki karoya yayılır (cümlenin kelimelerine ve özel karolara değil). Seçim belirlenimci:
+   oyuncu ve bilgisayarın "uzman"ı aynı kuralla oynar. Döner: yeni lekelenen hücre ya da -1. */
+function strMurekkepYay(T, adim) {
+  const aday = [];
+  T.h.forEach((k, i) => { if (k && k.mur) strKomsu(T, i).forEach(j => { const m = T.h[j]; if (m && m.k < 0 && !m.ozel && !strDonuk(m) && aday.indexOf(j) < 0) aday.push(j); }); });
+  if (!aday.length) return -1;
+  aday.sort((a, b) => a - b);
+  const j = aday[(adim * 7 + aday.length * 3) % aday.length]; T.h[j].mur = true; return j;
+}
+const STR_MUR_ARALIK = 2;
 function strHucreBul(T, id) { return T.h.findIndex(k => k && k.id === id); }
 // bombanın patlattığı hücreler: seçilen karolar + onlara bağlı aynı renk
 function strBombaHucreleri(T, idler) {
@@ -158,8 +169,8 @@ function strPatlamaPlani(T, idler) {
   const kirik = new Set();   // kırılan buzlar (patlayan karonun kendisi ya da yanındaki)
   while (hs.length) {
     const oz = strOzelGenislet(t, hs); hs = oz.hs;
-    const buz = []; hs.forEach(i => [i].concat(strKomsu(t, i)).forEach(j => { const k = t.h[j]; if (k && k.buz && !kirik.has(k.id)) { kirik.add(k.id); buz.push(k.id); } }));
-    adimlar.push({ hucreler: hs.slice(), puan: Math.round(hs.length * 10 * (1 + z * 0.5)), zincir: z, idler: hs.map(i => t.h[i].id), karolar: hs.map(i => t.h[i]), buz, ozel: oz.tetik, kombo: oz.kombo });
+    const buz = [], mur = []; hs.forEach(i => [i].concat(strKomsu(t, i)).forEach(j => { const k = t.h[j]; if (!k || kirik.has(k.id)) return; if (k.buz) { kirik.add(k.id); buz.push(k.id); } else if (k.mur) { kirik.add(k.id); mur.push(k.id); } }));
+    adimlar.push({ hucreler: hs.slice(), puan: Math.round(hs.length * 10 * (1 + z * 0.5)), zincir: z, idler: hs.map(i => t.h[i].id), karolar: hs.map(i => t.h[i]), buz, mur, ozel: oz.tetik, kombo: oz.kombo });
     hs.forEach(i => { t.h[i] = null; }); strDus(t); z++;
     adimlar[adimlar.length - 1].sonra = t.h.slice();
     hs = strKaskadBul(t);
@@ -248,10 +259,14 @@ function strTasiOyuncu(a, b) {
   if (R.hamle <= 0) { not(tt('Hamle hakkın bitti. Kelimeleri kutulara çek ve bombaya bas.')); Ses.cal('geri', { ses: 0.5 }); return false; }
   const once = strGruplar(R.T), idOnce = new Map(); once.forEach((v, i) => idOnce.set(R.T.h[i].id, v));
   if (!strTasi(R.T, a, b)) { not(tt('Buzlu ve kilitli karolar yerinden oynamaz.')); Ses.cal('geri', { ses: 0.5 }); R.secili = -1; strCiz(); return false; }
-  R.hamle--; R.secili = -1;
+  R.hamle--; R.secili = -1; R.tasima = (R.tasima || 0) + 1;
   Ses.cal('kay', { ses: 0.6 }); Yerel.titret('hafif');
+  const acilan = strSisAc(R.T, b);
+  const leke = R.T.h.some(k => k && k.mur) && R.tasima % STR_MUR_ARALIK === 0 ? strMurekkepYay(R.T, R.tasima) : -1;
   strCiz();
   strAnlikOdul(R, once, idOnce, b);
+  if (acilan.length) { Ses.cal('yukselis', { ses: 0.35 }); acilan.forEach(id => { const el = strKaroEl(id); if (el) { el.classList.add('sis-ac'); setTimeout(() => el.classList.remove('sis-ac'), 700); } }); }
+  if (leke >= 0) { const el = strKaroEl(R.T.h[leke].id); if (el) el.classList.add('mur-yay'); Ses.cal('dus', { ses: 0.5, hiz: 0.7 }); }
   if (R.rehber) rehberIlerle();
   if (STR.yol && R.hamle === 0) yolHamleBitti();
   return true;
@@ -277,10 +292,14 @@ function strAnlikOdul(R, once, idOnce, b) {
   for (let n = 0; n < ust; n++) Ses.nota(2 + n, 0.32, n * 0.06);
   if (enBuyuk >= 5) Yerel.titret('orta');
 }
+/* 🌫 SİS (Bölüm Yolu, B2'den): sisli karonun rengi görünür, kelimesi görünmez ve kutuya çekilemez.
+   Taşıdığın karo ve onu bıraktığın yerin yanındaki karolar açılır. Döner: açılan karoların kimlikleri. */
+function strSisAc(T, b) { const o = []; [b].concat(strKomsu(T, b)).forEach(i => { const k = T.h[i]; if (k && k.sis) { k.sis = false; o.push(k.id); } }); return o; }
 function strSec(i, kutu) {   // hücre i'deki karonun gölgesi kutuya
   const R = STR && STR.R; if (!R || R.bitti || !R.T.h[i]) return;
   const k = R.T.h[i];
   if (k.ozel) { not(tt('Özel karo bir kelime değil; onu patlamanın içine sok.')); Ses.cal('geri', { ses: 0.4 }); return; }
+  if (k.sis) { not(tt('Sisli kelimeyi önce aç: onu ya da yanındaki bir karoyu taşı.')); Ses.cal('geri', { ses: 0.4 }); return; }
   if (R.rehber) { if (!rehberIzin('sec', k.txt)) return; kutu = rehberAdim().kutu; }
   if (kutu == null || kutu < 0) kutu = R.secim.findIndex(x => !x);
   if (kutu < 0) { not(tt('Kutular dolu. Değiştirmek için bir kutuya dokun.')); return; }
@@ -313,6 +332,7 @@ function strBomba() {
     a.hucreler.forEach(i => { const el = strKaroEl(R.T.h[i] && R.T.h[i].id); if (el) { el.classList.add('pat'); strKivilcim(el, R.T.h[i].ci); } });
     if (a.ozel && a.ozel.length) strOzelEfekt(R.T, a);
     if (a.buz.length) { R.T.h.forEach(k => { if (k && a.buz.indexOf(k.id) >= 0) { k.buz = false; const el = strKaroEl(k.id); if (el) el.classList.add('buz-kir'); } }); Ses.cal('kes', { ses: 0.6 }); }
+    if (a.mur && a.mur.length) { R.T.h.forEach(k => { if (k && a.mur.indexOf(k.id) >= 0) { k.mur = false; const el = strKaroEl(k.id); if (el) el.classList.add('mur-sil'); } }); Ses.cal('kay', { ses: 0.6, hiz: 1.4 }); }
     toplam += a.puan; strPuanUc('+' + a.puan, a.zincir);
     // büyük patlama: patlayan karo arttıkça daha güçlü; zincirlerde yükselen ikinci patlamalar
     if (a.zincir) { Ses.cal('zincirBum', { ses: 0.85, hiz: 1 + a.zincir * 0.15 }); Ses.cal('zincir', { ses: 0.8, hiz: 1 + a.zincir * 0.12 }); }
@@ -448,11 +468,11 @@ function strCiz(yeni) {
     durdu.add(k.id);
     el.style.left = (i % T.cols) * c + 'px'; el.style.top = Math.floor(i / T.cols) * c + 'px';
     el.style.width = el.style.height = c + 'px';
-    const yazi = k.ozel ? OZEL_I[k.ozel] : k.txt, sp = el.firstChild; if (sp.textContent !== yazi) sp.textContent = yazi; sp.style.fontSize = (k.ozel ? Math.round(c * 0.46) : strYaziBoy(k.txt, c)) + 'px';
+    const yazi = k.ozel ? OZEL_I[k.ozel] : k.sis ? '?' : k.kar || k.txt, sp = el.firstChild; if (sp.textContent !== yazi) sp.textContent = yazi; sp.style.fontSize = (k.ozel ? Math.round(c * 0.46) : strYaziBoy(k.txt, c)) + 'px';
     el.classList.toggle('ozel', !!k.ozel); if (k.ozel) el.dataset.ozel = k.ozel;
     const sn = secimSira.get(k.id); el.classList.toggle('secildi', !!sn); el.lastChild.textContent = sn || '';
     el.classList.toggle('secili', R.secili === i);
-    el.classList.toggle('buz', !!k.buz); el.classList.toggle('kilit', !!k.kilit);
+    el.classList.toggle('buz', !!k.buz); el.classList.toggle('kilit', !!k.kilit); el.classList.toggle('sis', !!k.sis); el.classList.toggle('mur', !!k.mur); el.classList.toggle('karisik', !!k.kar);
     const g = gruplar.get(i) || 0; el.classList.toggle('grup', g >= 3); if (g >= 3) el.style.setProperty('--gg', Math.min(g, 8));
     el.dataset.i = i;
   });
@@ -461,7 +481,7 @@ function strCiz(yeni) {
   tah.querySelectorAll('.st-bos').forEach(e => e.remove());
   T.h.forEach((k, i) => { if (k) return; const e = document.createElement('div'); e.className = 'st-bos'; e.dataset.i = i; Object.assign(e.style, { left: (i % T.cols) * c + 'px', top: Math.floor(i / T.cols) * c + 'px', width: c + 'px', height: c + 'px' }); tah.prepend(e); });
   // kutular: seçilen karonun gölgesi
-  $('#st-kutular').innerHTML = R.secim.map((k, i) => `<button class="st-kutu ${k ? 'dolu' : ''}" data-i="${i}" style="${k ? strRenkStil(k.ci) : ''}"><i>${i + 1}</i>${k ? `<span>${esc(k.txt)}</span>` : ''}</button>`).join('');
+  $('#st-kutular').innerHTML = R.secim.map((k, i) => `<button class="st-kutu ${k ? 'dolu' : ''}" data-i="${i}" style="${k ? strRenkStil(k.ci) : ''}"><i>${i + 1}</i>${k ? `<span>${esc(k.kar || k.txt)}</span>` : ''}</button>`).join('');
   const bom = $('#st-bomba'); bom.disabled = R.bitti || !R.secim.every(Boolean); bom.classList.toggle('hazir', !bom.disabled);
   $('#st-ipucu').textContent = R.bitti || R.rehber ? '' : R.secili >= 0 ? tt('Bir hücreye dokun: taşı (1 hamle) · bir kutuya dokun: kelimeyi seç')
     : R.secim.every(Boolean) ? tt('Hazırsan 💣 BOMBA! Hâlâ taşıyabilir ya da kutudaki kelimeyi değiştirebilirsin.')

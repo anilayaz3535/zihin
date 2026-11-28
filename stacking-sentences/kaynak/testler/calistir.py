@@ -30,6 +30,7 @@ CHROME = os.environ.get('CHROME') or ('/usr/bin/google-chrome' if os.path.exists
 os.makedirs(OUT, exist_ok=True)
 
 TESTLER = []
+YOL_IMZA = 1647231289   # 1–120. Bölüm Yolu bölümlerinin imzası: değişirse oyuncuların ilerlemesi anlamını yitirir
 YAVAS = ('veri', 'online', 'tek')   # --hizli bunları atlar; adım sonunda tam set çalışır
 def test(f):
     TESTLER.append(f); return f
@@ -418,8 +419,20 @@ def online(b):
         esit(A.js('D.r.lvl'), 'A2', 'hızlı eşleşme seviyesi')
         dogru(B.js('OD.rakip.ad').startswith('Oyuncu #') and A.js('OD.rakip.ad').startswith('Oyuncu #'), 'hızlı eşleşmede gerçek isim göründü: ' + B.js('OD.rakip.ad'))
         esit(A.hatalar(), [], 'JS hataları A (eşleşme)'); esit(B.hatalar(), [], 'JS hataları B (eşleşme)')
+        # tek lobi: farklı seviyeler beklendikçe eşleşir, maç düşük seviyede (test için genişleme 1,5 sn'de)
+        for p, l in ((A, 'A1'), (B, 'B1')):
+            p.js("odadanCik(); window.__esGenis = [[1500, 5]]; onlineModAc('hiz')"); p.pg.wait_for_timeout(200); p.pg.tap(f'#o-lvl button[data-l="{l}"]'); p.pg.tap('#o-hizli')
+        A.pg.wait_for_function("ekran === 'eslesme' && /A1/.test(document.getElementById('es-not').textContent + ES.lvl)", timeout=3000)
+        for p in (A, B): p.pg.wait_for_function("D && D.online && G.state === 'playing'", timeout=30000)
+        esit((A.js('D.r.lvl'), B.js('D.r.lvl')), ('A1', 'A1'), 'farklı seviyeler: maç düşük seviyede')
+        esit(A.js('JSON.stringify(D.online.liste)'), B.js('JSON.stringify(D.online.liste)'), 'genişleyen eşleşmede cümle listesi')
+        # kimse gelmezse bilgisayara karşı kendiliğinden başlar (test için 3 sn)
+        B.js("odadanCik(); kayit.strRehber = true; window.__esBotSn = 3; onlineModAc('strateji')"); B.pg.wait_for_timeout(200); B.pg.tap('#o-hizli')
+        B.pg.wait_for_function("ekran === 'eslesme' && /bilgisayar|computer/i.test(document.getElementById('es-not').textContent)", timeout=3000)
+        B.pg.wait_for_function('!!STR && STR.rakip.bot', timeout=8000); esit(B.js('ES.aktif'), False, 'eşleşme durmadı')
+        esit(A.hatalar(), [], 'JS hataları A (geniş eşleşme)'); esit(B.hatalar(), [], 'JS hataları B (bilgisayara geçiş)')
         A.kapat(); B.kapat()
-        return f'oda {kod}: A {ka}, B {kb}; yanlış kod uyarısı; strateji odası {kod2}: {sa[0]} / {sb[0]}, puanlar {sa[1]} – {sa[2]}; hızlı eşleşme A2 tamam'
+        return f'oda {kod}: A {ka}, B {kb}; yanlış kod uyarısı; strateji odası {kod2}: {sa[0]} / {sb[0]}, puanlar {sa[1]} – {sa[2]}; hızlı eşleşme A2 tamam; A1 × B1 beklendikçe A1'de eşleşti; kimse gelmeyince bilgisayara geçti'
     finally:
         br.kill()
 
@@ -631,18 +644,84 @@ def anlik(b):
     return f'grubu büyüten hamle +{h[2]}, parlayan gruplar, boş hamleye ödül yok, gökkuşağı hariç, kelimeden bağımsız, İngilizce'
 
 @test
+def yol_yeni(b):
+    """BÖLÜM YOLU 121–180 (B2 · C1 · C2): 1–120 değişmedi (imza); 🌫 sis: kelime gizli, kutuya çekilmez, taşıyınca / yanına taşıyınca açılır;
+    🖋 mürekkep: her 2 hamlede yayılır (cümle kelimelerine değil), lekeli karo oynamaz, patlayınca temizlenir, uzman çözümüyle kazanılır;
+    🔀 karışık harfler: gerçek kelime çıkmaz, bomba doğru kelimeyle patlar; aynı bölgede kalıp tekrarı yok; harita ve başlangıç kartı; İngilizce."""
+    s = Sayfa(b); s.js('kayit.strRehber = true; kayit.yol.acik = 180')
+    imza = s.js("""(() => { let h = 0; for (let n = 1; n <= 120; n++) { const B = yolBolum(n), t = JSON.stringify([B.hedef, B.hamle, B.esik, B.s.en, B.T.h.map(k => k && [k.txt, k.ci, k.k, !!k.buz, !!k.kilit, k.ozel || 0])]);
+      for (let i = 0; i < t.length; i++) h = (h * 31 + t.charCodeAt(i)) >>> 0; } return h; })()""")
+    esit(imza, YOL_IMZA, '1–120. bölümler değişti')
+    o = s.js("""(() => { const o = { sis: 0, sisH: 0, mur: 0, kar: 0, karH: 0, gercek: [], kalip: 0, onceSis: 0, onceMur: 0, onceKar: 0, bas: [] };
+      const soz = sozluk();
+      for (let n = 1; n <= YOL_TOPLAM; n++) { const B = yolBolum(n), h = B.T.h.filter(Boolean);
+        if (n <= 120) { o.onceSis += h.filter(k => k.sis).length; o.onceMur += h.filter(k => k.mur).length; o.onceKar += h.filter(k => k.kar).length; continue; }
+        if (h.some(k => k.sis)) o.sis++; if (h.some(k => k.sis && k.k >= 0)) o.sisH++; if (h.some(k => k.mur)) o.mur++;
+        if (h.some(k => k.kar)) o.kar++; if (h.some(k => k.kar && k.k >= 0)) o.karH++;
+        h.filter(k => k.kar).forEach(k => { if (soz[k.kar.toLowerCase()] || k.kar.toLowerCase() === k.txt.toLowerCase() || [...k.kar.toLowerCase()].sort().join('') !== [...k.txt.toLowerCase()].sort().join('')) o.gercek.push(k.txt + '>' + k.kar); });
+        const bi = B.bi; for (let m = bi * 20 + 1; m < n; m++) if (yolKalip(yolBolum(m).s.en) === yolKalip(B.s.en)) o.kalip++; }
+      [121, 141, 161].forEach(n => o.bas.push([yolBolum(n).B.lvl, yolBolum(n).B.yeni])); return o; })()""")
+    esit((o['onceSis'], o['onceMur'], o['onceKar']), (0, 0, 0), '1–120 yeni engel')
+    esit((o['sis'], o['sisH'], o['mur'] >= 25, o['kar'], o['karH']), (60, 60, True, 20, 20), f'engel dağılımı {o}')
+    esit(o['gercek'], [], 'karışık harf gerçek kelime ya da yanlış harfler'); esit(o['kalip'], 0, 'aynı bölgede kalıp tekrarı')
+    esit(o['bas'], [['B2', 'sis'], ['C1', 'murekkep'], ['C2', 'karisik']], 'bölgeler')
+    # 🌫 SİS
+    s.js('yolOyna(121)'); s.pg.wait_for_timeout(200)
+    i = s.js("STR.R.T.h.findIndex(k => k && k.sis && k.k >= 0)")
+    esit(s.js(f"document.querySelector('#str .st-k[data-i=\"{i}\"] span').textContent"), '?', 'sisli kelime görünüyor')
+    s.js(f'strSec({i})'); esit(s.js('STR.R.secim.filter(Boolean).length'), 0, 'sisli kelime kutuya çekildi')
+    dogru('Sis' in s.js("document.getElementById('not').textContent") or 'sis' in s.js("document.getElementById('not').textContent"), 'sis uyarısı yok')
+    # sisli karoyu boş bir hücreye taşı → açılır ve kutuya çekilebilir
+    s.js(f"(() => {{ const T = STR.R.T, e = T.h.findIndex(k => !k); window.__sisId = T.h[{i}].id; strTasiOyuncu({i}, e); }})()")
+    j = s.js('strHucreBul(STR.R.T, __sisId)'); esit(s.js(f'STR.R.T.h[{j}].sis'), False, 'taşınan sisli karo açılmadı')
+    s.js(f'strSec({j})'); esit(s.js('STR.R.secim.filter(Boolean).length'), 1, 'açılan kelime kutuya çekilemedi')
+    # komşu kuralı (saf): bırakılan yerin yanındaki sis açılır, uzaktaki açılmaz
+    esit(s.js("""(() => { const K = (id, o) => Object.assign({ id, txt: 'w' + id, ci: 0, k: -1 }, o || {}); const T = { cols: 3, rows: 2, h: [K(0), K(1, { sis: true }), K(2, { sis: true }), K(3), K(4), K(5, { sis: true })] };
+      return [strSisAc(T, 0), T.h.map(k => k.sis ? 1 : 0)]; })()"""), [[1], [0, 0, 1, 0, 0, 1]], 'sis komşu kuralı')
+    s.foto('yol_sis')
+    # 🖋 MÜREKKEP: yayılma kuralı
+    y = s.js("""(() => { const K = (id, o) => Object.assign({ id, txt: 'w' + id, ci: id % 4, k: -1 }, o || {});
+      const T = { cols: 3, rows: 2, h: [K(0, { mur: true }), K(1, { k: 0 }), K(2), K(3), K(4, { ozel: 'paket' }), null] };
+      const a = strMurekkepYay(T, 2), b = strMurekkepYay(T, 4), c = strMurekkepYay(T, 6); return [a, b, c, T.h.map(k => k && k.mur ? 1 : 0)]; })()""")
+    esit(y[0], 3, 'mürekkep komşuya yayılır'); esit(y[2], -1, 'yayılacak yer kalmadı'); esit(y[3][1] + y[3][4], 0, 'cümle kelimesine / özel karoya yayıldı')
+    s.js('strKapat(); yolOyna(141)'); s.pg.wait_for_timeout(200)
+    m0 = s.js('STR.R.T.h.filter(k => k && k.mur).length')
+    mi = s.js('STR.R.T.h.findIndex(k => k && k.mur)'); dogru(not s.js(f'strTasiOyuncu({mi}, {mi} === 0 ? 1 : 0)'), 'lekeli karo taşındı')
+    # uzman hamleleriyle oyna (yayılma uzmanla aynı), sisi aç, kelimeleri seç, bomba
+    s.js("""(() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, -1, h); h.forEach(([a, b]) => strTasiOyuncu(a, b));
+      const R = STR.R; R.T.h.forEach(k => { if (k) k.sis = false; }); R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); })()""")
+    dogru(s.js('STR.R.T.h.filter(k => k && k.mur).length') > m0, 'mürekkep yayılmadı'); s.foto('yol_murekkep')
+    s.js('strBomba()'); s.pg.wait_for_function("!!document.getElementById('y-sonraki')", timeout=25000)
+    dogru(s.js('kayit.yol.yildiz[141]') >= 1, 'uzman çözümüyle mürekkep bölümü kazanılmadı')
+    # 🔀 KARIŞIK HARFLER
+    s.js('strKapat(); yolOyna(161)'); s.pg.wait_for_timeout(200)
+    k = s.js("(() => { const i = STR.R.T.h.findIndex(k => k && k.kar && k.k >= 0); return [i, STR.R.T.h[i].kar, STR.R.T.h[i].txt]; })()")
+    esit(s.js(f"document.querySelector('#str .st-k[data-i=\"{k[0]}\"] span').textContent"), k[1], 'karışık yazı görünmüyor')
+    s.js("(() => { const R = STR.R; R.T.h.forEach(k => { if (k) k.sis = false; }); R.T.hedef.forEach((t, j) => strSec(R.T.h.findIndex(x => x && x.k === j), j)); })()")
+    dogru(k[1] in s.js("document.getElementById('st-kutular').textContent"), 'kutuda karışık yazı yok'); esit(s.js('strDogruMu(STR.R.T, STR.R.secim)'), True, 'karışık kelimeyle doğru cümle')
+    s.foto('yol_karisik')
+    # harita ve kartlar
+    s.js('strKapat(); yolHaritaAc()'); bol = s.js("[...document.querySelectorAll('.y-bolge b')].map(e => e.textContent)")
+    esit(bol[-3:], ['Ofis', 'Havalimanı', 'Rasathane'], 'haritada yeni bölgeler'); esit(s.js("document.querySelectorAll('.y-durak').length"), 180, 'harita durakları')
+    s.js('yolBaslangic(141)'); dogru('yayılır' in s.js("document.getElementById('card').textContent"), 'mürekkep açıklaması yok')
+    s.js("dilSec('en'); yolBaslangic(161)"); tr = s.js("document.getElementById('card').textContent")
+    dogru('Scrambled' in tr or 'scrambled' in tr, 'İngilizce karışık harf açıklaması'); dogru(not __import__('re').search('[ğüşıöçİĞÜŞÖÇ]', tr.replace('Rasathane', '')), 'İngilizce kartta Türkçe: ' + tr[:200])
+    esit(s.hatalar(), [], 'JS hatası'); s.kapat()
+    return f"1–120 aynı; sis 60 bölüm, mürekkep {o['mur']} bölüm, karışık 20 bölüm; sis açılır, mürekkep yayılır ve temizlenir (uzmanla kazanıldı), karışık kelimeyle doğru cümle; harita 180; İngilizce"
+
+@test
 def yol(b):
-    """BÖLÜM YOLU: 120 bölüm üretilir, aynı no aynı bölüm, hepsi uzman çözümüyle çözülebilir, engeller hedef kelimede yok; donuk karo taşınmaz ve
+    """BÖLÜM YOLU: 180 bölüm üretilir, aynı no aynı bölüm, hepsi uzman çözümüyle çözülebilir, engeller hedef kelimede yok; donuk karo taşınmaz ve
     kayan sıra onu atlar; haritadan oynanır; uzman hamleleriyle kazanılır (yıldız, sonraki bölüm açılır, kalıcı, XP); NEREDEYSE +3 hamle bir kez;
     yanlış cümle ve hedefe yetmeyen bomba kaybettirir, TEKRAR DENE aynı tahta; bozuk kayıt onarılır; tek kişilik bölümde emoji yok; İngilizce."""
     s = Sayfa(b); s.js('kayit.strRehber = true')
     r = s.js("""(() => { const o = { n: 0, cozulur: 0, ayni: 0, hedefteEngel: 0, tur: {} };
       for (let n = 1; n <= YOL_TOPLAM; n++) { const B = yolBolum(n); o.n++; o.tur[B.hedef.tur] = (o.tur[B.hedef.tur] || 0) + 1;
         if (yolHedefSayi(B.hedef, B.uzman) >= B.hedef.sayi) o.cozulur++;
-        if (B.T.h.some(k => k && k.k >= 0 && (k.buz || k.kilit))) o.hedefteEngel++; }
+        if (B.T.h.some(k => k && k.k >= 0 && (k.buz || k.kilit || k.mur))) o.hedefteEngel++; }
       yolOnbellek.clear(); const a = JSON.stringify(yolBolum(37).T.h); yolOnbellek.clear(); o.ayni = a === JSON.stringify(yolBolum(37).T.h) ? 1 : 0; return o; })()""")
-    esit((r['n'], r['cozulur'], r['ayni'], r['hedefteEngel']), (120, 120, 1, 0), 'bölüm üretimi')
-    dogru(all(r['tur'].get(k, 0) >= 10 for k in ('puan', 'buz', 'renk', 'kilit')), f"hedef türleri: {r['tur']}")
+    esit((r['n'], r['cozulur'], r['ayni'], r['hedefteEngel']), (180, 180, 1, 0), 'bölüm üretimi')
+    dogru(all(r['tur'].get(k, 0) >= 10 for k in ('puan', 'buz', 'renk', 'kilit', 'murekkep')), f"hedef türleri: {r['tur']}")
     # donuk karo
     k = s.js("""(() => { const K = (t, o) => Object.assign({ id: t, txt: t, ci: 0, k: -1 }, o || {}); const T = { cols: 3, rows: 2, h: [K('a'), K('b', { buz: true }), K('c'), K('d'), K('e'), null] };
       const y = () => T.h.map(x => x ? x.txt : '_').join(''); return [strTasi(T, 1, 0), strTasi(T, 4, 1), strTasi(T, 4, 0), y()]; })()""")
@@ -707,7 +786,7 @@ def yol(b):
     s.js("dilSec('en'); yolHaritaAc()"); tr = s.js("[...document.querySelectorAll('.y-bolge b, .y-bolge small, .ana-baslik')].map(e => e.textContent).filter(t => /[ğüşıöçİĞÜŞÖÇ]/.test(t))"); esit(tr, [], 'İngilizce haritada Türkçe')
     s.js('yolBaslangic(21)'); tr = s.js("[...document.querySelectorAll('.y-bas, .y-hedef, .y-yeni, .y-bilgi')].map(e => e.textContent).filter(t => /[ğüşıöçİĞÜŞÖÇ]/.test(t))"); esit(tr, [], 'İngilizce başlangıç kartında Türkçe')
     esit(s.hatalar(), [], 'JS hataları'); s.kapat()
-    return f"120 bölüm çözülebilir ({r['tur']}); donuk karo; haritadan oyna, uzmanla kazan; NEREDEYSE bir kez; kaybet / tekrar aynı tahta; yanlış cümle; kalıcı; onarım; İngilizce"
+    return f"180 bölüm çözülebilir ({r['tur']}); donuk karo; haritadan oyna, uzmanla kazan; NEREDEYSE bir kez; kaybet / tekrar aynı tahta; yanlış cümle; kalıcı; onarım; İngilizce"
 
 @test
 def odul(b):

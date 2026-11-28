@@ -38,8 +38,8 @@ const SAHNE = {
 };
 const BEKLE = { sonuc: `!!document.getElementById('y-sonraki')` };
 const CIZ = {
-  tr: { yol: 'Kelimeleri diz,\nbombayla patlat!', harita: '120 bölümlük yol,\nher bölüm yeni bulmaca', oyun: 'Türkçesini oku,\nİngilizce cümleyi kur', online: 'Online kapış:\nHız ya da Strateji', sonuc: 'Yıldızları topla,\nsandıkları aç', menu: 'Her gün yeni görev,\nserini koru', dizilis: 'İngilizce dizilişi\nadım adım öğren', cark: 'Günlük çark,\nhaftalık etkinlik' },
-  en: { yol: 'Line up the words,\nset off the bomb!', harita: '120 levels,\na new puzzle each time', oyun: 'Read the Turkish,\nbuild the English', online: 'Play online:\nSpeed or Strategy', sonuc: 'Earn stars,\nopen chests', menu: 'A new challenge\nevery day', dizilis: 'Learn English\nword order', cark: 'Daily spin,\nweekly event' } };
+  tr: { yol: 'Kelimeleri diz,\nbombayla patlat!', harita: '180 bölümlük yol,\nher bölüm yeni bulmaca', oyun: 'Türkçesini oku,\nİngilizce cümleyi kur', online: 'Online kapış:\nHız ya da Strateji', sonuc: 'Yıldızları topla,\nsandıkları aç', menu: 'Her gün yeni görev,\nserini koru', dizilis: 'İngilizce dizilişi\nadım adım öğren', cark: 'Günlük çark,\nhaftalık etkinlik' },
+  en: { yol: 'Line up the words,\nset off the bomb!', harita: '180 levels,\na new puzzle each time', oyun: 'Read the Turkish,\nbuild the English', online: 'Play online:\nSpeed or Strategy', sonuc: 'Earn stars,\nopen chests', menu: 'A new challenge\nevery day', dizilis: 'Learn English\nword order', cark: 'Daily spin,\nweekly event' } };
 const CIHAZ = [ ['iphone-6.9', 430, 932, 3], ['ipad-13', 1032, 1376, 2], ['android', 360, 720, 3] ];
 (async () => {
   const b = await chromium.launch();

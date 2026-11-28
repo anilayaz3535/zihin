@@ -2,18 +2,21 @@
    ONLINE KAPIŞMA — oda koduyla iki telefon
    · Ev sahibi oda kurar, 4 haneli kod çıkar; arkadaşı kodu yazıp katılır.
    · İkisi aynı 5 cümleyi kendi tahtasında kurar. Önce bitiren kazanır; hata göstergesi dolan kaybeder.
-   · Bağlantı: ücretsiz genel MQTT sunucuları (WebSocket). İki sunucuya birden bağlanılır, biri çalışmazsa
-     öbürü yeter; aynı mesaj iki yoldan gelirse bir kez işlenir. Sunucular deneme amaçlıdır, garanti vermez.
+   · Bağlantı: ücretsiz genel MQTT sunucuları (WebSocket). Üç sunucuya birden bağlanılır, biri çalışırsa
+     yeter; aynı mesaj iki yoldan gelirse bir kez işlenir. Sunucular deneme amaçlıdır, garanti vermez.
    · İki mod (23 Kasım 2026): HIZ (aynı cümleleri önce kuran kazanır) ve STRATEJİ (strateji.js). Oyuncu seviyesini (A1–C2) seçer.
      Rakip: oda koduyla arkadaş, hızlı eşleşme (aynı mod ve seviyede bekleyen biri; konu …/lobi-<mod>-<seviye>) ya da bilgisayar.
      Hızlı eşleşme: herkes 2 sn'de bir 'bekle' yayınlar; kimliği küçük olan 'teklif' (gizli oda kodu) gönderir, öbürü 'kabul' eder;
      ikisi o odaya geçer ve maç kendiliğinden başlar.
+     (28 Kasım 2026) Az oyuncuyla eşleşme bulunsun diye her mod tek lobi (…/lobi-<mod>); 'bekle' seviyeyi taşır. Önce yalnız aynı seviye,
+     8 sn'den sonra bir yakın seviye, 16 sn'den sonra her seviye (ES_GENIS); maç ikisinin düşük seviyesinde oynanır.
+     30 sn'de kimse gelmezse bilgisayara karşı maç kendiliğinden başlar (ES_BOT_SN; son 10 sn geri sayım).
    · Mesajlar (konu: stacking-sentences-tr/v1/oda/<kod>):
        ara (misafir: odaya gelmek istiyorum) · oda / dolu (ev sahibi cevabı) · nabiz (3 sn'de bir, 15 sn sessizlik = koptu)
        basla (ev sahibi: maç kimliği, seviye, cümleler) · hazir (misafir aldı) · durum (cümle, skor, hata göstergesi 'yigin')
        bitti (tamam / yenildi, süre) · cikti (odadan ayrıldı)
    ===================================================================== */
-const ONLINE_SUNUCULAR = window.TE_SUNUCULAR || ['wss://broker.hivemq.com:8884/mqtt', 'wss://broker.emqx.io:8084/mqtt'];
+const ONLINE_SUNUCULAR = window.TE_SUNUCULAR || ['wss://broker.hivemq.com:8884/mqtt', 'wss://broker.emqx.io:8084/mqtt', 'wss://test.mosquitto.org:8081/mqtt'];
 const ONLINE_KONU = 'stacking-sentences-tr/v1/oda/';
 const ONLINE_CUMLE = 5;
 
@@ -396,38 +399,44 @@ function oyuncuHtml(ad, o) {
 function vsHtml(sol, sag) { return `<div class="vs">${sol}<span class="vs-rozet">VS</span>${sag}</div>`; }
 const benimAd = () => OD.ad || (aktifProfil() ? aktifProfil().ad : tt('Sen'));
 /* ---------------- hızlı eşleşme ---------------- */
-const ES = { aktif: false, mod: 'hiz', lvl: 'A1', teklif: null, t0: 0, T: null };
+const ES = { aktif: false, mod: 'hiz', lvl: 'A1', teklif: null, t0: 0, T: null, botT: null };
+const ES_GENIS = () => window.__esGenis || [[8000, 1], [16000, 5]];   // [bekleme ms, kabul edilen seviye farkı]
+const ES_BOT_SN = () => (window.__esBotSn != null ? window.__esBotSn : 30);
+function esTolerans() { const t = Date.now() - ES.t0; let d = 0; ES_GENIS().forEach(([ms, f]) => { if (t >= ms) d = f; }); return d; }
+const esSira = l => SEVIYELER.indexOf(l);
 function eslesmeBaslat(mod, lvl) {
   eslesmeDur(); odadanCik(true);
   Object.assign(ES, { aktif: true, mod, lvl, teklif: null, t0: Date.now() });
   OD.ad = temizAd(aktifProfil() ? aktifProfil().ad : 'Oyuncu');
   setTimeout(() => {
     if (!ES.aktif) return;
-    Ag.baslat('lobi-' + mod + '-' + lvl, eslesmeMesaj, () => { if (ekran === 'eslesme') eslesmeCiz(); });
-    const yay = () => { if (!ES.aktif) return; Ag.gonder({ t: 'bekle', ad: OD.ad }); if (ES.teklif && Date.now() - ES.teklif.t > 4500) ES.teklif = null; if (ekran === 'eslesme') eslesmeCiz(); };
+    Ag.baslat('lobi-' + mod, eslesmeMesaj, () => { if (ekran === 'eslesme') eslesmeCiz(); });
+    const yay = () => { if (!ES.aktif) return; Ag.gonder({ t: 'bekle', ad: OD.ad, lvl: ES.lvl, tol: esTolerans() }); if (ES.teklif && Date.now() - ES.teklif.t > 4500) ES.teklif = null; if (ekran === 'eslesme') eslesmeCiz(); };
     ES.T = setInterval(yay, 2000); setTimeout(yay, 600);
   }, 350);
   eslesmeAc();
 }
-function eslesmeDur() { clearInterval(ES.T); ES.T = null; if (ES.aktif) { ES.aktif = false; Ag.kapat(); } ES.teklif = null; }
+function eslesmeDur() { clearInterval(ES.T); ES.T = null; clearInterval(ES.botT); ES.botT = null; if (ES.aktif) { ES.aktif = false; Ag.kapat(); } ES.teklif = null; }
 function eslesmeMesaj(o) {
   if (!ES.aktif || (o.hedef && o.hedef !== Ag.id())) return;
   if (o.t === 'bekle') {            // iki bekleyenden kimliği küçük olan teklif eder (ikisi birden teklif etmesin)
-    if (!ES.teklif && Ag.id() < o.c) { const kod = 'q' + Math.random().toString(36).slice(2, 10); ES.teklif = { kod, c: o.c, t: Date.now() }; Ag.gonder({ t: 'teklif', hedef: o.c, kod, ad: OD.ad }); }
+    const ol = esSira(o.lvl), fark = Math.abs(ol - esSira(ES.lvl)), tol = Math.max(esTolerans(), +o.tol || 0);
+    if (ol < 0 || fark > tol) return;   // seviye uymuyor (beklendikçe aralık genişler)
+    if (!ES.teklif && Ag.id() < o.c) { const kod = 'q' + Math.random().toString(36).slice(2, 10); ES.teklif = { kod, c: o.c, t: Date.now(), lvl: SEVIYELER[Math.min(ol, esSira(ES.lvl))] }; Ag.gonder({ t: 'teklif', hedef: o.c, kod, ad: OD.ad }); }
     return;
   }
   if (o.t === 'teklif') {
     if (ES.teklif || typeof o.kod !== 'string') return;
     const { mod, lvl } = ES, kod = o.kod.replace(/[^a-z0-9]/gi, '').slice(0, 12);
-    clearInterval(ES.T); ES.T = null; ES.aktif = false;
+    clearInterval(ES.T); ES.T = null; clearInterval(ES.botT); ES.botT = null; ES.aktif = false;
     [0, 350, 800].forEach(ms => setTimeout(() => Ag.gonder({ t: 'kabul', hedef: o.c, kod }), ms));
     setTimeout(() => { odaBaglan(kod, 'misafir', { mod, lvl, eslesme: true }); lobiAc(); }, 1200);
     return;
   }
   if (o.t === 'kabul') {
     if (!ES.teklif || o.kod !== ES.teklif.kod) return;
-    const { mod, lvl } = ES, kod = o.kod;
-    clearInterval(ES.T); ES.T = null; ES.aktif = false;
+    const { mod } = ES, lvl = ES.teklif.lvl || ES.lvl, kod = o.kod;   // maç ikisinin düşük seviyesinde
+    clearInterval(ES.T); ES.T = null; clearInterval(ES.botT); ES.botT = null; ES.aktif = false;
     odaBaglan(kod, 'ev', { mod, lvl, oto: true }); lobiAc();
   }
 }
@@ -442,6 +451,12 @@ function eslesmeAc() {
     <button class="big" id="es-bot">${tt('🤖 BİLGİSAYARA KARŞI OYNA')}</button>
     <div class="row"><button class="sec" id="es-iptal">${tt('İPTAL')}</button></div>`, '', 'eslesme');
   $('#es-bot').onclick = () => { const { mod, lvl } = ES; eslesmeDur(); botMacBaslat(mod, lvl); };
+  clearInterval(ES.botT);
+  ES.botT = setInterval(() => {   // kimse gelmezse bilgisayara karşı başla (oyuncu boşta kalmasın)
+    if (!ES.aktif || ekran !== 'eslesme') { clearInterval(ES.botT); ES.botT = null; return; }
+    eslesmeCiz();
+    if ((Date.now() - ES.t0) / 1000 >= ES_BOT_SN() && !ES.teklif) { const { mod, lvl } = ES; eslesmeDur(); Olcum.olay('eslesme_bot', { mod, lvl }); botMacBaslat(mod, lvl); }
+  }, 500);
   $('#es-iptal').onclick = () => { eslesmeDur(); onlineModAc(ES.mod); };
   eslesmeCiz();
 }
@@ -449,7 +464,12 @@ function eslesmeCiz() {
   if (ekran !== 'eslesme') return;
   const sn = Math.floor((Date.now() - ES.t0) / 1000), d = Ag.durum();
   const s = $('#es-sure'); if (s) s.textContent = (d === 'acik' ? tt('● Bağlı') : tt('… Bağlanıyor')) + ' · ' + sn + ' sn';
-  const n = $('#es-not'); if (n) n.textContent = sn >= 20 ? tt('Şu an bu seviyede bekleyen kimse yok. Beklemeye devam edebilir ya da bilgisayara karşı oynayabilirsin.') : tt('Aynı mod ve seviyede bekleyen biri bulununca maç kendiliğinden başlar.');
+  const kalan = Math.ceil(ES_BOT_SN() - (Date.now() - ES.t0) / 1000), tol = esTolerans(), i = esSira(ES.lvl);
+  const n = $('#es-not'); if (n) n.textContent = kalan <= 10 ? tt('{n} sn içinde kimse gelmezse bilgisayara karşı başlıyorsun.', { n: Math.max(0, kalan) })
+    : d !== 'acik' && sn >= 10 ? tt('Sunucuya bağlanılamıyor. İnternetini kontrol et ya da bilgisayara karşı oyna.')
+      : tol >= 5 ? tt('Her seviyeden rakip aranıyor. Maç ikinizin düşük seviyesinde oynanır.')
+        : tol >= 1 ? tt('Yakın seviyelerden de aranıyor: {a}–{b}', { a: SEVIYELER[Math.max(0, i - tol)], b: SEVIYELER[Math.min(5, i + tol)] })
+          : tt('Aynı mod ve seviyede bekleyen biri bulununca maç kendiliğinden başlar.');
 }
 function lobiAc() {
   if (G.state !== 'menu') demo();

@@ -154,9 +154,10 @@ function aracDokun(i) {
   if (R.arac === 'cekic') {
     if (!k) return;
     if (k.k >= 0) { not(tt('Cümlenin kelimelerine çekiç vurulmaz.')); Ses.cal('geri', { ses: 0.4 }); return; }
-    R.ekstra = R.ekstra || { buz: 0, kilit: 0 };
+    R.ekstra = R.ekstra || { buz: 0, kilit: 0, murekkep: 0 };
     const el = strKaroEl(k.id);
     if (k.buz) { k.buz = false; R.ekstra.buz++; if (el) el.classList.add('buz-kir'); }
+    else if (k.mur) { k.mur = false; R.ekstra.murekkep = (R.ekstra.murekkep || 0) + 1; if (el) el.classList.add('mur-sil'); }
     else { if (k.kilit) R.ekstra.kilit++; R.T.h[i] = null; if (el) { el.classList.add('pat'); strKivilcim(el, k.ci); } }
     kayit.envanter.cekic--; kaydet(); R.arac = null;
     Ses.cal('darbe', { ses: 0.8 }); Ses.cal('pop', { ses: 0.6 }); Yerel.titret('orta');

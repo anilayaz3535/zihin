@@ -838,6 +838,24 @@
   .st-k.kilit em{display:block!important;background:#5b3a24;color:#fff;font-size:12px}
   .st-k.kilit em::before{content:'🔒'}
   .st-k.kilit::before{outline:3px solid #5b3a24;outline-offset:-5px}
+  /* 🌫 sis · 🔀 karışık harfler · 🖋 mürekkep (Bölüm Yolu 121–180) */
+  .st-k.sis::after{content:'';position:absolute;inset:3px;border-radius:12px;pointer-events:none;
+    background:radial-gradient(ellipse at 28% 30%,rgba(255,255,255,.6),transparent 55%),radial-gradient(ellipse at 75% 72%,rgba(255,255,255,.5),transparent 60%),rgba(255,255,255,.22);
+    animation:sisSuz 5s ease-in-out infinite alternate}
+  .st-k.sis span{z-index:1;font-size:calc(var(--c,60px) * .46)!important;opacity:.95}
+  @keyframes sisSuz{to{background-position:6px -4px,-5px 3px,0 0;filter:brightness(1.06)}}
+  .st-k.sis-ac{animation:sisAc .7s ease-out}
+  @keyframes sisAc{0%{filter:brightness(1.8) blur(2px)}100%{filter:none}}
+  .st-k.karisik span{font-style:italic;letter-spacing:.5px}
+  .st-k.karisik::after{content:'🔀';position:absolute;left:4px;top:2px;font-size:11px;line-height:1;pointer-events:none;filter:drop-shadow(0 1px 0 rgba(0,0,0,.4))}
+  .st-k.mur::after{content:'';position:absolute;inset:3px;border-radius:12px;pointer-events:none;
+    background:radial-gradient(circle at 25% 30%,rgba(28,22,52,.92) 0 22%,transparent 24%),radial-gradient(circle at 68% 58%,rgba(28,22,52,.9) 0 30%,transparent 32%),radial-gradient(circle at 40% 80%,rgba(28,22,52,.85) 0 14%,transparent 16%),rgba(28,22,52,.35)}
+  .st-k.mur span{z-index:1;opacity:.85}
+  .st-k.mur::before{outline:3px solid #1c1634;outline-offset:-5px}
+  .st-k.mur-yay::after{animation:murYay .6s cubic-bezier(.3,1.5,.5,1)}
+  @keyframes murYay{from{transform:scale(.2);opacity:0}}
+  .st-k.mur-sil::after{animation:buzKir .45s ease-out forwards}
+  @media (prefers-reduced-motion:reduce){.st-k.sis::after,.st-k.sis-ac,.st-k.mur-yay::after{animation:none}}
 
   /* ---------- ödüller: güçler, sandıklar, çark (odul.js) ---------- */
   .odul-satir{display:grid;grid-template-columns:1fr 1fr;gap:10px}

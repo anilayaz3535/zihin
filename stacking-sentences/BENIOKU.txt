@@ -63,7 +63,7 @@ YENİ (23 Kasım 2026)
    alt panel çentiğin / ana ekran çubuğunun altına girmez.
 
 BÖLÜM YOLU (24 Kasım 2026) — ana menüdeki yeşil düğme
-   Candy Crush tarzı 120 kısa bulmaca bölümü, 6 bölge (Kafe, Pazar, Park, İstasyon, Kütüphane, Gece Şehri).
+   Candy Crush tarzı 180 kısa bulmaca bölümü, 9 bölge (Kafe, Pazar, Park, İstasyon, Kütüphane, Gece Şehri, Ofis, Havalimanı, Rasathane), A1'den C2'ye.
    Her bölüm: 1 cümle, sınırlı hamle, bir hedef (puan / renk / 🧊 buz kır / 🔒 kilit patlat), 1–3 yıldız.
    Dalgalı zorluk ve 💀 zor bölümler; hamle bitince NEREDEYSE! +3 hamle; kazanınca CÜMLE CRUSH!
 

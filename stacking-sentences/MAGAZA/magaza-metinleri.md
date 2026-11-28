@@ -9,7 +9,7 @@ Kopyala-yapıştır için hazır. Karakter sınırları kontrol edildi. Görsell
 | Ad (30) | Stacking Sentences: İngilizce | Stacking Sentences: English |
 | Alt başlık (30) | Oynayarak cümle kur, öğren | Learn English for Turkish |
 | Anahtar kelimeler (100) | kelime,cümle,gramer,dilbilgisi,yds,lgs,yökdil,ydt,yks,a1,b1,c1,öğren,oyun,sözlük,english | english,turkish,grammar,vocabulary,sentence,word game,yds,lgs,learn,language,quiz,puzzle |
-| Tanıtım metni (170) | Yeni: 120 bölümlük Bölüm Yolu, sandıklar, günlük çark ve online Strateji maçları! Renkli kelimeleri diz, İngilizce cümleyi kur, patlat. | New: a 120-level Level Path, chests, a daily spin and online Strategy matches! Line up colorful words, build the English sentence, pop! |
+| Tanıtım metni (170) | Yeni: 180 bölümlük Bölüm Yolu, sandıklar, günlük çark ve online Strateji maçları! Renkli kelimeleri diz, İngilizce cümleyi kur, patlat. | New: a 180-level Level Path, chests, a daily spin and online Strategy matches! Line up colorful words, build the English sentence, pop! |
 | Birincil kategori | Eğitim (Education) | |
 | İkincil kategori | Oyunlar → Kelime (Games → Word) | |
 | Yaş sınırı | 4+ (anketteki bütün sorulara "Yok / Hayır"; bkz. YAYIN-REHBERI.md) | |
@@ -24,10 +24,11 @@ Kopyala-yapıştır için hazır. Karakter sınırları kontrol edildi. Görsell
 
 Stacking Sentences, Türkçe konuşanlar için hazırlanmış bir İngilizce cümle kurma oyunudur. Türkçe cümleyi okursun (oyun senin için sesli de okur), renkli İngilizce kelime karolarını doğru sırayla dizersin. Cümle tamamlanınca karolar patlar, kombo yaparsın, puan toplarsın.
 
-BÖLÜM YOLU – 120 BULMACA
-• Kafe’den Gece Şehri’ne 6 bölge, 120 bölüm
+BÖLÜM YOLU – 180 BULMACA
+• Kafe’den Rasathane’ye 9 bölge, 180 bölüm, A1’den C2’ye
 • Aynı renkleri yan yana getir, doğru kelimeleri kutulara çek, bombaya bas: hepsi birden patlasın!
-• Buzlu ve kilitli karolar, satır, sütun ve gökkuşağı özel karoları, SÜPER KOMBO
+• Buzlu ve kilitli karolar, kelimeyi gizleyen sis, yayılan mürekkep, harfleri karışık kelimeler
+• Satır, sütun ve gökkuşağı özel karoları, SÜPER KOMBO
 • Sınırlı hamle: her bölüm bir bilgi ve strateji bulmacası
 • Yıldızları topla, sandıkları aç, Çekiç, Mıknatıs ve +3 Hamle kazan
 
@@ -70,10 +71,11 @@ Learn English by playing, not by memorizing!
 
 Stacking Sentences is an English sentence-building game made for Turkish speakers. Read the Turkish sentence (the game reads it aloud too), then put the colorful English word tiles in the right order. Finish the sentence and the tiles pop: build combos and collect points.
 
-LEVEL PATH – 120 PUZZLES
-• 6 areas from the Café to the Night City, 120 levels
+LEVEL PATH – 180 PUZZLES
+• 9 areas from the Café to the Observatory, 180 levels, A1 to C2
 • Line up matching colors, drag the right words into the boxes, hit the bomb and watch them all pop!
-• Ice and locked tiles, row, column and rainbow special tiles, SUPER COMBO
+• Ice and locked tiles, fog that hides words, spreading ink, scrambled words
+• Row, column and rainbow special tiles, SUPER COMBO
 • Limited moves: every level is a puzzle of knowledge and strategy
 • Earn stars, open chests, win Hammers, Magnets and +3 Moves
 
@@ -112,7 +114,7 @@ MADE FOR YOU
 | Alan | Türkçe | English |
 |---|---|---|
 | Uygulama adı (30) | Stacking Sentences: İngilizce | Stacking Sentences: English |
-| Kısa açıklama (80) | İngilizce cümle kur, patlat! 120 bölüm, online maç, A1–C2 arası 9.000 cümle. | Build English sentences and pop them! 120 levels, online matches, A1–C2. |
+| Kısa açıklama (80) | İngilizce cümle kur, patlat! 180 bölüm, online maç, A1–C2 arası 9.000 cümle. | Build English sentences and pop them! 180 levels, online matches, A1–C2. |
 | Tam açıklama (4000) | Yukarıdaki App Store açıklamasının aynısı | Same as the App Store description |
 | Uygulama / Oyun | Uygulama | |
 | Kategori | Eğitim | |
