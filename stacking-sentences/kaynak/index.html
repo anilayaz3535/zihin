@@ -8032,7 +8032,7 @@ function strAnlikOdul(R, once, idOnce, b) {
   let enBuyuk = 0; const buyuyen = [];
   sonra.forEach((v, i) => { const id = R.T.h[i].id; if (v > (idOnce.get(id) || 0)) { buyuyen.push(id); if (v > enBuyuk) enBuyuk = v; } });
   window.__anlik.enBuyuk = enBuyuk;
-  buyuyen.forEach((id, n) => { const el = strKaroEl(id); if (!el) return; el.classList.remove('buyu'); void el.offsetWidth; el.style.setProperty('--bg', (n * 35) + 'ms'); el.classList.add('buyu'); setTimeout(() => el.classList.remove('buyu'), 900); });
+  buyuyen.forEach((id, n) => { const el = strKaroEl(id); if (!el) return; el.classList.remove('buyu', 'gel'); el.style.animationDelay = ''; void el.offsetWidth; el.style.setProperty('--bg', (n * 35) + 'ms'); el.classList.add('buyu'); setTimeout(() => el.classList.remove('buyu'), 900); });
   const tah = strTahtaEl(), c = strOlcu(), k = R.T.h[b], kaynak = k && sonra.has(b) ? b : [...sonra.keys()].find(i => buyuyen.indexOf(R.T.h[i].id) >= 0);
   if (tah && kaynak != null) {
     const u = document.createElement('div'); u.className = 'st-anlik' + (enBuyuk >= 5 ? ' iri' : '');
@@ -8216,7 +8216,7 @@ function strCiz(yeni) {
   T.h.forEach((k, i) => {
     if (!k) return;
     let el = var_.get(k.id);
-    if (!el) { el = document.createElement('div'); el.className = 'st-k'; el.dataset.id = k.id; el.innerHTML = '<span lang="en"></span><em></em>'; el.style.cssText = strRenkStil(k.ci); tah.appendChild(el); if (yeni) el.style.animationDelay = (i * 18) + 'ms'; if (yeni) el.classList.add('gel'); }
+    if (!el) { el = document.createElement('div'); el.className = 'st-k'; el.dataset.id = k.id; el.innerHTML = '<span lang="en"></span><em></em>'; el.style.cssText = strRenkStil(k.ci); tah.appendChild(el); if (yeni) { el.style.animationDelay = (i * 18) + 'ms'; el.classList.add('gel'); el.addEventListener('animationend', e => { if (e.animationName === 'stGel') { el.classList.remove('gel'); el.style.animationDelay = ''; } }); } }
     durdu.add(k.id);
     el.style.left = (i % T.cols) * c + 'px'; el.style.top = Math.floor(i / T.cols) * c + 'px';
     el.style.width = el.style.height = c + 'px';
@@ -8228,6 +8228,7 @@ function strCiz(yeni) {
     const g = gruplar.get(i) || 0; el.classList.toggle('grup', g >= 3); if (g >= 3) el.style.setProperty('--gg', Math.min(g, 8));
     el.dataset.i = i;
   });
+  if (yeni) setTimeout(() => tah.querySelectorAll('.st-k.gel').forEach(e => { e.classList.remove('gel'); e.style.animationDelay = ''; }), 1600);   // giriş animasyonu başka bir animasyon bitince yeniden oynamasın
   var_.forEach((e, id) => { if (!durdu.has(id) && !e.classList.contains('pat')) e.remove(); else if (!durdu.has(id)) setTimeout(() => e.remove(), 600); });
   // boş hücreler
   tah.querySelectorAll('.st-bos').forEach(e => e.remove());

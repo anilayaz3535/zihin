@@ -633,6 +633,7 @@ def anlik(b):
     dogru(s.js("document.querySelectorAll('#str .st-k.grup').length") >= 3, 'grup parlamıyor')
     esit(s.js("document.querySelectorAll('#str .st-k.grup').length"), s.js('strGruplar(STR.R.T).size'), 'parlayan karo sayısı')
     s.pg.wait_for_timeout(1200); dogru(not s.js("!!document.querySelector('#str .st-anlik')"), '+puan ekrandan kalkmadı')
+    esit(s.js("Math.min(...[...document.querySelectorAll('#str .st-k')].map(e => +getComputedStyle(e).opacity))"), 1, 'hamleden sonra karo görünmez (giriş animasyonu yeniden oynadı)')
     h2 = s.js(f'({bul})(false)')
     if h2: s.js(f'strTasiOyuncu({h2[0]}, {h2[1]})'); esit(s.js('__anlik.fark'), 0, 'boş hamleye ödül'); dogru(not s.js("!!document.querySelector('#str .st-anlik')"), 'boş hamlede +puan')
     # gökkuşağı (renksiz) karolar grup sayılmaz; değer kelimeden bağımsız

@@ -990,7 +990,9 @@
   .odul-btn i{font-style:normal;font-size:28px}.odul-btn span{min-width:0}.odul-btn b{display:block;font-size:15px;white-space:nowrap}.odul-btn small{display:block;font-size:12px;opacity:.85;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
   .odul-btn.hazir{border-color:#ffd451;box-shadow:0 4px 0 #b38a62,0 0 0 3px #ffd451,0 0 18px rgba(255,212,81,.8);animation:rhNabiz 1.2s ease-in-out infinite}
   .odul-btn.hazir i{animation:bombaSall 1.6s ease-in-out infinite}
-  .sandiklar{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:6px 0 8px}
+  .sandiklar{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px;margin:6px 0 8px}
+  .sandik{min-width:0;overflow:hidden}.sandik small{max-width:100%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  @media (max-width:340px){.sandiklar{gap:5px}.sandik small{font-size:10px}}
   .sandik{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;height:78px;border-radius:14px;border:2px solid rgba(255,255,255,.7);
     background:linear-gradient(rgba(255,255,255,.18),rgba(0,0,0,.15));color:#fff;font-family:Fredoka,sans-serif;cursor:pointer;padding:2px}
   .sandik i{font-style:normal;font-size:30px;line-height:1}.sandik small{font-size:11px;white-space:nowrap}
@@ -8108,7 +8110,7 @@ function strAnlikOdul(R, once, idOnce, b) {
   let enBuyuk = 0; const buyuyen = [];
   sonra.forEach((v, i) => { const id = R.T.h[i].id; if (v > (idOnce.get(id) || 0)) { buyuyen.push(id); if (v > enBuyuk) enBuyuk = v; } });
   window.__anlik.enBuyuk = enBuyuk;
-  buyuyen.forEach((id, n) => { const el = strKaroEl(id); if (!el) return; el.classList.remove('buyu'); void el.offsetWidth; el.style.setProperty('--bg', (n * 35) + 'ms'); el.classList.add('buyu'); setTimeout(() => el.classList.remove('buyu'), 900); });
+  buyuyen.forEach((id, n) => { const el = strKaroEl(id); if (!el) return; el.classList.remove('buyu', 'gel'); el.style.animationDelay = ''; void el.offsetWidth; el.style.setProperty('--bg', (n * 35) + 'ms'); el.classList.add('buyu'); setTimeout(() => el.classList.remove('buyu'), 900); });
   const tah = strTahtaEl(), c = strOlcu(), k = R.T.h[b], kaynak = k && sonra.has(b) ? b : [...sonra.keys()].find(i => buyuyen.indexOf(R.T.h[i].id) >= 0);
   if (tah && kaynak != null) {
     const u = document.createElement('div'); u.className = 'st-anlik' + (enBuyuk >= 5 ? ' iri' : '');
@@ -8292,7 +8294,7 @@ function strCiz(yeni) {
   T.h.forEach((k, i) => {
     if (!k) return;
     let el = var_.get(k.id);
-    if (!el) { el = document.createElement('div'); el.className = 'st-k'; el.dataset.id = k.id; el.innerHTML = '<span lang="en"></span><em></em>'; el.style.cssText = strRenkStil(k.ci); tah.appendChild(el); if (yeni) el.style.animationDelay = (i * 18) + 'ms'; if (yeni) el.classList.add('gel'); }
+    if (!el) { el = document.createElement('div'); el.className = 'st-k'; el.dataset.id = k.id; el.innerHTML = '<span lang="en"></span><em></em>'; el.style.cssText = strRenkStil(k.ci); tah.appendChild(el); if (yeni) { el.style.animationDelay = (i * 18) + 'ms'; el.classList.add('gel'); el.addEventListener('animationend', e => { if (e.animationName === 'stGel') { el.classList.remove('gel'); el.style.animationDelay = ''; } }); } }
     durdu.add(k.id);
     el.style.left = (i % T.cols) * c + 'px'; el.style.top = Math.floor(i / T.cols) * c + 'px';
     el.style.width = el.style.height = c + 'px';
@@ -8304,6 +8306,7 @@ function strCiz(yeni) {
     const g = gruplar.get(i) || 0; el.classList.toggle('grup', g >= 3); if (g >= 3) el.style.setProperty('--gg', Math.min(g, 8));
     el.dataset.i = i;
   });
+  if (yeni) setTimeout(() => tah.querySelectorAll('.st-k.gel').forEach(e => { e.classList.remove('gel'); e.style.animationDelay = ''; }), 1600);   // giriş animasyonu başka bir animasyon bitince yeniden oynamasın
   var_.forEach((e, id) => { if (!durdu.has(id) && !e.classList.contains('pat')) e.remove(); else if (!durdu.has(id)) setTimeout(() => e.remove(), 600); });
   // boş hücreler
   tah.querySelectorAll('.st-bos').forEach(e => e.remove());
