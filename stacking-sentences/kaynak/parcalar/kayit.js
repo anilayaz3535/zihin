@@ -15,7 +15,7 @@ const KAYIT = 'te_kayit_v1', PROFILLER = 'te_profiller_v1', PROFIL_ON = 'te_prof
 function bosKayit() {
   return { v: 1, baslangic: null, acik: { 'A1-1': true }, yildiz: {}, kel: {}, tekrar: [], ders: {}, gorulen: {}, rehber: false, kelRehber: false,
     // ayar.ing*: İngilizceyi göster / gizle seçimi (Cümleler ve Kelimeler sekmesi; *Secildi: oyuncuya soruldu mu)
-    ayar: { muzik: true, efekt: true, ses: true, trSes: true, dizilis: true, ingCumle: false, ingKelime: false, ingCumleSecildi: false, ingKelimeSecildi: false, yonergeSes: true, titresim: true, hatirlat: false }, best: 0, tutGor: false, sonLvl: 'A1', sonSekme: 'cumle', seviyeTesti: null,
+    ayar: { muzik: true, efekt: true, ses: true, trSes: true, dizilis: true, ingCumle: true, ingKelime: false, ingCumleSecildi: true, ingGecis: false, ingKelimeSecildi: false, yonergeSes: true, titresim: true, hatirlat: false }, best: 0, tutGor: false, sonLvl: 'A1', sonSekme: 'cumle', seviyeTesti: null,
     istat: { dojo: 0, zafer: 0, online: 0, onlineGalibiyet: 0 }, sonKayit: 0,
     xp: 0, gunluk: { hedef: 50, gunler: {} }, seri: { gun: 0, enUzun: 0, sonGun: null, dondurma: 0, donan: [] },   // ilerleme.js
     gorev: { son: null, seri: 0, enUzun: 0, toplam: 0, gunler: {} },   // Günün Görevi (gorev.js)

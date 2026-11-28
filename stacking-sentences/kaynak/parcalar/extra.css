@@ -1030,3 +1030,17 @@
   .y-bolge em.y-sinav{display:block;font-style:normal;font-size:12px;color:#ffd451;margin-top:2px}
   .lvl-karolar button.kilitli{filter:grayscale(.85) brightness(.75);opacity:.7}
   @media (prefers-reduced-motion:reduce){.yeni-acildi{animation:none}}
+
+  /* ---------- ana menü: iki ana yol KARİYER ve ONLINE (28 Kasım 2026) ---------- */
+  .ana-buyuk{display:flex;align-items:center;gap:14px;width:100%;margin:8px 0;padding:16px 18px;border:0;border-radius:22px;color:#fff;text-align:left;cursor:pointer;
+    font-family:Fredoka,sans-serif;box-shadow:0 6px 0 rgba(0,0,0,.28),inset 0 2px 0 rgba(255,255,255,.35)}
+  .ana-buyuk.kariyer{background:linear-gradient(180deg,#5fd36b,#2f9e47)}
+  .ana-buyuk.online{background:linear-gradient(180deg,#ff7a96,#d93d6a)}
+  .ana-buyuk>i{font-style:normal;font-size:40px;line-height:1;filter:drop-shadow(0 2px 0 rgba(0,0,0,.25))}
+  .ana-buyuk span{flex:1;display:flex;flex-direction:column;min-width:0}
+  .ana-buyuk b{font-size:28px;letter-spacing:.5px;-webkit-text-stroke:3px rgba(0,0,0,.25);paint-order:stroke fill}
+  .ana-buyuk small{font-size:13px;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .ana-buyuk>em{font-style:normal;font-size:26px;opacity:.9}
+  .ana-buyuk:active{transform:translateY(3px);box-shadow:0 3px 0 rgba(0,0,0,.28)}
+  .ana-buyuk em.yeni{position:static;font-size:10px}
+  @media (max-width:340px){.ana-buyuk{padding:12px 14px}.ana-buyuk b{font-size:23px}.ana-buyuk>i{font-size:32px}}

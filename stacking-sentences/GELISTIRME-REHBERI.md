@@ -344,11 +344,15 @@ Candy Crush tarzı tek kişilik bulmaca haritası; oyuncuyu "bir bölüm daha" i
 - Gönderilen emoji kendi avatarının, gelen emoji rakibin avatarının yanında uçar (`.emo-ucan`, rakipte adıyla). Gönderme 1,5 sn'de bir (`EMO_ARALIK`), gelenler en çok 0,8 sn'de bir gösterilir.
 - Bilgisayar rakip ara sıra karşılık verir (`emoBotTepki`, olasılık %45; testte `window.__emoBotOlasilik`): oyuncunun emojisine, tur / maç sonucuna, HIZ'da cümle bitirince.
 
+### Ana menü ve İngilizce cümle (28 Kasım 2026, kullanıcı isteği)
+- **Ana menü:** iki büyük yol **KARİYER** (A1 → C2, alt yazıda seviye ve sıradaki bölüm) ve **ONLINE** (içinde ⚡ Hız ve 🧠 Strateji). Bölüm Yolu küçük bağlantı ("🧩 Bölüm Yolu · strateji bulmacaları") ve Online → Strateji ekranında da düğme. Eski büyük ▶ OYNA (Bölüm Yolu'na götürüyordu) kaldırıldı.
+- **İngilizce cümle görünür:** strateji dışındaki modlarda (Kariyer, Günün Görevi, Online HIZ, kelime paketleri seçime göre) İngilizce cümle Türkçenin altında varsayılan görünür; puan ve XP artık yarıya inmez (`puanKat` 1). Kariyer'deki düğmeyle gizlenebilir ("daha zor"). Seviye testi, SEVİYE SINAVI (`usta === 2`) ve antrenman (tekrar) gizli kalır. Eski kayıtlar bir kez göstere geçirilir (`ayar.ingGecis`, kilit.js).
+
 ### Kilitler: seviye sınavı kapısı ve kademeli açılan özellikler (kilit.js, 28 Kasım 2026)
 - **Seviye hak edilir:** bir seviye ancak önceki seviyenin SEVİYE SINAVI (Kariyer'deki `<seviye>-U` bölümü, karışık cümleler + hatayı bul) geçilince açılır (`seviyeHak(l)` = Kariyer'de açık mı; A1 hep açık; seviye testiyle bulunan seviye de sayılır).
   - Bölüm Yolu: yeni seviyeli bölgeye girerken (41 Park A2, 81 Kütüphane B1, 121 Ofis B2, 141 Havalimanı C1, 161 Rasathane C2) `sinavKapisi(no)` (ekran `yolSinav`; can harcanmaz). Sınav haritadan doğrudan açılır (`sinavDonus`), sonuçta "Bölüm Yolu'na dön / bölge açıldı" düğmesi. Haritada bölge başlığında "🎓 … Seviye Sınavı ile açılır". Davetle oynanan bölüm kapıya takılmaz.
   - Online: hak edilmeyen seviyeler kilitli (🔒, uyarı).
-- **Kademeli açılma** (`OZELLIK`): ana menü ilk gün yalnız OYNA (Bölüm Yolu) + Kariyer. Günün Görevi 2 bölüm, sandık ilk galibiyet, çark 4, Online 8 Bölüm Yolu (ya da 4 Kariyer), etkinlik 12 bölüm, rozetler ilk rozet. Yeni açılan "YENİ!" rozetiyle ve bir bildirimle gelir; tıklanınca `kayit.acilan`a girer. `kayit.acilan === null` (eski kayıt) → o an açık olanlar görülmüş sayılır (yalnız bellekte; menüyü açmak kayıt yazmaz). Menüde tek satır "🔒 Sıradaki: …" ipucu.
+- **Kademeli açılma** (`OZELLIK`): ana menü ilk gün Kariyer + Online (+ küçük Bölüm Yolu bağlantısı). İlerleme = Kariyer + Bölüm Yolu bölümleri: Günün Görevi 1, çark 3, etkinlik 6, rozetler ilk rozet, sandık Bölüm Yolu'nda ilk galibiyet. Yeni açılan "YENİ!" rozetiyle ve bir bildirimle gelir; tıklanınca `kayit.acilan`a girer. `kayit.acilan === null` (eski kayıt) → o an açık olanlar görülmüş sayılır (yalnız bellekte; menüyü açmak kayıt yazmaz). Menüde tek satır "🔒 Sıradaki: …" ipucu.
 - Test kancası `window.__hepsiAcik` (Sayfa(..., hepsi=True) varsayılan); kilitlerin testi `kilit` (hepsi=False).
 - Ekranda "usta" görünmesin kuralı gereği içerikteki başlıklar: "X Ustalık Sınavı" → "X Seviye Sınavı", "Söz Ustası" → "Söz Sanatı", "Ustalık Yolu" → "Uzmanlık Yolu", C2 "Ustalık" → "Uzmanlık", seviye testi C2 "Usta" → "Uzman".
 

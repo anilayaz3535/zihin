@@ -377,9 +377,10 @@ function onlineModAc(mod, uyari) {
       <button class="secenek" id="o-kur"><i>👥</i><b>${tt('Oda kur')}</b><small>${tt('Arkadaşına kod ver')}</small></button>
     </div>
     <div class="kod-satir"><input id="o-kod" class="giris kod" inputmode="numeric" pattern="[0-9]*" maxlength="4" placeholder="${tt('Kod')}" autocomplete="off"><button class="sec" id="o-katil">${tt('KATIL')}</button></div>
-    ${mod === 'strateji' ? `<button class="sec genis-btn" id="o-rehber">${tt('📘 Nasıl oynanır? (alıştırma)')}</button>` : ''}
+    ${mod === 'strateji' ? `<button class="sec genis-btn" id="o-yol">${tt('🧩 Bölüm Yolu · tek kişilik bulmacalar')} · ⭐ ${yolYildizToplam()}</button><button class="sec genis-btn" id="o-rehber">${tt('📘 Nasıl oynanır? (alıştırma)')}</button>` : ''}
     <p class="aciklama kucuk">${tt('İkiniz de internete bağlı olmalısınız. Bağlantı ücretsiz genel sunucular üzerinden kurulur; bazen bağlanmak birkaç saniye sürebilir.')}</p>`, '', 'online');
   $('#o-geri').onclick = () => { onlineSonMod = null; onlineAc(); };
+  const oy = $('#o-yol'); if (oy) oy.onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
   card.querySelectorAll('#o-lvl button').forEach(b => b.onclick = () => { if (!seviyeHak(b.dataset.l)) { Ses.cal('geri', { ses: 0.4 }); not(tt('{l} için önce {s} Seviye Sınavı’nı geç (Kariyer ya da Bölüm Yolu).', { l: b.dataset.l, s: sinavSeviye(b.dataset.l) })); return; } onlineSecLvl = b.dataset.l; Ses.cal('tik', { ses: 0.4 }); onlineModAc(mod); });
   $('#o-hizli').onclick = () => { sesAc(); eslesmeBaslat(mod, lvl); };
   $('#o-bot').onclick = () => { sesAc(); botMacBaslat(mod, lvl); };

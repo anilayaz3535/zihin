@@ -71,7 +71,6 @@ function ilerlemeGuncelle(sessiz) {
 }
 // XP ekle: günlük toplam, hedef ve seri güncellenir
 function xpEkle(n) {
-  if (ilerlemeOturum && ilerlemeOturum.goster) n = Math.ceil(n / 2);   // İngilizce gösterilerek oynanan bölümde XP yarı
   // profil yokken yalnız rehberli ilk cümle XP kazandırır (isim yazılınca yeni profile geçer: profilOlustur(ad, true))
   if (!n || (!aktifProfil() && !(ilerlemeOturum && ilerlemeOturum.mod === 'ilk'))) return;
   ilerlemeGuncelle();

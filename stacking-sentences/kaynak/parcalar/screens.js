@@ -105,13 +105,14 @@ function acilisAc() {
   if (DAVET && davetGoster()) return;   // linkle gelen "Beni geç" daveti (paylas.js)
   const oz = profilOzet(p.id), y = yarimOku();
   // sade ana menü (25 Kasım 2026): üstte profil ve günlük halka, bir sıra kısayol (hazır olanda nokta), ortada büyük ▶ OYNA
-  const no = Math.min(YOL_TOPLAM, kayit.yol.acik), B = YOL_BOLGE[Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE))];
-  const ilk = (Math.floor((no - 1) / YOL_BOLUM_BOLGE)) * YOL_BOLUM_BOLGE + 1, bolgeY = Array.from({ length: YOL_BOLUM_BOLGE }, (_, k) => kayit.yol.yildiz[ilk + k] || 0).reduce((a, b) => a + b, 0);
   const T = etkTema(), etkHazir = etkHazirSay(), sHazir = kayit.sandik.slot.filter(k => sandikDurum(k) === 'hazir').length, sAc = sandikAciliyor(), gTamam = gorevBugunTamam();
   // kademeli açılma (kilit.js): kilitli özellik görünmez; yeni açılan "YENİ!" rozetiyle gelir
   const yeniler = ozellikYeniler(), ac = id => ozellikAcik(id);
   const kis = (id, i, ad, alt, nokta, cls) => { const oz = id.slice(2), yeni = yeniler.indexOf(oz) >= 0; return ac(oz) ? `<button class="kisayol ${cls || ''}${yeni ? ' yeni-acildi' : ''}" id="${id}"><i>${i}</i><b>${ad}</b><small>${alt}</small>${yeni ? `<em class="yeni">${tt('YENİ!')}</em>` : nokta ? `<em>${nokta === true ? '' : nokta}</em>` : ''}</button>` : ''; };
-  const kisSay = ['cark', 'sandik', 'etk', 'gorev', 'rozet'].filter(ac).length, onlineAcik = ac('online');
+  const kisSay = ['cark', 'sandik', 'etk', 'gorev', 'rozet'].filter(ac).length;
+  // ana menü (28 Kasım 2026): iki ana yol KARİYER (A1 → C2) ve ONLINE (Hız · Strateji); Bölüm Yolu küçük bağlantı
+  const kl = SEVIYE[kayit.sonLvl] && seviyeAcikMi(kayit.sonLvl) ? kayit.sonLvl : sonAcikSeviye(), ks = siradakiBolum('cumle', kl);
+  const kariyerAlt = y ? tt('Yarım bölüm: ') + yarimYazi(y) : ks ? tt('{l} · Sıradaki: {b}', { l: kl, b: esc(ks.world) }) : tt('A1 → C2 dersler');
   goster(`<div class="acilis sade">
     <div class="ac-ust">${logoHtml('sm')}<button class="profil-mini" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ⭐ ${kayit.xp}</small></span></button></div>
     ${gunlukHtml()}
@@ -122,17 +123,14 @@ function acilisAc() {
       ${kis('a-gorev', '📅', tt('Görev'), gTamam ? '✓' : tt('+{x} XP', { x: XP_KURAL.gorev }), !gTamam, gTamam ? 'tamam' : 'hazir')}
       ${kis('a-rozet', '🏅', tt('Rozet'), rozetSay() + '/' + ROZETLER.length, false, '')}
     </div>
-    <button class="oyna-btn" id="a-oyna" style="--b:${B.renk}"><span class="ob-bolge">${B.i} ${tt(B.ad)} · ⭐ ${bolgeY}/${YOL_BOLUM_BOLGE * 3}</span>
-      <b>▶ ${tt('OYNA')}</b><small>${tt('BÖLÜM {n}', { n: no })}</small></button>
-    <button class="harita-link" id="a-yol">🗺 ${tt('Bölüm Yolu haritası')} · ⭐ ${yolYildizToplam()}</button>
-    <div class="ana-ikili kucuk${onlineAcik ? '' : ' tek'}">${onlineAcik ? `<button class="ana-btn online${yeniler.indexOf('online') >= 0 ? ' yeni-acildi' : ''}" id="a-online"><i>🏁</i><span><b>${tt('ONLINE')}${yeniler.indexOf('online') >= 0 ? ` <em class="yeni">${tt('YENİ!')}</em>` : ''}</b><small>${tt('⚡ Hız · 🧠 Strateji')}</small></span></button>` : ''}
-    <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1 → C2 dersler')}</small></span></button></div>
+    <button class="ana-buyuk kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${kariyerAlt}</small></span><em>▶</em></button>
+    <button class="ana-buyuk online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE')}</b><small>${tt('⚡ Hız · 🧠 Strateji')}</small></span><em>▶</em></button>
+    <button class="harita-link" id="a-yol">🧩 ${tt('Bölüm Yolu · strateji bulmacaları')} · ⭐ ${yolYildizToplam()}</button>
     ${ozellikSiradakiHtml()}
     <div class="row"><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
   </div>`, '', 'acilis');
   if (yeniler.length) setTimeout(() => { if (ekran === 'acilis') { Ses.cal('yukselis', { ses: 0.5 }); not(tt('YENİ: {o} açıldı!', { o: yeniler.map(id => { const o = OZELLIK.find(x => x.id === id); return o.i + ' ' + tt(o.ad); }).join(', ') })); } }, 500);
   const bag = (id, f) => { const e = $('#' + id); if (e) e.onclick = () => { ozellikGoruldu(id.slice(2)); f(); }; };
-  $('#a-oyna').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.6 }); yolBaslangic(no); };
   bag('a-gorev', () => { Ses.cal('tik', { ses: 0.5 }); gorevBaslat(); });
   $('#a-yol').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
   bag('a-etk', () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); etkAc(); });
@@ -300,8 +298,8 @@ function ingSor(yol, sonra) {
   const pen = document.createElement('div'); pen.id = 'ing-pen';
   const dg = (v, ic, b, s) => `<button data-g="${v}" class="${sec && g === !!v ? 'secili' : ''}"><i>${ic}</i><b>${tt(b)}${v ? ` <span class="oner">${tt('önerilen')}</span>` : ''}</b><small>${tt(s)}</small></button>`;   // göster önerilen
   pen.innerHTML = `<div class="ing-kutu" role="dialog" aria-modal="true"><h3>${tt(k ? 'KELİMELER' : 'CÜMLELER')}</h3><p>${tt('Nasıl oynamak istersin?')}</p>` +
-    dg(1, '👁', k ? 'İngilizce kelimeyi göster' : 'İngilizce cümleyi göster', k ? 'Kelimeyi görerek harfleri ara · puan ve XP yarı' : 'Cümleyi görerek kelimeleri ara · puan ve XP yarı') +
-    dg(0, '🙈', k ? 'İngilizce kelimeyi gizle' : 'İngilizce cümleyi gizle', k ? 'Hatırlayarak diz · tam puan' : 'Yalnız Türkçeyi görerek diz · tam puan') +
+    dg(1, '👁', k ? 'İngilizce kelimeyi göster' : 'İngilizce cümleyi göster', k ? 'Kelimeyi görerek harfleri ara' : 'Cümleyi görerek kelimeleri ara') +
+    dg(0, '🙈', k ? 'İngilizce kelimeyi gizle' : 'İngilizce cümleyi gizle', k ? 'Hatırlayarak diz · daha zor' : 'Yalnız Türkçeyi görerek diz · daha zor') +
     `<small class="ing-not">${tt('Seçimin bütün bölümlerde geçerli; haritadaki düğmeden değiştirebilirsin.')}</small></div>`;
   document.body.appendChild(pen);
   yonergeSoyle(k ? 'Nasıl oynamak istersin? İngilizce kelimeyi görerek oynamak için göster düğmesine dokun. Görmeden oynamak için gizle düğmesine dokun.' : 'Nasıl oynamak istersin? İngilizce cümleyi görerek oynamak için göster düğmesine dokun. Görmeden oynamak için gizle düğmesine dokun.');
@@ -352,7 +350,6 @@ function sonucGoster() {
   const alt = d.gunluk ? tt('Günün Görevi · ') + d.r.lvl : d.antrenman ? tt('Antrenman · {a} / {b} hatırladın', { a: d.antrenman.hatirlanan, b: d.antrenman.kuyruk.length })
     : d.kelime ? tt('Kelime Paketi · ') + esc(d.r.ad) + ' · ' + d.r.lvl : esc(d.r.world) + ' · ' + d.r.lvl + (d.r.rule ? ' · ' + esc(d.r.rule) : '');
   ic += `<div class="go ${d.kazandi ? 'zafer' : ''}" style="font-size:clamp(32px,9vw,52px)">${bas}</div><div class="sonuc-alt">${alt}</div>`;
-  if (d.goster) ic += '<div class="sonuc-alt kucuk">' + tt(d.kelime ? '👁 İngilizce kelime gösterilerek oynandı · puan ve XP yarı' : '👁 İngilizce cümle gösterilerek oynandı · puan ve XP yarı') + '</div>';
   if (!d.kazandi) ic += '<div class="sonuc-alt kirmizi">' + tt('Hata göstergesi doldu, oyun bitti. Bir dahakine yanlış karo koyma; süre bitmeden doğru karoyu bul.') + '</div>';
   if (d.kazandi && !d.antrenman) ic += `<div class="buyuk-yildiz">${yildizHtml(d.yildiz)}</div><div class="sonuc-alt kucuk">${tt('★ kazandın · ★★ en çok 3 hata · ★★★ en çok 1 hata')}</div>`;
   ic += uniteTamamHtml(d.uniteTamam);                 // ünite ilk kez tamamlandı (harita.js)

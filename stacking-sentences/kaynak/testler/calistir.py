@@ -270,8 +270,7 @@ def profil(b):
     s.pg.tap('#a-kariyer'); s.pg.wait_for_timeout(300)
     s.pg.tap('.secim[data-l="A1"]'); s.pg.wait_for_timeout(400)
     s.pg.tap('#k-devam'); s.pg.wait_for_timeout(300)
-    dogru(s.js("!!document.getElementById('ing-pen')"), 'yeni oyuncuya İngilizce göster / gizle sorulmadı')
-    s.pg.tap('#ing-pen button[data-g="0"]'); s.pg.wait_for_timeout(300)
+    dogru(not s.js("!!document.getElementById('ing-pen')"), 'yeni oyuncuya göster / gizle soruldu (cümle varsayılan görünür)')
     s.pg.tap('#tSkip'); s.pg.wait_for_timeout(300)
     esit(s.js('G.state'), 'playing', 'bölüm başlamadı')
     s.js("__ff(400, 0.15, () => D && D.ti >= 4 && G.R && !G.R.bitti && !G.R.tahtaHazir)")
@@ -718,11 +717,11 @@ def kilit(b):
     Online'da hak edilmeyen seviye kilitli; seviye testi hak sayılır; davet kapıya takılmaz; menüyü açmak kayıt yazmaz; İngilizce."""
     s = Sayfa(b, hepsi=False); s.js('kayit.strRehber = true')
     s.js('acilisAc()'); var = lambda: s.js("['a-gorev', 'a-sandik', 'a-cark', 'a-online', 'a-etk', 'a-rozet'].filter(i => document.getElementById(i))")
-    esit(var(), [], 'yeni oyuncuda kilitli özellik göründü'); dogru('Günün Görevi' in s.js("document.querySelector('.siradaki-ozellik').textContent"), 'sıradaki özellik ipucu')
-    dogru(s.js("!!document.getElementById('a-oyna') && !!document.getElementById('a-kariyer')"), 'OYNA ve Kariyer yok'); s.foto('kilit_menu_yeni')
+    esit(var(), ['a-online'], 'yeni oyuncuda kilitli özellik göründü (Online baştan açık)'); dogru('Günün Görevi' in s.js("document.querySelector('.siradaki-ozellik').textContent"), 'sıradaki özellik ipucu')
+    dogru(s.js("!!document.getElementById('a-kariyer') && !!document.getElementById('a-online') && !document.getElementById('a-oyna')"), 'ana menü: Kariyer ve Online'); s.foto('kilit_menu_yeni')
     # ilerleme: 4 bölüm geçildi, sandık var → görev, sandık, çark YENİ!
-    s.js("kayit.yol.acik = 5; sandikKazan('tahta'); acilisAc()")
-    esit(var(), ['a-gorev', 'a-sandik', 'a-cark'], 'açılan özellikler'); esit(s.js("[...document.querySelectorAll('.kisayol em.yeni')].length"), 3, 'YENİ! rozetleri')
+    s.js("kayit.yol.acik = 4; sandikKazan('tahta'); acilisAc()")
+    esit(var(), ['a-gorev', 'a-sandik', 'a-cark', 'a-online'], 'açılan özellikler'); esit(s.js("[...document.querySelectorAll('.kisayol em.yeni')].length"), 3, 'YENİ! rozetleri')
     s.pg.tap('#a-cark'); s.js('acilisAc()'); esit(s.js("[...document.querySelectorAll('.kisayol.yeni-acildi')].map(e => e.id)"), ['a-sandik', 'a-gorev'], 'tıklanınca YENİ! kalkmadı')
     # eski oyuncu (acilan yok): hepsi açık, rozet yok
     s.js("kayit.acilan = null; kayit.yol.acik = 30; kayit.rozet = { cumle1: 1 }; acilisAc()"); esit(len(var()), 6, 'eski oyuncuda özellikler'); esit(s.js("document.querySelectorAll('.yeni-acildi').length"), 0, 'eski oyuncuda YENİ! yağmuru')
@@ -1114,7 +1113,7 @@ def dil(b):
     s.pg.reload(); s.bekle(); esit(s.js('arayuzDili'), 'en', 'dil kalıcı değil'); s.kapat()
     m, h = ekranlari_topla(b, 'en')
     esit(h, [], 'JS hataları (İngilizce)')
-    beklenen = {'acilis': ['CAREER', 'ONLINE', '⚙ Settings', 'PLAY', 'LEVEL 1'], 'profil': ['💾 SAVE GAME'], 'online': ['SPEED', 'STRATEGY', 'PLAY ›'], 'online_hiz': ['Create room', 'JOIN', '🎲 QUICK MATCH'], 'online_strateji': ['STRATEGY', 'Computer'],
+    beklenen = {'acilis': ['CAREER', 'ONLINE', '⚙ Settings', 'Level Path'], 'profil': ['💾 SAVE GAME'], 'online': ['SPEED', 'STRATEGY', 'PLAY ›'], 'online_hiz': ['Create room', 'JOIN', '🎲 QUICK MATCH'], 'online_strateji': ['STRATEGY', 'Computer'],
                 'kariyer_duraklat': ['PAUSED', 'RESUME'], 'kariyer_sonuc': ['SCORE', 'CAREER'], 'nasil_1': ['HOW TO PLAY?', 'GOAL'],
                 'tuval': ['SCORE:', 'GOAL', 'Sentences', 'BUILD THE SENTENCE · Put the English'], 'ilk_karsila': ['BUILD YOUR FIRST SENTENCE'],
                 'ilk_sonuc': ['FIRST SENTENCE DONE!', 'SAVE AND CONTINUE'], 'ilk_hedef': ['YOUR DAILY GOAL', 'Casual · 20 XP']}
@@ -1212,7 +1211,7 @@ def kayit(b):
     esit((s.js('kayit.sonLvl'), s.js('kayit.ayar.muzik')), ('A1', True), 'C: varsayılanlar')
     s.js("profilSec('pb')"); k = s.js('kayit')
     for a, v in IYI_KAYIT.items():
-        if a != 'v': esit(k[a], dict(v, dizilis=True, ingCumle=False, ingKelime=False, ingCumleSecildi=False, ingKelimeSecildi=False, yonergeSes=True, titresim=True, hatirlat=False) if a == 'ayar' else v, f'D: {a} korunmadı')   # yeni ayar varsayılanla eklenir, eskiler aynen
+        if a != 'v': esit(k[a], dict(v, dizilis=True, ingCumle=True, ingKelime=False, ingCumleSecildi=True, ingGecis=True, ingKelimeSecildi=False, yonergeSes=True, titresim=True, hatirlat=False) if a == 'ayar' else v, f'D: {a} korunmadı')   # yeni ayar varsayılanla eklenir, eskiler aynen
     esit((k['v'], yedekler(s, 'te_profil_pb')), (2, []), 'D: sürüm/yedek')
     esit(s.hatalar(), [], 'C/D: JS hataları'); s.kapat(); ozet.append('eski kayıt aynen')
     # E) profil listesi okunamıyor: telefondaki profil kayıtları geri bağlanır (okunamayan profil bağlanmaz)
@@ -1774,7 +1773,8 @@ def dizilis(b):
 @test
 def goster(b):
     """İngilizceyi göster / gizle: Cümleler ve Kelimeler sekmesinde bir kez sorulur (seçilmediyse bölüm başlarken), seçim profilde kalır;
-    gösterilince İngilizce cümle / soluk harfler görünür, puan ve XP yarı; seviye testi her zaman gizli."""
+    gösterilince İngilizce cümle / soluk harfler görünür (28 Kasım 2026'dan beri puan ve XP tam; cümle varsayılan görünür);
+    online HIZ ve Günün Görevi'nde de görünür; seviye testi ve SEVİYE SINAVI'nda gizli."""
     s = Sayfa(b)
     s.js('kayit.ayar.ingCumleSecildi = kayit.ayar.ingKelimeSecildi = false; kaydet()')   # bu profilde henüz sorulmamış
     acik = lambda: s.js("!!document.getElementById('ing-pen')")
@@ -1802,7 +1802,7 @@ def goster(b):
     s.js("kayit.ayar.ingCumle = true; dojoBaslat(rakipBul('A1-1'))")
     s.pg.wait_for_function("G.R && G.R.tip === 'kur' && G.R.tahtaHazir", timeout=20000)
     dogru(s.js('D.goster && ingCumleGoster(G.R) && promptDuzen(G.R, G.R.prompt, 300, 1).ingL.length > 0'), 'İngilizce cümle Türkçe şeritte yok')
-    esit(s.js('(() => { const a = G.score; return [addScore(100), G.score - a]; })()'), [50, 50], 'göster modunda puan yarı değil')
+    esit(s.js('(() => { const a = G.score; return [addScore(100), G.score - a]; })()'), [100, 100], 'göster modunda puan')
     s.js("kayit.ayar.ingCumle = false; dojoBaslat(rakipBul('A1-1'))"); s.pg.wait_for_function("G.R && G.R.tahtaHazir", timeout=20000)
     dogru(s.js('!D.goster && !ingCumleGoster(G.R)'), 'gizle seçiliyken İngilizce görünüyor')
     esit(s.js('(() => { const a = G.score; return [addScore(100), G.score - a]; })()'), [100, 100], 'gizle modunda puan')
@@ -1812,7 +1812,7 @@ def goster(b):
     r = s.js("__ff(900, 0.05, () => G.state === 'over' && ekran === 'sonuc')"); dogru(r['done'], 'gösterilerek oynanan paket bitmedi')
     o = s.js('__olay'); kaz = s.js('kayit.xp') - xp0
     esit(o[0][1].get('goster'), True, 'bolumBasladi olayında goster')
-    yari = lambda n: (n + 1) // 2
+    yari = lambda n: n
     bek = 0
     for ad, v in o:
         if ad == 'cumleTamam': bek += yari(4 + (2 if v['kusursuz'] else 0))
@@ -1820,12 +1820,15 @@ def goster(b):
         elif ad == 'soruBitti': bek += yari(2 if v['temiz'] else 1)
         elif ad == 'kelimeTanisildi': bek += yari(1)
         elif ad == 'bolumBitti' and v['kazandi']: bek += yari(5 + 2 * (v['yildiz'] or 0))
-    esit(kaz, bek, 'gösterilerek oynanan paketin XP\'si yarı değil')
-    dogru(kaz < beklenen_xp(o), 'XP azalmadı')
-    dogru('gösterilerek oynandı' in s.js('card.innerText'), 'sonuç ekranında göster notu yok')
+    esit(kaz, bek, 'gösterilerek oynanan paketin XP\'si'); esit(kaz, beklenen_xp(o), 'göster XP\'yi azalttı')
     s.js('stBaslat()'); esit(s.js('D.goster'), False, 'seviye testi gösterilerek oynanıyor')
+    s.js('kayit.ayar.ingCumle = true; dojoBaslat(rakipBul("A1-U"))'); esit(s.js('D.goster'), False, 'SEVİYE SINAVI gösterilerek oynanıyor')
+    s.js('gorevBaslat()'); esit(s.js('D.goster'), True, 'Günün Görevi\'nde İngilizce cümle yok')
+    s.js("macBaslat('t1', 'A1', onlineCumleler('A1'))"); esit(s.js('!!(D.online && D.goster)'), True, 'online HIZ\'da İngilizce cümle yok')
+    # eski kayıtta gizle seçiliyse bir kez göstere geçer
+    s.js("ekranlariKapat(); G.state = 'menu'; D = null; kayit.ayar.ingCumle = false; kayit.ayar.ingGecis = false; Olay.yay('kayitYuklendi', {})"); esit(s.js('[kayit.ayar.ingCumle, kayit.ayar.ingGecis]'), [True, True], 'eski kayıtta göstere geçilmedi')
     esit(s.errs, [], 'JS hataları'); s.kapat()
-    return f'sekmede soruldu, kalıcı; göster: İngilizce satır ve soluk harfler, puan yarı, XP {kaz} (gizli olsa {beklenen_xp(o)}); seviye testi gizli'
+    return f'sekmede soruldu, kalıcı; göster: İngilizce satır ve soluk harfler, puan ve XP tam ({kaz}); Günün Görevi ve online HIZ gösterir; seviye testi ve sınav gizli; eski kayıt geçişi'
 
 # telefonun okuma sesi yerine kayıt tutan sahte ses: okunan yazılar __soz'e yazılır, okuma kısa sürer
 SAHTE_SES = """

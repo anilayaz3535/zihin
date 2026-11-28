@@ -123,7 +123,9 @@ function dojoBaslat(r, opt) {
   tahtaBosalt();
   const y = opt.devam ? yarimUygula(opt.devam) : null;   // yarım bölüm: D ve G kaldığı yerden
   // Kariyer'de oyuncunun seçimi: İngilizce cümle / kelime görünerek mi (puan ve XP yarı) gizli mi oynanır
-  D.goster = !opt.antrenman && !opt.st && !opt.online && !opt.ilkCumle && !opt.gunluk && !!(opt.kelime ? kayit.ayar.ingKelime : kayit.ayar.ingCumle);
+  // İngilizce cümle (28 Kasım 2026): Kariyer, Günün Görevi ve Online HIZ'da varsayılan gösterilir (gizlemek isteyen Kariyer'den gizler).
+  // Seviye testi ve SEVİYE SINAVI'nda gösterilmez: seviye hak edilir. Antrenman (tekrar) hatırlatma alıştırmasıdır, gösterilmez.
+  D.goster = !opt.antrenman && !opt.st && !opt.ilkCumle && r.usta !== 2 && !!(opt.kelime ? kayit.ayar.ingKelime : kayit.ayar.ingCumle);
   updatePowUI();
   ekranlariKapat();
   G.state = 'playing';
@@ -1283,7 +1285,7 @@ function paraTik(dt) {
   }
 }
 // "İngilizceyi göster" ile oynanan bölümde puan yarı (XP de yarı: ilerleme.js)
-function puanKat() { return D && D.goster ? 0.5 : 1; }
+function puanKat() { return 1; }   // eskiden gösterilerek oynanınca yarıydı; artık gösterim normal oyun
 function addScore(v, x, y) { v = Math.round(v * puanKat()); G.score += v; if (v > 0) paraSac(v, x, y); if (v >= 100 && L.skor) sparkBurst(L.skor.x + L.skor.w * 0.6, L.skor.y + L.skor.h * 0.62, '#ffd23d', 18, 200, 0.55); return v; }
 
 /* ---------------- kaybetme ---------------- */

@@ -7,7 +7,7 @@
        – Online: yalnız hak edilen seviyeler seçilebilir (arkadaşın odası ve hızlı eşleşmenin düşük seviyesi bundan etkilenmez).
      Seviye testiyle (Kariyer → Seviyeni ölç / ilk giriş) bulunan seviye de hak edilmiş sayılır (seviyeUygula onu açar).
      Davet linkiyle oynanan bölüm kapıya takılmaz (ilerleme değişmez).
-   · Kademeli açılma: ana menü ilk gün sade (Bölüm Yolu + Kariyer); diğer özellikler ilerledikçe "YENİ!" rozetiyle açılır (OZELLIK).
+   · Kademeli açılma: ana menü ilk gün sade (Kariyer + Online, küçük Bölüm Yolu bağlantısı); diğer özellikler ilerledikçe "YENİ!" rozetiyle açılır (OZELLIK).
      kayit.acilan: görülen özellikler (null: henüz hiç bakılmadı → o an açık olanlar görülmüş sayılır, eski oyuncuda rozet yağmuru olmaz).
    · Test kancası: window.__hepsiAcik = true → bütün seviyeler ve özellikler açık (eski testler kilitlere takılmasın).
    ===================================================================== */
@@ -52,13 +52,12 @@ function sinavDonusBagla(d) {
 /* ---------------- kademeli açılan özellikler (ana menü) ---------------- */
 const yolGecilen = () => Math.max(0, Math.min(YOL_TOPLAM, kayit.yol.acik) - 1);
 const kariyerGecilen = () => Object.keys(kayit.yildiz).length;
-const OZELLIK = [
-  { id: 'gorev', i: '📅', ad: 'Günün Görevi', ne: () => yolGecilen() + kariyerGecilen(), hedef: 2, sart: 'İki bölüm geç' },
-  { id: 'sandik', i: '🎁', ad: 'Sandıklar', ne: () => (kayit.sandik.slot.length ? 99 : yolGecilen()), hedef: 1, sart: 'Bölüm Yolu’nda bir bölüm geç' },
-  { id: 'cark', i: '🎡', ad: 'Günlük çark', ne: yolGecilen, hedef: 4, sart: 'Bölüm Yolu’nda 4 bölüm geç' },
-  { id: 'online', i: '🏁', ad: 'Online', ne: () => Math.max(yolGecilen(), kariyerGecilen() * 2), hedef: 8, sart: 'Bölüm Yolu’nda 8 ya da Kariyer’de 4 bölüm geç' },
-  { id: 'etk', i: '🏆', ad: 'Haftalık etkinlik', ne: yolGecilen, hedef: 12, sart: 'Bölüm Yolu’nda 12 bölüm geç' },
+const OZELLIK = [   // Kariyer ve Online baştan açık; ilerleme = Kariyer bölümleri + Bölüm Yolu bölümleri
+  { id: 'gorev', i: '📅', ad: 'Günün Görevi', ne: () => yolGecilen() + kariyerGecilen(), hedef: 1, sart: 'Bir bölüm geç' },
+  { id: 'cark', i: '🎡', ad: 'Günlük çark', ne: () => yolGecilen() + kariyerGecilen(), hedef: 3, sart: '3 bölüm geç' },
   { id: 'rozet', i: '🏅', ad: 'Rozetler', ne: () => rozetSay(), hedef: 1, sart: 'İlk rozetini kazan' },
+  { id: 'etk', i: '🏆', ad: 'Haftalık etkinlik', ne: () => yolGecilen() + kariyerGecilen(), hedef: 6, sart: '6 bölüm geç' },
+  { id: 'sandik', i: '🎁', ad: 'Sandıklar', ne: () => (kayit.sandik.slot.length ? 1 : yolGecilen()), hedef: 1, sart: 'Bölüm Yolu’nda bir bölüm geç' },
 ];
 function ozellikAcik(id) { if (hepsiAcik()) return true; const o = OZELLIK.find(x => x.id === id); return !o || o.ne() >= o.hedef; }
 // açılışta: kaydı hazırlar, yeni açılanları döner (YENİ! rozeti için)
@@ -74,3 +73,10 @@ function ozellikSiradakiHtml() {
   const n = Math.min(o.ne(), o.hedef);
   return `<div class="siradaki-ozellik">🔒 ${tt('Sıradaki: {i} {ad}', { i: o.i, ad: tt(o.ad) })}<small>${tt(o.sart)}${o.hedef > 1 ? ` · ${n}/${o.hedef}` : ''}</small></div>`;
 }
+
+/* ---------------- İngilizce cümle varsayılan görünür (28 Kasım 2026) ----------------
+   Eski kayıtlarda "gizle" seçili olabilir: bir kez "göster"e geçirilir (oyuncu sonra Kariyer'den yeniden gizleyebilir). */
+Olay.dinle('kayitYuklendi', () => {
+  const a = kayit && kayit.ayar; if (!a || a.ingGecis) return;
+  a.ingCumle = true; a.ingCumleSecildi = true; a.ingGecis = true;   // yalnız bellekte; sonraki kayıtta yazılır
+});
