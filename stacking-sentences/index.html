@@ -1114,6 +1114,31 @@
   .st-anlik.iri{font-size:42px}
   @keyframes stAnlik{0%{transform:translate(-50%,-10%) scale(.4);opacity:0}25%{transform:translate(-50%,-60%) scale(1.15);opacity:1}100%{transform:translate(-50%,-150%) scale(1);opacity:0}}
   @media (prefers-reduced-motion:reduce){.st-k.buyu,.st-k.grup span{animation:none}.st-anlik{animation-duration:.01s;animation-delay:.9s}}
+
+  /* ---------- ekonomi: jeton, can, galibiyet serisi, dükkân (ekonomi.js) ---------- */
+  .y-cuzdan{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:4px 0 8px}
+  .can-rozet,.jeton-rozet{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:999px;background:rgba(0,0,0,.28);font-weight:700;color:#fff6e8;white-space:nowrap}
+  .can-rozet b,.jeton-rozet b{font-size:17px}.can-rozet small{font-size:12px;opacity:.85}
+  .can-rozet.bos{background:rgba(160,30,50,.45)}
+  .jeton-rozet b{color:#ffd451}
+  .dk-btn{padding:6px 14px!important;min-height:0!important}
+  .y-can{display:flex;flex-direction:column;align-items:center;gap:4px;margin:8px 0}.y-can small{opacity:.8;font-size:12px;text-align:center}
+  .galibiyet{margin:8px auto;padding:8px 12px;border-radius:14px;background:linear-gradient(90deg,rgba(255,120,40,.3),rgba(255,200,61,.22));text-align:center}
+  .galibiyet b{display:block;color:#ffcf6b}.galibiyet small{font-size:12px;opacity:.9}
+  .galibiyet-not{color:#ffcf6b}.seri-bozuldu{color:#ff9fb0}
+  .can-bitti{text-align:center;padding:8px 0}.can-bitti h3{margin:6px 0;font-size:24px}
+  .can-kalp{font-size:64px;animation:kalpAt 1.4s ease-in-out infinite}
+  @keyframes kalpAt{50%{transform:scale(1.12)}}
+  #can-bitti-sure{font-size:22px;color:#ffd451}
+  .cb-jeton{display:block;text-align:center;opacity:.8;margin-top:4px}
+  .dk-liste{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+  .dk-urun{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;background:rgba(0,0,0,.22)}
+  .dk-urun>i{font-size:30px;font-style:normal;width:40px;text-align:center}
+  .dk-urun span{flex:1;display:flex;flex-direction:column}.dk-urun small{opacity:.75;font-size:12px}
+  .dk-al{min-width:84px;padding:8px 12px;border:0;border-radius:12px;background:linear-gradient(#ffd451,#f5a623);color:#5b2a12;font:700 15px Fredoka,sans-serif;box-shadow:0 3px 0 #b86f12;cursor:pointer}
+  .dk-al:disabled{background:#6d5a66;color:#cbbfc5;box-shadow:none;cursor:default}
+  .st-k.bonus::before{box-shadow:0 4px 0 var(--rd),0 0 0 3px #ffcf6b,0 0 18px 5px rgba(255,150,40,.85)!important}
+  @media (prefers-reduced-motion:reduce){.can-kalp{animation:none}}
 </style>
 </head>
 <body class="port">
@@ -2222,6 +2247,34 @@ DIL_SOZLUK.en = {
 "İstasyon": "Station",
 "Kütüphane": "Library",
 "Gece Şehri": "Night City",
+"jeton": "coins",
+"dolu": "full",
+"Dükkân": "Shop",
+"DÜKKÂN": "SHOP",
+"Canları doldur": "Refill lives",
+"Sende: {n}": "You have: {n}",
+"Dolu": "Full",
+"En çok": "Max",
+"{u} alındı!": "{u} bought!",
+"Jeton: Bölüm Yolu’nu geçince, Günün Görevi’ni bitirince, sandıklardan ve çarktan.": "Coins: from clearing Level Path levels, finishing the Daily Challenge, chests and the spin.",
+"Jetonun yetmiyor. Bölüm kazanarak ve sandık açarak jeton topla.": "Not enough coins. Win levels and open chests to collect coins.",
+"Canların bitti": "Out of lives",
+"Yeni can:": "Next life:",
+"Beklerken Kariyer’de ve Günün Görevi’nde sınırsız İngilizce çalışabilirsin.": "While you wait, you can practice English as much as you like in Career and the Daily Challenge.",
+"❤️ CANLARI DOLDUR · {f} 🪙": "❤️ REFILL LIVES · {f} 🪙",
+"Jetonun: {n}": "Your coins: {n}",
+"🎓 KARİYER": "🎓 CAREER",
+"Galibiyet serisi: {n}": "Win streak: {n}",
+"Bonus: {o}": "Bonus: {o}",
+"{n} galibiyette yeni bonus": "New bonus at {n} wins",
+"En büyük bonus!": "Biggest bonus!",
+"Yeni bonus: {o}": "New bonus: {o}",
+"{n} galibiyetlik serin bozuldu": "Your {n}-win streak ended",
+"🔥 Galibiyet bonusu: {o}": "🔥 Win streak bonus: {o}",
+"Bölüm 1 can harcar; kazanınca can geri gelir.": "A level costs 1 life; you get it back when you win.",
+"✋ +3 HAMLE · {f} 🪙": "✋ +3 MOVES · {f} 🪙",
+"❤️ Canların doldu!": "❤️ Your lives are full!",
+"Bölüm Yolu seni bekliyor.": "The Level Path is waiting for you.",
 "Ofis": "Office",
 "Havalimanı": "Airport",
 "Rasathane": "Observatory",
@@ -2525,6 +2578,14 @@ const ALANLAR = {
     if (Array.isArray(x.alinan)) o.alinan = x.alinan.filter(i => Number.isInteger(i) && i >= 0 && i < 20); else b = true;
     if (o.alinan.length !== (x.alinan || []).length) b = true;
     return b ? c.bozuk(o) : o;
+  },
+  jeton: (x, v, c) => { const y = tamSayi(x, 0, 1e6); return y !== null && y === x ? y : c.bozuk(y === null ? v : y); },
+  galibiyet: (x, v, c) => { const y = tamSayi(x, 0, 1e5); return y !== null && y === x ? y : c.bozuk(y === null ? 0 : y); },
+  can: (x, v, c) => {        // { n: 0–5, t: sonraki canın sayılmaya başladığı an | null }
+    if (!nesneMi(x)) return c.bozuk({ n: 5, t: null });
+    const n = tamSayi(x.n, 0, 5), t = x.t === null || x.t === undefined ? null : sayiMi(x.t) && x.t > 0 ? x.t : undefined;
+    const o = { n: n === null ? 5 : n, t: t === undefined ? null : t };
+    return n === null || n !== x.n || t === undefined || (x.t === undefined) ? c.bozuk(o) : o;
   },
   cark: (x, v, c) => (nesneMi(x) && (x.son === null || (typeof x.son === 'string' && GUN_ANAHTAR.test(x.son))) ? { son: x.son } : c.bozuk({ son: null })),
   yol: (x, v, c) => {      // Bölüm Yolu: { acik: açık son bölüm, yildiz: { no: 1..3 }, enIyi: { no: puan } }
@@ -3465,7 +3526,7 @@ function bosKayit() {
     xp: 0, gunluk: { hedef: 50, gunler: {} }, seri: { gun: 0, enUzun: 0, sonGun: null, dondurma: 0, donan: [] },   // ilerleme.js
     gorev: { son: null, seri: 0, enUzun: 0, toplam: 0, gunler: {} },   // Günün Görevi (gorev.js)
     rozet: {}, strRehber: false, yol: { acik: 1, yildiz: {}, enIyi: {} },
-    envanter: { hamle3: 1, cekic: 1, miknatis: 1 }, sandik: { slot: [] }, cark: { son: null },
+    envanter: { hamle3: 1, cekic: 1, miknatis: 1 }, sandik: { slot: [] }, cark: { son: null }, jeton: 50, can: { n: 5, t: null }, galibiyet: 0,
     etkinlik: { hafta: '', puan: 0, alinan: [], tamam: 0 } };   // etkinlik.js   // odul.js (başlangıçta birer güç hediye)                                     // rozet.js · strRehber: strateji alıştırması görüldü (strateji.js)
 }
 /* ---------------- kayıt okuma: doğrula (kayit-sema.js), bozuksa yedekle, oyuncuya bir kez söyle ---------------- */
@@ -8239,7 +8300,7 @@ function strCiz(yeni) {
     el.classList.toggle('ozel', !!k.ozel); if (k.ozel) el.dataset.ozel = k.ozel;
     const sn = secimSira.get(k.id); el.classList.toggle('secildi', !!sn); el.lastChild.textContent = sn || '';
     el.classList.toggle('secili', R.secili === i);
-    el.classList.toggle('buz', !!k.buz); el.classList.toggle('kilit', !!k.kilit); el.classList.toggle('sis', !!k.sis); el.classList.toggle('mur', !!k.mur); el.classList.toggle('karisik', !!k.kar);
+    el.classList.toggle('buz', !!k.buz); el.classList.toggle('kilit', !!k.kilit); el.classList.toggle('sis', !!k.sis); el.classList.toggle('mur', !!k.mur); el.classList.toggle('karisik', !!k.kar); el.classList.toggle('bonus', !!k.bonus);
     const g = gruplar.get(i) || 0; el.classList.toggle('grup', g >= 3); if (g >= 3) el.style.setProperty('--gg', Math.min(g, 8));
     el.dataset.i = i;
   });
@@ -8377,7 +8438,7 @@ function strCikSor() {
 }
 function strCik() {
   const M = STR; if (!M) return;
-  if (M.yol) { strKapat(); yolHaritaAc(); return; }
+  if (M.yol) { if (M.R && !M.R.bitti) { galibiyetSonuc(false); kaydet(); } strKapat(); yolHaritaAc(); return; }   // yarıda çıkmak: seri bozulur (can başta harcandı)
   const online = M.online, mod = 'strateji';
   if (online && !M.karar) { kayit.istat.online = (kayit.istat.online || 0) + 1; kaydet(); }
   strKapat();
@@ -8665,6 +8726,7 @@ function yolHaritaAc() {
   D = null; Ses.muzik('menu'); Konus.sus();
   const Y = yolKayit(), acik = Math.min(YOL_TOPLAM, Y.acik);
   let ic = `<div class="ust-satir"><button class="geri" id="y-geri">${tt('← Geri')}</button><span class="y-toplam">⭐ ${yolYildizToplam()} / ${YOL_TOPLAM * 3}</span></div>
+    <div class="y-cuzdan">${canHtml()}${jetonHtml()}<button class="sec dk-btn" id="y-dukkan">🛒 ${tt('Dükkân')}</button></div>
     <div class="ana-baslik">🗺 ${tt('BÖLÜM YOLU')}</div>${sandikHtml()}${aracHtml()}<div class="y-yol">`;
   YOL_BOLGE.forEach((B, bi) => {
     const ilk = bi * YOL_BOLUM_BOLGE + 1, kilitli = ilk > acik;
@@ -8678,6 +8740,7 @@ function yolHaritaAc() {
   ic += '</div>';
   goster(ic, 'genis y-kart', 'yol');
   $('#y-geri').onclick = () => acilisAc();
+  $('#y-dukkan').onclick = () => { sesAc(); dukkanAc(); };
   sandikBagla();
   card.querySelectorAll('.y-durak').forEach(b => b.onclick = () => {
     const n = +b.dataset.n;
@@ -8713,6 +8776,8 @@ function yolBaslangic(no) {
     ${['sis', 'murekkep', 'karisik'].filter(m => m !== yeniMek && b.T.h.some(k => k && (m === 'sis' ? k.sis : m === 'murekkep' ? k.mur : k.kar))).map(m => `<div class="y-ozel">${tt(YOL_ACIKLAMA[m])}</div>`).join('')}
     ${[...new Set(b.T.h.filter(k => k && k.ozel).map(k => k.ozel))].map(o => `<div class="y-ozel"><i>${OZEL_I[o]}</i> ${tt(YOL_OZEL_ACIKLAMA[o])}</div>`).join('')}
     <div class="y-yildizlar">${[0, 1, 2].map(i => `<i class="${i < y ? 'on' : ''}">★</i>`).join('')}</div>
+    ${galibiyetHtml()}
+    ${canGerekir(no) ? `<div class="y-can">${canHtml()}<small>${tt('Bölüm 1 can harcar; kazanınca can geri gelir.')}</small></div>` : ''}
     ${en ? `<p class="aciklama kucuk" style="text-align:center">${tt('En iyi skorun: {n}', { n: en })}</p>` : ''}
     <button class="big" id="y-oyna">${tt('OYNA ▶')}</button>
     <div class="row"><button class="sec" id="y-harita">${tt('HARİTA')}</button></div>`, '', 'yolBas');
@@ -8724,12 +8789,16 @@ function yolOyna(no, o) {
     strRehberTek(); STR.R.rehber.sonra = () => { strKapat(); yolOyna(no, o); }; return;
   }
   const b = yolBolum(no);
+  const can = canGerekir(no);
+  if (can && !canHarca()) { strKapat(); canBittiAc(no); return; }
   strKapat(); if (G.state !== 'menu') demo();
   D = null; Konus.sus(); Ses.muzik('strateji'); Ses.gerilim(0);
-  STR = { mac: 'yol', yol: { no, b, devam: false, davet: (o && o.davet) || null }, lvl: b.B.lvl, tohum: 'yol:' + no, cum: [], tur: 0, ben: [], rakipS: [], rakip: { ad: '', bot: true }, online: false, karar: null, xp0: kayit.xp, R: null, zaman: null };
+  STR = { mac: 'yol', yol: { no, b, devam: false, davet: (o && o.davet) || null, can, bonus: [] }, lvl: b.B.lvl, tohum: 'yol:' + no, cum: [], tur: 0, ben: [], rakipS: [], rakip: { ad: '', bot: true }, online: false, karar: null, xp0: kayit.xp, R: null, zaman: null };
   ekranlariKapat(); strEkranKur();
   STR.R = { s: b.s, T: yolKopya(b.T), hamle: b.hamle, secim: Array(b.T.n).fill(null), secili: -1, sure: Infinity, t0: Date.now(), bitti: false, sonuc: null };
+  STR.yol.bonus = galibiyetUygula(STR.R.T);   // ekonomi.js: 3+ galibiyet serisinde özel karoyla başlar
   strCiz(true);
+  if (STR.yol.bonus.length) setTimeout(() => { if (STR && STR.yol) { not(tt('🔥 Galibiyet bonusu: {o}', { o: STR.yol.bonus.map(t => OZEL_I[t]).join(' ') })); Ses.cal('yukselis', { ses: 0.5 }); } }, 700);
   Olay.yay('bolumBasladi', { mod: 'yol', r: 'yol' + no, lvl: b.B.lvl, devam: false, goster: false });
   setTimeout(() => { if (STR && STR.yol && STR.R && !STR.R.bitti) Konus.tr(b.s.tr.replace(/;/g, ',')); }, 500);
 }
@@ -8754,19 +8823,21 @@ function yolCiz() {
 }
 // hamle bitti: hedefe yetmiyorsa NEREDEYSE (+3 hamle, bir kez bedava)
 function yolHamleBitti() {
-  const M = STR, R = M && M.R; if (!M || !M.yol || !R || R.bitti || M.yol.sorma || (M.yol.devam && !(kayit.envanter.hamle3 > 0))) return;
+  const M = STR, R = M && M.R, canta = kayit.envanter.hamle3 > 0, alir = (kayit.jeton || 0) >= NEREDEYSE_FIYAT;
+  if (!M || !M.yol || !R || R.bitti || M.yol.sorma || (M.yol.devam && !canta && !alir)) return;
   const b = M.yol.b, ids = R.T.hedef.map((t, k) => R.T.h.find(x => x && x.k === k).id);
   const v = yolV(b, yolIstat(strPatlamaPlani(R.T, ids)), R);
   if (v >= b.hedef.sayi) return;
   const p = $('#st-panel');
   p.innerHTML = `<div class="st-kart y-neredeyse"><h3>😩 ${tt('NEREDEYSE!')}</h3>
     <p>${tt('Hamlen bitti ama hedefe biraz kaldı:')}</p><div class="y-hedef buyuk">${yolHedefYazi(b.hedef, true).split(' ')[0]} ${v} / ${b.hedef.sayi}</div>
-    ${M.yol.devam ? `<button class="big" id="y-ek">${tt('✋ +3 HAMLE KULLAN')}</button><small class="y-bedava">${tt('Çantanda {n} tane var', { n: kayit.envanter.hamle3 })}</small>`
+    ${M.yol.devam && !canta ? `<button class="big" id="y-ek">${tt('✋ +3 HAMLE · {f} 🪙', { f: NEREDEYSE_FIYAT })}</button><small class="y-bedava">${tt('Jetonun: {n}', { n: kayit.jeton })}</small>`
+      : M.yol.devam ? `<button class="big" id="y-ek">${tt('✋ +3 HAMLE KULLAN')}</button><small class="y-bedava">${tt('Çantanda {n} tane var', { n: kayit.envanter.hamle3 })}</small>`
       : `<button class="big" id="y-ek">${tt('+3 HAMLE 🎁')}</button><small class="y-bedava">${tt('Bu bölümde 1 kez bedava')}</small>`}
     <div class="row"><button class="sec" id="y-boyle">${tt('Böyle devam et')}</button></div></div>`;
   p.classList.add('acik'); Ses.cal('yukselis', { ses: 0.4 });
   Olcum.olay('neredeyse', { yol_no: b.no, v, hedef: b.hedef.sayi });
-  $('#y-ek').onclick = () => { if (M.yol.devam) { kayit.envanter.hamle3--; kaydet(); } M.yol.devam = true; R.hamle += 3; p.classList.remove('acik'); Ses.cal('yukselis', { ses: 0.6 }); strCiz(); };
+  $('#y-ek').onclick = () => { if (M.yol.devam) { if (kayit.envanter.hamle3 > 0) { kayit.envanter.hamle3--; kaydet(); } else if (!jetonHarca(NEREDEYSE_FIYAT, 'neredeyse')) return; } M.yol.devam = true; R.hamle += 3; p.classList.remove('acik'); Ses.cal('yukselis', { ses: 0.6 }); strCiz(); };
   $('#y-boyle').onclick = () => { M.yol.devam = true; M.yol.sorma = true; p.classList.remove('acik'); };
 }
 // bomba sonrası (strTurBitir çağırır)
@@ -8810,12 +8881,17 @@ function yolSonuc(o) {
   let yildiz = 0, yeniEn = false;
   const dv = M.yol.davet, ileride = dv && no > Y.acik;   // davetle oynanan, henüz açılmamış bölüm: ilerleme değişmez
   if (o.kazandi && ileride) yildiz = 1 + (o.puan >= b.esik[0] ? 1 : 0) + (o.puan >= b.esik[1] ? 1 : 0);
+  const ilkKez = !Y.yildiz[no];
   if (o.kazandi && !ileride) {
     yildiz = 1 + (o.puan >= b.esik[0] ? 1 : 0) + (o.puan >= b.esik[1] ? 1 : 0);
     Y.yildiz[no] = Math.max(Y.yildiz[no] || 0, yildiz);
     if (o.puan > (Y.enIyi[no] || 0)) { Y.enIyi[no] = o.puan; yeniEn = true; }
     Y.acik = Math.max(Y.acik, Math.min(YOL_TOPLAM, no + 1));
   }
+  // ekonomi.js: jeton (ilk geçiş 10 + 5×yıldız, tekrar 3), kazanınca can geri, galibiyet serisi
+  const jeton = o.kazandi ? (ilkKez && !ileride ? 10 + 5 * yildiz : 3) : 0; if (jeton) jetonEkle(jeton);
+  if (o.kazandi && M.yol.can) canVer();
+  const seriOnce = galibiyetSonuc(o.kazandi);
   const sandik = o.kazandi && !ileride ? sandikKazan(yildiz === 3 || b.zor === 'boss' ? 'altin' : b.zor === 'zor' ? 'gumus' : 'tahta') : null;   // odul.js
   kaydet();
   Olay.yay('bolumBitti', { mod: 'yol', r: 'yol' + no, lvl: b.B.lvl, kazandi: o.kazandi, yildiz, skor: o.puan, istat: {}, enKombo: 0, rekor: yeniEn });
@@ -8832,7 +8908,10 @@ function yolSonuc(o) {
       <strong>${o.puan > dv.puan ? tt('GEÇTİN! 🎉') : o.puan === dv.puan ? tt('BERABERE!') : tt('Az kaldı, tekrar dene!')}</strong></div>` : ''}
     ${o.kazandi ? paylasDugme('y-paylas') : ''}
     ${o.yanlis ? `<div class="st-dogru"><small>${tt('Doğru cümle')}</small>${dinleBtn(b.s.en)} <b>${esc(b.s.en)}</b><small>${esc(b.s.tr)}</small></div>` : ''}
-    ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
+    ${xp > 0 || jeton ? `<div class="sonuc-alt">${xp > 0 ? `+${xp} XP` : ''}${xp > 0 && jeton ? ' · ' : ''}${jeton ? `+${jeton} 🪙` : ''}</div>` : ''}
+    ${o.kazandi && kayit.galibiyet >= 2 ? `<div class="st-not galibiyet-not">🔥 ${tt('Galibiyet serisi: {n}', { n: kayit.galibiyet })}${galibiyetBonus(kayit.galibiyet).length > galibiyetBonus(seriOnce).length ? ' · ' + tt('Yeni bonus: {o}', { o: galibiyetBonus(kayit.galibiyet).map(t => OZEL_I[t]).join(' ') }) : ''}</div>` : ''}
+    ${!o.kazandi && seriOnce >= 2 ? `<div class="st-not seri-bozuldu">💔 ${tt('{n} galibiyetlik serin bozuldu', { n: seriOnce })}</div>` : ''}
+    ${!o.kazandi && M.yol.can ? `<div class="y-can">${canHtml()}</div>` : ''}
     ${sandik ? sandikKazanHtml(sandik) : ''}
     ${M.yol.etkinlik ? `<div class="sonuc-alt etk-kazanc">${etkTema().i} ${tt(etkTema().ad)}: +${M.yol.etkinlik} ${etkTema().jeton}</div>` : ''}
     ${bolgeBitti ? `<div class="y-yeni"><b>${tt('YENİ BÖLGE AÇILDI!')}</b> ${YOL_BOLGE[b.bi + 1].i} ${tt(YOL_BOLGE[b.bi + 1].ad)}</div>` : ''}
@@ -8861,14 +8940,14 @@ function yolSonuc(o) {
    ===================================================================== */
 const ARAC = { hamle3: { i: '✋', ad: '+3 Hamle' }, cekic: { i: '🔨', ad: 'Çekiç' }, miknatis: { i: '🧲', ad: 'Mıknatıs' } };
 const SANDIK = {
-  tahta: { i: '🟫', ad: 'Tahta sandık', sure: 15 * 60e3, arac: 1, xp: [10, 20], don: 0 },
-  gumus: { i: '⬜', ad: 'Gümüş sandık', sure: 60 * 60e3, arac: 2, xp: [25, 40], don: 0.08 },
-  altin: { i: '🟨', ad: 'Altın sandık', sure: 3 * 60 * 60e3, arac: 3, xp: [50, 80], don: 0.25 },
+  tahta: { i: '🟫', ad: 'Tahta sandık', sure: 15 * 60e3, arac: 1, xp: [10, 20], jeton: [10, 20], don: 0 },
+  gumus: { i: '⬜', ad: 'Gümüş sandık', sure: 60 * 60e3, arac: 2, xp: [25, 40], jeton: [25, 40], don: 0.08 },
+  altin: { i: '🟨', ad: 'Altın sandık', sure: 3 * 60 * 60e3, arac: 3, xp: [50, 80], jeton: [50, 80], don: 0.25 },
 };
 const SANDIK_YUVA = 4;
 const CARK = [
   { t: 'hamle3', n: 1, y: '✋ +3', a: 20, r: '#ff8aa3' }, { t: 'cekic', n: 1, y: '🔨', a: 18, r: '#ffd451' },
-  { t: 'miknatis', n: 1, y: '🧲', a: 18, r: '#7fd0ff' }, { t: 'xp', n: 20, y: '⭐ 20', a: 18, r: '#7be38a' },
+  { t: 'miknatis', n: 1, y: '🧲', a: 18, r: '#7fd0ff' }, { t: 'jeton', n: 25, y: '🪙 25', a: 18, r: '#7be38a' },
   { t: 'xp', n: 50, y: '⭐ 50', a: 10, r: '#b49bff' }, { t: 'sandik', n: 'gumus', y: '🎁', a: 8, r: '#ffb15c' },
   { t: 'don', n: 1, y: '❄', a: 4, r: '#c9f0ff' }, { t: 'cekic', n: 3, y: '🔨×3', a: 4, r: '#ff6b6b', buyuk: true },
 ];
@@ -8878,6 +8957,7 @@ function aracEkle(t, n) { kayit.envanter[t] = (kayit.envanter[t] || 0) + n; }
 function odulVer(o) {   // { t, n } → açıklama
   if (ARAC[o.t]) { aracEkle(o.t, o.n); return ARAC[o.t].i + ' ' + tt(ARAC[o.t].ad) + (o.n > 1 ? ' ×' + o.n : ''); }
   if (o.t === 'xp') { xpEkle(o.n); return '⭐ ' + o.n + ' XP'; }
+  if (o.t === 'jeton') { jetonEkle(o.n); return '🪙 ' + o.n + ' ' + tt('jeton'); }
   if (o.t === 'don') { if (kayit.seri.dondurma < SERI_DONDURMA_EN) { kayit.seri.dondurma++; return '❄ ' + tt('Seri dondurma'); } xpEkle(30); return '⭐ 30 XP'; }
   if (o.t === 'sandik') { const s = sandikKazan(o.n); return s ? SANDIK[o.n].i + ' ' + tt(SANDIK[o.n].ad) : '⭐ 40 XP' + (xpEkle(40) || ''); }
   return '';
@@ -8914,6 +8994,7 @@ function sandikIcerik(tur) {
   const S = SANDIK[tur], o = [], turler = Object.keys(ARAC);
   for (let i = 0; i < S.arac; i++) o.push({ t: turler[Math.floor(Math.random() * turler.length)], n: 1 });
   o.push({ t: 'xp', n: S.xp[0] + Math.floor(Math.random() * (S.xp[1] - S.xp[0] + 1)) });
+  o.push({ t: 'jeton', n: S.jeton[0] + Math.floor(Math.random() * (S.jeton[1] - S.jeton[0] + 1)) });
   if (Math.random() < S.don) o.push({ t: 'don', n: 1 });
   return o;
 }
@@ -9022,6 +9103,118 @@ function aracDokun(i) {
     kayit.envanter.miknatis--; kaydet(); R.arac = null; R.aracIlk = -1; R.secili = -1;
     Ses.cal('kay', { ses: 0.7 }); Yerel.titret('hafif'); strCiz();
   }
+}
+
+/* =====================================================================
+   EKONOMİ (28 Kasım 2026): JETON · CAN · GALİBİYET SERİSİ · DÜKKÂN
+   Amaç: kazanılan ödülün harcanacak yeri olsun (jeton), Bölüm Yolu'nda her deneme değerli olsun (can),
+   kaybetmekten kaçınma oyuncuyu "bir tane daha" oynatsın (galibiyet serisi).
+   · 🪙 Jeton (kayit.jeton): Bölüm Yolu'nu ilk kez geçince 10 + 5×yıldız, tekrar geçince 3; Günün Görevi 15;
+     sandıklar ve çark. Dükkânda harcanır (DUKKAN): güçler, canları doldurma, seri dondurma; NEREDEYSE'de +3 hamle.
+   · ❤️ Can (kayit.can = { n, t }): yalnız Bölüm Yolu'nda, 11. bölümden sonra. En çok 5; bölüm başlarken 1 can harcanır,
+     kazanınca geri verilir (kaybetmek ya da yarıda çıkmak 1 can). 30 dakikada 1 can dolar (t: bir sonraki canın sayılmaya
+     başladığı an). Can bitince öğrenme modları (Kariyer, Günün Görevi, alıştırma) sınırsız kalır: bekleme İngilizce çalışmaya döner.
+   · 🔥 Galibiyet serisi (kayit.galibiyet): Bölüm Yolu'nda art arda kazanılan bölüm. 3+ seride bölüm 💣 paket karoyla,
+     5+ seride ayrıca 🌈 gökkuşağıyla başlar. Kaybedince ya da yarıda çıkınca sıfırlanır.
+   ===================================================================== */
+const CAN_EN = 5, CAN_SURE = 30 * 60e3, CAN_UCRETSIZ = 10;
+const DUKKAN = [
+  { id: 'hamle3', i: '✋', ad: '+3 Hamle', fiyat: 50 },
+  { id: 'cekic', i: '🔨', ad: 'Çekiç', fiyat: 70 },
+  { id: 'miknatis', i: '🧲', ad: 'Mıknatıs', fiyat: 70 },
+  { id: 'can', i: '❤️', ad: 'Canları doldur', fiyat: 90 },
+  { id: 'don', i: '❄', ad: 'Seri dondurma', fiyat: 120 },
+];
+const NEREDEYSE_FIYAT = 50;
+const canSimdi = () => (window.__canSaat ? window.__canSaat() : Date.now());   // test: saat
+
+/* ---------------- jeton ---------------- */
+function jetonEkle(n) { kayit.jeton = Math.max(0, Math.min(1e6, (kayit.jeton || 0) + Math.round(n))); }
+function jetonHarca(n, ne) {
+  if ((kayit.jeton || 0) < n) { not(tt('Jetonun yetmiyor. Bölüm kazanarak ve sandık açarak jeton topla.')); Ses.cal('geri', { ses: 0.4 }); return false; }
+  kayit.jeton -= n; kaydet(); Olcum.olay('jeton_harcadi', { ne, n }); Ses.cal('al', { ses: 0.6 }); return true;
+}
+// Günün Görevi bitince jeton
+Olay.dinle('bolumBitti', v => { if (v.mod === 'gunluk' && v.kazandi !== false && aktifProfil()) { jetonEkle(15); kaydet(); } });
+
+/* ---------------- can ---------------- */
+function canDurum() {   // kaydı günceller (dolan canlar), döner { n, kalan: sonraki cana ms (dolu ise 0) }
+  const c = kayit.can, s = canSimdi();
+  if (c.n >= CAN_EN) { c.n = CAN_EN; c.t = null; return { n: CAN_EN, kalan: 0 }; }
+  if (c.t == null || c.t > s) c.t = s;   // saat geri alınmışsa ya da eksik kayıt: şimdiden say
+  const k = Math.floor((s - c.t) / CAN_SURE);
+  if (k > 0) { c.n = Math.min(CAN_EN, c.n + k); c.t = c.n >= CAN_EN ? null : c.t + k * CAN_SURE; }
+  return { n: c.n, kalan: c.n >= CAN_EN ? 0 : c.t + CAN_SURE - s };
+}
+const canGerekir = no => no > CAN_UCRETSIZ;
+function canHarca() { const d = canDurum(); if (d.n <= 0) return false; if (kayit.can.n === CAN_EN) kayit.can.t = canSimdi(); kayit.can.n--; kaydet(); canBildirim(); return true; }
+function canVer() { canDurum(); kayit.can.n = Math.min(CAN_EN, kayit.can.n + 1); if (kayit.can.n >= CAN_EN) kayit.can.t = null; kaydet(); canBildirim(); }
+function canDoldur() { kayit.can = { n: CAN_EN, t: null }; kaydet(); canBildirim(); }
+// canlar dolunca bildirim (uygulamada, izin varsa)
+function canBildirim() { const d = canDurum(); if (window.Yerel && Yerel.canHatirlat) Yerel.canHatirlat(d.n >= CAN_EN ? 0 : canSimdi() + d.kalan + (CAN_EN - d.n - 1) * CAN_SURE); }
+const canSure = ms => { const s = Math.ceil(ms / 1000); return Math.floor(s / 60) + ':' + String(s % 60).padStart(2, '0'); };
+function canHtml() {
+  const d = canDurum();
+  return `<span class="can-rozet ${d.n ? '' : 'bos'}" id="can-rozet">❤️ <b>${d.n}</b>${d.n < CAN_EN ? `<small>${canSure(d.kalan)}</small>` : `<small>${tt('dolu')}</small>`}</span>`;
+}
+const jetonHtml = () => `<span class="jeton-rozet" id="jeton-rozet">🪙 <b>${kayit.jeton || 0}</b></span>`;
+setInterval(() => {   // haritada ve kartlarda can sayacı
+  const el = document.getElementById('can-rozet'); if (el) el.outerHTML = canHtml();
+  const j = document.getElementById('jeton-rozet'); if (j) j.outerHTML = jetonHtml();
+  const cb = document.getElementById('can-bitti-sure'); if (cb) { const d = canDurum(); if (d.n > 0 && ekran === 'canBitti' && canBekleyen) { const n = canBekleyen; canBekleyen = null; yolBaslangic(n); } else cb.textContent = canSure(d.kalan); }
+}, 1000);
+let canBekleyen = null;
+// can kalmadı ekranı: beklerken öğrenme modları sınırsız
+function canBittiAc(no) {
+  canBekleyen = no; const d = canDurum(); Olcum.olay('can_bitti', { bolum: no });
+  goster(`<div class="can-bitti"><div class="can-kalp">💔</div><h3>${tt('Canların bitti')}</h3>
+      <p>${tt('Yeni can:')} <b id="can-bitti-sure">${canSure(d.kalan)}</b></p>
+      <p class="aciklama">${tt('Beklerken Kariyer’de ve Günün Görevi’nde sınırsız İngilizce çalışabilirsin.')}</p></div>
+    <button class="big" id="cb-doldur" ${kayit.jeton >= DUKKAN[3].fiyat ? '' : 'disabled'}>${tt('❤️ CANLARI DOLDUR · {f} 🪙', { f: DUKKAN[3].fiyat })}</button>
+    <small class="cb-jeton">${tt('Jetonun: {n}', { n: kayit.jeton || 0 })}</small>
+    <div class="row"><button class="sec" id="cb-kariyer">${tt('🎓 KARİYER')}</button><button class="sec" id="cb-harita">${tt('HARİTA')}</button></div>`, '', 'canBitti');
+  $('#cb-doldur').onclick = () => { if (jetonHarca(DUKKAN[3].fiyat, 'can')) { canDoldur(); canBekleyen = null; yolBaslangic(no); } };
+  $('#cb-kariyer').onclick = () => { canBekleyen = null; sesAc(); haritaAc(); };
+  $('#cb-harita').onclick = () => { canBekleyen = null; yolHaritaAc(); };
+}
+
+/* ---------------- galibiyet serisi ---------------- */
+const galibiyetBonus = g => (g >= 5 ? ['paket', 'gokkusagi'] : g >= 3 ? ['paket'] : []);
+// bölümün kopya tahtasına bonus özel karolar (dolgu karoların yerine; tuzaklara, engellere dokunmaz)
+function galibiyetUygula(T) {
+  const tur = galibiyetBonus(kayit.galibiyet || 0); if (!tur.length) return [];
+  const aday = T.h.map((k, i) => (k && k.k < 0 && !k.cel && !k.ozel && !strDonuk(k) && !k.sis && !k.kar ? i : -1)).filter(i => i >= 0);
+  const o = [];
+  tur.forEach(t => { if (!aday.length) return; const i = aday.splice(Math.floor(Math.random() * aday.length), 1)[0], k = T.h[i]; k.ozel = t; k.txt = ''; k.bonus = true; if (t === 'gokkusagi') k.ci = -1; o.push(t); });
+  return o;
+}
+function galibiyetSonuc(kazandi) { const once = kayit.galibiyet || 0; kayit.galibiyet = kazandi ? once + 1 : 0; return once; }
+function galibiyetHtml() {
+  const g = kayit.galibiyet || 0, b = galibiyetBonus(g), sonraki = g < 3 ? 3 : g < 5 ? 5 : 0;
+  if (!g) return '';
+  return `<div class="galibiyet"><b>🔥 ${tt('Galibiyet serisi: {n}', { n: g })}</b><small>${b.length ? tt('Bonus: {o}', { o: b.map(t => OZEL_I[t]).join(' ') }) + ' · ' : ''}${sonraki ? tt('{n} galibiyette yeni bonus', { n: sonraki }) : tt('En büyük bonus!')}</small></div>`;
+}
+
+/* ---------------- dükkân ---------------- */
+function dukkanAc(geri) {
+  const d = canDurum();
+  const satir = u => {
+    const yok = (u.id === 'can' && d.n >= CAN_EN) || (u.id === 'don' && kayit.seri.dondurma >= SERI_DONDURMA_EN);
+    const sahip = ARAC[u.id] ? (kayit.envanter[u.id] || 0) : u.id === 'don' ? kayit.seri.dondurma : null;
+    return `<div class="dk-urun"><i>${u.i}</i><span><b>${tt(u.ad)}</b>${sahip != null ? `<small>${tt('Sende: {n}', { n: sahip })}</small>` : u.id === 'can' ? `<small>❤️ ${d.n}/${CAN_EN}</small>` : ''}</span>
+      <button class="dk-al" data-id="${u.id}" ${yok || kayit.jeton < u.fiyat ? 'disabled' : ''}>${yok ? tt(u.id === 'can' ? 'Dolu' : 'En çok') : u.fiyat + ' 🪙'}</button></div>`;
+  };
+  goster(`<div class="ust-satir"><button class="geri" id="dk-geri">${tt('← Geri')}</button>${jetonHtml()}</div>
+    <div class="ana-baslik">🛒 ${tt('DÜKKÂN')}</div>
+    <div class="dk-liste">${DUKKAN.map(satir).join('')}</div>
+    <p class="aciklama" style="text-align:center">${tt('Jeton: Bölüm Yolu’nu geçince, Günün Görevi’ni bitirince, sandıklardan ve çarktan.')}</p>`, '', 'dukkan');
+  $('#dk-geri').onclick = () => (geri || yolHaritaAc)();
+  card.querySelectorAll('.dk-al').forEach(b => b.onclick = () => {
+    const u = DUKKAN.find(x => x.id === b.dataset.id); sesAc();
+    if (!jetonHarca(u.fiyat, u.id)) return;
+    if (ARAC[u.id]) aracEkle(u.id, 1); else if (u.id === 'can') canDoldur(); else if (u.id === 'don') kayit.seri.dondurma++;
+    kaydet(); Yerel.titret('hafif'); not(tt('{u} alındı!', { u: u.i + ' ' + tt(u.ad) })); dukkanAc(geri);
+  });
 }
 
 /* =====================================================================
@@ -9464,6 +9657,15 @@ const Yerel = (() => {
       await N.schedule({ notifications: [{ id: 4300, title: tt('🎁 Sandığın açıldı!'), body: tt('İçinde ne var? Gel ve aç.'), schedule: { at: new Date(zaman), allowWhileIdle: true } }] });
     } catch (e) { }
   }
+  // canlar dolunca bildirim (ekonomi.js); zaman 0 → iptal
+  async function canHatirlat(zaman) {
+    const N = ek('LocalNotifications'); if (!N) return;
+    try {
+      await N.cancel({ notifications: [{ id: 4400 }] });
+      const p = await N.checkPermissions(); if (p.display !== 'granted' || !zaman || zaman <= Date.now()) return;
+      await N.schedule({ notifications: [{ id: 4400, title: tt('❤️ Canların doldu!'), body: tt('Bölüm Yolu seni bekliyor.'), schedule: { at: new Date(zaman), allowWhileIdle: true } }] });
+    } catch (e) { }
+  }
   Olay.dinle('kayitYuklendi', () => hatirlatAyarla());
 
   /* ---- açılış ---- */
@@ -9482,7 +9684,7 @@ const Yerel = (() => {
     const bekle = () => { if (window.__acildi) { const SP = ek('SplashScreen'); if (SP) { try { SP.hide({ fadeOutDuration: 250 }); } catch (e) { } } hatirlatAyarla(); } else setTimeout(bekle, 100); };
     bekle();
   }
-  return { kur, yerliMi, platform, titret, geri, hatirlatAyarla, sandikHatirlat, hatirlatDegisti, bildirimVar: () => !!ek('LocalNotifications') };
+  return { kur, yerliMi, platform, titret, geri, hatirlatAyarla, sandikHatirlat, canHatirlat, hatirlatDegisti, bildirimVar: () => !!ek('LocalNotifications') };
 })();
 
 /* =====================================================================
@@ -9517,7 +9719,7 @@ function panelGeri() {
   if (ekran === 'strSonuc') { const c = $('#ss-cik'); if (c) c.click(); return; }
   if (ekran === 'eslesme') { eslesmeDur(); onlineAc(); return; }
   if (ekran === 'yol' || ekran === 'cark' || ekran === 'etkinlik') { acilisAc(); return; }
-  if (ekran === 'yolBas') { yolHaritaAc(); return; }
+  if (ekran === 'yolBas' || ekran === 'dukkan' || ekran === 'canBitti') { yolHaritaAc(); return; }
   if (ekran === 'online') { onlineSonMod = null; onlineAc(); return; }
   if (ekran === 'harita' || ekran === 'profil' || ekran === 'onlineSecim' || ekran === 'ilk' || ekran === 'ilkHedef') { acilisAc(); return; }
   haritaAc();

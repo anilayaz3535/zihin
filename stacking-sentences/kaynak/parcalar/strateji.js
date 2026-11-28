@@ -472,7 +472,7 @@ function strCiz(yeni) {
     el.classList.toggle('ozel', !!k.ozel); if (k.ozel) el.dataset.ozel = k.ozel;
     const sn = secimSira.get(k.id); el.classList.toggle('secildi', !!sn); el.lastChild.textContent = sn || '';
     el.classList.toggle('secili', R.secili === i);
-    el.classList.toggle('buz', !!k.buz); el.classList.toggle('kilit', !!k.kilit); el.classList.toggle('sis', !!k.sis); el.classList.toggle('mur', !!k.mur); el.classList.toggle('karisik', !!k.kar);
+    el.classList.toggle('buz', !!k.buz); el.classList.toggle('kilit', !!k.kilit); el.classList.toggle('sis', !!k.sis); el.classList.toggle('mur', !!k.mur); el.classList.toggle('karisik', !!k.kar); el.classList.toggle('bonus', !!k.bonus);
     const g = gruplar.get(i) || 0; el.classList.toggle('grup', g >= 3); if (g >= 3) el.style.setProperty('--gg', Math.min(g, 8));
     el.dataset.i = i;
   });
@@ -610,7 +610,7 @@ function strCikSor() {
 }
 function strCik() {
   const M = STR; if (!M) return;
-  if (M.yol) { strKapat(); yolHaritaAc(); return; }
+  if (M.yol) { if (M.R && !M.R.bitti) { galibiyetSonuc(false); kaydet(); } strKapat(); yolHaritaAc(); return; }   // yarıda çıkmak: seri bozulur (can başta harcandı)
   const online = M.online, mod = 'strateji';
   if (online && !M.karar) { kayit.istat.online = (kayit.istat.online || 0) + 1; kaydet(); }
   strKapat();

@@ -10,14 +10,14 @@
    ===================================================================== */
 const ARAC = { hamle3: { i: '✋', ad: '+3 Hamle' }, cekic: { i: '🔨', ad: 'Çekiç' }, miknatis: { i: '🧲', ad: 'Mıknatıs' } };
 const SANDIK = {
-  tahta: { i: '🟫', ad: 'Tahta sandık', sure: 15 * 60e3, arac: 1, xp: [10, 20], don: 0 },
-  gumus: { i: '⬜', ad: 'Gümüş sandık', sure: 60 * 60e3, arac: 2, xp: [25, 40], don: 0.08 },
-  altin: { i: '🟨', ad: 'Altın sandık', sure: 3 * 60 * 60e3, arac: 3, xp: [50, 80], don: 0.25 },
+  tahta: { i: '🟫', ad: 'Tahta sandık', sure: 15 * 60e3, arac: 1, xp: [10, 20], jeton: [10, 20], don: 0 },
+  gumus: { i: '⬜', ad: 'Gümüş sandık', sure: 60 * 60e3, arac: 2, xp: [25, 40], jeton: [25, 40], don: 0.08 },
+  altin: { i: '🟨', ad: 'Altın sandık', sure: 3 * 60 * 60e3, arac: 3, xp: [50, 80], jeton: [50, 80], don: 0.25 },
 };
 const SANDIK_YUVA = 4;
 const CARK = [
   { t: 'hamle3', n: 1, y: '✋ +3', a: 20, r: '#ff8aa3' }, { t: 'cekic', n: 1, y: '🔨', a: 18, r: '#ffd451' },
-  { t: 'miknatis', n: 1, y: '🧲', a: 18, r: '#7fd0ff' }, { t: 'xp', n: 20, y: '⭐ 20', a: 18, r: '#7be38a' },
+  { t: 'miknatis', n: 1, y: '🧲', a: 18, r: '#7fd0ff' }, { t: 'jeton', n: 25, y: '🪙 25', a: 18, r: '#7be38a' },
   { t: 'xp', n: 50, y: '⭐ 50', a: 10, r: '#b49bff' }, { t: 'sandik', n: 'gumus', y: '🎁', a: 8, r: '#ffb15c' },
   { t: 'don', n: 1, y: '❄', a: 4, r: '#c9f0ff' }, { t: 'cekic', n: 3, y: '🔨×3', a: 4, r: '#ff6b6b', buyuk: true },
 ];
@@ -27,6 +27,7 @@ function aracEkle(t, n) { kayit.envanter[t] = (kayit.envanter[t] || 0) + n; }
 function odulVer(o) {   // { t, n } → açıklama
   if (ARAC[o.t]) { aracEkle(o.t, o.n); return ARAC[o.t].i + ' ' + tt(ARAC[o.t].ad) + (o.n > 1 ? ' ×' + o.n : ''); }
   if (o.t === 'xp') { xpEkle(o.n); return '⭐ ' + o.n + ' XP'; }
+  if (o.t === 'jeton') { jetonEkle(o.n); return '🪙 ' + o.n + ' ' + tt('jeton'); }
   if (o.t === 'don') { if (kayit.seri.dondurma < SERI_DONDURMA_EN) { kayit.seri.dondurma++; return '❄ ' + tt('Seri dondurma'); } xpEkle(30); return '⭐ 30 XP'; }
   if (o.t === 'sandik') { const s = sandikKazan(o.n); return s ? SANDIK[o.n].i + ' ' + tt(SANDIK[o.n].ad) : '⭐ 40 XP' + (xpEkle(40) || ''); }
   return '';
@@ -63,6 +64,7 @@ function sandikIcerik(tur) {
   const S = SANDIK[tur], o = [], turler = Object.keys(ARAC);
   for (let i = 0; i < S.arac; i++) o.push({ t: turler[Math.floor(Math.random() * turler.length)], n: 1 });
   o.push({ t: 'xp', n: S.xp[0] + Math.floor(Math.random() * (S.xp[1] - S.xp[0] + 1)) });
+  o.push({ t: 'jeton', n: S.jeton[0] + Math.floor(Math.random() * (S.jeton[1] - S.jeton[0] + 1)) });
   if (Math.random() < S.don) o.push({ t: 'don', n: 1 });
   return o;
 }

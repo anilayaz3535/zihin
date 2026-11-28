@@ -988,3 +988,28 @@
   .st-anlik.iri{font-size:42px}
   @keyframes stAnlik{0%{transform:translate(-50%,-10%) scale(.4);opacity:0}25%{transform:translate(-50%,-60%) scale(1.15);opacity:1}100%{transform:translate(-50%,-150%) scale(1);opacity:0}}
   @media (prefers-reduced-motion:reduce){.st-k.buyu,.st-k.grup span{animation:none}.st-anlik{animation-duration:.01s;animation-delay:.9s}}
+
+  /* ---------- ekonomi: jeton, can, galibiyet serisi, dükkân (ekonomi.js) ---------- */
+  .y-cuzdan{display:flex;justify-content:center;align-items:center;gap:8px;flex-wrap:wrap;margin:4px 0 8px}
+  .can-rozet,.jeton-rozet{display:inline-flex;align-items:center;gap:5px;padding:5px 12px;border-radius:999px;background:rgba(0,0,0,.28);font-weight:700;color:#fff6e8;white-space:nowrap}
+  .can-rozet b,.jeton-rozet b{font-size:17px}.can-rozet small{font-size:12px;opacity:.85}
+  .can-rozet.bos{background:rgba(160,30,50,.45)}
+  .jeton-rozet b{color:#ffd451}
+  .dk-btn{padding:6px 14px!important;min-height:0!important}
+  .y-can{display:flex;flex-direction:column;align-items:center;gap:4px;margin:8px 0}.y-can small{opacity:.8;font-size:12px;text-align:center}
+  .galibiyet{margin:8px auto;padding:8px 12px;border-radius:14px;background:linear-gradient(90deg,rgba(255,120,40,.3),rgba(255,200,61,.22));text-align:center}
+  .galibiyet b{display:block;color:#ffcf6b}.galibiyet small{font-size:12px;opacity:.9}
+  .galibiyet-not{color:#ffcf6b}.seri-bozuldu{color:#ff9fb0}
+  .can-bitti{text-align:center;padding:8px 0}.can-bitti h3{margin:6px 0;font-size:24px}
+  .can-kalp{font-size:64px;animation:kalpAt 1.4s ease-in-out infinite}
+  @keyframes kalpAt{50%{transform:scale(1.12)}}
+  #can-bitti-sure{font-size:22px;color:#ffd451}
+  .cb-jeton{display:block;text-align:center;opacity:.8;margin-top:4px}
+  .dk-liste{display:flex;flex-direction:column;gap:8px;margin:8px 0}
+  .dk-urun{display:flex;align-items:center;gap:12px;padding:10px 12px;border-radius:16px;background:rgba(0,0,0,.22)}
+  .dk-urun>i{font-size:30px;font-style:normal;width:40px;text-align:center}
+  .dk-urun span{flex:1;display:flex;flex-direction:column}.dk-urun small{opacity:.75;font-size:12px}
+  .dk-al{min-width:84px;padding:8px 12px;border:0;border-radius:12px;background:linear-gradient(#ffd451,#f5a623);color:#5b2a12;font:700 15px Fredoka,sans-serif;box-shadow:0 3px 0 #b86f12;cursor:pointer}
+  .dk-al:disabled{background:#6d5a66;color:#cbbfc5;box-shadow:none;cursor:default}
+  .st-k.bonus::before{box-shadow:0 4px 0 var(--rd),0 0 0 3px #ffcf6b,0 0 18px 5px rgba(255,150,40,.85)!important}
+  @media (prefers-reduced-motion:reduce){.can-kalp{animation:none}}

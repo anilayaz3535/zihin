@@ -30,7 +30,8 @@ BÖLÜM YOLU – 180 BULMACA
 • Buzlu ve kilitli karolar, kelimeyi gizleyen sis, yayılan mürekkep, harfleri karışık kelimeler
 • Satır, sütun ve gökkuşağı özel karoları, SÜPER KOMBO
 • Sınırlı hamle: her bölüm bir bilgi ve strateji bulmacası
-• Yıldızları topla, sandıkları aç, Çekiç, Mıknatıs ve +3 Hamle kazan
+• Yıldızları topla, sandıkları aç, jeton biriktir; Çekiç, Mıknatıs ve +3 Hamle kazan
+• Galibiyet serisi: art arda kazandıkça bölüme bonus karolarla başla
 
 ONLINE: HIZ YA DA STRATEJİ
 • HIZ: kendi seviyende (A1–C2) aynı cümleleri rakibinden hızlı kur
@@ -77,7 +78,8 @@ LEVEL PATH – 180 PUZZLES
 • Ice and locked tiles, fog that hides words, spreading ink, scrambled words
 • Row, column and rainbow special tiles, SUPER COMBO
 • Limited moves: every level is a puzzle of knowledge and strategy
-• Earn stars, open chests, win Hammers, Magnets and +3 Moves
+• Earn stars, open chests, collect coins; win Hammers, Magnets and +3 Moves
+• Win streaks: keep winning to start levels with bonus tiles
 
 ONLINE: SPEED OR STRATEGY
 • SPEED: build the same sentences faster than your opponent at your own level (A1–C2)

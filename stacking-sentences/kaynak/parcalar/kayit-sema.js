@@ -135,6 +135,14 @@ const ALANLAR = {
     if (o.alinan.length !== (x.alinan || []).length) b = true;
     return b ? c.bozuk(o) : o;
   },
+  jeton: (x, v, c) => { const y = tamSayi(x, 0, 1e6); return y !== null && y === x ? y : c.bozuk(y === null ? v : y); },
+  galibiyet: (x, v, c) => { const y = tamSayi(x, 0, 1e5); return y !== null && y === x ? y : c.bozuk(y === null ? 0 : y); },
+  can: (x, v, c) => {        // { n: 0–5, t: sonraki canın sayılmaya başladığı an | null }
+    if (!nesneMi(x)) return c.bozuk({ n: 5, t: null });
+    const n = tamSayi(x.n, 0, 5), t = x.t === null || x.t === undefined ? null : sayiMi(x.t) && x.t > 0 ? x.t : undefined;
+    const o = { n: n === null ? 5 : n, t: t === undefined ? null : t };
+    return n === null || n !== x.n || t === undefined || (x.t === undefined) ? c.bozuk(o) : o;
+  },
   cark: (x, v, c) => (nesneMi(x) && (x.son === null || (typeof x.son === 'string' && GUN_ANAHTAR.test(x.son))) ? { son: x.son } : c.bozuk({ son: null })),
   yol: (x, v, c) => {      // Bölüm Yolu: { acik: açık son bölüm, yildiz: { no: 1..3 }, enIyi: { no: puan } }
     if (!nesneMi(x)) return c.bozuk({ acik: 1, yildiz: {}, enIyi: {} });

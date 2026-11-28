@@ -109,6 +109,15 @@ const Yerel = (() => {
       await N.schedule({ notifications: [{ id: 4300, title: tt('🎁 Sandığın açıldı!'), body: tt('İçinde ne var? Gel ve aç.'), schedule: { at: new Date(zaman), allowWhileIdle: true } }] });
     } catch (e) { }
   }
+  // canlar dolunca bildirim (ekonomi.js); zaman 0 → iptal
+  async function canHatirlat(zaman) {
+    const N = ek('LocalNotifications'); if (!N) return;
+    try {
+      await N.cancel({ notifications: [{ id: 4400 }] });
+      const p = await N.checkPermissions(); if (p.display !== 'granted' || !zaman || zaman <= Date.now()) return;
+      await N.schedule({ notifications: [{ id: 4400, title: tt('❤️ Canların doldu!'), body: tt('Bölüm Yolu seni bekliyor.'), schedule: { at: new Date(zaman), allowWhileIdle: true } }] });
+    } catch (e) { }
+  }
   Olay.dinle('kayitYuklendi', () => hatirlatAyarla());
 
   /* ---- açılış ---- */
@@ -127,5 +136,5 @@ const Yerel = (() => {
     const bekle = () => { if (window.__acildi) { const SP = ek('SplashScreen'); if (SP) { try { SP.hide({ fadeOutDuration: 250 }); } catch (e) { } } hatirlatAyarla(); } else setTimeout(bekle, 100); };
     bekle();
   }
-  return { kur, yerliMi, platform, titret, geri, hatirlatAyarla, sandikHatirlat, hatirlatDegisti, bildirimVar: () => !!ek('LocalNotifications') };
+  return { kur, yerliMi, platform, titret, geri, hatirlatAyarla, sandikHatirlat, canHatirlat, hatirlatDegisti, bildirimVar: () => !!ek('LocalNotifications') };
 })();

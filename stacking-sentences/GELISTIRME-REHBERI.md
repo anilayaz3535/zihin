@@ -344,6 +344,13 @@ Candy Crush tarzı tek kişilik bulmaca haritası; oyuncuyu "bir bölüm daha" i
 - Gönderilen emoji kendi avatarının, gelen emoji rakibin avatarının yanında uçar (`.emo-ucan`, rakipte adıyla). Gönderme 1,5 sn'de bir (`EMO_ARALIK`), gelenler en çok 0,8 sn'de bir gösterilir.
 - Bilgisayar rakip ara sıra karşılık verir (`emoBotTepki`, olasılık %45; testte `window.__emoBotOlasilik`): oyuncunun emojisine, tur / maç sonucuna, HIZ'da cümle bitirince.
 
+### Ekonomi: jeton, can, galibiyet serisi, dükkân (ekonomi.js, 28 Kasım 2026)
+- Amaç: ödüllerin harcanacak yeri olsun, Bölüm Yolu'nda her deneme değerli olsun, kaybetmekten kaçınma oyuncuyu geri getirsin.
+- 🪙 `kayit.jeton` (başlangıç 50): Bölüm Yolu ilk geçiş 10 + 5×yıldız, tekrar 3; Günün Görevi 15; sandıklar (`SANDIK[tur].jeton`); çarkta 🪙 25 dilimi (eski ⭐ 20 yerine). Harcama: `DUKKAN` (+3 hamle 50, çekiç 70, mıknatıs 70, canları doldur 90, seri dondurma 120) ve NEREDEYSE'de çanta boşsa +3 hamle 50 jeton.
+- ❤️ `kayit.can = { n, t }`: yalnız Bölüm Yolu 11+ (`CAN_UCRETSIZ` 10). Bölüm başlarken 1 can harcanır (`canHarca`), kazanınca geri (`canVer`). 30 dk'da 1 can (`canDurum`, `t` bir sonraki canın sayılmaya başladığı an; saat geri alınırsa şimdiden sayar). Can yoksa `canBittiAc` (ekran `canBitti`): sayaç, jetonla doldur, Kariyer'e git; can dolunca bölüm kartına döner. Uygulamada canlar dolunca bildirim (`Yerel.canHatirlat`, id 4400).
+- 🔥 `kayit.galibiyet`: Bölüm Yolu'nda art arda kazanma; kaybedince ve yarıda çıkınca (`strCik`) 0. 3+ seride 💣, 5+ seride ayrıca 🌈 bonus karo (`galibiyetUygula`, yalnız oynanan kopya `STR.R.T`, dolgu karoların yerine; `k.bonus` turuncu parlar). Başlangıç kartında ve sonuçta gösterilir.
+- Test: `ekonomi`.
+
 ### Hamle anında ödül (strateji.js, 28 Kasım 2026)
 - Sorun: Bölüm Yolu ve STRATEJİ'de tatmin yalnız bombada geliyordu; 5–6 hamle boyunca hiçbir şey olmuyordu.
 - Her taşımadan sonra `strAnlikOdul`: 3+ aynı renk grupların değeri (`strGrupDeger` = gruptaki karo × 10, bombanın taban puanı) arttıysa büyüyen karolar zıplar (`.buyu`), taşınan karodan "+puan" uçar (5+ grupta "Harika!", 7+ "Muhteşem!"), grup boyu kadar yükselen notalar, 5+ grupta titreşim.
@@ -431,6 +438,7 @@ python3 testler/calistir.py modlar dil # yalnız seçilenler
 | `strateji` | Kayma kuralı (sağa, satır sonunda alta, ilk boşluğa); 6 seviyede 18 tahta (aynı tohum aynı tahta, 3 boşluk, tuzak doğrusuyla aynı renk, kötü başlangıç yok); bomba ve doğruluk; bilgisayara karşı maç ekrandan: sürükleyerek taşıma, kutuya sürükleme (gölge, hamle harcamaz), dokun-dokun, kutudan geri alma, hamle sınırı, 3 ekranda taşma yok, 3 tur (biri yanlış) ve karar, tekrar oyna, çıkış, süre dolması, İngilizce |
 | `strateji_rehber` | Alıştırma: ilk maçta bir kez; bilgi adımında ve gösterilmeyen hamlede taşıma yok; sürükleyerek kayma; sırası gelmeyen kelime ve tuzak seçilmez, uyarı; bomba; kurallar kartı ve maç; kalıcı; Nasıl oynanır ve Geç; bütün koç yazılarının İngilizcesi |
 | `yol` | 180 bölüm üretilir ve hepsi uzmanla çözülebilir, aynı no aynı tahta, engeller hedef kelimede yok, 4 hedef türü; donuk karo taşınmaz, kayan sıra buzu atlar; haritadan oynanır (kilitli durak uyarısı), uzman hamleleriyle kazanılır (önizleme ✓, ★★+, sonraki bölüm, XP); NEREDEYSE +3 hamle bir kez; hedefe yetmeyince kaybeder, TEKRAR DENE aynı tahta; yanlış cümle; kalıcı; bozuk kayıt onarımı; tek kişilikte emoji yok; İngilizce |
+| `ekonomi` | Jeton kaynakları ve harcama; can 11+ (başta harcanır, kazanınca geri, 30 dk'da dolar, bitince ekran ve jetonla doldurma, 1–10 bedava); galibiyet serisi ve bonus karolar yalnız oynanan kopyada; dükkân; onarım; İngilizce |
 | `yol_yeni` | 121–180: 1–120 imzası değişmedi; sis (gizli kelime, kutuya çekilmez, taşıyınca açılır, komşu kuralı), mürekkep (yayılma kuralı, donuk, uzmanla kazanılır), karışık harfler (gerçek kelime yok, doğru cümle); kalıp tekrarı yok; harita 180; İngilizce |
 | `anlik` | Hamle anında ödül: grubu büyüten taşıma +puan, parlayan gruplar, boş hamleye ödül yok, kelimeden bağımsız |
 | `olcum` | Açılış, bölüm, Bölüm Yolu ayrıntıları (deneme, kalan hamle, zorluk, hedef), paylaş, çark, ekran olayları; isim ve cümle ölçümde yok; kimlik rastgele ve kalıcı; toplu gönderimde api_key ve batch; ayardan kapanınca olay yok; anahtar yokken ağ isteği yok |

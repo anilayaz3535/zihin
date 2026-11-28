@@ -30,7 +30,7 @@ function panelGeri() {
   if (ekran === 'strSonuc') { const c = $('#ss-cik'); if (c) c.click(); return; }
   if (ekran === 'eslesme') { eslesmeDur(); onlineAc(); return; }
   if (ekran === 'yol' || ekran === 'cark' || ekran === 'etkinlik') { acilisAc(); return; }
-  if (ekran === 'yolBas') { yolHaritaAc(); return; }
+  if (ekran === 'yolBas' || ekran === 'dukkan' || ekran === 'canBitti') { yolHaritaAc(); return; }
   if (ekran === 'online') { onlineSonMod = null; onlineAc(); return; }
   if (ekran === 'harita' || ekran === 'profil' || ekran === 'onlineSecim' || ekran === 'ilk' || ekran === 'ilkHedef') { acilisAc(); return; }
   haritaAc();

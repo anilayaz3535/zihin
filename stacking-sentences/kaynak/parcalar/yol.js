@@ -157,6 +157,7 @@ function yolHaritaAc() {
   D = null; Ses.muzik('menu'); Konus.sus();
   const Y = yolKayit(), acik = Math.min(YOL_TOPLAM, Y.acik);
   let ic = `<div class="ust-satir"><button class="geri" id="y-geri">${tt('← Geri')}</button><span class="y-toplam">⭐ ${yolYildizToplam()} / ${YOL_TOPLAM * 3}</span></div>
+    <div class="y-cuzdan">${canHtml()}${jetonHtml()}<button class="sec dk-btn" id="y-dukkan">🛒 ${tt('Dükkân')}</button></div>
     <div class="ana-baslik">🗺 ${tt('BÖLÜM YOLU')}</div>${sandikHtml()}${aracHtml()}<div class="y-yol">`;
   YOL_BOLGE.forEach((B, bi) => {
     const ilk = bi * YOL_BOLUM_BOLGE + 1, kilitli = ilk > acik;
@@ -170,6 +171,7 @@ function yolHaritaAc() {
   ic += '</div>';
   goster(ic, 'genis y-kart', 'yol');
   $('#y-geri').onclick = () => acilisAc();
+  $('#y-dukkan').onclick = () => { sesAc(); dukkanAc(); };
   sandikBagla();
   card.querySelectorAll('.y-durak').forEach(b => b.onclick = () => {
     const n = +b.dataset.n;
@@ -205,6 +207,8 @@ function yolBaslangic(no) {
     ${['sis', 'murekkep', 'karisik'].filter(m => m !== yeniMek && b.T.h.some(k => k && (m === 'sis' ? k.sis : m === 'murekkep' ? k.mur : k.kar))).map(m => `<div class="y-ozel">${tt(YOL_ACIKLAMA[m])}</div>`).join('')}
     ${[...new Set(b.T.h.filter(k => k && k.ozel).map(k => k.ozel))].map(o => `<div class="y-ozel"><i>${OZEL_I[o]}</i> ${tt(YOL_OZEL_ACIKLAMA[o])}</div>`).join('')}
     <div class="y-yildizlar">${[0, 1, 2].map(i => `<i class="${i < y ? 'on' : ''}">★</i>`).join('')}</div>
+    ${galibiyetHtml()}
+    ${canGerekir(no) ? `<div class="y-can">${canHtml()}<small>${tt('Bölüm 1 can harcar; kazanınca can geri gelir.')}</small></div>` : ''}
     ${en ? `<p class="aciklama kucuk" style="text-align:center">${tt('En iyi skorun: {n}', { n: en })}</p>` : ''}
     <button class="big" id="y-oyna">${tt('OYNA ▶')}</button>
     <div class="row"><button class="sec" id="y-harita">${tt('HARİTA')}</button></div>`, '', 'yolBas');
@@ -216,12 +220,16 @@ function yolOyna(no, o) {
     strRehberTek(); STR.R.rehber.sonra = () => { strKapat(); yolOyna(no, o); }; return;
   }
   const b = yolBolum(no);
+  const can = canGerekir(no);
+  if (can && !canHarca()) { strKapat(); canBittiAc(no); return; }
   strKapat(); if (G.state !== 'menu') demo();
   D = null; Konus.sus(); Ses.muzik('strateji'); Ses.gerilim(0);
-  STR = { mac: 'yol', yol: { no, b, devam: false, davet: (o && o.davet) || null }, lvl: b.B.lvl, tohum: 'yol:' + no, cum: [], tur: 0, ben: [], rakipS: [], rakip: { ad: '', bot: true }, online: false, karar: null, xp0: kayit.xp, R: null, zaman: null };
+  STR = { mac: 'yol', yol: { no, b, devam: false, davet: (o && o.davet) || null, can, bonus: [] }, lvl: b.B.lvl, tohum: 'yol:' + no, cum: [], tur: 0, ben: [], rakipS: [], rakip: { ad: '', bot: true }, online: false, karar: null, xp0: kayit.xp, R: null, zaman: null };
   ekranlariKapat(); strEkranKur();
   STR.R = { s: b.s, T: yolKopya(b.T), hamle: b.hamle, secim: Array(b.T.n).fill(null), secili: -1, sure: Infinity, t0: Date.now(), bitti: false, sonuc: null };
+  STR.yol.bonus = galibiyetUygula(STR.R.T);   // ekonomi.js: 3+ galibiyet serisinde özel karoyla başlar
   strCiz(true);
+  if (STR.yol.bonus.length) setTimeout(() => { if (STR && STR.yol) { not(tt('🔥 Galibiyet bonusu: {o}', { o: STR.yol.bonus.map(t => OZEL_I[t]).join(' ') })); Ses.cal('yukselis', { ses: 0.5 }); } }, 700);
   Olay.yay('bolumBasladi', { mod: 'yol', r: 'yol' + no, lvl: b.B.lvl, devam: false, goster: false });
   setTimeout(() => { if (STR && STR.yol && STR.R && !STR.R.bitti) Konus.tr(b.s.tr.replace(/;/g, ',')); }, 500);
 }
@@ -246,19 +254,21 @@ function yolCiz() {
 }
 // hamle bitti: hedefe yetmiyorsa NEREDEYSE (+3 hamle, bir kez bedava)
 function yolHamleBitti() {
-  const M = STR, R = M && M.R; if (!M || !M.yol || !R || R.bitti || M.yol.sorma || (M.yol.devam && !(kayit.envanter.hamle3 > 0))) return;
+  const M = STR, R = M && M.R, canta = kayit.envanter.hamle3 > 0, alir = (kayit.jeton || 0) >= NEREDEYSE_FIYAT;
+  if (!M || !M.yol || !R || R.bitti || M.yol.sorma || (M.yol.devam && !canta && !alir)) return;
   const b = M.yol.b, ids = R.T.hedef.map((t, k) => R.T.h.find(x => x && x.k === k).id);
   const v = yolV(b, yolIstat(strPatlamaPlani(R.T, ids)), R);
   if (v >= b.hedef.sayi) return;
   const p = $('#st-panel');
   p.innerHTML = `<div class="st-kart y-neredeyse"><h3>😩 ${tt('NEREDEYSE!')}</h3>
     <p>${tt('Hamlen bitti ama hedefe biraz kaldı:')}</p><div class="y-hedef buyuk">${yolHedefYazi(b.hedef, true).split(' ')[0]} ${v} / ${b.hedef.sayi}</div>
-    ${M.yol.devam ? `<button class="big" id="y-ek">${tt('✋ +3 HAMLE KULLAN')}</button><small class="y-bedava">${tt('Çantanda {n} tane var', { n: kayit.envanter.hamle3 })}</small>`
+    ${M.yol.devam && !canta ? `<button class="big" id="y-ek">${tt('✋ +3 HAMLE · {f} 🪙', { f: NEREDEYSE_FIYAT })}</button><small class="y-bedava">${tt('Jetonun: {n}', { n: kayit.jeton })}</small>`
+      : M.yol.devam ? `<button class="big" id="y-ek">${tt('✋ +3 HAMLE KULLAN')}</button><small class="y-bedava">${tt('Çantanda {n} tane var', { n: kayit.envanter.hamle3 })}</small>`
       : `<button class="big" id="y-ek">${tt('+3 HAMLE 🎁')}</button><small class="y-bedava">${tt('Bu bölümde 1 kez bedava')}</small>`}
     <div class="row"><button class="sec" id="y-boyle">${tt('Böyle devam et')}</button></div></div>`;
   p.classList.add('acik'); Ses.cal('yukselis', { ses: 0.4 });
   Olcum.olay('neredeyse', { yol_no: b.no, v, hedef: b.hedef.sayi });
-  $('#y-ek').onclick = () => { if (M.yol.devam) { kayit.envanter.hamle3--; kaydet(); } M.yol.devam = true; R.hamle += 3; p.classList.remove('acik'); Ses.cal('yukselis', { ses: 0.6 }); strCiz(); };
+  $('#y-ek').onclick = () => { if (M.yol.devam) { if (kayit.envanter.hamle3 > 0) { kayit.envanter.hamle3--; kaydet(); } else if (!jetonHarca(NEREDEYSE_FIYAT, 'neredeyse')) return; } M.yol.devam = true; R.hamle += 3; p.classList.remove('acik'); Ses.cal('yukselis', { ses: 0.6 }); strCiz(); };
   $('#y-boyle').onclick = () => { M.yol.devam = true; M.yol.sorma = true; p.classList.remove('acik'); };
 }
 // bomba sonrası (strTurBitir çağırır)
@@ -302,12 +312,17 @@ function yolSonuc(o) {
   let yildiz = 0, yeniEn = false;
   const dv = M.yol.davet, ileride = dv && no > Y.acik;   // davetle oynanan, henüz açılmamış bölüm: ilerleme değişmez
   if (o.kazandi && ileride) yildiz = 1 + (o.puan >= b.esik[0] ? 1 : 0) + (o.puan >= b.esik[1] ? 1 : 0);
+  const ilkKez = !Y.yildiz[no];
   if (o.kazandi && !ileride) {
     yildiz = 1 + (o.puan >= b.esik[0] ? 1 : 0) + (o.puan >= b.esik[1] ? 1 : 0);
     Y.yildiz[no] = Math.max(Y.yildiz[no] || 0, yildiz);
     if (o.puan > (Y.enIyi[no] || 0)) { Y.enIyi[no] = o.puan; yeniEn = true; }
     Y.acik = Math.max(Y.acik, Math.min(YOL_TOPLAM, no + 1));
   }
+  // ekonomi.js: jeton (ilk geçiş 10 + 5×yıldız, tekrar 3), kazanınca can geri, galibiyet serisi
+  const jeton = o.kazandi ? (ilkKez && !ileride ? 10 + 5 * yildiz : 3) : 0; if (jeton) jetonEkle(jeton);
+  if (o.kazandi && M.yol.can) canVer();
+  const seriOnce = galibiyetSonuc(o.kazandi);
   const sandik = o.kazandi && !ileride ? sandikKazan(yildiz === 3 || b.zor === 'boss' ? 'altin' : b.zor === 'zor' ? 'gumus' : 'tahta') : null;   // odul.js
   kaydet();
   Olay.yay('bolumBitti', { mod: 'yol', r: 'yol' + no, lvl: b.B.lvl, kazandi: o.kazandi, yildiz, skor: o.puan, istat: {}, enKombo: 0, rekor: yeniEn });
@@ -324,7 +339,10 @@ function yolSonuc(o) {
       <strong>${o.puan > dv.puan ? tt('GEÇTİN! 🎉') : o.puan === dv.puan ? tt('BERABERE!') : tt('Az kaldı, tekrar dene!')}</strong></div>` : ''}
     ${o.kazandi ? paylasDugme('y-paylas') : ''}
     ${o.yanlis ? `<div class="st-dogru"><small>${tt('Doğru cümle')}</small>${dinleBtn(b.s.en)} <b>${esc(b.s.en)}</b><small>${esc(b.s.tr)}</small></div>` : ''}
-    ${xp > 0 ? `<div class="sonuc-alt">+${xp} XP</div>` : ''}
+    ${xp > 0 || jeton ? `<div class="sonuc-alt">${xp > 0 ? `+${xp} XP` : ''}${xp > 0 && jeton ? ' · ' : ''}${jeton ? `+${jeton} 🪙` : ''}</div>` : ''}
+    ${o.kazandi && kayit.galibiyet >= 2 ? `<div class="st-not galibiyet-not">🔥 ${tt('Galibiyet serisi: {n}', { n: kayit.galibiyet })}${galibiyetBonus(kayit.galibiyet).length > galibiyetBonus(seriOnce).length ? ' · ' + tt('Yeni bonus: {o}', { o: galibiyetBonus(kayit.galibiyet).map(t => OZEL_I[t]).join(' ') }) : ''}</div>` : ''}
+    ${!o.kazandi && seriOnce >= 2 ? `<div class="st-not seri-bozuldu">💔 ${tt('{n} galibiyetlik serin bozuldu', { n: seriOnce })}</div>` : ''}
+    ${!o.kazandi && M.yol.can ? `<div class="y-can">${canHtml()}</div>` : ''}
     ${sandik ? sandikKazanHtml(sandik) : ''}
     ${M.yol.etkinlik ? `<div class="sonuc-alt etk-kazanc">${etkTema().i} ${tt(etkTema().ad)}: +${M.yol.etkinlik} ${etkTema().jeton}</div>` : ''}
     ${bolgeBitti ? `<div class="y-yeni"><b>${tt('YENİ BÖLGE AÇILDI!')}</b> ${YOL_BOLGE[b.bi + 1].i} ${tt(YOL_BOLGE[b.bi + 1].ad)}</div>` : ''}

@@ -710,6 +710,66 @@ def yol_yeni(b):
     return f"1–120 aynı; sis 60 bölüm, mürekkep {o['mur']} bölüm, karışık 20 bölüm; sis açılır, mürekkep yayılır ve temizlenir (uzmanla kazanıldı), karışık kelimeyle doğru cümle; harita 180; İngilizce"
 
 @test
+def ekonomi(b):
+    """EKONOMİ: jeton (başlangıç 50, ilk geçiş 10+5×yıldız, tekrar 3, Günün Görevi 15, sandık, çark); can (Bölüm Yolu 11+, 5, başta harcanır,
+    kazanınca geri, 30 dk'da dolar, bitince ekran ve jetonla doldurma, 1–10 bedava); galibiyet serisi (kazanınca artar, kaybedince ve yarıda
+    çıkınca sıfır, 3+ / 5+ bonus özel karo yalnız oynanan kopyada); dükkân; bozuk kayıt onarımı; İngilizce."""
+    s = Sayfa(b); s.js('kayit.strRehber = true; kayit.yol.acik = 30; window.__saat = Date.now(); window.__canSaat = () => window.__saat')
+    esit(s.js('[kayit.jeton, kayit.can.n, kayit.galibiyet]'), [50, 5, 0], 'başlangıç')
+    # can: 1–10 bedava; 11+ başta harcanır
+    s.js('yolOyna(3)'); esit(s.js('kayit.can.n'), 5, '3. bölüm can harcadı'); s.js('strCik()')
+    s.js('yolOyna(12)'); esit(s.js('kayit.can.n'), 4, '12. bölüm can harcamadı')
+    # uzmanla kazan: can geri, jeton 10 + 5×yıldız, seri 1
+    j0 = s.js('kayit.jeton')
+    s.js("""(() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, B.hedef.renk == null ? -1 : B.hedef.renk, h); h.forEach(([a, b]) => strTasiOyuncu(a, b));
+      const R = STR.R; R.T.h.forEach(k => { if (k) k.sis = false; }); R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()""")
+    s.pg.wait_for_function("!!document.getElementById('y-sonraki')", timeout=25000)
+    y = s.js('kayit.yol.yildiz[12]'); esit((s.js('kayit.can.n'), s.js('kayit.jeton') - j0, s.js('kayit.galibiyet')), (5, 10 + 5 * y, 1), 'kazanınca can, jeton, seri')
+    dogru('🪙' in s.js("document.querySelector('.y-sonuc').textContent"), 'sonuçta jeton yok')
+    # tekrar kazan: 3 jeton
+    j1 = s.js('kayit.jeton'); s.js('yolOyna(12)')
+    s.js("""(() => { const B = STR.yol.b, h = []; yolUzman(B.T, B.hamle, B.hedef.tur, B.hedef.renk == null ? -1 : B.hedef.renk, h); h.forEach(([a, b]) => strTasiOyuncu(a, b));
+      const R = STR.R; R.T.h.forEach(k => { if (k) k.sis = false; }); R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()""")
+    s.pg.wait_for_function("!!document.getElementById('y-sonraki')", timeout=25000); esit((s.js('kayit.jeton') - j1, s.js('kayit.galibiyet')), (3, 2), 'tekrar kazanınca 3 jeton, seri 2')
+    # yanlış cümle: can gider, seri bozulur
+    s.js("yolOyna(13); (() => { const R = STR.R; R.T.h.forEach(k => { if (k) k.sis = false; }); R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); const z = R.secim[0]; R.secim[0] = R.secim[1]; R.secim[1] = z; strBomba(); })()")
+    s.pg.wait_for_function("!!document.querySelector('.y-sonuc .st-dogru')", timeout=10000)
+    esit((s.js('kayit.can.n'), s.js('kayit.galibiyet')), (4, 0), 'kaybedince can ve seri'); dogru('serin bozuldu' in s.js("document.querySelector('.y-sonuc').textContent"), 'seri bozuldu yazısı yok')
+    # yarıda çıkmak: seri sıfır
+    s.js('kayit.galibiyet = 4; yolOyna(14); strCik()'); esit((s.js('kayit.galibiyet'), s.js('kayit.can.n')), (0, 3), 'yarıda çıkınca seri sıfır, can gitti')
+    # bonus: 5+ seride iki özel karo yalnız oynanan kopyada
+    s.js('kayit.galibiyet = 5; yolOyna(15)')
+    esit(s.js("STR.R.T.h.filter(k => k && k.bonus).map(k => k.ozel).sort()"), ['gokkusagi', 'paket'], '5 seride bonus')
+    esit(s.js("yolBolum(15).T.h.some(k => k && k.bonus)"), False, 'bonus önbellekteki bölümü değiştirdi')
+    esit(s.js("STR.R.T.h.filter(k => k && k.bonus && (k.k >= 0 || k.cel)).length"), 0, 'bonus cümle kelimesinin ya da tuzağın yerine geldi')
+    s.js('kayit.galibiyet = 3; yolOyna(15)'); esit(s.js("STR.R.T.h.filter(k => k && k.bonus).map(k => k.ozel)"), ['paket'], '3 seride bonus'); s.js('strCik()')
+    # can dolması: 30 dk'da 1
+    s.js('kayit.can = { n: 2, t: window.__saat }'); s.js('window.__saat += 30 * 60e3 + 1000'); esit(s.js('canDurum().n'), 3, '30 dk sonra 1 can')
+    s.js('window.__saat += 3 * 30 * 60e3'); esit(s.js('[canDurum().n, kayit.can.t]'), [5, None], 'canlar doldu')
+    # can bitince ekran; jetonla doldur
+    s.js('kayit.can = { n: 0, t: window.__saat }; kayit.jeton = 40; yolOyna(16)'); esit(s.js('ekran'), 'canBitti', 'can bitti ekranı')
+    dogru(s.js("document.getElementById('cb-doldur').disabled"), 'jeton yetmezken doldur açık'); s.foto('can_bitti')
+    s.js('kayit.jeton = 100; canBittiAc(16)'); s.pg.tap('#cb-doldur'); esit((s.js('ekran'), s.js('kayit.can.n'), s.js('kayit.jeton')), ('yolBas', 5, 10), 'jetonla doldurunca bölüm kartı')
+    s.pg.tap('#y-oyna', force=True); esit((s.js('STR && STR.yol && STR.yol.no'), s.js('kayit.can.n')), (16, 4), 'doldurduktan sonra oynandı'); s.js('strCik()'); s.js('kayit.can = { n: 0, t: window.__saat }; yolOyna(16)'); s.js('window.__saat += 30 * 60e3 + 1000'); s.pg.wait_for_timeout(1300)
+    esit(s.js('ekran'), 'yolBas', 'can dolunca bölüm kartına dönmedi')
+    # dükkân
+    s.js('kayit.jeton = 200; kayit.envanter.cekic = 0; kayit.seri.dondurma = SERI_DONDURMA_EN; kayit.can = { n: 5, t: null }; dukkanAc()'); s.foto('dukkan')
+    esit(s.js("[...document.querySelectorAll('.dk-al')].map(b => b.disabled)"), [False, False, False, True, True], 'dükkân düğmeleri (can dolu, dondurma en çok)')
+    s.pg.tap('.dk-al[data-id="cekic"]'); esit((s.js('kayit.jeton'), s.js('kayit.envanter.cekic')), (130, 1), 'çekiç alındı')
+    s.js('kayit.jeton = 10; dukkanAc()'); esit(s.js("[...document.querySelectorAll('.dk-al')].every(b => b.disabled)"), True, 'jeton yetmezken alınabiliyor')
+    # diğer kaynaklar
+    j = s.js('kayit.jeton'); s.js("Olay.yay('bolumBitti', { mod: 'gunluk', kazandi: true })"); esit(s.js('kayit.jeton') - j, 15, 'Günün Görevi jetonu')
+    dogru(s.js("sandikIcerik('tahta').some(o => o.t === 'jeton' && o.n >= 10 && o.n <= 20)"), 'sandıkta jeton yok'); dogru(s.js("CARK.some(c => c.t === 'jeton')"), 'çarkta jeton yok')
+    # onarım
+    r = s.js("JSON.stringify(['jeton', 'can', 'galibiyet'].map(k => kayitDuzelt(Object.assign({}, kayit, { jeton: -5, can: { n: 9, t: 'x' }, galibiyet: 'a' }), bosKayit()).k[k]))")
+    esit(r, '[0,{"n":5,"t":null},0]', 'bozuk ekonomi kaydı')
+    # İngilizce
+    s.js("dilSec('en'); kayit.jeton = 200; dukkanAc()"); tr = s.js("document.getElementById('card').textContent")
+    dogru(not __import__('re').search('[ğüşıöçİĞÜŞÖÇ]', tr), 'İngilizce dükkânda Türkçe: ' + tr[:160])
+    esit(s.hatalar(), [], 'JS hatası'); s.kapat()
+    return 'jeton kaynakları ve harcama; can 11+, geri verme, dolma, bitti ekranı ve doldurma; galibiyet serisi ve bonus karolar; dükkân; onarım; İngilizce'
+
+@test
 def yol(b):
     """BÖLÜM YOLU: 180 bölüm üretilir, aynı no aynı bölüm, hepsi uzman çözümüyle çözülebilir, engeller hedef kelimede yok; donuk karo taşınmaz ve
     kayan sıra onu atlar; haritadan oynanır; uzman hamleleriyle kazanılır (yıldız, sonraki bölüm açılır, kalıcı, XP); NEREDEYSE +3 hamle bir kez;
@@ -769,8 +829,12 @@ def yol(b):
     s.js('kayit.envanter.hamle3 = 1; STR.R.hamle = 1'); s.js("(() => { const R = STR.R, a = R.T.h.findIndex(x => x && x.k < 0 && !strDonuk(x)), b = R.T.h.findIndex((x, i) => i !== a && x && !strDonuk(x)); strTasiOyuncu(a, b); })()")
     dogru(s.js("document.getElementById('st-panel').classList.contains('acik') && /1/.test(document.querySelector('.y-bedava').textContent)"), 'çantadaki +3 hamle önerilmedi')
     s.pg.tap('#y-ek', force=True); esit((s.js('STR.R.hamle'), s.js('kayit.envanter.hamle3')), (3, 0), 'çantadan +3 hamle')
+    # çantada yok ama jeton var: 50 jetonla +3 hamle
+    s.js('kayit.jeton = 60; STR.R.hamle = 1'); s.js("(() => { const R = STR.R, a = R.T.h.findIndex(x => x && x.k < 0 && !strDonuk(x)), b = R.T.h.findIndex((x, i) => i !== a && x && !strDonuk(x)); strTasiOyuncu(a, b); })()")
+    dogru(s.js("document.getElementById('st-panel').classList.contains('acik') && /50/.test(document.getElementById('y-ek').textContent)"), 'jetonla +3 hamle önerilmedi')
+    s.pg.tap('#y-ek', force=True); esit((s.js('STR.R.hamle'), s.js('kayit.jeton')), (3, 10), 'jetonla +3 hamle')
     s.js('STR.R.hamle = 1'); s.js("(() => { const R = STR.R, a = R.T.h.findIndex(x => x && x.k < 0 && !strDonuk(x)), b = R.T.h.findIndex((x, i) => i !== a && x && !strDonuk(x)); strTasiOyuncu(a, b); })()")
-    dogru(not s.js("document.getElementById('st-panel').classList.contains('acik')"), 'güç yokken NEREDEYSE yeniden çıktı')
+    dogru(not s.js("document.getElementById('st-panel').classList.contains('acik')"), 'güç ve jeton yokken NEREDEYSE yeniden çıktı')
     # hedefe yetmeyen bomba: kaybeder, TEKRAR DENE aynı tahta
     s.js("(() => { const R = STR.R; R.T.hedef.forEach((t, k) => strSec(R.T.h.findIndex(x => x && x.k === k), k)); strBomba(); })()")
     s.pg.wait_for_function("!!document.getElementById('y-tekrar') && !document.getElementById('y-sonraki')", timeout=20000); esit(s.js('kayit.yol.acik'), 2, 'kaybedince bölüm açıldı')
