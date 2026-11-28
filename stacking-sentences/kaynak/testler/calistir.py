@@ -432,7 +432,7 @@ def online(b):
         B.pg.wait_for_function('!!STR && STR.rakip.bot', timeout=8000); esit(B.js('ES.aktif'), False, 'eşleşme durmadı')
         esit(A.hatalar(), [], 'JS hataları A (geniş eşleşme)'); esit(B.hatalar(), [], 'JS hataları B (bilgisayara geçiş)')
         A.kapat(); B.kapat()
-        return f'oda {kod}: A {ka}, B {kb}; yanlış kod uyarısı; strateji odası {kod2}: {sa[0]} / {sb[0]}, puanlar {sa[1]} – {sa[2]}; hızlı eşleşme A2 tamam; A1 × B1 beklendikçe A1'de eşleşti; kimse gelmeyince bilgisayara geçti'
+        return f'oda {kod}: A {ka}, B {kb}; yanlış kod uyarısı; strateji odası {kod2}: {sa[0]} / {sb[0]}, puanlar {sa[1]} – {sa[2]}; hızlı eşleşme A2 tamam; A1 × B1 beklendikçe A1 seviyesinde eşleşti; kimse gelmeyince bilgisayara geçti'
     finally:
         br.kill()
 
