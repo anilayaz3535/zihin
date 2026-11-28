@@ -267,7 +267,7 @@ Yüklenen "tetris-english-5" sürümündeki özellik; yalnız bu kısım alınd�
 ### İki mod (23 Kasım 2026)
 - Online giriş: önce mod seçimi (`onlineAc` → ekran `onlineSecim`): **⚡ HIZ** ve **🧠 STRATEJİ**. Mod ekranında (`onlineModAc`, ekran `online`) seviye (A1–C2) seçilir ve rakip yolu: **🎲 HIZLI EŞLEŞ**, **🤖 BİLGİSAYARA KARŞI**, **ODA KUR** / kodla **KATIL**.
 - **HIZ**: eski kapışma; cümleler seçilen seviyeden. Bilgisayar rakip (`botMacBaslat`, `botHizTik`) her cümleyi seviyesine göre bir sürede bitirir (`BOT_KELIME_SN`, kelime başına ~3–3,8 sn + cümle başına 6 sn, ±%20); süre oyun saatiyle ölçülür (duraklatınca bilgisayar da bekler).
-- **Hızlı eşleşme** (`eslesmeBaslat`): konu `…/lobi-<mod>-<seviye>`. Herkes 2 sn'de bir `bekle` yayınlar; kimliği küçük olan `teklif` (gizli oda kodu) gönderir, öbürü 3 kez `kabul` eder; ikisi o odaya geçer, ev sahibi (`OD.oto`) rakip gelince maçı kendiliğinden başlatır. 20 sn'de kimse yoksa bilgisayara karşı oynama önerilir.
+- **Hızlı eşleşme** (`eslesmeBaslat`): konu `…/lobi-<mod>` (28 Kasım 2026'dan beri her mod tek lobi; az oyuncuyla eşleşme bulunsun diye). `bekle` seviyeyi ve kabul edilen farkı taşır: önce aynı seviye, 8 sn'den sonra ±1, 16 sn'den sonra her seviye (`ES_GENIS`); maç ikisinin düşük seviyesinde. 30 sn'de kimse gelmezse bilgisayara karşı kendiliğinden başlar (`ES_BOT_SN`, son 10 sn geri sayım; olay `eslesme_bot`). Sunucular: HiveMQ, EMQX ve yedek olarak Mosquitto. Herkes 2 sn'de bir `bekle` yayınlar; kimliği küçük olan `teklif` (gizli oda kodu) gönderir, öbürü 3 kez `kabul` eder; ikisi o odaya geçer, ev sahibi (`OD.oto`) rakip gelince maçı kendiliğinden başlatır. 20 sn'de kimse yoksa bilgisayara karşı oynama önerilir.
 - Bilgisayara karşı maçlar `kayit.istat.online`'a sayılmaz (XP verir, `onlineBitti` olayında `bot: true`).
 
 ### Görünüm (24 Kasım 2026)
@@ -418,7 +418,7 @@ python3 testler/calistir.py modlar dil # yalnız seçilenler
 | `profil` | Yarım bölüm (skor ve hata göstergesi), kapatıp açınca kaldığı yerden devam, OYUNU KAYDET, ikinci profil, silme, eski kayıt aktarımı |
 | `yarim_kelime` | Kelime paketinde hata göstergesi doluyken çıkıp aynı durumdan devam |
 | `dokunma` | Güç ve sistem düğmeleri 3 ekran boyutunda ekranda ve basılabilir; tahta ekranda ve düğmelerin altında değil; sürükleme ve dokun-dokun hamle yapar |
-| `online` | Yerel test sunucusuyla iki telefon: HIZ odası (aynı cümleler, sonuç, yanlış kod); STRATEJİ odası (aynı maç bilgisi ve tahta, 3 tur, iki telefonda tur puanları birebir, tutarlı karar); hızlı eşleşme (A2'de iki bekleyen eşleşir, maç kendiliğinden başlar) |
+| `online` | Yerel test sunucusuyla iki telefon: HIZ odası (aynı cümleler, sonuç, yanlış kod); STRATEJİ odası (aynı maç bilgisi ve tahta, 3 tur, iki telefonda tur puanları birebir, tutarlı karar); hızlı eşleşme (A2'de iki bekleyen eşleşir, maç kendiliğinden başlar; A1 × B1 beklendikçe A1'de eşleşir; kimse gelmezse bilgisayara geçer) |
 | `metin` | Türkçe arayüzdeki 34 ekran, koç yazıları ve tuvaldeki yazılar `metin_taban.json` ile birebir aynı |
 | `dil` | İngilizce arayüz seçilir, kalıcıdır, Türkçe arayüz yazısı kalmaz (rehberli ilk cümle ve koç dahil) |
 | `depo` | Uygulama modu (Capacitor taklidi): eski kayıt taşınır, tarayıcı hafızası silinse de profil ve yarım bölüm kalır |
