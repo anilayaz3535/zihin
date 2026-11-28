@@ -363,13 +363,13 @@ function onlineModAc(mod, uyari) {
   mod = mod === 'strateji' ? 'strateji' : 'hiz'; onlineSonMod = mod;
   if (G.state !== 'menu') demo();
   Ses.muzik('menu'); Konus.sus();
-  if (SEVIYELER.indexOf(onlineSecLvl) < 0) onlineSecLvl = sonAcikSeviye();
+  if (SEVIYELER.indexOf(onlineSecLvl) < 0 || !seviyeHak(onlineSecLvl)) onlineSecLvl = sonAcikSeviye();   // yalnız hak edilen seviyeler (kilit.js)
   const x = ONLINE_MOD[mod], lvl = onlineSecLvl;
   goster(`<div class="ust-satir"><button class="geri" id="o-geri">${tt('← Geri')}</button></div>
     <div class="mod-bant ${mod}"><i>${x.i}</i><div><b>${tt(x.ad)}</b><small>${tt(x.kural, { n: ONLINE_CUMLE })}</small></div></div>
     ${uyari ? `<p class="uyari">${esc(uyari)}</p>` : ''}
     <div class="bolum">${tt('Seviyen')}</div>
-    <div class="lvl-karolar" id="o-lvl">${SEVIYELER.map(l => `<button data-l="${l}" class="${l === lvl ? 'secili' : ''}" style="--r:${LVL_RENK[l]}">${l}</button>`).join('')}</div>
+    <div class="lvl-karolar" id="o-lvl">${SEVIYELER.map(l => `<button data-l="${l}" class="${l === lvl ? 'secili' : ''}${seviyeHak(l) ? '' : ' kilitli'}" style="--r:${LVL_RENK[l]}"${seviyeHak(l) ? '' : ` aria-label="${l} 🔒"`}>${seviyeHak(l) ? l : '🔒'}</button>`).join('')}</div>
     <p class="lvl-ad">${esc(seviyeAd(lvl))} · ${tt('rakibin de bu seviyeden olur')}</p>
     <button class="big hizli-btn" id="o-hizli">${tt('🎲 HIZLI EŞLEŞ')}<small>${tt('Bu seviyede bekleyen biriyle')}</small></button>
     <div class="secenek-ikili">
@@ -380,7 +380,7 @@ function onlineModAc(mod, uyari) {
     ${mod === 'strateji' ? `<button class="sec genis-btn" id="o-rehber">${tt('📘 Nasıl oynanır? (alıştırma)')}</button>` : ''}
     <p class="aciklama kucuk">${tt('İkiniz de internete bağlı olmalısınız. Bağlantı ücretsiz genel sunucular üzerinden kurulur; bazen bağlanmak birkaç saniye sürebilir.')}</p>`, '', 'online');
   $('#o-geri').onclick = () => { onlineSonMod = null; onlineAc(); };
-  card.querySelectorAll('#o-lvl button').forEach(b => b.onclick = () => { onlineSecLvl = b.dataset.l; Ses.cal('tik', { ses: 0.4 }); onlineModAc(mod); });
+  card.querySelectorAll('#o-lvl button').forEach(b => b.onclick = () => { if (!seviyeHak(b.dataset.l)) { Ses.cal('geri', { ses: 0.4 }); not(tt('{l} için önce {s} Seviye Sınavı’nı geç (Kariyer ya da Bölüm Yolu).', { l: b.dataset.l, s: sinavSeviye(b.dataset.l) })); return; } onlineSecLvl = b.dataset.l; Ses.cal('tik', { ses: 0.4 }); onlineModAc(mod); });
   $('#o-hizli').onclick = () => { sesAc(); eslesmeBaslat(mod, lvl); };
   $('#o-bot').onclick = () => { sesAc(); botMacBaslat(mod, lvl); };
   const rh = $('#o-rehber'); if (rh) rh.onclick = () => { sesAc(); strRehberTek(); };

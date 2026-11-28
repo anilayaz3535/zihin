@@ -161,7 +161,7 @@ function yolHaritaAc() {
     <div class="ana-baslik">🗺 ${tt('BÖLÜM YOLU')}</div>${sandikHtml()}${aracHtml()}<div class="y-yol">`;
   YOL_BOLGE.forEach((B, bi) => {
     const ilk = bi * YOL_BOLUM_BOLGE + 1, kilitli = ilk > acik;
-    ic += `<div class="y-bolge ${kilitli ? 'kilit' : ''}" style="--b:${B.renk}"><i>${B.i}</i><div><b>${tt(B.ad)}</b><small>${B.lvl} · ${tt('Bölüm {a}–{b}', { a: ilk, b: ilk + YOL_BOLUM_BOLGE - 1 })}${B.yeni ? ' · ' + tt('Yeni: ') + yolMekanikAd(B.yeni) : ''}</small></div></div>`;
+    ic += `<div class="y-bolge ${kilitli ? 'kilit' : ''}" style="--b:${B.renk}"><i>${B.i}</i><div><b>${tt(B.ad)}</b><small>${B.lvl} · ${tt('Bölüm {a}–{b}', { a: ilk, b: ilk + YOL_BOLUM_BOLGE - 1 })}${B.yeni ? ' · ' + tt('Yeni: ') + yolMekanikAd(B.yeni) : ''}</small>${seviyeHak(B.lvl) ? '' : `<em class="y-sinav">🎓 ${tt('{s} Seviye Sınavı ile açılır', { s: sinavSeviye(B.lvl) })}</em>`}</div></div>`;
     for (let n = ilk; n < ilk + YOL_BOLUM_BOLGE; n++) {
       const sira = n - ilk, x = [50, 70, 82, 70, 50, 30, 18, 30][sira % 8], y = Y.yildiz[n] || 0, durum = n < acik || y ? 'gecti' : n === acik ? 'simdi' : 'kilit', boss = YOL_DALGA[sira] === 'boss', zor = YOL_DALGA[sira] === 'zor';
       ic += `<div class="y-satir"><button class="y-durak ${durum} ${boss ? 'boss' : zor ? 'zor' : ''}" data-n="${n}" style="left:${x}%;--b:${B.renk}" aria-label="${tt('Bölüm {n}', { n })}${durum === 'kilit' ? ' 🔒' : ''}">
@@ -197,6 +197,7 @@ const YOL_OZEL_ACIKLAMA = {
 };
 // bölüm başlangıç kartı
 function yolBaslangic(no) {
+  if (!yolBolgeHak(no)) { sinavKapisi(no); return; }   // kilit.js: yeni seviyeli bölge sınavla açılır
   const b = yolBolum(no), y = kayit.yol.yildiz[no] || 0, en = kayit.yol.enIyi[no] || 0;
   const yeniMek = b.sira === 0 && b.B.yeni ? b.B.yeni : null;
   goster(`<div class="y-bas" style="--b:${b.B.renk}"><div class="y-bas-no">${b.zor === 'boss' ? '💀 ' : ''}${tt('BÖLÜM {n}', { n: no })}</div>
@@ -219,6 +220,7 @@ function yolOyna(no, o) {
   if (!kayit.strRehber) {   // daha önce strateji alıştırması yapılmadıysa önce o
     strRehberTek(); STR.R.rehber.sonra = () => { strKapat(); yolOyna(no, o); }; return;
   }
+  if (!(o && o.davet) && !yolBolgeHak(no)) { strKapat(); sinavKapisi(no); return; }
   const b = yolBolum(no);
   const can = canGerekir(no);
   if (can && !canHarca()) { strKapat(); canBittiAc(no); return; }
@@ -345,7 +347,8 @@ function yolSonuc(o) {
     ${!o.kazandi && M.yol.can ? `<div class="y-can">${canHtml()}</div>` : ''}
     ${sandik ? sandikKazanHtml(sandik) : ''}
     ${M.yol.etkinlik ? `<div class="sonuc-alt etk-kazanc">${etkTema().i} ${tt(etkTema().ad)}: +${M.yol.etkinlik} ${etkTema().jeton}</div>` : ''}
-    ${bolgeBitti ? `<div class="y-yeni"><b>${tt('YENİ BÖLGE AÇILDI!')}</b> ${YOL_BOLGE[b.bi + 1].i} ${tt(YOL_BOLGE[b.bi + 1].ad)}</div>` : ''}
+    ${bolgeBitti ? (seviyeHak(YOL_BOLGE[b.bi + 1].lvl) ? `<div class="y-yeni"><b>${tt('YENİ BÖLGE AÇILDI!')}</b> ${YOL_BOLGE[b.bi + 1].i} ${tt(YOL_BOLGE[b.bi + 1].ad)}</div>`
+      : `<div class="y-yeni"><b>🎓 ${tt('SIRADA SINAV VAR!')}</b> ${tt('{b} için {s} Seviye Sınavı’nı geç.', { b: YOL_BOLGE[b.bi + 1].i + ' ' + tt(YOL_BOLGE[b.bi + 1].ad), s: sinavSeviye(YOL_BOLGE[b.bi + 1].lvl) })}</div>`) : ''}
     ${sonraki ? `<button class="big" id="y-sonraki">${tt('SONRAKİ BÖLÜM ▶')}</button>` : ileride && o.kazandi ? `<button class="big" id="y-kendi">${tt('KENDİ YOLUNA DÖN · BÖLÜM {n}', { n: Y.acik })}</button>` : `<button class="big" id="y-tekrar">${tt('TEKRAR DENE')}</button>`}
     <div class="row">${sonraki || (ileride && o.kazandi) ? `<button class="sec" id="y-tekrar">${tt('TEKRAR OYNA')}</button>` : ''}<button class="sec" id="y-harita">${tt('HARİTA')}</button></div></div>`;
   p.querySelectorAll('.dinle').forEach(x => x.onclick = e => { e.stopPropagation(); sesAc(); Konus.soyle(x.dataset.en, { hiz: 0.85 }); });

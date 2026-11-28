@@ -30,7 +30,7 @@ function panelGeri() {
   if (ekran === 'strSonuc') { const c = $('#ss-cik'); if (c) c.click(); return; }
   if (ekran === 'eslesme') { eslesmeDur(); onlineAc(); return; }
   if (ekran === 'yol' || ekran === 'cark' || ekran === 'etkinlik') { acilisAc(); return; }
-  if (ekran === 'yolBas' || ekran === 'dukkan' || ekran === 'canBitti') { yolHaritaAc(); return; }
+  if (ekran === 'yolBas' || ekran === 'dukkan' || ekran === 'canBitti' || ekran === 'yolSinav') { yolHaritaAc(); return; }
   if (ekran === 'online') { onlineSonMod = null; onlineAc(); return; }
   if (ekran === 'harita' || ekran === 'profil' || ekran === 'onlineSecim' || ekran === 'ilk' || ekran === 'ilkHedef') { acilisAc(); return; }
   haritaAc();
@@ -58,7 +58,7 @@ function demo() {
 }
 
 /* ---------------- ilk giriş: seviye seçimi ---------------- */
-const SEV_ACIK = { A1: ['Yeni başlıyorum', 'Temel cümleler: am / is / are, geniş zaman, can'], A2: ['Biraz biliyorum', 'Geçmiş zaman, gelecek zaman, should'], B1: ['Orta seviyedeyim', 'Present perfect, edilgen yapı, used to, if'], B2: ['İyi biliyorum', 'Edilgen yapılar, 2. ve 3. koşul, wish, past perfect'], C1: ['İleri seviyedeyim', 'İlgi cümlecikleri, devrik yapı, akademik dil'], C2: ['Ustalaşmak istiyorum', 'Deyimler, ince anlam farkları, ileri üslup'] };
+const SEV_ACIK = { A1: ['Yeni başlıyorum', 'Temel cümleler: am / is / are, geniş zaman, can'], A2: ['Biraz biliyorum', 'Geçmiş zaman, gelecek zaman, should'], B1: ['Orta seviyedeyim', 'Present perfect, edilgen yapı, used to, if'], B2: ['İyi biliyorum', 'Edilgen yapılar, 2. ve 3. koşul, wish, past perfect'], C1: ['İleri seviyedeyim', 'İlgi cümlecikleri, devrik yapı, akademik dil'], C2: ['Uzmanlaşmak istiyorum', 'Deyimler, ince anlam farkları, ileri üslup'] };
 function ilkGiris() {
   if (G.state !== 'menu') demo();
   Ses.muzik('menu');
@@ -108,11 +108,14 @@ function acilisAc() {
   const no = Math.min(YOL_TOPLAM, kayit.yol.acik), B = YOL_BOLGE[Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE))];
   const ilk = (Math.floor((no - 1) / YOL_BOLUM_BOLGE)) * YOL_BOLUM_BOLGE + 1, bolgeY = Array.from({ length: YOL_BOLUM_BOLGE }, (_, k) => kayit.yol.yildiz[ilk + k] || 0).reduce((a, b) => a + b, 0);
   const T = etkTema(), etkHazir = etkHazirSay(), sHazir = kayit.sandik.slot.filter(k => sandikDurum(k) === 'hazir').length, sAc = sandikAciliyor(), gTamam = gorevBugunTamam();
-  const kis = (id, i, ad, alt, nokta, cls) => `<button class="kisayol ${cls || ''}" id="${id}"><i>${i}</i><b>${ad}</b><small>${alt}</small>${nokta ? `<em>${nokta === true ? '' : nokta}</em>` : ''}</button>`;
+  // kademeli açılma (kilit.js): kilitli özellik görünmez; yeni açılan "YENİ!" rozetiyle gelir
+  const yeniler = ozellikYeniler(), ac = id => ozellikAcik(id);
+  const kis = (id, i, ad, alt, nokta, cls) => { const oz = id.slice(2), yeni = yeniler.indexOf(oz) >= 0; return ac(oz) ? `<button class="kisayol ${cls || ''}${yeni ? ' yeni-acildi' : ''}" id="${id}"><i>${i}</i><b>${ad}</b><small>${alt}</small>${yeni ? `<em class="yeni">${tt('YENİ!')}</em>` : nokta ? `<em>${nokta === true ? '' : nokta}</em>` : ''}</button>` : ''; };
+  const kisSay = ['cark', 'sandik', 'etk', 'gorev', 'rozet'].filter(ac).length, onlineAcik = ac('online');
   goster(`<div class="acilis sade">
     <div class="ac-ust">${logoHtml('sm')}<button class="profil-mini" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ⭐ ${kayit.xp}</small></span></button></div>
     ${gunlukHtml()}
-    <div class="kisayollar">
+    <div class="kisayollar" style="grid-template-columns:repeat(${Math.max(1, kisSay)},minmax(0,1fr))${kisSay ? '' : ';display:none'}">
       ${kis('a-cark', '🎡', tt('Çark'), tt(carkHazir() ? 'Bedava!' : 'Yarın'), carkHazir(), carkHazir() ? 'hazir' : '')}
       ${kis('a-sandik', '🎁', tt('Sandık'), sHazir ? tt('AÇ!') : sAc ? sandikSure(sandikKalan(sAc)) : kayit.sandik.slot.length + '/' + SANDIK_YUVA, sHazir || false, sHazir ? 'hazir' : '')}
       ${kis('a-etk', T.i, tt('Etkinlik'), etkKalanYaz(), etkHazir || false, etkHazir ? 'hazir' : '')}
@@ -122,20 +125,23 @@ function acilisAc() {
     <button class="oyna-btn" id="a-oyna" style="--b:${B.renk}"><span class="ob-bolge">${B.i} ${tt(B.ad)} · ⭐ ${bolgeY}/${YOL_BOLUM_BOLGE * 3}</span>
       <b>▶ ${tt('OYNA')}</b><small>${tt('BÖLÜM {n}', { n: no })}</small></button>
     <button class="harita-link" id="a-yol">🗺 ${tt('Bölüm Yolu haritası')} · ⭐ ${yolYildizToplam()}</button>
-    <div class="ana-ikili kucuk"><button class="ana-btn online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE')}</b><small>${tt('⚡ Hız · 🧠 Strateji')}</small></span></button>
+    <div class="ana-ikili kucuk${onlineAcik ? '' : ' tek'}">${onlineAcik ? `<button class="ana-btn online${yeniler.indexOf('online') >= 0 ? ' yeni-acildi' : ''}" id="a-online"><i>🏁</i><span><b>${tt('ONLINE')}${yeniler.indexOf('online') >= 0 ? ` <em class="yeni">${tt('YENİ!')}</em>` : ''}</b><small>${tt('⚡ Hız · 🧠 Strateji')}</small></span></button>` : ''}
     <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1 → C2 dersler')}</small></span></button></div>
+    ${ozellikSiradakiHtml()}
     <div class="row"><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
   </div>`, '', 'acilis');
+  if (yeniler.length) setTimeout(() => { if (ekran === 'acilis') { Ses.cal('yukselis', { ses: 0.5 }); not(tt('YENİ: {o} açıldı!', { o: yeniler.map(id => { const o = OZELLIK.find(x => x.id === id); return o.i + ' ' + tt(o.ad); }).join(', ') })); } }, 500);
+  const bag = (id, f) => { const e = $('#' + id); if (e) e.onclick = () => { ozellikGoruldu(id.slice(2)); f(); }; };
   $('#a-oyna').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.6 }); yolBaslangic(no); };
-  $('#a-gorev').onclick = () => { Ses.cal('tik', { ses: 0.5 }); gorevBaslat(); };
+  bag('a-gorev', () => { Ses.cal('tik', { ses: 0.5 }); gorevBaslat(); });
   $('#a-yol').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
-  $('#a-etk').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); etkAc(); };
-  $('#a-cark').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); carkAc(); };
-  $('#a-sandik').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
-  $('#a-rozet').onclick = () => { Ses.cal('tik', { ses: 0.4 }); rozetlerAc(acilisAc); };
+  bag('a-etk', () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); etkAc(); });
+  bag('a-cark', () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); carkAc(); });
+  bag('a-sandik', () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); });
+  bag('a-rozet', () => { Ses.cal('tik', { ses: 0.4 }); rozetlerAc(acilisAc); });
   $('#a-prof').onclick = () => { Ses.cal('tik', { ses: 0.4 }); profilAc(); };
   $('#a-gunluk').onclick = () => { Ses.cal('tik', { ses: 0.4 }); profilAc(); };
-  $('#a-online').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); onlineSonMod = null; onlineAc(); };
+  bag('a-online', () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); onlineSonMod = null; onlineAc(); });
   $('#a-kariyer').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); haritaAc(); };
   $('#a-ayar').onclick = () => ayarAc(false, acilisAc);
   $('#a-nas').onclick = () => showTutorial(acilisAc);
@@ -385,7 +391,8 @@ function sonucGoster() {
   let sonraki = null;
   if (d.kazandi && !d.antrenman) sonraki = d.kelime ? (d.yeniPaket || null) : (d.r.id && rakipBul(d.r.id) ? sonrakiRakip(d.r) : null);
   if (sonraki && (d.kelime ? !paketAcikMi(sonraki) : !rakipAcikMi(sonraki))) sonraki = null;
-  ic += `<div class="pen-dip">${sonraki ? `<button class="big" id="s-sonra">${tt('SONRAKİ: ')}${esc(d.kelime ? sonraki.ad : sonraki.world)}</button>` : ''}
+  ic += sinavDonusHtml(d);   // kilit.js: Bölüm Yolu'ndan açılan seviye sınavı
+  ic += `<div class="pen-dip">${sonraki && !sinavDonusHtml(d) ? `<button class="big" id="s-sonra">${tt('SONRAKİ: ')}${esc(d.kelime ? sonraki.ad : sonraki.world)}</button>` : ''}
     <div class="row">${d.antrenman ? '' : `<button class="sec" id="s-tekrar">${tt(d.kazandi ? 'TEKRAR OYNA' : 'TEKRAR DENE')}</button>`}<button class="sec" id="s-harita">${tt(d.gunluk ? 'ANA MENÜ' : 'KARİYER')}</button></div></div>`;
   goster(ic, 'genis', 'sonuc');
   halkalariDoldur(card);
@@ -393,7 +400,8 @@ function sonucGoster() {
   if (d.uniteTamam) sonra(d.ilerleme && d.ilerleme.hedefOldu ? 1.7 : 0.9, () => Ses.cal('yukselis', { ses: 0.7 }));
   if (d.yeniRozet && d.yeniRozet.length) sonra(1.3, () => Ses.cal('yukselis', { ses: 0.6 }));
   const r = d.r, kel = d.kelime;
-  if (sonraki) $('#s-sonra').onclick = () => kel ? dojoBaslat(sonraki, { kelime: sonraki }) : cumleDojo(sonraki);
+  sinavDonusBagla(d);
+  if (sonraki && $('#s-sonra')) $('#s-sonra').onclick = () => kel ? dojoBaslat(sonraki, { kelime: sonraki }) : cumleDojo(sonraki);
   const ps = $('#s-paylas'); if (ps) ps.onclick = () => paylas(gorevPaylasMetni(d));
   const t = $('#s-tekrar'); if (t) t.onclick = () => d.gunluk ? gorevBaslat() : kel ? dojoBaslat(r, { kelime: r }) : dojoBaslat(r);
   $('#s-harita').onclick = () => d.gunluk ? acilisAc() : haritaAc(r.lvl && SEVIYE[r.lvl] ? r.lvl : null);

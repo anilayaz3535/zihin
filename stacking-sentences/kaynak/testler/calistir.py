@@ -42,13 +42,14 @@ def profil_js(pid='t', ad='Test', ek=''):
 
 class Sayfa:
     """Bir telefon gibi davranan tarayıcı sayfası; JS hatalarını toplar."""
-    def __init__(self, b, w=390, h=844, profil=True, pid='t', ad='Test', init=(), dpr=1):
+    def __init__(self, b, w=390, h=844, profil=True, pid='t', ad='Test', init=(), dpr=1, hepsi=True):
         self.ctx = b.new_context(viewport={'width': w, 'height': h}, device_scale_factor=dpr, is_mobile=True, has_touch=True)
         self.pg = self.ctx.new_page(); self.errs = []
         # Google Fonts'a internet olmayabilir: testler her yerde aynı sonucu versin diye boş CSS döndürülür
         self.ctx.route('https://fonts.googleapis.com/**', lambda r: r.fulfill(status=200, content_type='text/css', body=''))
         self.pg.on('pageerror', lambda e: self.errs.append(str(e)))
         self.pg.on('console', lambda m: self.errs.append(m.text) if m.type == 'error' and 'ERR_TUNNEL' not in m.text and 'Failed to load' not in m.text and 'ERR_NAME' not in m.text else None)
+        if hepsi: self.pg.add_init_script('window.__hepsiAcik = true;')   # kilit.js: seviye ve özellik kilitleri ayrı testte (kilit)
         for s in init: self.pg.add_init_script(s)
         self.pg.add_init_script(BOT)
         if profil: self.pg.add_init_script(profil_js(pid, ad))
@@ -709,6 +710,52 @@ def yol_yeni(b):
     dogru('Scrambled' in tr or 'scrambled' in tr, 'İngilizce karışık harf açıklaması'); dogru(not __import__('re').search('[ğüşıöçİĞÜŞÖÇ]', tr.replace('Rasathane', '')), 'İngilizce kartta Türkçe: ' + tr[:200])
     esit(s.hatalar(), [], 'JS hatası'); s.kapat()
     return f"1–120 aynı; sis 60 bölüm, mürekkep {o['mur']} bölüm, karışık 20 bölüm; sis açılır, mürekkep yayılır ve temizlenir (uzmanla kazanıldı), karışık kelimeyle doğru cümle; harita 180; İngilizce"
+
+@test
+def kilit(b):
+    """KİLİTLER: yeni oyuncuda sade menü ve sıradaki özellik; ilerledikçe "YENİ!" ile açılır, tıklayınca rozet kalkar; eski oyuncuda rozet yağmuru yok;
+    Bölüm Yolu yeni seviyeli bölge sınav kapısı (can harcanmaz), sınavda kalınca açılmaz, geçince Kariyer ve Bölüm Yolu açılır, sonuçtan dönüş;
+    Online'da hak edilmeyen seviye kilitli; seviye testi hak sayılır; davet kapıya takılmaz; menüyü açmak kayıt yazmaz; İngilizce."""
+    s = Sayfa(b, hepsi=False); s.js('kayit.strRehber = true')
+    s.js('acilisAc()'); var = lambda: s.js("['a-gorev', 'a-sandik', 'a-cark', 'a-online', 'a-etk', 'a-rozet'].filter(i => document.getElementById(i))")
+    esit(var(), [], 'yeni oyuncuda kilitli özellik göründü'); dogru('Günün Görevi' in s.js("document.querySelector('.siradaki-ozellik').textContent"), 'sıradaki özellik ipucu')
+    dogru(s.js("!!document.getElementById('a-oyna') && !!document.getElementById('a-kariyer')"), 'OYNA ve Kariyer yok'); s.foto('kilit_menu_yeni')
+    # ilerleme: 4 bölüm geçildi, sandık var → görev, sandık, çark YENİ!
+    s.js("kayit.yol.acik = 5; sandikKazan('tahta'); acilisAc()")
+    esit(var(), ['a-gorev', 'a-sandik', 'a-cark'], 'açılan özellikler'); esit(s.js("[...document.querySelectorAll('.kisayol em.yeni')].length"), 3, 'YENİ! rozetleri')
+    s.pg.tap('#a-cark'); s.js('acilisAc()'); esit(s.js("[...document.querySelectorAll('.kisayol.yeni-acildi')].map(e => e.id)"), ['a-sandik', 'a-gorev'], 'tıklanınca YENİ! kalkmadı')
+    # eski oyuncu (acilan yok): hepsi açık, rozet yok
+    s.js("kayit.acilan = null; kayit.yol.acik = 30; kayit.rozet = { cumle1: 1 }; acilisAc()"); esit(len(var()), 6, 'eski oyuncuda özellikler'); esit(s.js("document.querySelectorAll('.yeni-acildi').length"), 0, 'eski oyuncuda YENİ! yağmuru')
+    # menüyü açmak kayıt yazmaz
+    s.js("window.__yazildi = 0; const _k = kaydet; window.kaydet = () => { window.__yazildi++; _k(); }; kayit.acilan = null"); s.js('acilisAc()'); esit(s.js('__yazildi'), 0, 'menüyü açmak kayıt yazdı')
+    # sınav kapısı
+    s.js("kayit.yol.acik = 41; kayit.can = { n: 5, t: null }; yolHaritaAc()")
+    dogru('A1' in s.js("[...document.querySelectorAll('.y-sinav')].map(e => e.textContent).join(' ')"), 'haritada sınav notu yok')
+    s.js('yolBaslangic(41)'); esit(s.js('ekran'), 'yolSinav', 'kapı açılmadı'); s.foto('kilit_kapi')
+    s.js('yolOyna(41)'); esit((s.js('ekran'), s.js('kayit.can.n'), s.js('!!STR')), ('yolSinav', 5, False), 'kapıda can harcandı ya da bölüm açıldı')
+    dogru(s.js('yolBolgeHak(40)'), '40. bölüm (Kafe/Pazar A1) kapıya takıldı')
+    # sınavda kal
+    def sinav(hata):
+        s.js('sinavKapisi(41)'); s.pg.tap('#sk-gir'); s.pg.wait_for_timeout(300)
+        if s.js("!!document.getElementById('d-git')"): s.pg.tap('#d-git')
+        esit(s.js('D && D.r.id'), 'A1-U', 'sınav bölümü'); s.js(f"__ff(900, {hata}, () => G.state !== 'playing' && ekran === 'sonuc')")
+        return s.js('D.kazandi')
+    esit(sinav(0.95), False, 'çok hatayla sınav geçildi'); esit(s.js("seviyeHak('A2')"), False, 'kalınca A2 açıldı')
+    dogru('DÖN' in s.js("document.getElementById('s-yol').textContent"), 'kalınca dönüş düğmesi'); s.pg.tap('#s-yol'); esit(s.js('ekran'), 'yol', 'kalınca haritaya dönmedi')
+    esit(sinav(0), True, 'hatasız sınav geçilmedi'); esit((s.js("seviyeHak('A2')"), s.js("!!kayit.acik['A2-1']")), (True, True), 'geçince A2 açılmadı'); s.foto('kilit_gecti')
+    s.pg.tap('#s-yol'); esit(s.js('ekran'), 'yolBas', 'geçince bölüm kartına dönmedi'); s.pg.tap('#y-oyna', force=True); esit(s.js('STR && STR.yol.no'), 41, 'Park açılmadı'); s.js('strCik()')
+    # online: hak edilmeyen seviye kilitli
+    s.js("onlineSecLvl = 'C1'; onlineModAc('hiz')"); esit(s.js("document.querySelector('#o-lvl .secili').dataset.l"), 'A2', 'hak edilmeyen seviye seçili')
+    esit(s.js("[...document.querySelectorAll('#o-lvl button')].map(b => b.classList.contains('kilitli'))"), [False, False, True, True, True, True], 'online seviye kilitleri')
+    s.pg.tap('#o-lvl button[data-l="B2"]'); dogru('B1' in s.js("document.getElementById('not').textContent"), 'kilitli seviye uyarısı'); esit(s.js('onlineSecLvl'), 'A2', 'kilitli seviye seçildi')
+    # seviye testiyle bulunan seviye hak sayılır; davet kapıya takılmaz
+    s.js("seviyeUygula('B1')"); esit(s.js("[seviyeHak('B1'), seviyeHak('B2')]"), [True, False], 'seviye testi hakkı')
+    s.js("yolOyna(130, { davet: { tur: 'y', no: 130, puan: 100, ad: 'Ali' } })"); esit(s.js('STR && STR.yol.no'), 130, 'davetle oynanan bölüm kapıya takıldı'); s.js('strCik()')
+    # İngilizce
+    s.js("dilSec('en'); sinavKapisi(121)"); tr = s.js("document.getElementById('card').textContent")
+    dogru(not __import__('re').search('[ğüşıöçİĞÜŞÖÇ]', tr.replace('Ofis', '')), 'İngilizce kapıda Türkçe: ' + tr[:200])
+    esit(s.hatalar(), [], 'JS hatası'); s.kapat()
+    return 'sade menü, YENİ! ile açılma, eski oyuncu; sınav kapısı (can harcanmaz), kalma ve geçme, dönüş; online kilitleri; seviye testi; davet; İngilizce'
 
 @test
 def ekonomi(b):

@@ -1141,6 +1141,21 @@
   .dk-al:disabled{background:#6d5a66;color:#cbbfc5;box-shadow:none;cursor:default}
   .st-k.bonus::before{box-shadow:0 4px 0 var(--rd),0 0 0 3px #ffcf6b,0 0 18px 5px rgba(255,150,40,.85)!important}
   @media (prefers-reduced-motion:reduce){.can-kalp{animation:none}}
+
+  /* ---------- kilitler: seviye sınavı kapısı, kademeli açılan özellikler (kilit.js) ---------- */
+  .kisayol em.yeni,.ana-btn em.yeni{width:auto;height:auto;min-width:0;padding:2px 6px;border-radius:8px;background:#7dff8e;color:#1d4a22;font:700 10px/1.2 Fredoka,sans-serif;font-style:normal;letter-spacing:.3px}
+  .ana-btn em.yeni{position:static;display:inline-block;vertical-align:middle;margin-left:4px}
+  .yeni-acildi{animation:yeniParla 1.6s ease-in-out 3}
+  @keyframes yeniParla{50%{box-shadow:0 0 0 3px #7dff8e,0 0 22px 6px rgba(125,255,142,.6)}}
+  .ana-ikili.kucuk.tek{grid-template-columns:1fr}
+  .siradaki-ozellik{margin:10px auto 4px;padding:8px 12px;border-radius:14px;background:rgba(0,0,0,.22);text-align:center;font-weight:700;font-size:14px;opacity:.92}
+  .siradaki-ozellik small{display:block;font-weight:500;opacity:.8;font-size:12px}
+  .sinav-kapi{margin:10px 0;padding:12px 14px;border-radius:16px;background:rgba(0,0,0,.22)}
+  .sinav-kapi p{margin:0 0 8px;font-weight:700}
+  .sinav-kapi ul{margin:0;padding-left:18px}.sinav-kapi li{margin:4px 0;font-size:14px}
+  .y-bolge em.y-sinav{display:block;font-style:normal;font-size:12px;color:#ffd451;margin-top:2px}
+  .lvl-karolar button.kilitli{filter:grayscale(.85) brightness(.75);opacity:.7}
+  @media (prefers-reduced-motion:reduce){.yeni-acildi{animation:none}}
 </style>
 </head>
 <body class="port">
@@ -1452,7 +1467,7 @@ DIL_SOZLUK.en = {
 "Edilgen yapılar, 2. ve 3. koşul, wish, past perfect": "Passive structures, 2nd and 3rd conditionals, wish, past perfect",
 "İleri seviyedeyim": "I'm advanced",
 "İlgi cümlecikleri, devrik yapı, akademik dil": "Relative clauses, inversion, academic language",
-"Ustalaşmak istiyorum": "I want to master it",
+"Uzmanlaşmak istiyorum": "I want to master it",
 "Deyimler, ince anlam farkları, ileri üslup": "Idioms, subtle differences in meaning, advanced style",
 "Seviye Testi": "Level Test",
 "Seviyeni bulalım": "Let's find your level",
@@ -1461,7 +1476,7 @@ DIL_SOZLUK.en = {
 "Orta": "Intermediate",
 "İyi": "Upper-intermediate",
 "İleri": "Advanced",
-"Usta": "Proficient",
+"Uzman": "Proficient",
 "{s} seviye": "{s} level",
 "{a} / {b} doğru": "{a} / {b} correct",
 " · önceki testte {o}": " · last test: {o}",
@@ -2171,6 +2186,30 @@ DIL_SOZLUK.en = {
 "İstasyon": "Station",
 "Kütüphane": "Library",
 "Gece Şehri": "Night City",
+"{l} SEVİYE SINAVI": "{l} LEVEL EXAM",
+"{b} bölgesi {l} seviyesinde. Açmak için {s} seviyesini hak etmelisin.": "{b} is at level {l}. To open it, you have to earn level {s}.",
+"{s} seviyesinden karışık cümleler kuracak, aralarında hataları bulacaksın.": "You'll build mixed {s} sentences and find mistakes between them.",
+"Hata göstergesi dolarsa sınavı geçemezsin; istediğin kadar yeniden girebilirsin.": "If the mistake meter fills up you don't pass; you can retake it as often as you like.",
+"Geçersen {l} açılır: Bölüm Yolu’nda {b}, Kariyer’de {l} dersleri, Online’da {l} maçları.": "Pass it to unlock {l}: {b} on the Level Path, {l} lessons in Career and {l} matches online.",
+"🎓 SINAVA GİR": "🎓 TAKE THE EXAM",
+"📚 {s} ile hazırlan": "📚 Practice {s}",
+"{b} AÇILDI · BÖLÜM YOLU": "{b} UNLOCKED · LEVEL PATH",
+"BÖLÜM YOLUNA DÖN": "BACK TO THE LEVEL PATH",
+"{s} Seviye Sınavı ile açılır": "Unlocks with the {s} Level Exam",
+"SIRADA SINAV VAR!": "EXAM AHEAD!",
+"{b} için {s} Seviye Sınavı’nı geç.": "Pass the {s} Level Exam to open {b}.",
+"{l} için önce {s} Seviye Sınavı’nı geç (Kariyer ya da Bölüm Yolu).": "To play {l}, first pass the {s} Level Exam (Career or Level Path).",
+"YENİ: {o} açıldı!": "NEW: {o} unlocked!",
+"Sıradaki: {i} {ad}": "Next up: {i} {ad}",
+"Günlük çark": "Daily spin",
+"Haftalık etkinlik": "Weekly event",
+"Rozetler": "Badges",
+"İki bölüm geç": "Clear two levels",
+"Bölüm Yolu’nda bir bölüm geç": "Clear a level on the Level Path",
+"Bölüm Yolu’nda 4 bölüm geç": "Clear 4 levels on the Level Path",
+"Bölüm Yolu’nda 8 ya da Kariyer’de 4 bölüm geç": "Clear 8 Level Path levels or 4 Career chapters",
+"Bölüm Yolu’nda 12 bölüm geç": "Clear 12 levels on the Level Path",
+"İlk rozetini kazan": "Earn your first badge",
 "jeton": "coins",
 "dolu": "full",
 "Dükkân": "Shop",
@@ -2502,6 +2541,12 @@ const ALANLAR = {
     if (Array.isArray(x.alinan)) o.alinan = x.alinan.filter(i => Number.isInteger(i) && i >= 0 && i < 20); else b = true;
     if (o.alinan.length !== (x.alinan || []).length) b = true;
     return b ? c.bozuk(o) : o;
+  },
+  acilan: (x, v, c) => {    // görülen (YENİ! rozeti kalkan) özellikler; null: henüz bakılmadı
+    if (x === null) return null;
+    if (!Array.isArray(x)) return c.bozuk(null);
+    const o = x.filter(y => typeof y === 'string' && /^[a-z]{2,12}$/.test(y)).slice(0, 30);
+    return o.length === x.length ? o : c.bozuk(o);
   },
   jeton: (x, v, c) => { const y = tamSayi(x, 0, 1e6); return y !== null && y === x ? y : c.bozuk(y === null ? v : y); },
   galibiyet: (x, v, c) => { const y = tamSayi(x, 0, 1e5); return y !== null && y === x ? y : c.bozuk(y === null ? 0 : y); },
@@ -3385,7 +3430,7 @@ function dersMetni(m) { return esc(m).replace(/\{([^}]*)\}/g, '<em>$1</em>'); }
 function dersVarMi(r) { return !!r && !r.karma && cumleliMi(r) && ((r.ders && r.ders.length) || r.rule); }
 
 /* ---------------- seviye testi: uyarlanır, 14 soru ---------------- */
-const ST_SORU = 14, ST_AD = { A1: 'Başlangıç', A2: 'Temel', B1: 'Orta', B2: 'İyi', C1: 'İleri', C2: 'Usta' };
+const ST_SORU = 14, ST_AD = { A1: 'Başlangıç', A2: 'Temel', B1: 'Orta', B2: 'İyi', C1: 'İleri', C2: 'Uzman' };
 function stHavuz(l) { const o = []; seviyePaketleri(l).forEach(p => paketKelimeleri(p.id).forEach(w => { if (w.d && w.d.length >= 1 && w.en.indexOf(' ') < 0) o.push(w); })); return o; }
 function stTahmin(k) {
   let en = -Infinity, t = 0;
@@ -3450,7 +3495,7 @@ function bosKayit() {
     xp: 0, gunluk: { hedef: 50, gunler: {} }, seri: { gun: 0, enUzun: 0, sonGun: null, dondurma: 0, donan: [] },   // ilerleme.js
     gorev: { son: null, seri: 0, enUzun: 0, toplam: 0, gunler: {} },   // Günün Görevi (gorev.js)
     rozet: {}, strRehber: false, yol: { acik: 1, yildiz: {}, enIyi: {} },
-    envanter: { hamle3: 1, cekic: 1, miknatis: 1 }, sandik: { slot: [] }, cark: { son: null }, jeton: 50, can: { n: 5, t: null }, galibiyet: 0,
+    envanter: { hamle3: 1, cekic: 1, miknatis: 1 }, sandik: { slot: [] }, cark: { son: null }, jeton: 50, can: { n: 5, t: null }, galibiyet: 0, acilan: null,
     etkinlik: { hafta: '', puan: 0, alinan: [], tamam: 0 } };   // etkinlik.js   // odul.js (başlangıçta birer güç hediye)                                     // rozet.js · strRehber: strateji alıştırması görüldü (strateji.js)
 }
 /* ---------------- kayıt okuma: doğrula (kayit-sema.js), bozuksa yedekle, oyuncuya bir kez söyle ---------------- */
@@ -6734,13 +6779,13 @@ function onlineModAc(mod, uyari) {
   mod = mod === 'strateji' ? 'strateji' : 'hiz'; onlineSonMod = mod;
   if (G.state !== 'menu') demo();
   Ses.muzik('menu'); Konus.sus();
-  if (SEVIYELER.indexOf(onlineSecLvl) < 0) onlineSecLvl = sonAcikSeviye();
+  if (SEVIYELER.indexOf(onlineSecLvl) < 0 || !seviyeHak(onlineSecLvl)) onlineSecLvl = sonAcikSeviye();   // yalnız hak edilen seviyeler (kilit.js)
   const x = ONLINE_MOD[mod], lvl = onlineSecLvl;
   goster(`<div class="ust-satir"><button class="geri" id="o-geri">${tt('← Geri')}</button></div>
     <div class="mod-bant ${mod}"><i>${x.i}</i><div><b>${tt(x.ad)}</b><small>${tt(x.kural, { n: ONLINE_CUMLE })}</small></div></div>
     ${uyari ? `<p class="uyari">${esc(uyari)}</p>` : ''}
     <div class="bolum">${tt('Seviyen')}</div>
-    <div class="lvl-karolar" id="o-lvl">${SEVIYELER.map(l => `<button data-l="${l}" class="${l === lvl ? 'secili' : ''}" style="--r:${LVL_RENK[l]}">${l}</button>`).join('')}</div>
+    <div class="lvl-karolar" id="o-lvl">${SEVIYELER.map(l => `<button data-l="${l}" class="${l === lvl ? 'secili' : ''}${seviyeHak(l) ? '' : ' kilitli'}" style="--r:${LVL_RENK[l]}"${seviyeHak(l) ? '' : ` aria-label="${l} 🔒"`}>${seviyeHak(l) ? l : '🔒'}</button>`).join('')}</div>
     <p class="lvl-ad">${esc(seviyeAd(lvl))} · ${tt('rakibin de bu seviyeden olur')}</p>
     <button class="big hizli-btn" id="o-hizli">${tt('🎲 HIZLI EŞLEŞ')}<small>${tt('Bu seviyede bekleyen biriyle')}</small></button>
     <div class="secenek-ikili">
@@ -6751,7 +6796,7 @@ function onlineModAc(mod, uyari) {
     ${mod === 'strateji' ? `<button class="sec genis-btn" id="o-rehber">${tt('📘 Nasıl oynanır? (alıştırma)')}</button>` : ''}
     <p class="aciklama kucuk">${tt('İkiniz de internete bağlı olmalısınız. Bağlantı ücretsiz genel sunucular üzerinden kurulur; bazen bağlanmak birkaç saniye sürebilir.')}</p>`, '', 'online');
   $('#o-geri').onclick = () => { onlineSonMod = null; onlineAc(); };
-  card.querySelectorAll('#o-lvl button').forEach(b => b.onclick = () => { onlineSecLvl = b.dataset.l; Ses.cal('tik', { ses: 0.4 }); onlineModAc(mod); });
+  card.querySelectorAll('#o-lvl button').forEach(b => b.onclick = () => { if (!seviyeHak(b.dataset.l)) { Ses.cal('geri', { ses: 0.4 }); not(tt('{l} için önce {s} Seviye Sınavı’nı geç (Kariyer ya da Bölüm Yolu).', { l: b.dataset.l, s: sinavSeviye(b.dataset.l) })); return; } onlineSecLvl = b.dataset.l; Ses.cal('tik', { ses: 0.4 }); onlineModAc(mod); });
   $('#o-hizli').onclick = () => { sesAc(); eslesmeBaslat(mod, lvl); };
   $('#o-bot').onclick = () => { sesAc(); botMacBaslat(mod, lvl); };
   const rh = $('#o-rehber'); if (rh) rh.onclick = () => { sesAc(); strRehberTek(); };
@@ -8655,7 +8700,7 @@ function yolHaritaAc() {
     <div class="ana-baslik">🗺 ${tt('BÖLÜM YOLU')}</div>${sandikHtml()}${aracHtml()}<div class="y-yol">`;
   YOL_BOLGE.forEach((B, bi) => {
     const ilk = bi * YOL_BOLUM_BOLGE + 1, kilitli = ilk > acik;
-    ic += `<div class="y-bolge ${kilitli ? 'kilit' : ''}" style="--b:${B.renk}"><i>${B.i}</i><div><b>${tt(B.ad)}</b><small>${B.lvl} · ${tt('Bölüm {a}–{b}', { a: ilk, b: ilk + YOL_BOLUM_BOLGE - 1 })}${B.yeni ? ' · ' + tt('Yeni: ') + yolMekanikAd(B.yeni) : ''}</small></div></div>`;
+    ic += `<div class="y-bolge ${kilitli ? 'kilit' : ''}" style="--b:${B.renk}"><i>${B.i}</i><div><b>${tt(B.ad)}</b><small>${B.lvl} · ${tt('Bölüm {a}–{b}', { a: ilk, b: ilk + YOL_BOLUM_BOLGE - 1 })}${B.yeni ? ' · ' + tt('Yeni: ') + yolMekanikAd(B.yeni) : ''}</small>${seviyeHak(B.lvl) ? '' : `<em class="y-sinav">🎓 ${tt('{s} Seviye Sınavı ile açılır', { s: sinavSeviye(B.lvl) })}</em>`}</div></div>`;
     for (let n = ilk; n < ilk + YOL_BOLUM_BOLGE; n++) {
       const sira = n - ilk, x = [50, 70, 82, 70, 50, 30, 18, 30][sira % 8], y = Y.yildiz[n] || 0, durum = n < acik || y ? 'gecti' : n === acik ? 'simdi' : 'kilit', boss = YOL_DALGA[sira] === 'boss', zor = YOL_DALGA[sira] === 'zor';
       ic += `<div class="y-satir"><button class="y-durak ${durum} ${boss ? 'boss' : zor ? 'zor' : ''}" data-n="${n}" style="left:${x}%;--b:${B.renk}" aria-label="${tt('Bölüm {n}', { n })}${durum === 'kilit' ? ' 🔒' : ''}">
@@ -8691,6 +8736,7 @@ const YOL_OZEL_ACIKLAMA = {
 };
 // bölüm başlangıç kartı
 function yolBaslangic(no) {
+  if (!yolBolgeHak(no)) { sinavKapisi(no); return; }   // kilit.js: yeni seviyeli bölge sınavla açılır
   const b = yolBolum(no), y = kayit.yol.yildiz[no] || 0, en = kayit.yol.enIyi[no] || 0;
   const yeniMek = b.sira === 0 && b.B.yeni ? b.B.yeni : null;
   goster(`<div class="y-bas" style="--b:${b.B.renk}"><div class="y-bas-no">${b.zor === 'boss' ? '💀 ' : ''}${tt('BÖLÜM {n}', { n: no })}</div>
@@ -8713,6 +8759,7 @@ function yolOyna(no, o) {
   if (!kayit.strRehber) {   // daha önce strateji alıştırması yapılmadıysa önce o
     strRehberTek(); STR.R.rehber.sonra = () => { strKapat(); yolOyna(no, o); }; return;
   }
+  if (!(o && o.davet) && !yolBolgeHak(no)) { strKapat(); sinavKapisi(no); return; }
   const b = yolBolum(no);
   const can = canGerekir(no);
   if (can && !canHarca()) { strKapat(); canBittiAc(no); return; }
@@ -8839,7 +8886,8 @@ function yolSonuc(o) {
     ${!o.kazandi && M.yol.can ? `<div class="y-can">${canHtml()}</div>` : ''}
     ${sandik ? sandikKazanHtml(sandik) : ''}
     ${M.yol.etkinlik ? `<div class="sonuc-alt etk-kazanc">${etkTema().i} ${tt(etkTema().ad)}: +${M.yol.etkinlik} ${etkTema().jeton}</div>` : ''}
-    ${bolgeBitti ? `<div class="y-yeni"><b>${tt('YENİ BÖLGE AÇILDI!')}</b> ${YOL_BOLGE[b.bi + 1].i} ${tt(YOL_BOLGE[b.bi + 1].ad)}</div>` : ''}
+    ${bolgeBitti ? (seviyeHak(YOL_BOLGE[b.bi + 1].lvl) ? `<div class="y-yeni"><b>${tt('YENİ BÖLGE AÇILDI!')}</b> ${YOL_BOLGE[b.bi + 1].i} ${tt(YOL_BOLGE[b.bi + 1].ad)}</div>`
+      : `<div class="y-yeni"><b>🎓 ${tt('SIRADA SINAV VAR!')}</b> ${tt('{b} için {s} Seviye Sınavı’nı geç.', { b: YOL_BOLGE[b.bi + 1].i + ' ' + tt(YOL_BOLGE[b.bi + 1].ad), s: sinavSeviye(YOL_BOLGE[b.bi + 1].lvl) })}</div>`) : ''}
     ${sonraki ? `<button class="big" id="y-sonraki">${tt('SONRAKİ BÖLÜM ▶')}</button>` : ileride && o.kazandi ? `<button class="big" id="y-kendi">${tt('KENDİ YOLUNA DÖN · BÖLÜM {n}', { n: Y.acik })}</button>` : `<button class="big" id="y-tekrar">${tt('TEKRAR DENE')}</button>`}
     <div class="row">${sonraki || (ileride && o.kazandi) ? `<button class="sec" id="y-tekrar">${tt('TEKRAR OYNA')}</button>` : ''}<button class="sec" id="y-harita">${tt('HARİTA')}</button></div></div>`;
   p.querySelectorAll('.dinle').forEach(x => x.onclick = e => { e.stopPropagation(); sesAc(); Konus.soyle(x.dataset.en, { hiz: 0.85 }); });
@@ -9140,6 +9188,83 @@ function dukkanAc(geri) {
     if (ARAC[u.id]) aracEkle(u.id, 1); else if (u.id === 'can') canDoldur(); else if (u.id === 'don') kayit.seri.dondurma++;
     kaydet(); Yerel.titret('hafif'); not(tt('{u} alındı!', { u: u.i + ' ' + tt(u.ad) })); dukkanAc(geri);
   });
+}
+
+/* =====================================================================
+   KİLİTLER (28 Kasım 2026): SEVİYE SINAVI KAPISI · KADEMELİ AÇILAN ÖZELLİKLER
+   · Seviye hak edilir: bir seviye (A2 … C2) ancak bir önceki seviyenin SEVİYE SINAVI (Kariyer'deki "<seviye>-U" bölümü,
+     karışık cümleler + hatayı bul) geçilince açılır. Kariyer zaten böyleydi; artık Bölüm Yolu ve Online da buna uyar:
+       – Bölüm Yolu: yeni seviyeli bölgeye (Park A2, Kütüphane B1, Ofis B2, Havalimanı C1, Rasathane C2) girmek için sınav kapısı
+         (ekran 'yolSinav'); sınav haritadan doğrudan açılır, geçince Kariyer'de de o seviye açılır, sonuçtan Bölüm Yolu'na dönülür.
+       – Online: yalnız hak edilen seviyeler seçilebilir (arkadaşın odası ve hızlı eşleşmenin düşük seviyesi bundan etkilenmez).
+     Seviye testiyle (Kariyer → Seviyeni ölç / ilk giriş) bulunan seviye de hak edilmiş sayılır (seviyeUygula onu açar).
+     Davet linkiyle oynanan bölüm kapıya takılmaz (ilerleme değişmez).
+   · Kademeli açılma: ana menü ilk gün sade (Bölüm Yolu + Kariyer); diğer özellikler ilerledikçe "YENİ!" rozetiyle açılır (OZELLIK).
+     kayit.acilan: görülen özellikler (null: henüz hiç bakılmadı → o an açık olanlar görülmüş sayılır, eski oyuncuda rozet yağmuru olmaz).
+   · Test kancası: window.__hepsiAcik = true → bütün seviyeler ve özellikler açık (eski testler kilitlere takılmasın).
+   ===================================================================== */
+const hepsiAcik = () => !!window.__hepsiAcik;
+function seviyeHak(l) { const i = SEVIYELER.indexOf(l); return i <= 0 || hepsiAcik() || seviyeAcikMi(l); }
+function sinavSeviye(l) { const i = SEVIYELER.indexOf(l); return i > 0 ? SEVIYELER[i - 1] : null; }   // l'yi açan sınavın seviyesi
+function sinavRakip(l) { const s = sinavSeviye(l); return s ? rakipBul(s + '-U') : null; }
+function yolBolgeSira(no) { return Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE)); }
+function yolBolgeHak(no) { return seviyeHak(YOL_BOLGE[yolBolgeSira(no)].lvl); }
+
+/* ---------------- sınav kapısı (Bölüm Yolu) ---------------- */
+let sinavDonus = null;   // { no, id }: sınav Bölüm Yolu'ndan açıldıysa sonuçtan oraya dönülür
+function sinavKapisi(no) {
+  const B = YOL_BOLGE[yolBolgeSira(no)], s = sinavSeviye(B.lvl), r = sinavRakip(B.lvl);
+  if (!r) { yolHaritaAc(); return; }
+  Olcum.olay('sinav_kapisi', { lvl: B.lvl, bolum: no });
+  goster(`<div class="y-bas" style="--b:${B.renk}"><div class="y-bas-no">🎓 ${tt('{l} SEVİYE SINAVI', { l: s })}</div>
+      <small>${B.i} ${tt(B.ad)} · ${B.lvl}</small></div>
+    <div class="sinav-kapi"><p>${tt('{b} bölgesi {l} seviyesinde. Açmak için {s} seviyesini hak etmelisin.', { b: tt(B.ad), l: B.lvl, s })}</p>
+      <ul><li>${tt('{s} seviyesinden karışık cümleler kuracak, aralarında hataları bulacaksın.', { s })}</li>
+        <li>${tt('Hata göstergesi dolarsa sınavı geçemezsin; istediğin kadar yeniden girebilirsin.')}</li>
+        <li>${tt('Geçersen {l} açılır: Bölüm Yolu’nda {b}, Kariyer’de {l} dersleri, Online’da {l} maçları.', { l: B.lvl, b: tt(B.ad) })}</li></ul></div>
+    <button class="big" id="sk-gir">${tt('🎓 SINAVA GİR')}</button>
+    <div class="row"><button class="sec" id="sk-hazirlan">${tt('📚 {s} ile hazırlan', { s })}</button><button class="sec" id="sk-harita">${tt('HARİTA')}</button></div>`, '', 'yolSinav');
+  $('#sk-gir').onclick = () => { sesAc(); sinavDonus = { no, id: r.id }; cumleDojo(r); };
+  $('#sk-hazirlan').onclick = () => { sesAc(); sinavDonus = null; haritaAc(s); };
+  $('#sk-harita').onclick = () => { sinavDonus = null; yolHaritaAc(); };
+}
+// sonuç ekranı (screens.js sonucGoster): Bölüm Yolu'ndan açılan sınavın dönüş düğmesi
+function sinavDonusHtml(d) {
+  const s = sinavDonus; if (!s || !d || !d.r || d.r.id !== s.id) return '';
+  const B = YOL_BOLGE[yolBolgeSira(s.no)];
+  return d.kazandi ? `<button class="big" id="s-yol">🗺 ${tt('{b} AÇILDI · BÖLÜM YOLU', { b: tt(B.ad).toLocaleUpperCase(arayuzDili === 'en' ? 'en' : 'tr') })}</button>`
+    : `<button class="big" id="s-yol">🗺 ${tt('BÖLÜM YOLUNA DÖN')}</button>`;
+}
+function sinavDonusBagla(d) {
+  const b = $('#s-yol'); if (!b) return;
+  const s = sinavDonus;
+  b.onclick = () => { sinavDonus = null; sesAc(); if (d.kazandi && yolBolgeHak(s.no)) yolBaslangic(s.no); else yolHaritaAc(); };
+}
+
+/* ---------------- kademeli açılan özellikler (ana menü) ---------------- */
+const yolGecilen = () => Math.max(0, Math.min(YOL_TOPLAM, kayit.yol.acik) - 1);
+const kariyerGecilen = () => Object.keys(kayit.yildiz).length;
+const OZELLIK = [
+  { id: 'gorev', i: '📅', ad: 'Günün Görevi', ne: () => yolGecilen() + kariyerGecilen(), hedef: 2, sart: 'İki bölüm geç' },
+  { id: 'sandik', i: '🎁', ad: 'Sandıklar', ne: () => (kayit.sandik.slot.length ? 99 : yolGecilen()), hedef: 1, sart: 'Bölüm Yolu’nda bir bölüm geç' },
+  { id: 'cark', i: '🎡', ad: 'Günlük çark', ne: yolGecilen, hedef: 4, sart: 'Bölüm Yolu’nda 4 bölüm geç' },
+  { id: 'online', i: '🏁', ad: 'Online', ne: () => Math.max(yolGecilen(), kariyerGecilen() * 2), hedef: 8, sart: 'Bölüm Yolu’nda 8 ya da Kariyer’de 4 bölüm geç' },
+  { id: 'etk', i: '🏆', ad: 'Haftalık etkinlik', ne: yolGecilen, hedef: 12, sart: 'Bölüm Yolu’nda 12 bölüm geç' },
+  { id: 'rozet', i: '🏅', ad: 'Rozetler', ne: () => rozetSay(), hedef: 1, sart: 'İlk rozetini kazan' },
+];
+function ozellikAcik(id) { if (hepsiAcik()) return true; const o = OZELLIK.find(x => x.id === id); return !o || o.ne() >= o.hedef; }
+// açılışta: kaydı hazırlar, yeni açılanları döner (YENİ! rozeti için)
+function ozellikYeniler() {
+  const acik = OZELLIK.filter(o => ozellikAcik(o.id)).map(o => o.id);
+  if (!Array.isArray(kayit.acilan)) { kayit.acilan = acik; return []; }   // yalnız bellekte: menüyü açmak kayıt yazmasın (sonraki kayıtta gider)
+  return acik.filter(id => kayit.acilan.indexOf(id) < 0);
+}
+function ozellikGoruldu(id) { if (Array.isArray(kayit.acilan) && kayit.acilan.indexOf(id) < 0) { kayit.acilan.push(id); kaydet(); } }
+// sıradaki kilitli özellik: ana menüde tek satır ipucu
+function ozellikSiradakiHtml() {
+  const o = OZELLIK.find(x => !ozellikAcik(x.id)); if (!o) return '';
+  const n = Math.min(o.ne(), o.hedef);
+  return `<div class="siradaki-ozellik">🔒 ${tt('Sıradaki: {i} {ad}', { i: o.i, ad: tt(o.ad) })}<small>${tt(o.sart)}${o.hedef > 1 ? ` · ${n}/${o.hedef}` : ''}</small></div>`;
 }
 
 /* =====================================================================
@@ -9644,7 +9769,7 @@ function panelGeri() {
   if (ekran === 'strSonuc') { const c = $('#ss-cik'); if (c) c.click(); return; }
   if (ekran === 'eslesme') { eslesmeDur(); onlineAc(); return; }
   if (ekran === 'yol' || ekran === 'cark' || ekran === 'etkinlik') { acilisAc(); return; }
-  if (ekran === 'yolBas' || ekran === 'dukkan' || ekran === 'canBitti') { yolHaritaAc(); return; }
+  if (ekran === 'yolBas' || ekran === 'dukkan' || ekran === 'canBitti' || ekran === 'yolSinav') { yolHaritaAc(); return; }
   if (ekran === 'online') { onlineSonMod = null; onlineAc(); return; }
   if (ekran === 'harita' || ekran === 'profil' || ekran === 'onlineSecim' || ekran === 'ilk' || ekran === 'ilkHedef') { acilisAc(); return; }
   haritaAc();
@@ -9672,7 +9797,7 @@ function demo() {
 }
 
 /* ---------------- ilk giriş: seviye seçimi ---------------- */
-const SEV_ACIK = { A1: ['Yeni başlıyorum', 'Temel cümleler: am / is / are, geniş zaman, can'], A2: ['Biraz biliyorum', 'Geçmiş zaman, gelecek zaman, should'], B1: ['Orta seviyedeyim', 'Present perfect, edilgen yapı, used to, if'], B2: ['İyi biliyorum', 'Edilgen yapılar, 2. ve 3. koşul, wish, past perfect'], C1: ['İleri seviyedeyim', 'İlgi cümlecikleri, devrik yapı, akademik dil'], C2: ['Ustalaşmak istiyorum', 'Deyimler, ince anlam farkları, ileri üslup'] };
+const SEV_ACIK = { A1: ['Yeni başlıyorum', 'Temel cümleler: am / is / are, geniş zaman, can'], A2: ['Biraz biliyorum', 'Geçmiş zaman, gelecek zaman, should'], B1: ['Orta seviyedeyim', 'Present perfect, edilgen yapı, used to, if'], B2: ['İyi biliyorum', 'Edilgen yapılar, 2. ve 3. koşul, wish, past perfect'], C1: ['İleri seviyedeyim', 'İlgi cümlecikleri, devrik yapı, akademik dil'], C2: ['Uzmanlaşmak istiyorum', 'Deyimler, ince anlam farkları, ileri üslup'] };
 function ilkGiris() {
   if (G.state !== 'menu') demo();
   Ses.muzik('menu');
@@ -9722,11 +9847,14 @@ function acilisAc() {
   const no = Math.min(YOL_TOPLAM, kayit.yol.acik), B = YOL_BOLGE[Math.min(YOL_BOLGE.length - 1, Math.floor((no - 1) / YOL_BOLUM_BOLGE))];
   const ilk = (Math.floor((no - 1) / YOL_BOLUM_BOLGE)) * YOL_BOLUM_BOLGE + 1, bolgeY = Array.from({ length: YOL_BOLUM_BOLGE }, (_, k) => kayit.yol.yildiz[ilk + k] || 0).reduce((a, b) => a + b, 0);
   const T = etkTema(), etkHazir = etkHazirSay(), sHazir = kayit.sandik.slot.filter(k => sandikDurum(k) === 'hazir').length, sAc = sandikAciliyor(), gTamam = gorevBugunTamam();
-  const kis = (id, i, ad, alt, nokta, cls) => `<button class="kisayol ${cls || ''}" id="${id}"><i>${i}</i><b>${ad}</b><small>${alt}</small>${nokta ? `<em>${nokta === true ? '' : nokta}</em>` : ''}</button>`;
+  // kademeli açılma (kilit.js): kilitli özellik görünmez; yeni açılan "YENİ!" rozetiyle gelir
+  const yeniler = ozellikYeniler(), ac = id => ozellikAcik(id);
+  const kis = (id, i, ad, alt, nokta, cls) => { const oz = id.slice(2), yeni = yeniler.indexOf(oz) >= 0; return ac(oz) ? `<button class="kisayol ${cls || ''}${yeni ? ' yeni-acildi' : ''}" id="${id}"><i>${i}</i><b>${ad}</b><small>${alt}</small>${yeni ? `<em class="yeni">${tt('YENİ!')}</em>` : nokta ? `<em>${nokta === true ? '' : nokta}</em>` : ''}</button>` : ''; };
+  const kisSay = ['cark', 'sandik', 'etk', 'gorev', 'rozet'].filter(ac).length, onlineAcik = ac('online');
   goster(`<div class="acilis sade">
     <div class="ac-ust">${logoHtml('sm')}<button class="profil-mini" id="a-prof"><span class="avatar">${harfi(p.ad)}</span><span><b>${esc(p.ad)}</b><small>${esc(oz.lvl)} · ⭐ ${kayit.xp}</small></span></button></div>
     ${gunlukHtml()}
-    <div class="kisayollar">
+    <div class="kisayollar" style="grid-template-columns:repeat(${Math.max(1, kisSay)},minmax(0,1fr))${kisSay ? '' : ';display:none'}">
       ${kis('a-cark', '🎡', tt('Çark'), tt(carkHazir() ? 'Bedava!' : 'Yarın'), carkHazir(), carkHazir() ? 'hazir' : '')}
       ${kis('a-sandik', '🎁', tt('Sandık'), sHazir ? tt('AÇ!') : sAc ? sandikSure(sandikKalan(sAc)) : kayit.sandik.slot.length + '/' + SANDIK_YUVA, sHazir || false, sHazir ? 'hazir' : '')}
       ${kis('a-etk', T.i, tt('Etkinlik'), etkKalanYaz(), etkHazir || false, etkHazir ? 'hazir' : '')}
@@ -9736,20 +9864,23 @@ function acilisAc() {
     <button class="oyna-btn" id="a-oyna" style="--b:${B.renk}"><span class="ob-bolge">${B.i} ${tt(B.ad)} · ⭐ ${bolgeY}/${YOL_BOLUM_BOLGE * 3}</span>
       <b>▶ ${tt('OYNA')}</b><small>${tt('BÖLÜM {n}', { n: no })}</small></button>
     <button class="harita-link" id="a-yol">🗺 ${tt('Bölüm Yolu haritası')} · ⭐ ${yolYildizToplam()}</button>
-    <div class="ana-ikili kucuk"><button class="ana-btn online" id="a-online"><i>🏁</i><span><b>${tt('ONLINE')}</b><small>${tt('⚡ Hız · 🧠 Strateji')}</small></span></button>
+    <div class="ana-ikili kucuk${onlineAcik ? '' : ' tek'}">${onlineAcik ? `<button class="ana-btn online${yeniler.indexOf('online') >= 0 ? ' yeni-acildi' : ''}" id="a-online"><i>🏁</i><span><b>${tt('ONLINE')}${yeniler.indexOf('online') >= 0 ? ` <em class="yeni">${tt('YENİ!')}</em>` : ''}</b><small>${tt('⚡ Hız · 🧠 Strateji')}</small></span></button>` : ''}
     <button class="ana-btn kariyer" id="a-kariyer"><i>🏆</i><span><b>${tt('KARİYER')}</b><small>${y ? tt('Yarım bölüm: ') + yarimYazi(y) : tt('A1 → C2 dersler')}</small></span></button></div>
+    ${ozellikSiradakiHtml()}
     <div class="row"><button class="sec" id="a-ayar">${tt('⚙ Ayarlar')}</button><button class="sec" id="a-nas">${tt('? Nasıl')}</button></div>
   </div>`, '', 'acilis');
+  if (yeniler.length) setTimeout(() => { if (ekran === 'acilis') { Ses.cal('yukselis', { ses: 0.5 }); not(tt('YENİ: {o} açıldı!', { o: yeniler.map(id => { const o = OZELLIK.find(x => x.id === id); return o.i + ' ' + tt(o.ad); }).join(', ') })); } }, 500);
+  const bag = (id, f) => { const e = $('#' + id); if (e) e.onclick = () => { ozellikGoruldu(id.slice(2)); f(); }; };
   $('#a-oyna').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.6 }); yolBaslangic(no); };
-  $('#a-gorev').onclick = () => { Ses.cal('tik', { ses: 0.5 }); gorevBaslat(); };
+  bag('a-gorev', () => { Ses.cal('tik', { ses: 0.5 }); gorevBaslat(); });
   $('#a-yol').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
-  $('#a-etk').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); etkAc(); };
-  $('#a-cark').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); carkAc(); };
-  $('#a-sandik').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); };
-  $('#a-rozet').onclick = () => { Ses.cal('tik', { ses: 0.4 }); rozetlerAc(acilisAc); };
+  bag('a-etk', () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); etkAc(); });
+  bag('a-cark', () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); carkAc(); });
+  bag('a-sandik', () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); yolHaritaAc(); });
+  bag('a-rozet', () => { Ses.cal('tik', { ses: 0.4 }); rozetlerAc(acilisAc); });
   $('#a-prof').onclick = () => { Ses.cal('tik', { ses: 0.4 }); profilAc(); };
   $('#a-gunluk').onclick = () => { Ses.cal('tik', { ses: 0.4 }); profilAc(); };
-  $('#a-online').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); onlineSonMod = null; onlineAc(); };
+  bag('a-online', () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); onlineSonMod = null; onlineAc(); });
   $('#a-kariyer').onclick = () => { sesAc(); Ses.cal('tik', { ses: 0.5 }); haritaAc(); };
   $('#a-ayar').onclick = () => ayarAc(false, acilisAc);
   $('#a-nas').onclick = () => showTutorial(acilisAc);
@@ -9999,7 +10130,8 @@ function sonucGoster() {
   let sonraki = null;
   if (d.kazandi && !d.antrenman) sonraki = d.kelime ? (d.yeniPaket || null) : (d.r.id && rakipBul(d.r.id) ? sonrakiRakip(d.r) : null);
   if (sonraki && (d.kelime ? !paketAcikMi(sonraki) : !rakipAcikMi(sonraki))) sonraki = null;
-  ic += `<div class="pen-dip">${sonraki ? `<button class="big" id="s-sonra">${tt('SONRAKİ: ')}${esc(d.kelime ? sonraki.ad : sonraki.world)}</button>` : ''}
+  ic += sinavDonusHtml(d);   // kilit.js: Bölüm Yolu'ndan açılan seviye sınavı
+  ic += `<div class="pen-dip">${sonraki && !sinavDonusHtml(d) ? `<button class="big" id="s-sonra">${tt('SONRAKİ: ')}${esc(d.kelime ? sonraki.ad : sonraki.world)}</button>` : ''}
     <div class="row">${d.antrenman ? '' : `<button class="sec" id="s-tekrar">${tt(d.kazandi ? 'TEKRAR OYNA' : 'TEKRAR DENE')}</button>`}<button class="sec" id="s-harita">${tt(d.gunluk ? 'ANA MENÜ' : 'KARİYER')}</button></div></div>`;
   goster(ic, 'genis', 'sonuc');
   halkalariDoldur(card);
@@ -10007,7 +10139,8 @@ function sonucGoster() {
   if (d.uniteTamam) sonra(d.ilerleme && d.ilerleme.hedefOldu ? 1.7 : 0.9, () => Ses.cal('yukselis', { ses: 0.7 }));
   if (d.yeniRozet && d.yeniRozet.length) sonra(1.3, () => Ses.cal('yukselis', { ses: 0.6 }));
   const r = d.r, kel = d.kelime;
-  if (sonraki) $('#s-sonra').onclick = () => kel ? dojoBaslat(sonraki, { kelime: sonraki }) : cumleDojo(sonraki);
+  sinavDonusBagla(d);
+  if (sonraki && $('#s-sonra')) $('#s-sonra').onclick = () => kel ? dojoBaslat(sonraki, { kelime: sonraki }) : cumleDojo(sonraki);
   const ps = $('#s-paylas'); if (ps) ps.onclick = () => paylas(gorevPaylasMetni(d));
   const t = $('#s-tekrar'); if (t) t.onclick = () => d.gunluk ? gorevBaslat() : kel ? dojoBaslat(r, { kelime: r }) : dojoBaslat(r);
   $('#s-harita').onclick = () => d.gunluk ? acilisAc() : haritaAc(r.lvl && SEVIYE[r.lvl] ? r.lvl : null);

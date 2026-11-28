@@ -135,6 +135,12 @@ const ALANLAR = {
     if (o.alinan.length !== (x.alinan || []).length) b = true;
     return b ? c.bozuk(o) : o;
   },
+  acilan: (x, v, c) => {    // görülen (YENİ! rozeti kalkan) özellikler; null: henüz bakılmadı
+    if (x === null) return null;
+    if (!Array.isArray(x)) return c.bozuk(null);
+    const o = x.filter(y => typeof y === 'string' && /^[a-z]{2,12}$/.test(y)).slice(0, 30);
+    return o.length === x.length ? o : c.bozuk(o);
+  },
   jeton: (x, v, c) => { const y = tamSayi(x, 0, 1e6); return y !== null && y === x ? y : c.bozuk(y === null ? v : y); },
   galibiyet: (x, v, c) => { const y = tamSayi(x, 0, 1e5); return y !== null && y === x ? y : c.bozuk(y === null ? 0 : y); },
   can: (x, v, c) => {        // { n: 0–5, t: sonraki canın sayılmaya başladığı an | null }

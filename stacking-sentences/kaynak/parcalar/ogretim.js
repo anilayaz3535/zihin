@@ -442,7 +442,7 @@ function dersMetni(m) { return esc(m).replace(/\{([^}]*)\}/g, '<em>$1</em>'); }
 function dersVarMi(r) { return !!r && !r.karma && cumleliMi(r) && ((r.ders && r.ders.length) || r.rule); }
 
 /* ---------------- seviye testi: uyarlanır, 14 soru ---------------- */
-const ST_SORU = 14, ST_AD = { A1: 'Başlangıç', A2: 'Temel', B1: 'Orta', B2: 'İyi', C1: 'İleri', C2: 'Usta' };
+const ST_SORU = 14, ST_AD = { A1: 'Başlangıç', A2: 'Temel', B1: 'Orta', B2: 'İyi', C1: 'İleri', C2: 'Uzman' };
 function stHavuz(l) { const o = []; seviyePaketleri(l).forEach(p => paketKelimeleri(p.id).forEach(w => { if (w.d && w.d.length >= 1 && w.en.indexOf(' ') < 0) o.push(w); })); return o; }
 function stTahmin(k) {
   let en = -Infinity, t = 0;
